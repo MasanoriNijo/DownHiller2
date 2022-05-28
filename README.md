@@ -28,5 +28,8 @@ target device families:ipad
 ビルドエラーの解消
 1,[Xcode] iconv が Undefined symbols と叱られた時は ?
 プロジェクトのBuild Phases に libiconv.tbd を追加します。
+ライブラリは Link binary With Libraries から追加します。
 https://atuweb.net/201708_xcode-iconv-undefined-symbols/
 
+2,プロジェクトの Other Linker Flags に -lz を設定する。
+https://nakamura001.hatenablog.com/entry/20120131/1328022869
