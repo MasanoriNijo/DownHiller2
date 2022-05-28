@@ -169,6 +169,31 @@
 		301BEF5F510C4B15BF26E949 /* CCSprite3DMaterial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4047BB01B7B040A6BBEEFDED /* CCSprite3DMaterial.cpp */; };
 		303A4CEE63E54820A9AF2150 /* ShaderModuleMTL.mm in Sources */ = {isa = PBXBuildFile; fileRef = C8EA4C20CCC5496B986C9090 /* ShaderModuleMTL.mm */; };
 		30A273522842397100493207 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 30A273512842397000493207 /* libiconv.tbd */; };
+		30A273872842446100493207 /* ItemPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30A273532842445B00493207 /* ItemPool.cpp */; };
+		30A273882842446100493207 /* ChrPrm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30A273542842445B00493207 /* ChrPrm.cpp */; };
+		30A273892842446100493207 /* Dot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30A273562842445B00493207 /* Dot.cpp */; };
+		30A2738A2842446100493207 /* SpritePool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30A273572842445C00493207 /* SpritePool.cpp */; };
+		30A2738B2842446100493207 /* ModalLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30A273592842445C00493207 /* ModalLayer.cpp */; };
+		30A2738C2842446100493207 /* MainScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30A2735A2842445C00493207 /* MainScene.cpp */; };
+		30A2738D2842446100493207 /* FstScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30A2735B2842445C00493207 /* FstScene.cpp */; };
+		30A2738E2842446100493207 /* Kiraru.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30A2735D2842445C00493207 /* Kiraru.cpp */; };
+		30A2738F2842446100493207 /* KiraruPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30A2735F2842445D00493207 /* KiraruPool.cpp */; };
+		30A273902842446100493207 /* AsobiKata.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30A273602842445D00493207 /* AsobiKata.cpp */; };
+		30A273922842446100493207 /* SelectScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30A2736C2842445E00493207 /* SelectScene.cpp */; };
+		30A273932842446100493207 /* Sprite2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30A2736D2842445E00493207 /* Sprite2.cpp */; };
+		30A273942842446100493207 /* ImovileAd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30A2736F2842445E00493207 /* ImovileAd.cpp */; };
+		30A273952842446100493207 /* GameDeta.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30A273702842445E00493207 /* GameDeta.cpp */; };
+		30A273962842446100493207 /* RankScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30A273722842445E00493207 /* RankScene.cpp */; };
+		30A273972842446100493207 /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30A273732842445F00493207 /* GameScene.cpp */; };
+		30A273982842446100493207 /* Bike.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30A273752842445F00493207 /* Bike.cpp */; };
+		30A273992842446100493207 /* ParticleSystemPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30A273772842445F00493207 /* ParticleSystemPool.cpp */; };
+		30A2739A2842446100493207 /* Item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30A2737B2842445F00493207 /* Item.cpp */; };
+		30A2739B2842446100493207 /* TestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30A2737D2842446000493207 /* TestScene.cpp */; };
+		30A2739C2842446100493207 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30A2737E2842446000493207 /* AppDelegate.cpp */; };
+		30A2739D2842446100493207 /* TitleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30A2737F2842446000493207 /* TitleScene.cpp */; };
+		30A2739E2842446100493207 /* Slider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30A273812842446000493207 /* Slider.cpp */; };
+		30A2739F2842446100493207 /* NParticleSystemQuad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30A273832842446000493207 /* NParticleSystemQuad.cpp */; };
+		30A273A02842446100493207 /* SelTag.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30A273862842446100493207 /* SelTag.cpp */; };
 		30D6D8470A7E4DA3B0516A96 /* empty.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 189FCC7C00A345C6A840E450 /* empty.cpp */; };
 		314B92C4A25848F9BD9A20BF /* CCPhysics3DConstraint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 190AEAE195F54CB2A0917C89 /* CCPhysics3DConstraint.cpp */; };
 		31AA617AE76C436A82A41EB3 /* TGAlib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F8B2B6B0F3234A098671FBF6 /* TGAlib.cpp */; };
@@ -1240,6 +1265,56 @@
 		306452C9EBA043AAB3BA852A /* CCActionGrid3D.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = CCActionGrid3D.cpp; path = cocos2d/cocos/2d/CCActionGrid3D.cpp; sourceTree = SOURCE_ROOT; };
 		30A0CD37A2E64ACBAB7E411B /* CCPUVelocityMatchingAffectorTranslator.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = CCPUVelocityMatchingAffectorTranslator.h; path = cocos2d/extensions/Particle3D/PU/CCPUVelocityMatchingAffectorTranslator.h; sourceTree = SOURCE_ROOT; };
 		30A273512842397000493207 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		30A273532842445B00493207 /* ItemPool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ItemPool.cpp; sourceTree = "<group>"; };
+		30A273542842445B00493207 /* ChrPrm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ChrPrm.cpp; sourceTree = "<group>"; };
+		30A273552842445B00493207 /* GameDeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameDeta.h; sourceTree = "<group>"; };
+		30A273562842445B00493207 /* Dot.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Dot.cpp; sourceTree = "<group>"; };
+		30A273572842445C00493207 /* SpritePool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpritePool.cpp; sourceTree = "<group>"; };
+		30A273582842445C00493207 /* KiraruPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KiraruPool.h; sourceTree = "<group>"; };
+		30A273592842445C00493207 /* ModalLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ModalLayer.cpp; sourceTree = "<group>"; };
+		30A2735A2842445C00493207 /* MainScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainScene.cpp; sourceTree = "<group>"; };
+		30A2735B2842445C00493207 /* FstScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FstScene.cpp; sourceTree = "<group>"; };
+		30A2735D2842445C00493207 /* Kiraru.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Kiraru.cpp; sourceTree = "<group>"; };
+		30A2735E2842445C00493207 /* RankScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RankScene.h; sourceTree = "<group>"; };
+		30A2735F2842445D00493207 /* KiraruPool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KiraruPool.cpp; sourceTree = "<group>"; };
+		30A273602842445D00493207 /* AsobiKata.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AsobiKata.cpp; sourceTree = "<group>"; };
+		30A273612842445D00493207 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
+		30A273622842445D00493207 /* ItemPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemPool.h; sourceTree = "<group>"; };
+		30A273632842445D00493207 /* SpritePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpritePool.h; sourceTree = "<group>"; };
+		30A273642842445D00493207 /* ParticleSystemPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticleSystemPool.h; sourceTree = "<group>"; };
+		30A273652842445D00493207 /* Dot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dot.h; sourceTree = "<group>"; };
+		30A273662842445D00493207 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		30A273672842445D00493207 /* Bike.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bike.h; sourceTree = "<group>"; };
+		30A273682842445D00493207 /* ModalLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModalLayer.h; sourceTree = "<group>"; };
+		30A273692842445E00493207 /* TestScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestScene.h; sourceTree = "<group>"; };
+		30A2736A2842445E00493207 /* SelTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelTag.h; sourceTree = "<group>"; };
+		30A2736C2842445E00493207 /* SelectScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SelectScene.cpp; sourceTree = "<group>"; };
+		30A2736D2842445E00493207 /* Sprite2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite2.cpp; sourceTree = "<group>"; };
+		30A2736E2842445E00493207 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
+		30A2736F2842445E00493207 /* ImovileAd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImovileAd.cpp; sourceTree = "<group>"; };
+		30A273702842445E00493207 /* GameDeta.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameDeta.cpp; sourceTree = "<group>"; };
+		30A273712842445E00493207 /* NParticleSystemQuad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NParticleSystemQuad.h; sourceTree = "<group>"; };
+		30A273722842445E00493207 /* RankScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RankScene.cpp; sourceTree = "<group>"; };
+		30A273732842445F00493207 /* GameScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameScene.cpp; sourceTree = "<group>"; };
+		30A273742842445F00493207 /* MainScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScene.h; sourceTree = "<group>"; };
+		30A273752842445F00493207 /* Bike.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bike.cpp; sourceTree = "<group>"; };
+		30A273762842445F00493207 /* ImovileAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImovileAd.h; sourceTree = "<group>"; };
+		30A273772842445F00493207 /* ParticleSystemPool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParticleSystemPool.cpp; sourceTree = "<group>"; };
+		30A273782842445F00493207 /* AsobiKata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsobiKata.h; sourceTree = "<group>"; };
+		30A273792842445F00493207 /* Slider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Slider.h; sourceTree = "<group>"; };
+		30A2737A2842445F00493207 /* Sprite2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sprite2.h; sourceTree = "<group>"; };
+		30A2737B2842445F00493207 /* Item.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Item.cpp; sourceTree = "<group>"; };
+		30A2737C2842445F00493207 /* TitleScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleScene.h; sourceTree = "<group>"; };
+		30A2737D2842446000493207 /* TestScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestScene.cpp; sourceTree = "<group>"; };
+		30A2737E2842446000493207 /* AppDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AppDelegate.cpp; sourceTree = "<group>"; };
+		30A2737F2842446000493207 /* TitleScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TitleScene.cpp; sourceTree = "<group>"; };
+		30A273802842446000493207 /* Kiraru.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kiraru.h; sourceTree = "<group>"; };
+		30A273812842446000493207 /* Slider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Slider.cpp; sourceTree = "<group>"; };
+		30A273822842446000493207 /* SelectScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectScene.h; sourceTree = "<group>"; };
+		30A273832842446000493207 /* NParticleSystemQuad.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NParticleSystemQuad.cpp; sourceTree = "<group>"; };
+		30A273842842446000493207 /* FstScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FstScene.h; sourceTree = "<group>"; };
+		30A273852842446000493207 /* ChrPrm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChrPrm.h; sourceTree = "<group>"; };
+		30A273862842446100493207 /* SelTag.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SelTag.cpp; sourceTree = "<group>"; };
 		30AC40317CB74A22B13111FD /* FlatBuffersSerialize.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = FlatBuffersSerialize.cpp; path = "cocos2d/cocos/editor-support/cocostudio/FlatBuffersSerialize.cpp"; sourceTree = SOURCE_ROOT; };
 		315DA780580749DBAEC03973 /* CCPUPointEmitterTranslator.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = CCPUPointEmitterTranslator.cpp; path = cocos2d/extensions/Particle3D/PU/CCPUPointEmitterTranslator.cpp; sourceTree = SOURCE_ROOT; };
 		315F5CFF10BD4CF2B480902E /* CCController-apple.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = "CCController-apple.mm"; path = "cocos2d/cocos/base/CCController-apple.mm"; sourceTree = SOURCE_ROOT; };
@@ -3135,7 +3210,57 @@
 			isa = PBXGroup;
 			children = (
 				F14D90B3A4DB4791B9983976 /* AppDelegate.cpp */,
+				30A2737E2842446000493207 /* AppDelegate.cpp */,
 				A7092B028A0641649200414C /* AppDelegate.h */,
+				30A273662842445D00493207 /* AppDelegate.h */,
+				30A273602842445D00493207 /* AsobiKata.cpp */,
+				30A273782842445F00493207 /* AsobiKata.h */,
+				30A273752842445F00493207 /* Bike.cpp */,
+				30A273672842445D00493207 /* Bike.h */,
+				30A273542842445B00493207 /* ChrPrm.cpp */,
+				30A273852842446000493207 /* ChrPrm.h */,
+				30A273562842445B00493207 /* Dot.cpp */,
+				30A273652842445D00493207 /* Dot.h */,
+				30A2735B2842445C00493207 /* FstScene.cpp */,
+				30A273842842446000493207 /* FstScene.h */,
+				30A273702842445E00493207 /* GameDeta.cpp */,
+				30A273552842445B00493207 /* GameDeta.h */,
+				30A273732842445F00493207 /* GameScene.cpp */,
+				30A273612842445D00493207 /* GameScene.h */,
+				30A2736F2842445E00493207 /* ImovileAd.cpp */,
+				30A273762842445F00493207 /* ImovileAd.h */,
+				30A2737B2842445F00493207 /* Item.cpp */,
+				30A2736E2842445E00493207 /* Item.h */,
+				30A273532842445B00493207 /* ItemPool.cpp */,
+				30A273622842445D00493207 /* ItemPool.h */,
+				30A2735D2842445C00493207 /* Kiraru.cpp */,
+				30A273802842446000493207 /* Kiraru.h */,
+				30A2735F2842445D00493207 /* KiraruPool.cpp */,
+				30A273582842445C00493207 /* KiraruPool.h */,
+				30A2735A2842445C00493207 /* MainScene.cpp */,
+				30A273742842445F00493207 /* MainScene.h */,
+				30A273592842445C00493207 /* ModalLayer.cpp */,
+				30A273682842445D00493207 /* ModalLayer.h */,
+				30A273832842446000493207 /* NParticleSystemQuad.cpp */,
+				30A273712842445E00493207 /* NParticleSystemQuad.h */,
+				30A273772842445F00493207 /* ParticleSystemPool.cpp */,
+				30A273642842445D00493207 /* ParticleSystemPool.h */,
+				30A273722842445E00493207 /* RankScene.cpp */,
+				30A2735E2842445C00493207 /* RankScene.h */,
+				30A2736C2842445E00493207 /* SelectScene.cpp */,
+				30A273822842446000493207 /* SelectScene.h */,
+				30A273862842446100493207 /* SelTag.cpp */,
+				30A2736A2842445E00493207 /* SelTag.h */,
+				30A273812842446000493207 /* Slider.cpp */,
+				30A273792842445F00493207 /* Slider.h */,
+				30A2736D2842445E00493207 /* Sprite2.cpp */,
+				30A2737A2842445F00493207 /* Sprite2.h */,
+				30A273572842445C00493207 /* SpritePool.cpp */,
+				30A273632842445D00493207 /* SpritePool.h */,
+				30A2737D2842446000493207 /* TestScene.cpp */,
+				30A273692842445E00493207 /* TestScene.h */,
+				30A2737F2842446000493207 /* TitleScene.cpp */,
+				30A2737C2842445F00493207 /* TitleScene.h */,
 				8F7CF948AE034413A7B91308 /* HelloWorldScene.cpp */,
 				75DFF9A37666415DB7BA6BE1 /* HelloWorldScene.h */,
 			);
@@ -5415,11 +5540,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30A2738C2842446100493207 /* MainScene.cpp in Sources */,
+				30A273882842446100493207 /* ChrPrm.cpp in Sources */,
+				30A2738B2842446100493207 /* ModalLayer.cpp in Sources */,
 				AF80C9AE7F5A4E4581E3F0A9 /* AppDelegate.cpp in Sources */,
+				30A2738D2842446100493207 /* FstScene.cpp in Sources */,
+				30A273A02842446100493207 /* SelTag.cpp in Sources */,
 				0A10A5E4D77A48FD9CD01071 /* HelloWorldScene.cpp in Sources */,
+				30A273982842446100493207 /* Bike.cpp in Sources */,
 				06ECDF6BA4524EF0A048DFC7 /* AppController.mm in Sources */,
+				30A2739E2842446100493207 /* Slider.cpp in Sources */,
+				30A273972842446100493207 /* GameScene.cpp in Sources */,
+				30A2739B2842446100493207 /* TestScene.cpp in Sources */,
+				30A2739C2842446100493207 /* AppDelegate.cpp in Sources */,
 				82D77F29E9FF41B6AD594CE8 /* RootViewController.mm in Sources */,
+				30A273952842446100493207 /* GameDeta.cpp in Sources */,
+				30A273932842446100493207 /* Sprite2.cpp in Sources */,
+				30A273872842446100493207 /* ItemPool.cpp in Sources */,
 				67D699FB0B814C2BB386BC1A /* main.m in Sources */,
+				30A2739F2842446100493207 /* NParticleSystemQuad.cpp in Sources */,
+				30A273892842446100493207 /* Dot.cpp in Sources */,
+				30A2738F2842446100493207 /* KiraruPool.cpp in Sources */,
+				30A273902842446100493207 /* AsobiKata.cpp in Sources */,
+				30A273992842446100493207 /* ParticleSystemPool.cpp in Sources */,
+				30A2738E2842446100493207 /* Kiraru.cpp in Sources */,
+				30A273922842446100493207 /* SelectScene.cpp in Sources */,
+				30A2738A2842446100493207 /* SpritePool.cpp in Sources */,
+				30A273962842446100493207 /* RankScene.cpp in Sources */,
+				30A273942842446100493207 /* ImovileAd.cpp in Sources */,
+				30A2739A2842446100493207 /* Item.cpp in Sources */,
+				30A2739D2842446100493207 /* TitleScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

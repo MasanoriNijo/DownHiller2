@@ -17,12 +17,12 @@ public:
 	int getSize();
 	Item* pop();
 
-CC_SYNTHESIZE_RETAIN(cocos2d::CCSpriteBatchNode*, _bachNode1,BachNode1)
-	;CC_SYNTHESIZE_RETAIN(cocos2d::CCSpriteBatchNode*, _bachNode2,BachNode2)
-	;CC_SYNTHESIZE_RETAIN(cocos2d::CCSpriteBatchNode*, _bachNode3,BachNode3)
-	;CC_SYNTHESIZE_RETAIN(cocos2d::CCSpriteBatchNode*, _bachNode4,BachNode4)
-	;CC_SYNTHESIZE_RETAIN(cocos2d::CCSpriteBatchNode*, _bachNode5,BachNode5)
-	;CC_SYNTHESIZE_RETAIN(cocos2d::CCSpriteBatchNode*, _bachNode6,BachNode6)
+    CC_SYNTHESIZE_RETAIN(cocos2d::SpriteBatchNode*, _bachNode1,BachNode1)
+    ;CC_SYNTHESIZE_RETAIN(cocos2d::SpriteBatchNode*, _bachNode2,BachNode2)
+    ;CC_SYNTHESIZE_RETAIN(cocos2d::SpriteBatchNode*, _bachNode3,BachNode3)
+    ;CC_SYNTHESIZE_RETAIN(cocos2d::SpriteBatchNode*, _bachNode4,BachNode4)
+    ;CC_SYNTHESIZE_RETAIN(cocos2d::SpriteBatchNode*, _bachNode5,BachNode5)
+    ;CC_SYNTHESIZE_RETAIN(cocos2d::SpriteBatchNode*, _bachNode6,BachNode6)
 
 	;CC_SYNTHESIZE(cocos2d::Vector<Item*>,_member,Member)
 	;
