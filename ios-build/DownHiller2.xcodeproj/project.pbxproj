@@ -159,7 +159,7 @@
 		304DD0922843B6B800AF0334 /* irohamaru.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 304DD0912843B6B800AF0334 /* irohamaru.ttf */; };
 		304DD0952843C25B00AF0334 /* kirabon.plist in Resources */ = {isa = PBXBuildFile; fileRef = 304DD0942843C25B00AF0334 /* kirabon.plist */; };
 		304DD0AD2843C7CD00AF0334 /* btnon.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 304DD0AC2843C7CD00AF0334 /* btnon.mp3 */; };
-		304DD0B02843C92E00AF0334 /* kotokotobokanmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 304DD0AF2843C92E00AF0334 /* kotokotobokanmark.png */; };
+		304DD0B02843C92E00AF0334 /* Kotokotobokanmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 304DD0AF2843C92E00AF0334 /* Kotokotobokanmark.png */; };
 		304DD0B42843CE0800AF0334 /* FstScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304DD0B22843CE0800AF0334 /* FstScene.cpp */; };
 		304DD0B92843D08F00AF0334 /* TitleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304DD0B72843D08F00AF0334 /* TitleScene.cpp */; };
 		304DD0BA2843D08F00AF0334 /* TestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304DD0B82843D08F00AF0334 /* TestScene.cpp */; };
@@ -1236,7 +1236,7 @@
 		304DD0912843B6B800AF0334 /* irohamaru.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = irohamaru.ttf; path = Resources/fonts/irohamaru.ttf; sourceTree = SOURCE_ROOT; };
 		304DD0942843C25B00AF0334 /* kirabon.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = kirabon.plist; path = Resources/particles/kirabon.plist; sourceTree = SOURCE_ROOT; };
 		304DD0AC2843C7CD00AF0334 /* btnon.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = btnon.mp3; path = Resources/sounds/btnon.mp3; sourceTree = SOURCE_ROOT; };
-		304DD0AF2843C92E00AF0334 /* kotokotobokanmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = kotokotobokanmark.png; path = Resources/images/kotokotobokanmark.png; sourceTree = SOURCE_ROOT; };
+		304DD0AF2843C92E00AF0334 /* Kotokotobokanmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Kotokotobokanmark.png; path = Resources/images/Kotokotobokanmark.png; sourceTree = SOURCE_ROOT; };
 		304DD0B22843CE0800AF0334 /* FstScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FstScene.cpp; path = Classes/scene/FstScene.cpp; sourceTree = SOURCE_ROOT; };
 		304DD0B32843CE0800AF0334 /* FstScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FstScene.h; path = Classes/scene/FstScene.h; sourceTree = SOURCE_ROOT; };
 		304DD0B52843D08E00AF0334 /* TestScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestScene.h; path = Classes/scene/TestScene.h; sourceTree = SOURCE_ROOT; };
@@ -3241,7 +3241,7 @@
 		304DD0AE2843C8C200AF0334 /* images */ = {
 			isa = PBXGroup;
 			children = (
-				304DD0AF2843C92E00AF0334 /* kotokotobokanmark.png */,
+				304DD0AF2843C92E00AF0334 /* Kotokotobokanmark.png */,
 				932BC45CFEF74615819651F8 /* CloseNormal.png */,
 				0D5A4A65BE0640579F4F154B /* CloseSelected.png */,
 				0041D4770A6743B4899F42D0 /* HelloWorld.png */,
@@ -4820,7 +4820,7 @@
 			files = (
 				304DD0952843C25B00AF0334 /* kirabon.plist in Resources */,
 				13C698B4E7004DE3A17AF15F /* Images.xcassets in Resources */,
-				304DD0B02843C92E00AF0334 /* kotokotobokanmark.png in Resources */,
+				304DD0B02843C92E00AF0334 /* Kotokotobokanmark.png in Resources */,
 				304DD0AD2843C7CD00AF0334 /* btnon.mp3 in Resources */,
 				9E254895AA3647E1A64700ED /* LaunchScreen.storyboard in Resources */,
 				304DD0922843B6B800AF0334 /* irohamaru.ttf in Resources */,

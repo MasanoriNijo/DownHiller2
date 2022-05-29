@@ -35,7 +35,7 @@ bool FstScene::init() {
 	auto director = Director::getInstance();
 	auto winSize = director->getWinSize();
 //	this->setProductTitle(Sprite::create("HelloWorld.png"));
-    this->setProductTitle(Sprite::create("kotokotobokanmark.png"));
+    this->setProductTitle(Sprite::create("Kotokotobokanmark.png"));
 	this->getProductTitle()->setPosition(Vec2(winSize.width / 2.0, winSize.height / 2));
     this->getProductTitle()->setOpacity(0);
 	auto fadein_ = FadeIn::create(1.0f);
