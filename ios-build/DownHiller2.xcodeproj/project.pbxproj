@@ -157,6 +157,8 @@
 		2DBCC33890E341908C7DF5EB /* CCUISingleLineTextField.mm in Sources */ = {isa = PBXBuildFile; fileRef = 88918CCDEABF45DA98E13172 /* CCUISingleLineTextField.mm */; };
 		304DD07D28428F7E00AF0334 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 304DD07C28428F7D00AF0334 /* libiconv.tbd */; };
 		304DD0922843B6B800AF0334 /* irohamaru.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 304DD0912843B6B800AF0334 /* irohamaru.ttf */; };
+		304DD0952843C25B00AF0334 /* kirabon.plist in Resources */ = {isa = PBXBuildFile; fileRef = 304DD0942843C25B00AF0334 /* kirabon.plist */; };
+		304DD0AD2843C7CD00AF0334 /* btnon.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 304DD0AC2843C7CD00AF0334 /* btnon.mp3 */; };
 		309EC664C42A4D32AB847DD3 /* DetourNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94FB09E9E0E6484C86FC4A80 /* DetourNode.cpp */; };
 		3108B21E7E9747799BD19340 /* CCPURibbonTrailRender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6068D9B179984E7491670345 /* CCPURibbonTrailRender.cpp */; };
 		316338F1857E4AF7BD84B314 /* CCParticleExamples.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C07218690B84F29BE15C503 /* CCParticleExamples.cpp */; };
@@ -1226,6 +1228,8 @@
 		3046F905F6394011A84D52BA /* CCTechnique.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = CCTechnique.cpp; path = cocos2d/cocos/renderer/CCTechnique.cpp; sourceTree = SOURCE_ROOT; };
 		304DD07C28428F7D00AF0334 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		304DD0912843B6B800AF0334 /* irohamaru.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = irohamaru.ttf; path = Resources/fonts/irohamaru.ttf; sourceTree = SOURCE_ROOT; };
+		304DD0942843C25B00AF0334 /* kirabon.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = kirabon.plist; path = Resources/particles/kirabon.plist; sourceTree = SOURCE_ROOT; };
+		304DD0AC2843C7CD00AF0334 /* btnon.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = btnon.mp3; path = Resources/sounds/btnon.mp3; sourceTree = SOURCE_ROOT; };
 		3077803B8D5646769C867A5B /* DetourObstacleAvoidance.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = DetourObstacleAvoidance.cpp; path = cocos2d/external/recast/DetourCrowd/DetourObstacleAvoidance.cpp; sourceTree = SOURCE_ROOT; };
 		30C97C63992A46B2899EB081 /* SocketIO.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = SocketIO.h; path = cocos2d/cocos/network/SocketIO.h; sourceTree = SOURCE_ROOT; };
 		312DC74ADDEB4B8190EF726D /* UIPageViewIndicator.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = UIPageViewIndicator.cpp; path = cocos2d/cocos/ui/UIPageViewIndicator.cpp; sourceTree = SOURCE_ROOT; };
@@ -2321,6 +2325,8 @@
 		017A7A69956145DB89D3B481 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				304DD0AB2843C79E00AF0334 /* sounds */,
+				304DD0932843C22A00AF0334 /* particles */,
 				CA5A8784F72F4B55B791172E /* fonts */,
 				6FE01B7BBF054675B24108A6 /* res */,
 				932BC45CFEF74615819651F8 /* CloseNormal.png */,
@@ -3199,6 +3205,22 @@
 				2C7F569B5FA642B2B0B6468A /* UserCameraReader.h */,
 			);
 			name = UserCameraReader;
+			sourceTree = "<group>";
+		};
+		304DD0932843C22A00AF0334 /* particles */ = {
+			isa = PBXGroup;
+			children = (
+				304DD0942843C25B00AF0334 /* kirabon.plist */,
+			);
+			path = particles;
+			sourceTree = "<group>";
+		};
+		304DD0AB2843C79E00AF0334 /* sounds */ = {
+			isa = PBXGroup;
+			children = (
+				304DD0AC2843C7CD00AF0334 /* btnon.mp3 */,
+			);
+			path = sounds;
 			sourceTree = "<group>";
 		};
 		374A1F2501824E1A87B09700 /* LoadingBarReader */ = {
@@ -4736,7 +4758,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				304DD0952843C25B00AF0334 /* kirabon.plist in Resources */,
 				13C698B4E7004DE3A17AF15F /* Images.xcassets in Resources */,
+				304DD0AD2843C7CD00AF0334 /* btnon.mp3 in Resources */,
 				9E254895AA3647E1A64700ED /* LaunchScreen.storyboard in Resources */,
 				304DD0922843B6B800AF0334 /* irohamaru.ttf in Resources */,
 				B286E7DB9853459D892F9662 /* LaunchScreenBackground.png in Resources */,

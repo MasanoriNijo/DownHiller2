@@ -84,7 +84,7 @@ bool HelloWorld::init()
 
     // add a label shows "Hello World"
     // create and initialize a label
-
+    CCLOG("hoge!hoge!");
     auto label = Label::createWithTTF("鬼舞辻無惨", "irohamaru.ttf", 24);
     if (label == nullptr)
     {

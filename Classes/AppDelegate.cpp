@@ -81,7 +81,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     }
 
     FileUtils::getInstance()->addSearchPath("images");
-    FileUtils::getInstance()->addSearchPath("gcharactors");
+    FileUtils::getInstance()->addSearchPath("particles");
     FileUtils::getInstance()->addSearchPath("sounds");
     FileUtils::getInstance()->addSearchPath("fonts");
     
