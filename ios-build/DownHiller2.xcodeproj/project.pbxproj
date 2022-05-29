@@ -159,6 +159,11 @@
 		304DD0922843B6B800AF0334 /* irohamaru.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 304DD0912843B6B800AF0334 /* irohamaru.ttf */; };
 		304DD0952843C25B00AF0334 /* kirabon.plist in Resources */ = {isa = PBXBuildFile; fileRef = 304DD0942843C25B00AF0334 /* kirabon.plist */; };
 		304DD0AD2843C7CD00AF0334 /* btnon.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 304DD0AC2843C7CD00AF0334 /* btnon.mp3 */; };
+		304DD0B02843C92E00AF0334 /* kotokotobokanmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 304DD0AF2843C92E00AF0334 /* kotokotobokanmark.png */; };
+		304DD0B42843CE0800AF0334 /* FstScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304DD0B22843CE0800AF0334 /* FstScene.cpp */; };
+		304DD0B92843D08F00AF0334 /* TitleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304DD0B72843D08F00AF0334 /* TitleScene.cpp */; };
+		304DD0BA2843D08F00AF0334 /* TestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304DD0B82843D08F00AF0334 /* TestScene.cpp */; };
+		304DD0BE2843D12300AF0334 /* SpritePool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304DD0BD2843D12300AF0334 /* SpritePool.cpp */; };
 		309EC664C42A4D32AB847DD3 /* DetourNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94FB09E9E0E6484C86FC4A80 /* DetourNode.cpp */; };
 		3108B21E7E9747799BD19340 /* CCPURibbonTrailRender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6068D9B179984E7491670345 /* CCPURibbonTrailRender.cpp */; };
 		316338F1857E4AF7BD84B314 /* CCParticleExamples.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C07218690B84F29BE15C503 /* CCParticleExamples.cpp */; };
@@ -1144,7 +1149,7 @@
 		1ADBAF8419FA43AF8CFC9AE6 /* CCMotionStreak.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = CCMotionStreak.h; path = cocos2d/cocos/2d/CCMotionStreak.h; sourceTree = SOURCE_ROOT; };
 		1AFC9BD4F0EC470CA748BFE3 /* CCPUDoFreezeEventHandler.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = CCPUDoFreezeEventHandler.cpp; path = cocos2d/extensions/Particle3D/PU/CCPUDoFreezeEventHandler.cpp; sourceTree = SOURCE_ROOT; };
 		1B18E02170FA43D1A97D7621 /* CCPUOnExpireObserver.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = CCPUOnExpireObserver.cpp; path = cocos2d/extensions/Particle3D/PU/CCPUOnExpireObserver.cpp; sourceTree = SOURCE_ROOT; };
-		1B5220A88C2348C09A6C2005 /* HelloWorldScene.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = HelloWorldScene.h; path = Classes/HelloWorldScene.h; sourceTree = SOURCE_ROOT; };
+		1B5220A88C2348C09A6C2005 /* HelloWorldScene.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = HelloWorldScene.h; path = Classes/scene/HelloWorldScene.h; sourceTree = SOURCE_ROOT; };
 		1B843812A6204C15BAEF1CAC /* CCPUPlaneCollider.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = CCPUPlaneCollider.cpp; path = cocos2d/extensions/Particle3D/PU/CCPUPlaneCollider.cpp; sourceTree = SOURCE_ROOT; };
 		1BA787BE7DBC41D2BE15EB6E /* CCPURender.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = CCPURender.cpp; path = cocos2d/extensions/Particle3D/PU/CCPURender.cpp; sourceTree = SOURCE_ROOT; };
 		1BE272BFCC0640A6852928AD /* CCPUSphereColliderTranslator.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = CCPUSphereColliderTranslator.cpp; path = cocos2d/extensions/Particle3D/PU/CCPUSphereColliderTranslator.cpp; sourceTree = SOURCE_ROOT; };
@@ -1230,6 +1235,15 @@
 		304DD0912843B6B800AF0334 /* irohamaru.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = irohamaru.ttf; path = Resources/fonts/irohamaru.ttf; sourceTree = SOURCE_ROOT; };
 		304DD0942843C25B00AF0334 /* kirabon.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = kirabon.plist; path = Resources/particles/kirabon.plist; sourceTree = SOURCE_ROOT; };
 		304DD0AC2843C7CD00AF0334 /* btnon.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = btnon.mp3; path = Resources/sounds/btnon.mp3; sourceTree = SOURCE_ROOT; };
+		304DD0AF2843C92E00AF0334 /* kotokotobokanmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = kotokotobokanmark.png; path = Resources/images/kotokotobokanmark.png; sourceTree = SOURCE_ROOT; };
+		304DD0B22843CE0800AF0334 /* FstScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FstScene.cpp; path = Classes/scene/FstScene.cpp; sourceTree = SOURCE_ROOT; };
+		304DD0B32843CE0800AF0334 /* FstScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FstScene.h; path = Classes/scene/FstScene.h; sourceTree = SOURCE_ROOT; };
+		304DD0B52843D08E00AF0334 /* TestScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestScene.h; path = Classes/scene/TestScene.h; sourceTree = SOURCE_ROOT; };
+		304DD0B62843D08E00AF0334 /* TitleScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TitleScene.h; path = Classes/scene/TitleScene.h; sourceTree = SOURCE_ROOT; };
+		304DD0B72843D08F00AF0334 /* TitleScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TitleScene.cpp; path = Classes/scene/TitleScene.cpp; sourceTree = SOURCE_ROOT; };
+		304DD0B82843D08F00AF0334 /* TestScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestScene.cpp; path = Classes/scene/TestScene.cpp; sourceTree = SOURCE_ROOT; };
+		304DD0BC2843D12300AF0334 /* SpritePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SpritePool.h; path = Classes/util/SpritePool.h; sourceTree = SOURCE_ROOT; };
+		304DD0BD2843D12300AF0334 /* SpritePool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SpritePool.cpp; path = Classes/util/SpritePool.cpp; sourceTree = SOURCE_ROOT; };
 		3077803B8D5646769C867A5B /* DetourObstacleAvoidance.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = DetourObstacleAvoidance.cpp; path = cocos2d/external/recast/DetourCrowd/DetourObstacleAvoidance.cpp; sourceTree = SOURCE_ROOT; };
 		30C97C63992A46B2899EB081 /* SocketIO.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = SocketIO.h; path = cocos2d/cocos/network/SocketIO.h; sourceTree = SOURCE_ROOT; };
 		312DC74ADDEB4B8190EF726D /* UIPageViewIndicator.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = UIPageViewIndicator.cpp; path = cocos2d/cocos/ui/UIPageViewIndicator.cpp; sourceTree = SOURCE_ROOT; };
@@ -2096,7 +2110,7 @@
 		E3A546E39263468DB87FED7D /* DepthStencilState.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = DepthStencilState.h; path = cocos2d/cocos/renderer/backend/DepthStencilState.h; sourceTree = SOURCE_ROOT; };
 		E3F2D84752134604A37F00E8 /* CCParticleSystem.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = CCParticleSystem.h; path = cocos2d/cocos/2d/CCParticleSystem.h; sourceTree = SOURCE_ROOT; };
 		E3FF2157CC544D10A5521578 /* CCEventListenerCustom.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = CCEventListenerCustom.cpp; path = cocos2d/cocos/base/CCEventListenerCustom.cpp; sourceTree = SOURCE_ROOT; };
-		E43633F140F94254A1F704E8 /* HelloWorldScene.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = HelloWorldScene.cpp; path = Classes/HelloWorldScene.cpp; sourceTree = SOURCE_ROOT; };
+		E43633F140F94254A1F704E8 /* HelloWorldScene.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = HelloWorldScene.cpp; path = Classes/scene/HelloWorldScene.cpp; sourceTree = SOURCE_ROOT; };
 		E47EE02EB82444D0AC79F91D /* CCObjLoader.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = CCObjLoader.cpp; path = cocos2d/cocos/3d/CCObjLoader.cpp; sourceTree = SOURCE_ROOT; };
 		E4DDB82371CA4CE0B93C7A24 /* utlist.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = utlist.h; path = cocos2d/cocos/base/utlist.h; sourceTree = SOURCE_ROOT; };
 		E4E401427553432CA1D14CF7 /* UIPageView.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = UIPageView.cpp; path = cocos2d/cocos/ui/UIPageView.cpp; sourceTree = SOURCE_ROOT; };
@@ -2325,13 +2339,11 @@
 		017A7A69956145DB89D3B481 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				304DD0AE2843C8C200AF0334 /* images */,
 				304DD0AB2843C79E00AF0334 /* sounds */,
 				304DD0932843C22A00AF0334 /* particles */,
 				CA5A8784F72F4B55B791172E /* fonts */,
 				6FE01B7BBF054675B24108A6 /* res */,
-				932BC45CFEF74615819651F8 /* CloseNormal.png */,
-				0D5A4A65BE0640579F4F154B /* CloseSelected.png */,
-				0041D4770A6743B4899F42D0 /* HelloWorld.png */,
 				2DB86D3EFE3442F0B9DCCE8A /* Info.plist */,
 			);
 			name = Resources;
@@ -3221,6 +3233,41 @@
 				304DD0AC2843C7CD00AF0334 /* btnon.mp3 */,
 			);
 			path = sounds;
+			sourceTree = "<group>";
+		};
+		304DD0AE2843C8C200AF0334 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				304DD0AF2843C92E00AF0334 /* kotokotobokanmark.png */,
+				932BC45CFEF74615819651F8 /* CloseNormal.png */,
+				0D5A4A65BE0640579F4F154B /* CloseSelected.png */,
+				0041D4770A6743B4899F42D0 /* HelloWorld.png */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
+		304DD0B12843CA7E00AF0334 /* scene */ = {
+			isa = PBXGroup;
+			children = (
+				304DD0B82843D08F00AF0334 /* TestScene.cpp */,
+				304DD0B52843D08E00AF0334 /* TestScene.h */,
+				304DD0B72843D08F00AF0334 /* TitleScene.cpp */,
+				304DD0B62843D08E00AF0334 /* TitleScene.h */,
+				304DD0B22843CE0800AF0334 /* FstScene.cpp */,
+				304DD0B32843CE0800AF0334 /* FstScene.h */,
+				E43633F140F94254A1F704E8 /* HelloWorldScene.cpp */,
+				1B5220A88C2348C09A6C2005 /* HelloWorldScene.h */,
+			);
+			name = scene;
+			sourceTree = "<group>";
+		};
+		304DD0BB2843D0A400AF0334 /* util */ = {
+			isa = PBXGroup;
+			children = (
+				304DD0BD2843D12300AF0334 /* SpritePool.cpp */,
+				304DD0BC2843D12300AF0334 /* SpritePool.h */,
+			);
+			path = util;
 			sourceTree = "<group>";
 		};
 		374A1F2501824E1A87B09700 /* LoadingBarReader */ = {
@@ -4302,10 +4349,10 @@
 		E48ED5E0ED6E44E291D1A056 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				304DD0BB2843D0A400AF0334 /* util */,
+				304DD0B12843CA7E00AF0334 /* scene */,
 				72EF89F06E074204807D3183 /* AppDelegate.cpp */,
 				5A4C40CB4FD8465D9DCB865A /* AppDelegate.h */,
-				E43633F140F94254A1F704E8 /* HelloWorldScene.cpp */,
-				1B5220A88C2348C09A6C2005 /* HelloWorldScene.h */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -4760,6 +4807,7 @@
 			files = (
 				304DD0952843C25B00AF0334 /* kirabon.plist in Resources */,
 				13C698B4E7004DE3A17AF15F /* Images.xcassets in Resources */,
+				304DD0B02843C92E00AF0334 /* kotokotobokanmark.png in Resources */,
 				304DD0AD2843C7CD00AF0334 /* btnon.mp3 in Resources */,
 				9E254895AA3647E1A64700ED /* LaunchScreen.storyboard in Resources */,
 				304DD0922843B6B800AF0334 /* irohamaru.ttf in Resources */,
@@ -4910,7 +4958,11 @@
 				894EBEAFD698461595D0DFD4 /* HelloWorldScene.cpp in Sources */,
 				19BCA424ADCD40E8A1AEA8CD /* AppController.mm in Sources */,
 				47389F4909D3462CB4D5567B /* RootViewController.mm in Sources */,
+				304DD0BA2843D08F00AF0334 /* TestScene.cpp in Sources */,
+				304DD0B42843CE0800AF0334 /* FstScene.cpp in Sources */,
 				ED3D812C31124F6FBA918EE4 /* main.m in Sources */,
+				304DD0B92843D08F00AF0334 /* TitleScene.cpp in Sources */,
+				304DD0BE2843D12300AF0334 /* SpritePool.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
