@@ -83,7 +83,7 @@ bool TitleScene::init() {
 }
 void TitleScene::onKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event * event) {
 	if (keyCode == EventKeyboard::KeyCode::KEY_ESCAPE) {
-		Director::sharedDirector()->end();
+//		Director::sharedDirector()->end();
 	}
 }
 
@@ -322,7 +322,7 @@ void TitleScene::SetContactListener() {
 					}
 				}
 			};
-	_contactlistener->onContactSeperate = [this](PhysicsContact& contact) {
+    _contactlistener->onContactSeparate = [this](PhysicsContact& contact) {
 		switch(contact.getShapeA()->getBody()->getTag()) {
 			//コース
 			//ゲートをくぐったとき

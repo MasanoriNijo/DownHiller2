@@ -24,7 +24,7 @@ SpritePool* SpritePool::create(int size, const std::string& filename) {
 
 bool SpritePool::init(int size, const std::string& filename) {
 
-	this->setBachNode1(cocos2d::CCSpriteBatchNode::create(filename));
+    this->setBachNode1(cocos2d::SpriteBatchNode::create(filename));
 
 	for (int i = 0; i < size; i++) {
 		auto sp_ = Sprite::createWithTexture(this->_bachNode1->getTexture());

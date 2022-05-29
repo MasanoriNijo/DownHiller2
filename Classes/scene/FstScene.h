@@ -4,7 +4,7 @@
 #include "cocos2d.h"
 
 USING_NS_CC;
-class FstScene: public cocos2d::Layer {
+class FstScene: public cocos2d::Scene {
 protected:
     FstScene();
     virtual ~FstScene();
