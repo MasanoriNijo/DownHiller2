@@ -14,3 +14,5 @@ ios-build/Debug-iphonesimulator
 ios-build/DownHiller2.build
 ios-build/CMakeScripts
 ios-build/CMakeFiles
+Resources/.DS_Store
+

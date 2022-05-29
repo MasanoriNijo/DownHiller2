@@ -80,6 +80,11 @@ bool AppDelegate::applicationDidFinishLaunching() {
         director->setOpenGLView(glview);
     }
 
+    FileUtils::getInstance()->addSearchPath("images");
+    FileUtils::getInstance()->addSearchPath("gcharactors");
+    FileUtils::getInstance()->addSearchPath("sounds");
+    FileUtils::getInstance()->addSearchPath("fonts");
+    
     // turn on display FPS
     director->setDisplayStats(true);
 

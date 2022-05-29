@@ -156,6 +156,7 @@
 		2DB22ED8B349479B9961FF52 /* CCActionCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D51DB36D7D9643EE83FEFE56 /* CCActionCamera.cpp */; };
 		2DBCC33890E341908C7DF5EB /* CCUISingleLineTextField.mm in Sources */ = {isa = PBXBuildFile; fileRef = 88918CCDEABF45DA98E13172 /* CCUISingleLineTextField.mm */; };
 		304DD07D28428F7E00AF0334 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 304DD07C28428F7D00AF0334 /* libiconv.tbd */; };
+		304DD0922843B6B800AF0334 /* irohamaru.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 304DD0912843B6B800AF0334 /* irohamaru.ttf */; };
 		309EC664C42A4D32AB847DD3 /* DetourNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94FB09E9E0E6484C86FC4A80 /* DetourNode.cpp */; };
 		3108B21E7E9747799BD19340 /* CCPURibbonTrailRender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6068D9B179984E7491670345 /* CCPURibbonTrailRender.cpp */; };
 		316338F1857E4AF7BD84B314 /* CCParticleExamples.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C07218690B84F29BE15C503 /* CCParticleExamples.cpp */; };
@@ -1224,6 +1225,7 @@
 		301471C90AA24A968F8E62B2 /* CCPUScriptLexer.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = CCPUScriptLexer.cpp; path = cocos2d/extensions/Particle3D/PU/CCPUScriptLexer.cpp; sourceTree = SOURCE_ROOT; };
 		3046F905F6394011A84D52BA /* CCTechnique.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = CCTechnique.cpp; path = cocos2d/cocos/renderer/CCTechnique.cpp; sourceTree = SOURCE_ROOT; };
 		304DD07C28428F7D00AF0334 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		304DD0912843B6B800AF0334 /* irohamaru.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = irohamaru.ttf; path = Resources/fonts/irohamaru.ttf; sourceTree = SOURCE_ROOT; };
 		3077803B8D5646769C867A5B /* DetourObstacleAvoidance.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = DetourObstacleAvoidance.cpp; path = cocos2d/external/recast/DetourCrowd/DetourObstacleAvoidance.cpp; sourceTree = SOURCE_ROOT; };
 		30C97C63992A46B2899EB081 /* SocketIO.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = SocketIO.h; path = cocos2d/cocos/network/SocketIO.h; sourceTree = SOURCE_ROOT; };
 		312DC74ADDEB4B8190EF726D /* UIPageViewIndicator.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = UIPageViewIndicator.cpp; path = cocos2d/cocos/ui/UIPageViewIndicator.cpp; sourceTree = SOURCE_ROOT; };
@@ -4183,6 +4185,7 @@
 			isa = PBXGroup;
 			children = (
 				8374DBC95E174D83A5580926 /* Marker Felt.ttf */,
+				304DD0912843B6B800AF0334 /* irohamaru.ttf */,
 				D7AD886AEA7F4DF78C0C3316 /* arial.ttf */,
 			);
 			name = fonts;
@@ -4735,6 +4738,7 @@
 			files = (
 				13C698B4E7004DE3A17AF15F /* Images.xcassets in Resources */,
 				9E254895AA3647E1A64700ED /* LaunchScreen.storyboard in Resources */,
+				304DD0922843B6B800AF0334 /* irohamaru.ttf in Resources */,
 				B286E7DB9853459D892F9662 /* LaunchScreenBackground.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
