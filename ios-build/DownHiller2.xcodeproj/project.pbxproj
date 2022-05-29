@@ -164,6 +164,7 @@
 		304DD0B92843D08F00AF0334 /* TitleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304DD0B72843D08F00AF0334 /* TitleScene.cpp */; };
 		304DD0BA2843D08F00AF0334 /* TestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304DD0B82843D08F00AF0334 /* TestScene.cpp */; };
 		304DD0BE2843D12300AF0334 /* SpritePool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304DD0BD2843D12300AF0334 /* SpritePool.cpp */; };
+		304DD0C22843DE2700AF0334 /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304DD0C12843DE2700AF0334 /* GameScene.cpp */; };
 		309EC664C42A4D32AB847DD3 /* DetourNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94FB09E9E0E6484C86FC4A80 /* DetourNode.cpp */; };
 		3108B21E7E9747799BD19340 /* CCPURibbonTrailRender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6068D9B179984E7491670345 /* CCPURibbonTrailRender.cpp */; };
 		316338F1857E4AF7BD84B314 /* CCParticleExamples.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C07218690B84F29BE15C503 /* CCParticleExamples.cpp */; };
@@ -1244,6 +1245,8 @@
 		304DD0B82843D08F00AF0334 /* TestScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestScene.cpp; path = Classes/scene/TestScene.cpp; sourceTree = SOURCE_ROOT; };
 		304DD0BC2843D12300AF0334 /* SpritePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SpritePool.h; path = Classes/util/SpritePool.h; sourceTree = SOURCE_ROOT; };
 		304DD0BD2843D12300AF0334 /* SpritePool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SpritePool.cpp; path = Classes/util/SpritePool.cpp; sourceTree = SOURCE_ROOT; };
+		304DD0C02843DE2700AF0334 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameScene.h; path = Classes/scene/base/GameScene.h; sourceTree = SOURCE_ROOT; };
+		304DD0C12843DE2700AF0334 /* GameScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameScene.cpp; path = Classes/scene/base/GameScene.cpp; sourceTree = SOURCE_ROOT; };
 		3077803B8D5646769C867A5B /* DetourObstacleAvoidance.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = DetourObstacleAvoidance.cpp; path = cocos2d/external/recast/DetourCrowd/DetourObstacleAvoidance.cpp; sourceTree = SOURCE_ROOT; };
 		30C97C63992A46B2899EB081 /* SocketIO.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = SocketIO.h; path = cocos2d/cocos/network/SocketIO.h; sourceTree = SOURCE_ROOT; };
 		312DC74ADDEB4B8190EF726D /* UIPageViewIndicator.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = UIPageViewIndicator.cpp; path = cocos2d/cocos/ui/UIPageViewIndicator.cpp; sourceTree = SOURCE_ROOT; };
@@ -3249,6 +3252,7 @@
 		304DD0B12843CA7E00AF0334 /* scene */ = {
 			isa = PBXGroup;
 			children = (
+				304DD0BF2843DDE900AF0334 /* base */,
 				304DD0B82843D08F00AF0334 /* TestScene.cpp */,
 				304DD0B52843D08E00AF0334 /* TestScene.h */,
 				304DD0B72843D08F00AF0334 /* TitleScene.cpp */,
@@ -3268,6 +3272,15 @@
 				304DD0BC2843D12300AF0334 /* SpritePool.h */,
 			);
 			path = util;
+			sourceTree = "<group>";
+		};
+		304DD0BF2843DDE900AF0334 /* base */ = {
+			isa = PBXGroup;
+			children = (
+				304DD0C12843DE2700AF0334 /* GameScene.cpp */,
+				304DD0C02843DE2700AF0334 /* GameScene.h */,
+			);
+			path = base;
 			sourceTree = "<group>";
 		};
 		374A1F2501824E1A87B09700 /* LoadingBarReader */ = {
@@ -4954,6 +4967,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				304DD0C22843DE2700AF0334 /* GameScene.cpp in Sources */,
 				660874EB5928406482FA1AF6 /* AppDelegate.cpp in Sources */,
 				894EBEAFD698461595D0DFD4 /* HelloWorldScene.cpp in Sources */,
 				19BCA424ADCD40E8A1AEA8CD /* AppController.mm in Sources */,

@@ -1,13 +1,10 @@
 #ifndef __gamebase__TitleScene__
 #define __gamebase__TitleScene__
 
+#include "scene/base/GameScene.h"
 #include "cocos2d.h"
-#include "GameScene.h"
-#include "GameDeta.h"
-#include "RankScene.h"
-#include "Dot.h"
-#include "Bike.h"
-#include "Sprite2.h"
+using namespace cocos2d;
+
 class TitleScene: public GameScene {
 protected:
 	TitleScene();
@@ -63,30 +60,16 @@ public:
 
 	void openRankPark();
 	void sendRankParkScore(int value);
-	void tweet();CC_SYNTHESIZE_RETAIN(GameDeta*, _gameDeta,GameDeta)
-	;
-	;CC_SYNTHESIZE_RETAIN(Sprite2*,_bigWheel,BigWheel)
-	;CC_SYNTHESIZE_RETAIN(Sprite*,_backGround,BackGround)
-	;CC_SYNTHESIZE_RETAIN(Sprite*,_title,Title)
+	void tweet();
 	Vec2 wheelFstPt;//ビックホイールの最初の場所
 
-
-	;CC_SYNTHESIZE_RETAIN(Node*,_waku,Waku)
-	;CC_SYNTHESIZE_RETAIN(PhysicsBody*,_wakuBody,WakuBody)
-
-	;CC_SYNTHESIZE_RETAIN(Dot*,_dot,Dot)
-	;CC_SYNTHESIZE_RETAIN(Dot*,_dot2,Dot2)
-	;CC_SYNTHESIZE_RETAIN(Dot*,_dot3,Dot3)
-	;CC_SYNTHESIZE_RETAIN(Bike*,_bike,Bike)
-	;CC_SYNTHESIZE_RETAIN(cocos2d::ParallaxNode *, _nomove1,noMove1)
-	;CC_SYNTHESIZE_RETAIN(cocos2d::ParallaxNode *, _nomove2,noMove2)
-	;
+    CC_SYNTHESIZE_RETAIN(Node*,_waku,Waku);
+    CC_SYNTHESIZE_RETAIN(PhysicsBody*,_wakuBody,WakuBody);
 
 //	void SetTouchListener(); //タッチイベントをセットする。
 	void SetContactListener(); //コンタクトリスナーをセットする。
-	;CC_SYNTHESIZE_RETAIN(EventListenerTouchOneByOne*, _touchlistener,TouchListenner)
-	;CC_SYNTHESIZE_RETAIN(EventListenerPhysicsContact*, _contactlistener,ContactListenner)
-	;
+    CC_SYNTHESIZE_RETAIN(EventListenerTouchOneByOne*, _touchlistener,TouchListenner);
+    CC_SYNTHESIZE_RETAIN(EventListenerPhysicsContact*, _contactlistener,ContactListenner);
 
 };
 
