@@ -15,6 +15,7 @@ public:
     void update(float dt) override;
     void onEnterTransitionDidFinish() override;
     CC_SYNTHESIZE_RETAIN(Sprite*,_productTitle,ProductTitle);
+    CC_SYNTHESIZE_RETAIN(Label*,_label,Label);
 };
 
 #endif // __HELLOWORLD_SCENE_H__
