@@ -2,7 +2,7 @@
 #define __gamebase__GameScene__
 
 #include "cocos2d.h"
-using namespace cocos2d;
+USING_NS_CC;
 
 class GameScene: public Layer {
 protected:
@@ -16,14 +16,13 @@ public:
 	static cocos2d::Scene* createScene();
 
 	void ChgRGBFromHSV(float h, float s, float v);
-	float r =101;
+	float r = 101;
 	float g = 255;
 	float b = 227;
 
 	float h_ = 0;
 	float s_ = 0;
 	float v_ = 0;
-
 
 	void GetRGBFromHSV(float h, float s, float v);
 	int KAKU = 0;
@@ -39,6 +38,8 @@ public:
     CC_SYNTHESIZE_RETAIN(LayerColor*,_layerColor,LayerColor);
 
 	//広告の表示操作する。
+    
+    
 };
 
 #endif // __HELLOWORLD_SCENE_H__

@@ -1449,9 +1449,9 @@
 		30CD036E28466D1B0023D844 /* yubi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yubi.png; sourceTree = "<group>"; };
 		30CD036F28466D1B0023D844 /* selyazi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selyazi.png; sourceTree = "<group>"; };
 		30CD037028466D1B0023D844 /* start_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start_btn.png; sourceTree = "<group>"; };
-		30CD03F02846717B0023D844 /* IMobileCocos2dxModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMobileCocos2dxModule.h; sourceTree = "<group>"; };
-		30CD03F22846717C0023D844 /* ImobileSpotInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImobileSpotInfo.h; sourceTree = "<group>"; };
-		30CD03F4284672FF0023D844 /* IMobileCocos2dxModule.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IMobileCocos2dxModule.mm; sourceTree = "<group>"; };
+		30CD03F02846717B0023D844 /* IMobileCocos2dxModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMobileCocos2dxModule.h; path = Classes/ad/IMobileCocos2dxModule.h; sourceTree = SOURCE_ROOT; };
+		30CD03F22846717C0023D844 /* ImobileSpotInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImobileSpotInfo.h; path = Classes/ad/ImobileSpotInfo.h; sourceTree = SOURCE_ROOT; };
+		30CD03F4284672FF0023D844 /* IMobileCocos2dxModule.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = IMobileCocos2dxModule.mm; path = Classes/ad/IMobileCocos2dxModule.mm; sourceTree = SOURCE_ROOT; };
 		30CD03F628467E970023D844 /* ImobileSdkAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ImobileSdkAds.framework; sourceTree = "<group>"; };
 		30CD03F828467F000023D844 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		30CD03FA28467F160023D844 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -3552,9 +3552,6 @@
 		304DD0BB2843D0A400AF0334 /* util */ = {
 			isa = PBXGroup;
 			children = (
-				30CD03F4284672FF0023D844 /* IMobileCocos2dxModule.mm */,
-				30CD03F02846717B0023D844 /* IMobileCocos2dxModule.h */,
-				30CD03F22846717C0023D844 /* ImobileSpotInfo.h */,
 				304DD0BD2843D12300AF0334 /* SpritePool.cpp */,
 				304DD0BC2843D12300AF0334 /* SpritePool.h */,
 			);
@@ -3570,6 +3567,17 @@
 			);
 			name = base;
 			path = Classes/scene/base;
+			sourceTree = SOURCE_ROOT;
+		};
+		30CD040428468CD90023D844 /* ad */ = {
+			isa = PBXGroup;
+			children = (
+				30CD03F22846717C0023D844 /* ImobileSpotInfo.h */,
+				30CD03F02846717B0023D844 /* IMobileCocos2dxModule.h */,
+				30CD03F4284672FF0023D844 /* IMobileCocos2dxModule.mm */,
+			);
+			name = ad;
+			path = Classes/ad;
 			sourceTree = SOURCE_ROOT;
 		};
 		374A1F2501824E1A87B09700 /* LoadingBarReader */ = {
@@ -4658,6 +4666,7 @@
 		E48ED5E0ED6E44E291D1A056 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				30CD040428468CD90023D844 /* ad */,
 				304DD0BB2843D0A400AF0334 /* util */,
 				304DD0B12843CA7E00AF0334 /* scene */,
 				72EF89F06E074204807D3183 /* AppDelegate.cpp */,
