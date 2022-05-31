@@ -164,9 +164,9 @@
 		304DD0BA2843D08F00AF0334 /* TestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304DD0B82843D08F00AF0334 /* TestScene.cpp */; };
 		304DD0BE2843D12300AF0334 /* SpritePool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304DD0BD2843D12300AF0334 /* SpritePool.cpp */; };
 		304DD0C22843DE2700AF0334 /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304DD0C12843DE2700AF0334 /* GameScene.cpp */; };
-		304DD0DC2845253200AF0334 /* kotokotobokanmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 304DD0DB2845253200AF0334 /* kotokotobokanmark.png */; };
 		304DD0DE28452B5D00AF0334 /* kotokotobokanmark_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 304DD0DD28452B5D00AF0334 /* kotokotobokanmark_2.png */; };
 		309EC664C42A4D32AB847DD3 /* DetourNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94FB09E9E0E6484C86FC4A80 /* DetourNode.cpp */; };
+		30CD0331284547E30023D844 /* kotokotobokanmark.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 304DD0DB2845253200AF0334 /* kotokotobokanmark.png */; };
 		3108B21E7E9747799BD19340 /* CCPURibbonTrailRender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6068D9B179984E7491670345 /* CCPURibbonTrailRender.cpp */; };
 		316338F1857E4AF7BD84B314 /* CCParticleExamples.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C07218690B84F29BE15C503 /* CCParticleExamples.cpp */; };
 		31873C6712114F58B74407AD /* HelloWorld.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0041D4770A6743B4899F42D0 /* HelloWorld.png */; };
@@ -1005,6 +1005,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
+				30CD0331284547E30023D844 /* kotokotobokanmark.png in CopyFiles */,
 				5863E1B421A741D4A6163DD6 /* CloseNormal.png in CopyFiles */,
 				50826311CCCB4F35A119BB8F /* CloseSelected.png in CopyFiles */,
 				31873C6712114F58B74407AD /* HelloWorld.png in CopyFiles */,
@@ -4828,7 +4829,6 @@
 			files = (
 				304DD0952843C25B00AF0334 /* kirabon.plist in Resources */,
 				13C698B4E7004DE3A17AF15F /* Images.xcassets in Resources */,
-				304DD0DC2845253200AF0334 /* kotokotobokanmark.png in Resources */,
 				304DD0DE28452B5D00AF0334 /* kotokotobokanmark_2.png in Resources */,
 				304DD0AD2843C7CD00AF0334 /* btnon.mp3 in Resources */,
 				9E254895AA3647E1A64700ED /* LaunchScreen.storyboard in Resources */,
