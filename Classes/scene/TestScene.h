@@ -3,7 +3,7 @@
 
 #include "cocos2d.h"
 USING_NS_CC;
-class TestScene: public cocos2d::Layer {
+class TestScene: public Layer {
 protected:
 	TestScene();
 	virtual ~TestScene();

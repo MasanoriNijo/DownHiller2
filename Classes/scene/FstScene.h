@@ -2,9 +2,8 @@
 #define __neomeiro__FstScene__
 
 #include "cocos2d.h"
-
 USING_NS_CC;
-class FstScene: public cocos2d::Scene {
+class FstScene: public Scene {
 protected:
     FstScene();
     virtual ~FstScene();

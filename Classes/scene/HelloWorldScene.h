@@ -26,9 +26,8 @@
 #define __HELLOWORLD_SCENE_H__
 
 #include "cocos2d.h"
-
-class HelloWorld : public cocos2d::Scene
-{
+USING_NS_CC;
+class HelloWorld : public Scene {
 public:
     static cocos2d::Scene* createScene();
 

@@ -4,7 +4,7 @@
 #include "cocos2d.h"
 using namespace cocos2d;
 
-class GameScene: public cocos2d::Layer {
+class GameScene: public Layer {
 protected:
 	GameScene();
 	virtual ~GameScene();
