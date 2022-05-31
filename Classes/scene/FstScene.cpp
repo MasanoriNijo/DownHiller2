@@ -18,12 +18,13 @@ Scene* FstScene::createScene() {
 
 }
 FstScene::FstScene() :
-		_productTitle(NULL),_label(NULL) {
+		_productTitle(NULL),_label(NULL),_ad(NULL) {
 }
 
 FstScene::~FstScene() {
 	CC_SAFE_RELEASE_NULL(_productTitle);
     CC_SAFE_RELEASE_NULL(_label);
+    CC_SAFE_RELEASE_NULL(_ad);
 }
 
 // on "init" you need to initialize your instance
@@ -52,6 +53,9 @@ bool FstScene::init() {
 
 	this->_productTitle->runAction(Sequence::create(fadein_,delaytime_,fadeout_,start_,NULL));
 
+    this->setAD(ImovileAd::create());
+    this->getAD()->FstSet();
+    
 	return true;
 }
 

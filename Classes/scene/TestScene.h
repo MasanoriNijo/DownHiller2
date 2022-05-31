@@ -1,10 +1,11 @@
 #ifndef __neomeiro__TestScene__
 #define __neomeiro__TestScene__
 
+#include "scene/base/GameScene.h"
 #include "cocos2d.h"
 USING_NS_CC;
 
-class TestScene: public Layer {
+class TestScene: public GameScene {
 protected:
 	TestScene();
 	virtual ~TestScene();

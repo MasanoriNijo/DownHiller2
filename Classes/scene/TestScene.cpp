@@ -1,7 +1,8 @@
 #include "TestScene.h"
-#include "TitleScene.h"
-#include "audio/include/AudioEngine.h"
+#include "scene/base/GameScene.h"
+#include "cocos2d.h"
 USING_NS_CC;
+#include "audio/include/AudioEngine.h"
 
 Scene* TestScene::createScene() {
 	auto scene = Scene::create();
@@ -34,6 +35,7 @@ bool TestScene::init() {
 	this->GetPrm(this->index);
 
 	this->SetTouchListenner();
+    this->getAD()->AdShow(true, true, true, true, true, true);
 	return true;
 }
 
@@ -68,8 +70,6 @@ void TestScene::update(float dt) {
 }
 
 void TestScene::onEnterTransitionDidFinish() {
-
-//	CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("open.mp3", false);
-
+    AudioEngine::play2d("btnon.mp3", false, 0.2, nullptr);//ループON、音量：0.5
 }
 

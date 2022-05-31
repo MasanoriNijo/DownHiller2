@@ -1,6 +1,7 @@
 #ifndef __gamebase__GameScene__
 #define __gamebase__GameScene__
 
+#include "ad/ImovileAd.h"
 #include "cocos2d.h"
 USING_NS_CC;
 
@@ -11,9 +12,11 @@ protected:
 	bool init() override;
 
 public:
-	Vec2 ctPt;
-	cocos2d::Size winSize;
 	static cocos2d::Scene* createScene();
+    CREATE_FUNC(GameScene);
+    
+    Vec2 ctPt;
+    cocos2d::Size winSize;
 
 	void ChgRGBFromHSV(float h, float s, float v);
 	float r = 101;
@@ -33,12 +36,8 @@ public:
 	void ChgColorRnd(float s,float v);//彩度ｓ、明度vを指定して、色相をランダムに変更する。
 	void ChgBeforeColor();//前回保存された色にする。
 
-
-	CREATE_FUNC(GameScene);
     CC_SYNTHESIZE_RETAIN(LayerColor*,_layerColor,LayerColor);
-
-	//広告の表示操作する。
-    
+    CC_SYNTHESIZE_RETAIN(ImovileAd*,_ad,AD);
     
 };
 

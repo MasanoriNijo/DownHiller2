@@ -1,8 +1,10 @@
 #ifndef __neomeiro__FstScene__
 #define __neomeiro__FstScene__
 
+#include "ad/ImovileAd.h"
 #include "cocos2d.h"
 USING_NS_CC;
+
 class FstScene: public Scene {
 protected:
     FstScene();
@@ -15,6 +17,7 @@ public:
     void onEnterTransitionDidFinish() override;
     CC_SYNTHESIZE_RETAIN(Sprite*,_productTitle,ProductTitle);
     CC_SYNTHESIZE_RETAIN(Label*,_label,Label);
+    CC_SYNTHESIZE_RETAIN(ImovileAd*,_ad,AD);
 };
 
 #endif // __HELLOWORLD_SCENE_H__

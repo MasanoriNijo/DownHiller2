@@ -238,6 +238,7 @@
 		30CD03FF28467F3F0023D844 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30CD03FE28467F3F0023D844 /* WebKit.framework */; };
 		30CD040128467F530023D844 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30CD040028467F530023D844 /* StoreKit.framework */; };
 		30CD04032846886C0023D844 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30CD04022846886C0023D844 /* CoreLocation.framework */; };
+		30CD040728468DE80023D844 /* ImovileAd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30CD040528468DE70023D844 /* ImovileAd.cpp */; };
 		3108B21E7E9747799BD19340 /* CCPURibbonTrailRender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6068D9B179984E7491670345 /* CCPURibbonTrailRender.cpp */; };
 		316338F1857E4AF7BD84B314 /* CCParticleExamples.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C07218690B84F29BE15C503 /* CCParticleExamples.cpp */; };
 		31873C6712114F58B74407AD /* HelloWorld.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0041D4770A6743B4899F42D0 /* HelloWorld.png */; };
@@ -1459,6 +1460,8 @@
 		30CD03FE28467F3F0023D844 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		30CD040028467F530023D844 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		30CD04022846886C0023D844 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		30CD040528468DE70023D844 /* ImovileAd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImovileAd.cpp; sourceTree = "<group>"; };
+		30CD040628468DE80023D844 /* ImovileAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImovileAd.h; sourceTree = "<group>"; };
 		312DC74ADDEB4B8190EF726D /* UIPageViewIndicator.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = UIPageViewIndicator.cpp; path = cocos2d/cocos/ui/UIPageViewIndicator.cpp; sourceTree = SOURCE_ROOT; };
 		3135A254E8204E1B8DDB2097 /* CCPUBaseCollider.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = CCPUBaseCollider.cpp; path = cocos2d/extensions/Particle3D/PU/CCPUBaseCollider.cpp; sourceTree = SOURCE_ROOT; };
 		31415BC0601A4F25815042B5 /* CCPhysicsSprite3D.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = CCPhysicsSprite3D.cpp; path = cocos2d/cocos/physics3d/CCPhysicsSprite3D.cpp; sourceTree = SOURCE_ROOT; };
@@ -3574,6 +3577,8 @@
 			children = (
 				30CD03F22846717C0023D844 /* ImobileSpotInfo.h */,
 				30CD03F02846717B0023D844 /* IMobileCocos2dxModule.h */,
+				30CD040528468DE70023D844 /* ImovileAd.cpp */,
+				30CD040628468DE80023D844 /* ImovileAd.h */,
 				30CD03F4284672FF0023D844 /* IMobileCocos2dxModule.mm */,
 			);
 			name = ad;
@@ -5274,6 +5279,7 @@
 				660874EB5928406482FA1AF6 /* AppDelegate.cpp in Sources */,
 				894EBEAFD698461595D0DFD4 /* HelloWorldScene.cpp in Sources */,
 				30CD03F5284672FF0023D844 /* IMobileCocos2dxModule.mm in Sources */,
+				30CD040728468DE80023D844 /* ImovileAd.cpp in Sources */,
 				19BCA424ADCD40E8A1AEA8CD /* AppController.mm in Sources */,
 				47389F4909D3462CB4D5567B /* RootViewController.mm in Sources */,
 				304DD0BA2843D08F00AF0334 /* TestScene.cpp in Sources */,

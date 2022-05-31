@@ -1,5 +1,6 @@
 #include "GameScene.h"
-
+#include "ad/ImovileAd.h"
+#include "cocos2d.h"
 USING_NS_CC;
 
 Scene* GameScene::createScene() {
@@ -13,7 +14,7 @@ Scene* GameScene::createScene() {
 	// return the scene
 	return scene;
 }
-GameScene::GameScene() :_layerColor(NULL) {}
+GameScene::GameScene() :_layerColor(NULL),_ad(NULL) {}
 
 GameScene::~GameScene() {
 	CC_SAFE_RELEASE_NULL(_layerColor);
@@ -31,9 +32,9 @@ bool GameScene::init() {
 	this->ctPt.set(winSize.width / 2, winSize.height / 2);
 
 	//imovileAdをセットする。
-//	this->setAD(ImovileAd::create());
-//	this->getAD()->txtFlg = false;
-//	this->getAD()->instFlg = false;
+	this->setAD(ImovileAd::create());
+	this->getAD()->txtFlg = true;
+	this->getAD()->instFlg = true;
 
 	return true;
 }

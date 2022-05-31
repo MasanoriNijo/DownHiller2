@@ -3,7 +3,7 @@
 
 #include "scene/base/GameScene.h"
 #include "cocos2d.h"
-using namespace cocos2d;
+USING_NS_CC;
 
 class TitleScene: public GameScene {
 protected:
