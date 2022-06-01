@@ -5,7 +5,7 @@ xcuserdata/
 *.xcscmblueprint
 *.xccheckout
 
-cocos2d/
+# cocos2d/
 ios-build/bin
 ios-build/build
 ios-build/lib
