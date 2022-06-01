@@ -6466,6 +6466,7 @@
 					/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.2.sdk/usr/lib/libz.tbd,
 				);
 				OTHER_REZFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = org.cocos2dx.DownHiller2;
 				PRODUCT_NAME = DownHiller2;
 				PROVISIONING_PROFILE_SPECIFIER = downhiller2_20220601_3;
 				SECTORDER_FLAGS = "";
@@ -7009,6 +7010,7 @@
 					"-lz",
 				);
 				OTHER_REZFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = org.cocos2dx.DownHiller2;
 				PRODUCT_NAME = DownHiller2;
 				PROVISIONING_PROFILE_SPECIFIER = downhiller2_20220601_3;
 				SECTORDER_FLAGS = "";
@@ -7329,6 +7331,7 @@
 					"-lz",
 				);
 				OTHER_REZFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = org.cocos2dx.DownHiller2;
 				PRODUCT_NAME = DownHiller2;
 				PROVISIONING_PROFILE_SPECIFIER = downhiller2_20220601_3;
 				SECTORDER_FLAGS = "";
@@ -7504,6 +7507,7 @@
 					/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.2.sdk/usr/lib/libz.tbd,
 				);
 				OTHER_REZFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = org.cocos2dx.DownHiller2;
 				PRODUCT_NAME = DownHiller2;
 				PROVISIONING_PROFILE_SPECIFIER = downhiller2_20220601_3;
 				SECTORDER_FLAGS = "";
