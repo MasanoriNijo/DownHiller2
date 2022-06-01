@@ -8,8 +8,8 @@ xcuserdata/
 # cocos2d/
 ios-build/bin
 ios-build/build
-ios-build/lib
-ios-build/engine
+# ios-build/lib
+# ios-build/engine
 ios-build/Debug-iphonesimulator
 ios-build/DownHiller2.build
 ios-build/CMakeScripts
