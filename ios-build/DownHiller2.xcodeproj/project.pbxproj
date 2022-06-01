@@ -6341,8 +6341,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "/Users/jonym/Documents/cocos2dx/DownHiller2/ios-build/bin/DownHiller2/Release";
+				DEVELOPMENT_TEAM = UCNWG29WC4;
 				ENABLE_BITCODE = NO;
 				EXECUTABLE_PREFIX = "";
 				EXECUTABLE_SUFFIX = "";
@@ -6464,6 +6467,7 @@
 				);
 				OTHER_REZFLAGS = "";
 				PRODUCT_NAME = DownHiller2;
+				PROVISIONING_PROFILE_SPECIFIER = downhiller2_20220601_3;
 				SECTORDER_FLAGS = "";
 				SKIP_INSTALL = NO;
 				SYMROOT = "/Users/jonym/Documents/cocos2dx/DownHiller2/ios-build";
@@ -6884,8 +6888,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "/Users/jonym/Documents/cocos2dx/DownHiller2/ios-build/bin/DownHiller2/Debug";
+				DEVELOPMENT_TEAM = UCNWG29WC4;
 				ENABLE_BITCODE = NO;
 				EXECUTABLE_PREFIX = "";
 				EXECUTABLE_SUFFIX = "";
@@ -7003,6 +7010,7 @@
 				);
 				OTHER_REZFLAGS = "";
 				PRODUCT_NAME = DownHiller2;
+				PROVISIONING_PROFILE_SPECIFIER = downhiller2_20220601_3;
 				SECTORDER_FLAGS = "";
 				SKIP_INSTALL = NO;
 				SYMROOT = "/Users/jonym/Documents/cocos2dx/DownHiller2/ios-build";
@@ -7195,8 +7203,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "/Users/jonym/Documents/cocos2dx/DownHiller2/ios-build/bin/DownHiller2/MinSizeRel";
+				DEVELOPMENT_TEAM = UCNWG29WC4;
 				ENABLE_BITCODE = NO;
 				EXECUTABLE_PREFIX = "";
 				EXECUTABLE_SUFFIX = "";
@@ -7319,6 +7330,7 @@
 				);
 				OTHER_REZFLAGS = "";
 				PRODUCT_NAME = DownHiller2;
+				PROVISIONING_PROFILE_SPECIFIER = downhiller2_20220601_3;
 				SECTORDER_FLAGS = "";
 				SKIP_INSTALL = NO;
 				SYMROOT = "/Users/jonym/Documents/cocos2dx/DownHiller2/ios-build";
@@ -7367,8 +7379,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "/Users/jonym/Documents/cocos2dx/DownHiller2/ios-build/bin/DownHiller2/RelWithDebInfo";
+				DEVELOPMENT_TEAM = UCNWG29WC4;
 				ENABLE_BITCODE = NO;
 				EXECUTABLE_PREFIX = "";
 				EXECUTABLE_SUFFIX = "";
@@ -7490,6 +7505,7 @@
 				);
 				OTHER_REZFLAGS = "";
 				PRODUCT_NAME = DownHiller2;
+				PROVISIONING_PROFILE_SPECIFIER = downhiller2_20220601_3;
 				SECTORDER_FLAGS = "";
 				SKIP_INSTALL = NO;
 				SYMROOT = "/Users/jonym/Documents/cocos2dx/DownHiller2/ios-build";
