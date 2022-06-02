@@ -24,17 +24,17 @@ MenuItemImage* musicOffBtn;
 Scene* TitleScene::createScene() {
 
 
-//	auto scene = Scene::create();
-//
-//	auto layer = TitleScene::create();
-//
-//	scene->addChild(layer);
-//
-//	// return the scene
-//	return scene;
+    //	auto scene = Scene::create();
+    //
+    //	auto layer = TitleScene::create();
+    //
+    //	scene->addChild(layer);
+    //
+    //	// return the scene
+    //	return scene;
 
-//
-//
+    //
+    //
 
 	auto scene = Scene::createWithPhysics();
 
@@ -44,9 +44,9 @@ Scene* TitleScene::createScene() {
 	//GA.rotate(Vec2::ZERO,M_PI*0.05f);
 	world->setGravity(GA);
 	//world->setGravity(Vec2::ZERO);
-//#if COCOS2D_DEBUG >0
-//	world->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
-//#endif
+    //#if COCOS2D_DEBUG >0
+    //	world->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
+    //#endif
 	world->setSpeed(3);
 	// 'layer' is an autorelease object
 	auto layer = TitleScene::create();
@@ -56,6 +56,7 @@ Scene* TitleScene::createScene() {
 	return scene;
 
 }
+
 TitleScene::TitleScene() :
  _waku(NULL), _wakuBody(NULL), _touchlistener(NULL), _contactlistener(NULL), _state(GameState::READY) {
 
@@ -68,6 +69,7 @@ TitleScene::~TitleScene() {
 	CC_SAFE_RELEASE_NULL(_contactlistener);
 
 }
+
 // on "init" you need to initialize your instance
 bool TitleScene::init() {
 
@@ -75,12 +77,11 @@ bool TitleScene::init() {
 		return false;
 	}
 
-
-
 	this->setState(GameState::READY);
 
 	return true;
 }
+
 void TitleScene::onKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event * event) {
 	if (keyCode == EventKeyboard::KeyCode::KEY_ESCAPE) {
 //		Director::sharedDirector()->end();
@@ -144,27 +145,30 @@ void TitleScene::update(float dt) {
 //	}
 
 	switch (this->getState()) {
-
-	case GameState::READY: {
-		//string型
-//		const char *str = "AsobiKata::GameState::READY";
-//		log("%s", str);
-		this->onReady(dt);
-		break;
-	}
-	case GameState::PLAY: {
-//		const char *str2 = "AsobiKata::GameState::PLAY";
-//		log("%s", str2);
-		this->onPlay(dt);
-		break;
-	}
-	case GameState::STOP: {
-//		const char *str2 = "AsobiKata::GameState::PLAY";
-//		log("%s", str2);
-		this->onStop(dt);
-		break;
-	}
-	}
+        case GameState::READY: {
+            //string型
+    //		const char *str = "AsobiKata::GameState::READY";
+    //		log("%s", str);
+            this->onReady(dt);
+            break;
+        }
+        case GameState::PLAY: {
+    //		const char *str2 = "AsobiKata::GameState::PLAY";
+    //		log("%s", str2);
+            this->onPlay(dt);
+            break;
+        }
+        case GameState::STOP: {
+    //		const char *str2 = "AsobiKata::GameState::PLAY";
+    //		log("%s", str2);
+            this->onStop(dt);
+            break;
+        }
+        case GameState::AUTOSOSA: {
+        
+            break;
+        }
+    }
 
 //	this->getBike()->update(dt);
 
@@ -217,7 +221,6 @@ void TitleScene::SetContactListener() {
 			//ライダー本体
 			case 10: {
 
-
 				break;
 			}
 
@@ -227,12 +230,8 @@ void TitleScene::SetContactListener() {
 
 			//ゴールした時
 			case 20: {
-
-
-
 				break;
 			}
-
 			//後輪
 			case 12: {
                 break;
@@ -243,8 +242,6 @@ void TitleScene::SetContactListener() {
 			}
 			//ライダー本体
 			case 10: {
-
-
 				break;
 			}
 

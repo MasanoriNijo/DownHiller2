@@ -11,6 +11,7 @@ Scene* TestScene::createScene() {
 	// return the scene
 	return scene;
 }
+
 TestScene::TestScene():_productTitle(NULL){}
 
 TestScene::~TestScene() {

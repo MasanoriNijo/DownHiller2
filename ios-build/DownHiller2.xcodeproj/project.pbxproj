@@ -164,6 +164,7 @@
 		304DD0BA2843D08F00AF0334 /* TestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304DD0B82843D08F00AF0334 /* TestScene.cpp */; };
 		304DD0BE2843D12300AF0334 /* SpritePool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304DD0BD2843D12300AF0334 /* SpritePool.cpp */; };
 		304DD0C22843DE2700AF0334 /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304DD0C12843DE2700AF0334 /* GameScene.cpp */; };
+		309B0D0F28490A830091801C /* ColorChanger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 309B0D0D28490A830091801C /* ColorChanger.cpp */; };
 		309EC664C42A4D32AB847DD3 /* DetourNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94FB09E9E0E6484C86FC4A80 /* DetourNode.cpp */; };
 		30CD0331284547E30023D844 /* kotokotobokanmark.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 304DD0DB2845253200AF0334 /* kotokotobokanmark.png */; };
 		30CD03B028466DCD0023D844 /* back5.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 30CD036228466D190023D844 /* back5.png */; };
@@ -1387,6 +1388,8 @@
 		304DD0DD28452B5D00AF0334 /* kotokotobokanmark_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = kotokotobokanmark_2.png; path = Resources/images/kotokotobokanmark_2.png; sourceTree = SOURCE_ROOT; };
 		3077803B8D5646769C867A5B /* DetourObstacleAvoidance.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = DetourObstacleAvoidance.cpp; path = cocos2d/external/recast/DetourCrowd/DetourObstacleAvoidance.cpp; sourceTree = SOURCE_ROOT; };
 		309B0D0B2848FA5B0091801C /* Const.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Const.h; sourceTree = "<group>"; };
+		309B0D0D28490A830091801C /* ColorChanger.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ColorChanger.cpp; sourceTree = "<group>"; };
+		309B0D0E28490A830091801C /* ColorChanger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorChanger.h; sourceTree = "<group>"; };
 		30C97C63992A46B2899EB081 /* SocketIO.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = SocketIO.h; path = cocos2d/cocos/network/SocketIO.h; sourceTree = SOURCE_ROOT; };
 		30CD033228466D130023D844 /* levelwaku.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = levelwaku.png; sourceTree = "<group>"; };
 		30CD033328466D130023D844 /* kakutokucoin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kakutokucoin.png; sourceTree = "<group>"; };
@@ -3559,6 +3562,8 @@
 				304DD0BD2843D12300AF0334 /* SpritePool.cpp */,
 				304DD0BC2843D12300AF0334 /* SpritePool.h */,
 				309B0D0B2848FA5B0091801C /* Const.h */,
+				309B0D0D28490A830091801C /* ColorChanger.cpp */,
+				309B0D0E28490A830091801C /* ColorChanger.h */,
 			);
 			name = util;
 			path = Classes/util;
@@ -5292,6 +5297,7 @@
 				30CD040728468DE80023D844 /* ImovileAd.cpp in Sources */,
 				19BCA424ADCD40E8A1AEA8CD /* AppController.mm in Sources */,
 				47389F4909D3462CB4D5567B /* RootViewController.mm in Sources */,
+				309B0D0F28490A830091801C /* ColorChanger.cpp in Sources */,
 				304DD0BA2843D08F00AF0334 /* TestScene.cpp in Sources */,
 				304DD0B42843CE0800AF0334 /* FstScene.cpp in Sources */,
 				ED3D812C31124F6FBA918EE4 /* main.m in Sources */,

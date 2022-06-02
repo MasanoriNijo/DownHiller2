@@ -16,3 +16,9 @@ ios-build/CMakeScripts
 ios-build/CMakeFiles
 */.DS_Store
 
+# vscode
+.vscode
+
+# tool
+tool/*.h
+tool/*.cpp

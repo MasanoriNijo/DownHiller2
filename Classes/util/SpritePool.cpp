@@ -1,5 +1,4 @@
 #include "SpritePool.h"
-
 USING_NS_CC;
 
 SpritePool::SpritePool() :

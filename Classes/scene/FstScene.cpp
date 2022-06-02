@@ -6,17 +6,12 @@ USING_NS_CC;
 using namespace cocos2d;
 
 Scene* FstScene::createScene() {
-
 	 auto scene = Scene::create();
-
 	 auto layer = FstScene::create();
-
 	 scene->addChild(layer);
-
-	 // return the scene
 	 return scene;
-
 }
+
 FstScene::FstScene() :
 		_productTitle(NULL),_ad(NULL) {
 }
@@ -52,6 +47,7 @@ bool FstScene::init() {
 
     this->setAD(ImovileAd::create());
     this->getAD()->FstSet();
+    NJLOG("hogehoge");
     
 	return true;
 }

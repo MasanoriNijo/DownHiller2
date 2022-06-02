@@ -1,0 +1,9 @@
+{
+  "className": "Hoge",
+  "synthesize_retains": [
+    ["LayerColor*", "LC", "_lc"],
+    ["LayerColor*", "LC", "_lc"],
+    ["LayerColor*", "LC", "_lc"],
+    ["LayerColor*", "LC", "_lc"]
+  ]
+}

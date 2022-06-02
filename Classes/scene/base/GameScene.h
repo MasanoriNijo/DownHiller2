@@ -2,6 +2,7 @@
 #define __gamebase__GameScene__
 
 #include "ad/ImovileAd.h"
+#include "util/Const.h"
 #include "cocos2d.h"
 USING_NS_CC;
 
@@ -14,7 +15,7 @@ protected:
 public:
 	static cocos2d::Scene* createScene();
     CREATE_FUNC(GameScene);
-    
+
     Vec2 ctPt;
     cocos2d::Size winSize;
 
@@ -38,7 +39,7 @@ public:
 
     CC_SYNTHESIZE_RETAIN(LayerColor*,_layerColor,LayerColor);
     CC_SYNTHESIZE_RETAIN(ImovileAd*,_ad,AD);
-    
+
 };
 
 #endif // __HELLOWORLD_SCENE_H__

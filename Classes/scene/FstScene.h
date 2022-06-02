@@ -2,6 +2,7 @@
 #define __neomeiro__FstScene__
 
 #include "ad/ImovileAd.h"
+#include "util/Const.h"
 #include "cocos2d.h"
 USING_NS_CC;
 
