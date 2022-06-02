@@ -1,9 +1,7 @@
 {
-  "className": "Hoge",
+  "className": "ColorChanger",
+  "superClass": "Ref",
   "synthesize_retains": [
-    ["LayerColor*", "LC", "_lc"],
-    ["LayerColor*", "LC", "_lc"],
-    ["LayerColor*", "LC", "_lc"],
-    ["LayerColor*", "LC", "_lc"]
+    ["LayerColor", "_lc", "LC"]
   ]
 }

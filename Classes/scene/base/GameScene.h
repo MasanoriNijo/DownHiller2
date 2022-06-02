@@ -13,7 +13,7 @@ protected:
 	bool init() override;
 
 public:
-	static cocos2d::Scene* createScene();
+	static Scene* createScene();
     CREATE_FUNC(GameScene);
 
     Vec2 ctPt;
@@ -42,4 +42,4 @@ public:
 
 };
 
-#endif // __HELLOWORLD_SCENE_H__
+#endif 

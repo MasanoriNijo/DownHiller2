@@ -4,7 +4,7 @@
 #include "cocos2d.h"
 USING_NS_CC;
 
-class SpritePool: public cocos2d::Ref {
+class SpritePool:Ref {
 
 	SpritePool();
 	virtual ~SpritePool();
