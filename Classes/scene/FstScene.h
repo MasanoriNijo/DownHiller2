@@ -5,6 +5,9 @@
 #include "cocos2d.h"
 USING_NS_CC;
 
+/**
+最初に表示させるロゴ表示
+*/
 class FstScene: public Scene {
 protected:
     FstScene();
@@ -16,7 +19,6 @@ public:
     void update(float dt) override;
     void onEnterTransitionDidFinish() override;
     CC_SYNTHESIZE_RETAIN(Sprite*,_productTitle,ProductTitle);
-    CC_SYNTHESIZE_RETAIN(Label*,_label,Label);
     CC_SYNTHESIZE_RETAIN(ImovileAd*,_ad,AD);
 };
 

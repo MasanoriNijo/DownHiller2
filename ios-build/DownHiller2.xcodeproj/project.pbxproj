@@ -1386,6 +1386,7 @@
 		304DD0DB2845253200AF0334 /* kotokotobokanmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = kotokotobokanmark.png; path = Resources/images/kotokotobokanmark.png; sourceTree = SOURCE_ROOT; };
 		304DD0DD28452B5D00AF0334 /* kotokotobokanmark_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = kotokotobokanmark_2.png; path = Resources/images/kotokotobokanmark_2.png; sourceTree = SOURCE_ROOT; };
 		3077803B8D5646769C867A5B /* DetourObstacleAvoidance.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = DetourObstacleAvoidance.cpp; path = cocos2d/external/recast/DetourCrowd/DetourObstacleAvoidance.cpp; sourceTree = SOURCE_ROOT; };
+		309B0D0B2848FA5B0091801C /* Const.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Const.h; sourceTree = "<group>"; };
 		30C97C63992A46B2899EB081 /* SocketIO.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = SocketIO.h; path = cocos2d/cocos/network/SocketIO.h; sourceTree = SOURCE_ROOT; };
 		30CD033228466D130023D844 /* levelwaku.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = levelwaku.png; sourceTree = "<group>"; };
 		30CD033328466D130023D844 /* kakutokucoin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kakutokucoin.png; sourceTree = "<group>"; };
@@ -3557,6 +3558,7 @@
 			children = (
 				304DD0BD2843D12300AF0334 /* SpritePool.cpp */,
 				304DD0BC2843D12300AF0334 /* SpritePool.h */,
+				309B0D0B2848FA5B0091801C /* Const.h */,
 			);
 			name = util;
 			path = Classes/util;
@@ -3571,6 +3573,13 @@
 			name = base;
 			path = Classes/scene/base;
 			sourceTree = SOURCE_ROOT;
+		};
+		309B0D092848F6B00091801C /* iitem */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = iitem;
+			sourceTree = "<group>";
 		};
 		30CD040428468CD90023D844 /* ad */ = {
 			isa = PBXGroup;
@@ -4671,6 +4680,7 @@
 		E48ED5E0ED6E44E291D1A056 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				309B0D092848F6B00091801C /* iitem */,
 				30CD040428468CD90023D844 /* ad */,
 				304DD0BB2843D0A400AF0334 /* util */,
 				304DD0B12843CA7E00AF0334 /* scene */,

@@ -24,6 +24,7 @@
 
 #include "AppDelegate.h"
 #include "scene/FstScene.h"
+#include "util/Const.h"
 
 // #define USE_AUDIO_ENGINE 1
 
@@ -86,7 +87,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     FileUtils::getInstance()->addSearchPath("fonts");
     
     // turn on display FPS
-    director->setDisplayStats(true);
+    director->setDisplayStats(DISPLAY_STATUS);
 
     // set FPS. the default value is 1.0/60 if you don't call this
     director->setAnimationInterval(1.0f / 60);
