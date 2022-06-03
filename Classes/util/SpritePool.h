@@ -1,6 +1,3 @@
-#ifndef __piyopiyo__SpritePool__
-#define __piyopiyo__SpritePool__
-
 #include "cocos2d.h"
 USING_NS_CC;
 
@@ -23,5 +20,3 @@ public:
 protected:
 	cocos2d::Vector<Sprite*> _pool;
 };
-
-#endif /* defined(__androidtest__EnemyPool__) */

@@ -21,22 +21,17 @@ TestScene::~TestScene() {
 // on "init" you need to initialize your instance
 bool TestScene::init() {
 
-	if (!Layer::init()) {
+	if (!GameScene::init()) {
 		return false;
 	}
-	this->scheduleUpdate();
-	auto director = Director::getInstance();
-	auto winSize = director->getWinSize();
 
+    this->setBackGroundColor();
 	auto udf = UserDefault::getInstance();
-
-	int hh = 95;
-
 
 	this->GetPrm(this->index);
 
 	this->SetTouchListenner();
-    this->getAD()->AdShow(true, true, true, true, true, true);
+//    this->getAD()->AdShow(true, true, true, true, true, true);
 	return true;
 }
 

@@ -22,3 +22,5 @@ ios-build/CMakeFiles
 # tool
 tool/*.h
 tool/*.cpp
+tool/*.json
+!tool/cocos_file_prm.json

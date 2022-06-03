@@ -6,13 +6,15 @@ def madeHeaderFile(json_data):
   cdir = os.path.dirname(__file__)
   file_path = cdir+"/"+json_data["className"]+".h"
   f = open(file_path, 'w')
+  f.write('#ifndef __'+json_data['className'].upper()+'_H__\n')
+  f.write('#define __'+json_data['className'].upper()+'_H__\n\n')
   f.write('#include "cocos2d.h"\n')
   f.write('USING_NS_CC;\n')
   f.write('\n')
   if json_data["superClass"] == '':
     f.write('class '+json_data['className']+' {\n')
   else:
-    f.write('class '+json_data['className']+':'+json_data["superClass"]+' {\n')
+    f.write('class '+json_data['className']+': public '+json_data["superClass"]+' {\n')
 
   f.write('protected:\n')
   f.write('  '+json_data['className']+'();\n')
@@ -31,7 +33,8 @@ def madeHeaderFile(json_data):
 
   f.write('  void update(float dt) override;\n')
   f.write('  void onEnterTransitionDidFinish() override;\n')
-  f.write('};\n')
+  f.write('};\n\n')
+  f.write('#endif\n')
   f.close
 
 

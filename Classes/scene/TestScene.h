@@ -25,4 +25,4 @@ public:
     CC_SYNTHESIZE_RETAIN(Sprite*,_productTitle,ProductTitle);
 };
 
-#endif // __HELLOWORLD_SCENE_H__
+#endif 

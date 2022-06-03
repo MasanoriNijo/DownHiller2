@@ -15,3 +15,9 @@
 #else
 #define NJLOG(format, ...)     cocos2d::log(format, ##__VA_ARGS__)
 #endif
+
+
+// デフォルトのバックグラウンドカラーをセット 色相H:0-360,彩度S:0-100,明度V:0-100
+#define DEFAULT_COLOR_H 165
+#define DEFAULT_COLOR_S 45
+#define DEFAULT_COLOR_V 88

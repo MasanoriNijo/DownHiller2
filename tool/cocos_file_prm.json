@@ -2,6 +2,6 @@
   "className": "ColorChanger",
   "superClass": "Ref",
   "synthesize_retains": [
-    ["LayerColor", "_lc", "LC"]
+
   ]
 }
