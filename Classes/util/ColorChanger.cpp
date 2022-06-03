@@ -1,6 +1,6 @@
 #include "ColorChanger.h"
 
-ColorChanger::ColorChanger(){}
+ColorChanger::ColorChanger():_opacity(255){}
 
 ColorChanger::~ColorChanger(){}
 
@@ -37,6 +37,10 @@ float ColorChanger::getS(){
 
 float ColorChanger::getV(){
     return this->v_;
+}
+
+Color4B ColorChanger::getColor4B(){
+    return Color4B(this->r_,this->g_,this->b_,this->_opacity);
 }
 
 void ColorChanger::SetColor(float h, float s, float v) {

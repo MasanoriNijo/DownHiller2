@@ -165,6 +165,7 @@
 		304DD0BE2843D12300AF0334 /* SpritePool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304DD0BD2843D12300AF0334 /* SpritePool.cpp */; };
 		304DD0C22843DE2700AF0334 /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304DD0C12843DE2700AF0334 /* GameScene.cpp */; };
 		309B0D0F28490A830091801C /* ColorChanger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 309B0D0D28490A830091801C /* ColorChanger.cpp */; };
+		309B0D12284A6E170091801C /* Calclater.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 309B0D11284A6E160091801C /* Calclater.cpp */; };
 		309EC664C42A4D32AB847DD3 /* DetourNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94FB09E9E0E6484C86FC4A80 /* DetourNode.cpp */; };
 		30CD0331284547E30023D844 /* kotokotobokanmark.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 304DD0DB2845253200AF0334 /* kotokotobokanmark.png */; };
 		30CD03B028466DCD0023D844 /* back5.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 30CD036228466D190023D844 /* back5.png */; };
@@ -1390,6 +1391,8 @@
 		309B0D0B2848FA5B0091801C /* Const.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Const.h; sourceTree = "<group>"; };
 		309B0D0D28490A830091801C /* ColorChanger.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ColorChanger.cpp; sourceTree = "<group>"; };
 		309B0D0E28490A830091801C /* ColorChanger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorChanger.h; sourceTree = "<group>"; };
+		309B0D10284A6E160091801C /* Calclater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Calclater.h; sourceTree = "<group>"; };
+		309B0D11284A6E160091801C /* Calclater.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Calclater.cpp; sourceTree = "<group>"; };
 		30C97C63992A46B2899EB081 /* SocketIO.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = SocketIO.h; path = cocos2d/cocos/network/SocketIO.h; sourceTree = SOURCE_ROOT; };
 		30CD033228466D130023D844 /* levelwaku.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = levelwaku.png; sourceTree = "<group>"; };
 		30CD033328466D130023D844 /* kakutokucoin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kakutokucoin.png; sourceTree = "<group>"; };
@@ -3559,11 +3562,13 @@
 		304DD0BB2843D0A400AF0334 /* util */ = {
 			isa = PBXGroup;
 			children = (
+				309B0D11284A6E160091801C /* Calclater.cpp */,
+				309B0D10284A6E160091801C /* Calclater.h */,
 				304DD0BD2843D12300AF0334 /* SpritePool.cpp */,
 				304DD0BC2843D12300AF0334 /* SpritePool.h */,
-				309B0D0B2848FA5B0091801C /* Const.h */,
 				309B0D0D28490A830091801C /* ColorChanger.cpp */,
 				309B0D0E28490A830091801C /* ColorChanger.h */,
+				309B0D0B2848FA5B0091801C /* Const.h */,
 			);
 			name = util;
 			path = Classes/util;
@@ -5295,6 +5300,7 @@
 				894EBEAFD698461595D0DFD4 /* HelloWorldScene.cpp in Sources */,
 				30CD03F5284672FF0023D844 /* IMobileCocos2dxModule.mm in Sources */,
 				30CD040728468DE80023D844 /* ImovileAd.cpp in Sources */,
+				309B0D12284A6E170091801C /* Calclater.cpp in Sources */,
 				19BCA424ADCD40E8A1AEA8CD /* AppController.mm in Sources */,
 				47389F4909D3462CB4D5567B /* RootViewController.mm in Sources */,
 				309B0D0F28490A830091801C /* ColorChanger.cpp in Sources */,

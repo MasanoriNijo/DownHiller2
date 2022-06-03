@@ -1,9 +1,9 @@
 #include "FstScene.h"
 #include "scene/TestScene.h"
+#include "scene/TitleScene.h"
 #include "audio/include/AudioEngine.h"
 
 USING_NS_CC;
-using namespace cocos2d;
 
 Scene* FstScene::createScene() {
 	 auto scene = Scene::create();

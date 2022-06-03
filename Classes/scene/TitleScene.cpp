@@ -1,53 +1,24 @@
 #include "TitleScene.h"
 #include "scene/TestScene.h"
 
-#define CLASS_NAME "org/cocos2dx/cpp/AppActivity"
-#define TWEET "tweet"
-#define OPENRNK "openRankPark"
-#define SENDSCR "sendRankParkScore"
-#define WRITEDETA "writeDeta"
-#define READDETA "readDeta"
-
 USING_NS_CC;
 
 using namespace cocos2d;
-
-const Vec2 GRAVITY_ACCERATION = Vec2(0, -10);
-const Vec2 NONGRAVITY = Vec2(0, 0);
-const char* BGM_KEY = "bgmkey";
-//const char* BEST_TIME="besttime";
-//const char* AD_VIEW_ID="adViewId";
 
 MenuItemImage* musicOnBtn;
 MenuItemImage* musicOffBtn;
 
 Scene* TitleScene::createScene() {
 
-
-    //	auto scene = Scene::create();
-    //
-    //	auto layer = TitleScene::create();
-    //
-    //	scene->addChild(layer);
-    //
-    //	// return the scene
-    //	return scene;
-
-    //
-    //
-
 	auto scene = Scene::createWithPhysics();
 
 	auto world = scene->getPhysicsWorld();
 	Vec2 GA;
-	GA.set(GRAVITY_ACCERATION * 15);
-	//GA.rotate(Vec2::ZERO,M_PI*0.05f);
-	world->setGravity(GA);
-	//world->setGravity(Vec2::ZERO);
-    //#if COCOS2D_DEBUG >0
-    //	world->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
-    //#endif
-	world->setSpeed(3);
+	GA.set(GRAVITY_ACCERATION);
+    #if DEBUG_PHYSICS_MASK
+    	world->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
+    #endif
+	world->setSpeed(PHYSICS_WOELD_SPEED);
 	// 'layer' is an autorelease object
 	auto layer = TitleScene::create();
 	// add layer as a child to scene
@@ -58,8 +29,7 @@ Scene* TitleScene::createScene() {
 }
 
 TitleScene::TitleScene() :
- _waku(NULL), _wakuBody(NULL), _touchlistener(NULL), _contactlistener(NULL), _state(GameState::READY) {
-
+ _waku(NULL), _wakuBody(NULL), _touchlistener(NULL), _contactlistener(NULL) {
 }
 
 TitleScene::~TitleScene() {

@@ -1,7 +1,8 @@
-#ifndef __neomeiro__FstScene__
-#define __neomeiro__FstScene__
+#ifndef __FSTSCENE_H__
+#define __FSTSCENE_H__
 
 #include "ad/ImovileAd.h"
+#include "scene/base/GameScene.h"
 #include "util/Const.h"
 #include "cocos2d.h"
 USING_NS_CC;
@@ -23,4 +24,4 @@ public:
     CC_SYNTHESIZE_RETAIN(ImovileAd*,_ad,AD);
 };
 
-#endif // __HELLOWORLD_SCENE_H__
+#endif

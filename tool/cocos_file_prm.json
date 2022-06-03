@@ -1,7 +1,7 @@
 {
-  "className": "ColorChanger",
-  "superClass": "Ref",
+  "className": "FstScene",
+  "superClass": "GameScene",
   "synthesize_retains": [
-
+    ["Sprite", "_productTitler", "ProductTitle"]
   ]
 }

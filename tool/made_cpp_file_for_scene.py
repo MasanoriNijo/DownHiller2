@@ -19,10 +19,11 @@ def madeHeaderFile(json_data):
   f.write('protected:\n')
   f.write('  '+json_data['className']+'();\n')
   f.write('  '+'virtual ~'+json_data['className']+'();\n')
+  f.write('  '+'bool init() override;\n')
   f.write('\n')
   f.write('public:\n')
-  f.write('  static '+json_data['className']+'* create();\n')
-  f.write('  bool init() override;\n')
+  f.write('  '+'CREATE_FUNC('+json_data['className']+');\n')
+  f.write('  '+'static Scene* createScene();\n')
 
   for prms in json_data['synthesize_retains']:
     f.write('  CC_SYNTHESIZE_RETAIN(')
@@ -58,14 +59,11 @@ def madeCCPFile(json_data):
       f.write('	CC_SAFE_RELEASE_NULL('+prms[1]+');\n')
   f.write('}\n\n')
 
-  f.write(json_data['className']+'* '+json_data['className']+'::create() {\n')
-  f.write('    auto obj = new '+json_data['className']+';\n')
-  f.write('    if (obj && obj->init()) {\n')
-  f.write('        obj->autorelease();\n')
-  f.write('    } else {\n')
-  f.write('        CC_SAFE_DELETE(obj);\n')
-  f.write('        return nullptr;\n')
-  f.write('    }\n')
+  f.write('Scene* '+json_data['className']+'::createScene() {\n')
+  f.write('  auto scene = Scene::create();\n')
+  f.write('  auto layer = '+json_data['className']+'::create();\n')
+  f.write('    scene->addChild(layer);\n')
+  f.write('  return scene;\n')
   f.write('}\n\n')
 
   f.write('bool '+json_data['className']+'::init() {\n')
@@ -85,6 +83,7 @@ def madeCCPFile(json_data):
   for prms in json_data['synthesize_retains']:
     f.write('this->set'+prms[2]+'('+prms[0]+'::create());\n')
     f.write('this->get'+prms[2]+'();\n')
+
 
   f.write('*/')
   f.close

@@ -32,17 +32,8 @@ public:
 	int sosaCnt_ = 0;
 	int sosaCnt = 0;
 
-	bool fstFlg = true; //各条件で初めにやる処理
-	enum class GameState {
-		//
-		READY, //ゲーム開始の処理
-		PLAY, //プレイ中。
-		STOP, //ストップ
-		AUTOSOSA //オート操作
-	};
-	;CC_SYNTHESIZE(GameState,_state,State)
-	;
-	void update(float dt);
+
+    void update(float dt) override;
 	void onReady(float dt);
 	void onPlay(float dt);
 	void onWilly(float dt);
