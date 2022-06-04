@@ -67,6 +67,9 @@ def madeCCPFile(json_data):
   f.write('}\n\n')
 
   f.write('bool '+json_data['className']+'::init() {\n')
+  f.write('	if (!'+json_data["superClass"]+'::init()) {\n')
+  f.write('		return false;\n')
+  f.write('	}\n')
   f.write('  // todo\n')
   f.write('  return true;\n')
   f.write('}\n\n')

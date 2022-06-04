@@ -20,10 +20,9 @@ TestScene::~TestScene() {
 
 // on "init" you need to initialize your instance
 bool TestScene::init() {
-
-	if (!GameScene::init()) {
-		return false;
-	}
+    if (!GameScene::init()) {
+        return false;
+    }
 
     this->setBackGroundColor();
 	auto udf = UserDefault::getInstance();

@@ -1,5 +1,5 @@
 {
-  "className": "FstScene",
+  "className": "TitleScene",
   "superClass": "GameScene",
   "synthesize_retains": [
     ["Sprite", "_productTitler", "ProductTitle"]

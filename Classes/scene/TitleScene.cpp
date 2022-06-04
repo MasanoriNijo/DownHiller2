@@ -1,375 +1,59 @@
 #include "TitleScene.h"
-#include "scene/TestScene.h"
 
-USING_NS_CC;
-
-using namespace cocos2d;
-
-MenuItemImage* musicOnBtn;
-MenuItemImage* musicOffBtn;
-
-Scene* TitleScene::createScene() {
-
-	auto scene = Scene::createWithPhysics();
-
-	auto world = scene->getPhysicsWorld();
-	Vec2 GA;
-	GA.set(GRAVITY_ACCERATION);
-    #if DEBUG_PHYSICS_MASK
-    	world->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
-    #endif
-	world->setSpeed(PHYSICS_WOELD_SPEED);
-	// 'layer' is an autorelease object
-	auto layer = TitleScene::create();
-	// add layer as a child to scene
-	scene->addChild(layer);
-	// return the scene
-	return scene;
-
-}
-
-TitleScene::TitleScene() :
- _waku(NULL), _wakuBody(NULL), _touchlistener(NULL), _contactlistener(NULL) {
-}
+TitleScene::TitleScene():_productTitler(NULL){}
 
 TitleScene::~TitleScene() {
-	CC_SAFE_RELEASE_NULL(_waku);
-	CC_SAFE_RELEASE_NULL(_wakuBody);
-	CC_SAFE_RELEASE_NULL(_touchlistener);
-	CC_SAFE_RELEASE_NULL(_contactlistener);
-
+    CC_SAFE_RELEASE_NULL(_productTitler);
 }
 
-// on "init" you need to initialize your instance
+Scene* TitleScene::createScene() {
+  auto scene = Scene::create();
+  auto layer = TitleScene::create();
+    scene->addChild(layer);
+  return scene;
+}
+
 bool TitleScene::init() {
-
-	if (!GameScene::init()) {
-		return false;
-	}
-
-	this->setState(GameState::READY);
-
-	return true;
-}
-
-void TitleScene::onKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event * event) {
-	if (keyCode == EventKeyboard::KeyCode::KEY_ESCAPE) {
-//		Director::sharedDirector()->end();
-	}
-}
-
-void TitleScene::openRankPark() {
-
-}
-
-void TitleScene::sendRankParkScore(int value) {
-
-}
-
-void TitleScene::tweet() {
-
-}
-
-bool TitleScene::sosaPt(Vec2 pt_, float velo_, float dt) {
-	//_point2をptに速度veloで移動させる。_　時間dt_
-
-	if (pt_ == _point2) {
-		return true;
-	}
-
-	Vec2 dpt_;
-	dpt_.set(pt_ - _point2);
-
-	if (dpt_.length() < velo_ * dt) {
-		_point2.set(pt_);
-		return true;
-	} else {
-		dpt_.normalize();
-		dpt_ *= (velo_ * dt);
-		_point2 += dpt_;
-		return false;
-	}
-
-}
-
-void TitleScene::update(float dt) {
-
-	//各ゲームステートで分岐する。
-//
-//	if (this->courceCnt_ < this->courceCnt) {
-//		if (_bike->getPosition().x - _dot->SetPt.x > 250) {
-//			courceCnt_++;
-//			this->_gameDeta->ReadDeta2(_dot, this->CourceLevel, courceCnt_,false,false);
-//			const char *str = "onPlay_this->_gameDeta->ReadDetaFromFile(_dot, this->CourceLevel, courceCnt_);";
-//			log("%s", str);
-//			if (courceCnt_ == courceCnt) {
-//			}
-//
-//		}
-//		if (_bike->getPosition().x - _dot2->SetPt.x > 250) {
-//			courceCnt_++;
-//			this->_gameDeta->ReadDeta2(_dot2, this->CourceLevel, courceCnt_,false,false);
-//			if (courceCnt_ == courceCnt) {
-//			}
-//		}
-//	}
-
-	switch (this->getState()) {
-        case GameState::READY: {
-            //string型
-    //		const char *str = "AsobiKata::GameState::READY";
-    //		log("%s", str);
-            this->onReady(dt);
-            break;
-        }
-        case GameState::PLAY: {
-    //		const char *str2 = "AsobiKata::GameState::PLAY";
-    //		log("%s", str2);
-            this->onPlay(dt);
-            break;
-        }
-        case GameState::STOP: {
-    //		const char *str2 = "AsobiKata::GameState::PLAY";
-    //		log("%s", str2);
-            this->onStop(dt);
-            break;
-        }
-        case GameState::AUTOSOSA: {
-        
-            break;
-        }
+    if (!GameScene::init()) {
+        return false;
     }
-
-//	this->getBike()->update(dt);
-
-}
-
-void TitleScene::onReady(float dt) {
-
-
-}
-
-void TitleScene::onPlay(float dt) {
-
-}
-
-void TitleScene::onStop(float dt) {
-
-}
-
-void TitleScene::SetCource() {
-
-	this->scheduleUpdate();
+    // add a "close" icon to exit the progress. it's an autorelease object
+    auto closeItem = MenuItemImage::create(
+                                           "CloseNormal.png",
+                                           "CloseSelected.png",
+                                           CC_CALLBACK_1(TitleScene::menuCloseCallback, this));
+        closeItem->setPosition(this->ctPt);
+    // create menu, it's an autorelease object
+    auto menu = Menu::create(closeItem, NULL);
+    menu->setPosition(Vec2::ZERO);
+    this->addChild(menu);
+    this->ctPt.add(Vec2(50,50));
+    this->setSprite(Label::createWithTTF("鬼舞辻無惨", "irohamaru.ttf", 24),this->ctPt, OBJ_LAYER_LV3);
+    
+  return true;
 }
 
 void TitleScene::onEnterTransitionDidFinish() {
-
+    this->scheduleUpdate();
 }
 
-void TitleScene::SetContactListener() {
-
-//接触感知
-	this->setContactListenner(EventListenerPhysicsContact::create());
-	_contactlistener->onContactBegin = [this](PhysicsContact& contact) {
-
-		switch(contact.getShapeA()->getBody()->getTag()) {
-			//ゲートをくぐったとき
-			case 20: {
-
-				break;
-			}
-			//後輪
-			case 12: {
-
-				break;
-			}
-			//前輪
-			case 11: {
-
-				break;
-			}
-			//ライダー本体
-			case 10: {
-
-				break;
-			}
-
-		}
-
-		switch(contact.getShapeB()->getBody()->getTag()) {
-
-			//ゴールした時
-			case 20: {
-				break;
-			}
-			//後輪
-			case 12: {
-                break;
-			}
-			//前輪
-			case 11: {
-                break;
-			}
-			//ライダー本体
-			case 10: {
-				break;
-			}
-
-		}
-
-		return true;
-
-	};
-
-	_contactlistener->onContactPostSolve =
-			[this](PhysicsContact& contact, const PhysicsContactPostSolve& solve) {
-				switch(contact.getShapeA()->getBody()->getTag()) {
-					//コース
-					case 1: {
-
-						break;
-					}
-					//膨らんだボール
-					case 11: {
-
-						break;
-					}
-					//ボール本体
-					case 10: {
-
-						break;
-					}
-					//ダンゴ虫
-					case 7: {
-
-						break;
-					}
-					case 8: {
-						//Dango* dg=dynamic_cast<Dango *>(contact.getShapeA()->getBody()->getNode()->getParent());
-						//dg->moveFlg=false;
-						break;
-					}
-					case 5: {
-
-						break;
-					}
-				}
-
-				switch(contact.getShapeB()->getBody()->getTag()) {
-
-					//コース
-					case 1: {
-
-						break;
-					}
-
-					//膨らんだボール
-					case 11: {
-
-						break;
-					}
-					//ボール本体
-					case 10: {
-
-						break;
-					}
-					//ダンゴ虫
-					case 7: {
-
-						break;
-					}
-					case 8: {
-						//	Dango* dg=dynamic_cast<Dango *>(contact.getShapeB()->getBody()->getNode()->getParent());
-						//	dg->moveFlg=false;
-						break;
-					}
-					case 5: {
-
-						break;
-					}
-				}
-			};
-    _contactlistener->onContactSeparate = [this](PhysicsContact& contact) {
-		switch(contact.getShapeA()->getBody()->getTag()) {
-			//コース
-			//ゲートをくぐったとき
-			case 20: {
-//				Sprite* sp=dynamic_cast<Sprite *>(contact.getShapeA()->getBody()->getNode());
-//				Item* itm=dynamic_cast<Item *>(sp->getParent()->getParent());
-//				itm->lstPt.set(dynamic_cast<Sprite *>(contact.getShapeB()->getBody()->getNode())->getPosition());
-//				itm->endTch=true;
-				break;
-			}
-
-			//後輪
-			case 12: {
-				//Ball* sp=dynamic_cast<Ball *>(contact.getShapeA()->getBody()->getNode());
-				//sp->setPosition(ctPt);
-//				_bike->RtchPt.set(Vec2::ZERO);
-//				_bike->RtchFlg=false;
-				break;
-			}
-			//前輪
-			case 11: {
-				//Ball* sp=dynamic_cast<Ball *>(contact.getShapeA()->getBody()->getNode());
-				//sp->setPosition(ctPt);
-//				_bike->FtchPt.set(Vec2::ZERO);
-//				_bike->FtchFlg=false;
-				break;
-			}
-			//ボール本体
-			case 10: {
-//				if(contact.getShapeB()->getBody()->getNode()==_bike->getTchNode()) {
-//					_bike->setTchNode(NULL);
-//				}
-
-				break;
-			}
-
-		}
-
-		switch (contact.getShapeB()->getBody()->getTag()) {
-
-			//コース
-			//ゲートをくぐったとき
-			case 20: {
-//				Sprite* sp = dynamic_cast<Sprite *>(contact.getShapeB()->getBody()->getNode());
-//				Item* itm = dynamic_cast<Item *>(sp->getParent()->getParent());
-//				itm->lstPt.set(dynamic_cast<Sprite *>(contact.getShapeA()->getBody()->getNode())->getPosition());
-//				itm->endTch = true;
-				break;
-			}
-
-			//後輪
-			case 12: {
-				//Ball* sp=dynamic_cast<Ball *>(contact.getShapeA()->getBody()->getNode());
-				//sp->setPosition(ctPt);
-//				_bike->RtchPt.set(Vec2::ZERO);
-//				_bike->RtchFlg=false;
-				break;
-			}
-			//前輪
-			case 11: {
-				//Ball* sp=dynamic_cast<Ball *>(contact.getShapeA()->getBody()->getNode());
-				//sp->setPosition(ctPt);
-//				_bike->FtchPt.set(Vec2::ZERO);
-//				_bike->FtchFlg=false;
-				break;
-			}
-			//ボール本体
-			case 10: {
-//				if (contact.getShapeA()->getBody()->getNode() == _bike->getTchNode()) {
-//					_bike->setTchNode(NULL);
-//				}
-				break;
-			}
-
-		}
-
-	};
-
-	Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(_contactlistener,
-			this);
-
+void TitleScene::update(float dt) {
+  // todo
 }
 
+void TitleScene::menuCloseCallback(Ref* pSender)
+{
+    //Close the cocos2d-x game scene and quit the application
+    Director::getInstance()->end();
+
+    /*To navigate back to native iOS screen(if present) without quitting the application  ,do not use Director::getInstance()->end() as given above,instead trigger a custom event created in RootViewController.mm as below*/
+
+    //EventCustom customEndEvent("game_scene_close_event");
+    //_eventDispatcher->dispatchEvent(&customEndEvent);
+
+
+}
+/** パラメータサンプル
+this->setProductTitle(Sprite::create());
+this->getProductTitle();
+*/

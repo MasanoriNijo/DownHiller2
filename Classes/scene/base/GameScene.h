@@ -47,5 +47,12 @@ public:
     
     void update(float dt) override;
     void onEnterTransitionDidFinish() override;
+    
+    // 画面遷移
+    void transitonScene(Scene* scene);
+    
+    // 指定の位置にスプライトをセットする。
+    void setSprite(Node* sp, Vec2 pt, float lvl);
+    
 };
 #endif

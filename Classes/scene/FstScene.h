@@ -1,20 +1,19 @@
 #ifndef __FSTSCENE_H__
 #define __FSTSCENE_H__
 
-#include "ad/ImovileAd.h"
 #include "scene/base/GameScene.h"
-#include "util/Const.h"
 #include "cocos2d.h"
 USING_NS_CC;
 
 /**
-最初に表示させるロゴ表示
+最初に表示させるロゴ
 */
 class FstScene: public Scene {
 protected:
     FstScene();
     virtual ~FstScene();
     bool init() override;
+
 public:
     static cocos2d::Scene* createScene();
     CREATE_FUNC(FstScene);

@@ -48,6 +48,7 @@ void GameScene::setBackGroundColor(float h, float s, float v){
     this->setColorChanger(ColorChanger::create());
     this->getColorChanger()->SetColor(h, s, v);
     this->setBackColor(LayerColor::create(this->getColorChanger()->getColor4B()));
+    this->_backColor->setGlobalZOrder(OBJ_LAYER_BUTTOM);
     this->addChild(this->_backColor);
 }
 
@@ -74,6 +75,20 @@ void GameScene::update(float dt) {
             break;
         }
     }
+}
+
+void GameScene::transitonScene(Scene* scene){
+    auto transition_ = CallFuncN::create([scene](Node* node_) {
+        auto transition=TransitionCrossFade::create(0.5,scene);
+        Director::getInstance()->replaceScene(transition);
+    });
+    this->runAction(transition_);
+}
+
+void GameScene::setSprite(Node* sp, Vec2 pt, float lvl){
+    sp->setPosition(pt);
+    sp->setGlobalZOrder(lvl);
+    this->addChild(sp);
 }
 
 /** パラメータサンプル
