@@ -1,7 +1,7 @@
 #include "GameScene.h"
 
 GameScene::GameScene():
-_backColor(NULL), _ad(NULL), _colorChanger(NULL), _calc(NULL)
+_backColor(NULL), _ad(NULL), _colorChanger(NULL), _calc(NULL), _debugLine(NULL), _debugMemo(NULL)
 {}
 
 GameScene::~GameScene() {
@@ -9,6 +9,8 @@ GameScene::~GameScene() {
     CC_SAFE_RELEASE_NULL(_ad);
     CC_SAFE_RELEASE_NULL(_colorChanger);
     CC_SAFE_RELEASE_NULL(_calc);
+    CC_SAFE_RELEASE_NULL(_debugLine);
+    CC_SAFE_RELEASE_NULL(_debugMemo);
 }
 
 Scene* GameScene::createScene() {
@@ -37,6 +39,10 @@ bool GameScene::init() {
     // Calclaterをセット
     this->setCalc(Calclater::create());
     
+    #if ENABLE_DEBUG_LINE
+    this->drawDebugLine();
+    #endif
+    
     return true;
 }
 
@@ -48,8 +54,7 @@ void GameScene::setBackGroundColor(float h, float s, float v){
     this->setColorChanger(ColorChanger::create());
     this->getColorChanger()->SetColor(h, s, v);
     this->setBackColor(LayerColor::create(this->getColorChanger()->getColor4B()));
-    this->_backColor->setGlobalZOrder(OBJ_LAYER_BUTTOM);
-    this->addChild(this->_backColor);
+    this->addChild(this->_backColor,OBJ_LAYER_BUTTOM);
 }
 
 void GameScene::onEnterTransitionDidFinish() {
@@ -80,22 +85,57 @@ void GameScene::update(float dt) {
 void GameScene::transitonScene(Scene* scene){
     auto transition_ = CallFuncN::create([scene](Node* node_) {
         auto transition=TransitionCrossFade::create(0.5,scene);
+//        transition->autorelease();
         Director::getInstance()->replaceScene(transition);
     });
+//    transition_->autorelease();
     this->runAction(transition_);
 }
 
-void GameScene::setSprite(Node* sp, Vec2 pt, float lvl){
+void GameScene::mountNode(Node* sp, Vec2 pt, float lvl){
     sp->setPosition(pt);
     sp->setGlobalZOrder(lvl);
     this->addChild(sp);
 }
 
+void GameScene::drawDebugLine(){
+    this->setDebugLine(DrawNode::create());
+    this->getDebugLine()->setLineWidth(4);
+    this->getDebugLine()->drawDot(this->ctPt, 1, Color4F::GREEN);
+    
+    int meshSize = 10;
+    
+    int horCnt = this->winSize.width / meshSize;
+    int verCnt = this->winSize.height / meshSize;
+    
+    for (int i = -verCnt-2; i < verCnt + 2; i++) {
+        this->getDebugLine()->drawLine(Vec2(0,this->ctPt.y + i * meshSize),
+                                       Vec2(this->winSize.width,this->ctPt.y + i * meshSize),
+                                       Color4F::GRAY);
+    }
+    for (int i = -horCnt-2; i < horCnt + 2; i++) {
+        this->getDebugLine()->drawLine(Vec2(this->ctPt.x + i * meshSize,0),
+                                       Vec2(this->ctPt.x + i * meshSize,this->winSize.height),
+                                       Color4F::GRAY);
+    }
+    this->mountNode(this->getDebugLine(), Vec2::ZERO, OBJ_LAYER_LV1);
+    
+    this->setDebugMemo(Label::createWithTTF("Deugメモ", "irohamaru.ttf", 14));
+    this->mountNode(this->getDebugMemo(), Vec2(this->ctPt.x,30), OBJ_LAYER_LV1);
+    
+}
+
 /** パラメータサンプル
- this->setBackColor(LayerColor::create());
- this->getBackColor();
- this->setAD(ImovileAd::create());
- this->getAD();
- this->setColorChanger(ColorChanger::create());
- this->getColorChanger();
- */
+this->setBackColor(LayerColor::create());
+this->getBackColor();
+this->setAD(ImovileAd::create());
+this->getAD();
+this->setColorChanger(ColorChanger::create());
+this->getColorChanger();
+this->setCalc(Calclater::create());
+this->getCalc();
+this->setDebugLine(DrawNode::create());
+this->getDebugLine();
+this->setDebugMemo(Label::create());
+this->getDebugMemo();
+*/

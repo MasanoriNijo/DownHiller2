@@ -62,6 +62,7 @@ def madeCCPFile(json_data):
   f.write('    auto obj = new '+json_data['className']+';\n')
   f.write('    if (obj && obj->init()) {\n')
   f.write('        obj->autorelease();\n')
+  f.write('        return obj;\n')
   f.write('    } else {\n')
   f.write('        CC_SAFE_DELETE(obj);\n')
   f.write('        return nullptr;\n')

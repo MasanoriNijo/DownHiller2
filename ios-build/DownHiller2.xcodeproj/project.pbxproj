@@ -166,6 +166,8 @@
 		304DD0C22843DE2700AF0334 /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304DD0C12843DE2700AF0334 /* GameScene.cpp */; };
 		309B0D0F28490A830091801C /* ColorChanger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 309B0D0D28490A830091801C /* ColorChanger.cpp */; };
 		309B0D12284A6E170091801C /* Calclater.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 309B0D11284A6E160091801C /* Calclater.cpp */; };
+		309B0D15284B16160091801C /* Button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 309B0D14284B16160091801C /* Button.cpp */; };
+		309B0D18284B900E0091801C /* TestPhysicsScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 309B0D16284B900D0091801C /* TestPhysicsScene.cpp */; };
 		309EC664C42A4D32AB847DD3 /* DetourNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94FB09E9E0E6484C86FC4A80 /* DetourNode.cpp */; };
 		30CD0331284547E30023D844 /* kotokotobokanmark.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 304DD0DB2845253200AF0334 /* kotokotobokanmark.png */; };
 		30CD03B028466DCD0023D844 /* back5.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 30CD036228466D190023D844 /* back5.png */; };
@@ -1393,6 +1395,10 @@
 		309B0D0E28490A830091801C /* ColorChanger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorChanger.h; sourceTree = "<group>"; };
 		309B0D10284A6E160091801C /* Calclater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Calclater.h; sourceTree = "<group>"; };
 		309B0D11284A6E160091801C /* Calclater.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Calclater.cpp; sourceTree = "<group>"; };
+		309B0D13284B16160091801C /* Button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Button.h; path = Classes/item/Button.h; sourceTree = SOURCE_ROOT; };
+		309B0D14284B16160091801C /* Button.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Button.cpp; path = Classes/item/Button.cpp; sourceTree = SOURCE_ROOT; };
+		309B0D16284B900D0091801C /* TestPhysicsScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestPhysicsScene.cpp; path = Classes/scene/TestPhysicsScene.cpp; sourceTree = "<group>"; };
+		309B0D17284B900E0091801C /* TestPhysicsScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestPhysicsScene.h; path = Classes/scene/TestPhysicsScene.h; sourceTree = "<group>"; };
 		30C97C63992A46B2899EB081 /* SocketIO.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = SocketIO.h; path = cocos2d/cocos/network/SocketIO.h; sourceTree = SOURCE_ROOT; };
 		30CD033228466D130023D844 /* levelwaku.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = levelwaku.png; sourceTree = "<group>"; };
 		30CD033328466D130023D844 /* kakutokucoin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kakutokucoin.png; sourceTree = "<group>"; };
@@ -3547,6 +3553,8 @@
 			isa = PBXGroup;
 			children = (
 				304DD0BF2843DDE900AF0334 /* base */,
+				309B0D16284B900D0091801C /* TestPhysicsScene.cpp */,
+				309B0D17284B900E0091801C /* TestPhysicsScene.h */,
 				304DD0B82843D08F00AF0334 /* TestScene.cpp */,
 				304DD0B52843D08E00AF0334 /* TestScene.h */,
 				304DD0B72843D08F00AF0334 /* TitleScene.cpp */,
@@ -3584,12 +3592,15 @@
 			path = Classes/scene/base;
 			sourceTree = SOURCE_ROOT;
 		};
-		309B0D092848F6B00091801C /* iitem */ = {
+		309B0D092848F6B00091801C /* item */ = {
 			isa = PBXGroup;
 			children = (
+				309B0D14284B16160091801C /* Button.cpp */,
+				309B0D13284B16160091801C /* Button.h */,
 			);
-			path = iitem;
-			sourceTree = "<group>";
+			name = item;
+			path = Classes/item;
+			sourceTree = SOURCE_ROOT;
 		};
 		30CD040428468CD90023D844 /* ad */ = {
 			isa = PBXGroup;
@@ -4690,7 +4701,7 @@
 		E48ED5E0ED6E44E291D1A056 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				309B0D092848F6B00091801C /* iitem */,
+				309B0D092848F6B00091801C /* item */,
 				30CD040428468CD90023D844 /* ad */,
 				304DD0BB2843D0A400AF0334 /* util */,
 				304DD0B12843CA7E00AF0334 /* scene */,
@@ -5300,6 +5311,8 @@
 				894EBEAFD698461595D0DFD4 /* HelloWorldScene.cpp in Sources */,
 				30CD03F5284672FF0023D844 /* IMobileCocos2dxModule.mm in Sources */,
 				30CD040728468DE80023D844 /* ImovileAd.cpp in Sources */,
+				309B0D15284B16160091801C /* Button.cpp in Sources */,
+				309B0D18284B900E0091801C /* TestPhysicsScene.cpp in Sources */,
 				309B0D12284A6E170091801C /* Calclater.cpp in Sources */,
 				19BCA424ADCD40E8A1AEA8CD /* AppController.mm in Sources */,
 				47389F4909D3462CB4D5567B /* RootViewController.mm in Sources */,

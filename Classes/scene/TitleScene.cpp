@@ -1,59 +1,65 @@
 #include "TitleScene.h"
+#include "scene/TestScene.h"
+#include "scene/TestPhysicsScene.h"
 
-TitleScene::TitleScene():_productTitler(NULL){}
+TitleScene::TitleScene():
+_gameTitle(NULL), _startBtn(NULL), _howtoBtn(NULL), _resultBtn(NULL), _menu(NULL)
+{}
 
 TitleScene::~TitleScene() {
-    CC_SAFE_RELEASE_NULL(_productTitler);
+    CC_SAFE_RELEASE_NULL(_gameTitle);
+    CC_SAFE_RELEASE_NULL(_startBtn);
+    CC_SAFE_RELEASE_NULL(_howtoBtn);
+    CC_SAFE_RELEASE_NULL(_resultBtn);
+    CC_SAFE_RELEASE_NULL(_menu);
 }
 
 Scene* TitleScene::createScene() {
-  auto scene = Scene::create();
-  auto layer = TitleScene::create();
+    auto scene = Scene::create();
+    auto layer = TitleScene::create();
     scene->addChild(layer);
-  return scene;
+    return scene;
 }
 
 bool TitleScene::init() {
     if (!GameScene::init()) {
         return false;
     }
-    // add a "close" icon to exit the progress. it's an autorelease object
-    auto closeItem = MenuItemImage::create(
-                                           "CloseNormal.png",
-                                           "CloseSelected.png",
-                                           CC_CALLBACK_1(TitleScene::menuCloseCallback, this));
-        closeItem->setPosition(this->ctPt);
-    // create menu, it's an autorelease object
-    auto menu = Menu::create(closeItem, NULL);
-    menu->setPosition(Vec2::ZERO);
-    this->addChild(menu);
-    this->ctPt.add(Vec2(50,50));
-    this->setSprite(Label::createWithTTF("鬼舞辻無惨", "irohamaru.ttf", 24),this->ctPt, OBJ_LAYER_LV3);
-    
-  return true;
+    this->setBackGroundColor();
+    this->setGameTitle(Sprite::create("title5.png"));
+    this->mountNode(this->getGameTitle(), this->ctPt + Vec2(0,20), OBJ_LAYER_TOP);
+    this->setStartBtn(MenuItemImage::create("start_btn.png", "start_btn_p.png",[this](Ref* ref) {
+        this->transitonScene(TestScene::createScene());
+    }));
+    this->setHowToBtn(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
+        this->transitonScene(TestPhysicsScene::createScene());
+    }));
+    this->setResultBtn(MenuItemImage::create("ranking_btn.png", "ranking_btn_p.png",[this](Ref* ref) {
+        this->transitonScene(TestScene::createScene());
+    }));
+    this->setSMenu(Menu::create(this->getStartBtn(),this->getHowToBtn(),this->getResultBtn(), NULL));
+    this->getSMenu()->alignItemsHorizontallyWithPadding(20);
+    this->mountNode(this->getSMenu(), this->ctPt + Vec2(0,-20), OBJ_LAYER_TOP);
+    return true;
 }
 
 void TitleScene::onEnterTransitionDidFinish() {
-    this->scheduleUpdate();
+    // todo
 }
 
 void TitleScene::update(float dt) {
-  // todo
+    // todo
 }
 
-void TitleScene::menuCloseCallback(Ref* pSender)
-{
-    //Close the cocos2d-x game scene and quit the application
-    Director::getInstance()->end();
-
-    /*To navigate back to native iOS screen(if present) without quitting the application  ,do not use Director::getInstance()->end() as given above,instead trigger a custom event created in RootViewController.mm as below*/
-
-    //EventCustom customEndEvent("game_scene_close_event");
-    //_eventDispatcher->dispatchEvent(&customEndEvent);
-
-
-}
 /** パラメータサンプル
-this->setProductTitle(Sprite::create());
-this->getProductTitle();
+this->setGameTitle(Sprite::create());
+this->getGameTitle();
+this->setStartBtn(MenuItemImage::create());
+this->getStartBtn();
+this->setHowToBtn(MenuItemImage::create());
+this->getHowToBtn();
+this->setResultBtn(MenuItemImage::create());
+this->getResultBtn();
+this->setSMenu(Menu::create());
+this->getSMenu();
 */

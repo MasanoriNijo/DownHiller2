@@ -15,6 +15,9 @@ USING_NS_CC;
 // NJLOGを表示する。
 #define ENABLE_NJLOG 1
 
+// debugLineを表示する
+#define ENABLE_DEBUG_LINE 1
+
 #if !defined(ENABLE_NJLOG) || ENABLE_NJLOG == 0
 #define NJLOG(...)
 #else
@@ -22,9 +25,9 @@ USING_NS_CC;
 #endif
 
 // デフォルトのバックグラウンドカラーをセット 色相H:0-360,彩度S:0-100,明度V:0-100
-#define DEFAULT_COLOR_H 165
-#define DEFAULT_COLOR_S 20
-#define DEFAULT_COLOR_V 30
+#define DEFAULT_COLOR_H 230
+#define DEFAULT_COLOR_S 100
+#define DEFAULT_COLOR_V 35
 
 // spriteの上下
 #define OBJ_LAYER_BUTTOM 0
@@ -43,5 +46,10 @@ const Vec2 NONGRAVITY = Vec2(0, 0);
 // 物理世界の処理スピード
 #define PHYSICS_WOELD_SPEED 3
 
+// 数字の文字化
+#define ST_INT(suzi) ({std::string st = StringUtils::toString((int)suzi);st;})
+
+// Vec2の文字化
+#define ST_VEC2(vec2) ({std::string stx = ST_INT(vec2.x);std::string sty = ST_INT(vec2.y); "x:"+stx+" y:"+sty;})
 
 #endif

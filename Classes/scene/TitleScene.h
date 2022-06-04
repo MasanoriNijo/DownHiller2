@@ -2,6 +2,8 @@
 #define __TITLESCENE_H__
 
 #include "scene/base/GameScene.h"
+#include "item/Button.h"
+
 #include "cocos2d.h"
 USING_NS_CC;
 
@@ -14,12 +16,13 @@ protected:
 public:
     CREATE_FUNC(TitleScene);
     static Scene* createScene();
-    CC_SYNTHESIZE_RETAIN(Sprite*,_productTitler,ProductTitle);
+    CC_SYNTHESIZE_RETAIN(Sprite*,_gameTitle,GameTitle);
+    CC_SYNTHESIZE_RETAIN(MenuItemImage*,_startBtn,StartBtn);
+    CC_SYNTHESIZE_RETAIN(MenuItemImage*,_howtoBtn,HowToBtn);
+    CC_SYNTHESIZE_RETAIN(MenuItemImage*,_resultBtn,ResultBtn);
+    CC_SYNTHESIZE_RETAIN(Menu*,_menu,SMenu);
     void update(float dt) override;
     void onEnterTransitionDidFinish() override;
-    
-    // a selector callback
-    void menuCloseCallback(cocos2d::Ref* pSender);
 };
 
 #endif

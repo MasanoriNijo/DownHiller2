@@ -22,7 +22,8 @@ public:
     CC_SYNTHESIZE_RETAIN(ImovileAd*,_ad,AD);
     CC_SYNTHESIZE_RETAIN(ColorChanger*,_colorChanger,ColorChanger);
     CC_SYNTHESIZE_RETAIN(Calclater*,_calc,Calc);
-    
+    CC_SYNTHESIZE_RETAIN(DrawNode*,_debugLine,DebugLine);
+    CC_SYNTHESIZE_RETAIN(Label*,_debugMemo,DebugMemo);
     // 画面のセンターの位置
     Vec2 ctPt;
     
@@ -52,7 +53,10 @@ public:
     void transitonScene(Scene* scene);
     
     // 指定の位置にスプライトをセットする。
-    void setSprite(Node* sp, Vec2 pt, float lvl);
+    void mountNode(Node* sp, Vec2 pt, float lvl);
+    
+    // Debug用のラインを描写する。
+    void drawDebugLine();
     
 };
 #endif

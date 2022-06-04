@@ -8,7 +8,7 @@ USING_NS_CC;
 /**
 最初に表示させるロゴ
 */
-class FstScene: public Scene {
+class FstScene: public GameScene {
 protected:
     FstScene();
     virtual ~FstScene();
@@ -20,7 +20,6 @@ public:
     void update(float dt) override;
     void onEnterTransitionDidFinish() override;
     CC_SYNTHESIZE_RETAIN(Sprite*,_productTitle,ProductTitle);
-    CC_SYNTHESIZE_RETAIN(ImovileAd*,_ad,AD);
 };
 
 #endif
