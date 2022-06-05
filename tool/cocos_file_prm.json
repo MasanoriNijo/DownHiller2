@@ -4,6 +4,7 @@
   "synthesize_retains": [
     ["Sprite", "_parentSprite","ParentSprite"],
     ["PhysicsBody","_body","Body"],
-    ["Sprite", "_debugPt","DebugPt"]
+    ["Sprite", "_debugPt","DebugPt"],
+    ["Calclater","_calc","Calc"]
   ]
 }

@@ -1,6 +1,7 @@
 #ifndef __SPRITE2_H__
 #define __SPRITE2_H__
 
+#include "util/Calclater.h"
 #include "math.h"
 #include "cocos2d.h"
 USING_NS_CC;
@@ -19,10 +20,15 @@ public:
     static Sprite2* create(const std::string& filename);
     static Sprite2* createWithTexture(Texture2D *texture);
     static Sprite2* createWithTexture(Texture2D *texture, Rect rct_);
+    
+    bool initWithFile(const std::string& filename) override;
+    bool initWithTexture(Texture2D *texture) override;
+    
     //想定するペアレンツノード
     CC_SYNTHESIZE_RETAIN(Sprite*,_parentSprite,ParentSprite);
     CC_SYNTHESIZE_RETAIN(PhysicsBody*,_body,Body);
     CC_SYNTHESIZE_RETAIN(Sprite*,_debugPt,DebugPt);
+    CC_SYNTHESIZE_RETAIN(Calclater*,_calc,Calc);
     //ピン止め位置
     CC_SYNTHESIZE(Vec2,_pinPt,PinPt);
     //スプライト内のピン位置
@@ -31,11 +37,6 @@ public:
     CC_SYNTHESIZE(std::function<void(Sprite2*,float dt)> ,_updateListener,UpDateListener)
     
     void update(float dt) override;
-    
-    
-    
-    
-    
     
     Vec2 pt_; //計算用変数
     Vec2 pt2_; //計算用変数
@@ -59,12 +60,12 @@ public:
     void SetRotPos(float kaku_, Vec2 pt_);
     
     //操作方法をセット
-    void SetMoveType(float velo_);
+    void SetMoveTypeA(float velo_);
+    void SetMoveTypeB(float velo_);
     float _velo = 0;
     bool _trnLeft = false;
     bool _trnRight = false;
-    void SetMoveTypeB(float velo_);
-    
+
     //pointボデイを作成する。
     void MadePoint();
     void ShowPoint(bool flg);
@@ -82,21 +83,12 @@ public:
     
     //rad1_へ向かって、rad2_から回転する。
     float ChaseRad(float rad1_, float rad2_, float velo_, float dt);
-    //角度を変換する0-2Π(Vec2用反時計）、0-360°(sprite用時計回り）
-    float ChgKaku(float degree);
-    float ChgRad(float kaku);
-    float NomlKaku(float kaku);
-    float NomlRad(float rad);
-    bool BetweenKaku(float x, float min_, float max_);
-    bool BetweenRad(float x, float min_, float max_);
     
     //現在のラジアンを取得
     float GetRad();
     //追従が完了したかどうか？
     bool chsFlg;
-    
-    float GetNaisei(Vec2 A, Vec2 B);
-    
+
     // オート操作系
     float ChaseA(float A, float chaser_, float v_, float dt);
     Vec2 ChaseA(Vec2 A, Vec2 chaser_, float v_, float dt);

@@ -3,6 +3,7 @@
 
 #include "scene/base/GameScene.h"
 #include "util/TouchEventHelper.h"
+#include "item/Bike.h"
 #include "cocos2d.h"
 USING_NS_CC;
 
@@ -24,6 +25,7 @@ public:
     CC_SYNTHESIZE_RETAIN(MenuItemImage*,_btn4,Btn4);
     CC_SYNTHESIZE_RETAIN(Menu*,_menu,Menu);
     CC_SYNTHESIZE_RETAIN(TouchEventHelper*,_touch,Touch);
+    CC_SYNTHESIZE_RETAIN(Bike*,_bike,Bike);
     
     void update(float dt) override;
     void onEnterTransitionDidFinish() override;

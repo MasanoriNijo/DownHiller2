@@ -2,8 +2,8 @@
 #define __BikeBike__Bike__
 
 #include "cocos2d.h"
-#include "ChrPrm.h"
-#include "Sprite2.h"
+#include "item/base/Sprite2.h"
+#include "cmath"
 USING_NS_CC;
 
 class Bike: public Sprite2 {
@@ -107,8 +107,6 @@ public:
 	void SaveRotaion(); //MaxRotVelo以内になるように回転制御
 	void ControlVelo2(Vec2 rotvelo, float dt); //回転ジャンプ同時制御
 
-
-
 	void ControlVelo(Vec2 rotvelo, Vec2 jumpVelo, float dt); //回転ジャンプ同時制御
 	Vec2 ptF;//前輪速度計算用
 	Vec2 ptR;//後輪速度計算用
@@ -124,7 +122,6 @@ public:
 	int dushCnt=30;//最大ダッシュカウント数。
 	int dushCnt_=30;//ダッシュカウント変数。
 	void contJump();//ジャンプ
-
 
 	void ControlVelo2(Vec2 rotvelo, Vec2 jumpVelo, float dt); //回転ジャンプ同時制御
 	void ControlVelo3(Vec2 rotvelo, Vec2 jumpVelo, float dt); //回転ジャンプ同時制御
@@ -185,7 +182,6 @@ public:
 	void SetSiseiState(SiseiState sis);
 
 	//ボタン操作系
-
 	bool leftSwaip_ = false; //最後にどちら方向にスワイプしたか？
 
 	void JumpBtn(bool on_);

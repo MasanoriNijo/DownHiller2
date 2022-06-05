@@ -1,8 +1,18 @@
 #include "cocos2d.h"
 #include "Bike.h"
-#include "cmath"
-
+#include "audio/include/AudioEngine.h"
 USING_NS_CC;
+
+// 物理判定用 todo 他にまとめて整理する。
+static const int NONE = 0x00000000;
+static const int PLAYER = 0xFFFFFFFF;
+static const int ENEMY = 0xFFFFFFFF;
+static const int COURCE = 0xFFFFFFFF;
+static const int ITEM = 0xFFFFFFFF;
+static const int PLAYERBOUND = 0xFFFFFFFF;
+static const int PLAYERBODY = 0xFFFFFFFF;
+static const int ALL = 0xFFFFFFFF;
+
 
 Bike::Bike() :
 		_fWheel(NULL), _rWheel(NULL), _fWheelA(NULL), _rWheelA(NULL), _pedaru(NULL), _pointDbg(NULL), _body(
@@ -120,9 +130,9 @@ bool Bike::init() {
 //	this->setBody3(PhysicsBody::createCircle(65, material0));
 //
 //	this->_body3->setGravityEnable(false);
-//	this->_body3->setCategoryBitmask(ChrPrm::PLAYERBOUND);
-//	this->_body3->setCollisionBitmask(ChrPrm::COURCE | ChrPrm::ENEMY | ChrPrm::ITEM);
-//	this->_body3->setContactTestBitmask(ChrPrm::COURCE | ChrPrm::ENEMY | ChrPrm::ITEM);
+//	this->_body3->setCategoryBitmask(PLAYERBOUND);
+//	this->_body3->setCollisionBitmask(COURCE | ENEMY | ITEM);
+//	this->_body3->setContactTestBitmask(COURCE | ENEMY | ITEM);
 //	this->_body3->setDynamic(false);
 //	this->_body3->setRotationEnable(true);
 //
@@ -143,9 +153,9 @@ bool Bike::init() {
 
 	this->setPhysicsBody(this->_body);
 	this->_body->setGravityEnable(true);
-	this->_body->setCategoryBitmask(ChrPrm::PLAYER);
-	this->_body->setCollisionBitmask(ChrPrm::COURCE | ChrPrm::ENEMY | ChrPrm::ITEM);
-	this->_body->setContactTestBitmask(ChrPrm::COURCE | ChrPrm::ENEMY | ChrPrm::ITEM);
+	this->_body->setCategoryBitmask(PLAYER);
+	this->_body->setCollisionBitmask(COURCE | ENEMY | ITEM);
+	this->_body->setContactTestBitmask(COURCE | ENEMY | ITEM);
 	this->_body->setTag(11);
 	this->_body->setDynamic(true);
 	this->_body->setRotationEnable(true);
@@ -482,7 +492,7 @@ void Bike::FJump2(Vec2 apt_) {
 		this->FtchFlg = false;
 //		const char *str4 = " Bike::FJump2_2";
 //		log("%s", str4);
-		float xxx = this->GetNaisei(apt_, FtchPt);
+		float xxx = this->getCalc()->getDot(apt_, FtchPt);
 
 		if (xxx < -MaxVelo * FjumpPow) {
 			xxx = -MaxVelo * FjumpPow;
@@ -508,10 +518,10 @@ void Bike::FJump3(Vec2 apt_) {
 //		log("%s", str4);
 
 		//法線方向の速度をゼロにする処理。
-		float zzz = this->GetNaisei(this->_body->getVelocity(), this->FnmlPt);
+		float zzz = this->getCalc()->getDot(this->_body->getVelocity(), this->FnmlPt);
 		this->dFJumpPt -= zzz * FnmlPt;
 
-		float xxx = this->GetNaisei(apt_, FnmlPt);
+		float xxx = this->getCalc()->getDot(apt_, FnmlPt);
 
 		if (xxx < -MaxVelo * FjumpPow) {
 			xxx = -MaxVelo * FjumpPow;
@@ -544,10 +554,10 @@ void Bike::RJump3(Vec2 apt_) {
 //		log("%s", str4);
 
 		//法線方向の速度をゼロにする処理。
-		float zzz = this->GetNaisei(this->_body2->getVelocity(), this->RnmlPt);
+		float zzz = this->getCalc()->getDot(this->_body2->getVelocity(), this->RnmlPt);
 		this->dRJumpPt -= zzz * RnmlPt;
 
-		float xxx = this->GetNaisei(apt_, RnmlPt);
+		float xxx = this->getCalc()->getDot(apt_, RnmlPt);
 
 		if (xxx < -MaxVelo * RjumpPow) {
 			xxx = -MaxVelo * RjumpPow;
@@ -576,7 +586,7 @@ void Bike::RJump2(Vec2 apt_, bool backFlg) {
 //		const char *str4 = "Bike::RJump2_2";
 //		log("%s", str4);
 
-		float xxx = this->GetNaisei(apt_, RtchPt);
+		float xxx = this->getCalc()->getDot(apt_, RtchPt);
 
 		if (xxx < -MaxVelo * RjumpPow) {
 			xxx = -MaxVelo * RjumpPow;
@@ -590,7 +600,7 @@ void Bike::RJump2(Vec2 apt_, bool backFlg) {
 //			//前進用
 //			RtchPt.rotate(Vec2::ZERO, M_PI / 2);
 //
-//			xxx = this->GetNaisei(pt_, RtchPt);
+//			xxx = this->getCalc()->getDot(pt_, RtchPt);
 //			if (xxx < -MaxVelo) {
 //				xxx = -MaxVelo;
 //			} else if (xxx > MaxVelo) {
@@ -614,7 +624,7 @@ void Bike::AirRot(Vec2 rotvelo) {
 
 	this->AirPt.normalize();
 //内積により求める
-	float xxx = this->GetNaisei(rotvelo, this->AirPt);
+	float xxx = this->getCalc()->getDot(rotvelo, this->AirPt);
 //	float xxx=(float)sqrt(zzz);
 
 	if (xxx < -this->MaxRotVelo) {
@@ -670,7 +680,7 @@ void Bike::ControlVelo2(Vec2 powPt_, float dt) {
 		jtime_ = 0;
 		this->SetTouch(false);
 //		現在の速度に対してジャンプ速度を制御
-		float xxx = this->GetNaisei(powPt_ * kJump_, FRnmlPt);
+		float xxx = this->getCalc()->getDot(powPt_ * kJump_, FRnmlPt);
 		FRnmlPt.set(FnmlPt + RnmlPt);
 		FRnmlPt.normalize();
 		//		xxx -= yyy;
@@ -712,9 +722,9 @@ void Bike::ControlVelo2(Vec2 powPt_, float dt) {
 //
 //		//現在の速度に対してジャンプ速度を制御
 //		ptFR.set(this->_body->getVelocity() / 2 + this->_body2->getVelocity() / 2);
-//		float yyy = this->GetNaisei(ptFR, FRnmlPt);
+//		float yyy = this->getCalc()->getDot(ptFR, FRnmlPt);
 //
-//		float xxx = this->GetNaisei(powPt_ * kJump_, FRnmlPt);
+//		float xxx = this->getCalc()->getDot(powPt_ * kJump_, FRnmlPt);
 //
 ////		xxx -= yyy;
 //
@@ -757,7 +767,7 @@ void Bike::ControlVelo2(Vec2 powPt_, float dt) {
 
 	this->AirPt.normalize();
 //内積により求める
-	float zzz = this->GetNaisei(powPt_ * kRot_, this->AirPt);
+	float zzz = this->getCalc()->getDot(powPt_ * kRot_, this->AirPt);
 
 	if (zzz < -this->MaxRotVelo) {
 //		if (zzz < 0) {
@@ -825,8 +835,8 @@ void Bike::contJump() {
 	if ((this->FtchFlg || this->RtchFlg) && jtime_ > jtime) {
 		//現在の速度に対してジャンプ速度を制御
 		ptFR.set(this->_body->getVelocity() / 2 + this->_body2->getVelocity() / 2);
-//		float yyy = this->GetNaisei(ptFR, FRnmlPt);
-		float xxx = this->GetNaisei(JumpPt * kJump_, FRnmlPt);
+//		float yyy = this->getCalc()->getDot(ptFR, FRnmlPt);
+		float xxx = this->getCalc()->getDot(JumpPt * kJump_, FRnmlPt);
 		if (xxx < -MaxVelo * maxVelo_k) {
 			xxx = -MaxVelo * maxVelo_k;
 			jumpFlg = true;
@@ -834,7 +844,8 @@ void Bike::contJump() {
 			this->dFJumpPt += xxx * FRnmlPt;
 			jumpFlg = true;
 			jtime_ = 0;
-			CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("jump01.mp3");
+//			CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("jump01.mp3");
+            AudioEngine::play2d("btnon.mp3", false, 0.2, nullptr);
 //			this->_fWheel->setPosition(this->_fWheel->getPosition() - 10 * FRnmlPt);
 //			this->_rWheel->setPosition(this->_rWheel->getPosition() - 10 * FRnmlPt);
 		} else if (xxx > 0) {
@@ -844,7 +855,8 @@ void Bike::contJump() {
 			jtime_ = 0;
 			this->dRJumpPt += xxx * FRnmlPt;
 			this->dFJumpPt += xxx * FRnmlPt;
-			CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("jump01.mp3");
+//			CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("jump01.mp3");
+            AudioEngine::play2d("btnon.mp3", false, 0.2, nullptr);
 //			this->_fWheel->setPosition(this->_fWheel->getPosition() - 10 * FRnmlPt);
 //			this->_rWheel->setPosition(this->_rWheel->getPosition() - 10 * FRnmlPt);
 		}
@@ -871,8 +883,8 @@ void Bike::contFRot() {
 		}
 	} else {
 
-		if (this->NomlRad(ptFR_.getAngle())
-				< CC_DEGREES_TO_RADIANS(90) || this->NomlRad(ptFR_.getAngle()) > 1.5 * M_PI) {
+		if (this->getCalc()->nomlRad(ptFR_.getAngle())
+				< CC_DEGREES_TO_RADIANS(90) || this->getCalc()->nomlRad(ptFR_.getAngle()) > 1.5 * M_PI) {
 			this->dFRotPt -= (ptFRN_ * JumpPt.length() * kRot_);
 		}
 //	this->dRJumpPt -= (-ptFRN_ * JumpPt.length() * kRot_);
@@ -908,7 +920,7 @@ void Bike::ControlVelo(Vec2 rotPt_, Vec2 jumpPt_, float dt) {
 	ptFRN_.set(ptFR_);
 	ptFRN_.rotate(Vec2::ZERO, M_PI / 2);
 
-	float rad = this->NomlRad(jumpPt_.getAngle());
+	float rad = this->getCalc()->nomlRad(jumpPt_.getAngle());
 	int ptn_ = (rad * 6 / M_PI);
 
 	switch (ptn_) {
@@ -1015,11 +1027,11 @@ void Bike::ControlVelo(Vec2 rotPt_, Vec2 jumpPt_, float dt) {
 	ptF -= ptFR;
 	ptR -= ptFR;
 
-//	Vec2 x1_ = this->GetNaisei(ptFR_, ptF);
-//	float x2_ = this->GetNaisei(ptFR_, ptR);
+//	Vec2 x1_ = this->getCalc()->getDot(ptFR_, ptF);
+//	float x2_ = this->getCalc()->getDot(ptFR_, ptR);
 
-	float y1_ = this->GetNaisei(ptFRN_, ptF);
-//	float y2_ = this->GetNaisei(ptFRN_, ptR);
+	float y1_ = this->getCalc()->getDot(ptFRN_, ptF);
+//	float y2_ = this->getCalc()->getDot(ptFRN_, ptR);
 
 	if (y1_ > MaxRotVelo) {
 
@@ -1063,7 +1075,7 @@ void Bike::ControlVelo3(Vec2 rotPt_, Vec2 jumpPt_, float dt) {
 	FRnmlPt.set(FnmlPt + RnmlPt);
 	FRnmlPt.normalize();
 
-	float rad = this->NomlRad(jumpPt_.getAngle());
+	float rad = this->getCalc()->nomlRad(jumpPt_.getAngle());
 	int ptn_ = (rad * 6 / M_PI);
 
 	switch (ptn_) {
@@ -1088,7 +1100,7 @@ void Bike::ControlVelo3(Vec2 rotPt_, Vec2 jumpPt_, float dt) {
 		this->AirPt.rotate(Vec2::ZERO, M_PI / 2);
 		this->AirPt.normalize();
 //内積により求める
-		float zzz = this->GetNaisei(rotPt_ * kRot_, this->AirPt);
+		float zzz = this->getCalc()->getDot(rotPt_ * kRot_, this->AirPt);
 		if (zzz < -this->MaxRotVelo) {
 			zzz = -this->MaxRotVelo;
 		} else if (zzz > this->MaxRotVelo) {
@@ -1108,8 +1120,8 @@ void Bike::ControlVelo3(Vec2 rotPt_, Vec2 jumpPt_, float dt) {
 		if ((this->FtchFlg || this->RtchFlg) && jtime_ > jtime) {
 			//現在の速度に対してジャンプ速度を制御
 			ptFR.set(this->_body->getVelocity() / 2 + this->_body2->getVelocity() / 2);
-			float yyy = this->GetNaisei(ptFR, FRnmlPt);
-			float xxx = this->GetNaisei(jumpPt_ * kJump_, FRnmlPt);
+			float yyy = this->getCalc()->getDot(ptFR, FRnmlPt);
+			float xxx = this->getCalc()->getDot(jumpPt_ * kJump_, FRnmlPt);
 			if (xxx < -MaxVelo * maxVelo_k) {
 				xxx = -MaxVelo * maxVelo_k;
 				jumpFlg = true;
@@ -1141,7 +1153,7 @@ void Bike::ControlVelo3(Vec2 rotPt_, Vec2 jumpPt_, float dt) {
 		this->AirPt.rotate(Vec2::ZERO, M_PI / 2);
 		this->AirPt.normalize();
 //内積により求める
-		float zzz = this->GetNaisei(rotPt_ * kRot_, this->AirPt);
+		float zzz = this->getCalc()->getDot(rotPt_ * kRot_, this->AirPt);
 		if (zzz < -this->MaxRotVelo) {
 			zzz = -this->MaxRotVelo;
 		} else if (zzz > this->MaxRotVelo) {
@@ -1161,8 +1173,8 @@ void Bike::ControlVelo3(Vec2 rotPt_, Vec2 jumpPt_, float dt) {
 		if ((this->FtchFlg || this->RtchFlg) && jtime_ > jtime) {
 			//現在の速度に対してジャンプ速度を制御
 			ptFR.set(this->_body->getVelocity() / 2 + this->_body2->getVelocity() / 2);
-			float yyy = this->GetNaisei(ptFR, FRnmlPt);
-			float xxx = this->GetNaisei(jumpPt_ * kJump_, FRnmlPt);
+			float yyy = this->getCalc()->getDot(ptFR, FRnmlPt);
+			float xxx = this->getCalc()->getDot(jumpPt_ * kJump_, FRnmlPt);
 			if (xxx < -MaxVelo * maxVelo_k) {
 				xxx = -MaxVelo * maxVelo_k;
 				jumpFlg = true;
@@ -1194,8 +1206,8 @@ void Bike::ControlVelo3(Vec2 rotPt_, Vec2 jumpPt_, float dt) {
 		if ((this->FtchFlg || this->RtchFlg) && jtime_ > jtime) {
 			//現在の速度に対してジャンプ速度を制御
 			ptFR.set(this->_body->getVelocity() / 2 + this->_body2->getVelocity() / 2);
-			float yyy = this->GetNaisei(ptFR, FRnmlPt);
-			float xxx = this->GetNaisei(jumpPt_ * kJump_, FRnmlPt);
+			float yyy = this->getCalc()->getDot(ptFR, FRnmlPt);
+			float xxx = this->getCalc()->getDot(jumpPt_ * kJump_, FRnmlPt);
 			if (xxx < -MaxVelo * maxVelo_k) {
 				xxx = -MaxVelo * maxVelo_k;
 				jumpFlg = true;
@@ -1227,8 +1239,8 @@ void Bike::ControlVelo3(Vec2 rotPt_, Vec2 jumpPt_, float dt) {
 		if ((this->FtchFlg || this->RtchFlg) && jtime_ > jtime) {
 			//現在の速度に対してジャンプ速度を制御
 			ptFR.set(this->_body->getVelocity() / 2 + this->_body2->getVelocity() / 2);
-			float yyy = this->GetNaisei(ptFR, FRnmlPt);
-			float xxx = this->GetNaisei(jumpPt_ * kJump_, FRnmlPt);
+			float yyy = this->getCalc()->getDot(ptFR, FRnmlPt);
+			float xxx = this->getCalc()->getDot(jumpPt_ * kJump_, FRnmlPt);
 			if (xxx < -MaxVelo * maxVelo_k) {
 				xxx = -MaxVelo * maxVelo_k;
 				jumpFlg = true;
@@ -1260,7 +1272,7 @@ void Bike::ControlVelo3(Vec2 rotPt_, Vec2 jumpPt_, float dt) {
 		this->AirPt.rotate(Vec2::ZERO, M_PI / 2);
 		this->AirPt.normalize();
 //内積により求める
-		float zzz = this->GetNaisei(rotPt_ * kRot_, this->AirPt);
+		float zzz = this->getCalc()->getDot(rotPt_ * kRot_, this->AirPt);
 		if (zzz < -this->MaxRotVelo) {
 			zzz = -this->MaxRotVelo;
 		} else if (zzz > this->MaxRotVelo) {
@@ -1284,7 +1296,7 @@ void Bike::ControlVelo3(Vec2 rotPt_, Vec2 jumpPt_, float dt) {
 		this->AirPt.rotate(Vec2::ZERO, M_PI / 2);
 		this->AirPt.normalize();
 //内積により求める
-		float zzz = this->GetNaisei(rotPt_ * kRot_, this->AirPt);
+		float zzz = this->getCalc()->getDot(rotPt_ * kRot_, this->AirPt);
 		if (zzz < -this->MaxRotVelo) {
 			zzz = -this->MaxRotVelo;
 		} else if (zzz > this->MaxRotVelo) {
@@ -1308,7 +1320,7 @@ void Bike::ControlVelo3(Vec2 rotPt_, Vec2 jumpPt_, float dt) {
 		this->AirPt.rotate(Vec2::ZERO, M_PI / 2);
 		this->AirPt.normalize();
 //内積により求める
-		float zzz = this->GetNaisei(rotPt_ * kRot_, this->AirPt);
+		float zzz = this->getCalc()->getDot(rotPt_ * kRot_, this->AirPt);
 		if (zzz < -this->MaxRotVelo) {
 			zzz = -this->MaxRotVelo;
 		} else if (zzz > this->MaxRotVelo) {
@@ -1332,7 +1344,7 @@ void Bike::ControlVelo3(Vec2 rotPt_, Vec2 jumpPt_, float dt) {
 		this->AirPt.rotate(Vec2::ZERO, M_PI / 2);
 		this->AirPt.normalize();
 //内積により求める
-		float zzz = this->GetNaisei(rotPt_ * kRot_, this->AirPt);
+		float zzz = this->getCalc()->getDot(rotPt_ * kRot_, this->AirPt);
 		if (zzz < -this->MaxRotVelo) {
 			zzz = -this->MaxRotVelo;
 		} else if (zzz > this->MaxRotVelo) {
@@ -1356,7 +1368,7 @@ void Bike::ControlVelo3(Vec2 rotPt_, Vec2 jumpPt_, float dt) {
 		this->AirPt.rotate(Vec2::ZERO, M_PI / 2);
 		this->AirPt.normalize();
 //内積により求める
-		float zzz = this->GetNaisei(rotPt_ * kRot_, this->AirPt);
+		float zzz = this->getCalc()->getDot(rotPt_ * kRot_, this->AirPt);
 		if (zzz < -this->MaxRotVelo) {
 			zzz = -this->MaxRotVelo;
 		} else if (zzz > this->MaxRotVelo) {
@@ -1390,7 +1402,7 @@ void Bike::ControlVelo3(Vec2 rotPt_, Vec2 jumpPt_, float dt) {
 		this->AirPt.rotate(Vec2::ZERO, M_PI / 2);
 		this->AirPt.normalize();
 //内積により求める
-		float zzz = this->GetNaisei(rotPt_ * kRot_, this->AirPt);
+		float zzz = this->getCalc()->getDot(rotPt_ * kRot_, this->AirPt);
 		if (zzz < -this->MaxRotVelo) {
 			zzz = -this->MaxRotVelo;
 		} else if (zzz > this->MaxRotVelo) {
@@ -1448,7 +1460,7 @@ void Bike::ControlVelo2(Vec2 rotPt_, Vec2 jumpPt_, float dt) {
 	ptFR.set(this->_body->getVelocity() / 2 + this->_body2->getVelocity() / 2);
 //	縦横で場合分け。
 
-	float rad = this->NomlRad(jumpPt_.getAngle());
+	float rad = this->getCalc()->nomlRad(jumpPt_.getAngle());
 	FRnmlPt.set(FnmlPt + RnmlPt);
 	FRnmlPt.normalize();
 	if (jumpPt_ != Vec2::ZERO) {
@@ -1462,8 +1474,8 @@ void Bike::ControlVelo2(Vec2 rotPt_, Vec2 jumpPt_, float dt) {
 
 				//現在の速度に対してジャンプ速度を制御
 				ptFR.set(this->_body->getVelocity() / 2 + this->_body2->getVelocity() / 2);
-				float yyy = this->GetNaisei(ptFR, FRnmlPt);
-				float xxx = this->GetNaisei(jumpPt_ * kJump_, FRnmlPt);
+				float yyy = this->getCalc()->getDot(ptFR, FRnmlPt);
+				float xxx = this->getCalc()->getDot(jumpPt_ * kJump_, FRnmlPt);
 
 //		xxx -= yyy;
 
@@ -1525,7 +1537,7 @@ void Bike::ControlVelo2(Vec2 rotPt_, Vec2 jumpPt_, float dt) {
 //		pt_.set(FRnmlPt);
 //		pt_.rotate(Vec2::ZERO, M_PI / 2);
 //
-//		float xxx = this->GetNaisei(jumpPt_, pt_);
+//		float xxx = this->getCalc()->getDot(jumpPt_, pt_);
 //		this->dRJumpPt += (xxx * 0.5f * pt_);
 //		this->dFJumpPt += (xxx * 0.5f * pt_);
 //		this->KokiKoki(0);
@@ -1550,7 +1562,7 @@ void Bike::ControlVelo2(Vec2 rotPt_, Vec2 jumpPt_, float dt) {
 	//回転する
 
 	if (rotPt_ != Vec2::ZERO) {
-		rad = this->NomlRad(rotPt_.getAngle());
+		rad = this->getCalc()->nomlRad(rotPt_.getAngle());
 
 		if ((rad > M_PI * 3 / 4 && rad < M_PI * 5 / 4) || (rad < M_PI * 1 / 4) || (rad > M_PI * 7 / 4)) {
 
@@ -1564,7 +1576,7 @@ void Bike::ControlVelo2(Vec2 rotPt_, Vec2 jumpPt_, float dt) {
 
 			this->AirPt.normalize();
 //内積により求める
-			float zzz = this->GetNaisei(rotPt_ * kRot_, this->AirPt);
+			float zzz = this->getCalc()->getDot(rotPt_ * kRot_, this->AirPt);
 //	float xxx=(float)sqrt(zzz);
 
 			if (zzz < -this->MaxRotVelo) {
@@ -1647,9 +1659,9 @@ void Bike::ReSetJoint() {
 	Vec2 ridr[] = { Vec2(25, 99), Vec2(49, 99), Vec2(84, -95), Vec2(-76, -93), Vec2(-45, 2) };
 	this->setBody3(PhysicsBody::createPolygon(ridr, 5, material0));
 	this->_body3->setGravityEnable(false);
-	this->_body3->setCategoryBitmask(ChrPrm::PLAYER);
-	this->_body3->setCollisionBitmask(ChrPrm::COURCE);
-	this->_body3->setContactTestBitmask(ChrPrm::NONE);
+	this->_body3->setCategoryBitmask(PLAYER);
+	this->_body3->setCollisionBitmask(COURCE);
+	this->_body3->setContactTestBitmask(NONE);
 	this->_body3->setDynamic(true);
 	this->_body3->setRotationEnable(true);
 
@@ -1686,9 +1698,9 @@ void Bike::SetJointB(PhysicsWorld* PW) {
 	this->setBody3(PhysicsBody::createPolygon(ridr, 5, material0));
 //	this->setBody3(PhysicsBody::createCircle(90, material0));
 	this->_body3->setGravityEnable(false);
-	this->_body3->setCategoryBitmask(ChrPrm::PLAYERBODY);
-	this->_body3->setCollisionBitmask(ChrPrm::NONE);
-	this->_body3->setContactTestBitmask(ChrPrm::COURCE);
+	this->_body3->setCategoryBitmask(PLAYERBODY);
+	this->_body3->setCollisionBitmask(NONE);
+	this->_body3->setContactTestBitmask(COURCE);
 	this->_body3->setDynamic(true);
 	this->_body3->setRotationEnable(true);
 
@@ -1712,9 +1724,9 @@ void Bike::SetJointB(PhysicsWorld* PW) {
 	this->setBody(PhysicsBody::createCircle(this->getFWheel()->getContentSize().width / 2 - 2, material));
 	this->_fWheel->setPhysicsBody(this->_body);
 	this->_body->setGravityEnable(true);
-	this->_body->setCategoryBitmask(ChrPrm::PLAYER);
-	this->_body->setCollisionBitmask(ChrPrm::COURCE);
-	this->_body->setContactTestBitmask(ChrPrm::ENEMY | ChrPrm::ITEM);
+	this->_body->setCategoryBitmask(PLAYER);
+	this->_body->setCollisionBitmask(COURCE);
+	this->_body->setContactTestBitmask(ENEMY | ITEM);
 	this->_body->setTag(1);
 	this->_body->setDynamic(true);
 	this->_body->setAngularDamping(wheelRotDump_);
@@ -1725,13 +1737,13 @@ void Bike::SetJointB(PhysicsWorld* PW) {
 //前輪の接触感知用
 	this->setBody4(PhysicsBody::createCircle(this->getFWheel()->getContentSize().width / 2, material2));
 	this->_body4->setGravityEnable(false);
-	this->_body4->setCategoryBitmask(ChrPrm::PLAYERBOUND);
-	this->_body4->setCollisionBitmask(ChrPrm::NONE);
-	this->_body4->setContactTestBitmask(ChrPrm::COURCE);
+	this->_body4->setCategoryBitmask(PLAYERBOUND);
+	this->_body4->setCollisionBitmask(NONE);
+	this->_body4->setContactTestBitmask(COURCE);
 	this->_body4->setTag(11);
 	this->_body4->setDynamic(true);
 	this->_body4->setRotationEnable(false);
-	this->_body4->setEnable(true);
+	this->_body4->setEnabled(true);
 	this->setFWheelA(Node::create());
 	this->_fWheelA->setPhysicsBody(this->_body4);
 
@@ -1741,9 +1753,9 @@ void Bike::SetJointB(PhysicsWorld* PW) {
 
 	this->_rWheel->setPhysicsBody(this->_body2);
 	this->_body2->setGravityEnable(true);
-	this->_body2->setCategoryBitmask(ChrPrm::PLAYER);
-	this->_body2->setCollisionBitmask(ChrPrm::COURCE);
-	this->_body2->setContactTestBitmask(ChrPrm::ENEMY | ChrPrm::ITEM);
+	this->_body2->setCategoryBitmask(PLAYER);
+	this->_body2->setCollisionBitmask(COURCE);
+	this->_body2->setContactTestBitmask(ENEMY | ITEM);
 	this->_body2->setTag(1);
 	this->_body2->setDynamic(true);
 	this->_body2->setAngularDamping(wheelRotDump_);
@@ -1753,13 +1765,13 @@ void Bike::SetJointB(PhysicsWorld* PW) {
 //後輪の接触感知用
 	this->setBody5(PhysicsBody::createCircle(this->getRWheel()->getContentSize().width / 2, material2));
 	this->_body5->setGravityEnable(false);
-	this->_body5->setCategoryBitmask(ChrPrm::PLAYERBOUND);
-	this->_body5->setCollisionBitmask(ChrPrm::NONE);
-	this->_body5->setContactTestBitmask(ChrPrm::COURCE);
+	this->_body5->setCategoryBitmask(PLAYERBOUND);
+	this->_body5->setCollisionBitmask(NONE);
+	this->_body5->setContactTestBitmask(COURCE);
 	this->_body5->setTag(12);
 	this->_body5->setDynamic(true);
 	this->_body5->setRotationEnable(false);
-	this->_body5->setEnable(true);
+	this->_body5->setEnabled(true);
 	this->setRWheelA(Node::create());
 	this->_rWheelA->setPhysicsBody(this->_body5);
 
@@ -1803,9 +1815,9 @@ void Bike::SetJointC(PhysicsWorld* PW) {
 	material0.density = 0;
 	this->setBody3(PhysicsBody::createCircle(10, material0));
 	this->_body3->setGravityEnable(false);
-	this->_body3->setCategoryBitmask(ChrPrm::PLAYERBOUND);
-	this->_body3->setCollisionBitmask(ChrPrm::COURCE);
-	this->_body3->setContactTestBitmask(ChrPrm::COURCE | ChrPrm::ENEMY | ChrPrm::ITEM);
+	this->_body3->setCategoryBitmask(PLAYERBOUND);
+	this->_body3->setCollisionBitmask(COURCE);
+	this->_body3->setContactTestBitmask(COURCE | ENEMY | ITEM);
 	this->_body3->setDynamic(true);
 	this->_body3->setRotationEnable(true);
 
@@ -1817,9 +1829,9 @@ void Bike::SetJointC(PhysicsWorld* PW) {
 	Vec2 bike_[] = { Vec2(81, -34), Vec2(81, -50), Vec2(-82, -50), Vec2(-82, -34) };
 	this->setBody6(PhysicsBody::createPolygon(bike_, 4, material0));
 	this->_body6->setGravityEnable(false);
-	this->_body6->setCategoryBitmask(ChrPrm::PLAYERBOUND);
-	this->_body6->setCollisionBitmask(ChrPrm::NONE);
-	this->_body6->setContactTestBitmask(ChrPrm::NONE);
+	this->_body6->setCategoryBitmask(PLAYERBOUND);
+	this->_body6->setCollisionBitmask(NONE);
+	this->_body6->setContactTestBitmask(NONE);
 	this->_body6->setDynamic(true);
 	this->_body6->setRotationEnable(true);
 	this->_BikeImg->setPhysicsBody(this->_body6);
@@ -1839,9 +1851,9 @@ void Bike::SetJointC(PhysicsWorld* PW) {
 	this->setBody(PhysicsBody::createCircle(this->getFWheel()->getContentSize().width / 2, material));
 	this->_fWheel->setPhysicsBody(this->_body);
 	this->_body->setGravityEnable(true);
-	this->_body->setCategoryBitmask(ChrPrm::PLAYER);
-	this->_body->setCollisionBitmask(ChrPrm::COURCE | ChrPrm::ENEMY | ChrPrm::ITEM);
-	this->_body->setContactTestBitmask(ChrPrm::NONE);
+	this->_body->setCategoryBitmask(PLAYER);
+	this->_body->setCollisionBitmask(COURCE | ENEMY | ITEM);
+	this->_body->setContactTestBitmask(NONE);
 	this->_body->setTag(1);
 	this->_body->setDynamic(true);
 	this->_body->setAngularDamping(wheelRotDump_);
@@ -1852,13 +1864,13 @@ void Bike::SetJointC(PhysicsWorld* PW) {
 //前輪の接触感知用
 	this->setBody4(PhysicsBody::createCircle(this->getFWheel()->getContentSize().width / 2 + 2, material2));
 	this->_body4->setGravityEnable(false);
-	this->_body4->setCategoryBitmask(ChrPrm::PLAYERBOUND);
-	this->_body4->setCollisionBitmask(ChrPrm::NONE);
-	this->_body4->setContactTestBitmask(ChrPrm::COURCE);
+	this->_body4->setCategoryBitmask(PLAYERBOUND);
+	this->_body4->setCollisionBitmask(NONE);
+	this->_body4->setContactTestBitmask(COURCE);
 	this->_body4->setTag(11);
 	this->_body4->setDynamic(true);
 	this->_body4->setRotationEnable(false);
-	this->_body4->setEnable(false);
+	this->_body4->setEnabled(false);
 	this->setFWheelA(Node::create());
 	this->_fWheelA->setPhysicsBody(this->_body4);
 
@@ -1868,9 +1880,9 @@ void Bike::SetJointC(PhysicsWorld* PW) {
 
 	this->_rWheel->setPhysicsBody(this->_body2);
 	this->_body2->setGravityEnable(true);
-	this->_body2->setCategoryBitmask(ChrPrm::PLAYER);
-	this->_body2->setCollisionBitmask(ChrPrm::COURCE | ChrPrm::ENEMY | ChrPrm::ITEM);
-	this->_body2->setContactTestBitmask(ChrPrm::NONE);
+	this->_body2->setCategoryBitmask(PLAYER);
+	this->_body2->setCollisionBitmask(COURCE | ENEMY | ITEM);
+	this->_body2->setContactTestBitmask(NONE);
 	this->_body2->setTag(1);
 	this->_body2->setDynamic(true);
 	this->_body2->setAngularDamping(wheelRotDump_);
@@ -1880,13 +1892,13 @@ void Bike::SetJointC(PhysicsWorld* PW) {
 //後輪の接触感知用
 	this->setBody5(PhysicsBody::createCircle(this->getRWheel()->getContentSize().width / 2 + 2, material2));
 	this->_body5->setGravityEnable(false);
-	this->_body5->setCategoryBitmask(ChrPrm::PLAYERBOUND);
-	this->_body5->setCollisionBitmask(ChrPrm::NONE);
-	this->_body5->setContactTestBitmask(ChrPrm::COURCE);
+	this->_body5->setCategoryBitmask(PLAYERBOUND);
+	this->_body5->setCollisionBitmask(NONE);
+	this->_body5->setContactTestBitmask(COURCE);
 	this->_body5->setTag(12);
 	this->_body5->setDynamic(true);
 	this->_body5->setRotationEnable(false);
-	this->_body5->setEnable(false);
+	this->_body5->setEnabled(false);
 	this->setRWheelA(Node::create());
 	this->_rWheelA->setPhysicsBody(this->_body5);
 
@@ -1926,9 +1938,9 @@ void Bike::SetJoint(PhysicsWorld* PW) {
 	this->setDmy0(Sprite::createWithTexture(this->getTexture()));
 	this->setBody2(PhysicsBody::createCircle(this->getContentSize().width / 2, material));
 	this->_body2->setGravityEnable(true);
-	this->_body2->setCategoryBitmask(ChrPrm::PLAYER);
-	this->_body2->setCollisionBitmask(ChrPrm::COURCE | ChrPrm::ENEMY | ChrPrm::ITEM);
-	this->_body2->setContactTestBitmask(ChrPrm::COURCE | ChrPrm::ENEMY | ChrPrm::ITEM);
+	this->_body2->setCategoryBitmask(PLAYER);
+	this->_body2->setCollisionBitmask(COURCE | ENEMY | ITEM);
+	this->_body2->setContactTestBitmask(COURCE | ENEMY | ITEM);
 	this->_body2->setDynamic(true);
 	this->_body2->setRotationEnable(true);
 	this->_body2->setTag(12);
@@ -2354,7 +2366,7 @@ void Bike::Boyon(Vec2 pt_) {
 	if (L > 3) {
 		L = 3;
 	}
-	float deg = this->NomlRad(pt_.getAngle() + (M_PI * 1) / 8);
+	float deg = this->getCalc()->nomlRad(pt_.getAngle() + (M_PI * 1) / 8);
 	float K_f = deg / (M_PI / 4);
 	int K = (int) K_f;
 	int n = K + L * 8;
@@ -2547,7 +2559,7 @@ void Bike::onNoml2(float dt) {
 		dbGPtv.set(Vec2::ZERO);
 
 		this->rot_ = (this->getBody()->getPosition() - this->getBody2()->getPosition()).getAngle();
-		this->setRotation(this->ChgKaku(this->rot_));
+		this->setRotation(this->getCalc()->chgKaku(this->rot_));
 		this->pt_.set(-78, 96);
 		this->pt_.rotate(Vec2::ZERO, this->rot_);
 		this->setPosition(this->getFWheel()->getPosition() + this->pt_);
@@ -2565,7 +2577,7 @@ void Bike::onNoml2(float dt) {
 
 		//本体の回転制御
 		this->rot_ = (this->getBody()->getPosition() - this->getBody2()->getPosition()).getAngle();
-		this->setRotation(this->ChgKaku(this->rot_));
+		this->setRotation(this->getCalc()->chgKaku(this->rot_));
 		this->pt_.set(-78, 96);
 		this->pt_.rotate(Vec2::ZERO, this->rot_);
 		this->setPosition(this->getFWheel()->getPosition() + this->pt_);
@@ -2656,7 +2668,7 @@ void Bike::onNoml(float dt) {
 
 		//本体の回転制御
 		this->rot_ = (this->getBody()->getPosition() - this->getBody2()->getPosition()).getAngle();
-		this->setRotation(this->ChgKaku(this->rot_));
+		this->setRotation(this->getCalc()->chgKaku(this->rot_));
 		this->pt_.set(-78, 96);
 		this->pt_.rotate(Vec2::ZERO, this->rot_);
 		this->setPosition(this->getFWheel()->getPosition() + this->pt_);
@@ -3012,7 +3024,7 @@ void Bike::onReady(float dt) {
 		this->fstFlg = false;
 		//本体の回転制御
 		this->rot_ = (this->getBody()->getPosition() - this->getBody2()->getPosition()).getAngle();
-		this->setRotation(this->ChgKaku(this->rot_));
+		this->setRotation(this->getCalc()->chgKaku(this->rot_));
 		this->pt_.set(-78, 96);
 		this->pt_.rotate(Vec2::ZERO, this->rot_);
 		this->setPosition(this->getFWheel()->getPosition() + this->pt_);
@@ -3026,7 +3038,7 @@ void Bike::onReady(float dt) {
 
 		//本体の回転制御
 		this->rot_ = (this->getBody()->getPosition() - this->getBody2()->getPosition()).getAngle();
-		this->setRotation(this->ChgKaku(this->rot_));
+		this->setRotation(this->getCalc()->chgKaku(this->rot_));
 		this->pt_.set(-78, 96);
 		this->pt_.rotate(Vec2::ZERO, this->rot_);
 		this->setPosition(this->getFWheel()->getPosition() + this->pt_);
@@ -3063,7 +3075,7 @@ void Bike::onStop(float dt) {
 
 		//本体の回転制御
 		this->rot_ = (this->getBody()->getPosition() - this->getBody2()->getPosition()).getAngle();
-		this->setRotation(this->ChgKaku(this->rot_));
+		this->setRotation(this->getCalc()->chgKaku(this->rot_));
 		this->pt_.set(-78, 96);
 		this->pt_.rotate(Vec2::ZERO, this->rot_);
 		this->setPosition(this->getFWheel()->getPosition() + this->pt_);
@@ -3185,7 +3197,7 @@ void Bike::onAllow(float dt) {
 
 		//this->getBody()->applyImpulse(this->pt2_);
 		this->getBody()->setVelocity(this->pt2_);
-		this->getBody2()->setEnable(false);
+		this->getBody2()->setEnabled(false);
 		//this->getBody2()->setVelocity(this->pt2_);
 	} else {
 
@@ -3507,15 +3519,15 @@ void Bike::SetTouch(bool flg) {
 	switch (setTouchFlg) {
 	case true: {
 
-		this->_body4->setEnable(true);
-		this->_body5->setEnable(true);
+		this->_body4->setEnabled(true);
+		this->_body5->setEnabled(true);
 		this->_fWheelA->setPosition(this->_fWheel->getPosition());
 		this->_rWheelA->setPosition(this->_rWheel->getPosition());
 		break;
 	}
 	case false: {
-		this->_body4->setEnable(false);
-		this->_body5->setEnable(false);
+		this->_body4->setEnabled(false);
+		this->_body5->setEnabled(false);
 		this->_fWheelA->setPosition(Vec2::ZERO);
 		this->_rWheelA->setPosition(Vec2::ZERO);
 		break;
