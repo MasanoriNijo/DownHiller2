@@ -2,6 +2,7 @@
 #define __TESTPHYSICSSCENE_H__
 
 #include "scene/base/GameScene.h"
+#include "util/TouchEventHelper.h"
 #include "cocos2d.h"
 USING_NS_CC;
 
@@ -22,6 +23,8 @@ public:
     CC_SYNTHESIZE_RETAIN(MenuItemImage*,_btn3,Btn3);
     CC_SYNTHESIZE_RETAIN(MenuItemImage*,_btn4,Btn4);
     CC_SYNTHESIZE_RETAIN(Menu*,_menu,Menu);
+    CC_SYNTHESIZE_RETAIN(TouchEventHelper*,_touch,Touch);
+    
     void update(float dt) override;
     void onEnterTransitionDidFinish() override;
     

@@ -169,6 +169,7 @@
 		309B0D15284B16160091801C /* Button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 309B0D14284B16160091801C /* Button.cpp */; };
 		309B0D18284B900E0091801C /* TestPhysicsScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 309B0D16284B900D0091801C /* TestPhysicsScene.cpp */; };
 		309B0D1B284BDBD10091801C /* TransitionScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 309B0D1A284BDBD00091801C /* TransitionScene.cpp */; };
+		309B0D1E284CE5240091801C /* TouchEventHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 309B0D1C284CE5230091801C /* TouchEventHelper.cpp */; };
 		309EC664C42A4D32AB847DD3 /* DetourNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94FB09E9E0E6484C86FC4A80 /* DetourNode.cpp */; };
 		30CD0331284547E30023D844 /* kotokotobokanmark.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 304DD0DB2845253200AF0334 /* kotokotobokanmark.png */; };
 		30CD03B028466DCD0023D844 /* back5.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 30CD036228466D190023D844 /* back5.png */; };
@@ -1402,6 +1403,8 @@
 		309B0D17284B900E0091801C /* TestPhysicsScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestPhysicsScene.h; path = Classes/scene/TestPhysicsScene.h; sourceTree = "<group>"; };
 		309B0D19284BDBD00091801C /* TransitionScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransitionScene.h; sourceTree = "<group>"; };
 		309B0D1A284BDBD00091801C /* TransitionScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TransitionScene.cpp; sourceTree = "<group>"; };
+		309B0D1C284CE5230091801C /* TouchEventHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TouchEventHelper.cpp; sourceTree = "<group>"; };
+		309B0D1D284CE5230091801C /* TouchEventHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchEventHelper.h; sourceTree = "<group>"; };
 		30C97C63992A46B2899EB081 /* SocketIO.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = SocketIO.h; path = cocos2d/cocos/network/SocketIO.h; sourceTree = SOURCE_ROOT; };
 		30CD033228466D130023D844 /* levelwaku.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = levelwaku.png; sourceTree = "<group>"; };
 		30CD033328466D130023D844 /* kakutokucoin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kakutokucoin.png; sourceTree = "<group>"; };
@@ -3579,6 +3582,8 @@
 				304DD0BC2843D12300AF0334 /* SpritePool.h */,
 				309B0D0D28490A830091801C /* ColorChanger.cpp */,
 				309B0D0E28490A830091801C /* ColorChanger.h */,
+				309B0D1C284CE5230091801C /* TouchEventHelper.cpp */,
+				309B0D1D284CE5230091801C /* TouchEventHelper.h */,
 				309B0D0B2848FA5B0091801C /* Const.h */,
 			);
 			name = util;
@@ -5325,6 +5330,7 @@
 				309B0D0F28490A830091801C /* ColorChanger.cpp in Sources */,
 				304DD0BA2843D08F00AF0334 /* TestScene.cpp in Sources */,
 				304DD0B42843CE0800AF0334 /* FstScene.cpp in Sources */,
+				309B0D1E284CE5240091801C /* TouchEventHelper.cpp in Sources */,
 				ED3D812C31124F6FBA918EE4 /* main.m in Sources */,
 				304DD0B92843D08F00AF0334 /* TitleScene.cpp in Sources */,
 				304DD0BE2843D12300AF0334 /* SpritePool.cpp in Sources */,

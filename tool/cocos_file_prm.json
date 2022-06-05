@@ -1,6 +1,7 @@
 {
-  "className": "TransitionScene",
-  "superClass": "Scene",
+  "className": "TouchEventHelper",
+  "superClass": "Ref",
   "synthesize_retains": [
+    ["EventListenerTouchOneByOne", "_touchListener","TouchListenner"]
   ]
 }

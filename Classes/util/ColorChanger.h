@@ -44,8 +44,6 @@ public:
     //現在の彩度ｓ、明度vで色相をランダムに変更する。
     void ChgColorRnd();
     
-    void transitonScene(Node* nd,Scene* transScene);
-    
 };
 
 #endif

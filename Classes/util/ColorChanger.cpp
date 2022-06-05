@@ -110,15 +110,6 @@ float ColorChanger::getR(){
     return this->r_;
 }
 
-void ColorChanger::transitonScene(Node* nd,Scene* transScene){
-    auto transition_ = CallFuncN::create([transScene](Node* node_) {
-        auto transition=TransitionCrossFade::create(0.5,transScene);
-        auto cnt = ST_INT(transScene->getReferenceCount());
-        Director::getInstance()->replaceScene(transition);
-    });
-    nd->runAction(transition_);
-}
-
 /** パラメータサンプル
  this->setLC(LayerColor::create());
  this->getLC();

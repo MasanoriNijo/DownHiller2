@@ -6,7 +6,7 @@
 #include "scene/HelloWorldScene.h"
 
 TestPhysicsScene::TestPhysicsScene():
-_gameTitle(NULL), _baseLine(NULL), _ball(NULL), _btn1(NULL), _btn2(NULL), _btn3(NULL), _btn4(NULL), _menu(NULL)
+_gameTitle(NULL), _baseLine(NULL), _ball(NULL), _btn1(NULL), _btn2(NULL), _btn3(NULL), _btn4(NULL), _menu(NULL),_touch(NULL)
 {}
 
 TestPhysicsScene::~TestPhysicsScene() {
@@ -19,6 +19,7 @@ TestPhysicsScene::~TestPhysicsScene() {
     CC_SAFE_RELEASE_NULL(_btn3);
     CC_SAFE_RELEASE_NULL(_btn4);
     CC_SAFE_RELEASE_NULL(_menu);
+    CC_SAFE_RELEASE_NULL(_touch);
     GameScene::~GameScene();
 }
 
@@ -96,6 +97,32 @@ bool TestPhysicsScene::init() {
     this->getMenu()->alignItemsHorizontallyWithPadding(20);
     this->mountNode(this->getMenu(), this->ctPt + Vec2(0,-80), OBJ_LAYER_TOP);
     
+    
+    this->setTouch(TouchEventHelper::create());
+    this->getTouch()->getTouchListenner()->onTouchBegan = [this](Touch* touch,Event* event) {
+        this->points[0].set(touch->getLocation()-this->getBaseLine()->getPosition());
+        this->getDebugMemo()->setString("onTouchBegan:" + ST_VEC2(this->points[0]));
+        return true;
+    };
+    this->getTouch()->getTouchListenner()->onTouchMoved = [this](Touch* touch,Event* event) {
+        this->points[0].set(touch->getLocation()-this->getBaseLine()->getPosition());
+        this->getDebugMemo()->setString("onTouchTouchMoved:" + ST_VEC2(this->points[0]));
+        this->getBaseLine()->removeFromParent();
+        this->setBaseLine(DrawNode::create());
+        this->getBaseLine()->drawPoly(this->points, 4, false, Color4F::GREEN);
+        this->getBaseLine()->setPhysicsBody(PhysicsBody::createEdgePolygon(this->points, 4));
+        this->getBaseLine()->getPhysicsBody()->setDynamic(false);
+        this->mountNode(this->getBaseLine(), ctPt, OBJ_LAYER_LV1);
+        return true;
+    };
+    this->getTouch()->getTouchListenner()->onTouchEnded = [this](Touch* touch,Event* event) {
+        this->points[0].set(touch->getLocation());
+        this->getDebugMemo()->setString("onTouchEnded:" + ST_VEC2(this->points[0]));
+        return true;
+    };
+    
+    this->getTouch()->applyTouchListenner(this);
+    
     return true;
 }
 
@@ -106,7 +133,7 @@ void TestPhysicsScene::onEnterTransitionDidFinish() {
 
 void TestPhysicsScene::update(float dt) {
     // todo
-    this->getDebugMemo()->setString("ボール位置:" + ST_VEC2(this->getBall()->getPosition()));
+    //    this->getDebugMemo()->setString("ボール位置:" + ST_VEC2(this->getBall()->getPosition()));
     
 }
 
