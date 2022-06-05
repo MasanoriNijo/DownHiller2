@@ -50,7 +50,7 @@ bool TestScene::init() {
     ////    this->getBall()->setPhysicsBody(PhysicsBody::createCircle(ballRad));
     //    this->mountNode(this->getBall(),Vec2(240,220), OBJ_LAYER_LV1);
     
-    this->getDebugMemo()->setString("画面中央は" + ST_VEC2(this->ctPt));
+//    this->getDebugMemo()->setString("画面中央は" + ST_VEC2(this->ctPt));
     this->setBtn1(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
         this->transitonScene(TitleScene::createScene());
     }));

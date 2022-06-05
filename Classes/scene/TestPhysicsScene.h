@@ -24,6 +24,13 @@ public:
     CC_SYNTHESIZE_RETAIN(Menu*,_menu,Menu);
     void update(float dt) override;
     void onEnterTransitionDidFinish() override;
+    
+    Vec2 pt1;
+    Vec2 pt2;
+    Vec2 pt3;
+    Vec2 pt4;
+    Vec2 pt5;
+    Vec2 points[4];
 };
 
 #endif

@@ -168,6 +168,7 @@
 		309B0D12284A6E170091801C /* Calclater.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 309B0D11284A6E160091801C /* Calclater.cpp */; };
 		309B0D15284B16160091801C /* Button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 309B0D14284B16160091801C /* Button.cpp */; };
 		309B0D18284B900E0091801C /* TestPhysicsScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 309B0D16284B900D0091801C /* TestPhysicsScene.cpp */; };
+		309B0D1B284BDBD10091801C /* TransitionScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 309B0D1A284BDBD00091801C /* TransitionScene.cpp */; };
 		309EC664C42A4D32AB847DD3 /* DetourNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94FB09E9E0E6484C86FC4A80 /* DetourNode.cpp */; };
 		30CD0331284547E30023D844 /* kotokotobokanmark.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 304DD0DB2845253200AF0334 /* kotokotobokanmark.png */; };
 		30CD03B028466DCD0023D844 /* back5.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 30CD036228466D190023D844 /* back5.png */; };
@@ -1399,6 +1400,8 @@
 		309B0D14284B16160091801C /* Button.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Button.cpp; path = Classes/item/Button.cpp; sourceTree = SOURCE_ROOT; };
 		309B0D16284B900D0091801C /* TestPhysicsScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestPhysicsScene.cpp; path = Classes/scene/TestPhysicsScene.cpp; sourceTree = "<group>"; };
 		309B0D17284B900E0091801C /* TestPhysicsScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestPhysicsScene.h; path = Classes/scene/TestPhysicsScene.h; sourceTree = "<group>"; };
+		309B0D19284BDBD00091801C /* TransitionScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransitionScene.h; sourceTree = "<group>"; };
+		309B0D1A284BDBD00091801C /* TransitionScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TransitionScene.cpp; sourceTree = "<group>"; };
 		30C97C63992A46B2899EB081 /* SocketIO.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = SocketIO.h; path = cocos2d/cocos/network/SocketIO.h; sourceTree = SOURCE_ROOT; };
 		30CD033228466D130023D844 /* levelwaku.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = levelwaku.png; sourceTree = "<group>"; };
 		30CD033328466D130023D844 /* kakutokucoin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kakutokucoin.png; sourceTree = "<group>"; };
@@ -3585,6 +3588,8 @@
 		304DD0BF2843DDE900AF0334 /* base */ = {
 			isa = PBXGroup;
 			children = (
+				309B0D1A284BDBD00091801C /* TransitionScene.cpp */,
+				309B0D19284BDBD00091801C /* TransitionScene.h */,
 				304DD0C12843DE2700AF0334 /* GameScene.cpp */,
 				304DD0C02843DE2700AF0334 /* GameScene.h */,
 			);
@@ -5309,6 +5314,7 @@
 				304DD0C22843DE2700AF0334 /* GameScene.cpp in Sources */,
 				660874EB5928406482FA1AF6 /* AppDelegate.cpp in Sources */,
 				894EBEAFD698461595D0DFD4 /* HelloWorldScene.cpp in Sources */,
+				309B0D1B284BDBD10091801C /* TransitionScene.cpp in Sources */,
 				30CD03F5284672FF0023D844 /* IMobileCocos2dxModule.mm in Sources */,
 				30CD040728468DE80023D844 /* ImovileAd.cpp in Sources */,
 				309B0D15284B16160091801C /* Button.cpp in Sources */,

@@ -5,6 +5,7 @@ _backColor(NULL), _ad(NULL), _colorChanger(NULL), _calc(NULL), _debugLine(NULL),
 {}
 
 GameScene::~GameScene() {
+    NJLOG("hoge:GameScene::~GameScene()");
     CC_SAFE_RELEASE_NULL(_backColor);
     CC_SAFE_RELEASE_NULL(_ad);
     CC_SAFE_RELEASE_NULL(_colorChanger);
@@ -85,11 +86,10 @@ void GameScene::update(float dt) {
 void GameScene::transitonScene(Scene* scene){
     auto transition_ = CallFuncN::create([scene](Node* node_) {
         auto transition=TransitionCrossFade::create(0.5,scene);
-//        transition->autorelease();
         Director::getInstance()->replaceScene(transition);
     });
-//    transition_->autorelease();
     this->runAction(transition_);
+//    this->getColorChanger()->transitonScene(this, scene);
 }
 
 void GameScene::mountNode(Node* sp, Vec2 pt, float lvl){
@@ -119,7 +119,6 @@ void GameScene::drawDebugLine(){
                                        Color4F::GRAY);
     }
     this->mountNode(this->getDebugLine(), Vec2::ZERO, OBJ_LAYER_LV1);
-    
     this->setDebugMemo(Label::createWithTTF("Deugメモ", "irohamaru.ttf", 14));
     this->mountNode(this->getDebugMemo(), Vec2(this->ctPt.x,30), OBJ_LAYER_LV1);
     

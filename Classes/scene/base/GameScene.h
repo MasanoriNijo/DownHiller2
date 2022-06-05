@@ -6,6 +6,7 @@
 #include "util/ColorChanger.h"
 #include "util/Calclater.h"
 #include "audio/include/AudioEngine.h"
+#include "scene/base/TransitionScene.h"
 #include "cocos2d.h"
 USING_NS_CC;
 

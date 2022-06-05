@@ -1,6 +1,7 @@
 #ifndef __CALCLATER_H__
 #define __CALCLATER_H__
 
+#include "util/Const.h"
 #include "cocos2d.h"
 USING_NS_CC;
 

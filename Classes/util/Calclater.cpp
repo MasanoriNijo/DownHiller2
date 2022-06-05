@@ -2,7 +2,8 @@
 
 Calclater::Calclater(){}
 
-Calclater::~Calclater(){}
+Calclater::~Calclater(){
+}
 
 Calclater* Calclater::create() {
     auto obj = new Calclater;
