@@ -1,7 +1,9 @@
 {
-  "className": "TouchEventHelper",
-  "superClass": "Ref",
+  "className": "Sprite2",
+  "superClass": "Sprite",
   "synthesize_retains": [
-    ["EventListenerTouchOneByOne", "_touchListener","TouchListenner"]
+    ["Sprite", "_parentSprite","ParentSprite"],
+    ["PhysicsBody","_body","Body"],
+    ["Sprite", "_debugPt","DebugPt"]
   ]
 }

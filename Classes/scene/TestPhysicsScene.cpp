@@ -121,7 +121,7 @@ bool TestPhysicsScene::init() {
         return true;
     };
     
-    this->getTouch()->applyTouchListenner(this);
+    this->getTouch()->applyTouchListenner(this->getBall());
     
     return true;
 }
