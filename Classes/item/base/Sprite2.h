@@ -38,6 +38,12 @@ public:
     
     void update(float dt) override;
     
+    // 画面のセンターの位置
+    Vec2 ctPt;
+    
+    // 画面のサイズ
+    Size winSize;
+    
     Vec2 pt_; //計算用変数
     Vec2 pt2_; //計算用変数
     Vec2 pt3_; //計算用変数

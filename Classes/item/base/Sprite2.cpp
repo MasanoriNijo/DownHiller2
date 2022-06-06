@@ -65,14 +65,24 @@ bool Sprite2::initWithFile(const std::string& filename){
     if (!Sprite::initWithFile(filename)) {
         return false;
     }
+    //画面のサイズをセットする
+    auto director = Director::getInstance();
+    this->winSize = director->getWinSize();
+    this->ctPt.set(winSize.width / 2, winSize.height / 2);
     this->setCalc(Calclater::create());
+    return true;
 }
 
 bool Sprite2::initWithTexture(Texture2D *texture){
     if (!Sprite::initWithTexture(texture)) {
         return false;
     }
+    //画面のサイズをセットする
+    auto director = Director::getInstance();
+    this->winSize = director->getWinSize();
+    this->ctPt.set(winSize.width / 2, winSize.height / 2);
     this->setCalc(Calclater::create());
+    return true;
 }
 
 void Sprite2::update(float dt) {

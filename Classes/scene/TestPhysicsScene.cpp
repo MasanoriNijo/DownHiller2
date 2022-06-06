@@ -63,16 +63,15 @@ bool TestPhysicsScene::init() {
     this->getBaseLine()->getPhysicsBody()->setDynamic(false);
     this->mountNode(this->getBaseLine(), ctPt, OBJ_LAYER_LV1);
     
-    int bikeRad = 14;
+    int ballRad = 14;
     this->setBall(DrawNode::create());
-    this->getBall()->drawDot(Vec2::ZERO, bikeRad-4, Color4F::WHITE);
-    this->getBall()->setPhysicsBody(PhysicsBody::createCircle(bikeRad));
+    this->getBall()->drawDot(Vec2::ZERO, ballRad-4, Color4F::WHITE);
+    this->getBall()->setPhysicsBody(PhysicsBody::createCircle(ballRad));
     this->mountNode(this->getBall(),Vec2(120,220), OBJ_LAYER_LV1);
     
     this->setBtn1(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
         this->transitonScene(TestPhysicsScene::createScene());
     }));
-    
     this->setBtn2(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
         this->transitonScene(TestScene::createScene());
     }));
@@ -96,30 +95,17 @@ bool TestPhysicsScene::init() {
     }));
     this->setMenu(Menu::create(this->getBtn1(),this->getBtn2(),this->getBtn3(),this->getBtn4(),NULL));
     this->getMenu()->alignItemsHorizontallyWithPadding(20);
-    this->mountNode(this->getMenu(), this->ctPt + Vec2(0,-80), OBJ_LAYER_TOP);
-    
-
+    this->mountNode(this->getMenu(), this->ctPt, OBJ_LAYER_TOP);
     
     return true;
 }
 
 void TestPhysicsScene::onEnterTransitionDidFinish() {
     // todo
-    this->setBike(Bike::createB());
+    this->setBike(Bike::create());
     this->getBike()->setBikeState(Bike::BikeState::NOML);
-    this->setBike(Bike::createB());
-    this->_bike->SetPositionBike(Vec2::ZERO);
-    this->_bike->setBikeState(Bike::BikeState::READY);
-    this->_bike->FadeOutBike(0, 0);
-    _bike->lifePoint = 1;
-//    this->addChild(_bike, 1);
-    this->mountNode(this->getBike(),this->ctPt, OBJ_LAYER_TOP);
-    this->addChild(_bike->getChaser());
-    this->addChild(_bike->getFWheel());
-    this->addChild(_bike->getRWheel());
-    _bike->SetJointB(this->getScene()->getPhysicsWorld());
-    this->addChild(_bike->getFWheelA());
-    this->addChild(_bike->getRWheelA());
+    this->mountNode(this->getBike(), this->ctPt + Vec2(0,-80), OBJ_LAYER_TOP);
+    
     
     this->setTouch(TouchEventHelper::create());
     this->getTouch()->getTouchListenner()->onTouchBegan = [this](Touch* touch,Event* event) {
@@ -127,7 +113,7 @@ void TestPhysicsScene::onEnterTransitionDidFinish() {
         this->getDebugMemo()->setString("onTouchBegan:" + ST_VEC2(this->points[0]));
         pt1.set(touch->getLocation());
         pt2.set(touch->getLocation());
-        this->_bike->TouchOn(touch->getLocation());
+        this->_bike->touchOn(pt1);
         return true;
     };
     this->getTouch()->getTouchListenner()->onTouchMoved = [this](Touch* touch,Event* event) {
@@ -140,7 +126,7 @@ void TestPhysicsScene::onEnterTransitionDidFinish() {
         this->getBaseLine()->getPhysicsBody()->setDynamic(false);
         this->mountNode(this->getBaseLine(), ctPt, OBJ_LAYER_LV1);
         pt2.set(touch->getLocation());
-        this->_bike->Swaip(pt1,pt2);
+        this->_bike->swaip(pt2);
         return true;
     };
     this->getTouch()->getTouchListenner()->onTouchEnded = [this](Touch* touch,Event* event) {
@@ -148,21 +134,20 @@ void TestPhysicsScene::onEnterTransitionDidFinish() {
         this->getDebugMemo()->setString("onTouchEnded:" + ST_VEC2(this->points[0]));
         pt1.set(Vec2::ZERO);
         pt2.set(Vec2::ZERO);
-        this->_bike->TouchOff();
+        this->_bike->touchOff(Vec2::ZERO);
         return true;
     };
     
     this->getTouch()->applyTouchListenner(this->getBike());
-    
-    
     
     this->scheduleUpdate();
 }
 
 void TestPhysicsScene::update(float dt) {
     // todo
-    //    this->getDebugMemo()->setString("ボール位置:" + ST_VEC2(this->getbike()->getPosition()));
-    
+    if(this->getBike()){
+        this->getDebugMemo()->setString("重心位置:" + ST_VEC2(this->getBike()->weightPt));
+    }
 }
 
 /** パラメータサンプル

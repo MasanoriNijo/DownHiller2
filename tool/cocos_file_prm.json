@@ -1,10 +1,8 @@
 {
-  "className": "Sprite2",
-  "superClass": "Sprite",
+  "className": "Bike",
+  "superClass": "Sprite2",
   "synthesize_retains": [
-    ["Sprite", "_parentSprite","ParentSprite"],
-    ["PhysicsBody","_body","Body"],
-    ["Sprite", "_debugPt","DebugPt"],
-    ["Calclater","_calc","Calc"]
+    ["Sprite", "_fWheel","Fwheel"],
+    ["Sprite", "_rWheel","Rwheel"]
   ]
 }
