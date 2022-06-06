@@ -95,7 +95,7 @@ bool TestPhysicsScene::init() {
     }));
     this->setMenu(Menu::create(this->getBtn1(),this->getBtn2(),this->getBtn3(),this->getBtn4(),NULL));
     this->getMenu()->alignItemsHorizontallyWithPadding(20);
-    this->mountNode(this->getMenu(), this->ctPt, OBJ_LAYER_TOP);
+    this->mountNode(this->getMenu(), this->ctPt+Vec2(0,-100), OBJ_LAYER_TOP);
     
     return true;
 }
@@ -104,7 +104,7 @@ void TestPhysicsScene::onEnterTransitionDidFinish() {
     // todo
     this->setBike(Bike::create());
     this->getBike()->setBikeState(Bike::BikeState::NOML);
-    this->mountNode(this->getBike(), this->ctPt + Vec2(0,-80), OBJ_LAYER_TOP);
+    this->mountNode(this->getBike(), this->ctPt, OBJ_LAYER_TOP);
     
     
     this->setTouch(TouchEventHelper::create());

@@ -60,16 +60,31 @@ void Bike::update(float dt) {
 void Bike::touchOn(Vec2 pt){
     touchPt1.set(pt);
     touchPt2.set(pt);
+    weightPt.set(Vec2::ZERO);
 }
 
 void Bike::swaip(Vec2 pt){
     touchPt2.set(pt);
+    Vec2 dV = touchPt2 - touchPt1;
+    if(dV.x > 4 * riderActionSpan){
+        touchPt1.x = touchPt2.x - 4 * riderActionSpan;
+    }
+    if(dV.x < - 4 * riderActionSpan){
+        touchPt1.x = touchPt2.x + 4 * riderActionSpan;
+    }
+    if(dV.y > 4 * riderActionSpan){
+        touchPt1.y = touchPt2.y - 4 * riderActionSpan;
+    }
+    if(dV.y < - 4 * riderActionSpan){
+        touchPt1.y = touchPt2.y + 4 * riderActionSpan;
+    }
     weightPt.set(touchPt2-touchPt1);
 }
 
 void Bike::touchOff(Vec2 pt){
     touchPt1.set(pt);
     touchPt2.set(pt);
+    weightPt.set(Vec2::ZERO);
 }
 
 void Bike::riderImageAction(){
