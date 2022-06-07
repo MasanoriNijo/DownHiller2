@@ -19,17 +19,23 @@ protected:
     const int Bike_FRAME_COUNT = 2;
     
 private:
+    // ホイールに物理情報を付与する。
+    void _addPhysicsToWheel(Sprite* _wheel);
+    // 前後輪とBikeの位置を同調する。
+    void _positionSyncToWheel();
     
 public:
     static Bike* create();
     bool init() override;
+    CC_SYNTHESIZE_RETAIN(Sprite*,_rider,Rider);
     CC_SYNTHESIZE_RETAIN(Sprite*,_fWheel,Fwheel);
     CC_SYNTHESIZE_RETAIN(Sprite*,_rWheel,Rwheel);
+    CC_SYNTHESIZE(PhysicsJointDistance*,_frJoint,FRJoint);
     void update(float dt) override;
     void onEnterTransitionDidFinish() override;
-        
-    void SetJointB(PhysicsWorld* PW); //Bタイプのジョイント
-    void SetJointC(PhysicsWorld* PW); //Cタイプのジョイント
+    
+    // 前後車輪を親シーンに設置した後、親シーンから呼ぶ
+    void SetJoint();
     
     // 画面の操作の情報を受け取る。
     Vec2 touchPt1;// ひとつ前のタッチ位置
@@ -38,17 +44,27 @@ public:
     void swaip(Vec2 pt);
     void touchOff(Vec2 pt);
     
+    // bikeの画像中心
+    Vec2 bikeCenterPt;
+    
+    // bikeのアンカーポイント　後輪の中心軸がアンカーポイントになる様に設定する。
+    Vec2 bikeAnchorPt;
+    
+    // wheelBase
+    float wheelBase = 32;
+    
     // riderの重心ポイント（画面操作により、移動し、移動の仕方によりジャンプ、ウイリーなどのアクションをさせる。）
     Vec2 weightPt;
-    Vec2 riderCenterPt; // rider画像の中心
     // riderアクション weightPtの位置により、画像差し替える。
     // riderのフレームサイズ
     Size frameSize;
-    float riderActionSpan = 6;
+    float riderActionSpan = 5;
     void riderImageAction();
     
     enum class BikeState {READY, NOML, BREAK, GOAL, BIG, BALUNE, SCOPE, ALLOW, SLIDE, STOP, JUMP, JUMP2};
     CC_SYNTHESIZE(BikeState,_BikeState,BikeState);
+        
+    
 };
 
 #endif

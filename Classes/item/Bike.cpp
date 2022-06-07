@@ -12,12 +12,15 @@ static const int PLAYERBODY = 0xFFFFFFFF;
 static const int ALL = 0xFFFFFFFF;
 
 Bike::Bike():
-_fWheel(NULL), _rWheel(NULL), _BikeState(BikeState::NOML)
+_rider(NULL),_fWheel(NULL), _rWheel(NULL), _BikeState(BikeState::NOML)
 {}
 
 Bike::~Bike() {
+    CC_SAFE_RELEASE_NULL(_rider);
     CC_SAFE_RELEASE_NULL(_fWheel);
     CC_SAFE_RELEASE_NULL(_rWheel);
+    _frJoint->removeFormWorld();
+    _frJoint = nullptr;
 }
 
 Bike* Bike::create() {
@@ -32,14 +35,30 @@ Bike* Bike::create() {
 }
 
 bool Bike::init() {
-    if(!Sprite2::initWithFile("riders.png")){
+    if(!Sprite2::initWithFile("bike2.png")){
         return false;
     }
-    this->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
-    frameSize = Size(this->getContentSize().width / 7, this->getContentSize().height / 7);
-    riderCenterPt.set(frameSize.width/2,frameSize.height/2);
+//    bikeAnchorPt.set(0.7690, 0.1708);
+    bikeAnchorPt.set(0.10, 0.08);
+    this->setAnchorPoint(bikeAnchorPt);
+    bikeCenterPt.set(this->getContentSize().width/2,this->getContentSize().height/2);
+    
+    // riderをセットする。
+    this->setRider(Sprite::create("riders.png"));
+    frameSize = Size(_rider->getContentSize().width / 7, _rider->getContentSize().height / 7);
+
+    _rider->setPosition(Vec2(18,22));
+    this->addChild(_rider);
     this->riderImageAction();
-    this->scheduleUpdate();
+    
+    // wheelをセットする。
+    this->setFwheel(Sprite::create("wheel3.png"));
+    _fWheel->setPosition(Vec2(33,2));
+    _addPhysicsToWheel(_fWheel);
+    
+    this->setRwheel(Sprite::createWithTexture(_fWheel->getTexture()));
+    _rWheel->setPosition(Vec2(1,2));
+    _addPhysicsToWheel(_rWheel);
     
     //debug
     this->setDebugPt(Sprite::create("dot3.png"));
@@ -47,13 +66,40 @@ bool Bike::init() {
     return true;
 }
 
+void Bike::_addPhysicsToWheel(Sprite* _wheel){
+    _wheel->setPhysicsBody(PhysicsBody::createCircle(_wheel->getContentSize().width / 2));
+    _wheel->getPhysicsBody()->setGravityEnable(true);
+//    _wheel->getPhysicsBody()->setCategoryBitmask(ChrPrm::PLAYER);
+//    _wheel->getPhysicsBody()->setCollisionBitmask(ChrPrm::COURCE);
+//    _wheel->getPhysicsBody()->setContactTestBitmask(ChrPrm::ENEMY | ChrPrm::ITEM);
+    _wheel->getPhysicsBody()->setTag(1);
+    _wheel->getPhysicsBody()->setDynamic(true);
+//    _wheel->getPhysicsBody()->setAngularDamping(wheelRotDump_);
+//    _wheel->getPhysicsBody()->setLinearDamping(veloDump);
+    _wheel->getPhysicsBody()->setRotationEnable(true);
+}
+
+void Bike::_positionSyncToWheel(){
+    float kaku = this->getCalc()->nomlKaku(_rWheel->getPosition(),_fWheel->getPosition());
+    this->setRotation(kaku);
+    this->setPosition(_rWheel->getPosition());
+}
+
 void Bike::onEnterTransitionDidFinish() {
     // todo
-    this->scheduleUpdate();
+}
+
+void Bike::SetJoint(){
+    // 前後輪をジョイントを生成する。
+    this->setFRJoint(PhysicsJointDistance::construct(_rWheel->getPhysicsBody(),
+                                             _fWheel->getPhysicsBody(),
+                                             _rWheel->getPhysicsBody()->getPosition(),
+                                             _fWheel->getPhysicsBody()->getPosition()));
 }
 
 void Bike::update(float dt) {
     this->riderImageAction();
+    this->_positionSyncToWheel();
     // todo
 }
 
@@ -103,17 +149,19 @@ void Bike::riderImageAction(){
         y_=-3;
     }
     if(this->getDebugPt()){
-        this->getDebugPt()->setPosition(weightPt+riderCenterPt);
+        this->getDebugPt()->setPosition(weightPt+bikeCenterPt);
     }
     
-    this->setTextureRect(
+    this->getRider()->setTextureRect(
                 Rect(frameSize.width * (x_+3), frameSize.height * (y_+3), frameSize.width, frameSize.height));
 }
 /** パラメータサンプル
- this->setFwheel(Sprite::create());
- this->getFwheel();
- this->setRwheel(Sprite::create());
- this->getRwheel();
- */
+this->setRider(Sprite::create());
+this->getRider();
+this->setFwheel(Sprite::create());
+this->getFwheel();
+this->setRwheel(Sprite::create());
+this->getRwheel();
+*/
 
 

@@ -33,6 +33,11 @@ float Calclater::chgKaku(float rad) {
     return nomlKaku(x_);
 }
 
+float Calclater::nomlKaku(Vec2 pt1, Vec2 pt2){
+    float x = pt1.getAngle(pt2);
+    return chgKaku(pt1.getAngle(pt2));
+}
+
 float Calclater::chgRad(float kaku) {
     float x_ = -CC_DEGREES_TO_RADIANS(kaku);
     return nomlRad(x_);
@@ -58,6 +63,10 @@ float Calclater::nomlRad(float rad) {
         x_ += 2 * M_PI;
     }
     return x_;
+}
+
+float Calclater::nomlRad(Vec2 pt1, Vec2 pt2){
+    return nomlRad(pt1.getAngle(pt2));
 }
 
 bool Calclater::betweenKaku(float x, float min_, float max_) {
@@ -101,6 +110,22 @@ bool Calclater::betweenRad(float x, float min_, float max_) {
 float Calclater::getDot(Vec2 A, Vec2 B) {
     return (A.x*B.x+A.y*B.y);
 }
+
+// 親が所属する座標系でのポジションを算出
+Vec2 Calclater::getParentNodePosition(Node* nd){
+    if(!nd->getParent()){
+        return nd->getPosition();
+    }
+    Vec2 parentPt = nd->getParent()->getPosition();
+    Vec2 parentAnchorPt = Vec2(nd->getParent()->getContentSize().width * nd->getParent()->getAnchorPoint().x,
+                               nd->getParent()->getContentSize().height * nd->getParent()->getAnchorPoint().y);
+    Vec2 localPt = nd->getPosition() - parentAnchorPt;
+    
+    float parentAngle = nd->getParent()->getRotation();
+    localPt = localPt.rotateByAngle(Vec2::ZERO, parentAngle);
+    return parentPt + localPt;
+}
+
 
 /** パラメータサンプル
  */

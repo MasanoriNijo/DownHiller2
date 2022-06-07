@@ -45,30 +45,23 @@ bool TestPhysicsScene::init() {
     this->setPhysicsBody(PhysicsBody::createEdgeBox(this->winSize));
     this->getPhysicsBody()->setDynamic(false);
     this->setBackGroundColor();
-    //    this->setGameTitle(Label::create());
-    //    this->getGameTitle();
+
     this->setBaseLine(DrawNode::create());
     this->getBaseLine()->setColor(Color3B::WHITE);
     this->getBaseLine()->setLineWidth(11);
     points[0].x = -winSize.width/2+20;
     points[0].y = 20;
     points[1].x = -winSize.width/2+80;
-    points[1].y = 50;
+    points[1].y = -50;
     points[2].x = winSize.width/2-20;
-    points[2].y = 50;
+    points[2].y = -50;
     points[3].x = winSize.width/2-20;
     points[3].y = -20;
     this->getBaseLine()->drawPoly(points, 4, false, Color4F::GREEN);
     this->getBaseLine()->setPhysicsBody(PhysicsBody::createEdgePolygon(points, 4));
     this->getBaseLine()->getPhysicsBody()->setDynamic(false);
     this->mountNode(this->getBaseLine(), ctPt, OBJ_LAYER_LV1);
-    
-    int ballRad = 14;
-    this->setBall(DrawNode::create());
-    this->getBall()->drawDot(Vec2::ZERO, ballRad-4, Color4F::WHITE);
-    this->getBall()->setPhysicsBody(PhysicsBody::createCircle(ballRad));
-    this->mountNode(this->getBall(),Vec2(120,220), OBJ_LAYER_LV1);
-    
+        
     this->setBtn1(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
         this->transitonScene(TestPhysicsScene::createScene());
     }));
@@ -76,22 +69,11 @@ bool TestPhysicsScene::init() {
         this->transitonScene(TestScene::createScene());
     }));
     this->setBtn3(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
-        points[1].y += 5;
-        this->getBaseLine()->removeFromParent();
-        this->setBaseLine(DrawNode::create());
-        this->getBaseLine()->drawPoly(this->points, 4, false, Color4F::GREEN);
-        this->getBaseLine()->setPhysicsBody(PhysicsBody::createEdgePolygon(this->points, 4));
-        this->getBaseLine()->getPhysicsBody()->setDynamic(false);
-        this->mountNode(this->getBaseLine(), ctPt, OBJ_LAYER_LV1);
+        this->getBike()->setRotation(30);
     }));
     this->setBtn4(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
-        points[1].y -= 5;
-        this->getBaseLine()->removeFromParent();
-        this->setBaseLine(DrawNode::create());
-        this->getBaseLine()->drawPoly(this->points, 4, false, Color4F::GREEN);
-        this->getBaseLine()->setPhysicsBody(PhysicsBody::createEdgePolygon(this->points, 4));
-        this->getBaseLine()->getPhysicsBody()->setDynamic(false);
-        this->mountNode(this->getBaseLine(), ctPt, OBJ_LAYER_LV1);
+        this->getBike()->setRotation(-30);
+
     }));
     this->setMenu(Menu::create(this->getBtn1(),this->getBtn2(),this->getBtn3(),this->getBtn4(),NULL));
     this->getMenu()->alignItemsHorizontallyWithPadding(20);
@@ -101,11 +83,15 @@ bool TestPhysicsScene::init() {
 }
 
 void TestPhysicsScene::onEnterTransitionDidFinish() {
-    // todo
+    // Bikeをセットする。
     this->setBike(Bike::create());
     this->getBike()->setBikeState(Bike::BikeState::NOML);
-    this->mountNode(this->getBike(), this->ctPt, OBJ_LAYER_TOP);
-    
+    this->mountNode(this->getBike(), this->ctPt+Vec2(0,30), OBJ_LAYER_TOP);
+    this->mountNode(this->getBike()->getFwheel(), this->getBike()->getPosition() + Vec2(this->getBike()->wheelBase,0), OBJ_LAYER_TOP);
+    this->mountNode(this->getBike()->getRwheel(), this->getBike()->getPosition(), OBJ_LAYER_TOP);
+    this->getBike()->SetJoint();
+    this->getScene()->getPhysicsWorld()->addJoint(this->getBike()->getFRJoint());
+    this->getBike()->scheduleUpdate();
     
     this->setTouch(TouchEventHelper::create());
     this->getTouch()->getTouchListenner()->onTouchBegan = [this](Touch* touch,Event* event) {
@@ -146,7 +132,9 @@ void TestPhysicsScene::onEnterTransitionDidFinish() {
 void TestPhysicsScene::update(float dt) {
     // todo
     if(this->getBike()){
-        this->getDebugMemo()->setString("重心位置:" + ST_VEC2(this->getBike()->weightPt));
+//        this->getDebugMemo()->setString("重心位置:" + ST_VEC2(this->getBike()->weightPt));
+//        this->getDebugMemo()->setString("bike:" + ST_VEC2(this->getBike()->getPosition()) + " " + ST_INT(this->getBike()->getRotation()));
+        this->getDebugMemo()->setString("bike:" + ST_VEC2(this->getCalc()->getParentNodePosition(_bike->getRwheel())));
     }
 }
 
