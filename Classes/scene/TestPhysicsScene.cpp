@@ -124,7 +124,7 @@ void TestPhysicsScene::onEnterTransitionDidFinish() {
         return true;
     };
     
-    this->getTouch()->applyTouchListenner(this->getBike());
+    this->getTouch()->applyTouchListenner(this);
     
     this->scheduleUpdate();
 }

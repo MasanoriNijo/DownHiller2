@@ -1,9 +1,21 @@
 {
-  "className": "Bike",
-  "superClass": "Sprite2",
+  "className": "TestScene",
+  "superClass": "GameScene",
   "synthesize_retains": [
-    ["Sprite", "_rider","Rider"],
-    ["Sprite", "_fWheel","Fwheel"],
-    ["Sprite", "_rWheel","Rwheel"]
+    ["Label", "_gameTitle", "GameTitle"],
+    ["DrawNode", "_baseLine", "BaseLine"],
+    ["DrawNode", "_ball", "Ball"],
+    ["MenuItemImage", "_btn1", "Btn1"],
+    ["MenuItemImage", "_btn2", "Btn2"],
+    ["MenuItemImage", "_btn3", "Btn3"],
+    ["MenuItemImage", "_btn4", "Btn4"],
+    ["Menu", "_menu", "Menu"],
+    ["TouchEventHelper", "_touch","Touch"],
+    ["Sprite2", "_pt1", "Pt1"],
+    ["Sprite2", "_pt2", "Pt2"],
+    ["Sprite2", "_pt3", "Pt3"],
+    ["Sprite2", "_pt4", "Pt4"],
+    ["Sprite2", "_pt5", "Pt5"],
+    ["Node", "_touchObj", "TouchObj"]
   ]
 }

@@ -9,13 +9,13 @@ USING_NS_CC;
 
 class TestPhysicsScene: public GameScene {
 protected:
-  TestPhysicsScene();
-  virtual ~TestPhysicsScene();
-  bool init() override;
-
+    TestPhysicsScene();
+    virtual ~TestPhysicsScene();
+    bool init() override;
+    
 public:
-  CREATE_FUNC(TestPhysicsScene);
-  static Scene* createScene();
+    CREATE_FUNC(TestPhysicsScene);
+    static Scene* createScene();
     CC_SYNTHESIZE_RETAIN(Label*,_gameTitle,GameTitle);
     CC_SYNTHESIZE_RETAIN(DrawNode*,_baseLine,BaseLine);
     CC_SYNTHESIZE_RETAIN(DrawNode*,_ball,Ball);

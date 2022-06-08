@@ -9,7 +9,7 @@ const int nikuCatg = 1 << 4;
 const int kabeCatg = 1 << 5;
 
 Sprite2::Sprite2():
-_parentSprite(NULL), _body(NULL), _debugPt(NULL),_calc(NULL), _updateListener(NULL), _pinPt(Vec2::ZERO), _ctPt(Vec2::ZERO)
+_parentSprite(NULL), _body(NULL), _debugPt(NULL),_calc(NULL), _updateListener(NULL), _touch(NULL), _pinPt(Vec2::ZERO), _ctPt(Vec2::ZERO)
 {}
 
 Sprite2::~Sprite2() {
@@ -17,6 +17,7 @@ Sprite2::~Sprite2() {
     CC_SAFE_RELEASE_NULL(_body);
     CC_SAFE_RELEASE_NULL(_debugPt);
     CC_SAFE_RELEASE_NULL(_calc);
+    CC_SAFE_RELEASE_NULL(_touch);
 }
 
 Sprite2* Sprite2::create() {
@@ -83,6 +84,31 @@ bool Sprite2::initWithTexture(Texture2D *texture){
     this->ctPt.set(winSize.width / 2, winSize.height / 2);
     this->setCalc(Calclater::create());
     return true;
+}
+
+void Sprite2::setDefaultTouchEvent(){
+    this->setTouch(TouchEventHelper::create());
+    this->getTouch()->getTouchListenner()->onTouchBegan = [this](Touch* touch,Event* event) {
+        _touched = false;
+        Rect targetBox = this->getBoundingBox();
+        if(targetBox.containsPoint(touch->getLocation())){
+            _touched = true;
+            this->setPosition(touch->getLocation());
+//            NJLOG(ST_NODE(this));
+        }
+        return true;
+    };
+    this->getTouch()->getTouchListenner()->onTouchMoved = [this](Touch* touch,Event* event) {
+        if(_touched){
+            this->setPosition(touch->getLocation());
+        }
+        return true;
+    };
+    this->getTouch()->getTouchListenner()->onTouchEnded = [this](Touch* touch,Event* event) {
+        _touched = false;
+        return true;
+    };    
+    this->getTouch()->applyTouchListenner(this);
 }
 
 void Sprite2::update(float dt) {

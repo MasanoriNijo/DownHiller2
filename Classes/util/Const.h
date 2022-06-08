@@ -50,8 +50,10 @@ const Vec2 NONGRAVITY = Vec2(0, 0);
 #define ST_INT(suzi) ({std::string st = StringUtils::toString((int)suzi);st;})
 
 // 数字の文字化std::_Floating_to_string("%.3f", doubleNum)
-#define ST_FLOAT(suzi) ({std::string::c_str() st = StringUtils::format("%.3f", (float)suzi).c_str();st;})
+#define ST_FLOAT(suzi) ({std::string st = StringUtils::format("%.3f", (float)suzi);st;})
 // Vec2の文字化
 #define ST_VEC2(vec2) ({std::string stx = ST_INT(vec2.x);std::string sty = ST_INT(vec2.y); "x:"+stx+" y:"+sty;})
+// Nodeの文字化
+#define ST_NODE(node) ({std::string stnd = ST_VEC2(node->getPosition());std::string stdeg = ST_FLOAT(node->getRotation()); stnd + " deg:" + stdeg;})
 
 #endif

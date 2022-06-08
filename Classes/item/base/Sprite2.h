@@ -2,11 +2,12 @@
 #define __SPRITE2_H__
 
 #include "util/Calclater.h"
+#include "util/TouchEventHelper.h"
 #include "math.h"
 #include "cocos2d.h"
 USING_NS_CC;
 
-class Sprite2: public cocos2d::Sprite {
+class Sprite2: public Sprite {
     
 protected:
     Sprite2();
@@ -29,6 +30,7 @@ public:
     CC_SYNTHESIZE_RETAIN(PhysicsBody*,_body,Body);
     CC_SYNTHESIZE_RETAIN(Sprite*,_debugPt,DebugPt);
     CC_SYNTHESIZE_RETAIN(Calclater*,_calc,Calc);
+    CC_SYNTHESIZE_RETAIN(TouchEventHelper*,_touch,Touch);
     //ピン止め位置
     CC_SYNTHESIZE(Vec2,_pinPt,PinPt);
     //スプライト内のピン位置
@@ -38,11 +40,21 @@ public:
     
     void update(float dt) override;
     
+    // 新規追加関数
+    
     // 画面のセンターの位置
     Vec2 ctPt;
     
     // 画面のサイズ
     Size winSize;
+        
+    // 標準的なタッチリスナーを設定する。
+    void setDefaultTouchEvent();
+    bool _touched;
+    
+    
+    // 新規追加ここまで
+    
     
     Vec2 pt_; //計算用変数
     Vec2 pt2_; //計算用変数
