@@ -128,6 +128,24 @@ Vec2 Calclater::getParentNodePosition(Node* nd){
     return parentPt + localPt;
 }
 
+// 指定したラジアン分回転する。反時計回り
+Vec2 Calclater::rotByRad(Vec2 pt,float rad){
+    return Vec2(cos(rad)*pt.x-sin(rad)*pt.y, sin(rad)*pt.x+cos(rad)*pt.y);
+}
+
+// 指定した角度分回転する。時計回り
+Vec2 Calclater::rotByKaku(Vec2 pt,float kaku){
+    float rad = chgRad(kaku);
+    return rotByRad(pt, rad);
+}
+
+Vec2 Calclater::chgLength(Vec2 pt,float length){
+    float l = pt.getLength();
+    if(l==0){
+        return pt;
+    }
+    return pt * (length / l);
+}
 
 /** パラメータサンプル
  */

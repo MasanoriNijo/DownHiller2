@@ -24,6 +24,9 @@ private:
     // 前後輪とBikeの位置を同調する。
     void _positionSyncToWheel();
     
+    // タッチイベントをセットする
+    void _setTouchEvent();
+    
 public:
     static Bike* create();
     bool init() override;
@@ -63,8 +66,19 @@ public:
     
     enum class BikeState {READY, NOML, BREAK, GOAL, BIG, BALUNE, SCOPE, ALLOW, SLIDE, STOP, JUMP, JUMP2};
     CC_SYNTHESIZE(BikeState,_BikeState,BikeState);
-        
     
+    // bikeの操作
+    bool fWheelTouched;
+    Vec2 fWheelTouchPt;
+    bool rWheelTouched;
+    Vec2 rWheelTouchPt;
+    void fWheelUp(float pow);
+    void fWheeldown(float pow);
+    void fWheelJump(float pow);
+    void rWheelUp(float pow);
+    void rWheeldown(float pow);
+    void rWheelJump(float pow);
+
 };
 
 #endif
