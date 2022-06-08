@@ -34,8 +34,10 @@ float Calclater::chgKaku(float rad) {
 }
 
 float Calclater::nomlKaku(Vec2 pt1, Vec2 pt2){
-    float x = pt1.getAngle(pt2);
-    return chgKaku(pt1.getAngle(pt2));
+    Vec2 dpt = pt2 - pt1;
+    float angle = atan2f(dpt.y, dpt.x);
+    if (std::abs(angle) < FLT_EPSILON) return 0.f;
+    return chgKaku(angle);
 }
 
 float Calclater::chgRad(float kaku) {

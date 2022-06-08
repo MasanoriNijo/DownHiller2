@@ -69,7 +69,13 @@ bool TestPhysicsScene::init() {
         this->transitonScene(TestScene::createScene());
     }));
     this->setBtn3(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
-        this->getBike()->setRotation(30);
+        NJLOG("Fwheel");
+        NJLOG(ST_NODE(_bike->getFwheel()).c_str());
+        NJLOG("Rwheel");
+        NJLOG(ST_NODE(_bike->getRwheel()).c_str());
+        NJLOG("kaku");
+        float kaku = this->getCalc()->nomlKaku(_bike->getRwheel()->getPosition(),_bike->getFwheel()->getPosition());
+        NJLOG(ST_FLOAT(kaku).c_str());
     }));
     this->setBtn4(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
         this->getBike()->setRotation(-30);

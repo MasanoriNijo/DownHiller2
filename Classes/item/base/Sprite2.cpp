@@ -94,7 +94,6 @@ void Sprite2::setDefaultTouchEvent(){
         if(targetBox.containsPoint(touch->getLocation())){
             _touched = true;
             this->setPosition(touch->getLocation());
-//            NJLOG(ST_NODE(this));
         }
         return true;
     };
@@ -106,6 +105,7 @@ void Sprite2::setDefaultTouchEvent(){
     };
     this->getTouch()->getTouchListenner()->onTouchEnded = [this](Touch* touch,Event* event) {
         _touched = false;
+        NJLOG(ST_NODE(this).c_str());
         return true;
     };    
     this->getTouch()->applyTouchListenner(this);

@@ -21,7 +21,7 @@ USING_NS_CC;
 #if !defined(ENABLE_NJLOG) || ENABLE_NJLOG == 0
 #define NJLOG(...)
 #else
-#define NJLOG(format, ...)     cocos2d::log(format, ##__VA_ARGS__)
+#define NJLOG(st)  cocos2d::log("njlog:%s", st)
 #endif
 
 // デフォルトのバックグラウンドカラーをセット 色相H:0-360,彩度S:0-100,明度V:0-100
