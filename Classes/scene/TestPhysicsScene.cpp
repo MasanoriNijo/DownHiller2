@@ -81,6 +81,9 @@ bool TestPhysicsScene::init() {
     this->getBaseLine()->drawPoly(points, 4, false, Color4F::GREEN);
     this->getBaseLine()->setPhysicsBody(PhysicsBody::createEdgePolygon(points, 14));
     this->getBaseLine()->getPhysicsBody()->setDynamic(false);
+    this->getBaseLine()->getPhysicsBody()->setCategoryBitmask(0xFFFFFFFF);
+    this->getBaseLine()->getPhysicsBody()->setCollisionBitmask(0xFFFFFFFF);
+    this->getBaseLine()->getPhysicsBody()->setContactTestBitmask(0xFFFFFFFF);
     this->mountNode(this->getBaseLine(), ctPt, OBJ_LAYER_LV1);
     
     this->setBtn1(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
@@ -98,10 +101,9 @@ bool TestPhysicsScene::init() {
         float kaku = this->getCalc()->nomlKaku(_bike->getRwheel()->getPosition(),_bike->getFwheel()->getPosition());
         NJLOG(ST_FLOAT(kaku).c_str());
         _bike->fWheelUp(15);
-        _bike->fWheelJump(15);
     }));
     this->setBtn4(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
-        _bike->fWheeldown(15);
+        _bike->rWheelJump(-15);
         
     }));
     this->setMenu(Menu::create(this->getBtn1(),this->getBtn2(),this->getBtn3(),this->getBtn4(),NULL));
@@ -136,10 +138,13 @@ void TestPhysicsScene::update(float dt) {
 void TestPhysicsScene::setContactListener() {
     //接触感知
     this->setContactListenner(EventListenerPhysicsContact::create());
+    
     _contactlistener->onContactBegin = [this](PhysicsContact& contact) {
-                _bike->fWheelTouchPt.set(contact.getContactData()->normal);
+        NJLOG("normal");
+        NJLOG(ST_VEC2(contact.getContactData()->normal).c_str());
+        _bike->fWheelTouchPt.set(contact.getContactData()->normal);
         _bike->fWheelTouched = true;
-        _bike->rWheelTouchPt.set(contact.getContactData()->points[1]);
+        _bike->rWheelTouchPt.set(contact.getContactData()->normal);
         _bike->rWheelTouched = true;
         return true;
     };
@@ -147,15 +152,17 @@ void TestPhysicsScene::setContactListener() {
     _contactlistener->onContactPostSolve = [this](PhysicsContact& contact, const PhysicsContactPostSolve& solve) {
         _bike->fWheelTouchPt.set(contact.getContactData()->normal);
         _bike->fWheelTouched = true;
-        
-        _bike->rWheelTouchPt.set(contact.getContactData()->points[1]);
+        _bike->rWheelTouchPt.set(contact.getContactData()->normal);
         _bike->rWheelTouched = true;
     };
     
     _contactlistener->onContactSeparate = [this](PhysicsContact& contact) {
+        NJLOG("normal");
+        NJLOG(ST_VEC2(contact.getContactData()->normal).c_str());
         _bike->fWheelTouched = false;
         _bike->rWheelTouched = false;
     };
+    
     
     Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(_contactlistener,this);
     

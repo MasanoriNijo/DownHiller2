@@ -71,9 +71,9 @@ bool Bike::init() {
 void Bike::_addPhysicsToWheel(Sprite* _wheel){
     _wheel->setPhysicsBody(PhysicsBody::createCircle(_wheel->getContentSize().width / 2));
     _wheel->getPhysicsBody()->setGravityEnable(true);
-    //    _wheel->getPhysicsBody()->setCategoryBitmask(ChrPrm::PLAYER);
-    //    _wheel->getPhysicsBody()->setCollisionBitmask(ChrPrm::COURCE);
-    //    _wheel->getPhysicsBody()->setContactTestBitmask(ChrPrm::ENEMY | ChrPrm::ITEM);
+    _wheel->getPhysicsBody()->setCategoryBitmask(0xFFFFFFFF);
+    _wheel->getPhysicsBody()->setCollisionBitmask(0xFFFFFFFF);
+    _wheel->getPhysicsBody()->setContactTestBitmask(0xFFFFFFFF);
     _wheel->getPhysicsBody()->setTag(1);
     _wheel->getPhysicsBody()->setDynamic(true);
     //    _wheel->getPhysicsBody()->setAngularDamping(wheelRotDump_);

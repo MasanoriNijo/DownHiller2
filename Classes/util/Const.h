@@ -44,7 +44,7 @@ const Vec2 NONGRAVITY = Vec2(0, 0);
 #define DEBUG_PHYSICS_MASK 1
 
 // 物理世界の処理スピード
-#define PHYSICS_WOELD_SPEED 3
+#define PHYSICS_WOELD_SPEED 6
 
 // 数字の文字化
 #define ST_INT(suzi) ({std::string st = StringUtils::toString((int)suzi);st;})
