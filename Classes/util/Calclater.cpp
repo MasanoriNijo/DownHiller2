@@ -68,7 +68,10 @@ float Calclater::nomlRad(float rad) {
 }
 
 float Calclater::nomlRad(Vec2 pt1, Vec2 pt2){
-    return nomlRad(pt1.getAngle(pt2));
+    Vec2 dpt = pt2 - pt1;
+    float angle = atan2f(dpt.y, dpt.x);
+    if (std::abs(angle) < FLT_EPSILON) return 0.f;
+    return angle;
 }
 
 bool Calclater::betweenKaku(float x, float min_, float max_) {
@@ -145,6 +148,37 @@ Vec2 Calclater::chgLength(Vec2 pt,float length){
         return pt;
     }
     return pt * (length / l);
+}
+
+Vec2 Calclater::chasePt(Vec2 destPt,Vec2& chasePt,float velo,float dt){
+    
+    Vec2 dst_ = destPt - chasePt;
+    Vec2 ch_ = chgLength(dst_, velo*dt);
+    if(dst_.length()>ch_.length()){
+        chasePt += ch_;
+        return destPt - chasePt;
+    }else{
+        chasePt.set(destPt);
+        return Vec2::ZERO;
+    }
+}
+
+Vec2 Calclater::chasePt(Vec2 destPt,Vec2& chasePt,float length){
+    
+    Vec2 dst_ = destPt - chasePt;
+    Vec2 ch_ = chgLength(dst_, length);
+    if(dst_.length()>ch_.length()){
+        chasePt += ch_;
+        return destPt - chasePt;
+    }else{
+        chasePt.set(destPt);
+        return Vec2::ZERO;
+    }
+}
+
+Vec2 Calclater::cordinaneX(Vec2 ptX, Vec2 pt){
+    float rad = nomlRad(Vec2::ZERO, ptX);
+    return rotByRad(pt, -rad);
 }
 
 /** パラメータサンプル

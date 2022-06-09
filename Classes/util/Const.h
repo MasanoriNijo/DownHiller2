@@ -26,7 +26,7 @@ USING_NS_CC;
 
 // デフォルトのバックグラウンドカラーをセット 色相H:0-360,彩度S:0-100,明度V:0-100
 #define DEFAULT_COLOR_H 230
-#define DEFAULT_COLOR_S 100
+#define DEFAULT_COLOR_S 0
 #define DEFAULT_COLOR_V 100
 
 // spriteの上下
@@ -46,6 +46,25 @@ const Vec2 NONGRAVITY = Vec2(0, 0);
 // 物理世界の処理スピード
 #define PHYSICS_WOELD_SPEED 6
 
+// タグ名コンタクト時に判別
+
+static const int TG_F_WHEEL=1;
+static const int TG_R_WHEEL=2;
+static const int TG_COURCE=3;
+static const int TG_START=4;
+static const int TG_GOAL=5;
+
+
+// Physics Category
+static const int CT_NONE = 0x00000000;
+static const int CT_RIDER = 1 << 0;
+static const int CT_WHEEL = 1 << 1;
+static const int CT_COURCE = 1 << 2;
+static const int CT_GOAL = 1 << 3;
+static const int CT_START = 1 << 4;
+static const int CT_ALL = 0xFFFFFFFF;
+
+// macro
 // 数字の文字化
 #define ST_INT(suzi) ({std::string st = StringUtils::toString((int)suzi);st;})
 

@@ -50,7 +50,8 @@ bool TestScene::init() {
         this->transitonScene(TestScene::createScene());
     }));
     this->setBtn4(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
-        this->transitonScene(TestScene::createScene());
+        _pt2->setPosition(this->getCalc()->cordinaneX(_pt1->getPosition()-ctPt, _pt2->getPosition()-ctPt)+ctPt);
+        _pt1->setPosition(Vec2((_pt1->getPosition()-ctPt).length(),0)+ctPt);
     }));
     this->setMenu(Menu::create(this->getBtn1(),this->getBtn2(),this->getBtn3(),this->getBtn4(),NULL));
     this->getMenu()->alignItemsHorizontallyWithPadding(20);
@@ -61,7 +62,7 @@ bool TestScene::init() {
     _pt1->setDefaultTouchEvent();
     this->mountNode(this->getPt1(), this->ctPt + Vec2(-80,-40) , OBJ_LAYER_TOP);
     
-    this->setPt2(Sprite2::create("dot3.png"));
+    this->setPt2(Sprite2::create("dot2.png"));
     _pt2->setName("pt2");
     _pt2->setDefaultTouchEvent();
     this->mountNode(this->getPt2(), this->ctPt + Vec2(-30,-40) , OBJ_LAYER_TOP);
@@ -71,7 +72,7 @@ bool TestScene::init() {
     _pt3->setDefaultTouchEvent();
     this->mountNode(this->getPt3(), this->ctPt + Vec2(30,-40) , OBJ_LAYER_TOP);
     
-    this->setPt4(Sprite2::create("dot3.png"));
+    this->setPt4(Sprite2::create("dot2.png"));
     _pt4->setName("pt4");
     _pt4->setDefaultTouchEvent();
     this->mountNode(this->getPt4(), this->ctPt + Vec2(80,-40) , OBJ_LAYER_TOP);

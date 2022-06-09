@@ -54,6 +54,14 @@ public:
     // 同じ方向で指定した長さに変換する。
     Vec2 chgLength(Vec2 pt,float length);
 
+    // 移動系
+    // destPtに追従する。
+    Vec2 chasePt(Vec2 destPt,Vec2& chasePt,float velo,float dt);
+    Vec2 chasePt(Vec2 destPt,Vec2& chasePt,float length);
+    
+    
+    // ptX をx軸と見立てた時のptの位置を計算
+    Vec2 cordinaneX(Vec2 ptX, Vec2 pt);
     
 };
 

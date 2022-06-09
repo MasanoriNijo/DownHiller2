@@ -1,16 +1,6 @@
 #include "Bike.h"
 #include "audio/include/AudioEngine.h"
 
-// 物理判定用 todo 他にまとめて整理する。
-static const int NONE = 0x00000000;
-static const int PLAYER = 0xFFFFFFFF;
-static const int ENEMY = 0xFFFFFFFF;
-static const int COURCE = 0xFFFFFFFF;
-static const int ITEM = 0xFFFFFFFF;
-static const int PLAYERBOUND = 0xFFFFFFFF;
-static const int PLAYERBODY = 0xFFFFFFFF;
-static const int ALL = 0xFFFFFFFF;
-
 Bike::Bike():
 _rider(NULL),_fWheel(NULL), _rWheel(NULL), _BikeState(BikeState::NOML)
 {}
@@ -55,29 +45,41 @@ bool Bike::init() {
     this->setFwheel(Sprite::create("wheel3.png"));
     _fWheel->setPosition(Vec2(33,2));
     _addPhysicsToWheel(_fWheel);
+    _fWheel->getPhysicsBody()->setTag(TG_F_WHEEL);
     
     this->setRwheel(Sprite::createWithTexture(_fWheel->getTexture()));
     _rWheel->setPosition(Vec2(1,2));
     _addPhysicsToWheel(_rWheel);
+    _rWheel->getPhysicsBody()->setTag(TG_R_WHEEL);
     
     this->_setTouchEvent();
     
     //debug
     this->setDebugPt(Sprite::create("dot3.png"));
     this->addChild(this->getDebugPt());
+    this->setParentSprite(Sprite::create("dot2.png"));
+    this->addChild(this->getParentSprite());
+    
     return true;
 }
 
 void Bike::_addPhysicsToWheel(Sprite* _wheel){
-    _wheel->setPhysicsBody(PhysicsBody::createCircle(_wheel->getContentSize().width / 2));
+    
+    auto _material = PHYSICSBODY_MATERIAL_DEFAULT;
+    _material.restitution = 0.0001f;
+    _material.friction =1.0f;
+    _material.density = 0.001f;
+    
+    _wheel->setPhysicsBody(PhysicsBody::createCircle(_wheel->getContentSize().width / 2,_material));
     _wheel->getPhysicsBody()->setGravityEnable(true);
-    _wheel->getPhysicsBody()->setCategoryBitmask(0xFFFFFFFF);
-    _wheel->getPhysicsBody()->setCollisionBitmask(0xFFFFFFFF);
-    _wheel->getPhysicsBody()->setContactTestBitmask(0xFFFFFFFF);
-    _wheel->getPhysicsBody()->setTag(1);
+    _wheel->getPhysicsBody()->setCategoryBitmask(CT_WHEEL);
+    _wheel->getPhysicsBody()->setCollisionBitmask(CT_COURCE);
+    _wheel->getPhysicsBody()->setContactTestBitmask(CT_COURCE);
+//    _wheel->getPhysicsBody()->setTag(1);
     _wheel->getPhysicsBody()->setDynamic(true);
     //    _wheel->getPhysicsBody()->setAngularDamping(wheelRotDump_);
     //    _wheel->getPhysicsBody()->setLinearDamping(veloDump);
+    _wheel->getPhysicsBody()->setVelocityLimit(maxWheelVelo);
     _wheel->getPhysicsBody()->setRotationEnable(true);
 }
 
@@ -124,6 +126,7 @@ void Bike::SetJoint(){
 void Bike::update(float dt) {
     this->riderImageAction();
     this->_positionSyncToWheel();
+    this->_judeAction(dt);
     // todo
 }
 
@@ -131,6 +134,7 @@ void Bike::touchOn(Vec2 pt){
     touchPt1.set(pt);
     touchPt2.set(pt);
     weightPt.set(Vec2::ZERO);
+    chasePt.set(weightPt);
 }
 
 void Bike::swaip(Vec2 pt){
@@ -155,6 +159,7 @@ void Bike::touchOff(Vec2 pt){
     touchPt1.set(pt);
     touchPt2.set(pt);
     weightPt.set(Vec2::ZERO);
+    chasePt.set(weightPt);
 }
 
 void Bike::riderImageAction(){
@@ -176,8 +181,34 @@ void Bike::riderImageAction(){
         this->getDebugPt()->setPosition(weightPt+bikeCenterPt);
     }
     
-    this->getRider()->setTextureRect(
-                                     Rect(frameSize.width * (x_+3), frameSize.height * (y_+3), frameSize.width, frameSize.height));
+    this->getRider()->setTextureRect(Rect(frameSize.width * (x_+3), frameSize.height * (y_+3),
+                                          frameSize.width, frameSize.height));
+}
+
+void Bike::_judeAction(float dt){
+    
+    Vec2 kyoku_ = this->getCalc()->cordinaneX(chasePt, weightPt);
+    if(kyoku_.y > 10){
+        this->fWheelUp(5);
+        float length = (weightPt - chasePt).length() * 5 / kyoku_.y;
+        Vec2 destPt = this->getCalc()->chasePt(weightPt, chasePt, length);
+    }
+    if(kyoku_.y < -10){
+        this->fWheeldown(5);
+        float length = -(weightPt - chasePt).length() * 5 / kyoku_.y;
+        Vec2 destPt = this->getCalc()->chasePt(weightPt, chasePt, length);
+    }
+    
+    if(rWheelTouched){
+        Vec2 noml_ = this->getCalc()->cordinaneX(rWheelTouchPt, weightPt-chasePt);
+        if(noml_.x < -10){
+            this->rWheelJump(noml_.x *1.5);
+            float length = -(weightPt - chasePt).length();
+            Vec2 destPt = this->getCalc()->chasePt(weightPt, chasePt, length);
+        }
+    }
+    Vec2 judgePt = this->getCalc()->chasePt(weightPt , chasePt, chaseVelo, dt);
+    this->getParentSprite()->setPosition(chasePt + bikeCenterPt);
 }
 
 
@@ -210,11 +241,26 @@ void Bike::rWheeldown(float pow){
     this->_rWheel->getPhysicsBody()->setVelocity(this->_rWheel->getPhysicsBody()->getVelocity() + powPt);
 }
 
+void Bike::fWheelJump(float pow){
+    if(fWheelTouched){
+        Vec2 powPt = this->getCalc()->chgLength(fWheelTouchPt, pow);
+        this->_fWheel->getPhysicsBody()->setVelocity(this->_fWheel->getPhysicsBody()->getVelocity() + powPt);
+    }
+}
+
 void Bike::rWheelJump(float pow){
     if(rWheelTouched){
         Vec2 powPt = this->getCalc()->chgLength(rWheelTouchPt, pow);
         this->_rWheel->getPhysicsBody()->setVelocity(this->_rWheel->getPhysicsBody()->getVelocity() + powPt);
     }
+}
+
+void Bike::rWheelRot(float pow){
+    
+    float velo = this->_rWheel->getPhysicsBody()->getAngularVelocity();
+    NJLOG(ST_FLOAT(velo).c_str());
+    velo += pow;
+    this->_rWheel->getPhysicsBody()->setAngularVelocity(velo);
 }
 /** パラメータサンプル
  this->setRider(Sprite::create());
