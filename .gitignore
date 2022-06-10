@@ -5,7 +5,7 @@ xcuserdata/
 *.xcscmblueprint
 *.xccheckout
 
-cocos2d/
+# cocos2d/
 ios-build/bin
 ios-build/build
 ios-build/lib
@@ -14,3 +14,14 @@ ios-build/Debug-iphonesimulator
 ios-build/DownHiller2.build
 ios-build/CMakeScripts
 ios-build/CMakeFiles
+*/.DS_Store
+
+# vscode
+.vscode
+
+# tool
+tool/*.h
+tool/*.cpp
+tool/*.json
+tool/jsons
+!tool/cocos_file_prm.json

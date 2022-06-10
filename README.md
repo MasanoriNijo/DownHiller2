@@ -28,5 +28,28 @@ target device families:ipad
 ビルドエラーの解消
 1,[Xcode] iconv が Undefined symbols と叱られた時は ?
 プロジェクトのBuild Phases に libiconv.tbd を追加します。
+ライブラリは Link binary With Libraries から追加します。
 https://atuweb.net/201708_xcode-iconv-undefined-symbols/
 
+2,プロジェクトの Other Linker Flags に -lz を設定する。
+https://nakamura001.hatenablog.com/entry/20120131/1328022869
+
+
+3,画像ファイルの保存
+1)エクスプローラーで
+Resources/imagesフォルダ内に直接入れる。
+2)Xcodeの右タブでAdd files to "Downhillor2"で、１の画像ファイルを指定
+Resources/imagesフォルダ内に直接入れる。
+3)XcodeのBuildPhases→Copy filesで２の画像ファイルを指定。
+　代わりに、代わりに、Copy Bundle Resourcesから、２の画像を削除。
+Resources/imagesフォルダ内に直接入れる。
+
+
+4,imobile
+SDKを入れる。
+https://sppartner.i-mobile.co.jp/webdoc/index.html#swift/sdk-setup.html
+
+cocos2dx用設定
+https://sppartner.i-mobile.co.jp/webdoc/index.html#cocos2dx/module-information.html
+
+corelocationframeworkを追加する。
