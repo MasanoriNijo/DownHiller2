@@ -21,6 +21,19 @@ Scene* GameScene::createScene() {
     return scene;
 }
 
+Scene* GameScene::createPhysicsScene() {
+    auto scene = Scene::Scene::createWithPhysics();
+    auto world = scene->getPhysicsWorld();
+    world->setGravity(GRAVITY_ACCERATION);
+    world->setSpeed(PHYSICS_WOELD_SPEED);
+#if DEBUG_PHYSICS_MASK
+    world->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
+#endif
+    auto layer = GameScene::create();
+    scene->addChild(layer);
+    return scene;
+}
+
 bool GameScene::init() {
     
     if (!Layer::init()) {

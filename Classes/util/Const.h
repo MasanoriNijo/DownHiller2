@@ -26,7 +26,7 @@ USING_NS_CC;
 
 // デフォルトのバックグラウンドカラーをセット 色相H:0-360,彩度S:0-100,明度V:0-100
 #define DEFAULT_COLOR_H 230
-#define DEFAULT_COLOR_S 0
+#define DEFAULT_COLOR_S 100
 #define DEFAULT_COLOR_V 100
 
 // spriteの上下

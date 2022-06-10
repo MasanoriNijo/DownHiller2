@@ -64,9 +64,6 @@ public:
     // 重心ポイントを追従するポイント
     Vec2 chasePt;
     
-    
-    
-    
     // riderアクション weightPtの位置により、画像差し替える。
     // riderのフレームサイズ
     Size frameSize;
@@ -89,10 +86,9 @@ public:
     void rWheelJump(float pow);
     void rWheelRot(float pow);
     
-    
     // 挙動に影響するパラメータ
     // 重心に追随する速度
-    float chaseVelo = 30;
+    float chaseVelo = 60;
     
     // wheel最大速度
     float maxWheelVelo = 20;

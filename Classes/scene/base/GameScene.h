@@ -19,6 +19,7 @@ protected:
 public:
     CREATE_FUNC(GameScene);
     static Scene* createScene();
+    static Scene* createPhysicsScene();
     CC_SYNTHESIZE_RETAIN(LayerColor*,_backColor,BackColor);
     CC_SYNTHESIZE_RETAIN(ImovileAd*,_ad,AD);
     CC_SYNTHESIZE_RETAIN(ColorChanger*,_colorChanger,ColorChanger);

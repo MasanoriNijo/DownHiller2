@@ -42,7 +42,6 @@ bool TestPhysicsScene::init() {
     if (!GameScene::init()) {
         return false;
     }
-    
     this->setPhysicsBody(PhysicsBody::createEdgeBox(this->winSize));
     this->getPhysicsBody()->setDynamic(false);
     this->setBackGroundColor();
@@ -52,8 +51,8 @@ bool TestPhysicsScene::init() {
     this->getBaseLine()->setLineWidth(11);
     points[0].x = -winSize.width/2;
     points[0].y = 20;
-    points[1].x = -winSize.width/2+100;
-    points[1].y = 30;
+    points[1].x = winSize.width/2;
+    points[1].y = 21;
     points[2].x = 0;
     points[2].y = -50;
     points[3].x = 30;
