@@ -1,6 +1,7 @@
 #include "TestScene.h"
 #include "TitleScene.h"
-#include "audio/include/AudioEngine.h"
+#include "SimpleAudioEngine.h"
+
 USING_NS_CC;
 
 Scene* TestScene::createScene() {
@@ -58,6 +59,7 @@ bool TestScene::init() {
 	}
 	this->scheduleUpdate();
 	auto director = Director::getInstance();
+	auto oto = CocosDenshion::SimpleAudioEngine::getInstance();
 	auto winSize = director->getWinSize();
 //	this->setProductTitle(Sprite::create("kotokotobokanmark.png")); //��Ŗ߂��Bdebugwaku.png back.png
 //	_productTitle->setPosition(Vec2(winSize.width / 2.0, winSize.height / 2));
@@ -190,7 +192,7 @@ bool TestScene::init() {
 	this->setPrmBtn(MenuItemImage::create("modoru_btn.png", "modoru_p_btn.png", [this](Ref* ref) {
 //		this->SetPrm();
 			this->SetPrm(this->index);
-//			CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("kati.mp3");
+			CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("kati.mp3");
 			auto scene = TitleScene::createScene();
 			auto transition = TransitionCrossFade::create(0.5, scene);
 			Director::getInstance()->replaceScene(transition);
@@ -213,7 +215,7 @@ bool TestScene::init() {
 
 	this->setPlusBtn(MenuItemImage::create("yazi_r.png", "yazi_rp.png", [this](Ref* ref) {
 //		this->SetPrm();
-//			CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("kati.mp3");
+			CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("kati.mp3");
 			this->SetPrm(this->index);
 			if(this->index<5) {
 				this->index++;
@@ -228,7 +230,7 @@ bool TestScene::init() {
 
 	this->setMinusBtn(MenuItemImage::create("yazi_l.png", "yazi_lp.png", [this](Ref* ref) {
 //		this->SetPrm();
-//			CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("kati.mp3");
+			CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("kati.mp3");
 			this->SetPrm(this->index);
 			if(this->index>0) {
 				this->index--;
@@ -646,7 +648,7 @@ void TestScene::update(float dt) {
 
 void TestScene::onEnterTransitionDidFinish() {
 
-//	CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("open.mp3", false);
+	CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("open.mp3", false);
 
 }
 

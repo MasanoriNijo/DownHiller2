@@ -18,7 +18,7 @@ public:
 	Kiraru* pop();
 
 	void SetBodyMaterial(PhysicsMaterial material0_);
-    void SetBodyMaterial_NoBound();CC_SYNTHESIZE_RETAIN(cocos2d::SpriteBatchNode*, _bachNode,BachNode)
+	void SetBodyMaterial_NoBound();CC_SYNTHESIZE_RETAIN(cocos2d::CCSpriteBatchNode*, _bachNode,BachNode)
 	;CC_SYNTHESIZE(cocos2d::Vector<Kiraru*>,_member,Member)
 	;
 

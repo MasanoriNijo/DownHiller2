@@ -1,7 +1,11 @@
 #include "FstScene.h"
 #include "TitleScene.h"
-#include "audio/include/AudioEngine.h"
+
+#include "SimpleAudioEngine.h"
+
+
 USING_NS_CC;
+
 
 Scene* FstScene::createScene() {
 
@@ -33,7 +37,7 @@ bool FstScene::init() {
 	}
 	this->scheduleUpdate();
 	auto director = Director::getInstance();
-   
+	auto oto = CocosDenshion::SimpleAudioEngine::getInstance();
 	auto winSize = director->getWinSize();
 	this->setProductTitle(Sprite::create("kotokotobokanmark.png")); //��Ŗ߂��Bdebugwaku.png back.png
 	_productTitle->setPosition(Vec2(winSize.width / 2.0, winSize.height / 2));
@@ -62,7 +66,8 @@ void FstScene::update(float dt) {
 
 void FstScene::onEnterTransitionDidFinish() {
 
-//    AudioEngine::play2d("open.mp3");
+	CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic(
+			"open.mp3", false);
 	this->addChild(this->getProductTitle());
 
 }
