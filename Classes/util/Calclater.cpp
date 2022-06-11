@@ -33,6 +33,10 @@ float Calclater::chgKaku(float rad) {
     return nomlKaku(x_);
 }
 
+float Calclater::chgKaku(Vec2 pt) {
+    return nomlKaku(Vec2::ZERO,pt);
+}
+
 float Calclater::nomlKaku(Vec2 pt1, Vec2 pt2){
     Vec2 dpt = pt2 - pt1;
     float angle = atan2f(dpt.y, dpt.x);
@@ -43,6 +47,10 @@ float Calclater::nomlKaku(Vec2 pt1, Vec2 pt2){
 float Calclater::chgRad(float kaku) {
     float x_ = -CC_DEGREES_TO_RADIANS(kaku);
     return nomlRad(x_);
+}
+
+float Calclater::chgRad(Vec2 pt) {
+    return nomlRad(Vec2::ZERO,pt);
 }
 
 float Calclater::nomlKaku(float kaku) {

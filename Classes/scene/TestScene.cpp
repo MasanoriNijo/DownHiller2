@@ -77,7 +77,7 @@ bool TestScene::init() {
     _pt4->setDefaultTouchEvent();
     this->mountNode(this->getPt4(), this->ctPt + Vec2(80,-40) , OBJ_LAYER_TOP);
     
-    this->setPt5(Sprite2::create("dot2.png"));
+    this->setPt5(Sprite2::create("HelloWorld.png"));
     _pt5->setName("pt5");
     _pt5->setDefaultTouchEvent();
     this->mountNode(this->getPt5(), this->ctPt + Vec2(0,80) , OBJ_LAYER_TOP);

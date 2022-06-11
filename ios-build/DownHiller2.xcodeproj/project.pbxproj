@@ -155,7 +155,7 @@
 		2D8C779551D5470D9142F936 /* CCEventAssetsManagerEx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 949D2FF9C6CC4A6295C50CC8 /* CCEventAssetsManagerEx.cpp */; };
 		2DB22ED8B349479B9961FF52 /* CCActionCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D51DB36D7D9643EE83FEFE56 /* CCActionCamera.cpp */; };
 		2DBCC33890E341908C7DF5EB /* CCUISingleLineTextField.mm in Sources */ = {isa = PBXBuildFile; fileRef = 88918CCDEABF45DA98E13172 /* CCUISingleLineTextField.mm */; };
-		302A0A1B28547AF80072A2D3 /* yazi.png in Resources */ = {isa = PBXBuildFile; fileRef = 302A0A1A28547AF80072A2D3 /* yazi.png */; };
+		302A0A1C28547CC70072A2D3 /* yazi.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 302A0A1A28547AF80072A2D3 /* yazi.png */; };
 		304DD07D28428F7E00AF0334 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 304DD07C28428F7D00AF0334 /* libiconv.tbd */; };
 		304DD0922843B6B800AF0334 /* irohamaru.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 304DD0912843B6B800AF0334 /* irohamaru.ttf */; };
 		304DD0952843C25B00AF0334 /* kirabon.plist in Resources */ = {isa = PBXBuildFile; fileRef = 304DD0942843C25B00AF0334 /* kirabon.plist */; };
@@ -1085,6 +1085,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
+				302A0A1C28547CC70072A2D3 /* yazi.png in CopyFiles */,
 				30CD03B028466DCD0023D844 /* back5.png in CopyFiles */,
 				30CD03B128466DCD0023D844 /* bike2.png in CopyFiles */,
 				30CD03B228466DCD0023D844 /* coin.png in CopyFiles */,
@@ -5196,7 +5197,6 @@
 			files = (
 				304DD0952843C25B00AF0334 /* kirabon.plist in Resources */,
 				13C698B4E7004DE3A17AF15F /* Images.xcassets in Resources */,
-				302A0A1B28547AF80072A2D3 /* yazi.png in Resources */,
 				304DD0AD2843C7CD00AF0334 /* btnon.mp3 in Resources */,
 				9E254895AA3647E1A64700ED /* LaunchScreen.storyboard in Resources */,
 				304DD0922843B6B800AF0334 /* irohamaru.ttf in Resources */,

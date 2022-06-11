@@ -51,6 +51,8 @@ public:
     // 標準的なタッチリスナーを設定する。
     void setDefaultTouchEvent();
     bool _touched;
+    Vec2 _touchPt;
+    Vec2 _localTouchPt;
     
     
     // 新規追加ここまで

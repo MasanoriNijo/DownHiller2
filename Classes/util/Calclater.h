@@ -18,9 +18,11 @@ public:
     
     // 反時計のRadian0-2piをSprite用の角度に変換する。時計回り0-360°
     float chgKaku(float degree);
+    float chgKaku(Vec2 pt);
         
     // 時計周りの角度0-360度をVec2用のRadian0-2Πに変換する。反時計回り　Vec2用
     float chgRad(float kaku);
+    float chgRad(Vec2 pt);
     
     // pt11→pt2のベクトルの反時計のRadian0-2piで出力
     float nomlRad(Vec2 pt1, Vec2 pt2);
