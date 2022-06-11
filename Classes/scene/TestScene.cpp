@@ -4,7 +4,7 @@
 #include "scene/TestPhysicsScene.h"
 
 TestScene::TestScene():
-_gameTitle(NULL), _baseLine(NULL), _ball(NULL), _btn1(NULL), _btn2(NULL), _btn3(NULL), _btn4(NULL), _menu(NULL), _touch(NULL), _pt1(NULL), _pt2(NULL), _pt3(NULL), _pt4(NULL), _pt5(NULL), _touchObj(NULL)
+_gameTitle(NULL), _baseLine(NULL), _ball(NULL), _btn1(NULL), _btn2(NULL), _btn3(NULL), _btn4(NULL), _menu(NULL), _touch(NULL), _pt1(NULL), _pt2(NULL), _pt3(NULL), _pt4(NULL), _pt5(NULL), _touchObj(NULL), _lineMaker(NULL)
 {}
 
 TestScene::~TestScene() {
@@ -23,6 +23,7 @@ TestScene::~TestScene() {
     CC_SAFE_RELEASE_NULL(_pt4);
     CC_SAFE_RELEASE_NULL(_pt5);
     CC_SAFE_RELEASE_NULL(_touchObj);
+    CC_SAFE_RELEASE_NULL(_lineMaker);
 }
 
 Scene* TestScene::createScene() {
@@ -47,7 +48,15 @@ bool TestScene::init() {
         this->transitonScene(TestPhysicsScene::createScene());
     }));
     this->setBtn3(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
-        this->transitonScene(TestScene::createScene());
+        this->_lineMaker->_wrkPt = _pt1->getPosition();
+        this->_lineMaker->_wrkDir = this->getCalc()->getNodeDict(_pt1);
+        this->_lineMaker->_trgPt = _pt2->getPosition();
+        this->_lineMaker->_trgDir = this->getCalc()->getNodeDict(_pt2);
+        this->_lineMaker->calcA();
+        _pt3->setPosition(_lineMaker->ptA);
+        _pt4->setPosition(_lineMaker->ptA_wrk);
+        _pt5->setPosition(_lineMaker->ptA_trg);
+        
     }));
     this->setBtn4(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
         _pt5->setPosition(this->getCalc()->getCrossPointLineA2B(_pt1->getPosition(),
@@ -66,7 +75,7 @@ bool TestScene::init() {
     _pt1->setAnchorPoint(achPt_);
     this->mountNode(this->getPt1(), this->ctPt + Vec2(-80,-40) , OBJ_LAYER_TOP);
     
-    this->setPt2(Sprite2::create("yazi.png"));
+    this->setPt2(Sprite2::create("yazi2.png"));
     _pt2->setName("pt2");
     _pt2->setDefaultTouchEvent();
     _pt2->setAnchorPoint(achPt_);
@@ -110,9 +119,11 @@ bool TestScene::init() {
                                         + ST_FLOAT(_touchObj->getRotation()));
         return true;
     };
-    
     //    this->getTouch()->applyTouchListenner(this);
     
+    this->setLineMaker(LineMaker::create());
+    this->_lineMaker->setPt(Sprite2::create("dot3.png"));
+    this->_lineMaker->setField(this);
     
     return true;
 }

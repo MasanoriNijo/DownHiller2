@@ -45,6 +45,9 @@ public:
     // 内積を算出
     float getDot(Vec2 A, Vec2 B);
     
+    // 差分
+    float diffRadA2B(Vec2 A, Vec2 B);
+    
     // 親が所属する座標系でのポジションを算出
     Vec2 getParentNodePosition(Node* nd);
     
@@ -56,8 +59,14 @@ public:
     // 同じ方向で指定した長さに変換する。
     Vec2 chgLength(Vec2 pt,float length);
 
+    // 同じ方向の標準ベクトルを算出
+    Vec2 nomalizeVec2(Vec2 pt);
+    
     // nodeの標準方向ベクトルを取得
     Vec2 getNodeDict(Node* nd);
+    
+    // 対象物が進行方向の左側にあるのか確認する。
+    bool chkLeft(Vec2 pt, Vec2 dst,Vec2 chkPt);
     
     
     // 複雑な座標の移動,変換系
@@ -71,7 +80,8 @@ public:
     // 2線分の交点を返す。
     Vec2 getCrossPointLineA2B(Vec2 a1, Vec2 a2,Vec2 b1, Vec2 b2);
     
-    
+    // 指定の線分に対して対照のポイントを変える。
+    Vec2 getMirrorPointLineA(Vec2 a1, Vec2 a2,Vec2 pt);
     
 };
 

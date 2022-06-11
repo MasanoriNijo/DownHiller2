@@ -2,6 +2,8 @@
 #define __LINEMAKER_H__
 
 #include "util/Const.h"
+#include "util/Calclater.h"
+#include "item/base/Sprite2.h"
 #include "cocos2d.h"
 USING_NS_CC;
 
@@ -12,16 +14,24 @@ protected:
     
 public:
     static LineMaker* create();
-    bool init() override;
+    bool init();
     CC_SYNTHESIZE_RETAIN(Sprite2*,_pt,Pt);
-    CC_SYNTHESIZE_RETAIN(CalcLater*,_calc,Calc);
-    void update(float dt) override;
-    void onEnterTransitionDidFinish() override;
+    CC_SYNTHESIZE_RETAIN(Calclater*,_calc,Calc);
+    CC_SYNTHESIZE_RETAIN(Node*,_field,Field);
+    void update(float dt);
+    void onEnterTransitionDidFinish();
     
     Vec2 _wrkPt; //現在の先頭のポイント
     Vec2 _wrkDir; // 現在の先頭のポイントの方向
-    Vec2 SetPt2; //前回セットしたポイント2
+    Vec2 _trgPt; // ライン描写先のポイント
+    Vec2 _trgDir; // ライン描写先のポイントの方向
     
+    void calcA();
+    Vec2 ptA;
+    Vec2 ptA_wrk;
+    Vec2 ptA_trg;
+    
+    Vec2 SetPt2; //前回セットしたポイント2
     Vec2 trgPt1; //ターゲットポイント；
     Vec2 trgPt2; //ターゲットポイント；
     

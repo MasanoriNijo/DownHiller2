@@ -158,6 +158,10 @@ Vec2 Calclater::chgLength(Vec2 pt,float length){
     return pt * (length / l);
 }
 
+Vec2 Calclater::nomalizeVec2(Vec2 pt){
+    return chgLength(pt, 1);
+}
+
 Vec2 Calclater::getNodeDict(Node* nd){
     Vec2 nml = Vec2(1,0);
     return rotByKaku(nml, nd->getRotation());
@@ -214,6 +218,29 @@ Vec2 Calclater::getCrossPointLineA2B(Vec2 a1, Vec2 a2,Vec2 b1, Vec2 b2){
     return a1 + rotByRad(Vec2(x_,0), basePt_rad);
 }
 
+float Calclater::diffRadA2B(Vec2 A, Vec2 B){
+    return nomlRad(Vec2::ZERO, B)-nomlRad(Vec2::ZERO, A);
+}
+
+// 指定の線分に対して対照のポイントを変える。
+Vec2 Calclater::getMirrorPointLineA(Vec2 a1, Vec2 a2,Vec2 pt){
+    Vec2 basePt = a2 - a1;
+    NJLOG(ST_VEC2(a2).c_str());
+    float basePt_rad = chgRad(basePt);
+    NJLOG(ST_FLOAT(basePt_rad).c_str());
+    Vec2 pt_ = rotByRad(pt-a1, -basePt_rad);
+    pt_.y *= -1;
+    return a1 + rotByRad(pt_, basePt_rad);
+}
+
+bool Calclater::chkLeft(Vec2 pt, Vec2 dst,Vec2 chkPt){
+    Vec2 basePt = pt + dst - pt;
+    float basePt_rad = chgRad(basePt);
+
+    Vec2 pt_ = rotByRad(chkPt-pt, -basePt_rad);
+    
+    return pt_.y>0;
+}
 
 /** パラメータサンプル
  */
