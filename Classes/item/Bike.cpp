@@ -245,16 +245,16 @@ void Bike::_judeAction(float dt){
         }
     }
     
-    // 前輪ジャンプ
-    if(fWheelTouched && weightPt.x > riderActionSpan){
-        Vec2 noml_ = this->getCalc()->cordinaneX(fWheelTouchPt, weightPt-chasePt);
-        if(noml_.x < -10){
-            this->fWheelJump(noml_.x * 1.0);
-            float length = -(weightPt - chasePt).length();
-            Vec2 destPt = this->getCalc()->chasePt(weightPt, chasePt, length);
-            return;
-        }
-    }
+//    // 前輪ジャンプ
+//    if(fWheelTouched && weightPt.x > riderActionSpan){
+//        Vec2 noml_ = this->getCalc()->cordinaneX(fWheelTouchPt, weightPt-chasePt);
+//        if(noml_.x < -10){
+//            this->fWheelJump(noml_.x * 1.0);
+//            float length = -(weightPt - chasePt).length();
+//            Vec2 destPt = this->getCalc()->chasePt(weightPt, chasePt, length);
+//            return;
+//        }
+//    }
 
     // 後輪ブレーキ
     if(weightPt.x < -4 * riderActionSpan + 2 && weightPt.y < -4 * riderActionSpan + 2){

@@ -57,27 +57,27 @@ bool TestScene::init() {
     this->getMenu()->alignItemsHorizontallyWithPadding(20);
     this->mountNode(this->getMenu(), this->ctPt + Vec2(0,-100), OBJ_LAYER_TOP);
     
-    this->setPt1(Sprite2::create("dot3.png"));
+    this->setPt1(Sprite2::create("yazi.png"));
     _pt1->setName("pt1");
     _pt1->setDefaultTouchEvent();
     this->mountNode(this->getPt1(), this->ctPt + Vec2(-80,-40) , OBJ_LAYER_TOP);
     
-    this->setPt2(Sprite2::create("dot2.png"));
+    this->setPt2(Sprite2::create("yazi.png"));
     _pt2->setName("pt2");
     _pt2->setDefaultTouchEvent();
     this->mountNode(this->getPt2(), this->ctPt + Vec2(-30,-40) , OBJ_LAYER_TOP);
     
-    this->setPt3(Sprite2::create("dot3.png"));
+    this->setPt3(Sprite2::create("yazi.png"));
     _pt3->setName("pt3");
     _pt3->setDefaultTouchEvent();
     this->mountNode(this->getPt3(), this->ctPt + Vec2(30,-40) , OBJ_LAYER_TOP);
     
-    this->setPt4(Sprite2::create("dot2.png"));
+    this->setPt4(Sprite2::create("yazi.png"));
     _pt4->setName("pt4");
     _pt4->setDefaultTouchEvent();
     this->mountNode(this->getPt4(), this->ctPt + Vec2(80,-40) , OBJ_LAYER_TOP);
     
-    this->setPt5(Sprite2::create("HelloWorld.png"));
+    this->setPt5(Sprite2::create("dot2.png"));
     _pt5->setName("pt5");
     _pt5->setDefaultTouchEvent();
     this->mountNode(this->getPt5(), this->ctPt + Vec2(0,80) , OBJ_LAYER_TOP);
