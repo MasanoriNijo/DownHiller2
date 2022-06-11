@@ -19,6 +19,7 @@ public:
     void onEnterTransitionDidFinish() override;
     
     Vec2 _wrkPt; //現在の先頭のポイント
+    Vec2 _wrkDir; // 現在の先頭のポイントの方向
     Vec2 SetPt2; //前回セットしたポイント2
     
     Vec2 trgPt1; //ターゲットポイント；

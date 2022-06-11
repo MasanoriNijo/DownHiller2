@@ -56,14 +56,22 @@ public:
     // 同じ方向で指定した長さに変換する。
     Vec2 chgLength(Vec2 pt,float length);
 
-    // 移動系
+    // nodeの標準方向ベクトルを取得
+    Vec2 getNodeDict(Node* nd);
+    
+    
+    // 複雑な座標の移動,変換系
     // destPtに追従する。
     Vec2 chasePt(Vec2 destPt,Vec2& chasePt,float velo,float dt);
     Vec2 chasePt(Vec2 destPt,Vec2& chasePt,float length);
     
-    
     // ptX をx軸と見立てた時のptの位置を計算
     Vec2 cordinaneX(Vec2 ptX, Vec2 pt);
+    
+    // 2線分の交点を返す。
+    Vec2 getCrossPointLineA2B(Vec2 a1, Vec2 a2,Vec2 b1, Vec2 b2);
+    
+    
     
 };
 

@@ -158,6 +158,11 @@ Vec2 Calclater::chgLength(Vec2 pt,float length){
     return pt * (length / l);
 }
 
+Vec2 Calclater::getNodeDict(Node* nd){
+    Vec2 nml = Vec2(1,0);
+    return rotByKaku(nml, nd->getRotation());
+}
+
 Vec2 Calclater::chasePt(Vec2 destPt,Vec2& chasePt,float velo,float dt){
     
     Vec2 dst_ = destPt - chasePt;
@@ -188,6 +193,27 @@ Vec2 Calclater::cordinaneX(Vec2 ptX, Vec2 pt){
     float rad = nomlRad(Vec2::ZERO, ptX);
     return rotByRad(pt, -rad);
 }
+
+Vec2 Calclater::getCrossPointLineA2B(Vec2 a1, Vec2 a2,Vec2 b1, Vec2 b2){
+    
+    Vec2 basePt = a2 - a1;
+    NJLOG(ST_VEC2(a2).c_str());
+    float basePt_rad = chgRad(basePt);
+    NJLOG(ST_FLOAT(basePt_rad).c_str());
+    Vec2 a2_ = rotByRad(a2-a1, -basePt_rad);
+    Vec2 b1_ = rotByRad(b1-a1, -basePt_rad);
+    Vec2 b2_ = rotByRad(b2-a1, -basePt_rad);
+    
+    float x_;
+    if(b1_.y == b2_.y) {
+        return Vec2::ZERO;
+    }else{
+        x_ = (b1_.x * b2_.y - b2_.x * b1_.y)/(b2_.y - b1_.y);
+    }
+    
+    return a1 + rotByRad(Vec2(x_,0), basePt_rad);
+}
+
 
 /** パラメータサンプル
  */

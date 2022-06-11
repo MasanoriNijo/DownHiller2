@@ -156,6 +156,7 @@
 		2DB22ED8B349479B9961FF52 /* CCActionCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D51DB36D7D9643EE83FEFE56 /* CCActionCamera.cpp */; };
 		2DBCC33890E341908C7DF5EB /* CCUISingleLineTextField.mm in Sources */ = {isa = PBXBuildFile; fileRef = 88918CCDEABF45DA98E13172 /* CCUISingleLineTextField.mm */; };
 		302A0A1C28547CC70072A2D3 /* yazi.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 302A0A1A28547AF80072A2D3 /* yazi.png */; };
+		302A0A1F2854D7830072A2D3 /* dot.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 302A0A1D2854D7570072A2D3 /* dot.png */; };
 		304DD07D28428F7E00AF0334 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 304DD07C28428F7D00AF0334 /* libiconv.tbd */; };
 		304DD0922843B6B800AF0334 /* irohamaru.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 304DD0912843B6B800AF0334 /* irohamaru.ttf */; };
 		304DD0952843C25B00AF0334 /* kirabon.plist in Resources */ = {isa = PBXBuildFile; fileRef = 304DD0942843C25B00AF0334 /* kirabon.plist */; };
@@ -1085,6 +1086,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
+				302A0A1F2854D7830072A2D3 /* dot.png in CopyFiles */,
 				302A0A1C28547CC70072A2D3 /* yazi.png in CopyFiles */,
 				30CD03B028466DCD0023D844 /* back5.png in CopyFiles */,
 				30CD03B128466DCD0023D844 /* bike2.png in CopyFiles */,
@@ -1381,6 +1383,7 @@
 		302A0A182853AECC0072A2D3 /* LineMaker.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = LineMaker.cpp; path = Classes/util/LineMaker.cpp; sourceTree = SOURCE_ROOT; };
 		302A0A192853AECC0072A2D3 /* LineMaker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LineMaker.h; path = Classes/util/LineMaker.h; sourceTree = SOURCE_ROOT; };
 		302A0A1A28547AF80072A2D3 /* yazi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = yazi.png; path = Resources/images/yazi.png; sourceTree = SOURCE_ROOT; };
+		302A0A1D2854D7570072A2D3 /* dot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dot.png; path = Resources/images/dot.png; sourceTree = SOURCE_ROOT; };
 		3046F905F6394011A84D52BA /* CCTechnique.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = CCTechnique.cpp; path = cocos2d/cocos/renderer/CCTechnique.cpp; sourceTree = SOURCE_ROOT; };
 		304DD07C28428F7D00AF0334 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		304DD0912843B6B800AF0334 /* irohamaru.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = irohamaru.ttf; path = Resources/fonts/irohamaru.ttf; sourceTree = SOURCE_ROOT; };
@@ -3493,6 +3496,7 @@
 		304DD0AE2843C8C200AF0334 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				302A0A1D2854D7570072A2D3 /* dot.png */,
 				302A0A1A28547AF80072A2D3 /* yazi.png */,
 				30CD036228466D190023D844 /* back5.png */,
 				30CD034728466D160023D844 /* bike2.png */,
