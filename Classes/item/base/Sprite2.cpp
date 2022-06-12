@@ -93,11 +93,11 @@ void Sprite2::setDefaultTouchEvent(){
         Rect targetBox = this->getBoundingBox();
         targetBox.origin -= this->getParent()->getPosition();
 //        Vec2 touchPt = _calc->getParentNodePosition(<#Node *nd#>)
-        NJLOG("A");
-        NJLOG(ST_VEC2(touch->getLocation()).c_str());
-        NJLOG(ST_VEC2(this->getPosition()).c_str());
-        NJLOG(ST_VEC2(this->getParent()->getPosition()).c_str());
-        NJLOG("B");
+//        NJLOG("A");
+//        NJLOG(ST_VEC2(touch->getLocation()).c_str());
+//        NJLOG(ST_VEC2(this->getPosition()).c_str());
+//        NJLOG(ST_VEC2(this->getParent()->getPosition()).c_str());
+//        NJLOG("B");
         if(targetBox.containsPoint(touch->getLocation())){
             _touched = true;
             _touchPt.set(touch->getLocation());

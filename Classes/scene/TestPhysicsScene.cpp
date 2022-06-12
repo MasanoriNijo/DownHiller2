@@ -78,10 +78,24 @@ bool TestPhysicsScene::init() {
         this->transitonScene(TestScene::createScene());
     }));
     this->setBtn3(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
-        this->_lineMaker->setWorkPt(_pt1->getPosition());
-        this->_lineMaker->setWorkDir(this->getCalc()->getNodeDict(_pt1));
-        this->_lineMaker->setTergetPt(_pt2->getPosition());
-        this->_lineMaker->setTargetDir(this->getCalc()->getNodeDict(_pt2));
+        
+        Vec2 adPt = Vec2(80,-80);
+        
+        Vec2 stPt = Vec2(10,250);
+        Vec2 stDir = Vec2(6,-10);
+        Vec2 edPt = stPt + adPt;
+        Vec2 edDir = Vec2(5,5);
+
+        for(int i= 0;i<10;i++){
+            this->_lineMaker->setWorkPt(stPt);
+            this->_lineMaker->setWorkDir(stDir);
+            this->_lineMaker->setTergetPt(edPt);
+            this->_lineMaker->setTargetDir(edDir);
+            stPt = edPt;
+            stDir = edDir;
+            edPt = stPt + adPt;
+            edDir = Vec2(stDir.x,-stDir.y);
+        }
         
         this->_lineMaker->madeCircleLine();
         

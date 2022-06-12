@@ -44,6 +44,7 @@ public:
     Vec2 pt4;
     Vec2 pt5;
     Vec2 points[100];
+    
 };
 
 #endif

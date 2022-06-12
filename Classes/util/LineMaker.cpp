@@ -54,8 +54,8 @@ void LineMaker::addLinePts(Vec2 pt_) {
 }
 
 void LineMaker::madeCircleLine(){
-    _dotSpriteCnt=0;
-    _linePtCnt=0;
+//    _dotSpriteCnt=0;
+//    _linePtCnt=0;
     
     // workとtargetの交点
     ptA = _calc->getCrossPointLineA2B(_wrkPt,_wrkPt + _wrkDir, _trgPt, _trgPt + _trgDir);
