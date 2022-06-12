@@ -45,8 +45,8 @@ public:
     // 内積を算出
     float getDot(Vec2 A, Vec2 B);
     
-    // 差分
-    float diffRadA2B(Vec2 A, Vec2 B);
+    // // A→Bまで回転するための角度、leftFlg 左回り
+    float diffRadA2B(Vec2 A, Vec2 B, bool leftFlg);
     
     // 親が所属する座標系でのポジションを算出
     Vec2 getParentNodePosition(Node* nd);

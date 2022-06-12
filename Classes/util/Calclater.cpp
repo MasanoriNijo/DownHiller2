@@ -218,8 +218,24 @@ Vec2 Calclater::getCrossPointLineA2B(Vec2 a1, Vec2 a2,Vec2 b1, Vec2 b2){
     return a1 + rotByRad(Vec2(x_,0), basePt_rad);
 }
 
-float Calclater::diffRadA2B(Vec2 A, Vec2 B){
-    return nomlRad(Vec2::ZERO, B)-nomlRad(Vec2::ZERO, A);
+// A→Bまで回転するための角度、leftFlg 反時計、左回り、座標系正回り
+float Calclater::diffRadA2B(Vec2 A, Vec2 B, bool leftFlg){
+    
+    float radA = nomlRad(Vec2::ZERO, A);
+    float radB = nomlRad(Vec2::ZERO, B);
+    if (leftFlg){
+        if (radA < radB){
+            return radB - radA;
+        }else{
+            return 2 * M_PI - radB + radA;
+        }
+    }else{
+        if (radA < radB){
+            return 2 * M_PI - radB + radA;
+        }else{
+            return radB - radA;
+        }
+    }
 }
 
 // 指定の線分に対して対照のポイントを変える。

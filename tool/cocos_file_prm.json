@@ -3,6 +3,12 @@
   "superClass": "Ref",
   "synthesize_retains": [
     ["Sprite2", "_pt", "Pt"],
-    ["CalcLater", "_calc", "Calc"]
+    ["CalcLater", "_calc", "Calc"],
+    ["Node", "_field", "Field"],
+    ["Vec2", "_calc", "Calc"],
+    ["Vec2", "_wrkPt", "WorkPt"],
+    ["Vec2", "_wrkDir", "WorkDir"],
+    ["Vec2", "_trgPt", "TergetPt"],
+    ["Vec2", "_trgDir", "TargetDir"]
   ]
 }

@@ -18,35 +18,31 @@ public:
     CC_SYNTHESIZE_RETAIN(Sprite2*,_pt,Pt);
     CC_SYNTHESIZE_RETAIN(Calclater*,_calc,Calc);
     CC_SYNTHESIZE_RETAIN(Node*,_field,Field);
+    CC_SYNTHESIZE(Vec2,_wrkPt,WorkPt);
+    CC_SYNTHESIZE(Vec2,_wrkDir,WorkDir);
+    CC_SYNTHESIZE(Vec2,_trgPt,TergetPt);
+    CC_SYNTHESIZE(Vec2,_trgDir,TargetDir);
     void update(float dt);
     void onEnterTransitionDidFinish();
     
-    Vec2 _wrkPt; //現在の先頭のポイント
-    Vec2 _wrkDir; // 現在の先頭のポイントの方向
-    Vec2 _trgPt; // ライン描写先のポイント
-    Vec2 _trgDir; // ライン描写先のポイントの方向
-    
-    void calcA();
+    void madeCircleLine();
     Vec2 ptA;
     Vec2 ptA_wrk;
     Vec2 ptA_trg;
     
-    Vec2 SetPt2; //前回セットしたポイント2
-    Vec2 trgPt1; //ターゲットポイント；
-    Vec2 trgPt2; //ターゲットポイント；
     
-    Vec2 _linePts[200]; //シェープ作成用のドット。
+    // PhysicsBodyのポリゴン生成用
+    Vec2 _linePts[200];
     int _linePtCnt = 0;
-    // 可視化したライン
+    float porigonPich = 20;
+    
+    // 可視化したラインを保持
     Vector<Sprite*> _dotSprites;
     int _dotSpriteCnt = 0;
     
     void addLinePts(Vec2 pt_);
     
-    
-    // 図形を描く
-    void madeCurve(int w, int h, float endRad);
-    Vec2 moveSin(float r, float w, float rad1, int dl, float endrad);
+
 };
 
 #endif

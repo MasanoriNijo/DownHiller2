@@ -83,7 +83,6 @@ int SpritePool::getSize() {
 
 Sprite* SpritePool::pop() {
 	if (_pool.empty()) {
-		//CCLOG("�v�[������ł�!");
 		return nullptr;
 	}
 	auto em = _pool.back();
