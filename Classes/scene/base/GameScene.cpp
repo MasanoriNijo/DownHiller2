@@ -1,7 +1,7 @@
 #include "GameScene.h"
 
 GameScene::GameScene():
-_backColor(NULL), _ad(NULL), _colorChanger(NULL), _calc(NULL), _debugLine(NULL), _debugMemo(NULL)
+_backColor(NULL), _ad(NULL), _colorChanger(NULL), _calc(NULL), _debugLine(NULL), _debugMemo(NULL), _noMoveLayer(NULL)
 {}
 
 GameScene::~GameScene() {
@@ -12,6 +12,7 @@ GameScene::~GameScene() {
     CC_SAFE_RELEASE_NULL(_calc);
     CC_SAFE_RELEASE_NULL(_debugLine);
     CC_SAFE_RELEASE_NULL(_debugMemo);
+    CC_SAFE_RELEASE_NULL(_noMoveLayer);
 }
 
 Scene* GameScene::createScene() {
@@ -53,9 +54,14 @@ bool GameScene::init() {
     // Calclaterをセット
     this->setCalc(Calclater::create());
     
-    #if ENABLE_DEBUG_LINE
+    // 固定画面をセット
+    this->setNoMoveLayer(ParallaxNode::create());
+    this->addChild(_noMoveLayer,OBJ_LAYER_TOP);
+    
+    
+#if ENABLE_DEBUG_LINE
     this->drawDebugLine();
-    #endif
+#endif
     
     return true;
 }
@@ -68,7 +74,11 @@ void GameScene::setBackGroundColor(float h, float s, float v){
     this->setColorChanger(ColorChanger::create());
     this->getColorChanger()->SetColor(h, s, v);
     this->setBackColor(LayerColor::create(this->getColorChanger()->getColor4B()));
-    this->addChild(this->_backColor,OBJ_LAYER_BUTTOM);
+    if(_noMoveLayer){
+        _noMoveLayer->addChild(this->_backColor,(int)OBJ_LAYER_BUTTOM,Vec2::ZERO,this->_backColor->getPosition());
+    }else{
+        this->addChild(this->_backColor,OBJ_LAYER_BUTTOM);
+    }
 }
 
 void GameScene::onEnterTransitionDidFinish() {
@@ -102,13 +112,23 @@ void GameScene::transitonScene(Scene* scene){
         Director::getInstance()->replaceScene(transition);
     });
     this->runAction(transition_);
-//    this->getColorChanger()->transitonScene(this, scene);
+    //    this->getColorChanger()->transitonScene(this, scene);
 }
 
 void GameScene::mountNode(Node* sp, Vec2 pt, float lvl){
     sp->setPosition(pt);
     sp->setGlobalZOrder(lvl);
-    this->addChild(sp);
+    if(_noMoveLayer){
+        _noMoveLayer->addChild(sp,(int)lvl, Vec2::ZERO,sp->getPosition());
+    }else{
+        this->addChild(sp);
+    }
+}
+
+void GameScene::mountScroleNode(Node* sp, Vec2 pt, float lvl){
+    sp->setPosition(pt);
+    sp->setGlobalZOrder(lvl);
+        this->addChild(sp);
 }
 
 void GameScene::drawDebugLine(){
@@ -138,16 +158,16 @@ void GameScene::drawDebugLine(){
 }
 
 /** パラメータサンプル
-this->setBackColor(LayerColor::create());
-this->getBackColor();
-this->setAD(ImovileAd::create());
-this->getAD();
-this->setColorChanger(ColorChanger::create());
-this->getColorChanger();
-this->setCalc(Calclater::create());
-this->getCalc();
-this->setDebugLine(DrawNode::create());
-this->getDebugLine();
-this->setDebugMemo(Label::create());
-this->getDebugMemo();
-*/
+ this->setBackColor(LayerColor::create());
+ this->getBackColor();
+ this->setAD(ImovileAd::create());
+ this->getAD();
+ this->setColorChanger(ColorChanger::create());
+ this->getColorChanger();
+ this->setCalc(Calclater::create());
+ this->getCalc();
+ this->setDebugLine(DrawNode::create());
+ this->getDebugLine();
+ this->setDebugMemo(Label::create());
+ this->getDebugMemo();
+ */

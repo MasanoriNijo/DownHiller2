@@ -2,13 +2,14 @@
 #include "audio/include/AudioEngine.h"
 
 Bike::Bike():
-_rider(NULL),_fWheel(NULL), _rWheel(NULL), _BikeState(BikeState::NOML)
+_rider(NULL),_fWheel(NULL), _rWheel(NULL),_sceneChasePt(NULL), _BikeState(BikeState::NOML)
 {}
 
 Bike::~Bike() {
     CC_SAFE_RELEASE_NULL(_rider);
     CC_SAFE_RELEASE_NULL(_fWheel);
     CC_SAFE_RELEASE_NULL(_rWheel);
+    CC_SAFE_RELEASE_NULL(_sceneChasePt);
     _frJoint->removeFormWorld();
     _frJoint = nullptr;
 }
@@ -38,7 +39,8 @@ bool Bike::init() {
     frameSize = Size(_rider->getContentSize().width / 7, _rider->getContentSize().height / 7);
     
     _rider->setPosition(Vec2(18,22));
-    this->addChild(_rider);
+    this->addChild(_rider,OBJ_LAYER_TOP);
+    _rider->setGlobalZOrder(OBJ_LAYER_TOP);// これを入れないとライダーが下に隠れて見えなくなる。
     this->riderImageAction();
     
     // wheelをセットする。
@@ -56,10 +58,17 @@ bool Bike::init() {
     
     //debug
     this->setDebugPt(Sprite::create("dot3.png"));
+    this->getDebugPt()->setGlobalZOrder(OBJ_LAYER_TOP);
     this->addChild(this->getDebugPt());
     this->setParentSprite(Sprite::create("dot2.png"));
+    this->getParentSprite()->setGlobalZOrder(OBJ_LAYER_TOP);
     this->addChild(this->getParentSprite());
     
+    // sceneスクロール用
+    this->setSceneChasePt(Sprite::create("dot2.png"));
+    _sceneChasePt->setPosition(sceneOffset);
+    _sceneChasePt->setGlobalZOrder(OBJ_LAYER_TOP);
+//    this->addChild(_sceneChasePt);
     return true;
 }
 
@@ -127,6 +136,9 @@ void Bike::update(float dt) {
     this->riderImageAction();
     this->_positionSyncToWheel();
     this->_judeAction(dt);
+    
+    // 画面のスクロールポイントを設定する。
+//    _this->getPosition() + sceneOffset;
     // todo
 }
 
@@ -183,6 +195,11 @@ void Bike::riderImageAction(){
     
     this->getRider()->setTextureRect(Rect(frameSize.width * (x_+3), frameSize.height * (y_+3),
                                           frameSize.width, frameSize.height));
+    // 画面スクロールポイントを指定
+    if(_sceneChasePt){
+        _sceneChasePt->setPosition(this->getPosition()+sceneOffset);
+    }    
+    
 }
 
 void Bike::_judeAction(float dt){

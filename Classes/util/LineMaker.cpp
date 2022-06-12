@@ -88,6 +88,7 @@ void LineMaker::madeCircleLine(){
         stPt_ctPt = _wrkPt - ctPt;
     }else{
         stPt_ctPt = _calc->getMirrorPointLineA(ptA,ptA + ptA_dir,_trgPt)-ctPt;
+        addLinePts(stPt_ctPt + ctPt);
     }
     
     Vec2 edPt_ctPt;
@@ -106,6 +107,7 @@ void LineMaker::madeCircleLine(){
         addLinePts(_calc->rotByRad(stPt_ctPt, drad * i) + ctPt);
         i++;
     }
+    addLinePts(_trgPt);
 }
 
 

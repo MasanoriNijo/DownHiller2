@@ -36,6 +36,7 @@ public:
     CC_SYNTHESIZE_RETAIN(Sprite*,_rider,Rider);
     CC_SYNTHESIZE_RETAIN(Sprite*,_fWheel,Fwheel);
     CC_SYNTHESIZE_RETAIN(Sprite*,_rWheel,Rwheel);
+    CC_SYNTHESIZE_RETAIN(Sprite*,_sceneChasePt,SceneChasePt);
     CC_SYNTHESIZE(PhysicsJointDistance*,_frJoint,FRJoint);
     void update(float dt) override;
     void onEnterTransitionDidFinish() override;
@@ -92,6 +93,9 @@ public:
     
     // wheel最大速度
     float maxWheelVelo = 20;
+    
+    // 画面スクロール関連
+    Vec2 sceneOffset = Vec2(60,-20);
     
 };
 

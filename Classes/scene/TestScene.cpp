@@ -122,7 +122,7 @@ bool TestScene::init() {
     //    this->getTouch()->applyTouchListenner(this);
     
     this->setLineMaker(LineMaker::create());
-    this->_lineMaker->setPt(Sprite2::create("dot3.png"));
+    this->_lineMaker->setPt(Sprite2::create("dot2.png"));
     this->_lineMaker->setField(this);
     
     return true;
