@@ -45,6 +45,9 @@ public:
     Vec2 pt5;
     Vec2 points[100];
     
+    void courceA();
+    void courceB();
+    void courceC();
 };
 
 #endif

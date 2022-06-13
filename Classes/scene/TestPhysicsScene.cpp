@@ -53,11 +53,11 @@ bool TestPhysicsScene::init() {
     this->getBaseLine()->setColor(Color3B::WHITE);
     this->getBaseLine()->setLineWidth(11);
     points[0].x = -winSize.width/2;
-    points[0].y = 130;
+    points[0].y = 200;
     points[1].x = -winSize.width/2;
-    points[1].y = 100;
-    points[2].x = -winSize.width/2 + 80;
-    points[2].y = 101;
+    points[1].y = 120;
+    points[2].x = 160;
+    points[2].y = 120;
     this->getBaseLine()->drawPoly(points, 3, false, Color4F::GREEN);
     auto _material = PHYSICSBODY_MATERIAL_DEFAULT;
     _material.restitution = 0.0001f;
@@ -75,70 +75,14 @@ bool TestPhysicsScene::init() {
         this->transitonScene(TestPhysicsScene::createScene());
     }));
     this->setBtn2(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
-        this->transitonScene(TestScene::createScene());
+        courceA();
     }));
     this->setBtn3(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
-        
-        Vec2 adPt = Vec2(100,-50);
-        
-        Vec2 stPt = Vec2(30,300);
-        Vec2 stDir = Vec2(1,-1);
-        Vec2 edPt = stPt + adPt;
-        Vec2 edDir = Vec2(1,1);
-
-        for(int i= 0;i<50;i++){
-            this->_lineMaker->setWorkPt(stPt);
-            this->_lineMaker->setWorkDir(stDir);
-            this->_lineMaker->setTergetPt(stPt + adPt);
-            this->_lineMaker->setTargetDir(edDir);
-            this->_lineMaker->madeCircleLine();
-            stPt = edPt;
-            stDir = edDir;
-            edPt = stPt + adPt;
-            edDir = Vec2(stDir.x,-stDir.y);
-        }
-        
-        
-        
-        auto _material = PHYSICSBODY_MATERIAL_DEFAULT;
-        _material.restitution = 0.0001f;
-        _material.friction =1.0f;
-        _material.density = 0.001f;
-        auto node = Node::create();
-//        node->autorelease();
-        node->setPhysicsBody(PhysicsBody::createEdgeChain(_lineMaker->_linePts, _lineMaker->_linePtCnt,_material));
-        node->getPhysicsBody()->setDynamic(false);
-        node->getPhysicsBody()->setCategoryBitmask(CT_COURCE);
-        node->getPhysicsBody()->setCollisionBitmask(CT_WHEEL);
-        node->getPhysicsBody()->setContactTestBitmask(CT_WHEEL);
-        node->getPhysicsBody()->setTag(TG_COURCE);
-        this->addChild(node);
+        courceB();
     }));
     this->setBtn4(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
-        
-        Vec2 stPt = Vec2(10,250);
-        Vec2 stDir = Vec2(10,-3);
-        this->_lineMaker->setWorkPt(stPt);
-        this->_lineMaker->setWorkDir(stDir);
-        this->_lineMaker->setTergetPt(stPt + Vec2(1000,-10));
-        this->_lineMaker->setTargetDir(Vec2(stDir.x,-stDir.y));
-        
-        this->_lineMaker->madeCircleLine();
-        
-        auto _material = PHYSICSBODY_MATERIAL_DEFAULT;
-        _material.restitution = 0.0001f;
-        _material.friction =1.0f;
-        _material.density = 0.001f;
-        auto node = Node::create();
-
-        node->setPhysicsBody(PhysicsBody::createEdgeChain(_lineMaker->_linePts, _lineMaker->_linePtCnt,_material));
-        node->getPhysicsBody()->setDynamic(false);
-        node->getPhysicsBody()->setCategoryBitmask(CT_COURCE);
-        node->getPhysicsBody()->setCollisionBitmask(CT_WHEEL);
-        node->getPhysicsBody()->setContactTestBitmask(CT_WHEEL);
-        node->getPhysicsBody()->setTag(TG_COURCE);
-        this->addChild(node);
-        
+//        courceC();
+        _bike->rWheelJump(15);
     }));
     this->setMenu(Menu::create(this->getBtn1(),this->getBtn2(),this->getBtn3(),this->getBtn4(),NULL));
     this->getMenu()->alignItemsHorizontallyWithPadding(20);
@@ -168,7 +112,7 @@ bool TestPhysicsScene::init() {
 void TestPhysicsScene::onEnterTransitionDidFinish() {
     // Bikeをセットする。
     this->setBike(Bike::create());
-    this->mountScroleNode(this->getBike(), this->ctPt+Vec2(-100,120), OBJ_LAYER_TOP);
+    this->mountScroleNode(this->getBike(), this->ctPt+Vec2(-100,150), OBJ_LAYER_TOP);
     this->mountScroleNode(this->getBike()->getSceneChasePt(), this->getBike()->getPosition() + this->getBike()->sceneOffset, OBJ_LAYER_TOP);
     this->getBike()->SetJoint();
     this->getScene()->getPhysicsWorld()->addJoint(this->getBike()->getFRJoint());
@@ -180,11 +124,13 @@ void TestPhysicsScene::onEnterTransitionDidFinish() {
     
     this->scheduleUpdate();
     
-    
+}
+
+void TestPhysicsScene::courceA(){
     // debug
     Vec2 adPt = Vec2(100,-50);
     
-    Vec2 stPt = Vec2(30,300);
+    Vec2 stPt = Vec2(120,300);
     Vec2 stDir = Vec2(1,-1);
     Vec2 edPt = stPt + adPt;
     Vec2 edDir = Vec2(1,1);
@@ -214,6 +160,35 @@ void TestPhysicsScene::onEnterTransitionDidFinish() {
     node->getPhysicsBody()->setContactTestBitmask(CT_WHEEL);
     node->getPhysicsBody()->setTag(TG_COURCE);
     this->addChild(node);
+}
+
+void TestPhysicsScene::courceB(){
+    
+    Vec2 stPt = Vec2(120,250);
+    Vec2 stDir = Vec2(10,-3);
+    this->_lineMaker->setWorkPt(stPt);
+    this->_lineMaker->setWorkDir(stDir);
+    this->_lineMaker->setTergetPt(stPt + Vec2(1000,-10));
+    this->_lineMaker->setTargetDir(Vec2(stDir.x,-stDir.y));
+    
+    this->_lineMaker->madeCircleLine();
+    
+    auto _material = PHYSICSBODY_MATERIAL_DEFAULT;
+    _material.restitution = 0.0001f;
+    _material.friction =1.0f;
+    _material.density = 0.001f;
+    auto node = Node::create();
+
+    node->setPhysicsBody(PhysicsBody::createEdgeChain(_lineMaker->_linePts, _lineMaker->_linePtCnt,_material));
+    node->getPhysicsBody()->setDynamic(false);
+    node->getPhysicsBody()->setCategoryBitmask(CT_COURCE);
+    node->getPhysicsBody()->setCollisionBitmask(CT_WHEEL);
+    node->getPhysicsBody()->setContactTestBitmask(CT_WHEEL);
+    node->getPhysicsBody()->setTag(TG_COURCE);
+    this->addChild(node);
+}
+
+void TestPhysicsScene::courceC(){
     
 }
 
@@ -222,7 +197,7 @@ void TestPhysicsScene::update(float dt) {
     if(this->getBike()){
         //        this->getDebugMemo()->setString("重心位置:" + ST_VEC2(this->getBike()->weightPt));
         //        this->getDebugMemo()->setString("bike:" + ST_VEC2(this->getBike()->getPosition()) + " " + ST_INT(this->getBike()->getRotation()));
-        this->getDebugMemo()->setString("bike:" + ST_NODE(_bike));
+        this->getDebugMemo()->setString("swaip:" + ST_VEC2(_bike->weightPt));
     }
 }
 
