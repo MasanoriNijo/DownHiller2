@@ -92,7 +92,7 @@ public:
     float chaseVelo = 60;
     
     // wheel最大速度
-    float maxWheelVelo = 20;
+    float maxWheelVelo = 200;
     
     // 画面スクロール関連
     Vec2 sceneOffset = Vec2(60,-20);

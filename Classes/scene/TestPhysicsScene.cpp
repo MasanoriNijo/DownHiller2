@@ -79,25 +79,26 @@ bool TestPhysicsScene::init() {
     }));
     this->setBtn3(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
         
-        Vec2 adPt = Vec2(80,-80);
+        Vec2 adPt = Vec2(100,-50);
         
-        Vec2 stPt = Vec2(10,250);
-        Vec2 stDir = Vec2(6,-10);
+        Vec2 stPt = Vec2(30,300);
+        Vec2 stDir = Vec2(1,-1);
         Vec2 edPt = stPt + adPt;
-        Vec2 edDir = Vec2(5,5);
+        Vec2 edDir = Vec2(1,1);
 
-        for(int i= 0;i<10;i++){
+        for(int i= 0;i<50;i++){
             this->_lineMaker->setWorkPt(stPt);
             this->_lineMaker->setWorkDir(stDir);
-            this->_lineMaker->setTergetPt(edPt);
+            this->_lineMaker->setTergetPt(stPt + adPt);
             this->_lineMaker->setTargetDir(edDir);
+            this->_lineMaker->madeCircleLine();
             stPt = edPt;
             stDir = edDir;
             edPt = stPt + adPt;
             edDir = Vec2(stDir.x,-stDir.y);
         }
         
-        this->_lineMaker->madeCircleLine();
+        
         
         auto _material = PHYSICSBODY_MATERIAL_DEFAULT;
         _material.restitution = 0.0001f;
@@ -178,6 +179,42 @@ void TestPhysicsScene::onEnterTransitionDidFinish() {
     this->getBike()->scheduleUpdate();
     
     this->scheduleUpdate();
+    
+    
+    // debug
+    Vec2 adPt = Vec2(100,-50);
+    
+    Vec2 stPt = Vec2(30,300);
+    Vec2 stDir = Vec2(1,-1);
+    Vec2 edPt = stPt + adPt;
+    Vec2 edDir = Vec2(1,1);
+
+    for(int i= 0;i<100;i++){
+        this->_lineMaker->setWorkPt(stPt);
+        this->_lineMaker->setWorkDir(stDir);
+        this->_lineMaker->setTergetPt(stPt + adPt);
+        this->_lineMaker->setTargetDir(edDir);
+        this->_lineMaker->madeCircleLine();
+        stPt = edPt;
+        stDir = edDir;
+        edPt = stPt + adPt;
+        edDir = Vec2(stDir.x,-stDir.y);
+    }
+    
+    auto _material = PHYSICSBODY_MATERIAL_DEFAULT;
+    _material.restitution = 0.0001f;
+    _material.friction =1.0f;
+    _material.density = 0.001f;
+    auto node = Node::create();
+//        node->autorelease();
+    node->setPhysicsBody(PhysicsBody::createEdgeChain(_lineMaker->_linePts, _lineMaker->_linePtCnt,_material));
+    node->getPhysicsBody()->setDynamic(false);
+    node->getPhysicsBody()->setCategoryBitmask(CT_COURCE);
+    node->getPhysicsBody()->setCollisionBitmask(CT_WHEEL);
+    node->getPhysicsBody()->setContactTestBitmask(CT_WHEEL);
+    node->getPhysicsBody()->setTag(TG_COURCE);
+    this->addChild(node);
+    
 }
 
 void TestPhysicsScene::update(float dt) {

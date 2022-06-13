@@ -32,7 +32,7 @@ public:
     
     
     // PhysicsBodyのポリゴン生成用
-    Vec2 _linePts[200];
+    Vec2 _linePts[2000];
     int _linePtCnt = 0;
     float porigonPich = 20;
     

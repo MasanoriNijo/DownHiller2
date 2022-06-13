@@ -88,7 +88,7 @@ void Bike::_addPhysicsToWheel(Sprite* _wheel){
     _wheel->getPhysicsBody()->setDynamic(true);
     //    _wheel->getPhysicsBody()->setAngularDamping(wheelRotDump_);
     //    _wheel->getPhysicsBody()->setLinearDamping(veloDump);
-    _wheel->getPhysicsBody()->setVelocityLimit(maxWheelVelo);
+//    _wheel->getPhysicsBody()->setVelocityLimit(maxWheelVelo);
     _wheel->getPhysicsBody()->setRotationEnable(true);
 }
 
@@ -216,7 +216,7 @@ void Bike::_judeAction(float dt){
     if(rWheelTouched && weightPt.x < -riderActionSpan){
         Vec2 noml_ = this->getCalc()->cordinaneX(rWheelTouchPt, weightPt-chasePt);
         if(noml_.x < -10){
-            this->rWheelJump(noml_.x * 5);
+            this->rWheelJump(noml_.x);
             float length = (weightPt - chasePt).length();
             Vec2 destPt = this->getCalc()->chasePt(weightPt, chasePt, length);
             return;
@@ -227,7 +227,7 @@ void Bike::_judeAction(float dt){
     if(fWheelTouched && fWheelTouched && weightPt.x > -riderActionSpan && weightPt.x < riderActionSpan){
         Vec2 noml_ = this->getCalc()->cordinaneX(fWheelTouchPt + rWheelTouchPt, weightPt-chasePt);
         if(noml_.x < -10){
-            this->fWheelJump(noml_.x * 1.5);
+            this->fWheelJump(noml_.x);
             float length = (weightPt - chasePt).length();
             Vec2 destPt = this->getCalc()->chasePt(weightPt, chasePt, length);
             return;
@@ -318,7 +318,7 @@ void Bike::fWheelJump(float pow){
     if(fWheelTouched){
         Vec2 powPt = this->getCalc()->chgLength(fWheelTouchPt, pow);
         this->_fWheel->getPhysicsBody()->setVelocity(this->_fWheel->getPhysicsBody()->getVelocity() + powPt);
-        this->_rWheel->getPhysicsBody()->setVelocity(this->_rWheel->getPhysicsBody()->getVelocity() + powPt);
+        this->_rWheel->getPhysicsBody()->setVelocity(this->_fWheel->getPhysicsBody()->getVelocity() + powPt);
     }
 }
 
@@ -326,7 +326,7 @@ void Bike::rWheelJump(float pow){
     if(rWheelTouched){
         Vec2 powPt = this->getCalc()->chgLength(rWheelTouchPt, pow);
         this->_rWheel->getPhysicsBody()->setVelocity(this->_rWheel->getPhysicsBody()->getVelocity() + powPt);
-        this->_fWheel->getPhysicsBody()->setVelocity(this->_fWheel->getPhysicsBody()->getVelocity() + powPt);
+        this->_fWheel->getPhysicsBody()->setVelocity(this->_rWheel->getPhysicsBody()->getVelocity() + powPt);
     }
 }
 

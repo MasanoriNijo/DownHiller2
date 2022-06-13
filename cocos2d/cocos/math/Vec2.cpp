@@ -332,6 +332,7 @@ Vec2 Vec2::getIntersectPoint(const Vec2& A, const Vec2& B, const Vec2& C, const 
     return Vec2::ZERO;
 }
 
+
 const Vec2 Vec2::ZERO(0.0f, 0.0f);
 const Vec2 Vec2::ONE(1.0f, 1.0f);
 const Vec2 Vec2::UNIT_X(1.0f, 0.0f);
