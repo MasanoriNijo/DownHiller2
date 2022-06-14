@@ -74,31 +74,22 @@ public:
     enum class BikeState {READY, NOML, BREAK, GOAL, BIG, BALUNE, SCOPE, ALLOW, SLIDE, STOP, JUMP, JUMP2};
     CC_SYNTHESIZE(BikeState,_BikeState,BikeState);
     
-    // bikeの操作
+    // bikeの前後輪の接地状態
     bool fWheelTouched;
     Vec2 fWheelTouchPt;
     bool rWheelTouched;
     Vec2 rWheelTouchPt;
-    void fWheelUp(float pow);
-    void fWheeldown(float pow);
-    void fWheelJump(float pow);
-    void rWheelUp(float pow);
-    void rWheeldown(float pow);
-    void rWheelJump(float pow);
-    void rWheelRot(float pow);
     
-    // 単純化
+    // bikeへのアクション
     bool jump(float lvl);
     void werry(float lvl);
-    void fWerry(float lvl);
-    void rWerry(float lvl);
     void dush(float lvl);
     void stop();
-    float frJumpPow = 2;
+    float frJumpPow = 0.2;
     float fJumpPow = 0.5;
     float rJumpPow = 1;
     float weeryPow = 0.25;
-    float dushPow = 10;
+    float dushPow = 1;
     
     // 挙動に影響するパラメータ
     // 重心に追随する速度
