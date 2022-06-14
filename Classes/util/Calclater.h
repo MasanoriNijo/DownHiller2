@@ -18,9 +18,11 @@ public:
     
     // 反時計のRadian0-2piをSprite用の角度に変換する。時計回り0-360°
     float chgKaku(float degree);
+    float chgKaku(Vec2 pt);
         
     // 時計周りの角度0-360度をVec2用のRadian0-2Πに変換する。反時計回り　Vec2用
     float chgRad(float kaku);
+    float chgRad(Vec2 pt);
     
     // pt11→pt2のベクトルの反時計のRadian0-2piで出力
     float nomlRad(Vec2 pt1, Vec2 pt2);
@@ -43,6 +45,9 @@ public:
     // 内積を算出
     float getDot(Vec2 A, Vec2 B);
     
+    // // A→Bまで回転するための角度、leftFlg 左回り
+    float diffRadA2B(Vec2 A, Vec2 B, bool leftFlg);
+    
     // 親が所属する座標系でのポジションを算出
     Vec2 getParentNodePosition(Node* nd);
     
@@ -54,14 +59,29 @@ public:
     // 同じ方向で指定した長さに変換する。
     Vec2 chgLength(Vec2 pt,float length);
 
-    // 移動系
+    // 同じ方向の標準ベクトルを算出
+    Vec2 nomalizeVec2(Vec2 pt);
+    
+    // nodeの標準方向ベクトルを取得
+    Vec2 getNodeDict(Node* nd);
+    
+    // 対象物が進行方向の左側にあるのか確認する。
+    bool chkLeft(Vec2 pt, Vec2 dst,Vec2 chkPt);
+    
+    
+    // 複雑な座標の移動,変換系
     // destPtに追従する。
     Vec2 chasePt(Vec2 destPt,Vec2& chasePt,float velo,float dt);
     Vec2 chasePt(Vec2 destPt,Vec2& chasePt,float length);
     
-    
     // ptX をx軸と見立てた時のptの位置を計算
     Vec2 cordinaneX(Vec2 ptX, Vec2 pt);
+    
+    // 2線分の交点を返す。
+    Vec2 getCrossPointLineA2B(Vec2 a1, Vec2 a2,Vec2 b1, Vec2 b2);
+    
+    // 指定の線分に対して対照のポイントを変える。
+    Vec2 getMirrorPointLineA(Vec2 a1, Vec2 a2,Vec2 pt);
     
 };
 

@@ -91,15 +91,32 @@ void Sprite2::setDefaultTouchEvent(){
     this->getTouch()->getTouchListenner()->onTouchBegan = [this](Touch* touch,Event* event) {
         _touched = false;
         Rect targetBox = this->getBoundingBox();
+        targetBox.origin -= this->getParent()->getPosition();
+//        Vec2 touchPt = _calc->getParentNodePosition(<#Node *nd#>)
+//        NJLOG("A");
+//        NJLOG(ST_VEC2(touch->getLocation()).c_str());
+//        NJLOG(ST_VEC2(this->getPosition()).c_str());
+//        NJLOG(ST_VEC2(this->getParent()->getPosition()).c_str());
+//        NJLOG("B");
         if(targetBox.containsPoint(touch->getLocation())){
             _touched = true;
-            this->setPosition(touch->getLocation());
+            _touchPt.set(touch->getLocation());
+            _localTouchPt = _touchPt - this->getPosition();
+            _localTouchPt.set(_calc->rotByKaku(_localTouchPt, -this->getRotation()));
+            
+            NJLOG(ST_VEC2(_localTouchPt).c_str());
+//            this->setPosition(touch->getLocation());
         }
         return true;
     };
     this->getTouch()->getTouchListenner()->onTouchMoved = [this](Touch* touch,Event* event) {
         if(_touched){
-            this->setPosition(touch->getLocation());
+            Vec2 standartPt = _calc->rotByKaku(_localTouchPt, this->getRotation());
+            Vec2 nol_ = _calc->cordinaneX(standartPt,touch->getLocation() - _touchPt);
+            this->setPosition(this->getPosition() + _calc->chgLength(standartPt, nol_.x));
+            this->setRotation(this->getRotation() + _calc->chgKaku(Vec2(_localTouchPt.length(),nol_.y)));
+            _touchPt.set(touch->getLocation());
+            NJLOG(ST_NODE(this).c_str());
         }
         return true;
     };

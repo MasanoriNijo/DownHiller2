@@ -36,6 +36,7 @@ public:
     CC_SYNTHESIZE_RETAIN(Sprite*,_rider,Rider);
     CC_SYNTHESIZE_RETAIN(Sprite*,_fWheel,Fwheel);
     CC_SYNTHESIZE_RETAIN(Sprite*,_rWheel,Rwheel);
+    CC_SYNTHESIZE_RETAIN(Sprite*,_sceneChasePt,SceneChasePt);
     CC_SYNTHESIZE(PhysicsJointDistance*,_frJoint,FRJoint);
     void update(float dt) override;
     void onEnterTransitionDidFinish() override;
@@ -70,28 +71,39 @@ public:
     float riderActionSpan = 5;
     void riderImageAction();
     
+    // bikeの制御不能をある程度制限する。
+    void _bikeBehaviorControl();
+    
     enum class BikeState {READY, NOML, BREAK, GOAL, BIG, BALUNE, SCOPE, ALLOW, SLIDE, STOP, JUMP, JUMP2};
     CC_SYNTHESIZE(BikeState,_BikeState,BikeState);
     
-    // bikeの操作
+    // bikeの前後輪の接地状態
     bool fWheelTouched;
     Vec2 fWheelTouchPt;
     bool rWheelTouched;
     Vec2 rWheelTouchPt;
-    void fWheelUp(float pow);
-    void fWheeldown(float pow);
-    void fWheelJump(float pow);
-    void rWheelUp(float pow);
-    void rWheeldown(float pow);
-    void rWheelJump(float pow);
-    void rWheelRot(float pow);
     
+    // bikeへのアクション
+    bool jump(float lvl);
+    void werry(float lvl);
+    void dush(float lvl);
+    void stop();
+    float frJumpPow = 0.2;
+    float fJumpPow = 0.5;
+    float rJumpPow = 1;
+    float weeryPow = 0.25;
+    float dushPow = 1;
+    float maxJumpSpeed = 30;
+    float maxRotSpeed = 30;
     // 挙動に影響するパラメータ
     // 重心に追随する速度
-    float chaseVelo = 60;
+    float chaseVelo = 100;
     
     // wheel最大速度
-    float maxWheelVelo = 20;
+    float maxWheelVelo = 200;
+    
+    // 画面スクロール関連
+    Vec2 sceneOffset = Vec2(60,-20);
     
 };
 

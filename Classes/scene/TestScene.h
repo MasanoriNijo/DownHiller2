@@ -4,6 +4,7 @@
 #include "scene/base/GameScene.h"
 #include "util/TouchEventHelper.h"
 #include "item/base/Sprite2.h"
+#include "util/LineMaker.h"
 #include "cocos2d.h"
 USING_NS_CC;
 
@@ -31,6 +32,7 @@ public:
   CC_SYNTHESIZE_RETAIN(Sprite2*,_pt4,Pt4);
   CC_SYNTHESIZE_RETAIN(Sprite2*,_pt5,Pt5);
   CC_SYNTHESIZE_RETAIN(Node*,_touchObj,TouchObj);
+  CC_SYNTHESIZE_RETAIN(LineMaker*,_lineMaker,LineMaker);
   void update(float dt) override;
   void onEnterTransitionDidFinish() override;
 };
