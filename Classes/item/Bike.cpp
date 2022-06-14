@@ -135,6 +135,7 @@ void Bike::SetJoint(){
 void Bike::update(float dt) {
     this->riderImageAction();
     this->_positionSyncToWheel();
+    this->_bikeBehaviorControl();
     this->_judeAction(dt);
     
     // 画面のスクロールポイントを設定する。
@@ -199,6 +200,10 @@ void Bike::riderImageAction(){
     if(_sceneChasePt){
         _sceneChasePt->setPosition(this->getPosition()+sceneOffset);
     }
+    
+}
+
+void Bike::_bikeBehaviorControl(){
     
 }
 
@@ -322,14 +327,29 @@ bool Bike::jump(float lvl){
     if(rWheelTouched){
         if(fWheelTouched){
             powPt = this->getCalc()->chgLength(rWheelTouchPt, -frJumpPow + lvl);
+            if(powPt.length()>maxJumpSpeed){
+                powPt = this->getCalc()->chgLength(powPt, maxJumpSpeed);
+            }
+            NJLOG("前後輪ジャンプ");
+            NJLOG(ST_VEC2(powPt).c_str());
         }else{
             powPt = this->getCalc()->chgLength(rWheelTouchPt, -rJumpPow + lvl);
+            if(powPt.length()>maxJumpSpeed){
+                powPt = this->getCalc()->chgLength(powPt, maxJumpSpeed);
+            }
+            NJLOG("後輪ジャンプ");
+            NJLOG(ST_VEC2(powPt).c_str());
         }
         this->_rWheel->getPhysicsBody()->setVelocity(this->_rWheel->getPhysicsBody()->getVelocity() + powPt);
         this->_fWheel->getPhysicsBody()->setVelocity(this->_rWheel->getPhysicsBody()->getVelocity());
     }else{
         if(fWheelTouched){
             powPt = this->getCalc()->chgLength(fWheelTouchPt, fJumpPow + lvl);
+            if(powPt.length()>maxJumpSpeed){
+                powPt = this->getCalc()->chgLength(powPt, maxJumpSpeed);
+            }
+            NJLOG("前輪ジャンプ");
+            NJLOG(ST_VEC2(powPt).c_str());
             this->_fWheel->getPhysicsBody()->setVelocity(this->_fWheel->getPhysicsBody()->getVelocity() - powPt);
             this->_rWheel->getPhysicsBody()->setVelocity(this->_fWheel->getPhysicsBody()->getVelocity());
         }else{
@@ -343,6 +363,9 @@ void Bike::werry(float lvl){
     Vec2 rfpt_ = _fWheel->getPosition()-_rWheel->getPosition();
     Vec2 dirPt_ = this->getCalc()->rotByRad(rfpt_, M_PI/2);
     Vec2 powPt = this->getCalc()->chgLength(dirPt_, weeryPow * lvl);
+    if(powPt.length()>maxJumpSpeed){
+        powPt = this->getCalc()->chgLength(powPt, maxRotSpeed);
+    }
     this->_fWheel->getPhysicsBody()->setVelocity(this->_fWheel->getPhysicsBody()->getVelocity() + powPt);
     this->_rWheel->getPhysicsBody()->setVelocity(this->_rWheel->getPhysicsBody()->getVelocity() - powPt);
 }

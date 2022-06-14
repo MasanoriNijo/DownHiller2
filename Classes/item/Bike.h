@@ -71,6 +71,9 @@ public:
     float riderActionSpan = 5;
     void riderImageAction();
     
+    // bikeの制御不能をある程度制限する。
+    void _bikeBehaviorControl();
+    
     enum class BikeState {READY, NOML, BREAK, GOAL, BIG, BALUNE, SCOPE, ALLOW, SLIDE, STOP, JUMP, JUMP2};
     CC_SYNTHESIZE(BikeState,_BikeState,BikeState);
     
@@ -90,7 +93,8 @@ public:
     float rJumpPow = 1;
     float weeryPow = 0.25;
     float dushPow = 1;
-    
+    float maxJumpSpeed = 30;
+    float maxRotSpeed = 30;
     // 挙動に影響するパラメータ
     // 重心に追随する速度
     float chaseVelo = 100;
