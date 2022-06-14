@@ -88,19 +88,21 @@ public:
     void rWheelRot(float pow);
     
     // 単純化
-    bool jump(int lvl);
-    void werry(int lvl);
-    void dush(int lvl);
+    bool jump(float lvl);
+    void werry(float lvl);
+    void fWerry(float lvl);
+    void rWerry(float lvl);
+    void dush(float lvl);
     void stop();
-    float frJumpPow = 10;
-    float fJumpPow = 5;
-    float rJumpPow = 20;
-    float weeryPow = 8;
+    float frJumpPow = 2;
+    float fJumpPow = 0.5;
+    float rJumpPow = 1;
+    float weeryPow = 0.25;
     float dushPow = 10;
     
     // 挙動に影響するパラメータ
     // 重心に追随する速度
-    float chaseVelo = 60;
+    float chaseVelo = 100;
     
     // wheel最大速度
     float maxWheelVelo = 200;
