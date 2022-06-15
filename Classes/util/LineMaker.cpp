@@ -41,6 +41,7 @@ void LineMaker::addLinePts(Vec2 pt_) {
     if (this->_dotSprites.size() <= _dotSpriteCnt) {
         auto sp_ = Sprite::createWithTexture(this->getPt()->getTexture());
         this->_dotSprites.pushBack(sp_);
+        sp_->setGlobalZOrder(OBJ_LAYER_LV1);
         sp_->setPosition(pt_);
         _field->addChild(sp_);
     } else {

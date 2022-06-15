@@ -42,7 +42,6 @@ public:
     
     void addLinePts(Vec2 pt_);
     
-
 };
 
 #endif

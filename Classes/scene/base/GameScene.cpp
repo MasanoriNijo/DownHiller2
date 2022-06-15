@@ -128,7 +128,7 @@ void GameScene::mountNode(Node* sp, Vec2 pt, float lvl){
 void GameScene::mountScroleNode(Node* sp, Vec2 pt, float lvl){
     sp->setPosition(pt);
     sp->setGlobalZOrder(lvl);
-        this->addChild(sp);
+    this->addChild(sp);
 }
 
 void GameScene::drawDebugLine(){

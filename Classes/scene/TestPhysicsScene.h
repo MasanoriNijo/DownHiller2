@@ -5,6 +5,7 @@
 #include "util/TouchEventHelper.h"
 #include "util/LineMaker.h"
 #include "item/Bike.h"
+#include "item/StraightLine.h"
 #include "cocos2d.h"
 USING_NS_CC;
 
