@@ -66,7 +66,7 @@ bool TestScene::init() {
     }));
     this->setBtn4(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
 //        _stLine->drawLine(_pt1->getPosition(), _pt2->getPosition());
-        _cvLine->drawCurve(_pt1->getPosition(), this->getCalc()->getNodeDict(_pt1), _pt2->getPosition(), this->getCalc()->getNodeDict(_pt2), 60);
+        _cvLine->drawCurve(_pt1->getPosition(), this->getCalc()->getNodeDict(_pt1), _pt2->getPosition(), this->getCalc()->getNodeDict(_pt2), 30);
     }));
     this->setMenu(Menu::create(this->getBtn1(),this->getBtn2(),this->getBtn3(),this->getBtn4(),NULL));
     this->getMenu()->alignItemsHorizontallyWithPadding(20);

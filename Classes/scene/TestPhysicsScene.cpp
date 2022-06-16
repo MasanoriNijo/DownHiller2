@@ -6,7 +6,7 @@
 #include "scene/HelloWorldScene.h"
 
 TestPhysicsScene::TestPhysicsScene():
-_gameTitle(NULL), _baseLine(NULL), _ball(NULL), _btn1(NULL), _btn2(NULL), _btn3(NULL), _btn4(NULL), _menu(NULL),_touch(NULL),_bike(NULL),_contactlistener(NULL), _pt1(NULL), _pt2(NULL), _lineMaker(NULL)
+_gameTitle(NULL), _baseLine(NULL), _ball(NULL), _btn1(NULL), _btn2(NULL), _btn3(NULL), _btn4(NULL), _menu(NULL),_touch(NULL),_bike(NULL),_contactlistener(NULL), _pt1(NULL), _pt2(NULL), _lineMaker(NULL),_curveLine(NULL)
 {}
 
 TestPhysicsScene::~TestPhysicsScene() {
@@ -25,6 +25,7 @@ TestPhysicsScene::~TestPhysicsScene() {
     CC_SAFE_RELEASE_NULL(_pt1);
     CC_SAFE_RELEASE_NULL(_pt2);
     CC_SAFE_RELEASE_NULL(_lineMaker);
+    CC_SAFE_RELEASE_NULL(_curveLine);
     GameScene::~GameScene();
 }
 
@@ -106,6 +107,10 @@ bool TestPhysicsScene::init() {
     this->_lineMaker->setPt(Sprite2::create("dot2.png"));
     this->_lineMaker->setField(this);
     
+    this->setCurveLine(CurveLine::create());
+    _curveLine->setGlobalZOrder(OBJ_LAYER_TOP);
+    this->addChild(_curveLine);
+    
     return true;
 }
 
@@ -165,21 +170,16 @@ void TestPhysicsScene::courceA(){
 void TestPhysicsScene::courceB(){
     
     Vec2 stPt = Vec2(120,250);
-    Vec2 stDir = Vec2(10,-3);
-    this->_lineMaker->setWorkPt(stPt);
-    this->_lineMaker->setWorkDir(stDir);
-    this->_lineMaker->setTergetPt(stPt + Vec2(1000,-10));
-    this->_lineMaker->setTargetDir(Vec2(stDir.x,-stDir.y));
-    
-    this->_lineMaker->madeCircleLine();
-    
+    Vec2 stDir = Vec2(10,-20);
+    _curveLine->drawCurve(stPt, stDir, stPt + Vec2(500,0), Vec2(stDir.x,-stDir.y), 100);
+
     auto _material = PHYSICSBODY_MATERIAL_DEFAULT;
     _material.restitution = 0.0001f;
     _material.friction =1.0f;
     _material.density = 0.001f;
     auto node = Node::create();
 
-    node->setPhysicsBody(PhysicsBody::createEdgeChain(_lineMaker->_linePts, _lineMaker->_linePtCnt,_material));
+    node->setPhysicsBody(PhysicsBody::createEdgeChain(_curveLine->_polygonPts, _curveLine->_polygonPtCnt,_material));
     node->getPhysicsBody()->setDynamic(false);
     node->getPhysicsBody()->setCategoryBitmask(CT_COURCE);
     node->getPhysicsBody()->setCollisionBitmask(CT_WHEEL);
