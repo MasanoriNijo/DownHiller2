@@ -1,8 +1,15 @@
 {
-  "className": "StraightLine",
+  "className": "CurveLine",
   "superClass": "Sprite2",
   "synthesize_retains": [
-    ["Sprite", "_fDot","FDot"],
-    ["Sprite", "_rDot","RDot"]
+    ["Sprite", "_straightA","StraightA"],
+    ["Sprite", "_straightB","StraightB"],
+    ["SpriteBatchNode*", "_dot","Dot"],
+    ["Sprite", "_curveA","CurveA"],
+    ["Sprite", "_curveB","CurveB"],
+    ["Sprite", "_curveC","CurveC"],
+    ["Sprite", "_curveD","CurveD"],
+    ["Sprite", "_curveE","CurveE"],
+    ["Sprite", "_curveF","CurveF"]
   ]
 }

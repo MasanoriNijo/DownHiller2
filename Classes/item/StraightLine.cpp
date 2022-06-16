@@ -24,6 +24,7 @@ bool StraightLine::init() {
     if(!Sprite2::initWithFile("c_straight.png")){
         return false;
     }
+    this->setGlobalZOrder(OBJ_LAYER_TOP);
     _length = this->getContentSize().width;
     this->setAnchorPoint(Vec2(0,0.5));
     this->setFDot(Sprite::create("c_dot.png"));

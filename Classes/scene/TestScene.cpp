@@ -4,7 +4,7 @@
 #include "scene/TestPhysicsScene.h"
 
 TestScene::TestScene():
-_gameTitle(NULL), _baseLine(NULL), _ball(NULL), _btn1(NULL), _btn2(NULL), _btn3(NULL), _btn4(NULL), _menu(NULL), _touch(NULL), _pt1(NULL), _pt2(NULL), _pt3(NULL), _pt4(NULL), _pt5(NULL), _touchObj(NULL), _lineMaker(NULL),_stLine(NULL)
+_gameTitle(NULL), _baseLine(NULL), _ball(NULL), _btn1(NULL), _btn2(NULL), _btn3(NULL), _btn4(NULL), _menu(NULL), _touch(NULL), _pt1(NULL), _pt2(NULL), _pt3(NULL), _pt4(NULL), _pt5(NULL), _touchObj(NULL), _lineMaker(NULL),_stLine(NULL),_cvLine(NULL)
 {}
 
 TestScene::~TestScene() {
@@ -25,7 +25,7 @@ TestScene::~TestScene() {
     CC_SAFE_RELEASE_NULL(_touchObj);
     CC_SAFE_RELEASE_NULL(_lineMaker);
     CC_SAFE_RELEASE_NULL(_stLine);
-    
+    CC_SAFE_RELEASE_NULL(_cvLine);
 }
 
 Scene* TestScene::createScene() {
@@ -65,7 +65,8 @@ bool TestScene::init() {
         
     }));
     this->setBtn4(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
-        _stLine->drawLine(_pt1->getPosition(), _pt2->getPosition());
+//        _stLine->drawLine(_pt1->getPosition(), _pt2->getPosition());
+        _cvLine->drawCurve(_pt1->getPosition(), this->getCalc()->getNodeDict(_pt1), _pt2->getPosition(), this->getCalc()->getNodeDict(_pt2), 60);
     }));
     this->setMenu(Menu::create(this->getBtn1(),this->getBtn2(),this->getBtn3(),this->getBtn4(),NULL));
     this->getMenu()->alignItemsHorizontallyWithPadding(20);
@@ -105,6 +106,11 @@ bool TestScene::init() {
     _stLine->setGlobalZOrder(OBJ_LAYER_TOP);
     _stLine->setDefaultTouchEvent();
     this->addChild(_stLine);
+    
+    this->setCvLine(CurveLine::create());
+    _cvLine->setGlobalZOrder(OBJ_LAYER_TOP);
+    _cvLine->setDefaultTouchEvent();
+    this->addChild(_cvLine);
     
     this->setTouch(TouchEventHelper::create());
     this->getTouch()->getTouchListenner()->onTouchBegan = [this](Touch* touch,Event* event) {
