@@ -50,40 +50,17 @@ bool TestPhysicsScene::init() {
 //    this->setPhysicsBody(PhysicsBody::createEdgeBox(this->winSize));
 //    this->getPhysicsBody()->setDynamic(false);
     this->setBackGroundColor();
-    
-    this->setBaseLine(DrawNode::create());
-    this->getBaseLine()->setColor(Color3B::WHITE);
-    this->getBaseLine()->setLineWidth(11);
-    points[0].x = -winSize.width/2;
-    points[0].y = 200;
-    points[1].x = -winSize.width/2;
-    points[1].y = 120;
-    points[2].x = 160;
-    points[2].y = 120;
-    this->getBaseLine()->drawPoly(points, 3, false, Color4F::GREEN);
-    auto _material = PHYSICSBODY_MATERIAL_DEFAULT;
-    _material.restitution = 0.0001f;
-    _material.friction =1.0f;
-    _material.density = 0.001f;
-    this->getBaseLine()->setPhysicsBody(PhysicsBody::createEdgeChain(points, 3,_material));
-    this->getBaseLine()->getPhysicsBody()->setDynamic(false);
-    this->getBaseLine()->getPhysicsBody()->setCategoryBitmask(CT_COURCE);
-    this->getBaseLine()->getPhysicsBody()->setCollisionBitmask(CT_WHEEL);
-    this->getBaseLine()->getPhysicsBody()->setContactTestBitmask(CT_WHEEL);
-    this->getBaseLine()->getPhysicsBody()->setTag(TG_COURCE);
-    this->mountScroleNode(this->getBaseLine(), ctPt, OBJ_LAYER_LV1);
-    
+        
     this->setBtn1(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
         this->transitonScene(TestPhysicsScene::createScene());
     }));
     this->setBtn2(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
-        courceA();
+        this->transitonScene(TitleScene::createScene());
     }));
     this->setBtn3(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
         courceB();
     }));
     this->setBtn4(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
-//        courceC();
         _bike->jump(-20);
     }));
     this->setMenu(Menu::create(this->getBtn1(),this->getBtn2(),this->getBtn3(),this->getBtn4(),NULL));
@@ -115,14 +92,14 @@ bool TestPhysicsScene::init() {
     this->setCourceMaker(CourceMaker::create());
 //    _courceMaker->setGlobalZOrder(OBJ_LAYER_TOP);
     this->addChild(_courceMaker);
-    
+    courceC();
     return true;
 }
 
 void TestPhysicsScene::onEnterTransitionDidFinish() {
     // Bikeをセットする。
     this->setBike(Bike::create());
-    this->mountScroleNode(this->getBike(), this->ctPt+Vec2(-100,150), OBJ_LAYER_TOP);
+    this->mountScroleNode(this->getBike(), Vec2::ZERO, OBJ_LAYER_TOP);
     this->mountScroleNode(this->getBike()->getSceneChasePt(), this->getBike()->getPosition() + this->getBike()->sceneOffset, OBJ_LAYER_TOP);
     this->getBike()->SetJoint();
     this->getScene()->getPhysicsWorld()->addJoint(this->getBike()->getFRJoint());
@@ -138,65 +115,40 @@ void TestPhysicsScene::onEnterTransitionDidFinish() {
 
 void TestPhysicsScene::courceA(){
     // debug
-    Vec2 adPt = Vec2(100,-50);
-    
-    Vec2 stPt = Vec2(120,300);
-    Vec2 stDir = Vec2(1,-1);
-    Vec2 edPt = stPt + adPt;
-    Vec2 edDir = Vec2(1,1);
-
-    for(int i= 0;i<100;i++){
-        this->_lineMaker->setWorkPt(stPt);
-        this->_lineMaker->setWorkDir(stDir);
-        this->_lineMaker->setTergetPt(stPt + adPt);
-        this->_lineMaker->setTargetDir(edDir);
-        this->_lineMaker->madeCircleLine();
-        stPt = edPt;
-        stDir = edDir;
-        edPt = stPt + adPt;
-        edDir = Vec2(stDir.x,-stDir.y);
-    }
-    
-    auto _material = PHYSICSBODY_MATERIAL_DEFAULT;
-    _material.restitution = 0.0001f;
-    _material.friction =1.0f;
-    _material.density = 0.001f;
-    auto node = Node::create();
-//        node->autorelease();
-    node->setPhysicsBody(PhysicsBody::createEdgeChain(_lineMaker->_linePts, _lineMaker->_linePtCnt,_material));
-    node->getPhysicsBody()->setDynamic(false);
-    node->getPhysicsBody()->setCategoryBitmask(CT_COURCE);
-    node->getPhysicsBody()->setCollisionBitmask(CT_WHEEL);
-    node->getPhysicsBody()->setContactTestBitmask(CT_WHEEL);
-    node->getPhysicsBody()->setTag(TG_COURCE);
-    this->addChild(node);
 }
 
 void TestPhysicsScene::courceB(){
-    
-    Vec2 stPt = Vec2(10,350);
-    Vec2 stDir = Vec2(10,-15);
-    _courceMaker->calcCurve(stPt, stDir, stPt + Vec2(300,0), Vec2(stDir.x,-stDir.y), 60);
-
-    this->addChild(_courceMaker->getDot());
-    this->addChild(_courceMaker->getStraight());
-    
-    auto _material = PHYSICSBODY_MATERIAL_DEFAULT;
-    _material.restitution = 0.0001f;
-    _material.friction =1.0f;
-    _material.density = 0.001f;
-    auto node = Node::create();
-    node->setPhysicsBody(PhysicsBody::createEdgeChain(_courceMaker->_polygonPts, _courceMaker->_polygonPtCnt,_material));
-    node->getPhysicsBody()->setDynamic(false);
-    node->getPhysicsBody()->setCategoryBitmask(CT_COURCE);
-    node->getPhysicsBody()->setCollisionBitmask(CT_WHEEL);
-    node->getPhysicsBody()->setContactTestBitmask(CT_WHEEL);
-    node->getPhysicsBody()->setTag(TG_COURCE);
-    this->addChild(node);
+    Vec2 stPt = Vec2(100,200);
+    Vec2 stDir = Vec2(10,-8);
+    _courceMaker->calcCurve(stPt, stDir, stPt + Vec2(1600,0), Vec2(stDir.x,-stDir.y), 60);
+    _courceMaker->madePhysiceBody();
 }
 
 void TestPhysicsScene::courceC(){
     
+    points[0].x = -50;
+    points[0].y = 100;
+    points[1].x = -50;
+    points[1].y = -20;
+    points[2].x = 300;
+    points[2].y = -20;
+    points[3].x = 600;
+    points[3].y = -70;
+    
+    _courceMaker->drawStart(points[0], points[1]-points[0]);
+    _courceMaker->drawTo(points[1], points[2]-points[1]);
+    _courceMaker->drawTo(points[2], points[3]-points[2]);
+    _courceMaker->drawTo(points[3], Vec2(10,-5));
+    
+    Vec2 adPt = Vec2(100,-50);
+    Vec2 pt_ = _courceMaker->getTergetPt();
+    Vec2 dir_ = Vec2(10,7);
+    for(int i= 0;i<100;i++){
+        _courceMaker->drawTo(pt_, dir_);
+        pt_ += adPt;
+        dir_ =Vec2(dir_.x,dir_.y * -1);
+    }
+    _courceMaker->madePhysiceBody();
 }
 
 void TestPhysicsScene::update(float dt) {

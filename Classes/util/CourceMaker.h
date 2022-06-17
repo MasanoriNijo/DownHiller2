@@ -22,6 +22,7 @@ public:
     CC_SYNTHESIZE_RETAIN(SpriteBatchNode*,_curveD,CurveD);
     CC_SYNTHESIZE_RETAIN(SpriteBatchNode*,_curveE,CurveE);
     CC_SYNTHESIZE_RETAIN(SpriteBatchNode*,_curveF,CurveF);
+    CC_SYNTHESIZE_RETAIN(PhysicsBody*,_courceBody,CourceBody);
     CC_SYNTHESIZE(Vec2,_wrkPt,WorkPt);
     CC_SYNTHESIZE(Vec2,_wrkDir,WorkDir);
     CC_SYNTHESIZE(Vec2,_trgPt,TergetPt);
@@ -29,20 +30,26 @@ public:
     void update(float dt) override;
     void onEnterTransitionDidFinish() override;
     
-    
     // 元の直線の長さ
     float _length;
     
     // 円弧を描写する際のピッチ
     float _drawPitch = 3;
-        
+    
+    
+    // アクション関連
+    void drawStart(Vec2 pt_, Vec2 dir_);
+    void drawTo(Vec2 pt_, Vec2 dir_);
+    
     // start pt1,dir1 から goal pt2,dir2 に繋がる半径 r_ のカーブを描く
     void calcCurve(Vec2 pt1,Vec2 dir1, Vec2 pt2, Vec2 dir2 ,float r_);
     
+    // 描写関連
     void addStraightLine(Vec2 pt1_, Vec2 pt2_);
     void addDot(Vec2 pt_);
     void addCurveA(Vec2 pt_, Vec2 dir_);
     
+    // 物理関連
     // physicsbody用
     void addPolygonPts(Vec2 pt_);
     // PhysicsBodyのポリゴン生成用
@@ -50,7 +57,7 @@ public:
     int _polygonPtCnt = 0;
     float _polygonPitch = 10;
     
-    
+    void madePhysiceBody();
 };
 
 #endif
