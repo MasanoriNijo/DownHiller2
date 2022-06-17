@@ -4,6 +4,7 @@
 #include "scene/base/GameScene.h"
 #include "util/TouchEventHelper.h"
 #include "util/LineMaker.h"
+#include "util/CourceMaker.h"
 #include "item/CurveLine.h"
 #include "item/Bike.h"
 #include "item/StraightLine.h"
@@ -35,6 +36,7 @@ public:
     CC_SYNTHESIZE_RETAIN(Sprite2*,_pt2,Pt2);
     CC_SYNTHESIZE_RETAIN(LineMaker*,_lineMaker,LineMaker);
     CC_SYNTHESIZE_RETAIN(CurveLine*,_curveLine,CurveLine);
+    CC_SYNTHESIZE_RETAIN(CourceMaker*,_courceMaker,CourceMaker);
     
     void update(float dt) override;
     void onEnterTransitionDidFinish() override;

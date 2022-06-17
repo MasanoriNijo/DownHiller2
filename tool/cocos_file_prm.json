@@ -1,15 +1,14 @@
 {
-  "className": "CurveLine",
-  "superClass": "Sprite2",
+  "className": "CourceMaker",
+  "superClass": "Node",
   "synthesize_retains": [
-    ["Sprite", "_straightA","StraightA"],
-    ["Sprite", "_straightB","StraightB"],
     ["SpriteBatchNode*", "_dot","Dot"],
-    ["Sprite", "_curveA","CurveA"],
-    ["Sprite", "_curveB","CurveB"],
-    ["Sprite", "_curveC","CurveC"],
-    ["Sprite", "_curveD","CurveD"],
-    ["Sprite", "_curveE","CurveE"],
-    ["Sprite", "_curveF","CurveF"]
+    ["SpriteBachNode", "_straight","Straight"],
+    ["SpriteBachNode", "_curveA","CurveA"],
+    ["SpriteBachNode", "_curveB","CurveB"],
+    ["SpriteBachNode", "_curveC","CurveC"],
+    ["SpriteBachNode", "_curveD","CurveD"],
+    ["SpriteBachNode", "_curveE","CurveE"],
+    ["SpriteBachNode", "_curveF","CurveF"]
   ]
 }

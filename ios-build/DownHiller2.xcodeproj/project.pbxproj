@@ -164,6 +164,7 @@
 		302A0A2F285A3ED80072A2D3 /* c_dot.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 302A0A28285A3EA40072A2D3 /* c_dot.png */; };
 		302A0A30285A3ED80072A2D3 /* c_straight.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 302A0A29285A3EA40072A2D3 /* c_straight.png */; };
 		302A0A33285B70B20072A2D3 /* CurveLine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 302A0A31285B70B10072A2D3 /* CurveLine.cpp */; };
+		302A0A36285CC4010072A2D3 /* CourceMaker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 302A0A35285CC4010072A2D3 /* CourceMaker.cpp */; };
 		304DD07D28428F7E00AF0334 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 304DD07C28428F7D00AF0334 /* libiconv.tbd */; };
 		304DD0922843B6B800AF0334 /* irohamaru.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 304DD0912843B6B800AF0334 /* irohamaru.ttf */; };
 		304DD0952843C25B00AF0334 /* kirabon.plist in Resources */ = {isa = PBXBuildFile; fileRef = 304DD0942843C25B00AF0334 /* kirabon.plist */; };
@@ -1403,6 +1404,8 @@
 		302A0A2A285A3EA50072A2D3 /* c_curve_a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = c_curve_a.png; sourceTree = "<group>"; };
 		302A0A31285B70B10072A2D3 /* CurveLine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CurveLine.cpp; path = Classes/item/CurveLine.cpp; sourceTree = SOURCE_ROOT; };
 		302A0A32285B70B20072A2D3 /* CurveLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CurveLine.h; path = Classes/item/CurveLine.h; sourceTree = SOURCE_ROOT; };
+		302A0A34285CC4010072A2D3 /* CourceMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CourceMaker.h; path = Classes/util/CourceMaker.h; sourceTree = SOURCE_ROOT; };
+		302A0A35285CC4010072A2D3 /* CourceMaker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CourceMaker.cpp; path = Classes/util/CourceMaker.cpp; sourceTree = SOURCE_ROOT; };
 		3046F905F6394011A84D52BA /* CCTechnique.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = CCTechnique.cpp; path = cocos2d/cocos/renderer/CCTechnique.cpp; sourceTree = SOURCE_ROOT; };
 		304DD07C28428F7D00AF0334 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		304DD0912843B6B800AF0334 /* irohamaru.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = irohamaru.ttf; path = Resources/fonts/irohamaru.ttf; sourceTree = SOURCE_ROOT; };
@@ -3615,6 +3618,8 @@
 		304DD0BB2843D0A400AF0334 /* util */ = {
 			isa = PBXGroup;
 			children = (
+				302A0A35285CC4010072A2D3 /* CourceMaker.cpp */,
+				302A0A34285CC4010072A2D3 /* CourceMaker.h */,
 				302A0A182853AECC0072A2D3 /* LineMaker.cpp */,
 				302A0A192853AECC0072A2D3 /* LineMaker.h */,
 				309B0D11284A6E160091801C /* Calclater.cpp */,
@@ -5382,6 +5387,7 @@
 				309B0D25284D05D90091801C /* Sprite2.cpp in Sources */,
 				302A0A27285A36E60072A2D3 /* StraightLine.cpp in Sources */,
 				30CD040728468DE80023D844 /* ImovileAd.cpp in Sources */,
+				302A0A36285CC4010072A2D3 /* CourceMaker.cpp in Sources */,
 				309B0D15284B16160091801C /* Button.cpp in Sources */,
 				309B0D18284B900E0091801C /* TestPhysicsScene.cpp in Sources */,
 				309B0D12284A6E170091801C /* Calclater.cpp in Sources */,

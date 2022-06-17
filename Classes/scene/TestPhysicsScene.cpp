@@ -6,7 +6,7 @@
 #include "scene/HelloWorldScene.h"
 
 TestPhysicsScene::TestPhysicsScene():
-_gameTitle(NULL), _baseLine(NULL), _ball(NULL), _btn1(NULL), _btn2(NULL), _btn3(NULL), _btn4(NULL), _menu(NULL),_touch(NULL),_bike(NULL),_contactlistener(NULL), _pt1(NULL), _pt2(NULL), _lineMaker(NULL),_curveLine(NULL)
+_gameTitle(NULL), _baseLine(NULL), _ball(NULL), _btn1(NULL), _btn2(NULL), _btn3(NULL), _btn4(NULL), _menu(NULL),_touch(NULL),_bike(NULL),_contactlistener(NULL), _pt1(NULL), _pt2(NULL), _lineMaker(NULL),_curveLine(NULL),_courceMaker(NULL)
 {}
 
 TestPhysicsScene::~TestPhysicsScene() {
@@ -26,6 +26,7 @@ TestPhysicsScene::~TestPhysicsScene() {
     CC_SAFE_RELEASE_NULL(_pt2);
     CC_SAFE_RELEASE_NULL(_lineMaker);
     CC_SAFE_RELEASE_NULL(_curveLine);
+    CC_SAFE_RELEASE_NULL(_courceMaker);
     GameScene::~GameScene();
 }
 
@@ -111,6 +112,10 @@ bool TestPhysicsScene::init() {
     _curveLine->setGlobalZOrder(OBJ_LAYER_TOP);
     this->addChild(_curveLine);
     
+    this->setCourceMaker(CourceMaker::create());
+    _courceMaker->setGlobalZOrder(OBJ_LAYER_TOP);
+//    this->addChild(_courceMaker);
+    
     return true;
 }
 
@@ -169,17 +174,18 @@ void TestPhysicsScene::courceA(){
 
 void TestPhysicsScene::courceB(){
     
-    Vec2 stPt = Vec2(120,250);
-    Vec2 stDir = Vec2(10,-20);
-    _curveLine->drawCurve(stPt, stDir, stPt + Vec2(500,0), Vec2(stDir.x,-stDir.y), 100);
+    Vec2 stPt = Vec2(0,0);
+    Vec2 stDir = Vec2(10,-15);
+    _courceMaker->calcCurve(stPt, stDir, stPt + Vec2(1500,0), Vec2(stDir.x,-stDir.y), 60);
 
+    this->addChild(_courceMaker);
+    
     auto _material = PHYSICSBODY_MATERIAL_DEFAULT;
     _material.restitution = 0.0001f;
     _material.friction =1.0f;
     _material.density = 0.001f;
     auto node = Node::create();
-
-    node->setPhysicsBody(PhysicsBody::createEdgeChain(_curveLine->_polygonPts, _curveLine->_polygonPtCnt,_material));
+    node->setPhysicsBody(PhysicsBody::createEdgeChain(_courceMaker->_polygonPts, _courceMaker->_polygonPtCnt,_material));
     node->getPhysicsBody()->setDynamic(false);
     node->getPhysicsBody()->setCategoryBitmask(CT_COURCE);
     node->getPhysicsBody()->setCollisionBitmask(CT_WHEEL);
