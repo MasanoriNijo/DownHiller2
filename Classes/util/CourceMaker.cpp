@@ -34,10 +34,12 @@ bool CourceMaker::init() {
     }
     this->setCalc(Calclater::create());
     this->setDot(SpriteBatchNode::create("c_dot.png"));
+    _dot->setGlobalZOrder(OBJ_LAYER_TOP);
     //    this->addChild(_dot);
     this->setStraight(SpriteBatchNode::create("c_straight.png"));
+    _straight->setGlobalZOrder(OBJ_LAYER_TOP);
+    _length = _straight->getTexture()->getContentSize().width;
     //    this->addChild(_straight);
-    _length = _straight->getContentSize().width;
     this->setCurveA(SpriteBatchNode::create("c_curve_a.png"));
     this->addChild(_curveA);
     
@@ -153,8 +155,8 @@ void CourceMaker::calcCurve(Vec2 pt1,Vec2 dir1, Vec2 pt2, Vec2 dir2 ,float r_){
     addPolygonPts(edPt_ctPt + ctPt);
     addPolygonPts(_trgPt);
     
-    this->addChild(_dot);
-    this->addChild(_straight);
+//    this->addChild(_dot);
+//    this->addChild(_straight);
 }
 
 void CourceMaker::addPolygonPts(Vec2 pt_) {
@@ -165,16 +167,18 @@ void CourceMaker::addPolygonPts(Vec2 pt_) {
 void CourceMaker::addStraightLine(Vec2 pt1_, Vec2 pt2_){
     auto stline = Sprite::createWithTexture(_straight->getTexture());
     stline->setAnchorPoint(Vec2(0,0.5));
-    stline->setSkewX((pt2_-pt1_).length()/_length);
-//    stline->setGlobalZOrder(OBJ_LAYER_TOP);
+    stline->setScaleX((pt2_-pt1_).length()/_length);
     stline->setPosition(pt1_);
     stline->setRotation(_calc->chgKaku((pt2_-pt1_)));
+    stline->setGlobalZOrder(OBJ_LAYER_TOP);
     _straight->addChild(stline);
+    addDot(pt1_);
+    addDot(pt2_);
 }
 
 void CourceMaker::addDot(Vec2 pt_){
     auto dot = Sprite::createWithTexture(_dot->getTexture());
-//    dot->setGlobalZOrder(OBJ_LAYER_TOP);
+    dot->setGlobalZOrder(OBJ_LAYER_TOP);
     dot->setPosition(pt_);
     _dot->addChild(dot);
 }

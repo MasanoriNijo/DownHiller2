@@ -113,8 +113,8 @@ bool TestPhysicsScene::init() {
     this->addChild(_curveLine);
     
     this->setCourceMaker(CourceMaker::create());
-    _courceMaker->setGlobalZOrder(OBJ_LAYER_TOP);
-//    this->addChild(_courceMaker);
+//    _courceMaker->setGlobalZOrder(OBJ_LAYER_TOP);
+    this->addChild(_courceMaker);
     
     return true;
 }
@@ -174,11 +174,12 @@ void TestPhysicsScene::courceA(){
 
 void TestPhysicsScene::courceB(){
     
-    Vec2 stPt = Vec2(0,0);
+    Vec2 stPt = Vec2(10,350);
     Vec2 stDir = Vec2(10,-15);
-    _courceMaker->calcCurve(stPt, stDir, stPt + Vec2(1500,0), Vec2(stDir.x,-stDir.y), 60);
+    _courceMaker->calcCurve(stPt, stDir, stPt + Vec2(300,0), Vec2(stDir.x,-stDir.y), 60);
 
-    this->addChild(_courceMaker);
+    this->addChild(_courceMaker->getDot());
+    this->addChild(_courceMaker->getStraight());
     
     auto _material = PHYSICSBODY_MATERIAL_DEFAULT;
     _material.restitution = 0.0001f;
