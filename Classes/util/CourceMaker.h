@@ -11,7 +11,8 @@ protected:
     virtual ~CourceMaker();
     
 public:
-    static CourceMaker* create();
+    CREATE_FUNC(CourceMaker);
+//    static CourceMaker* create();
     bool init() override;
     CC_SYNTHESIZE_RETAIN(Calclater*,_calc,Calc);
     CC_SYNTHESIZE_RETAIN(SpriteBatchNode*,_dot,Dot);
@@ -23,12 +24,17 @@ public:
     CC_SYNTHESIZE_RETAIN(SpriteBatchNode*,_curveE,CurveE);
     CC_SYNTHESIZE_RETAIN(SpriteBatchNode*,_curveF,CurveF);
     CC_SYNTHESIZE_RETAIN(PhysicsBody*,_courceBody,CourceBody);
+    CC_SYNTHESIZE(Vector<Sprite*>,_member,Member);
+//    CC_SYNTHESIZE(Vector<Vec2>,_polygonPts,PolygonPts);
     CC_SYNTHESIZE(Vec2,_wrkPt,WorkPt);
     CC_SYNTHESIZE(Vec2,_wrkDir,WorkDir);
     CC_SYNTHESIZE(Vec2,_trgPt,TergetPt);
     CC_SYNTHESIZE(Vec2,_trgDir,TargetDir);
     void update(float dt) override;
     void onEnterTransitionDidFinish() override;
+//    void release();
+    
+    void _clearMember();
     
     // 元の直線の長さ
     float _length;

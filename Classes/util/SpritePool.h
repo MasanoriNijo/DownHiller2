@@ -18,7 +18,7 @@ public:
 	int getSize();
 	Sprite* pop();
 	void ClearAll();
-    CC_SYNTHESIZE_RETAIN(SpriteBatchNode*, _bachNode1,BachNode1);
+    CC_SYNTHESIZE_RETAIN(SpriteBatchNode*, _bachNode,BachNode);
     CC_SYNTHESIZE(Vector<Sprite*>,_member,Member);
 
 protected:

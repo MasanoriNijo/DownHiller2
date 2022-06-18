@@ -82,8 +82,14 @@ void GameScene::setBackGroundColor(float h, float s, float v){
 }
 
 void GameScene::onEnterTransitionDidFinish() {
+    Layer::onEnterTransitionDidFinish();
     // todo
 }
+
+void GameScene::onExit(){
+    Layer::onExit();
+}
+
 
 void GameScene::update(float dt) {
     switch (this->getGameState()) {
@@ -107,6 +113,10 @@ void GameScene::update(float dt) {
 }
 
 void GameScene::transitonScene(Scene* scene){
+    NJLOG("GameScene:Count3");
+    NJLOG(ST_INT(this->getReferenceCount()).c_str());
+//    this->release();
+    NJLOG(ST_INT(this->getReferenceCount()).c_str());
     auto transition_ = CallFuncN::create([scene](Node* node_) {
         auto transition=TransitionCrossFade::create(0.5,scene);
         Director::getInstance()->replaceScene(transition);

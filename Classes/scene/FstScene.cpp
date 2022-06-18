@@ -11,6 +11,8 @@ Scene* FstScene::createScene() {
     auto scene = Scene::create();
     auto layer = FstScene::create();
     scene->addChild(layer);
+    NJLOG("FstScene:Count1");
+    NJLOG(ST_INT(scene->getReferenceCount()).c_str());
     return scene;
 }
 
@@ -25,6 +27,8 @@ bool FstScene::init() {
     auto delaytime_ = DelayTime::create(1.0f);
     auto fadeout_ = FadeOut::create(1.0f);
     auto start_ = CallFuncN::create([this](Node* node_) {
+        NJLOG("FstScene:Count3");
+        NJLOG(ST_INT(this->getReferenceCount()).c_str());
         this->transitonScene(TitleScene::createScene());
     });
 
@@ -38,7 +42,10 @@ bool FstScene::init() {
 }
 
 void FstScene::onEnterTransitionDidFinish() {
+    GameScene::onEnterTransitionDidFinish();
     this->mountNode(this->getProductTitle(),this->ctPt,OBJ_LAYER_TOP);
+    NJLOG("FstScene:Count2");
+    NJLOG(ST_INT(this->getReferenceCount()).c_str());
 }
 
 void FstScene::update(float dt) {

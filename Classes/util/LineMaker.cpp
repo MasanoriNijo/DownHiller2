@@ -11,16 +11,16 @@ LineMaker::~LineMaker() {
     CC_SAFE_RELEASE_NULL(_field);
 }
 
-LineMaker* LineMaker::create() {
-    auto obj = new LineMaker;
-    if (obj && obj->init()) {
-        obj->autorelease();
-        return obj;
-    } else {
-        CC_SAFE_DELETE(obj);
-        return nullptr;
-    }
-}
+//LineMaker* LineMaker::create() {
+//    auto obj = new LineMaker;
+//    if (obj && obj->init()) {
+//        obj->autorelease();
+//        return obj;
+//    } else {
+//        CC_SAFE_DELETE(obj);
+//        return nullptr;
+//    }
+//}
 
 bool LineMaker::init() {
     // todo
@@ -43,7 +43,7 @@ void LineMaker::addLinePts(Vec2 pt_) {
         this->_dotSprites.pushBack(sp_);
         sp_->setGlobalZOrder(OBJ_LAYER_LV1);
         sp_->setPosition(pt_);
-        _field->addChild(sp_);
+        this->getField()->addChild(sp_);
     } else {
         this->_dotSprites.at(_dotSpriteCnt)->setPosition(pt_);
     }

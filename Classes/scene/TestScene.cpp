@@ -48,9 +48,16 @@ bool TestScene::init() {
     this->mountNode(this->getGameTitle(),  this->ctPt + Vec2(0,120), OBJ_LAYER_TOP);
     
     this->setBtn1(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
+        
+//        while(this->getReferenceCount()>0){
+//            NJLOG("getReferenceCount()");
+//            NJLOG(ST_INT(this->getReferenceCount()).c_str());
+//            this->release();
+//        }
         this->transitonScene(TitleScene::createScene());
     }));
     this->setBtn2(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
+//        Director::getInstance()->end();
         this->transitonScene(TestPhysicsScene::createScene());
     }));
     this->setBtn3(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
@@ -143,7 +150,7 @@ bool TestScene::init() {
 }
 
 void TestScene::onEnterTransitionDidFinish() {
-    
+    GameScene::onEnterTransitionDidFinish();
     this->scheduleUpdate();
     this->setTouchObj(_pt5);
     // todo

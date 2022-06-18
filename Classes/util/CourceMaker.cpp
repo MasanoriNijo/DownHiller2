@@ -17,17 +17,33 @@ CourceMaker::~CourceMaker() {
     CC_SAFE_RELEASE_NULL(_curveE);
     CC_SAFE_RELEASE_NULL(_curveF);
     CC_SAFE_RELEASE_NULL(_courceBody);
+    getMember().clear();
+//    _clearMember();
 }
 
-CourceMaker* CourceMaker::create() {
-    auto obj = new CourceMaker;
-    if (obj && obj->init()) {
-        obj->autorelease();
-        return obj;
-    } else {
-        CC_SAFE_DELETE(obj);
-        return nullptr;
-    }
+//void CourceMaker::release(){
+//    CC_SAFE_RELEASE_NULL(_calc);
+//    CC_SAFE_RELEASE_NULL(_dot);
+//    CC_SAFE_RELEASE_NULL(_straight);
+//    CC_SAFE_RELEASE_NULL(_curveA);
+//    CC_SAFE_RELEASE_NULL(_curveB);
+//    CC_SAFE_RELEASE_NULL(_curveC);
+//    CC_SAFE_RELEASE_NULL(_curveD);
+//    CC_SAFE_RELEASE_NULL(_curveE);
+//    CC_SAFE_RELEASE_NULL(_curveF);
+//    CC_SAFE_RELEASE_NULL(_courceBody);
+//    _clearMember();
+//}
+
+void CourceMaker::_clearMember(){
+//    _member.clear();    
+//    while(_member.size()>0) {
+//        _member.popBack();
+//    }
+//    _polygonPts.clear();
+//    while(_polygonPts.size()>0) {
+//        _polygonPts.popBack();
+//    }
 }
 
 bool CourceMaker::init() {
@@ -37,14 +53,14 @@ bool CourceMaker::init() {
     }
     this->setCalc(Calclater::create());
     this->setDot(SpriteBatchNode::create("c_dot.png"));
-    _dot->setGlobalZOrder(OBJ_LAYER_TOP);
-    this->addChild(_dot);
+    getDot()->setGlobalZOrder(OBJ_LAYER_TOP);
+    this->addChild(getDot());
     this->setStraight(SpriteBatchNode::create("c_straight.png"));
-    _straight->setGlobalZOrder(OBJ_LAYER_TOP);
-    _length = _straight->getTexture()->getContentSize().width;
-    this->addChild(_straight);
+    getStraight()->setGlobalZOrder(OBJ_LAYER_TOP);
+    _length = getStraight()->getTexture()->getContentSize().width;
+    this->addChild(getStraight());
     this->setCurveA(SpriteBatchNode::create("c_curve_a.png"));
-    this->addChild(_curveA);
+    this->addChild(getCurveA());
     
     return true;
 }
@@ -82,7 +98,7 @@ void CourceMaker::calcCurve(Vec2 pt1,Vec2 dir1, Vec2 pt2, Vec2 dir2 ,float r_){
     this->setTergetPt(pt2);
     this->setTargetDir(dir2);
     // workとtargetの交点
-    Vec2 ptA = _calc->getCrossPointLineA2B(_wrkPt,_wrkPt + _wrkDir, _trgPt, _trgPt + _trgDir);
+    Vec2 ptA = getCalc()->getCrossPointLineA2B(_wrkPt,_wrkPt + _wrkDir, _trgPt, _trgPt + _trgDir);
     
     // 折れ曲がるだけの場合
     if(ptA.equals(_trgPt)){
@@ -92,21 +108,21 @@ void CourceMaker::calcCurve(Vec2 pt1,Vec2 dir1, Vec2 pt2, Vec2 dir2 ,float r_){
     }
     
     NJLOG(ST_VEC2(ptA).c_str());
-    Vec2 ptA_dir = _calc->nomalizeVec2(_wrkPt-ptA) + _calc->nomalizeVec2(_trgPt-ptA);
+    Vec2 ptA_dir = getCalc()->nomalizeVec2(_wrkPt-ptA) + getCalc()->nomalizeVec2(_trgPt-ptA);
     NJLOG("ptA_dir");
     NJLOG(ST_VEC2(ptA_dir).c_str());
     
     // workポイントの中心点
-    Vec2 ptA_wrk = _calc->getCrossPointLineA2B(ptA,
+    Vec2 ptA_wrk = getCalc()->getCrossPointLineA2B(ptA,
                                                ptA + ptA_dir,
                                                _wrkPt,
-                                               _wrkPt + _calc->rotByRad(_wrkDir, M_PI/2));
+                                               _wrkPt + getCalc()->rotByRad(_wrkDir, M_PI/2));
     
     // targetポイントの中心点
-    Vec2 ptA_trg = _calc->getCrossPointLineA2B(ptA,
+    Vec2 ptA_trg = getCalc()->getCrossPointLineA2B(ptA,
                                                ptA + ptA_dir,
                                                _trgPt,
-                                               _trgPt + _calc->rotByRad(_trgDir, M_PI/2));
+                                               _trgPt + getCalc()->rotByRad(_trgDir, M_PI/2));
     
     // r_の位置の中心点とwrkとtrgそれぞれの接点
     float dl_ = (_wrkPt - ptA_wrk).length();
@@ -133,9 +149,9 @@ void CourceMaker::calcCurve(Vec2 pt1,Vec2 dir1, Vec2 pt2, Vec2 dir2 ,float r_){
     if(r_< 0 || r_/dl_ > 1 || r_/dl2_ > 1){
         if((ptA_wrk - ptA).length() < (ptA_trg - ptA).length()){
             stPt_ctPt = _wrkPt - ctPt;
-            edPt_ctPt = _calc->getMirrorPointLineA(ptA,ptA + ptA_dir,_wrkPt)-ctPt;
+            edPt_ctPt = getCalc()->getMirrorPointLineA(ptA,ptA + ptA_dir,_wrkPt)-ctPt;
         }else{
-            stPt_ctPt = _calc->getMirrorPointLineA(ptA,ptA + ptA_dir,_trgPt)-ctPt;
+            stPt_ctPt = getCalc()->getMirrorPointLineA(ptA,ptA + ptA_dir,_trgPt)-ctPt;
             edPt_ctPt = _trgPt - ctPt;
         }
     }else{
@@ -155,7 +171,7 @@ void CourceMaker::calcCurve(Vec2 pt1,Vec2 dir1, Vec2 pt2, Vec2 dir2 ,float r_){
     }
     
     // 円弧の部分を描写する。
-    bool rotLeft = _calc->chkLeft(_wrkPt, _wrkDir,ctPt);
+    bool rotLeft = getCalc()->chkLeft(_wrkPt, _wrkDir,ctPt);
     float r;
     if(r_<0 || r_/dl_ > 1 || r_/dl2_ > 1){
         r = stPt_ctPt.length();
@@ -163,11 +179,11 @@ void CourceMaker::calcCurve(Vec2 pt1,Vec2 dir1, Vec2 pt2, Vec2 dir2 ,float r_){
         r = r_;
     }
     float drad = rotLeft ? _drawPitch/r : -_drawPitch/r;
-    float diffRad = _calc->diffRadA2B(stPt_ctPt,edPt_ctPt,rotLeft);
+    float diffRad = getCalc()->diffRadA2B(stPt_ctPt,edPt_ctPt,rotLeft);
     int i = 1;
     
     while(abs(drad * i) < abs(diffRad)){
-        addDot(_calc->rotByRad(stPt_ctPt, drad * i) + ctPt);
+        addDot(getCalc()->rotByRad(stPt_ctPt, drad * i) + ctPt);
         i++;
     }
     if(r_<0 || r_/dl_ > 1 || r_/dl2_ > 1){
@@ -179,13 +195,13 @@ void CourceMaker::calcCurve(Vec2 pt1,Vec2 dir1, Vec2 pt2, Vec2 dir2 ,float r_){
     
     // ポリゴンの追加
     float dradp = rotLeft ? _polygonPitch/r : -_polygonPitch/r;
-    float diffRadp = _calc->diffRadA2B(stPt_ctPt,edPt_ctPt,rotLeft);
+    float diffRadp = getCalc()->diffRadA2B(stPt_ctPt,edPt_ctPt,rotLeft);
     int ip = 1;
     
     addPolygonPts(_wrkPt);
     i = 0;
     while(abs(dradp * i) < abs(diffRadp)){
-        addPolygonPts(_calc->rotByRad(stPt_ctPt, dradp * i) + ctPt);
+        addPolygonPts(getCalc()->rotByRad(stPt_ctPt, dradp * i) + ctPt);
         i++;
     }
     if(r_<0 || r_/dl_ > 1 || r_/dl2_ > 1){
@@ -202,21 +218,23 @@ void CourceMaker::addPolygonPts(Vec2 pt_) {
 }
 
 void CourceMaker::addStraightLine(Vec2 pt1_, Vec2 pt2_){
-    auto stline = Sprite::createWithTexture(_straight->getTexture());
+    Sprite* stline = Sprite::createWithTexture(getStraight()->getTexture());
     stline->setAnchorPoint(Vec2(0,0.5));
     stline->setScaleX((pt2_-pt1_).length()/_length);
     stline->setPosition(pt1_);
-    stline->setRotation(_calc->chgKaku((pt2_-pt1_)));
+    stline->setRotation(getCalc()->chgKaku((pt2_-pt1_)));
     stline->setGlobalZOrder(OBJ_LAYER_TOP);
-    _straight->addChild(stline);
+    getStraight()->addChild(stline);
+    getMember().pushBack(stline);
     addDot(pt2_);
 }
 
 void CourceMaker::addDot(Vec2 pt_){
-    auto dot = Sprite::createWithTexture(_dot->getTexture());
+    Sprite* dot = Sprite::createWithTexture(getDot()->getTexture());
     dot->setGlobalZOrder(OBJ_LAYER_TOP);
     dot->setPosition(pt_);
-    _dot->addChild(dot);
+    getDot()->addChild(dot);
+    getMember().pushBack(dot);
 }
 
 void CourceMaker::madePhysiceBody(){
@@ -224,6 +242,7 @@ void CourceMaker::madePhysiceBody(){
     _material.restitution = 0.0001f;
     _material.friction =1.0f;
     _material.density = 0.001f;
+    
     this->setCourceBody(PhysicsBody::createEdgeChain(_polygonPts, _polygonPtCnt,_material));
     _courceBody->setDynamic(false);
     _courceBody->setCategoryBitmask(CT_COURCE);
@@ -231,6 +250,7 @@ void CourceMaker::madePhysiceBody(){
     _courceBody->setContactTestBitmask(CT_WHEEL);
     _courceBody->setTag(TG_COURCE);
     this->setPhysicsBody(_courceBody);
+    
 }
 
 void CourceMaker::addCurveA(Vec2 pt_, Vec2 dir_){

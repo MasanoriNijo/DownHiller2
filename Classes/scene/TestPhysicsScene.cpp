@@ -6,14 +6,12 @@
 #include "scene/HelloWorldScene.h"
 
 TestPhysicsScene::TestPhysicsScene():
-_gameTitle(NULL), _baseLine(NULL), _ball(NULL), _btn1(NULL), _btn2(NULL), _btn3(NULL), _btn4(NULL), _menu(NULL),_touch(NULL),_bike(NULL),_contactlistener(NULL), _pt1(NULL), _pt2(NULL), _lineMaker(NULL),_curveLine(NULL),_courceMaker(NULL)
+_gameTitle(NULL), _btn1(NULL), _btn2(NULL), _btn3(NULL), _btn4(NULL), _menu(NULL),_touch(NULL),_bike(NULL),_contactlistener(NULL), _pt1(NULL), _pt2(NULL), _courceMaker(NULL)
 {}
 
 TestPhysicsScene::~TestPhysicsScene() {
     NJLOG("hoge:TestPhysicsScene::~TestPhysicsScene()");
     CC_SAFE_RELEASE_NULL(_gameTitle);
-    CC_SAFE_RELEASE_NULL(_baseLine);
-    CC_SAFE_RELEASE_NULL(_ball);
     CC_SAFE_RELEASE_NULL(_btn1);
     CC_SAFE_RELEASE_NULL(_btn2);
     CC_SAFE_RELEASE_NULL(_btn3);
@@ -24,10 +22,8 @@ TestPhysicsScene::~TestPhysicsScene() {
     CC_SAFE_RELEASE_NULL(_contactlistener);
     CC_SAFE_RELEASE_NULL(_pt1);
     CC_SAFE_RELEASE_NULL(_pt2);
-    CC_SAFE_RELEASE_NULL(_lineMaker);
-    CC_SAFE_RELEASE_NULL(_curveLine);
     CC_SAFE_RELEASE_NULL(_courceMaker);
-    GameScene::~GameScene();
+
 }
 
 Scene* TestPhysicsScene::createScene() {
@@ -47,6 +43,7 @@ bool TestPhysicsScene::init() {
     if (!GameScene::init()) {
         return false;
     }
+//    this->autorelease();
 //    this->setPhysicsBody(PhysicsBody::createEdgeBox(this->winSize));
 //    this->getPhysicsBody()->setDynamic(false);
     this->setBackGroundColor();
@@ -58,7 +55,7 @@ bool TestPhysicsScene::init() {
         this->transitonScene(TitleScene::createScene());
     }));
     this->setBtn3(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
-        courceB();
+        courceC();
     }));
     this->setBtn4(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
         _bike->jump(-20);
@@ -80,23 +77,16 @@ bool TestPhysicsScene::init() {
     _pt2->setDefaultTouchEvent();
     _pt2->setAnchorPoint(achPt_);
     this->mountNode(this->getPt2(), this->ctPt + Vec2(-30,-40) , OBJ_LAYER_TOP);
-    
-    this->setLineMaker(LineMaker::create());
-    this->_lineMaker->setPt(Sprite2::create("dot2.png"));
-    this->_lineMaker->setField(this);
-    
-    this->setCurveLine(CurveLine::create());
-    _curveLine->setGlobalZOrder(OBJ_LAYER_TOP);
-    this->addChild(_curveLine);
-    
+
     this->setCourceMaker(CourceMaker::create());
 //    _courceMaker->setGlobalZOrder(OBJ_LAYER_TOP);
-    this->addChild(_courceMaker);
-    courceC();
+    this->addChild(getCourceMaker());
     return true;
 }
 
 void TestPhysicsScene::onEnterTransitionDidFinish() {
+    GameScene::onEnterTransitionDidFinish();
+    courceC();
     // Bikeをセットする。
     this->setBike(Bike::create());
     this->mountScroleNode(this->getBike(), Vec2::ZERO, OBJ_LAYER_TOP);
@@ -114,18 +104,8 @@ void TestPhysicsScene::onEnterTransitionDidFinish() {
 }
 
 void TestPhysicsScene::courceA(){
-    // debug
-}
-
-void TestPhysicsScene::courceB(){
-    Vec2 stPt = Vec2(100,200);
-    Vec2 stDir = Vec2(10,-8);
-    _courceMaker->calcCurve(stPt, stDir, stPt + Vec2(1600,0), Vec2(stDir.x,-stDir.y), 60);
-    _courceMaker->madePhysiceBody();
-}
-
-void TestPhysicsScene::courceC(){
     
+    Vec2 points[10];
     points[0].x = -50;
     points[0].y = 100;
     points[1].x = -50;
@@ -135,29 +115,69 @@ void TestPhysicsScene::courceC(){
     points[3].x = 600;
     points[3].y = -70;
     
-    _courceMaker->drawStart(points[0], points[1]-points[0]);
-    _courceMaker->drawTo(points[1], points[2]-points[1]);
-    _courceMaker->drawTo(points[2], points[3]-points[2]);
-    _courceMaker->drawTo(points[3], Vec2(10,-5));
+    getCourceMaker()->drawStart(points[0], points[1]-points[0]);
+    getCourceMaker()->drawTo(points[1], points[2]-points[1]);
+    getCourceMaker()->drawTo(points[2], points[3]-points[2]);
+    getCourceMaker()->drawTo(points[3], Vec2(10,-5));
     
-    Vec2 adPt = Vec2(100,-50);
-    Vec2 pt_ = _courceMaker->getTergetPt();
-    Vec2 dir_ = Vec2(10,7);
+    Vec2 adPt = Vec2(100,40);
+    Vec2 pt_ = getCourceMaker()->getTergetPt();
+    Vec2 dir_ = Vec2(10,8);
     for(int i= 0;i<100;i++){
-        _courceMaker->drawTo(pt_, dir_);
+        getCourceMaker()->drawTo(pt_, dir_);
         pt_ += adPt;
         dir_ =Vec2(dir_.x,dir_.y * -1);
     }
-    _courceMaker->madePhysiceBody();
+    getCourceMaker()->madePhysiceBody();
+}
+
+void TestPhysicsScene::courceB(){
+    Vec2 stPt = Vec2(100,200);
+    Vec2 stDir = Vec2(10,-8);
+    getCourceMaker()->calcCurve(stPt, stDir, stPt + Vec2(1600,0), Vec2(stDir.x,-stDir.y), 60);
+    getCourceMaker()->madePhysiceBody();
+}
+
+void TestPhysicsScene::courceC(){
+    Vec2 points[10];
+    points[0].x = -51;
+    points[0].y = 100;
+    points[1].x = -50;
+    points[1].y = -20;
+    points[2].x = 300;
+    points[2].y = -20;
+    points[3].x = 600;
+    points[3].y = -70;
+    
+    getCourceMaker()->drawStart(points[0], points[1]-points[0]);
+    getCourceMaker()->drawTo(points[1], points[2]-points[1]);
+    getCourceMaker()->drawTo(points[2], points[3]-points[2]);
+    getCourceMaker()->drawTo(points[3], Vec2(10,-5));
+    
+    Vec2 adPt = Vec2(100,40);
+    Vec2 pt_ = getCourceMaker()->getTergetPt();
+    Vec2 dir_ = Vec2(10,8);
+    for(int i= 0;i<100;i++){
+        getCourceMaker()->drawTo(pt_, dir_);
+        pt_ += adPt;
+        dir_ =Vec2(dir_.x,dir_.y * -1);
+    }
+    getCourceMaker()->madePhysiceBody();
+//    getCourceMaker()->drawStart(points[0]+adPt , points[1]-points[0]);
+//    getCourceMaker()->drawTo(points[1]+adPt, points[2]-points[1]);
+//    getCourceMaker()->drawTo(points[2]+adPt, points[3]-points[2]);
+//    getCourceMaker()->drawTo(points[3]+adPt, Vec2(10,-5));
+//    getCourceMaker()->madePhysiceBody();
+    
 }
 
 void TestPhysicsScene::update(float dt) {
     // todo
-    if(this->getBike()){
-        //        this->getDebugMemo()->setString("重心位置:" + ST_VEC2(this->getBike()->weightPt));
-        //        this->getDebugMemo()->setString("bike:" + ST_VEC2(this->getBike()->getPosition()) + " " + ST_INT(this->getBike()->getRotation()));
-        this->getDebugMemo()->setString("swaip:" + ST_VEC2(_bike->weightPt));
-    }
+//    if(this->getBike()){
+//        //        this->getDebugMemo()->setString("重心位置:" + ST_VEC2(this->getBike()->weightPt));
+//        //        this->getDebugMemo()->setString("bike:" + ST_VEC2(this->getBike()->getPosition()) + " " + ST_INT(this->getBike()->getRotation()));
+//        this->getDebugMemo()->setString("swaip:" + ST_VEC2(_bike->weightPt));
+//    }
 }
 
 void TestPhysicsScene::setContactListener() {

@@ -11,7 +11,8 @@ protected:
     virtual ~Calclater();
     
 public:
-    static Calclater* create();
+    CREATE_FUNC(Calclater);
+//    static Calclater* create();
     bool init();
     void update(float dt);
     void onEnterTransitionDidFinish();

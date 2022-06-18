@@ -2,11 +2,11 @@
 USING_NS_CC;
 
 SpritePool::SpritePool() :
-		_bachNode1(NULL) {
+		_bachNode(NULL) {
 
 }
 SpritePool::~SpritePool() {
-	CC_SAFE_RELEASE_NULL(_bachNode1);
+	CC_SAFE_RELEASE_NULL(_bachNode);
 }
 
 SpritePool* SpritePool::create(int size, const std::string& filename) {
@@ -21,17 +21,15 @@ SpritePool* SpritePool::create(int size, const std::string& filename) {
 }
 
 bool SpritePool::init(int size, const std::string& filename) {
-
-    this->setBachNode1(cocos2d::SpriteBatchNode::create(filename));
-
+    this->setBachNode(SpriteBatchNode::create(filename));
 	for (int i = 0; i < size; i++) {
-		auto sp_ = Sprite::createWithTexture(this->_bachNode1->getTexture());
+		auto sp_ = Sprite::createWithTexture(_bachNode->getTexture());
 		push(sp_);
 	}
 	return true;
 }
-void SpritePool::ClearAll() {
 
+void SpritePool::ClearAll() {
 	while(_member.size()>0) {
 		Sprite* sp_ = _member.at(_member.size() - 1);
 		if(sp_->getParent()){
@@ -41,8 +39,8 @@ void SpritePool::ClearAll() {
 		this->push(sp_);
 		_member.popBack();
 	}
-
 }
+
 void SpritePool::push(Sprite* ig) {
 	_pool.pushBack(ig);
 }
@@ -53,8 +51,7 @@ int SpritePool::getSize() {
 
 Sprite* SpritePool::pop() {
 	if (_pool.empty()) {
-		return nullptr;
-	}
+		return nullptr;}
 	auto em = _pool.back();
 	_pool.popBack();
 	_member.pushBack(em);

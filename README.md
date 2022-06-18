@@ -53,3 +53,7 @@ cocos2dx用設定
 https://sppartner.i-mobile.co.jp/webdoc/index.html#cocos2dx/module-information.html
 
 corelocationframeworkを追加する。
+
+5,memoryリーク対策
+変数の呼び出しは、必ずget,setで呼ばないと、autoreleseが正常に機能せずに、
+適切に消去されずに残り続けている。ので、get,setで呼び出す。

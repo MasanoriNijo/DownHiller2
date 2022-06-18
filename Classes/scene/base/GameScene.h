@@ -51,7 +51,7 @@ public:
     
     void update(float dt) override;
     void onEnterTransitionDidFinish() override;
-    
+    void onExit() override;
     // 画面遷移
     void transitonScene(Scene* scene);
     
