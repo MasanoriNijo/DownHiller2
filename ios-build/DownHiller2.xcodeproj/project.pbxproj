@@ -6456,7 +6456,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "/Users/jonym/Documents/cocos2dx/DownHiller2/ios-build/bin/DownHiller2/Release";
@@ -6502,7 +6502,7 @@
 				);
 				INFOPLIST_FILE = /Users/jonym/Documents/cocos2dx/DownHiller2/proj.ios_mac/ios/Info.plist;
 				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
 					"-DNDEBUG",
@@ -6584,7 +6584,7 @@
 				OTHER_REZFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = org.cocos2dx.DownHiller2;
 				PRODUCT_NAME = DownHiller2;
-				PROVISIONING_PROFILE_SPECIFIER = downhiller2_20220601_3;
+				PROVISIONING_PROFILE_SPECIFIER = downhiller2_for_develop;
 				SECTORDER_FLAGS = "";
 				SKIP_INSTALL = NO;
 				SYMROOT = "/Users/jonym/Documents/cocos2dx/DownHiller2/ios-build";
@@ -7005,7 +7005,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "/Users/jonym/Documents/cocos2dx/DownHiller2/ios-build/bin/DownHiller2/Debug";
@@ -7052,7 +7052,7 @@
 				);
 				INFOPLIST_FILE = /Users/jonym/Documents/cocos2dx/DownHiller2/proj.ios_mac/ios/Info.plist;
 				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "   '-std=gnu99' ";
 				OTHER_CPLUSPLUSFLAGS = "   '-std=c++11' ";
@@ -7129,7 +7129,7 @@
 				OTHER_REZFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = org.cocos2dx.DownHiller2;
 				PRODUCT_NAME = DownHiller2;
-				PROVISIONING_PROFILE_SPECIFIER = downhiller2_20220601_3;
+				PROVISIONING_PROFILE_SPECIFIER = downhiller2_for_develop;
 				SECTORDER_FLAGS = "";
 				SKIP_INSTALL = NO;
 				SYMROOT = "/Users/jonym/Documents/cocos2dx/DownHiller2/ios-build";
@@ -7322,7 +7322,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "/Users/jonym/Documents/cocos2dx/DownHiller2/ios-build/bin/DownHiller2/MinSizeRel";
@@ -7368,7 +7368,7 @@
 				);
 				INFOPLIST_FILE = /Users/jonym/Documents/cocos2dx/DownHiller2/proj.ios_mac/ios/Info.plist;
 				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
 					"-DNDEBUG",
@@ -7451,7 +7451,7 @@
 				OTHER_REZFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = org.cocos2dx.DownHiller2;
 				PRODUCT_NAME = DownHiller2;
-				PROVISIONING_PROFILE_SPECIFIER = downhiller2_20220601_3;
+				PROVISIONING_PROFILE_SPECIFIER = downhiller2_for_develop;
 				SECTORDER_FLAGS = "";
 				SKIP_INSTALL = NO;
 				SYMROOT = "/Users/jonym/Documents/cocos2dx/DownHiller2/ios-build";
@@ -7500,7 +7500,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "/Users/jonym/Documents/cocos2dx/DownHiller2/ios-build/bin/DownHiller2/RelWithDebInfo";
@@ -7546,7 +7546,7 @@
 				);
 				INFOPLIST_FILE = /Users/jonym/Documents/cocos2dx/DownHiller2/proj.ios_mac/ios/Info.plist;
 				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
 					"-DNDEBUG",
@@ -7628,7 +7628,7 @@
 				OTHER_REZFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = org.cocos2dx.DownHiller2;
 				PRODUCT_NAME = DownHiller2;
-				PROVISIONING_PROFILE_SPECIFIER = downhiller2_20220601_3;
+				PROVISIONING_PROFILE_SPECIFIER = downhiller2_for_develop;
 				SECTORDER_FLAGS = "";
 				SKIP_INSTALL = NO;
 				SYMROOT = "/Users/jonym/Documents/cocos2dx/DownHiller2/ios-build";
