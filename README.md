@@ -55,5 +55,11 @@ https://sppartner.i-mobile.co.jp/webdoc/index.html#cocos2dx/module-information.h
 corelocationframeworkを追加する。
 
 5,memoryリーク対策
-変数の呼び出しは、必ずget,setで呼ばないと、autoreleseが正常に機能せずに、
+1)変数の呼び出しは、必ずget,setで呼ばないと、autoreleseが正常に機能せずに、
 適切に消去されずに残り続けている。ので、get,setで呼び出す。
+2)physicsJointは autoreleaseが効いていないので、画面遷移直前に、
+　直接以下のコード(例)を記述し削除する。
+　        if(getBike()){
+            this->getScene()->getPhysicsWorld()->removeJoint(getBike()->getFRJoint());
+        }
+        this->transitonScene(TitleScene::createScene());

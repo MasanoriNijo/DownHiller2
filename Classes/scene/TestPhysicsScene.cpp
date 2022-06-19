@@ -23,7 +23,6 @@ TestPhysicsScene::~TestPhysicsScene() {
     CC_SAFE_RELEASE_NULL(_pt1);
     CC_SAFE_RELEASE_NULL(_pt2);
     CC_SAFE_RELEASE_NULL(_courceMaker);
-
 }
 
 Scene* TestPhysicsScene::createScene() {
@@ -43,15 +42,20 @@ bool TestPhysicsScene::init() {
     if (!GameScene::init()) {
         return false;
     }
-//    this->autorelease();
 //    this->setPhysicsBody(PhysicsBody::createEdgeBox(this->winSize));
 //    this->getPhysicsBody()->setDynamic(false);
     this->setBackGroundColor();
         
     this->setBtn1(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
+        if(getBike()){
+            this->getScene()->getPhysicsWorld()->removeJoint(getBike()->getFRJoint());
+        }
         this->transitonScene(TestPhysicsScene::createScene());
     }));
     this->setBtn2(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
+        if(getBike()){
+            this->getScene()->getPhysicsWorld()->removeJoint(getBike()->getFRJoint());
+        }
         this->transitonScene(TitleScene::createScene());
     }));
     this->setBtn3(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
@@ -163,21 +167,15 @@ void TestPhysicsScene::courceC(){
         dir_ =Vec2(dir_.x,dir_.y * -1);
     }
     getCourceMaker()->madePhysiceBody();
-//    getCourceMaker()->drawStart(points[0]+adPt , points[1]-points[0]);
-//    getCourceMaker()->drawTo(points[1]+adPt, points[2]-points[1]);
-//    getCourceMaker()->drawTo(points[2]+adPt, points[3]-points[2]);
-//    getCourceMaker()->drawTo(points[3]+adPt, Vec2(10,-5));
-//    getCourceMaker()->madePhysiceBody();
-    
 }
 
 void TestPhysicsScene::update(float dt) {
     // todo
-//    if(this->getBike()){
-//        //        this->getDebugMemo()->setString("重心位置:" + ST_VEC2(this->getBike()->weightPt));
-//        //        this->getDebugMemo()->setString("bike:" + ST_VEC2(this->getBike()->getPosition()) + " " + ST_INT(this->getBike()->getRotation()));
-//        this->getDebugMemo()->setString("swaip:" + ST_VEC2(_bike->weightPt));
-//    }
+    if(this->getBike()){
+        //        this->getDebugMemo()->setString("重心位置:" + ST_VEC2(this->getBike()->weightPt));
+        //        this->getDebugMemo()->setString("bike:" + ST_VEC2(this->getBike()->getPosition()) + " " + ST_INT(this->getBike()->getRotation()));
+        this->getDebugMemo()->setString("swaip:" + ST_VEC2(_bike->weightPt));
+    }
 }
 
 void TestPhysicsScene::setContactListener() {
