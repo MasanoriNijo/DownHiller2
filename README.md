@@ -63,3 +63,8 @@ corelocationframeworkを追加する。
             this->getScene()->getPhysicsWorld()->removeJoint(getBike()->getFRJoint());
         }
         this->transitonScene(TitleScene::createScene());
+
+
+6.ios14.4.1で実機ビルドできる様にする。
+1)build Phases→Link Binary With Libraryiesで
+　CoreLocationUI .frameworkのStatusをOptionalにする。

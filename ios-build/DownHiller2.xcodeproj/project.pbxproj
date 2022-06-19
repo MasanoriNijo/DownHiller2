@@ -174,6 +174,7 @@
 		304DD0BA2843D08F00AF0334 /* TestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304DD0B82843D08F00AF0334 /* TestScene.cpp */; };
 		304DD0BE2843D12300AF0334 /* SpritePool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304DD0BD2843D12300AF0334 /* SpritePool.cpp */; };
 		304DD0C22843DE2700AF0334 /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304DD0C12843DE2700AF0334 /* GameScene.cpp */; };
+		3087C151285EFD5000AD0F14 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3087C150285EFD5000AD0F14 /* SwiftUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		309B0D0F28490A830091801C /* ColorChanger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 309B0D0D28490A830091801C /* ColorChanger.cpp */; };
 		309B0D12284A6E170091801C /* Calclater.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 309B0D11284A6E160091801C /* Calclater.cpp */; };
 		309B0D15284B16160091801C /* Button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 309B0D14284B16160091801C /* Button.cpp */; };
@@ -252,7 +253,7 @@
 		30CD03F728467E980023D844 /* ImobileSdkAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30CD03F628467E970023D844 /* ImobileSdkAds.framework */; };
 		30CD03F928467F000023D844 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30CD03F828467F000023D844 /* AdSupport.framework */; };
 		30CD03FB28467F160023D844 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30CD03FA28467F160023D844 /* SystemConfiguration.framework */; };
-		30CD03FD28467F2D0023D844 /* CoreLocationUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30CD03FC28467F2D0023D844 /* CoreLocationUI.framework */; };
+		30CD03FD28467F2D0023D844 /* CoreLocationUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30CD03FC28467F2D0023D844 /* CoreLocationUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		30CD03FF28467F3F0023D844 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30CD03FE28467F3F0023D844 /* WebKit.framework */; };
 		30CD040128467F530023D844 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30CD040028467F530023D844 /* StoreKit.framework */; };
 		30CD04032846886C0023D844 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30CD04022846886C0023D844 /* CoreLocation.framework */; };
@@ -1424,6 +1425,7 @@
 		304DD0DB2845253200AF0334 /* kotokotobokanmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = kotokotobokanmark.png; path = Resources/images/kotokotobokanmark.png; sourceTree = SOURCE_ROOT; };
 		304DD0DD28452B5D00AF0334 /* kotokotobokanmark_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = kotokotobokanmark_2.png; path = Resources/images/kotokotobokanmark_2.png; sourceTree = SOURCE_ROOT; };
 		3077803B8D5646769C867A5B /* DetourObstacleAvoidance.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = DetourObstacleAvoidance.cpp; path = cocos2d/external/recast/DetourCrowd/DetourObstacleAvoidance.cpp; sourceTree = SOURCE_ROOT; };
+		3087C150285EFD5000AD0F14 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		309B0D0B2848FA5B0091801C /* Const.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Const.h; sourceTree = "<group>"; };
 		309B0D0D28490A830091801C /* ColorChanger.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ColorChanger.cpp; sourceTree = "<group>"; };
 		309B0D0E28490A830091801C /* ColorChanger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorChanger.h; sourceTree = "<group>"; };
@@ -2579,6 +2581,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3087C151285EFD5000AD0F14 /* SwiftUI.framework in Frameworks */,
 				30CD04032846886C0023D844 /* CoreLocation.framework in Frameworks */,
 				30CD03F728467E980023D844 /* ImobileSdkAds.framework in Frameworks */,
 				30CD040128467F530023D844 /* StoreKit.framework in Frameworks */,
@@ -4435,6 +4438,7 @@
 		9A09A3E2EF984B68BC34E3BA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3087C150285EFD5000AD0F14 /* SwiftUI.framework */,
 				30CD04022846886C0023D844 /* CoreLocation.framework */,
 				30CD040028467F530023D844 /* StoreKit.framework */,
 				30CD03FE28467F3F0023D844 /* WebKit.framework */,
