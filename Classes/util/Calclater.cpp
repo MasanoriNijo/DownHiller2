@@ -40,7 +40,6 @@ float Calclater::chgKaku(Vec2 pt) {
 float Calclater::nomlKaku(Vec2 pt1, Vec2 pt2){
     Vec2 dpt = pt2 - pt1;
     float angle = atan2f(dpt.y, dpt.x);
-    if (std::abs(angle) < FLT_EPSILON) return 0.f;
     return chgKaku(angle);
 }
 

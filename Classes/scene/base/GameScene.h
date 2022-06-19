@@ -64,5 +64,16 @@ public:
     // Debug用のラインを描写する。
     void drawDebugLine();
     
+    // 画面のサイズ関連を取得する.
+    // 実際の画面サイズ
+     // Getting a real display size.
+    float getScreenWidth();
+    float getScreenHeight();
+    
+    // 設計上の画面サイズ
+    // Getting a design size.
+    float getDesignWidth();
+    float getDesignHeight();
+    
 };
 #endif

@@ -64,6 +64,8 @@ public:
     float _polygonPitch = 10;
     
     void madePhysiceBody();
+    
+    void madePhysiceBody(Node* field);
 };
 
 #endif

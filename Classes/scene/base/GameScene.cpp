@@ -167,6 +167,22 @@ void GameScene::drawDebugLine(){
     
 }
 
+float GameScene::getScreenWidth() {
+    return Director::getInstance()->getOpenGLView()->getFrameSize().width;
+}
+
+float GameScene::getScreenHeight() {
+    return Director::getInstance()->getOpenGLView()->getFrameSize().height;
+}
+
+float GameScene::getDesignWidth() {
+    return Director::getInstance()->getOpenGLView()->getDesignResolutionSize().width;
+}
+
+float GameScene::getDesignHeight() {
+    return Director::getInstance()->getOpenGLView()->getDesignResolutionSize().height;
+}
+
 /** パラメータサンプル
  this->setBackColor(LayerColor::create());
  this->getBackColor();

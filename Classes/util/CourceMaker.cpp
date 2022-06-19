@@ -192,7 +192,6 @@ void CourceMaker::calcCurve(Vec2 pt1,Vec2 dir1, Vec2 pt2, Vec2 dir2 ,float r_){
         addDot(ptr_trg);
     }
     
-    
     // ポリゴンの追加
     float dradp = rotLeft ? _polygonPitch/r : -_polygonPitch/r;
     float diffRadp = getCalc()->diffRadA2B(stPt_ctPt,edPt_ctPt,rotLeft);
@@ -213,6 +212,10 @@ void CourceMaker::calcCurve(Vec2 pt1,Vec2 dir1, Vec2 pt2, Vec2 dir2 ,float r_){
 }
 
 void CourceMaker::addPolygonPts(Vec2 pt_) {
+    // 前回と同じポリゴンの場合は、キャンセル。
+    if(_polygonPtCnt && _polygonPts[_polygonPtCnt-1].equals(pt_)){
+        return;
+    }
     _polygonPts[_polygonPtCnt].set(pt_);
     _polygonPtCnt++;
 }
@@ -244,13 +247,36 @@ void CourceMaker::madePhysiceBody(){
     _material.density = 0.001f;
     
     this->setCourceBody(PhysicsBody::createEdgeChain(_polygonPts, _polygonPtCnt,_material));
-    _courceBody->setDynamic(false);
-    _courceBody->setCategoryBitmask(CT_COURCE);
-    _courceBody->setCollisionBitmask(CT_WHEEL);
-    _courceBody->setContactTestBitmask(CT_WHEEL);
-    _courceBody->setTag(TG_COURCE);
-    this->setPhysicsBody(_courceBody);
+    getCourceBody()->setDynamic(false);
+    getCourceBody()->setCategoryBitmask(CT_COURCE);
+    getCourceBody()->setCollisionBitmask(CT_WHEEL);
+    getCourceBody()->setContactTestBitmask(CT_WHEEL);
+    getCourceBody()->setTag(TG_COURCE);
+    this->setPhysicsBody(getCourceBody());
     
+    // error対策
+    setRotation(0);
+    setRotation3D(Vec3::ZERO);
+    
+}
+
+void CourceMaker::madePhysiceBody(Node* field){
+    auto _material = PHYSICSBODY_MATERIAL_DEFAULT;
+    _material.restitution = 0.0001f;
+    _material.friction =1.0f;
+    _material.density = 0.001f;
+    
+    this->setCourceBody(PhysicsBody::createEdgeChain(_polygonPts, _polygonPtCnt,_material));
+    getCourceBody()->setDynamic(false);
+    getCourceBody()->setCategoryBitmask(CT_COURCE);
+    getCourceBody()->setCollisionBitmask(CT_WHEEL);
+    getCourceBody()->setContactTestBitmask(CT_WHEEL);
+    getCourceBody()->setTag(TG_COURCE);
+    field->setPhysicsBody(getCourceBody());
+    
+    // error対策
+    setRotation(0);
+    setRotation3D(Vec3::ZERO);
 }
 
 void CourceMaker::addCurveA(Vec2 pt_, Vec2 dir_){

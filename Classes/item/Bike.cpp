@@ -91,7 +91,7 @@ void Bike::_addPhysicsToWheel(Sprite* _wheel){
 }
 
 void Bike::_positionSyncToWheel(){
-    float kaku = this->getCalc()->nomlKaku(getRwheel()->getPosition(),getFwheel()->getPosition());
+    float kaku = getCalc()->nomlKaku(getRwheel()->getPosition(),getFwheel()->getPosition());
     this->setRotation(kaku);
     this->setPosition(getRwheel()->getPosition());
 }
@@ -237,7 +237,7 @@ void Bike::_judeAction(float dt){
         lvlY_ = 2;
     }
     
-    Vec2 noml_ = this->getCalc()->cordinaneX(Vec2(1,0), weightPt-chasePt);
+    Vec2 noml_ = getCalc()->cordinaneX(Vec2(1,0), weightPt-chasePt);
     int lvl = 0;
     // 前後のウイリー
     if( chasePt.y >= -riderActionSpan){
@@ -316,24 +316,24 @@ void Bike::_judeAction(float dt){
         return;
     }
     
-    this->getCalc()->chasePt(weightPt , chasePt, chaseVelo, dt);
-    this->getParentSprite()->setPosition(chasePt + bikeCenterPt);
+    getCalc()->chasePt(weightPt , chasePt, chaseVelo, dt);
+    getParentSprite()->setPosition(chasePt + bikeCenterPt);
 }
 
 bool Bike::jump(float lvl){
     Vec2 powPt;
     if(rWheelTouched){
         if(fWheelTouched){
-            powPt = this->getCalc()->chgLength(rWheelTouchPt, -frJumpPow + lvl);
+            powPt = getCalc()->chgLength(rWheelTouchPt, -frJumpPow + lvl);
             if(powPt.length()>maxJumpSpeed){
-                powPt = this->getCalc()->chgLength(powPt, maxJumpSpeed);
+                powPt = getCalc()->chgLength(powPt, maxJumpSpeed);
             }
             NJLOG("前後輪ジャンプ");
             NJLOG(ST_VEC2(powPt).c_str());
         }else{
-            powPt = this->getCalc()->chgLength(rWheelTouchPt, -rJumpPow + lvl);
+            powPt = getCalc()->chgLength(rWheelTouchPt, -rJumpPow + lvl);
             if(powPt.length()>maxJumpSpeed){
-                powPt = this->getCalc()->chgLength(powPt, maxJumpSpeed);
+                powPt = getCalc()->chgLength(powPt, maxJumpSpeed);
             }
             NJLOG("後輪ジャンプ");
             NJLOG(ST_VEC2(powPt).c_str());
@@ -342,9 +342,9 @@ bool Bike::jump(float lvl){
         getFwheel()->getPhysicsBody()->setVelocity(getRwheel()->getPhysicsBody()->getVelocity());
     }else{
         if(fWheelTouched){
-            powPt = this->getCalc()->chgLength(fWheelTouchPt, fJumpPow + lvl);
+            powPt = getCalc()->chgLength(fWheelTouchPt, fJumpPow + lvl);
             if(powPt.length()>maxJumpSpeed){
-                powPt = this->getCalc()->chgLength(powPt, maxJumpSpeed);
+                powPt = getCalc()->chgLength(powPt, maxJumpSpeed);
             }
             NJLOG("前輪ジャンプ");
             NJLOG(ST_VEC2(powPt).c_str());
