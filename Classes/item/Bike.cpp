@@ -151,19 +151,21 @@ void Bike::touchOn(Vec2 pt){
 void Bike::swaip(Vec2 pt){
     touchPt2.set(pt);
     Vec2 dV = touchPt2 - touchPt1;
-    if(dV.x > 4 * riderActionSpan){
-        touchPt1.x = touchPt2.x - 4 * riderActionSpan;
+//    dV = getCalc()->rotByKaku(dV, -getRotation());
+    weightPt+=dV;
+    if(weightPt.x > 4 * riderActionSpan){
+        weightPt.x =  4 * riderActionSpan;
     }
-    if(dV.x < - 4 * riderActionSpan){
-        touchPt1.x = touchPt2.x + 4 * riderActionSpan;
+    if(weightPt.x < - 4 * riderActionSpan){
+        weightPt.x = - 4 * riderActionSpan;
     }
-    if(dV.y > 4 * riderActionSpan){
-        touchPt1.y = touchPt2.y - 4 * riderActionSpan;
+    if(weightPt.y > 4 * riderActionSpan){
+        weightPt.y =  4 * riderActionSpan;
     }
-    if(dV.y < - 4 * riderActionSpan){
-        touchPt1.y = touchPt2.y + 4 * riderActionSpan;
+    if(weightPt.y < - 4 * riderActionSpan){
+        weightPt.y = - 4 * riderActionSpan;
     }
-    weightPt.set(touchPt2-touchPt1);
+    touchPt1.set(pt);
 }
 
 void Bike::touchOff(Vec2 pt){
@@ -350,8 +352,12 @@ void Bike::werry(float lvl){
     if(powPt.length()>maxRotSpeed){
         powPt = getCalc()->chgLength(powPt, maxRotSpeed);
     }
+    if(!fWheelTouched && !rWheelTouched){
+        powPt *= 0.5; // 空中回転の場合は、回転しすぎるので、半減させる。
+    }
     getFwheel()->getPhysicsBody()->setVelocity(centerObjVelo + powPt);
     getRwheel()->getPhysicsBody()->setVelocity(centerObjVelo - powPt);
+    
 }
 
 void Bike::dush(float lvl){

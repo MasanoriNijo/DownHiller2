@@ -115,7 +115,7 @@ void TestPhysicsScene::courceA(){
     points[1].x = -50;
     points[1].y = -20;
     points[2].x = 300;
-    points[2].y = -20;
+    points[2].y = 200;
     points[3].x = 600;
     points[3].y = -70;
     
@@ -144,7 +144,7 @@ void TestPhysicsScene::courceB(){
 
 void TestPhysicsScene::courceC(){
     Vec2 points[10];
-    points[0].x = -51;
+    points[0].x = -50;
     points[0].y = 100;
     points[1].x = -50;
     points[1].y = -20;
@@ -158,7 +158,7 @@ void TestPhysicsScene::courceC(){
     getCourceMaker()->drawTo(points[2], points[3]-points[2]);
     getCourceMaker()->drawTo(points[3], Vec2(10,-5));
     
-    Vec2 adPt = Vec2(200,-40);
+    Vec2 adPt = Vec2(150,-40);
     Vec2 pt_ = getCourceMaker()->getTergetPt();
     Vec2 dir_ = Vec2(10,8);
     for(int i= 0;i<100;i++){

@@ -101,10 +101,10 @@ public:
     float maxRJumpSpeed = 30;
     float maxFRJumpSpeed = 20;
     float maxFJumpSpeed = 10;
-    float maxRotSpeed = 30;
+    float maxRotSpeed = 15;
     // 挙動に影響するパラメータ
     // 重心に追随する速度
-    float chaseVelo = 15;
+    float chaseVelo = 30;
     
     // wheel最大速度
     float maxWheelVelo = 200;
