@@ -91,17 +91,16 @@ public:
     
     // bikeへのアクション
     bool jump(float lvl);
+    bool lift(float lvl);
     void werry(float lvl);
     void dush(float lvl);
     void stop();
-    float frJumpPow = 0.2;
-    float fJumpPow = 0.5;
-    float rJumpPow = 1;
-    float weeryPow = 1.0;
-    float dushPow = 3;
-    float maxRJumpSpeed = 20;
-    float maxFRJumpSpeed = 10;
-    float maxFJumpSpeed = 5;
+
+    float weeryPow = 2.0;
+    float dushPow = 4;
+    float maxRJumpSpeed = 30;
+    float maxFRJumpSpeed = 20;
+    float maxFJumpSpeed = 10;
     float maxRotSpeed = 30;
     // 挙動に影響するパラメータ
     // 重心に追随する速度

@@ -50,19 +50,19 @@ bool TestPhysicsScene::init() {
         if(getBike()){
             getScene()->getPhysicsWorld()->removeJoint(getBike()->getFRJoint());
         }
-        transitonScene(TestPhysicsScene::createScene());
-    }));
-    setBtn2(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
-        if(getBike()){
-            getScene()->getPhysicsWorld()->removeJoint(getBike()->getFRJoint());
-        }
         transitonScene(TitleScene::createScene());
     }));
+    setBtn2(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
+        getBike()->weightPt = Vec2(-6,6);
+        getBike()->weightPt = Vec2(6,6);
+    }));
     setBtn3(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
-        courceC();
+        getBike()->weightPt = Vec2(6,6);
+        getBike()->weightPt = Vec2(-6,6);
     }));
     setBtn4(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
-        getBike()->jump(-20);
+        getBike()->weightPt = Vec2(0,6);
+        getBike()->chasePt = Vec2(0,-6);
     }));
     setMenu(Menu::create(getBtn1(),getBtn2(),getBtn3(),getBtn4(),NULL));
     getMenu()->alignItemsHorizontallyWithPadding(20);

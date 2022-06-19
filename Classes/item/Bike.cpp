@@ -37,8 +37,8 @@ bool Bike::init() {
     frameSize = Size(getRider()->getContentSize().width / 7, getRider()->getContentSize().height / 7);
     
     getRider()->setPosition(Vec2(18,22));
-    this->addChild(getRider(),OBJ_LAYER_TOP);
     getRider()->setGlobalZOrder(OBJ_LAYER_TOP);// これを入れないとライダーが下に隠れて見えなくなる。
+    this->addChild(getRider());    
     this->riderImageAction();
     
     // wheelをセットする。
@@ -228,57 +228,13 @@ void Bike::_judeAction(float dt){
         }
     }
     
-    // 前方のウイリーと前輪ジャンプ
-    if(chasePt.x >= riderActionSpan * 2){
-        if(noml_.y > riderActionSpan){
-            if(fWheelTouched && !rWheelTouched){
-                this->jump(noml_.y);
-                chasePt.set(weightPt);
-                getParentSprite()->setPosition(chasePt + bikeCenterPt);
-            }else{
-                this->werry(noml_.y);
-                chasePt.set(weightPt);
-                getParentSprite()->setPosition(chasePt + bikeCenterPt);
-            }
-            return;
-        }else if(noml_.y < -riderActionSpan){
-            this->werry(noml_.y);
+    // ジャンプ
+    if(weightPt.y > riderActionSpan * 4 -1){
+        if(noml_.y > riderActionSpan*2){
+            this->jump(noml_.y);
             chasePt.set(weightPt);
             getParentSprite()->setPosition(chasePt + bikeCenterPt);
             return;
-        }
-    }
-    
-    // 後方のウイリーと後輪ジャンプ
-    if( chasePt.x <= -riderActionSpan * 2){
-        if(noml_.y > riderActionSpan){
-            if(rWheelTouched && !fWheelTouched){
-                this->jump(noml_.y);
-                chasePt.set(weightPt);
-                getParentSprite()->setPosition(chasePt + bikeCenterPt);
-            }else{
-                this->werry(-noml_.y);
-                chasePt.set(weightPt);
-                getParentSprite()->setPosition(chasePt + bikeCenterPt);
-            }
-            return;
-        }else if(noml_.y < -riderActionSpan){
-            this->werry(-noml_.y);
-            chasePt.set(weightPt);
-            getParentSprite()->setPosition(chasePt + bikeCenterPt);
-            return;
-        }
-    }
-    
-    // 前後輪同時ジャンプ
-    if( chasePt.x > -riderActionSpan * 2 && chasePt.x < riderActionSpan * 2 && chasePt.y < -riderActionSpan * 2){
-        if(rWheelTouched && fWheelTouched){
-            if(noml_.y > riderActionSpan){
-                this->jump(noml_.y);
-                chasePt.set(weightPt);
-                getParentSprite()->setPosition(chasePt + bikeCenterPt);
-                return;
-            }
         }
     }
 
@@ -346,43 +302,46 @@ bool Bike::jump(float lvl){
     return true;
 }
 
-// 元のコード
-//bool Bike::jump(float lvl){
-//    Vec2 powPt;
-//    if(rWheelTouched){
-//        if(fWheelTouched){
-//            powPt = getCalc()->chgLength(rWheelTouchPt, -frJumpPow + lvl);
-//            if(powPt.length()>maxJumpSpeed){
-//                powPt = getCalc()->chgLength(powPt, maxJumpSpeed);
-//            }
-//            NJLOG("前後輪ジャンプ");
-//            NJLOG(ST_VEC2(powPt).c_str());
-//        }else{
-//            powPt = getCalc()->chgLength(rWheelTouchPt, -rJumpPow + lvl);
-//            if(powPt.length()>maxJumpSpeed){
-//                powPt = getCalc()->chgLength(powPt, maxJumpSpeed);
-//            }
-//            NJLOG("後輪ジャンプ");
-//            NJLOG(ST_VEC2(powPt).c_str());
-//        }
-//        getRwheel()->getPhysicsBody()->setVelocity(getRwheel()->getPhysicsBody()->getVelocity() + powPt);
-//        getFwheel()->getPhysicsBody()->setVelocity(getRwheel()->getPhysicsBody()->getVelocity());
-//    }else{
-//        if(fWheelTouched){
-//            powPt = getCalc()->chgLength(fWheelTouchPt, fJumpPow + lvl);
-//            if(powPt.length()>maxJumpSpeed){
-//                powPt = getCalc()->chgLength(powPt, maxJumpSpeed);
-//            }
-//            NJLOG("前輪ジャンプ");
-//            NJLOG(ST_VEC2(powPt).c_str());
-//            getFwheel()->getPhysicsBody()->setVelocity(getFwheel()->getPhysicsBody()->getVelocity() - powPt);
-//            getRwheel()->getPhysicsBody()->setVelocity(getFwheel()->getPhysicsBody()->getVelocity());
-//        }else{
-//            return false;
-//        }
-//    }
-//    return true;
-//}
+bool Bike::lift(float lvl){
+    Vec2 powPt;
+    Vec2 veloPt;
+    Vec2 nomlVeloPt;
+    if(rWheelTouched){
+        rWheelTouched = false;
+        veloPt = getRwheel()->getPhysicsBody()->getVelocity();
+        nomlVeloPt = getCalc()->cordinaneX(rWheelTouchPt, veloPt);
+        if(fWheelTouched){
+            nomlVeloPt.x = maxFRJumpSpeed;
+            fWheelTouched = false;
+            NJLOG("前後輪ジャンプ");
+            NJLOG(ST_VEC2(powPt).c_str());
+        }else{
+            nomlVeloPt.x = maxRJumpSpeed;
+            NJLOG("後輪ジャンプ");
+            NJLOG(ST_VEC2(powPt).c_str());
+        }
+        powPt = getCalc()->rotByRad(nomlVeloPt, getCalc()->chgRad(-rWheelTouchPt));
+        getRwheel()->getPhysicsBody()->setVelocity(getRwheel()->getPhysicsBody()->getVelocity() + powPt);
+        getFwheel()->getPhysicsBody()->setVelocity(getRwheel()->getPhysicsBody()->getVelocity());
+        return true;
+    }else{
+        if(fWheelTouched){
+            veloPt = getFwheel()->getPhysicsBody()->getVelocity();
+            nomlVeloPt = getCalc()->cordinaneX(fWheelTouchPt, veloPt);
+            nomlVeloPt.x = maxFJumpSpeed;
+            powPt = getCalc()->rotByRad(nomlVeloPt, getCalc()->chgRad(-fWheelTouchPt));
+            NJLOG("前輪ジャンプ");
+            NJLOG(ST_VEC2(powPt).c_str());
+            fWheelTouched = false;
+            getFwheel()->getPhysicsBody()->setVelocity(getFwheel()->getPhysicsBody()->getVelocity() + powPt);
+            getRwheel()->getPhysicsBody()->setVelocity(getFwheel()->getPhysicsBody()->getVelocity());
+            return true;
+        }else{
+            return false;
+        }
+    }
+    return true;
+}
 
 void Bike::werry(float lvl){
     Vec2 rfpt_ = getFwheel()->getPosition()-_rWheel->getPosition();
