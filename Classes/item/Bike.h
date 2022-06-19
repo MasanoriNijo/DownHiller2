@@ -68,11 +68,17 @@ public:
     // riderアクション weightPtの位置により、画像差し替える。
     // riderのフレームサイズ
     Size frameSize;
-    float riderActionSpan = 5;
+    float riderActionSpan = 1.5;
     void riderImageAction();
     
     // bikeの制御不能をある程度制限する。
     void _bikeBehaviorControl();
+    // 重心速度
+    Vec2 centerObjVelo;
+    float maxCenterObjVelo = 200;
+    // 重心回転速度Rホイール
+    Vec2 centerObjRotVelo;
+    float maxCenterObjRotVelo = 40;
     
     enum class BikeState {READY, NOML, BREAK, GOAL, BIG, BALUNE, SCOPE, ALLOW, SLIDE, STOP, JUMP, JUMP2};
     CC_SYNTHESIZE(BikeState,_BikeState,BikeState);
@@ -91,13 +97,15 @@ public:
     float frJumpPow = 0.2;
     float fJumpPow = 0.5;
     float rJumpPow = 1;
-    float weeryPow = 0.25;
-    float dushPow = 1;
-    float maxJumpSpeed = 30;
+    float weeryPow = 1.0;
+    float dushPow = 3;
+    float maxRJumpSpeed = 20;
+    float maxFRJumpSpeed = 10;
+    float maxFJumpSpeed = 5;
     float maxRotSpeed = 30;
     // 挙動に影響するパラメータ
     // 重心に追随する速度
-    float chaseVelo = 100;
+    float chaseVelo = 15;
     
     // wheel最大速度
     float maxWheelVelo = 200;

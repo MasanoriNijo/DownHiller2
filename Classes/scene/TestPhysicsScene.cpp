@@ -158,7 +158,7 @@ void TestPhysicsScene::courceC(){
     getCourceMaker()->drawTo(points[2], points[3]-points[2]);
     getCourceMaker()->drawTo(points[3], Vec2(10,-5));
     
-    Vec2 adPt = Vec2(100,40);
+    Vec2 adPt = Vec2(200,-40);
     Vec2 pt_ = getCourceMaker()->getTergetPt();
     Vec2 dir_ = Vec2(10,8);
     for(int i= 0;i<100;i++){

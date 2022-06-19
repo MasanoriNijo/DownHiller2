@@ -77,7 +77,7 @@ bool TestScene::init() {
         NJLOG(ST_FLOAT(getScreenWidth()).c_str());
         NJLOG(ST_FLOAT(getScreenHeight()).c_str());
         NJLOG(ST_FLOAT(getDesignWidth()).c_str());
-        NJLOG(ST_FLOAT(getDesignWidth()).c_str());
+        NJLOG(ST_FLOAT(getDesignHeight()).c_str());
     }));
     this->setMenu(Menu::create(this->getBtn1(),this->getBtn2(),this->getBtn3(),this->getBtn4(),NULL));
     this->getMenu()->alignItemsHorizontallyWithPadding(20);
