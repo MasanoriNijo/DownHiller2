@@ -105,6 +105,8 @@ void TestPhysicsScene::onEnterTransitionDidFinish() {
     
     scheduleUpdate();
     
+    showGameAnnounce("準備はいいか？", ctPt);
+    
 }
 
 void TestPhysicsScene::courceA(){

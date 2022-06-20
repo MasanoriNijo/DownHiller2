@@ -186,6 +186,8 @@ float GameScene::getDesignHeight() {
 void GameScene::showGameAnnounce(std::string st,Vec2 pt){
     
     auto fadeIn = FadeIn::create(0.5f);
+    auto scaleIn = EaseElasticOut::create(ScaleTo::create(0.5, 1));
+    auto para = Spawn::create(fadeIn,scaleIn, NULL);
     auto stayTime = DelayTime::create(1.0f);
     auto fadeOut = FadeOut::create(0.2f);
     auto endFnc = CallFunc::create([this](){
@@ -193,11 +195,12 @@ void GameScene::showGameAnnounce(std::string st,Vec2 pt){
             this->getGameAnounce()->removeFromParentAndCleanup(true);
         }
     });
-    auto seq = Sequence::create(fadeIn,stayTime,fadeOut,endFnc, NULL);
+    auto seq = Sequence::create(para,stayTime,fadeOut,endFnc, NULL);
     setGameAnounce(Label::createWithTTF(st, "irohamaru.ttf", 24));
     getGameAnounce()->setTextColor(Color4B::BLACK);
     getGameAnounce()->enableOutline(Color4B::WHITE,1);
     getGameAnounce()->setOpacity(0);
+    getGameAnounce()->setScale(0);
     getGameAnounce()->runAction(seq);
     mountNode(getGameAnounce(), pt, OBJ_LAYER_TOP);
 }
