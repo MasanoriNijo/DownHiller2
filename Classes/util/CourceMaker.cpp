@@ -213,7 +213,7 @@ void CourceMaker::calcCurve(Vec2 pt1,Vec2 dir1, Vec2 pt2, Vec2 dir2 ,float r_){
 
 void CourceMaker::addPolygonPts(Vec2 pt_) {
     // 前回と同じポリゴンの場合は、キャンセル。
-    if(_polygonPtCnt && _polygonPts[_polygonPtCnt-1].equals(pt_)){
+    if(_polygonPtCnt && (_polygonPts[_polygonPtCnt-1]-pt_).length()<1){
         return;
     }
     _polygonPts[_polygonPtCnt].set(pt_);
@@ -227,6 +227,7 @@ void CourceMaker::addStraightLine(Vec2 pt1_, Vec2 pt2_){
     stline->setPosition(pt1_);
     stline->setRotation(getCalc()->chgKaku((pt2_-pt1_)));
     stline->setGlobalZOrder(OBJ_LAYER_TOP);
+    stline->setOpacity(0.3f);
     getStraight()->addChild(stline);
     getMember().pushBack(stline);
     addDot(pt2_);
@@ -236,6 +237,7 @@ void CourceMaker::addDot(Vec2 pt_){
     Sprite* dot = Sprite::createWithTexture(getDot()->getTexture());
     dot->setGlobalZOrder(OBJ_LAYER_TOP);
     dot->setPosition(pt_);
+    dot->setOpacity(0.2f);
     getDot()->addChild(dot);
     getMember().pushBack(dot);
 }
@@ -253,11 +255,6 @@ void CourceMaker::madePhysiceBody(){
     getCourceBody()->setContactTestBitmask(CT_WHEEL);
     getCourceBody()->setTag(TG_COURCE);
     this->setPhysicsBody(getCourceBody());
-    
-    // error対策
-    setRotation(0);
-    setRotation3D(Vec3::ZERO);
-    
 }
 
 void CourceMaker::madePhysiceBody(Node* field){
@@ -273,10 +270,6 @@ void CourceMaker::madePhysiceBody(Node* field){
     getCourceBody()->setContactTestBitmask(CT_WHEEL);
     getCourceBody()->setTag(TG_COURCE);
     field->setPhysicsBody(getCourceBody());
-    
-    // error対策
-    setRotation(0);
-    setRotation3D(Vec3::ZERO);
 }
 
 void CourceMaker::addCurveA(Vec2 pt_, Vec2 dir_){

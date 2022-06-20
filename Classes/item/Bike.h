@@ -41,6 +41,9 @@ public:
     void update(float dt) override;
     void onEnterTransitionDidFinish() override;
     
+    // debug
+    CC_SYNTHESIZE_RETAIN(Label*,_bikeDebug,BikeDebug);
+    
     // 前後車輪を親シーンに設置した後、親シーンから呼ぶ
     void SetJoint();
     
@@ -97,11 +100,13 @@ public:
     void stop();
 
     float weeryPow = 2.0;
-    float dushPow = 4;
+    float maxRotSpeed = 15;
+    float dushPow = 6;
+    float maxDushSpeed = 30;
     float maxRJumpSpeed = 30;
     float maxFRJumpSpeed = 20;
     float maxFJumpSpeed = 10;
-    float maxRotSpeed = 15;
+
     // 挙動に影響するパラメータ
     // 重心に追随する速度
     float chaseVelo = 30;

@@ -45,7 +45,7 @@ bool TitleScene::init() {
 
 void TitleScene::onEnterTransitionDidFinish() {
     GameScene::onEnterTransitionDidFinish();
-    getAD()->AdShow(false, true, false, false, false, false);
+//    getAD()->AdShow(false, true, false, false, false, false);
     // todo
 }
 
