@@ -61,23 +61,10 @@ bool TestScene::init() {
         this->transitonScene(TestPhysicsScene::createScene());
     }));
     this->setBtn3(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
-        this->_lineMaker->setWorkPt(_pt1->getPosition());
-        this->_lineMaker->setWorkDir(this->getCalc()->getNodeDict(_pt1));
-        this->_lineMaker->setTergetPt(_pt2->getPosition());
-        this->_lineMaker->setTargetDir(this->getCalc()->getNodeDict(_pt2));
-        this->_lineMaker->madeCircleLine();
-        _pt3->setPosition(_lineMaker->ptA);
-        _pt4->setPosition(_lineMaker->ptA_wrk);
-        _pt5->setPosition(_lineMaker->ptA_trg);
-        
+        this->showGameAnnounce("ゲームスタート！", ctPt);
     }));
     this->setBtn4(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
-//        _stLine->drawLine(_pt1->getPosition(), _pt2->getPosition());
-        _cvLine->drawCurve(_pt1->getPosition(), this->getCalc()->getNodeDict(_pt1), _pt2->getPosition(), this->getCalc()->getNodeDict(_pt2), 30);
-        NJLOG(ST_FLOAT(getScreenWidth()).c_str());
-        NJLOG(ST_FLOAT(getScreenHeight()).c_str());
-        NJLOG(ST_FLOAT(getDesignWidth()).c_str());
-        NJLOG(ST_FLOAT(getDesignHeight()).c_str());
+        this->showGameAnnounce("ベストタイム！", ctPt);
     }));
     this->setMenu(Menu::create(this->getBtn1(),this->getBtn2(),this->getBtn3(),this->getBtn4(),NULL));
     this->getMenu()->alignItemsHorizontallyWithPadding(20);

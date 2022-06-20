@@ -1,7 +1,8 @@
 #include "GameScene.h"
 
 GameScene::GameScene():
-_backColor(NULL), _ad(NULL), _colorChanger(NULL), _calc(NULL), _debugLine(NULL), _debugMemo(NULL), _noMoveLayer(NULL)
+_backColor(NULL), _ad(NULL), _colorChanger(NULL), _calc(NULL),_gameAnounce(NULL),
+_debugLine(NULL), _debugMemo(NULL), _noMoveLayer(NULL)
 {}
 
 GameScene::~GameScene() {
@@ -13,6 +14,7 @@ GameScene::~GameScene() {
     CC_SAFE_RELEASE_NULL(_debugLine);
     CC_SAFE_RELEASE_NULL(_debugMemo);
     CC_SAFE_RELEASE_NULL(_noMoveLayer);
+    CC_SAFE_RELEASE_NULL(_gameAnounce);
 }
 
 Scene* GameScene::createScene() {
@@ -90,7 +92,6 @@ void GameScene::onExit(){
     Layer::onExit();
 }
 
-
 void GameScene::update(float dt) {
     switch (this->getGameState()) {
         case GameState::READY: {
@@ -164,7 +165,6 @@ void GameScene::drawDebugLine(){
     this->mountNode(this->getDebugLine(), Vec2::ZERO, OBJ_LAYER_LV1);
     this->setDebugMemo(Label::createWithTTF("Deugメモ", "irohamaru.ttf", 14));
     this->mountNode(this->getDebugMemo(), Vec2(this->ctPt.x,30), OBJ_LAYER_LV1);
-    
 }
 
 float GameScene::getScreenWidth() {
@@ -183,6 +183,28 @@ float GameScene::getDesignHeight() {
     return Director::getInstance()->getOpenGLView()->getDesignResolutionSize().height;
 }
 
+void GameScene::showGameAnnounce(std::string st,Vec2 pt){
+    
+    auto fadeIn = FadeIn::create(0.5f);
+    auto stayTime = DelayTime::create(1.0f);
+    auto fadeOut = FadeOut::create(0.2f);
+    auto endFnc = CallFunc::create([this](){
+        if(this->getGameAnounce()->getParent()){
+            this->getGameAnounce()->removeFromParent();
+        }
+    });
+    auto seq = Sequence::create(fadeIn,stayTime,fadeOut,endFnc, NULL);
+    if(!getGameAnounce()){
+        setGameAnounce(Label::createWithTTF(st, "irohamaru.ttf", 24));
+        getGameAnounce()->setTextColor(Color4B::BLACK);
+        getGameAnounce()->enableOutline(Color4B::WHITE,1);
+    }else{
+        getGameAnounce()->setPosition(pt);
+        getGameAnounce()->setString(st);
+    }
+    getGameAnounce()->runAction(seq);
+    mountNode(getGameAnounce(), pt, OBJ_LAYER_TOP);
+}
 /** パラメータサンプル
  this->setBackColor(LayerColor::create());
  this->getBackColor();

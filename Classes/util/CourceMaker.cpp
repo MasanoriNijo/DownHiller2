@@ -227,7 +227,7 @@ void CourceMaker::addStraightLine(Vec2 pt1_, Vec2 pt2_){
     stline->setPosition(pt1_);
     stline->setRotation(getCalc()->chgKaku((pt2_-pt1_)));
     stline->setGlobalZOrder(OBJ_LAYER_TOP);
-    stline->setOpacity(0.3f);
+//    stline->setOpacity(0.3f);
     getStraight()->addChild(stline);
     getMember().pushBack(stline);
     addDot(pt2_);
@@ -237,7 +237,7 @@ void CourceMaker::addDot(Vec2 pt_){
     Sprite* dot = Sprite::createWithTexture(getDot()->getTexture());
     dot->setGlobalZOrder(OBJ_LAYER_TOP);
     dot->setPosition(pt_);
-    dot->setOpacity(0.2f);
+//    dot->setOpacity(0.2f);
     getDot()->addChild(dot);
     getMember().pushBack(dot);
 }

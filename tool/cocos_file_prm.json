@@ -1,14 +1,16 @@
 {
-  "className": "CourceMaker",
-  "superClass": "Node",
+  "className": "GameStage",
+  "superClass": "GameScene",
   "synthesize_retains": [
-    ["SpriteBatchNode*", "_dot","Dot"],
-    ["SpriteBachNode", "_straight","Straight"],
-    ["SpriteBachNode", "_curveA","CurveA"],
-    ["SpriteBachNode", "_curveB","CurveB"],
-    ["SpriteBachNode", "_curveC","CurveC"],
-    ["SpriteBachNode", "_curveD","CurveD"],
-    ["SpriteBachNode", "_curveE","CurveE"],
-    ["SpriteBachNode", "_curveF","CurveF"]
+    ["Label", "_gameTime", "GameTime"],
+    ["Label", "_bestTime", "BestTime"],
+    ["Label", "_bikeSpeed", "BikeSpeed"],
+    ["DrawNode", "_baseLine", "BaseLine"],
+    ["DrawNode", "_ball", "Ball"],
+    ["MenuItemImage", "_btn1", "Btn1"],
+    ["MenuItemImage", "_btn2", "Btn2"],
+    ["MenuItemImage", "_btn3", "Btn3"],
+    ["MenuItemImage", "_btn4", "Btn4"],
+    ["Menu", "_menu", "Menu"]
   ]
 }

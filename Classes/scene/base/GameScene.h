@@ -26,6 +26,7 @@ public:
     CC_SYNTHESIZE_RETAIN(Calclater*,_calc,Calc);
     CC_SYNTHESIZE_RETAIN(DrawNode*,_debugLine,DebugLine);
     CC_SYNTHESIZE_RETAIN(Label*,_debugMemo,DebugMemo);
+    CC_SYNTHESIZE_RETAIN(Label*,_gameAnounce,GameAnounce);
     CC_SYNTHESIZE_RETAIN(ParallaxNode*,_noMoveLayer,NoMoveLayer);
     // 画面のセンターの位置
     Vec2 ctPt;
@@ -58,11 +59,14 @@ public:
     // 指定の位置にスプライトをセットする。固定レイヤーにセット
     void mountNode(Node* sp, Vec2 pt, float lvl);
     
-    // 指定の位置にスプライトをセットする。固定レイヤーにセット
+    // 指定の位置にスプライトをセットする。通常のレイヤーにセット
     void mountScroleNode(Node* sp, Vec2 pt, float lvl);
     
     // Debug用のラインを描写する。
     void drawDebugLine();
+    
+    // ゲーム進行上のアナウンスを行う。例：game start,よーいドン,,,
+    void showGameAnnounce(std::string st,Vec2 pt);
     
     // 画面のサイズ関連を取得する.
     // 実際の画面サイズ
