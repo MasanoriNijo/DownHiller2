@@ -53,3 +53,18 @@ cocos2dx用設定
 https://sppartner.i-mobile.co.jp/webdoc/index.html#cocos2dx/module-information.html
 
 corelocationframeworkを追加する。
+
+5,memoryリーク対策
+1)変数の呼び出しは、必ずget,setで呼ばないと、autoreleseが正常に機能せずに、
+適切に消去されずに残り続けている。ので、get,setで呼び出す。
+2)physicsJointは autoreleaseが効いていないので、画面遷移直前に、
+　直接以下のコード(例)を記述し削除する。
+　        if(getBike()){
+            this->getScene()->getPhysicsWorld()->removeJoint(getBike()->getFRJoint());
+        }
+        this->transitonScene(TitleScene::createScene());
+
+
+6.ios14.4.1で実機ビルドできる様にする。
+1)build Phases→Link Binary With Libraryiesで
+　CoreLocationUI .frameworkのStatusをOptionalにする。

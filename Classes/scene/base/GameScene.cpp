@@ -82,8 +82,14 @@ void GameScene::setBackGroundColor(float h, float s, float v){
 }
 
 void GameScene::onEnterTransitionDidFinish() {
+    Layer::onEnterTransitionDidFinish();
     // todo
 }
+
+void GameScene::onExit(){
+    Layer::onExit();
+}
+
 
 void GameScene::update(float dt) {
     switch (this->getGameState()) {
@@ -107,6 +113,10 @@ void GameScene::update(float dt) {
 }
 
 void GameScene::transitonScene(Scene* scene){
+    NJLOG("GameScene:Count3");
+    NJLOG(ST_INT(this->getReferenceCount()).c_str());
+//    this->release();
+    NJLOG(ST_INT(this->getReferenceCount()).c_str());
     auto transition_ = CallFuncN::create([scene](Node* node_) {
         auto transition=TransitionCrossFade::create(0.5,scene);
         Director::getInstance()->replaceScene(transition);
@@ -128,7 +138,7 @@ void GameScene::mountNode(Node* sp, Vec2 pt, float lvl){
 void GameScene::mountScroleNode(Node* sp, Vec2 pt, float lvl){
     sp->setPosition(pt);
     sp->setGlobalZOrder(lvl);
-        this->addChild(sp);
+    this->addChild(sp);
 }
 
 void GameScene::drawDebugLine(){
@@ -155,6 +165,22 @@ void GameScene::drawDebugLine(){
     this->setDebugMemo(Label::createWithTTF("Deugメモ", "irohamaru.ttf", 14));
     this->mountNode(this->getDebugMemo(), Vec2(this->ctPt.x,30), OBJ_LAYER_LV1);
     
+}
+
+float GameScene::getScreenWidth() {
+    return Director::getInstance()->getOpenGLView()->getFrameSize().width;
+}
+
+float GameScene::getScreenHeight() {
+    return Director::getInstance()->getOpenGLView()->getFrameSize().height;
+}
+
+float GameScene::getDesignWidth() {
+    return Director::getInstance()->getOpenGLView()->getDesignResolutionSize().width;
+}
+
+float GameScene::getDesignHeight() {
+    return Director::getInstance()->getOpenGLView()->getDesignResolutionSize().height;
 }
 
 /** パラメータサンプル

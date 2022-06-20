@@ -4,7 +4,10 @@
 #include "scene/base/GameScene.h"
 #include "util/TouchEventHelper.h"
 #include "util/LineMaker.h"
+#include "util/CourceMaker.h"
+#include "item/CurveLine.h"
 #include "item/Bike.h"
+#include "item/StraightLine.h"
 #include "cocos2d.h"
 USING_NS_CC;
 
@@ -18,8 +21,6 @@ public:
     CREATE_FUNC(TestPhysicsScene);
     static Scene* createScene();
     CC_SYNTHESIZE_RETAIN(Label*,_gameTitle,GameTitle);
-    CC_SYNTHESIZE_RETAIN(DrawNode*,_baseLine,BaseLine);
-    CC_SYNTHESIZE_RETAIN(DrawNode*,_ball,Ball);
     CC_SYNTHESIZE_RETAIN(MenuItemImage*,_btn1,Btn1);
     CC_SYNTHESIZE_RETAIN(MenuItemImage*,_btn2,Btn2);
     CC_SYNTHESIZE_RETAIN(MenuItemImage*,_btn3,Btn3);
@@ -31,19 +32,12 @@ public:
     
     CC_SYNTHESIZE_RETAIN(Sprite2*,_pt1,Pt1);
     CC_SYNTHESIZE_RETAIN(Sprite2*,_pt2,Pt2);
-    CC_SYNTHESIZE_RETAIN(LineMaker*,_lineMaker,LineMaker);
+    CC_SYNTHESIZE_RETAIN(CourceMaker*,_courceMaker,CourceMaker);
     
     void update(float dt) override;
     void onEnterTransitionDidFinish() override;
     
     void setContactListener();
-    
-    Vec2 pt1;
-    Vec2 pt2;
-    Vec2 pt3;
-    Vec2 pt4;
-    Vec2 pt5;
-    Vec2 points[100];
     
     void courceA();
     void courceB();

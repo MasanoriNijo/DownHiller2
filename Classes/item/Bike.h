@@ -41,6 +41,9 @@ public:
     void update(float dt) override;
     void onEnterTransitionDidFinish() override;
     
+    // debug
+    CC_SYNTHESIZE_RETAIN(Label*,_bikeDebug,BikeDebug);
+    
     // 前後車輪を親シーンに設置した後、親シーンから呼ぶ
     void SetJoint();
     
@@ -68,11 +71,17 @@ public:
     // riderアクション weightPtの位置により、画像差し替える。
     // riderのフレームサイズ
     Size frameSize;
-    float riderActionSpan = 5;
+    float riderActionSpan = 1.5;
     void riderImageAction();
     
     // bikeの制御不能をある程度制限する。
     void _bikeBehaviorControl();
+    // 重心速度
+    Vec2 centerObjVelo;
+    float maxCenterObjVelo = 200;
+    // 重心回転速度Rホイール
+    Vec2 centerObjRotVelo;
+    float maxCenterObjRotVelo = 40;
     
     enum class BikeState {READY, NOML, BREAK, GOAL, BIG, BALUNE, SCOPE, ALLOW, SLIDE, STOP, JUMP, JUMP2};
     CC_SYNTHESIZE(BikeState,_BikeState,BikeState);
@@ -85,19 +94,22 @@ public:
     
     // bikeへのアクション
     bool jump(float lvl);
+    bool lift(float lvl);// 使用しない
     void werry(float lvl);
     void dush(float lvl);
     void stop();
-    float frJumpPow = 0.2;
-    float fJumpPow = 0.5;
-    float rJumpPow = 1;
-    float weeryPow = 0.25;
-    float dushPow = 1;
-    float maxJumpSpeed = 30;
-    float maxRotSpeed = 30;
+
+    float weeryPow = 2.0;
+    float maxRotSpeed = 15;
+    float dushPow = 6;
+    float maxDushSpeed = 40;
+    float maxRJumpSpeed = 15;
+    float maxFRJumpSpeed = 10;
+    float maxFJumpSpeed = 5;
+
     // 挙動に影響するパラメータ
     // 重心に追随する速度
-    float chaseVelo = 100;
+    float chaseVelo = 30;
     
     // wheel最大速度
     float maxWheelVelo = 200;

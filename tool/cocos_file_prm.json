@@ -1,14 +1,14 @@
 {
-  "className": "LineMaker",
-  "superClass": "Ref",
+  "className": "CourceMaker",
+  "superClass": "Node",
   "synthesize_retains": [
-    ["Sprite2", "_pt", "Pt"],
-    ["CalcLater", "_calc", "Calc"],
-    ["Node", "_field", "Field"],
-    ["Vec2", "_calc", "Calc"],
-    ["Vec2", "_wrkPt", "WorkPt"],
-    ["Vec2", "_wrkDir", "WorkDir"],
-    ["Vec2", "_trgPt", "TergetPt"],
-    ["Vec2", "_trgDir", "TargetDir"]
+    ["SpriteBatchNode*", "_dot","Dot"],
+    ["SpriteBachNode", "_straight","Straight"],
+    ["SpriteBachNode", "_curveA","CurveA"],
+    ["SpriteBachNode", "_curveB","CurveB"],
+    ["SpriteBachNode", "_curveC","CurveC"],
+    ["SpriteBachNode", "_curveD","CurveD"],
+    ["SpriteBachNode", "_curveE","CurveE"],
+    ["SpriteBachNode", "_curveF","CurveF"]
   ]
 }

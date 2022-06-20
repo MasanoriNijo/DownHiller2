@@ -159,6 +159,12 @@
 		302A0A1F2854D7830072A2D3 /* dot.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 302A0A1D2854D7570072A2D3 /* dot.png */; };
 		302A0A212854E2460072A2D3 /* LineMaker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 302A0A182853AECC0072A2D3 /* LineMaker.cpp */; };
 		302A0A242854F4460072A2D3 /* yazi2.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 302A0A222854F3FE0072A2D3 /* yazi2.png */; };
+		302A0A27285A36E60072A2D3 /* StraightLine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 302A0A26285A36E60072A2D3 /* StraightLine.cpp */; };
+		302A0A2E285A3ED80072A2D3 /* c_curve_a.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 302A0A2A285A3EA50072A2D3 /* c_curve_a.png */; };
+		302A0A2F285A3ED80072A2D3 /* c_dot.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 302A0A28285A3EA40072A2D3 /* c_dot.png */; };
+		302A0A30285A3ED80072A2D3 /* c_straight.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 302A0A29285A3EA40072A2D3 /* c_straight.png */; };
+		302A0A33285B70B20072A2D3 /* CurveLine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 302A0A31285B70B10072A2D3 /* CurveLine.cpp */; };
+		302A0A36285CC4010072A2D3 /* CourceMaker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 302A0A35285CC4010072A2D3 /* CourceMaker.cpp */; };
 		304DD07D28428F7E00AF0334 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 304DD07C28428F7D00AF0334 /* libiconv.tbd */; };
 		304DD0922843B6B800AF0334 /* irohamaru.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 304DD0912843B6B800AF0334 /* irohamaru.ttf */; };
 		304DD0952843C25B00AF0334 /* kirabon.plist in Resources */ = {isa = PBXBuildFile; fileRef = 304DD0942843C25B00AF0334 /* kirabon.plist */; };
@@ -168,6 +174,7 @@
 		304DD0BA2843D08F00AF0334 /* TestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304DD0B82843D08F00AF0334 /* TestScene.cpp */; };
 		304DD0BE2843D12300AF0334 /* SpritePool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304DD0BD2843D12300AF0334 /* SpritePool.cpp */; };
 		304DD0C22843DE2700AF0334 /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304DD0C12843DE2700AF0334 /* GameScene.cpp */; };
+		3087C151285EFD5000AD0F14 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3087C150285EFD5000AD0F14 /* SwiftUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		309B0D0F28490A830091801C /* ColorChanger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 309B0D0D28490A830091801C /* ColorChanger.cpp */; };
 		309B0D12284A6E170091801C /* Calclater.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 309B0D11284A6E160091801C /* Calclater.cpp */; };
 		309B0D15284B16160091801C /* Button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 309B0D14284B16160091801C /* Button.cpp */; };
@@ -246,7 +253,7 @@
 		30CD03F728467E980023D844 /* ImobileSdkAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30CD03F628467E970023D844 /* ImobileSdkAds.framework */; };
 		30CD03F928467F000023D844 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30CD03F828467F000023D844 /* AdSupport.framework */; };
 		30CD03FB28467F160023D844 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30CD03FA28467F160023D844 /* SystemConfiguration.framework */; };
-		30CD03FD28467F2D0023D844 /* CoreLocationUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30CD03FC28467F2D0023D844 /* CoreLocationUI.framework */; };
+		30CD03FD28467F2D0023D844 /* CoreLocationUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30CD03FC28467F2D0023D844 /* CoreLocationUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		30CD03FF28467F3F0023D844 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30CD03FE28467F3F0023D844 /* WebKit.framework */; };
 		30CD040128467F530023D844 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30CD040028467F530023D844 /* StoreKit.framework */; };
 		30CD04032846886C0023D844 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30CD04022846886C0023D844 /* CoreLocation.framework */; };
@@ -1088,6 +1095,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
+				302A0A2E285A3ED80072A2D3 /* c_curve_a.png in CopyFiles */,
+				302A0A2F285A3ED80072A2D3 /* c_dot.png in CopyFiles */,
+				302A0A30285A3ED80072A2D3 /* c_straight.png in CopyFiles */,
 				302A0A242854F4460072A2D3 /* yazi2.png in CopyFiles */,
 				302A0A1F2854D7830072A2D3 /* dot.png in CopyFiles */,
 				302A0A1C28547CC70072A2D3 /* yazi.png in CopyFiles */,
@@ -1388,6 +1398,15 @@
 		302A0A1A28547AF80072A2D3 /* yazi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = yazi.png; path = Resources/images/yazi.png; sourceTree = SOURCE_ROOT; };
 		302A0A1D2854D7570072A2D3 /* dot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dot.png; path = Resources/images/dot.png; sourceTree = SOURCE_ROOT; };
 		302A0A222854F3FE0072A2D3 /* yazi2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yazi2.png; sourceTree = "<group>"; };
+		302A0A25285A36E60072A2D3 /* StraightLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StraightLine.h; path = Classes/item/StraightLine.h; sourceTree = SOURCE_ROOT; };
+		302A0A26285A36E60072A2D3 /* StraightLine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StraightLine.cpp; path = Classes/item/StraightLine.cpp; sourceTree = SOURCE_ROOT; };
+		302A0A28285A3EA40072A2D3 /* c_dot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = c_dot.png; sourceTree = "<group>"; };
+		302A0A29285A3EA40072A2D3 /* c_straight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = c_straight.png; sourceTree = "<group>"; };
+		302A0A2A285A3EA50072A2D3 /* c_curve_a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = c_curve_a.png; sourceTree = "<group>"; };
+		302A0A31285B70B10072A2D3 /* CurveLine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CurveLine.cpp; path = Classes/item/CurveLine.cpp; sourceTree = SOURCE_ROOT; };
+		302A0A32285B70B20072A2D3 /* CurveLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CurveLine.h; path = Classes/item/CurveLine.h; sourceTree = SOURCE_ROOT; };
+		302A0A34285CC4010072A2D3 /* CourceMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CourceMaker.h; path = Classes/util/CourceMaker.h; sourceTree = SOURCE_ROOT; };
+		302A0A35285CC4010072A2D3 /* CourceMaker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CourceMaker.cpp; path = Classes/util/CourceMaker.cpp; sourceTree = SOURCE_ROOT; };
 		3046F905F6394011A84D52BA /* CCTechnique.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = CCTechnique.cpp; path = cocos2d/cocos/renderer/CCTechnique.cpp; sourceTree = SOURCE_ROOT; };
 		304DD07C28428F7D00AF0334 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		304DD0912843B6B800AF0334 /* irohamaru.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = irohamaru.ttf; path = Resources/fonts/irohamaru.ttf; sourceTree = SOURCE_ROOT; };
@@ -1406,6 +1425,7 @@
 		304DD0DB2845253200AF0334 /* kotokotobokanmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = kotokotobokanmark.png; path = Resources/images/kotokotobokanmark.png; sourceTree = SOURCE_ROOT; };
 		304DD0DD28452B5D00AF0334 /* kotokotobokanmark_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = kotokotobokanmark_2.png; path = Resources/images/kotokotobokanmark_2.png; sourceTree = SOURCE_ROOT; };
 		3077803B8D5646769C867A5B /* DetourObstacleAvoidance.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = DetourObstacleAvoidance.cpp; path = cocos2d/external/recast/DetourCrowd/DetourObstacleAvoidance.cpp; sourceTree = SOURCE_ROOT; };
+		3087C150285EFD5000AD0F14 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		309B0D0B2848FA5B0091801C /* Const.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Const.h; sourceTree = "<group>"; };
 		309B0D0D28490A830091801C /* ColorChanger.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ColorChanger.cpp; sourceTree = "<group>"; };
 		309B0D0E28490A830091801C /* ColorChanger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorChanger.h; sourceTree = "<group>"; };
@@ -2561,6 +2581,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3087C151285EFD5000AD0F14 /* SwiftUI.framework in Frameworks */,
 				30CD04032846886C0023D844 /* CoreLocation.framework in Frameworks */,
 				30CD03F728467E980023D844 /* ImobileSdkAds.framework in Frameworks */,
 				30CD040128467F530023D844 /* StoreKit.framework in Frameworks */,
@@ -3500,6 +3521,9 @@
 		304DD0AE2843C8C200AF0334 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				302A0A2A285A3EA50072A2D3 /* c_curve_a.png */,
+				302A0A28285A3EA40072A2D3 /* c_dot.png */,
+				302A0A29285A3EA40072A2D3 /* c_straight.png */,
 				302A0A222854F3FE0072A2D3 /* yazi2.png */,
 				302A0A1D2854D7570072A2D3 /* dot.png */,
 				302A0A1A28547AF80072A2D3 /* yazi.png */,
@@ -3597,6 +3621,8 @@
 		304DD0BB2843D0A400AF0334 /* util */ = {
 			isa = PBXGroup;
 			children = (
+				302A0A35285CC4010072A2D3 /* CourceMaker.cpp */,
+				302A0A34285CC4010072A2D3 /* CourceMaker.h */,
 				302A0A182853AECC0072A2D3 /* LineMaker.cpp */,
 				302A0A192853AECC0072A2D3 /* LineMaker.h */,
 				309B0D11284A6E160091801C /* Calclater.cpp */,
@@ -3631,6 +3657,10 @@
 				309B0D22284D05960091801C /* base */,
 				309B0D1F284D04EF0091801C /* Bike.cpp */,
 				309B0D20284D04EF0091801C /* Bike.h */,
+				302A0A31285B70B10072A2D3 /* CurveLine.cpp */,
+				302A0A32285B70B20072A2D3 /* CurveLine.h */,
+				302A0A26285A36E60072A2D3 /* StraightLine.cpp */,
+				302A0A25285A36E60072A2D3 /* StraightLine.h */,
 				309B0D14284B16160091801C /* Button.cpp */,
 				309B0D13284B16160091801C /* Button.h */,
 			);
@@ -4408,6 +4438,7 @@
 		9A09A3E2EF984B68BC34E3BA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3087C150285EFD5000AD0F14 /* SwiftUI.framework */,
 				30CD04022846886C0023D844 /* CoreLocation.framework */,
 				30CD040028467F530023D844 /* StoreKit.framework */,
 				30CD03FE28467F3F0023D844 /* WebKit.framework */,
@@ -5358,7 +5389,9 @@
 				309B0D1B284BDBD10091801C /* TransitionScene.cpp in Sources */,
 				30CD03F5284672FF0023D844 /* IMobileCocos2dxModule.mm in Sources */,
 				309B0D25284D05D90091801C /* Sprite2.cpp in Sources */,
+				302A0A27285A36E60072A2D3 /* StraightLine.cpp in Sources */,
 				30CD040728468DE80023D844 /* ImovileAd.cpp in Sources */,
+				302A0A36285CC4010072A2D3 /* CourceMaker.cpp in Sources */,
 				309B0D15284B16160091801C /* Button.cpp in Sources */,
 				309B0D18284B900E0091801C /* TestPhysicsScene.cpp in Sources */,
 				309B0D12284A6E170091801C /* Calclater.cpp in Sources */,
@@ -5366,6 +5399,7 @@
 				47389F4909D3462CB4D5567B /* RootViewController.mm in Sources */,
 				309B0D21284D04F00091801C /* Bike.cpp in Sources */,
 				309B0D0F28490A830091801C /* ColorChanger.cpp in Sources */,
+				302A0A33285B70B20072A2D3 /* CurveLine.cpp in Sources */,
 				304DD0BA2843D08F00AF0334 /* TestScene.cpp in Sources */,
 				304DD0B42843CE0800AF0334 /* FstScene.cpp in Sources */,
 				309B0D1E284CE5240091801C /* TouchEventHelper.cpp in Sources */,
@@ -6426,7 +6460,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "/Users/jonym/Documents/cocos2dx/DownHiller2/ios-build/bin/DownHiller2/Release";
@@ -6472,6 +6506,7 @@
 				);
 				INFOPLIST_FILE = /Users/jonym/Documents/cocos2dx/DownHiller2/proj.ios_mac/ios/Info.plist;
 				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
 					"-DNDEBUG",
@@ -6553,7 +6588,7 @@
 				OTHER_REZFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = org.cocos2dx.DownHiller2;
 				PRODUCT_NAME = DownHiller2;
-				PROVISIONING_PROFILE_SPECIFIER = downhiller2_20220601_3;
+				PROVISIONING_PROFILE_SPECIFIER = downhiller2_for_develop;
 				SECTORDER_FLAGS = "";
 				SKIP_INSTALL = NO;
 				SYMROOT = "/Users/jonym/Documents/cocos2dx/DownHiller2/ios-build";
@@ -6974,7 +7009,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "/Users/jonym/Documents/cocos2dx/DownHiller2/ios-build/bin/DownHiller2/Debug";
@@ -7021,6 +7056,7 @@
 				);
 				INFOPLIST_FILE = /Users/jonym/Documents/cocos2dx/DownHiller2/proj.ios_mac/ios/Info.plist;
 				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "   '-std=gnu99' ";
 				OTHER_CPLUSPLUSFLAGS = "   '-std=c++11' ";
@@ -7097,7 +7133,7 @@
 				OTHER_REZFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = org.cocos2dx.DownHiller2;
 				PRODUCT_NAME = DownHiller2;
-				PROVISIONING_PROFILE_SPECIFIER = downhiller2_20220601_3;
+				PROVISIONING_PROFILE_SPECIFIER = downhiller2_for_develop;
 				SECTORDER_FLAGS = "";
 				SKIP_INSTALL = NO;
 				SYMROOT = "/Users/jonym/Documents/cocos2dx/DownHiller2/ios-build";
@@ -7290,7 +7326,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "/Users/jonym/Documents/cocos2dx/DownHiller2/ios-build/bin/DownHiller2/MinSizeRel";
@@ -7336,6 +7372,7 @@
 				);
 				INFOPLIST_FILE = /Users/jonym/Documents/cocos2dx/DownHiller2/proj.ios_mac/ios/Info.plist;
 				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
 					"-DNDEBUG",
@@ -7418,7 +7455,7 @@
 				OTHER_REZFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = org.cocos2dx.DownHiller2;
 				PRODUCT_NAME = DownHiller2;
-				PROVISIONING_PROFILE_SPECIFIER = downhiller2_20220601_3;
+				PROVISIONING_PROFILE_SPECIFIER = downhiller2_for_develop;
 				SECTORDER_FLAGS = "";
 				SKIP_INSTALL = NO;
 				SYMROOT = "/Users/jonym/Documents/cocos2dx/DownHiller2/ios-build";
@@ -7467,7 +7504,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "/Users/jonym/Documents/cocos2dx/DownHiller2/ios-build/bin/DownHiller2/RelWithDebInfo";
@@ -7513,6 +7550,7 @@
 				);
 				INFOPLIST_FILE = /Users/jonym/Documents/cocos2dx/DownHiller2/proj.ios_mac/ios/Info.plist;
 				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
 					"-DNDEBUG",
@@ -7594,7 +7632,7 @@
 				OTHER_REZFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = org.cocos2dx.DownHiller2;
 				PRODUCT_NAME = DownHiller2;
-				PROVISIONING_PROFILE_SPECIFIER = downhiller2_20220601_3;
+				PROVISIONING_PROFILE_SPECIFIER = downhiller2_for_develop;
 				SECTORDER_FLAGS = "";
 				SKIP_INSTALL = NO;
 				SYMROOT = "/Users/jonym/Documents/cocos2dx/DownHiller2/ios-build";

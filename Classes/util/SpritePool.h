@@ -1,3 +1,7 @@
+#ifndef __SPRITEPOOL_H__
+#define __SPRITEPOOL_H__
+
+#include "util/Const.h"
 #include "cocos2d.h"
 USING_NS_CC;
 
@@ -14,9 +18,11 @@ public:
 	int getSize();
 	Sprite* pop();
 	void ClearAll();
-    CC_SYNTHESIZE_RETAIN(SpriteBatchNode*, _bachNode1,BachNode1);
-    CC_SYNTHESIZE(cocos2d::Vector<Sprite*>,_member,Member);
+    CC_SYNTHESIZE_RETAIN(SpriteBatchNode*, _bachNode,BachNode);
+    CC_SYNTHESIZE(Vector<Sprite*>,_member,Member);
 
 protected:
-	cocos2d::Vector<Sprite*> _pool;
+	Vector<Sprite*> _pool;
 };
+
+#endif

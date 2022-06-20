@@ -37,13 +37,15 @@ bool TitleScene::init() {
     this->setResultBtn(MenuItemImage::create("ranking_btn.png", "ranking_btn_p.png",[this](Ref* ref) {
         this->transitonScene(TestScene::createScene());
     }));
-    this->setSMenu(Menu::create(this->getStartBtn(),this->getHowToBtn(),this->getResultBtn(), NULL));
-    this->getSMenu()->alignItemsHorizontallyWithPadding(20);
-    this->mountNode(this->getSMenu(), this->ctPt + Vec2(0,-20), OBJ_LAYER_TOP);
+    this->setMenu(Menu::create(this->getStartBtn(),this->getHowToBtn(),this->getResultBtn(), NULL));
+    getMenu()->alignItemsHorizontallyWithPadding(20);
+    this->mountNode(this->getMenu(), this->ctPt + Vec2(0,-20), OBJ_LAYER_TOP);
     return true;
 }
 
 void TitleScene::onEnterTransitionDidFinish() {
+    GameScene::onEnterTransitionDidFinish();
+//    getAD()->AdShow(false, true, false, false, false, false);
     // todo
 }
 

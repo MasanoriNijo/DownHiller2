@@ -6,14 +6,12 @@
 #include "scene/HelloWorldScene.h"
 
 TestPhysicsScene::TestPhysicsScene():
-_gameTitle(NULL), _baseLine(NULL), _ball(NULL), _btn1(NULL), _btn2(NULL), _btn3(NULL), _btn4(NULL), _menu(NULL),_touch(NULL),_bike(NULL),_contactlistener(NULL), _pt1(NULL), _pt2(NULL), _lineMaker(NULL)
+_gameTitle(NULL), _btn1(NULL), _btn2(NULL), _btn3(NULL), _btn4(NULL), _menu(NULL),_touch(NULL),_bike(NULL),_contactlistener(NULL), _pt1(NULL), _pt2(NULL), _courceMaker(NULL)
 {}
 
 TestPhysicsScene::~TestPhysicsScene() {
     NJLOG("hoge:TestPhysicsScene::~TestPhysicsScene()");
     CC_SAFE_RELEASE_NULL(_gameTitle);
-    CC_SAFE_RELEASE_NULL(_baseLine);
-    CC_SAFE_RELEASE_NULL(_ball);
     CC_SAFE_RELEASE_NULL(_btn1);
     CC_SAFE_RELEASE_NULL(_btn2);
     CC_SAFE_RELEASE_NULL(_btn3);
@@ -24,8 +22,7 @@ TestPhysicsScene::~TestPhysicsScene() {
     CC_SAFE_RELEASE_NULL(_contactlistener);
     CC_SAFE_RELEASE_NULL(_pt1);
     CC_SAFE_RELEASE_NULL(_pt2);
-    CC_SAFE_RELEASE_NULL(_lineMaker);
-    GameScene::~GameScene();
+    CC_SAFE_RELEASE_NULL(_courceMaker);
 }
 
 Scene* TestPhysicsScene::createScene() {
@@ -47,178 +44,159 @@ bool TestPhysicsScene::init() {
     }
 //    this->setPhysicsBody(PhysicsBody::createEdgeBox(this->winSize));
 //    this->getPhysicsBody()->setDynamic(false);
-    this->setBackGroundColor();
-    
-    this->setBaseLine(DrawNode::create());
-    this->getBaseLine()->setColor(Color3B::WHITE);
-    this->getBaseLine()->setLineWidth(11);
-    points[0].x = -winSize.width/2;
-    points[0].y = 200;
-    points[1].x = -winSize.width/2;
-    points[1].y = 120;
-    points[2].x = 160;
-    points[2].y = 120;
-    this->getBaseLine()->drawPoly(points, 3, false, Color4F::GREEN);
-    auto _material = PHYSICSBODY_MATERIAL_DEFAULT;
-    _material.restitution = 0.0001f;
-    _material.friction =1.0f;
-    _material.density = 0.001f;
-    this->getBaseLine()->setPhysicsBody(PhysicsBody::createEdgeChain(points, 3,_material));
-    this->getBaseLine()->getPhysicsBody()->setDynamic(false);
-    this->getBaseLine()->getPhysicsBody()->setCategoryBitmask(CT_COURCE);
-    this->getBaseLine()->getPhysicsBody()->setCollisionBitmask(CT_WHEEL);
-    this->getBaseLine()->getPhysicsBody()->setContactTestBitmask(CT_WHEEL);
-    this->getBaseLine()->getPhysicsBody()->setTag(TG_COURCE);
-    this->mountScroleNode(this->getBaseLine(), ctPt, OBJ_LAYER_LV1);
-    
-    this->setBtn1(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
-        this->transitonScene(TestPhysicsScene::createScene());
+    setBackGroundColor();
+        
+    setBtn1(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
+        if(getBike()){
+            getScene()->getPhysicsWorld()->removeJoint(getBike()->getFRJoint());
+        }
+        transitonScene(TitleScene::createScene());
     }));
-    this->setBtn2(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
-        courceA();
+    setBtn2(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
+        getBike()->weightPt = Vec2(-6,6);
+        getBike()->weightPt = Vec2(6,6);
     }));
-    this->setBtn3(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
-        courceB();
+    setBtn3(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
+        getBike()->weightPt = Vec2(6,6);
+        getBike()->weightPt = Vec2(-6,6);
     }));
-    this->setBtn4(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
-//        courceC();
-        _bike->jump(-20);
+    setBtn4(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
+        getBike()->weightPt = Vec2(0,6);
+        getBike()->chasePt = Vec2(0,-6);
     }));
-    this->setMenu(Menu::create(this->getBtn1(),this->getBtn2(),this->getBtn3(),this->getBtn4(),NULL));
-    this->getMenu()->alignItemsHorizontallyWithPadding(20);
-    this->mountNode(this->getMenu(), this->ctPt+Vec2(0,-100), OBJ_LAYER_TOP);
+    setMenu(Menu::create(getBtn1(),getBtn2(),getBtn3(),getBtn4(),NULL));
+    getMenu()->alignItemsHorizontallyWithPadding(20);
+    mountNode(getMenu(), ctPt+Vec2(0,-100), OBJ_LAYER_TOP);
     
     
     Vec2 achPt_ = Vec2(0.2,0.5);
-    this->setPt1(Sprite2::create("yazi.png"));
+    setPt1(Sprite2::create("yazi.png"));
     _pt1->setName("pt1");
     _pt1->setDefaultTouchEvent();
     _pt1->setAnchorPoint(achPt_);
-    this->mountNode(this->getPt1(), this->ctPt + Vec2(-80,-40) , OBJ_LAYER_TOP);
+    mountNode(getPt1(), ctPt + Vec2(-80,-40) , OBJ_LAYER_TOP);
     
-    this->setPt2(Sprite2::create("yazi2.png"));
+    setPt2(Sprite2::create("yazi2.png"));
     _pt2->setName("pt2");
     _pt2->setDefaultTouchEvent();
     _pt2->setAnchorPoint(achPt_);
-    this->mountNode(this->getPt2(), this->ctPt + Vec2(-30,-40) , OBJ_LAYER_TOP);
-    
-    this->setLineMaker(LineMaker::create());
-    this->_lineMaker->setPt(Sprite2::create("dot2.png"));
-    this->_lineMaker->setField(this);
-    
+    mountNode(getPt2(), ctPt + Vec2(-30,-40) , OBJ_LAYER_TOP);
+
+    setCourceMaker(CourceMaker::create());
+//    _courceMaker->setGlobalZOrder(OBJ_LAYER_TOP);
+    addChild(getCourceMaker());
     return true;
 }
 
 void TestPhysicsScene::onEnterTransitionDidFinish() {
+    GameScene::onEnterTransitionDidFinish();
+    courceC();
     // Bikeをセットする。
-    this->setBike(Bike::create());
-    this->mountScroleNode(this->getBike(), this->ctPt+Vec2(-100,150), OBJ_LAYER_TOP);
-    this->mountScroleNode(this->getBike()->getSceneChasePt(), this->getBike()->getPosition() + this->getBike()->sceneOffset, OBJ_LAYER_TOP);
-    this->getBike()->SetJoint();
-    this->getScene()->getPhysicsWorld()->addJoint(this->getBike()->getFRJoint());
+    setBike(Bike::create());
+    mountScroleNode(getBike(), Vec2::ZERO, OBJ_LAYER_TOP);
+    mountScroleNode(getBike()->getSceneChasePt(), getBike()->getPosition() + getBike()->sceneOffset, OBJ_LAYER_TOP);
+    getBike()->SetJoint();
+    getScene()->getPhysicsWorld()->addJoint(getBike()->getFRJoint());
     
-    this->runAction(Follow::create(_bike->getSceneChasePt()));
+    runAction(Follow::create(getBike()->getSceneChasePt()));
     
-    this->setContactListener();
-    this->getBike()->scheduleUpdate();
+    setContactListener();
+    getBike()->scheduleUpdate();
     
-    this->scheduleUpdate();
+    scheduleUpdate();
     
 }
 
 void TestPhysicsScene::courceA(){
-    // debug
-    Vec2 adPt = Vec2(100,-50);
     
-    Vec2 stPt = Vec2(120,300);
-    Vec2 stDir = Vec2(1,-1);
-    Vec2 edPt = stPt + adPt;
-    Vec2 edDir = Vec2(1,1);
-
+    Vec2 points[10];
+    points[0].x = -50;
+    points[0].y = 100;
+    points[1].x = -50;
+    points[1].y = -20;
+    points[2].x = 300;
+    points[2].y = 200;
+    points[3].x = 600;
+    points[3].y = -70;
+    
+    getCourceMaker()->drawStart(points[0], points[1]-points[0]);
+    getCourceMaker()->drawTo(points[1], points[2]-points[1]);
+    getCourceMaker()->drawTo(points[2], points[3]-points[2]);
+    getCourceMaker()->drawTo(points[3], Vec2(10,-5));
+    
+    Vec2 adPt = Vec2(100,40);
+    Vec2 pt_ = getCourceMaker()->getTergetPt();
+    Vec2 dir_ = Vec2(10,8);
     for(int i= 0;i<100;i++){
-        this->_lineMaker->setWorkPt(stPt);
-        this->_lineMaker->setWorkDir(stDir);
-        this->_lineMaker->setTergetPt(stPt + adPt);
-        this->_lineMaker->setTargetDir(edDir);
-        this->_lineMaker->madeCircleLine();
-        stPt = edPt;
-        stDir = edDir;
-        edPt = stPt + adPt;
-        edDir = Vec2(stDir.x,-stDir.y);
+        getCourceMaker()->drawTo(pt_, dir_);
+        pt_ += adPt;
+        dir_ =Vec2(dir_.x,dir_.y * -1);
     }
-    
-    auto _material = PHYSICSBODY_MATERIAL_DEFAULT;
-    _material.restitution = 0.0001f;
-    _material.friction =1.0f;
-    _material.density = 0.001f;
-    auto node = Node::create();
-//        node->autorelease();
-    node->setPhysicsBody(PhysicsBody::createEdgeChain(_lineMaker->_linePts, _lineMaker->_linePtCnt,_material));
-    node->getPhysicsBody()->setDynamic(false);
-    node->getPhysicsBody()->setCategoryBitmask(CT_COURCE);
-    node->getPhysicsBody()->setCollisionBitmask(CT_WHEEL);
-    node->getPhysicsBody()->setContactTestBitmask(CT_WHEEL);
-    node->getPhysicsBody()->setTag(TG_COURCE);
-    this->addChild(node);
+    getCourceMaker()->madePhysiceBody();
 }
 
 void TestPhysicsScene::courceB(){
-    
-    Vec2 stPt = Vec2(120,250);
-    Vec2 stDir = Vec2(10,-3);
-    this->_lineMaker->setWorkPt(stPt);
-    this->_lineMaker->setWorkDir(stDir);
-    this->_lineMaker->setTergetPt(stPt + Vec2(1000,-10));
-    this->_lineMaker->setTargetDir(Vec2(stDir.x,-stDir.y));
-    
-    this->_lineMaker->madeCircleLine();
-    
-    auto _material = PHYSICSBODY_MATERIAL_DEFAULT;
-    _material.restitution = 0.0001f;
-    _material.friction =1.0f;
-    _material.density = 0.001f;
-    auto node = Node::create();
-
-    node->setPhysicsBody(PhysicsBody::createEdgeChain(_lineMaker->_linePts, _lineMaker->_linePtCnt,_material));
-    node->getPhysicsBody()->setDynamic(false);
-    node->getPhysicsBody()->setCategoryBitmask(CT_COURCE);
-    node->getPhysicsBody()->setCollisionBitmask(CT_WHEEL);
-    node->getPhysicsBody()->setContactTestBitmask(CT_WHEEL);
-    node->getPhysicsBody()->setTag(TG_COURCE);
-    this->addChild(node);
+    Vec2 stPt = Vec2(100,200);
+    Vec2 stDir = Vec2(10,-8);
+    getCourceMaker()->calcCurve(stPt, stDir, stPt + Vec2(1600,0), Vec2(stDir.x,-stDir.y), 60);
+    getCourceMaker()->madePhysiceBody();
 }
 
 void TestPhysicsScene::courceC(){
+    Vec2 points[10];
+    points[0].x = -50;
+    points[0].y = 100;
+    points[1].x = -50;
+    points[1].y = -20;
+    points[2].x = 300;
+    points[2].y = -20;
+    points[3].x = 600;
+    points[3].y = -70;
     
+    getCourceMaker()->drawStart(points[0], points[1]-points[0]);
+    getCourceMaker()->drawTo(points[1], points[2]-points[1]);
+    getCourceMaker()->drawTo(points[2], points[3]-points[2]);
+    getCourceMaker()->drawTo(points[3], Vec2(10,-5));
+    
+    Vec2 adPt = Vec2(150,-40);
+    Vec2 pt_ = getCourceMaker()->getTergetPt();
+    Vec2 dir_ = Vec2(10,8);
+    for(int i= 0;i<100;i++){
+        getCourceMaker()->drawTo(pt_, dir_);
+        pt_ += adPt;
+        dir_ =Vec2(dir_.x,dir_.y * -1);
+    }
+    getCourceMaker()->madePhysiceBody();
 }
 
 void TestPhysicsScene::update(float dt) {
     // todo
-    if(this->getBike()){
-        //        this->getDebugMemo()->setString("重心位置:" + ST_VEC2(this->getBike()->weightPt));
-        //        this->getDebugMemo()->setString("bike:" + ST_VEC2(this->getBike()->getPosition()) + " " + ST_INT(this->getBike()->getRotation()));
-        this->getDebugMemo()->setString("swaip:" + ST_VEC2(_bike->weightPt));
+    if(getBike()){
+        //        getDebugMemo()->setString("重心位置:" + ST_VEC2(getBike()->weightPt));
+        //        getDebugMemo()->setString("bike:" + ST_VEC2(getBike()->getPosition()) + " " + ST_INT(getBike()->getRotation()));
+//        getDebugMemo()->setString("swaip:" + ST_VEC2(getBike()->weightPt));
+        getDebugMemo()->setString("bike:" + ST_INT(getBike()->centerObjVelo.length()) + "km/h");
     }
 }
 
 void TestPhysicsScene::setContactListener() {
     //接触感知
-    this->setContactListenner(EventListenerPhysicsContact::create());
+    setContactListenner(EventListenerPhysicsContact::create());
     
-    _contactlistener->onContactBegin = [this](PhysicsContact& contact) {
+    getContactListenner()->onContactBegin = [this](PhysicsContact& contact) {
 //        NJLOG("contact_begin");
 //        NJLOG("fWheel_normal");
         switch(contact.getShapeA()->getBody()->getTag()){
             case TG_F_WHEEL:{
-                _bike->fWheelTouchPt.set(contact.getContactData()->normal);
-                _bike->fWheelTouched = true;
+                getBike()->fWheelTouchPt.set(contact.getContactData()->normal);
+                getBike()->fWheelTouched = true;
 //                NJLOG("fWheel_normal");
 //                NJLOG(ST_VEC2(contact.getContactData()->normal).c_str());
                 break;
             }
             case TG_R_WHEEL:{
-                _bike->rWheelTouchPt.set(contact.getContactData()->normal);
-                _bike->rWheelTouched = true;
+                getBike()->rWheelTouchPt.set(contact.getContactData()->normal);
+                getBike()->rWheelTouched = true;
 //                NJLOG("rWheel_normal");
 //                NJLOG(ST_VEC2(contact.getContactData()->normal).c_str());
                 break;
@@ -227,20 +205,23 @@ void TestPhysicsScene::setContactListener() {
                 break;
             }
             case TG_GOAL: {
+                break;
+            }
+            default:{
                 break;
             }
         }
         switch(contact.getShapeB()->getBody()->getTag()){
             case TG_F_WHEEL:{
-                _bike->fWheelTouchPt.set(contact.getContactData()->normal);
-                _bike->fWheelTouched = true;
+                getBike()->fWheelTouchPt.set(contact.getContactData()->normal);
+                getBike()->fWheelTouched = true;
 //                NJLOG("fWheel_normal");
 //                NJLOG(ST_VEC2(contact.getContactData()->normal).c_str());
                 break;
             }
             case TG_R_WHEEL:{
-                _bike->rWheelTouchPt.set(contact.getContactData()->normal);
-                _bike->rWheelTouched = true;
+                getBike()->rWheelTouchPt.set(contact.getContactData()->normal);
+                getBike()->rWheelTouched = true;
 //                NJLOG("rWheel_normal");
 //                NJLOG(ST_VEC2(contact.getContactData()->normal).c_str());
                 break;
@@ -249,24 +230,27 @@ void TestPhysicsScene::setContactListener() {
                 break;
             }
             case TG_GOAL: {
+                break;
+            }
+            default:{
                 break;
             }
         }
         return true;
     };
     
-    _contactlistener->onContactPostSolve = [this](PhysicsContact& contact, const PhysicsContactPostSolve& solve) {
+    getContactListenner()->onContactPostSolve = [this](PhysicsContact& contact, const PhysicsContactPostSolve& solve) {
         switch(contact.getShapeA()->getBody()->getTag()){
             case TG_F_WHEEL:{
-                _bike->fWheelTouchPt.set(contact.getContactData()->normal);
-                _bike->fWheelTouched = true;
+                getBike()->fWheelTouchPt.set(contact.getContactData()->normal);
+                getBike()->fWheelTouched = true;
 //                NJLOG("fWheel_normal");
 //                NJLOG(ST_VEC2(contact.getContactData()->normal).c_str());
                 break;
             }
             case TG_R_WHEEL:{
-                _bike->rWheelTouchPt.set(contact.getContactData()->normal);
-                _bike->rWheelTouched = true;
+                getBike()->rWheelTouchPt.set(contact.getContactData()->normal);
+                getBike()->rWheelTouched = true;
 //                NJLOG("rWheel_normal");
 //                NJLOG(ST_VEC2(contact.getContactData()->normal).c_str());
                 break;
@@ -277,18 +261,21 @@ void TestPhysicsScene::setContactListener() {
             case TG_GOAL: {
                 break;
             }
+            default:{
+                break;
+            }
         }
         switch(contact.getShapeB()->getBody()->getTag()){
             case TG_F_WHEEL:{
-                _bike->fWheelTouchPt.set(contact.getContactData()->normal);
-                _bike->fWheelTouched = true;
+                getBike()->fWheelTouchPt.set(contact.getContactData()->normal);
+                getBike()->fWheelTouched = true;
                 NJLOG("fWheel_normal");
                 NJLOG(ST_VEC2(contact.getContactData()->normal).c_str());
                 break;
             }
             case TG_R_WHEEL:{
-                _bike->rWheelTouchPt.set(contact.getContactData()->normal);
-                _bike->rWheelTouched = true;
+                getBike()->rWheelTouchPt.set(contact.getContactData()->normal);
+                getBike()->rWheelTouched = true;
                 NJLOG("rWheel_normal");
                 NJLOG(ST_VEC2(contact.getContactData()->normal).c_str());
                 break;
@@ -299,22 +286,25 @@ void TestPhysicsScene::setContactListener() {
             case TG_GOAL: {
                 break;
             }
+            default:{
+                break;
+            }
         }
         return true;
     };
     
-    _contactlistener->onContactSeparate = [this](PhysicsContact& contact) {
+    getContactListenner()->onContactSeparate = [this](PhysicsContact& contact) {
         switch(contact.getShapeA()->getBody()->getTag()){
             case TG_F_WHEEL:{
-                _bike->fWheelTouchPt.set(contact.getContactData()->normal);
-                _bike->fWheelTouched = false;
+                getBike()->fWheelTouchPt.set(contact.getContactData()->normal);
+                getBike()->fWheelTouched = false;
                 NJLOG("fWheel_touch_OFF");
                 NJLOG(ST_VEC2(contact.getContactData()->normal).c_str());
                 break;
             }
             case TG_R_WHEEL:{
-                _bike->rWheelTouchPt.set(contact.getContactData()->normal);
-                _bike->rWheelTouched = false;
+                getBike()->rWheelTouchPt.set(contact.getContactData()->normal);
+                getBike()->rWheelTouched = false;
                 NJLOG("rWheel_touch_OFF");
                 NJLOG(ST_VEC2(contact.getContactData()->normal).c_str());
                 break;
@@ -323,20 +313,23 @@ void TestPhysicsScene::setContactListener() {
                 break;
             }
             case TG_GOAL: {
+                break;
+            }
+            default:{
                 break;
             }
         }
         switch(contact.getShapeB()->getBody()->getTag()){
             case TG_F_WHEEL:{
-                _bike->fWheelTouchPt.set(contact.getContactData()->normal);
-                _bike->fWheelTouched = false;
+                getBike()->fWheelTouchPt.set(contact.getContactData()->normal);
+                getBike()->fWheelTouched = false;
                 NJLOG("fWheel_touch_OFF");
                 NJLOG(ST_VEC2(contact.getContactData()->normal).c_str());
                 break;
             }
             case TG_R_WHEEL:{
-                _bike->rWheelTouchPt.set(contact.getContactData()->normal);
-                _bike->rWheelTouched = false;
+                getBike()->rWheelTouchPt.set(contact.getContactData()->normal);
+                getBike()->rWheelTouched = false;
                 NJLOG("rWheel_touch_OFF");
                 NJLOG(ST_VEC2(contact.getContactData()->normal).c_str());
                 break;
@@ -347,12 +340,14 @@ void TestPhysicsScene::setContactListener() {
             case TG_GOAL: {
                 break;
             }
+            default:{
+                break;
+            }
         }
         return true;
     };
     
-    
-    Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(_contactlistener,this);
+    Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(getContactListenner(),this);
     
 }
 

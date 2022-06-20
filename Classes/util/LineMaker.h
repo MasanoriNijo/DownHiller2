@@ -13,7 +13,8 @@ protected:
     virtual ~LineMaker();
     
 public:
-    static LineMaker* create();
+    CREATE_FUNC(LineMaker);
+//    static LineMaker* create();
     bool init();
     CC_SYNTHESIZE_RETAIN(Sprite2*,_pt,Pt);
     CC_SYNTHESIZE_RETAIN(Calclater*,_calc,Calc);
@@ -42,7 +43,6 @@ public:
     
     void addLinePts(Vec2 pt_);
     
-
 };
 
 #endif
