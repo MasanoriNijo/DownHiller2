@@ -190,18 +190,14 @@ void GameScene::showGameAnnounce(std::string st,Vec2 pt){
     auto fadeOut = FadeOut::create(0.2f);
     auto endFnc = CallFunc::create([this](){
         if(this->getGameAnounce()->getParent()){
-            this->getGameAnounce()->removeFromParent();
+            this->getGameAnounce()->removeFromParentAndCleanup(true);
         }
     });
     auto seq = Sequence::create(fadeIn,stayTime,fadeOut,endFnc, NULL);
-    if(!getGameAnounce()){
-        setGameAnounce(Label::createWithTTF(st, "irohamaru.ttf", 24));
-        getGameAnounce()->setTextColor(Color4B::BLACK);
-        getGameAnounce()->enableOutline(Color4B::WHITE,1);
-    }else{
-        getGameAnounce()->setPosition(pt);
-        getGameAnounce()->setString(st);
-    }
+    setGameAnounce(Label::createWithTTF(st, "irohamaru.ttf", 24));
+    getGameAnounce()->setTextColor(Color4B::BLACK);
+    getGameAnounce()->enableOutline(Color4B::WHITE,1);
+    getGameAnounce()->setOpacity(0);
     getGameAnounce()->runAction(seq);
     mountNode(getGameAnounce(), pt, OBJ_LAYER_TOP);
 }
