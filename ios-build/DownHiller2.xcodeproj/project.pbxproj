@@ -175,6 +175,7 @@
 		304DD0BE2843D12300AF0334 /* SpritePool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304DD0BD2843D12300AF0334 /* SpritePool.cpp */; };
 		304DD0C22843DE2700AF0334 /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304DD0C12843DE2700AF0334 /* GameScene.cpp */; };
 		3087C151285EFD5000AD0F14 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3087C150285EFD5000AD0F14 /* SwiftUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		3087C1542862078100AD0F14 /* mark.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3087C152286206DE00AD0F14 /* mark.png */; };
 		309B0D0F28490A830091801C /* ColorChanger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 309B0D0D28490A830091801C /* ColorChanger.cpp */; };
 		309B0D12284A6E170091801C /* Calclater.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 309B0D11284A6E160091801C /* Calclater.cpp */; };
 		309B0D15284B16160091801C /* Button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 309B0D14284B16160091801C /* Button.cpp */; };
@@ -1095,6 +1096,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
+				3087C1542862078100AD0F14 /* mark.png in CopyFiles */,
 				302A0A2E285A3ED80072A2D3 /* c_curve_a.png in CopyFiles */,
 				302A0A2F285A3ED80072A2D3 /* c_dot.png in CopyFiles */,
 				302A0A30285A3ED80072A2D3 /* c_straight.png in CopyFiles */,
@@ -1426,6 +1428,7 @@
 		304DD0DD28452B5D00AF0334 /* kotokotobokanmark_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = kotokotobokanmark_2.png; path = Resources/images/kotokotobokanmark_2.png; sourceTree = SOURCE_ROOT; };
 		3077803B8D5646769C867A5B /* DetourObstacleAvoidance.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = DetourObstacleAvoidance.cpp; path = cocos2d/external/recast/DetourCrowd/DetourObstacleAvoidance.cpp; sourceTree = SOURCE_ROOT; };
 		3087C150285EFD5000AD0F14 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		3087C152286206DE00AD0F14 /* mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mark.png; path = Resources/images/mark.png; sourceTree = SOURCE_ROOT; };
 		309B0D0B2848FA5B0091801C /* Const.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Const.h; sourceTree = "<group>"; };
 		309B0D0D28490A830091801C /* ColorChanger.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ColorChanger.cpp; sourceTree = "<group>"; };
 		309B0D0E28490A830091801C /* ColorChanger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorChanger.h; sourceTree = "<group>"; };
@@ -3521,6 +3524,7 @@
 		304DD0AE2843C8C200AF0334 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				3087C152286206DE00AD0F14 /* mark.png */,
 				302A0A2A285A3EA50072A2D3 /* c_curve_a.png */,
 				302A0A28285A3EA40072A2D3 /* c_dot.png */,
 				302A0A29285A3EA40072A2D3 /* c_straight.png */,

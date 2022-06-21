@@ -17,6 +17,7 @@ public:
     CC_SYNTHESIZE_RETAIN(Calclater*,_calc,Calc);
     CC_SYNTHESIZE_RETAIN(SpriteBatchNode*,_dot,Dot);
     CC_SYNTHESIZE_RETAIN(SpriteBatchNode*,_straight,Straight);
+    CC_SYNTHESIZE_RETAIN(SpriteBatchNode*,_mark,Mark);
     CC_SYNTHESIZE_RETAIN(SpriteBatchNode*,_curveA,CurveA);
     CC_SYNTHESIZE_RETAIN(SpriteBatchNode*,_curveB,CurveB);
     CC_SYNTHESIZE_RETAIN(SpriteBatchNode*,_curveC,CurveC);
@@ -42,6 +43,10 @@ public:
     // 円弧を描写する際のピッチ
     float _drawPitch = 3;
     
+    // markを追加する場合のピッチ
+    bool markSetflg = true;
+    float _markPitch = 50;
+    float _remindMarkPitch = 0;
     
     // アクション関連
     void drawStart(Vec2 pt_, Vec2 dir_);
@@ -54,6 +59,8 @@ public:
     void addStraightLine(Vec2 pt1_, Vec2 pt2_);
     void addDot(Vec2 pt_);
     void addCurveA(Vec2 pt_, Vec2 dir_);
+    void addMarkStraight(Vec2 pt_,Vec2 dir_);
+    void addMarkCurve(Vec2 curveCenterPt,Vec2 fstPt,float rad);
     
     // 物理関連
     // physicsbody用
@@ -66,6 +73,7 @@ public:
     void madePhysiceBody();
     
     void madePhysiceBody(Node* field);
+    
 };
 
 #endif

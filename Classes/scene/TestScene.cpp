@@ -4,7 +4,7 @@
 #include "scene/TestPhysicsScene.h"
 
 TestScene::TestScene():
-_gameTitle(NULL), _baseLine(NULL), _ball(NULL), _btn1(NULL), _btn2(NULL), _btn3(NULL), _btn4(NULL), _menu(NULL), _touch(NULL), _pt1(NULL), _pt2(NULL), _pt3(NULL), _pt4(NULL), _pt5(NULL), _touchObj(NULL), _lineMaker(NULL),_stLine(NULL),_cvLine(NULL)
+_gameTitle(NULL), _baseLine(NULL), _ball(NULL), _btn1(NULL), _btn2(NULL), _btn3(NULL), _btn4(NULL), _menu(NULL), _touch(NULL), _pt1(NULL), _pt2(NULL), _pt3(NULL), _pt4(NULL), _pt5(NULL), _touchObj(NULL), _lineMaker(NULL),_stLine(NULL),_cvLine(NULL),_courceMaker(NULL)
 {}
 
 TestScene::~TestScene() {
@@ -26,6 +26,7 @@ TestScene::~TestScene() {
     CC_SAFE_RELEASE_NULL(_lineMaker);
     CC_SAFE_RELEASE_NULL(_stLine);
     CC_SAFE_RELEASE_NULL(_cvLine);
+    CC_SAFE_RELEASE_NULL(_courceMaker);
 }
 
 Scene* TestScene::createScene() {
@@ -61,10 +62,20 @@ bool TestScene::init() {
         this->transitonScene(TestPhysicsScene::createScene());
     }));
     this->setBtn3(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
-        this->showGameAnnounce("ゲームスタート！", ctPt);
+//        Vec2 points[10];
+//        points[0].set(ctPt);
+//        points[1].set(ctPt + Vec2(100,100));
+//        points[2].set(points[1] +Vec2(100,-100));
+//
+//        
+//        getCourceMaker()->drawStart(points[0], points[1]-points[0]);
+//        getCourceMaker()->drawTo(points[1], points[2]-points[1]);
+//        getCourceMaker()->drawTo(points[2], points[3]-points[2]);
+//        getCourceMaker()->madePhysiceBody();
+        showGameAnnounce("ゲームスタート！", ctPt);
     }));
     this->setBtn4(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
-        this->showGameAnnounce("ベストタイム！", ctPt);
+        showGameAnnounce("ベストタイム！", ctPt);
     }));
     this->setMenu(Menu::create(this->getBtn1(),this->getBtn2(),this->getBtn3(),this->getBtn4(),NULL));
     this->getMenu()->alignItemsHorizontallyWithPadding(20);
@@ -109,6 +120,10 @@ bool TestScene::init() {
     _cvLine->setGlobalZOrder(OBJ_LAYER_TOP);
     _cvLine->setDefaultTouchEvent();
     this->addChild(_cvLine);
+    
+    setCourceMaker(CourceMaker::create());
+//    _courceMaker->setGlobalZOrder(OBJ_LAYER_TOP);
+    addChild(getCourceMaker());
     
     this->setTouch(TouchEventHelper::create());
     this->getTouch()->getTouchListenner()->onTouchBegan = [this](Touch* touch,Event* event) {

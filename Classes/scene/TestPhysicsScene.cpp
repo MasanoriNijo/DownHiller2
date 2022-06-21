@@ -125,15 +125,16 @@ void TestPhysicsScene::courceA(){
     getCourceMaker()->drawTo(points[1], points[2]-points[1]);
     getCourceMaker()->drawTo(points[2], points[3]-points[2]);
     getCourceMaker()->drawTo(points[3], Vec2(10,-5));
-    
-    Vec2 adPt = Vec2(100,40);
-    Vec2 pt_ = getCourceMaker()->getTergetPt();
-    Vec2 dir_ = Vec2(10,8);
-    for(int i= 0;i<100;i++){
-        getCourceMaker()->drawTo(pt_, dir_);
-        pt_ += adPt;
-        dir_ =Vec2(dir_.x,dir_.y * -1);
-    }
+    getCourceMaker()->drawTo(points[3] + Vec2(100,0), Vec2(10,5));
+    getCourceMaker()->drawTo(points[3] + Vec2(200,0), Vec2(10,-5));
+//    Vec2 adPt = Vec2(100,40);
+//    Vec2 pt_ = getCourceMaker()->getTergetPt();
+//    Vec2 dir_ = Vec2(10,8);
+//    for(int i= 0;i<100;i++){
+//        getCourceMaker()->drawTo(pt_, dir_);
+//        pt_ += adPt;
+//        dir_ =Vec2(dir_.x,dir_.y * -1);
+//    }
     getCourceMaker()->madePhysiceBody();
 }
 
@@ -152,14 +153,15 @@ void TestPhysicsScene::courceC(){
     points[1].y = -20;
     points[2].x = 300;
     points[2].y = -20;
-    points[3].x = 600;
-    points[3].y = -70;
+
     
     getCourceMaker()->drawStart(points[0], points[1]-points[0]);
     getCourceMaker()->drawTo(points[1], points[2]-points[1]);
     getCourceMaker()->drawTo(points[2], points[3]-points[2]);
     getCourceMaker()->drawTo(points[3], Vec2(10,-5));
-    
+    getCourceMaker()->drawTo(points[3] + Vec2(100,0), Vec2(10,5));
+    getCourceMaker()->drawTo(points[3] + Vec2(200,0), Vec2(10,-5));
+
     Vec2 adPt = Vec2(150,-40);
     Vec2 pt_ = getCourceMaker()->getTergetPt();
     Vec2 dir_ = Vec2(10,8);

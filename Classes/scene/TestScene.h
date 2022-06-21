@@ -5,6 +5,7 @@
 #include "util/TouchEventHelper.h"
 #include "item/base/Sprite2.h"
 #include "util/LineMaker.h"
+#include "util/CourceMaker.h"
 #include "item/StraightLine.h"
 #include "item/CurveLine.h"
 #include "cocos2d.h"
@@ -37,6 +38,7 @@ public:
     CC_SYNTHESIZE_RETAIN(LineMaker*,_lineMaker,LineMaker);
     CC_SYNTHESIZE_RETAIN(StraightLine*,_stLine,StLine);
     CC_SYNTHESIZE_RETAIN(CurveLine*,_cvLine,CvLine);
+    CC_SYNTHESIZE_RETAIN(CourceMaker*,_courceMaker,CourceMaker);
     
     void update(float dt) override;
     void onEnterTransitionDidFinish() override;

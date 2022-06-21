@@ -18,7 +18,7 @@ CourceMaker::~CourceMaker() {
     CC_SAFE_RELEASE_NULL(_curveF);
     CC_SAFE_RELEASE_NULL(_courceBody);
     getMember().clear();
-//    _clearMember();
+    //    _clearMember();
 }
 
 //void CourceMaker::release(){
@@ -36,14 +36,14 @@ CourceMaker::~CourceMaker() {
 //}
 
 void CourceMaker::_clearMember(){
-//    _member.clear();    
-//    while(_member.size()>0) {
-//        _member.popBack();
-//    }
-//    _polygonPts.clear();
-//    while(_polygonPts.size()>0) {
-//        _polygonPts.popBack();
-//    }
+    //    _member.clear();
+    //    while(_member.size()>0) {
+    //        _member.popBack();
+    //    }
+    //    _polygonPts.clear();
+    //    while(_polygonPts.size()>0) {
+    //        _polygonPts.popBack();
+    //    }
 }
 
 bool CourceMaker::init() {
@@ -51,16 +51,22 @@ bool CourceMaker::init() {
     if(!Node::init()){
         return false;
     }
-    this->setCalc(Calclater::create());
-    this->setDot(SpriteBatchNode::create("c_dot.png"));
+    setCalc(Calclater::create());
+    setDot(SpriteBatchNode::create("c_dot.png"));
     getDot()->setGlobalZOrder(OBJ_LAYER_TOP);
-    this->addChild(getDot());
-    this->setStraight(SpriteBatchNode::create("c_straight.png"));
+    addChild(getDot());
+    
+    setStraight(SpriteBatchNode::create("c_straight.png"));
     getStraight()->setGlobalZOrder(OBJ_LAYER_TOP);
     _length = getStraight()->getTexture()->getContentSize().width;
-    this->addChild(getStraight());
-    this->setCurveA(SpriteBatchNode::create("c_curve_a.png"));
-    this->addChild(getCurveA());
+    addChild(getStraight());
+    
+    setCurveA(SpriteBatchNode::create("c_curve_a.png"));
+    addChild(getCurveA());
+    
+    setMark(SpriteBatchNode::create("mark.png"));
+    getMark()->setGlobalZOrder(OBJ_LAYER_TOP);
+    addChild(getMark());
     
     return true;
 }
@@ -114,15 +120,15 @@ void CourceMaker::calcCurve(Vec2 pt1,Vec2 dir1, Vec2 pt2, Vec2 dir2 ,float r_){
     
     // workポイントの中心点
     Vec2 ptA_wrk = getCalc()->getCrossPointLineA2B(ptA,
-                                               ptA + ptA_dir,
-                                               _wrkPt,
-                                               _wrkPt + getCalc()->rotByRad(_wrkDir, M_PI/2));
+                                                   ptA + ptA_dir,
+                                                   _wrkPt,
+                                                   _wrkPt + getCalc()->rotByRad(_wrkDir, M_PI/2));
     
     // targetポイントの中心点
     Vec2 ptA_trg = getCalc()->getCrossPointLineA2B(ptA,
-                                               ptA + ptA_dir,
-                                               _trgPt,
-                                               _trgPt + getCalc()->rotByRad(_trgDir, M_PI/2));
+                                                   ptA + ptA_dir,
+                                                   _trgPt,
+                                                   _trgPt + getCalc()->rotByRad(_trgDir, M_PI/2));
     
     // r_の位置の中心点とwrkとtrgそれぞれの接点
     float dl_ = (_wrkPt - ptA_wrk).length();
@@ -146,6 +152,7 @@ void CourceMaker::calcCurve(Vec2 pt1,Vec2 dir1, Vec2 pt2, Vec2 dir2 ,float r_){
     
     Vec2 stPt_ctPt;
     Vec2 edPt_ctPt;
+    bool reverseFlg = false;
     if(r_< 0 || r_/dl_ > 1 || r_/dl2_ > 1){
         if((ptA_wrk - ptA).length() < (ptA_trg - ptA).length()){
             stPt_ctPt = _wrkPt - ctPt;
@@ -160,14 +167,21 @@ void CourceMaker::calcCurve(Vec2 pt1,Vec2 dir1, Vec2 pt2, Vec2 dir2 ,float r_){
     }
     
     // カーブまでの直線部を描写する。
+    // mark用に変数を保持
+    Vec2 mrkStEdPt;
+    Vec2 mrkEdStPt;
     if(r_<0 || r_/dl_ > 1 || r_/dl2_ > 1){
         // r_が無効の場合。最大曲率が適用される。
         addStraightLine(_wrkPt, stPt_ctPt + ctPt);
         addStraightLine(edPt_ctPt + ctPt, _trgPt);
+        mrkStEdPt = stPt_ctPt + ctPt;
+        mrkEdStPt = edPt_ctPt + ctPt;
         
     }else{
         addStraightLine(_wrkPt, ptr_wrk);
         addStraightLine(ptr_trg ,_trgPt);
+        mrkStEdPt = ptr_wrk;
+        mrkEdStPt = ptr_trg;
     }
     
     // 円弧の部分を描写する。
@@ -190,6 +204,13 @@ void CourceMaker::calcCurve(Vec2 pt1,Vec2 dir1, Vec2 pt2, Vec2 dir2 ,float r_){
         addDot(edPt_ctPt + ctPt);
     }else{
         addDot(ptr_trg);
+    }
+    
+    // カーブ部分へのmarkの追加
+    if(markSetflg){
+        addMarkStraight(_wrkPt, mrkStEdPt);
+        addMarkCurve(ctPt,stPt_ctPt + ctPt,diffRad);
+        addMarkStraight(mrkEdStPt, _trgPt);
     }
     
     // ポリゴンの追加
@@ -227,7 +248,7 @@ void CourceMaker::addStraightLine(Vec2 pt1_, Vec2 pt2_){
     stline->setPosition(pt1_);
     stline->setRotation(getCalc()->chgKaku((pt2_-pt1_)));
     stline->setGlobalZOrder(OBJ_LAYER_TOP);
-//    stline->setOpacity(0.3f);
+//    stline->setOpacity(95);
     getStraight()->addChild(stline);
     getMember().pushBack(stline);
     addDot(pt2_);
@@ -237,9 +258,66 @@ void CourceMaker::addDot(Vec2 pt_){
     Sprite* dot = Sprite::createWithTexture(getDot()->getTexture());
     dot->setGlobalZOrder(OBJ_LAYER_TOP);
     dot->setPosition(pt_);
-//    dot->setOpacity(0.2f);
+    //    dot->setOpacity(0.2f);
     getDot()->addChild(dot);
     getMember().pushBack(dot);
+}
+
+void CourceMaker::addMarkStraight(Vec2 pt1_, Vec2 pt2_){
+    Vec2 dirPt = pt2_- pt1_;
+    if(dirPt.equals(Vec2::ZERO)){
+        return;
+    }
+    Vec2 drawPt = pt1_ + getCalc()->chgLength(dirPt, _remindMarkPitch);
+    while(getCalc()->cordinaneX(dirPt, drawPt - pt1_).x < dirPt.length()){
+        Sprite* mark = Sprite::createWithTexture(getMark()->getTexture());
+        mark->setAnchorPoint(Vec2(0.5,0.5));
+        mark->setPosition(drawPt);
+        mark->setRotation(getCalc()->chgKaku(dirPt));
+        mark->setGlobalZOrder(OBJ_LAYER_TOP + 1);
+        getMark()->addChild(mark);
+        getMember().pushBack(mark);
+        drawPt = drawPt + getCalc()->chgLength(dirPt, _markPitch);
+    }
+    _remindMarkPitch = getCalc()->cordinaneX(dirPt, drawPt - pt1_).x - dirPt.length();
+}
+
+void CourceMaker::addMarkCurve(Vec2 curveCenterPt,Vec2 fstPt,float rad){
+    float r = (fstPt-curveCenterPt).length();
+    if(r<1){
+        return;
+    }
+    float pitchRad = _markPitch/r;
+    float drawRad = _remindMarkPitch/r;
+    float optRad = M_PI/2;
+    if(rad<0){
+        drawRad *=-1;
+        pitchRad *=-1;
+        while(rad<drawRad){
+            Sprite* mark = Sprite::createWithTexture(getMark()->getTexture());
+            mark->setAnchorPoint(Vec2(0.5,0.5));
+            mark->setScaleX(3);
+            mark->setPosition(getCalc()->rotByRad(fstPt-curveCenterPt, drawRad)+ curveCenterPt);
+            mark->setRotation(getCalc()->chgKaku(getCalc()->rotByRad(fstPt-curveCenterPt, drawRad + optRad)));
+            mark->setGlobalZOrder(OBJ_LAYER_TOP);
+            getMark()->addChild(mark);
+            getMember().pushBack(mark);
+            drawRad += pitchRad;
+        }
+    }else{
+        while(rad>drawRad){
+            Sprite* mark = Sprite::createWithTexture(getMark()->getTexture());
+            mark->setAnchorPoint(Vec2(0.5,0.5));
+            mark->setScaleX(3);
+            mark->setPosition(getCalc()->rotByRad(fstPt-curveCenterPt, drawRad)+ curveCenterPt);
+            mark->setRotation(getCalc()->chgKaku(getCalc()->rotByRad(fstPt-curveCenterPt, drawRad + optRad)));
+            mark->setGlobalZOrder(OBJ_LAYER_TOP);
+            getMark()->addChild(mark);
+            getMember().pushBack(mark);
+            drawRad += pitchRad;
+        }
+    }
+    _remindMarkPitch = abs(rad-drawRad) * r;
 }
 
 void CourceMaker::madePhysiceBody(){
