@@ -45,7 +45,7 @@ public:
     
     // markを追加する場合のピッチ
     bool markSetflg = true;
-    float _markPitch = 50;
+    float _markPitch = 10;
     float _remindMarkPitch = 0;
     
     // アクション関連

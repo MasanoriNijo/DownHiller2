@@ -110,6 +110,9 @@ void CourceMaker::calcCurve(Vec2 pt1,Vec2 dir1, Vec2 pt2, Vec2 dir2 ,float r_){
     if(ptA.equals(_trgPt)){
         addStraightLine(_wrkPt, _trgPt);
         addPolygonPts(_trgPt);
+        if(markSetflg){
+            addMarkStraight(_wrkPt, _trgPt);
+        }
         return;
     }
     
@@ -293,10 +296,10 @@ void CourceMaker::addMarkCurve(Vec2 curveCenterPt,Vec2 fstPt,float rad){
     if(rad<0){
         drawRad *=-1;
         pitchRad *=-1;
+        optRad *= -1;
         while(rad<drawRad){
             Sprite* mark = Sprite::createWithTexture(getMark()->getTexture());
             mark->setAnchorPoint(Vec2(0.5,0.5));
-            mark->setScaleX(3);
             mark->setPosition(getCalc()->rotByRad(fstPt-curveCenterPt, drawRad)+ curveCenterPt);
             mark->setRotation(getCalc()->chgKaku(getCalc()->rotByRad(fstPt-curveCenterPt, drawRad + optRad)));
             mark->setGlobalZOrder(OBJ_LAYER_TOP);
@@ -308,7 +311,6 @@ void CourceMaker::addMarkCurve(Vec2 curveCenterPt,Vec2 fstPt,float rad){
         while(rad>drawRad){
             Sprite* mark = Sprite::createWithTexture(getMark()->getTexture());
             mark->setAnchorPoint(Vec2(0.5,0.5));
-            mark->setScaleX(3);
             mark->setPosition(getCalc()->rotByRad(fstPt-curveCenterPt, drawRad)+ curveCenterPt);
             mark->setRotation(getCalc()->chgKaku(getCalc()->rotByRad(fstPt-curveCenterPt, drawRad + optRad)));
             mark->setGlobalZOrder(OBJ_LAYER_TOP);
