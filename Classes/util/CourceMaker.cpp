@@ -3,13 +3,14 @@
 CourceMaker::CourceMaker():
 _calc(NULL),_dot(NULL), _straight(NULL),
 _curveA(NULL), _curveB(NULL), _curveC(NULL), _curveD(NULL), _curveE(NULL), _curveF(NULL),
-_courceBody(NULL)
+_courceBody(NULL),_mark(NULL)
 {}
 
 CourceMaker::~CourceMaker() {
     CC_SAFE_RELEASE_NULL(_calc);
     CC_SAFE_RELEASE_NULL(_dot);
     CC_SAFE_RELEASE_NULL(_straight);
+    CC_SAFE_RELEASE_NULL(_mark);
     CC_SAFE_RELEASE_NULL(_curveA);
     CC_SAFE_RELEASE_NULL(_curveB);
     CC_SAFE_RELEASE_NULL(_curveC);
@@ -18,32 +19,6 @@ CourceMaker::~CourceMaker() {
     CC_SAFE_RELEASE_NULL(_curveF);
     CC_SAFE_RELEASE_NULL(_courceBody);
     getMember().clear();
-    //    _clearMember();
-}
-
-//void CourceMaker::release(){
-//    CC_SAFE_RELEASE_NULL(_calc);
-//    CC_SAFE_RELEASE_NULL(_dot);
-//    CC_SAFE_RELEASE_NULL(_straight);
-//    CC_SAFE_RELEASE_NULL(_curveA);
-//    CC_SAFE_RELEASE_NULL(_curveB);
-//    CC_SAFE_RELEASE_NULL(_curveC);
-//    CC_SAFE_RELEASE_NULL(_curveD);
-//    CC_SAFE_RELEASE_NULL(_curveE);
-//    CC_SAFE_RELEASE_NULL(_curveF);
-//    CC_SAFE_RELEASE_NULL(_courceBody);
-//    _clearMember();
-//}
-
-void CourceMaker::_clearMember(){
-    //    _member.clear();
-    //    while(_member.size()>0) {
-    //        _member.popBack();
-    //    }
-    //    _polygonPts.clear();
-    //    while(_polygonPts.size()>0) {
-    //        _polygonPts.popBack();
-    //    }
 }
 
 bool CourceMaker::init() {
@@ -96,6 +71,38 @@ void CourceMaker::drawTo(Vec2 pt_, Vec2 dir_){
     calcCurve(_wrkPt, _wrkDir, _trgPt, _trgDir, -1);
 }
 
+void CourceMaker::drawByStraight(Vec2 dpt_){
+    this->setWorkPt(_trgPt);
+    this->setWorkDir(dpt_);
+    this->setTergetPt(_trgPt + dpt_);
+    this->setTargetDir(dpt_);
+    addStraightLine(_wrkPt, _trgPt);
+    addPolygonPts(_trgPt);
+    if(markSetflg){
+        addMarkStraight(_wrkPt, _trgPt);
+    }
+}
+
+void CourceMaker::drawByCurve(Vec2 dpt_,float kaku){
+    this->setWorkPt(_trgPt);
+    this->setTergetPt(_trgPt + dpt_);
+    if(kaku < -89){
+        kaku = -89;
+    }
+    if(kaku > 89){
+        kaku = 89;
+    }
+    
+    
+//    if(kaku < 0){
+        this->setWorkDir(getCalc()->rotByKaku(dpt_, kaku));
+        this->setTargetDir(getCalc()->rotByKaku(dpt_, -kaku));
+//    }else{
+//        this->setWorkDir(getCalc()->rotByKaku(dpt_, -kaku));
+//        this->setTargetDir(getCalc()->rotByKaku(dpt_, kaku));
+//    }
+    calcCurve(_wrkPt, _wrkDir, _trgPt, _trgDir, -1);
+}
 
 void CourceMaker::calcCurve(Vec2 pt1,Vec2 dir1, Vec2 pt2, Vec2 dir2 ,float r_){
     
@@ -107,7 +114,7 @@ void CourceMaker::calcCurve(Vec2 pt1,Vec2 dir1, Vec2 pt2, Vec2 dir2 ,float r_){
     Vec2 ptA = getCalc()->getCrossPointLineA2B(_wrkPt,_wrkPt + _wrkDir, _trgPt, _trgPt + _trgDir);
     
     // 折れ曲がるだけの場合
-    if(ptA.equals(_trgPt)){
+    if((ptA-_trgPt).length() < 1 || ptA.equals(Vec2::ZERO)){
         addStraightLine(_wrkPt, _trgPt);
         addPolygonPts(_trgPt);
         if(markSetflg){
@@ -188,7 +195,7 @@ void CourceMaker::calcCurve(Vec2 pt1,Vec2 dir1, Vec2 pt2, Vec2 dir2 ,float r_){
     }
     
     // 円弧の部分を描写する。
-    bool rotLeft = getCalc()->chkLeft(_wrkPt, _wrkDir,ctPt);
+    bool rotLeft = getCalc()->chkLeft(_wrkPt, _trgPt-_wrkPt, ctPt);
     float r;
     if(r_<0 || r_/dl_ > 1 || r_/dl2_ > 1){
         r = stPt_ctPt.length();

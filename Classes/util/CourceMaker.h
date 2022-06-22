@@ -33,9 +33,6 @@ public:
     CC_SYNTHESIZE(Vec2,_trgDir,TargetDir);
     void update(float dt) override;
     void onEnterTransitionDidFinish() override;
-//    void release();
-    
-    void _clearMember();
     
     // 元の直線の長さ
     float _length;
@@ -45,11 +42,14 @@ public:
     
     // markを追加する場合のピッチ
     bool markSetflg = true;
-    float _markPitch = 10;
+    float _markPitch = 80;
     float _remindMarkPitch = 0;
     
     // アクション関連
     void drawStart(Vec2 pt_, Vec2 dir_);
+    void drawByStraight(Vec2 dpt_);
+    
+    void drawByCurve(Vec2 dpt_,float kaku);
     void drawTo(Vec2 pt_, Vec2 dir_);
     
     // start pt1,dir1 から goal pt2,dir2 に繋がる半径 r_ のカーブを描く

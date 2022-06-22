@@ -90,7 +90,7 @@ bool TestPhysicsScene::init() {
 
 void TestPhysicsScene::onEnterTransitionDidFinish() {
     GameScene::onEnterTransitionDidFinish();
-    courceC();
+    courceA();
     // Bikeをセットする。
     setBike(Bike::create());
     mountScroleNode(getBike(), Vec2::ZERO, OBJ_LAYER_TOP);
@@ -109,32 +109,40 @@ void TestPhysicsScene::onEnterTransitionDidFinish() {
     
 }
 
-void TestPhysicsScene::courceA(){
-    
-    Vec2 points[10];
-    points[0].x = -50;
-    points[0].y = 100;
-    points[1].x = -50;
-    points[1].y = -20;
-    points[2].x = 300;
-    points[2].y = 200;
-    points[3].x = 600;
-    points[3].y = -70;
-    
-    getCourceMaker()->drawStart(points[0], points[1]-points[0]);
-    getCourceMaker()->drawTo(points[1], points[2]-points[1]);
-    getCourceMaker()->drawTo(points[2], points[3]-points[2]);
-    getCourceMaker()->drawTo(points[3], Vec2(10,-5));
-    getCourceMaker()->drawTo(points[3] + Vec2(100,0), Vec2(10,5));
-    getCourceMaker()->drawTo(points[3] + Vec2(200,0), Vec2(10,-5));
-    //    Vec2 adPt = Vec2(100,40);
-    //    Vec2 pt_ = getCourceMaker()->getTergetPt();
-    //    Vec2 dir_ = Vec2(10,8);
-    //    for(int i= 0;i<100;i++){
-    //        getCourceMaker()->drawTo(pt_, dir_);
-    //        pt_ += adPt;
-    //        dir_ =Vec2(dir_.x,dir_.y * -1);
-    //    }
+void TestPhysicsScene::courceA(){    
+    getCourceMaker()->drawStart(Vec2(-50,100),Vec2::ZERO);
+    getCourceMaker()->drawByStraight(Vec2(0,-100));
+    getCourceMaker()->drawByStraight(Vec2(300,0));
+    for(int i = 0;i<5;i++){
+        getCourceMaker()->drawByStraight(Vec2(0,-50));
+        getCourceMaker()->drawByStraight(Vec2(90,0));
+        getCourceMaker()->drawByCurve(Vec2(240,-30), 50);
+        getCourceMaker()->drawByStraight(Vec2(0,-50));
+        getCourceMaker()->drawByStraight(Vec2(90,0));
+        getCourceMaker()->drawByStraight(Vec2(0,-50));
+        getCourceMaker()->drawByCurve(Vec2(500,-30), 90);
+        getCourceMaker()->drawByStraight(Vec2(90,0));
+        getCourceMaker()->drawByStraight(Vec2(0,-50));
+        getCourceMaker()->drawByCurve(Vec2(240,-30), 60);
+        getCourceMaker()->drawByStraight(Vec2(90,0));
+        getCourceMaker()->drawByCurve(Vec2(240,-30), 50);
+        getCourceMaker()->drawByCurve(Vec2(240,-30), 60);
+        getCourceMaker()->drawByCurve(Vec2(50,-30), 90);
+    }
+    getCourceMaker()->drawByCurve(Vec2(240,-30), 50);
+    getCourceMaker()->drawByCurve(Vec2(240,-30), 60);
+    getCourceMaker()->drawByCurve(Vec2(50,-30), 90);
+//    getCourceMaker()->drawByCurve(Vec2(40,-30), -30);
+//    getCourceMaker()->drawByCurve(Vec2(40,-30), -30);
+//    getCourceMaker()->drawByCurve(Vec2(40,-30), 30);
+//    getCourceMaker()->drawByCurve(Vec2(40,-30), -20);
+//    getCourceMaker()->drawByCurve(Vec2(40,-30), 20);
+//    getCourceMaker()->drawByCurve(Vec2(40,-30), -5);
+//    getCourceMaker()->drawByCurve(Vec2(40,-30), 5);
+//    getCourceMaker()->drawByCurve(Vec2(40,30), 90);
+//    getCourceMaker()->drawByCurve(Vec2(40,30), 50);
+//    getCourceMaker()->drawByCurve(Vec2(40,30), -50);
+//    getCourceMaker()->drawByStraight(Vec2(300,0));
     getCourceMaker()->madePhysiceBody();
 }
 

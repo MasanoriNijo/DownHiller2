@@ -28,12 +28,14 @@ public:
     // pt11→pt2のベクトルの反時計のRadian0-2piで出力
     float nomlRad(Vec2 pt1, Vec2 pt2);
     
+    // pt方向の標準角度をベクトルの反時計のRadian0-2piで出力
+    float nomlRad(Vec2 pt);
+    
     // 角度を0-360の間にする。
     float nomlKaku(float kaku);
     
     // pt11→pt2のベクトルの反時計のRadian0-2piをSprite用の角度に変換する。時計回り0-360°
     float nomlKaku(Vec2 pt1, Vec2 pt2);
-    
     // radianを0-2piの間にする。
     float nomlRad(float rad);
     
@@ -68,7 +70,6 @@ public:
     
     // 対象物が進行方向の左側にあるのか確認する。
     bool chkLeft(Vec2 pt, Vec2 dst,Vec2 chkPt);
-    
     
     // 複雑な座標の移動,変換系
     // destPtに追従する。
