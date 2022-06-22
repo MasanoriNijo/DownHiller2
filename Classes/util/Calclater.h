@@ -57,6 +57,8 @@ public:
     // 変換系
     // 指定したラジアン分回転する。反時計回り
     Vec2 rotByRad(Vec2 pt,float rad);
+    // 指定したradPtのラジアン分回転する。反時計回り
+    Vec2 rotByRad(Vec2 pt,Vec2 radPt);
     // 指定した角度分回転する。時計回り
     Vec2 rotByKaku(Vec2 pt,float kaku);
     // 同じ方向で指定した長さに変換する。

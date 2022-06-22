@@ -148,6 +148,12 @@ Vec2 Calclater::getParentNodePosition(Node* nd){
     return parentPt + localPt;
 }
 
+// 指定したradPtのラジアン分回転する。反時計回り
+Vec2 Calclater::rotByRad(Vec2 pt,Vec2 radPt){
+    float rad = nomlRad(radPt);
+    return Vec2(cos(rad)*pt.x-sin(rad)*pt.y, sin(rad)*pt.x+cos(rad)*pt.y);
+}
+
 // 指定したラジアン分回転する。反時計回り
 Vec2 Calclater::rotByRad(Vec2 pt,float rad){
     return Vec2(cos(rad)*pt.x-sin(rad)*pt.y, sin(rad)*pt.x+cos(rad)*pt.y);

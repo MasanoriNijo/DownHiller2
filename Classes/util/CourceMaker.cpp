@@ -83,6 +83,16 @@ void CourceMaker::drawByStraight(Vec2 dpt_){
     }
 }
 
+void CourceMaker::drawBySmoothCurve(Vec2 dirPt_){
+    Vec2 newTrgDir=getCalc()->rotByRad(_trgDir, 2*getCalc()->nomlRad(dirPt_));
+    Vec2 dpt_ = getCalc()->rotByRad(dirPt_,_trgDir);
+    setWorkPt(_trgPt);
+    setWorkDir(_trgDir);
+    setTergetPt(_trgPt + dpt_);
+    setTargetDir(newTrgDir);
+    calcCurve(-1);
+}
+
 void CourceMaker::drawByCurve(Vec2 dpt_,float kaku){
     this->setWorkPt(_trgPt);
     this->setTergetPt(_trgPt + dpt_);
@@ -92,24 +102,20 @@ void CourceMaker::drawByCurve(Vec2 dpt_,float kaku){
     if(kaku > 89){
         kaku = 89;
     }
-    
-    
-//    if(kaku < 0){
-        this->setWorkDir(getCalc()->rotByKaku(dpt_, kaku));
-        this->setTargetDir(getCalc()->rotByKaku(dpt_, -kaku));
-//    }else{
-//        this->setWorkDir(getCalc()->rotByKaku(dpt_, -kaku));
-//        this->setTargetDir(getCalc()->rotByKaku(dpt_, kaku));
-//    }
-    calcCurve(_wrkPt, _wrkDir, _trgPt, _trgDir, -1);
+    this->setWorkDir(getCalc()->rotByKaku(dpt_, kaku));
+    this->setTargetDir(getCalc()->rotByKaku(dpt_, -kaku));
+    calcCurve(-1);
 }
 
 void CourceMaker::calcCurve(Vec2 pt1,Vec2 dir1, Vec2 pt2, Vec2 dir2 ,float r_){
-    
-    this->setWorkPt(pt1);
-    this->setWorkDir(dir1);
-    this->setTergetPt(pt2);
-    this->setTargetDir(dir2);
+    setWorkPt(pt1);
+    setWorkDir(dir1);
+    setTergetPt(pt2);
+    setTargetDir(dir2);
+    calcCurve(r_);
+}
+
+void CourceMaker::calcCurve(float r_){
     // workとtargetの交点
     Vec2 ptA = getCalc()->getCrossPointLineA2B(_wrkPt,_wrkPt + _wrkDir, _trgPt, _trgPt + _trgDir);
     

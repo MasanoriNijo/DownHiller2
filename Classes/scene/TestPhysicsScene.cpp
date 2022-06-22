@@ -90,7 +90,7 @@ bool TestPhysicsScene::init() {
 
 void TestPhysicsScene::onEnterTransitionDidFinish() {
     GameScene::onEnterTransitionDidFinish();
-    courceA();
+    courceB();
     // Bikeをセットする。
     setBike(Bike::create());
     mountScroleNode(getBike(), Vec2::ZERO, OBJ_LAYER_TOP);
@@ -112,15 +112,29 @@ void TestPhysicsScene::onEnterTransitionDidFinish() {
 void TestPhysicsScene::courceA(){    
     getCourceMaker()->drawStart(Vec2(-50,100),Vec2::ZERO);
     getCourceMaker()->drawByStraight(Vec2(0,-100));
-    getCourceMaker()->drawByStraight(Vec2(300,0));
+    getCourceMaker()->drawByStraight(Vec2(100,0));
+    getCourceMaker()->drawByCurve(Vec2(10,0), -90);
+    getCourceMaker()->drawByStraight(Vec2(100,0));
+    getCourceMaker()->drawByCurve(Vec2(10,0), -90);
+    getCourceMaker()->drawByStraight(Vec2(100,0));
+    getCourceMaker()->drawByCurve(Vec2(10,0), -90);
+    getCourceMaker()->drawByStraight(Vec2(100,-20));
+    getCourceMaker()->drawByCurve(Vec2(10,-2), -90);
+    getCourceMaker()->drawByStraight(Vec2(100,-20));
+    getCourceMaker()->drawByCurve(Vec2(10,-2), -90);
+    getCourceMaker()->drawByStraight(Vec2(100,-20));
+    getCourceMaker()->drawByCurve(Vec2(10,-2), -90);
+    getCourceMaker()->drawByStraight(Vec2(100,-20));
+    getCourceMaker()->drawByCurve(Vec2(10,-2), -90);
+    
     for(int i = 0;i<5;i++){
         getCourceMaker()->drawByStraight(Vec2(0,-50));
         getCourceMaker()->drawByStraight(Vec2(90,0));
-        getCourceMaker()->drawByCurve(Vec2(240,-30), 50);
+        getCourceMaker()->drawByCurve(Vec2(240,-30), -50);
         getCourceMaker()->drawByStraight(Vec2(0,-50));
         getCourceMaker()->drawByStraight(Vec2(90,0));
         getCourceMaker()->drawByStraight(Vec2(0,-50));
-        getCourceMaker()->drawByCurve(Vec2(500,-30), 90);
+        getCourceMaker()->drawByCurve(Vec2(120,-30), 80);
         getCourceMaker()->drawByStraight(Vec2(90,0));
         getCourceMaker()->drawByStraight(Vec2(0,-50));
         getCourceMaker()->drawByCurve(Vec2(240,-30), 60);
@@ -147,9 +161,24 @@ void TestPhysicsScene::courceA(){
 }
 
 void TestPhysicsScene::courceB(){
-    Vec2 stPt = Vec2(100,200);
-    Vec2 stDir = Vec2(10,-8);
-    getCourceMaker()->calcCurve(stPt, stDir, stPt + Vec2(1600,0), Vec2(stDir.x,-stDir.y), 60);
+
+    getCourceMaker()->drawStart(Vec2(-50,100),Vec2::ZERO);
+    getCourceMaker()->drawByStraight(Vec2(0,-100));
+    getCourceMaker()->drawByStraight(Vec2(200,0));
+    for(int i = 0;i<5;i++){
+        getCourceMaker()->drawBySmoothCurve(Vec2(50,20));
+        getCourceMaker()->drawBySmoothCurve(Vec2(80,-50));
+        getCourceMaker()->drawBySmoothCurve(Vec2(100,50));
+        getCourceMaker()->drawBySmoothCurve(Vec2(100,-80));
+        getCourceMaker()->drawBySmoothCurve(Vec2(130,100));
+        getCourceMaker()->drawByStraight(Vec2(300,0));
+        getCourceMaker()->drawByStraight(Vec2(0,-50));
+        getCourceMaker()->drawByStraight(Vec2(90,0));
+        getCourceMaker()->drawByCurve(Vec2(240,-30), -50);
+        getCourceMaker()->drawByStraight(Vec2(0,-50));
+        getCourceMaker()->drawByStraight(Vec2(90,0));
+    }
+    getCourceMaker()->drawByStraight(Vec2(0,100));
     getCourceMaker()->madePhysiceBody();
 }
 

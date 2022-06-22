@@ -47,11 +47,15 @@ public:
     
     // アクション関連
     void drawStart(Vec2 pt_, Vec2 dir_);
+    // 現ポイントから、指定の方向に直線を描く。
     void drawByStraight(Vec2 dpt_);
-    
+    // 現ポイントの方向から滑らかに、前方にdx,横にdy進んだポイントにつながる曲線を描く。
+    void drawBySmoothCurve(Vec2 dirPt_);
+    // 現ポイントから、指定のポイントが、終点になるように、指定した角度左（−90 - 90度）右円弧を描く。
     void drawByCurve(Vec2 dpt_,float kaku);
     void drawTo(Vec2 pt_, Vec2 dir_);
-    
+    // 現状の設定値で描く
+    void calcCurve(float r_);
     // start pt1,dir1 から goal pt2,dir2 に繋がる半径 r_ のカーブを描く
     void calcCurve(Vec2 pt1,Vec2 dir1, Vec2 pt2, Vec2 dir2 ,float r_);
     
