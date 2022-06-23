@@ -72,10 +72,23 @@ void CourceMaker::drawTo(Vec2 pt_, Vec2 dir_){
 }
 
 void CourceMaker::drawByStraight(Vec2 dpt_){
-    this->setWorkPt(_trgPt);
-    this->setWorkDir(dpt_);
-    this->setTergetPt(_trgPt + dpt_);
-    this->setTargetDir(dpt_);
+    setWorkPt(_trgPt);
+    setWorkDir(dpt_);
+    setTergetPt(_trgPt + dpt_);
+    setTargetDir(dpt_);
+    addStraightLine(_wrkPt, _trgPt);
+    addPolygonPts(_trgPt);
+    if(markSetflg){
+        addMarkStraight(_wrkPt, _trgPt);
+    }
+}
+
+void CourceMaker::drawByStraight(float length, float kaku){    
+    Vec2 dpt_ = getCalc()->rotByKaku(Vec2(length,0), kaku);
+    setWorkPt(_trgPt);
+    setWorkDir(dpt_);
+    setTergetPt(_trgPt + dpt_);
+    setTargetDir(dpt_);
     addStraightLine(_wrkPt, _trgPt);
     addPolygonPts(_trgPt);
     if(markSetflg){

@@ -176,6 +176,7 @@
 		304DD0C22843DE2700AF0334 /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304DD0C12843DE2700AF0334 /* GameScene.cpp */; };
 		3087C151285EFD5000AD0F14 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3087C150285EFD5000AD0F14 /* SwiftUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3087C1542862078100AD0F14 /* mark.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3087C152286206DE00AD0F14 /* mark.png */; };
+		3087C1572864B25300AD0F14 /* Flg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3087C1552864B25300AD0F14 /* Flg.cpp */; };
 		309B0D0F28490A830091801C /* ColorChanger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 309B0D0D28490A830091801C /* ColorChanger.cpp */; };
 		309B0D12284A6E170091801C /* Calclater.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 309B0D11284A6E160091801C /* Calclater.cpp */; };
 		309B0D15284B16160091801C /* Button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 309B0D14284B16160091801C /* Button.cpp */; };
@@ -1429,6 +1430,8 @@
 		3077803B8D5646769C867A5B /* DetourObstacleAvoidance.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = DetourObstacleAvoidance.cpp; path = cocos2d/external/recast/DetourCrowd/DetourObstacleAvoidance.cpp; sourceTree = SOURCE_ROOT; };
 		3087C150285EFD5000AD0F14 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		3087C152286206DE00AD0F14 /* mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mark.png; path = Resources/images/mark.png; sourceTree = SOURCE_ROOT; };
+		3087C1552864B25300AD0F14 /* Flg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Flg.cpp; path = Classes/item/Flg.cpp; sourceTree = SOURCE_ROOT; };
+		3087C1562864B25300AD0F14 /* Flg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Flg.h; path = Classes/item/Flg.h; sourceTree = SOURCE_ROOT; };
 		309B0D0B2848FA5B0091801C /* Const.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Const.h; sourceTree = "<group>"; };
 		309B0D0D28490A830091801C /* ColorChanger.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ColorChanger.cpp; sourceTree = "<group>"; };
 		309B0D0E28490A830091801C /* ColorChanger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorChanger.h; sourceTree = "<group>"; };
@@ -3667,6 +3670,8 @@
 				302A0A25285A36E60072A2D3 /* StraightLine.h */,
 				309B0D14284B16160091801C /* Button.cpp */,
 				309B0D13284B16160091801C /* Button.h */,
+				3087C1552864B25300AD0F14 /* Flg.cpp */,
+				3087C1562864B25300AD0F14 /* Flg.h */,
 			);
 			name = item;
 			path = Classes/item;
@@ -5387,6 +5392,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				304DD0C22843DE2700AF0334 /* GameScene.cpp in Sources */,
+				3087C1572864B25300AD0F14 /* Flg.cpp in Sources */,
 				660874EB5928406482FA1AF6 /* AppDelegate.cpp in Sources */,
 				302A0A212854E2460072A2D3 /* LineMaker.cpp in Sources */,
 				894EBEAFD698461595D0DFD4 /* HelloWorldScene.cpp in Sources */,

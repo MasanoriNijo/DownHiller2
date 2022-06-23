@@ -7,6 +7,7 @@
 #include "util/CourceMaker.h"
 #include "item/CurveLine.h"
 #include "item/Bike.h"
+#include "item/Flg.h"
 #include "item/StraightLine.h"
 #include "cocos2d.h"
 USING_NS_CC;

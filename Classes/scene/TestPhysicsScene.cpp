@@ -104,59 +104,22 @@ void TestPhysicsScene::onEnterTransitionDidFinish() {
     getBike()->scheduleUpdate();
     
     scheduleUpdate();
-    
-    showGameAnnounce("準備はいいか？", ctPt);
-    
+    showGameAnnounce("READY!", ctPt);
 }
 
-void TestPhysicsScene::courceA(){    
+void TestPhysicsScene::courceA(){
+    auto flg = Flg::create();
     getCourceMaker()->drawStart(Vec2(-50,100),Vec2::ZERO);
     getCourceMaker()->drawByStraight(Vec2(0,-100));
-    getCourceMaker()->drawByStraight(Vec2(100,0));
-    getCourceMaker()->drawByCurve(Vec2(10,0), -90);
-    getCourceMaker()->drawByStraight(Vec2(100,0));
-    getCourceMaker()->drawByCurve(Vec2(10,0), -90);
-    getCourceMaker()->drawByStraight(Vec2(100,0));
-    getCourceMaker()->drawByCurve(Vec2(10,0), -90);
-    getCourceMaker()->drawByStraight(Vec2(100,-20));
-    getCourceMaker()->drawByCurve(Vec2(10,-2), -90);
-    getCourceMaker()->drawByStraight(Vec2(100,-20));
-    getCourceMaker()->drawByCurve(Vec2(10,-2), -90);
-    getCourceMaker()->drawByStraight(Vec2(100,-20));
-    getCourceMaker()->drawByCurve(Vec2(10,-2), -90);
-    getCourceMaker()->drawByStraight(Vec2(100,-20));
-    getCourceMaker()->drawByCurve(Vec2(10,-2), -90);
-    
-    for(int i = 0;i<5;i++){
-        getCourceMaker()->drawByStraight(Vec2(0,-50));
-        getCourceMaker()->drawByStraight(Vec2(90,0));
-        getCourceMaker()->drawByCurve(Vec2(240,-30), -50);
-        getCourceMaker()->drawByStraight(Vec2(0,-50));
-        getCourceMaker()->drawByStraight(Vec2(90,0));
-        getCourceMaker()->drawByStraight(Vec2(0,-50));
-        getCourceMaker()->drawByCurve(Vec2(120,-30), 80);
-        getCourceMaker()->drawByStraight(Vec2(90,0));
-        getCourceMaker()->drawByStraight(Vec2(0,-50));
-        getCourceMaker()->drawByCurve(Vec2(240,-30), 60);
-        getCourceMaker()->drawByStraight(Vec2(90,0));
-        getCourceMaker()->drawByCurve(Vec2(240,-30), 50);
-        getCourceMaker()->drawByCurve(Vec2(240,-30), 60);
-        getCourceMaker()->drawByCurve(Vec2(50,-30), 90);
-    }
-    getCourceMaker()->drawByCurve(Vec2(240,-30), 50);
-    getCourceMaker()->drawByCurve(Vec2(240,-30), 60);
-    getCourceMaker()->drawByCurve(Vec2(50,-30), 90);
-//    getCourceMaker()->drawByCurve(Vec2(40,-30), -30);
-//    getCourceMaker()->drawByCurve(Vec2(40,-30), -30);
-//    getCourceMaker()->drawByCurve(Vec2(40,-30), 30);
-//    getCourceMaker()->drawByCurve(Vec2(40,-30), -20);
-//    getCourceMaker()->drawByCurve(Vec2(40,-30), 20);
-//    getCourceMaker()->drawByCurve(Vec2(40,-30), -5);
-//    getCourceMaker()->drawByCurve(Vec2(40,-30), 5);
-//    getCourceMaker()->drawByCurve(Vec2(40,30), 90);
-//    getCourceMaker()->drawByCurve(Vec2(40,30), 50);
-//    getCourceMaker()->drawByCurve(Vec2(40,30), -50);
-//    getCourceMaker()->drawByStraight(Vec2(300,0));
+    getCourceMaker()->drawByStraight(Vec2(200,-30));
+    flg->setGlobalZOrder(OBJ_LAYER_TOP);
+    flg->setPosition(getCourceMaker()->getTergetPt());
+    flg->setRotation(getCalc()->nomlRad(getCourceMaker()->getTargetDir()));
+    addChild(flg);
+    getCourceMaker()->drawBySmoothCurve(Vec2(50,-40));
+    getCourceMaker()->drawBySmoothCurve(Vec2(50,40));
+    getCourceMaker()->drawByStraight(200,0);
+    getCourceMaker()->drawByStraight(Vec2(0,100));
     getCourceMaker()->madePhysiceBody();
 }
 
@@ -169,6 +132,11 @@ void TestPhysicsScene::courceB(){
         getCourceMaker()->drawBySmoothCurve(Vec2(50,20));
         getCourceMaker()->drawBySmoothCurve(Vec2(80,-50));
         getCourceMaker()->drawBySmoothCurve(Vec2(100,50));
+        auto flg = Flg::create();
+        flg->setGlobalZOrder(OBJ_LAYER_TOP);
+        flg->setPosition(getCourceMaker()->getTergetPt());
+        flg->setRotation(getCalc()->nomlRad(getCourceMaker()->getTargetDir()));
+        addChild(flg);
         getCourceMaker()->drawBySmoothCurve(Vec2(100,-80));
         getCourceMaker()->drawBySmoothCurve(Vec2(130,100));
         getCourceMaker()->drawByStraight(Vec2(300,0));
@@ -211,6 +179,10 @@ void TestPhysicsScene::courceC(){
 
 void TestPhysicsScene::update(float dt) {
     // todo
+    if(fstStCnge && getGameState() == GameState::CLEAR){
+        showGameAnnounce("GOAL!", ctPt);
+        fstStCnge = false;
+    }
     if(getBike()){
         //        getDebugMemo()->setString("重心位置:" + ST_VEC2(getBike()->weightPt));
         //        getDebugMemo()->setString("bike:" + ST_VEC2(getBike()->getPosition()) + " " + ST_INT(getBike()->getRotation()));
@@ -245,6 +217,8 @@ void TestPhysicsScene::setContactListener() {
                 break;
             }
             case TG_GOAL: {
+                setGameState(GameState::CLEAR);
+                fstStCnge = true;
                 break;
             }
             default:{
@@ -270,6 +244,8 @@ void TestPhysicsScene::setContactListener() {
                 break;
             }
             case TG_GOAL: {
+                setGameState(GameState::CLEAR);
+                fstStCnge = true;
                 break;
             }
             default:{

@@ -91,7 +91,7 @@ void Bike::_addPhysicsToWheel(Sprite* _wheel){
     _wheel->getPhysicsBody()->setGravityEnable(true);
     _wheel->getPhysicsBody()->setCategoryBitmask(CT_WHEEL);
     _wheel->getPhysicsBody()->setCollisionBitmask(CT_COURCE);
-    _wheel->getPhysicsBody()->setContactTestBitmask(CT_COURCE);
+    _wheel->getPhysicsBody()->setContactTestBitmask(CT_COURCE | CT_GOAL);
     //    _wheel->getPhysicsBody()->setTag(1);
     _wheel->getPhysicsBody()->setDynamic(true);
     //    _wheel->getPhysicsBody()->setAngularDamping(wheelRotDump_);

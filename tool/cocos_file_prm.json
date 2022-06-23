@@ -1,16 +1,6 @@
 {
-  "className": "GameStage",
-  "superClass": "GameScene",
+  "className": "Flg",
+  "superClass": "Sprite2",
   "synthesize_retains": [
-    ["Label", "_gameTime", "GameTime"],
-    ["Label", "_bestTime", "BestTime"],
-    ["Label", "_bikeSpeed", "BikeSpeed"],
-    ["DrawNode", "_baseLine", "BaseLine"],
-    ["DrawNode", "_ball", "Ball"],
-    ["MenuItemImage", "_btn1", "Btn1"],
-    ["MenuItemImage", "_btn2", "Btn2"],
-    ["MenuItemImage", "_btn3", "Btn3"],
-    ["MenuItemImage", "_btn4", "Btn4"],
-    ["Menu", "_menu", "Menu"]
   ]
 }

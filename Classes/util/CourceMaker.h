@@ -52,7 +52,10 @@ public:
     // 現ポイントの方向から滑らかに、前方にdx,横にdy進んだポイントにつながる曲線を描く。
     void drawBySmoothCurve(Vec2 dirPt_);
     // 現ポイントから、指定のポイントが、終点になるように、指定した角度左（−90 - 90度）右円弧を描く。
-    void drawByCurve(Vec2 dpt_,float kaku);
+    void drawByCurve(Vec2 dpt_,float kaku);    
+    // 現ポイントから、指定した角度3（0 - 360度）で直線を描く。
+    void drawByStraight(float length, float kaku);
+    
     void drawTo(Vec2 pt_, Vec2 dir_);
     // 現状の設定値で描く
     void calcCurve(float r_);
