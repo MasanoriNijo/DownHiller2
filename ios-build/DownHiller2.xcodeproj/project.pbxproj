@@ -155,6 +155,9 @@
 		2D8C779551D5470D9142F936 /* CCEventAssetsManagerEx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 949D2FF9C6CC4A6295C50CC8 /* CCEventAssetsManagerEx.cpp */; };
 		2DB22ED8B349479B9961FF52 /* CCActionCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D51DB36D7D9643EE83FEFE56 /* CCActionCamera.cpp */; };
 		2DBCC33890E341908C7DF5EB /* CCUISingleLineTextField.mm in Sources */ = {isa = PBXBuildFile; fileRef = 88918CCDEABF45DA98E13172 /* CCUISingleLineTextField.mm */; };
+		3010F7F42865CFC7000ED137 /* btn_curve.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3010F7EF2865CF61000ED137 /* btn_curve.png */; };
+		3010F7F52865CFC7000ED137 /* btn_line.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3010F7F02865CF61000ED137 /* btn_line.png */; };
+		3010F7F62865CFC7000ED137 /* btn_waku.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3010F7EE2865CF61000ED137 /* btn_waku.png */; };
 		302A0A1C28547CC70072A2D3 /* yazi.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 302A0A1A28547AF80072A2D3 /* yazi.png */; };
 		302A0A1F2854D7830072A2D3 /* dot.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 302A0A1D2854D7570072A2D3 /* dot.png */; };
 		302A0A212854E2460072A2D3 /* LineMaker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 302A0A182853AECC0072A2D3 /* LineMaker.cpp */; };
@@ -1098,6 +1101,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
+				3010F7F42865CFC7000ED137 /* btn_curve.png in CopyFiles */,
+				3010F7F52865CFC7000ED137 /* btn_line.png in CopyFiles */,
+				3010F7F62865CFC7000ED137 /* btn_waku.png in CopyFiles */,
 				3087C1542862078100AD0F14 /* mark.png in CopyFiles */,
 				302A0A2E285A3ED80072A2D3 /* c_curve_a.png in CopyFiles */,
 				302A0A2F285A3ED80072A2D3 /* c_dot.png in CopyFiles */,
@@ -1396,6 +1402,9 @@
 		2F86C5C2F592483BB7456AA6 /* CCPUSphere.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = CCPUSphere.cpp; path = cocos2d/extensions/Particle3D/PU/CCPUSphere.cpp; sourceTree = SOURCE_ROOT; };
 		2FA3D3239B984FB4A998814F /* CCCommon.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = CCCommon.h; path = cocos2d/cocos/platform/CCCommon.h; sourceTree = SOURCE_ROOT; };
 		2FEE79820C1E4AFC9A3042C5 /* .gitkeep */ = {isa = PBXFileReference; explicitFileType = sourcecode; fileEncoding = 4; name = .gitkeep; path = Resources/res/.gitkeep; sourceTree = SOURCE_ROOT; };
+		3010F7EE2865CF61000ED137 /* btn_waku.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_waku.png; path = Resources/images/btn_waku.png; sourceTree = SOURCE_ROOT; };
+		3010F7EF2865CF61000ED137 /* btn_curve.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_curve.png; path = Resources/images/btn_curve.png; sourceTree = SOURCE_ROOT; };
+		3010F7F02865CF61000ED137 /* btn_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_line.png; path = Resources/images/btn_line.png; sourceTree = SOURCE_ROOT; };
 		301471C90AA24A968F8E62B2 /* CCPUScriptLexer.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = CCPUScriptLexer.cpp; path = cocos2d/extensions/Particle3D/PU/CCPUScriptLexer.cpp; sourceTree = SOURCE_ROOT; };
 		302A0A182853AECC0072A2D3 /* LineMaker.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = LineMaker.cpp; path = Classes/util/LineMaker.cpp; sourceTree = SOURCE_ROOT; };
 		302A0A192853AECC0072A2D3 /* LineMaker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LineMaker.h; path = Classes/util/LineMaker.h; sourceTree = SOURCE_ROOT; };
@@ -3530,6 +3539,9 @@
 		304DD0AE2843C8C200AF0334 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				3010F7EF2865CF61000ED137 /* btn_curve.png */,
+				3010F7F02865CF61000ED137 /* btn_line.png */,
+				3010F7EE2865CF61000ED137 /* btn_waku.png */,
 				3087C152286206DE00AD0F14 /* mark.png */,
 				302A0A2A285A3EA50072A2D3 /* c_curve_a.png */,
 				302A0A28285A3EA40072A2D3 /* c_dot.png */,

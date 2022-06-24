@@ -204,10 +204,11 @@ void GameStage::onPlay(){
 }
 
 void GameStage::onClear(){
+    this->getBike()->getRwheel()->getPhysicsBody()->setAngularDamping(1);
+//    this->getBike()->getRwheel()->getPhysicsBody()->setLinearDamping(1);
+    this->getBike()->removeTouchEvent();
     showGameAnnounce("CLEAR!", ctPt,[this]{
-        this->getBike()->getRwheel()->getPhysicsBody()->setAngularDamping(1);
-        this->getBike()->getRwheel()->getPhysicsBody()->setLinearDamping(1);
-        this->getBike()->removeTouchEvent();
+        //todo
     });
 }
 

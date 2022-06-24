@@ -4,7 +4,7 @@
 #include "scene/GameStage.h"
 
 TitleScene::TitleScene():
-_gameTitle(NULL), _startBtn(NULL), _howtoBtn(NULL), _resultBtn(NULL), _menu(NULL)
+_gameTitle(NULL), _startBtn(NULL), _howtoBtn(NULL), _resultBtn(NULL), _menu(NULL),_btn1(NULL)
 {}
 
 TitleScene::~TitleScene() {
@@ -12,7 +12,8 @@ TitleScene::~TitleScene() {
     CC_SAFE_RELEASE_NULL(_startBtn);
     CC_SAFE_RELEASE_NULL(_howtoBtn);
     CC_SAFE_RELEASE_NULL(_resultBtn);
-    CC_SAFE_RELEASE_NULL(_menu);
+    CC_SAFE_RELEASE_NULL(_btn1);
+    
 }
 
 Scene* TitleScene::createScene() {
@@ -41,6 +42,13 @@ bool TitleScene::init() {
     this->setMenu(Menu::create(this->getStartBtn(),this->getHowToBtn(),this->getResultBtn(), NULL));
     getMenu()->alignItemsHorizontallyWithPadding(20);
     this->mountNode(this->getMenu(), this->ctPt + Vec2(0,-20), OBJ_LAYER_TOP);
+    
+    
+    setBtn1(Button::create());
+    
+    getBtn1()->setButton(Size(40,20),"？");
+    mountNode(getBtn1(), ctPt+Vec2(0,100), OBJ_LAYER_TOP);
+    
     return true;
 }
 

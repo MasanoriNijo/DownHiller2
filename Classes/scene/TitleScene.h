@@ -20,6 +20,7 @@ public:
     CC_SYNTHESIZE_RETAIN(MenuItemImage*,_startBtn,StartBtn);
     CC_SYNTHESIZE_RETAIN(MenuItemImage*,_howtoBtn,HowToBtn);
     CC_SYNTHESIZE_RETAIN(MenuItemImage*,_resultBtn,ResultBtn);
+    CC_SYNTHESIZE_RETAIN(Button*,_btn1,Btn1);
     CC_SYNTHESIZE_RETAIN(Menu*,_menu,Menu);
     void update(float dt) override;
     void onEnterTransitionDidFinish() override;
