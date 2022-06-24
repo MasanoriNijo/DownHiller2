@@ -192,17 +192,23 @@ void GameStage::update(float dt) {
 
 void GameStage::onReady(){
     showGameAnnounce("READY!", ctPt,[this]{
-        this->getBike()->setTouchEvent();
+        this->setGameState(GameState::PLAY);
+        this->fstStCnge = true;
     });
 }
 
 void GameStage::onPlay(){
-    showGameAnnounce("PLAY!", ctPt);
+    showGameAnnounce("GO->!", ctPt,[this]{
+        this->getBike()->setTouchEvent();
+    });
 }
 
 void GameStage::onClear(){
-    showGameAnnounce("CLEAR!", ctPt);
-    
+    showGameAnnounce("CLEAR!", ctPt,[this]{
+        this->getBike()->getRwheel()->getPhysicsBody()->setAngularDamping(1);
+        this->getBike()->getRwheel()->getPhysicsBody()->setLinearDamping(1);
+        this->getBike()->removeTouchEvent();
+    });
 }
 
 void GameStage::onMiss(){

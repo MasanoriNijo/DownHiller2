@@ -122,12 +122,15 @@ void Bike::setTouchEvent(){
     this->getTouch()->applyTouchListenner(this);
 }
 
+void Bike::removeTouchEvent(){
+    getTouch()->removeTouchListenner();
+}
+
 void Bike::onEnterTransitionDidFinish() {
     // todo
 }
 
 void Bike::SetJoint(){
-    
     getFwheel()->setPosition(this->getPosition()+Vec2(wheelBase,0));
     this->getParent()->addChild(getFwheel(),OBJ_LAYER_TOP);
     getRwheel()->setPosition(this->getPosition());

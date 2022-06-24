@@ -45,6 +45,7 @@ public:
     
     // タッチイベントをセットする
     void setTouchEvent();
+    void removeTouchEvent();
     // 画面の操作の情報を受け取る。
     Vec2 touchPt1;// ひとつ前のタッチ位置
     Vec2 touchPt2;// 最新のタッチ位置
