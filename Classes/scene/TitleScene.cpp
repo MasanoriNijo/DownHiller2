@@ -34,16 +34,16 @@ bool TitleScene::init() {
     
     setStartBtn(generateMenuItemSprite([this](Ref* ref){
         transitonScene(GameStage::createScene());
-    }, Size(1,1), "始める", Color3B::WHITE, Color3B::YELLOW, true));
+    }, Size(1,1), "坂下り", Color3B::WHITE, Color3B::YELLOW, true));
     
     setHowToBtn(generateMenuItemSprite([this](Ref* ref){
         transitonScene(TestPhysicsScene::createScene());
-    }, Size(1,1), "テスト1", Color3B::WHITE, Color3B::YELLOW, false));
+    }, Size(1,1), "平地", Color3B::WHITE, Color3B::YELLOW, false));
     setResultBtn(generateMenuItemSprite([this](Ref* ref){
         transitonScene(TestScene::createScene());
-    }, Size(1,1), "テスト2", Color3B::WHITE, Color3B::YELLOW, false));
+    }, Size(1,1), "練習", Color3B::WHITE, Color3B::YELLOW, false));
     setMenu(Menu::create(getStartBtn(),getHowToBtn(),getResultBtn(), NULL));
-    getMenu()->alignItemsHorizontallyWithPadding(20);
+    getMenu()->alignItemsVerticallyWithPadding(10);
     mountNode(getMenu(),Vec2(winSize.width/2,80), OBJ_LAYER_TOP);
     
     return true;

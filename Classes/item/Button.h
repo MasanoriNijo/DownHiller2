@@ -25,7 +25,7 @@ public:
     CC_SYNTHESIZE_RETAIN(Sprite*,_t4,T4);
     void update(float dt) override;
     
-    float _offset = 2;
+    float _offset = 1;
     void setButton(Size size, std::string st);
     void setButtonColor(Color3B color);
 };

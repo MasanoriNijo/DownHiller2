@@ -34,6 +34,7 @@ bool Button::init() {
         return false;
     }
 //    enableBold();
+//    enableOutline(Color4B::WHITE,1);
     setAnchorPoint(Vec2::ANCHOR_MIDDLE);
     setCalc(Calclater::create());
 
