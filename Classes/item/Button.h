@@ -5,7 +5,7 @@
 #include "cocos2d.h"
 USING_NS_CC;
 
-class Button: public Node {
+class Button: public Label {
 protected:
     Button();
     virtual ~Button();
@@ -24,9 +24,10 @@ public:
     CC_SYNTHESIZE_RETAIN(Sprite*,_t3,T3);
     CC_SYNTHESIZE_RETAIN(Sprite*,_t4,T4);
     void update(float dt) override;
-
-    void setButton(Size size, std::string st);
     
+    float _offset = 2;
+    void setButton(Size size, std::string st);
+    void setButtonColor(Color3B color);
 };
 
 #endif

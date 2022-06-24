@@ -28,11 +28,28 @@ bool TitleScene::init() {
         return false;
     }
     this->setBackGroundColor();
+    
+    setBtn1(Button::create());
+    getBtn1()->setButton(Size(40,20),"スタート");
+    
     this->setGameTitle(Sprite::create("title5.png"));
     this->mountNode(this->getGameTitle(), this->ctPt + Vec2(0,20), OBJ_LAYER_TOP);
-    this->setStartBtn(MenuItemImage::create("start_btn.png", "start_btn_p.png",[this](Ref* ref) {
+//    this->setStartBtn(MenuItemImage::create("start_btn.png", "start_btn_p.png",[this](Ref* ref) {
+//        this->transitonScene(GameStage::createScene());
+//    }));
+    
+    Button* stbtn = Button::create();
+    stbtn->setButton(Size(1,1), "はじめる");
+    auto fadeOut = FadeOut::create(0.5);
+    auto act = RepeatForever::create(Sequence::create(fadeOut,fadeOut->reverse(), NULL));
+    stbtn->runAction(act);
+    Button* stbtn2 = Button::create();
+    stbtn2->setButton(Size(1,1), "はじめる");
+    stbtn2->setButtonColor(Color3B::YELLOW);
+    this->setStartBtn(MenuItemSprite::create(stbtn, stbtn2,[this](Ref* ref) {
         this->transitonScene(GameStage::createScene());
     }));
+
     this->setHowToBtn(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
         this->transitonScene(TestPhysicsScene::createScene());
     }));
@@ -43,11 +60,8 @@ bool TitleScene::init() {
     getMenu()->alignItemsHorizontallyWithPadding(20);
     this->mountNode(this->getMenu(), this->ctPt + Vec2(0,-20), OBJ_LAYER_TOP);
     
-    
-    setBtn1(Button::create());
-    
-    getBtn1()->setButton(Size(40,20),"？");
-    mountNode(getBtn1(), ctPt+Vec2(0,100), OBJ_LAYER_TOP);
+//    getBtn1()->setButton(Size(40,20),"？");
+//    mountNode(getBtn1(), ctPt+Vec2(0,100), OBJ_LAYER_TOP);
     
     return true;
 }

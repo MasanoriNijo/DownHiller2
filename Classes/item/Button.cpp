@@ -29,9 +29,13 @@ Button* Button::create() {
 }
 
 bool Button::init() {
+    
+    if(!Label::initWithTTF("", "irohamaru.ttf", 12)){
+        return false;
+    }
+    enableBold();
+    setAnchorPoint(Vec2::ANCHOR_MIDDLE);
     setCalc(Calclater::create());
-
-    setTitle(Label::createWithTTF("", "irohamaru.ttf", 12));
 
     setC1(Sprite::create("btn_curve.png"));
     setC2(Sprite::createWithTexture(getC1()->getTexture()));
@@ -60,40 +64,64 @@ void Button::update(float dt) {
 }
 
 void Button::setButton(Size size, std::string st){
-    getTitle()->setString(st);
-    addChild(getTitle());
+    setString(st);
+    Size size_ = getContentSize();
+    Vec2 ctPt = Vec2(size_.width/2,size_.height/2);
+    size_.width += _offset*2;
+    size_.height += _offset*2;
+    
+    if(size_.width>size.width){
+        size.width = size_.width;
+    }
+    
+    if(size_.height>size.height){
+        size.height = size_.height;
+    }
+    
     float w = size.width;
     float h = size.height;
     float cl = getC1()->getContentSize().width;
     float tl = getT1()->getContentSize().width;
-    getC1()->setPosition(Vec2(-w/2,h/2));
+    getC1()->setPosition(Vec2(-w/2,h/2)+ctPt);
     getC2()->setRotation(90);
-    getC2()->setPosition(Vec2(w/2,h/2));
+    getC2()->setPosition(Vec2(w/2,h/2)+ctPt);
     getC3()->setRotation(180);
-    getC3()->setPosition(Vec2(w/2,-h/2));
+    getC3()->setPosition(Vec2(w/2,-h/2)+ctPt);
     getC4()->setRotation(270);
-    getC4()->setPosition(Vec2(-w/2,-h/2));
+    getC4()->setPosition(Vec2(-w/2,-h/2)+ctPt);
     addChild(getC1());
     addChild(getC2());
     addChild(getC3());
     addChild(getC4());
     
     getT1()->setScaleX((w-2*cl)/tl);
-    getT1()->setPosition(-w/2+cl,h/2);
+    getT1()->setPosition(Vec2(-w/2+cl,h/2)+ctPt);
     getT2()->setScaleX((h-2*cl)/tl);
     getT2()->setRotation(90);
-    getT2()->setPosition(w/2,h/2-cl);
+    getT2()->setPosition(Vec2(w/2,h/2-cl)+ctPt);
     getT3()->setScaleX((w-2*cl)/tl);
-    getT3()->setPosition(-w/2+cl,-h/2+cl/2);
+    getT3()->setPosition(Vec2(-w/2+cl,-h/2+cl/2)+ctPt);
     getT4()->setScaleX((h-2*cl)/tl);
     getT4()->setRotation(90);
-    getT4()->setPosition(-w/2+cl/2,h/2-cl);
+    getT4()->setPosition(Vec2(-w/2+cl/2,h/2-cl)+ctPt);
     
     addChild(getT1());
     addChild(getT2());
     addChild(getT3());
-    addChild(getT4());
-    
+    addChild(getT4());    
+}
+
+void Button::setButtonColor(Color3B color){
+    Color4B color4b_= Color4B(color);
+    setTextColor(color4b_);
+    getC1()->setColor(color);
+    getC2()->setColor(color);
+    getC3()->setColor(color);
+    getC4()->setColor(color);
+    getT1()->setColor(color);
+    getT2()->setColor(color);
+    getT3()->setColor(color);
+    getT4()->setColor(color);
 }
 /** パラメータサンプル
  setCalc(Calclater::create());
