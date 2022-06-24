@@ -177,6 +177,7 @@
 		3087C151285EFD5000AD0F14 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3087C150285EFD5000AD0F14 /* SwiftUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3087C1542862078100AD0F14 /* mark.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3087C152286206DE00AD0F14 /* mark.png */; };
 		3087C1572864B25300AD0F14 /* Flg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3087C1552864B25300AD0F14 /* Flg.cpp */; };
+		3087C15A28653DB300AD0F14 /* GameStage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3087C15928653DB300AD0F14 /* GameStage.cpp */; };
 		309B0D0F28490A830091801C /* ColorChanger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 309B0D0D28490A830091801C /* ColorChanger.cpp */; };
 		309B0D12284A6E170091801C /* Calclater.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 309B0D11284A6E160091801C /* Calclater.cpp */; };
 		309B0D15284B16160091801C /* Button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 309B0D14284B16160091801C /* Button.cpp */; };
@@ -1432,6 +1433,8 @@
 		3087C152286206DE00AD0F14 /* mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mark.png; path = Resources/images/mark.png; sourceTree = SOURCE_ROOT; };
 		3087C1552864B25300AD0F14 /* Flg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Flg.cpp; path = Classes/item/Flg.cpp; sourceTree = SOURCE_ROOT; };
 		3087C1562864B25300AD0F14 /* Flg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Flg.h; path = Classes/item/Flg.h; sourceTree = SOURCE_ROOT; };
+		3087C15828653DB300AD0F14 /* GameStage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameStage.h; path = Classes/scene/GameStage.h; sourceTree = SOURCE_ROOT; };
+		3087C15928653DB300AD0F14 /* GameStage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameStage.cpp; path = Classes/scene/GameStage.cpp; sourceTree = SOURCE_ROOT; };
 		309B0D0B2848FA5B0091801C /* Const.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Const.h; sourceTree = "<group>"; };
 		309B0D0D28490A830091801C /* ColorChanger.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ColorChanger.cpp; sourceTree = "<group>"; };
 		309B0D0E28490A830091801C /* ColorChanger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorChanger.h; sourceTree = "<group>"; };
@@ -3619,6 +3622,8 @@
 				304DD0B62843D08E00AF0334 /* TitleScene.h */,
 				304DD0B22843CE0800AF0334 /* FstScene.cpp */,
 				304DD0B32843CE0800AF0334 /* FstScene.h */,
+				3087C15928653DB300AD0F14 /* GameStage.cpp */,
+				3087C15828653DB300AD0F14 /* GameStage.h */,
 				E43633F140F94254A1F704E8 /* HelloWorldScene.cpp */,
 				1B5220A88C2348C09A6C2005 /* HelloWorldScene.h */,
 			);
@@ -5413,6 +5418,7 @@
 				304DD0BA2843D08F00AF0334 /* TestScene.cpp in Sources */,
 				304DD0B42843CE0800AF0334 /* FstScene.cpp in Sources */,
 				309B0D1E284CE5240091801C /* TouchEventHelper.cpp in Sources */,
+				3087C15A28653DB300AD0F14 /* GameStage.cpp in Sources */,
 				ED3D812C31124F6FBA918EE4 /* main.m in Sources */,
 				304DD0B92843D08F00AF0334 /* TitleScene.cpp in Sources */,
 				304DD0BE2843D12300AF0334 /* SpritePool.cpp in Sources */,

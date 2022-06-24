@@ -37,8 +37,7 @@ Scene* GameScene::createPhysicsScene() {
     return scene;
 }
 
-bool GameScene::init() {
-    
+bool GameScene::init() {    
     if (!Layer::init()) {
         return false;
     }
@@ -59,7 +58,6 @@ bool GameScene::init() {
     // 固定画面をセット
     this->setNoMoveLayer(ParallaxNode::create());
     this->addChild(_noMoveLayer,OBJ_LAYER_TOP);
-    
     
 #if ENABLE_DEBUG_LINE
     this->drawDebugLine();
@@ -114,16 +112,11 @@ void GameScene::update(float dt) {
 }
 
 void GameScene::transitonScene(Scene* scene){
-    NJLOG("GameScene:Count3");
-    NJLOG(ST_INT(this->getReferenceCount()).c_str());
-//    this->release();
-    NJLOG(ST_INT(this->getReferenceCount()).c_str());
     auto transition_ = CallFuncN::create([scene](Node* node_) {
         auto transition=TransitionCrossFade::create(0.5,scene);
         Director::getInstance()->replaceScene(transition);
     });
     this->runAction(transition_);
-    //    this->getColorChanger()->transitonScene(this, scene);
 }
 
 void GameScene::mountNode(Node* sp, Vec2 pt, float lvl){
@@ -196,6 +189,29 @@ void GameScene::showGameAnnounce(std::string st,Vec2 pt){
         }
     });
     auto seq = Sequence::create(para,stayTime,fadeOut,endFnc, NULL);
+    setGameAnounce(Label::createWithTTF(st, "irohamaru.ttf", 24));
+    getGameAnounce()->setTextColor(Color4B::BLACK);
+    getGameAnounce()->enableOutline(Color4B::WHITE,1);
+    getGameAnounce()->setOpacity(0);
+    getGameAnounce()->setScale(0);
+    getGameAnounce()->runAction(seq);
+    mountNode(getGameAnounce(), pt, OBJ_LAYER_TOP);
+}
+
+
+void GameScene::showGameAnnounce(std::string st,Vec2 pt, const std::function<void()> &endFunc){
+    auto fadeIn = FadeIn::create(0.5f);
+    auto scaleIn = EaseElasticOut::create(ScaleTo::create(0.5, 1));
+    auto para = Spawn::create(fadeIn,scaleIn, NULL);
+    auto stayTime = DelayTime::create(1.0f);
+    auto fadeOut = FadeOut::create(0.2f);
+    auto endFnc = CallFunc::create([this](){
+        if(this->getGameAnounce()->getParent()){
+            this->getGameAnounce()->removeFromParentAndCleanup(true);
+        }
+    });
+    auto endFnc2 = CallFunc::create(endFunc);
+    auto seq = Sequence::create(para,stayTime,fadeOut,endFnc,endFnc2, NULL);
     setGameAnounce(Label::createWithTTF(st, "irohamaru.ttf", 24));
     getGameAnounce()->setTextColor(Color4B::BLACK);
     getGameAnounce()->enableOutline(Color4B::WHITE,1);

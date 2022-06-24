@@ -23,10 +23,6 @@ private:
     void _addPhysicsToWheel(Sprite* _wheel);
     // 前後輪とBikeの位置を同調する。
     void _positionSyncToWheel();
-    
-    // タッチイベントをセットする
-    void _setTouchEvent();
-    
     //　操作の状態で、アクションを決める。
     void _judeAction(float dt);
     
@@ -47,6 +43,8 @@ public:
     // 前後車輪を親シーンに設置した後、親シーンから呼ぶ
     void SetJoint();
     
+    // タッチイベントをセットする
+    void setTouchEvent();
     // 画面の操作の情報を受け取る。
     Vec2 touchPt1;// ひとつ前のタッチ位置
     Vec2 touchPt2;// 最新のタッチ位置

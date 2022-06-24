@@ -29,7 +29,6 @@ bool Bike::init() {
     if(!Sprite2::initWithFile("bike2.png")){
         return false;
     }
-    //    bikeAnchorPt.set(0.7690, 0.1708);
     bikeAnchorPt.set(0.10, 0.08);
     this->setAnchorPoint(bikeAnchorPt);
     bikeCenterPt.set(this->getContentSize().width/2,this->getContentSize().height/2);
@@ -54,7 +53,7 @@ bool Bike::init() {
     _addPhysicsToWheel(getRwheel());
     getRwheel()->getPhysicsBody()->setTag(TG_R_WHEEL);
     
-    this->_setTouchEvent();
+//    this->_setTouchEvent(); // game進行上で起動させる。
     
     //debug
     this->setDebugPt(Sprite::create("dot.png"));
@@ -106,7 +105,7 @@ void Bike::_positionSyncToWheel(){
     this->setPosition(getRwheel()->getPosition());
 }
 
-void Bike::_setTouchEvent(){
+void Bike::setTouchEvent(){
     this->setTouch(TouchEventHelper::create());
     this->getTouch()->getTouchListenner()->onTouchBegan = [this](Touch* touch,Event* event) {
         this->touchOn(touch->getLocation());

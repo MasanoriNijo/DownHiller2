@@ -124,7 +124,6 @@ void TestPhysicsScene::courceA(){
 }
 
 void TestPhysicsScene::courceB(){
-
     getCourceMaker()->drawStart(Vec2(-50,100),Vec2::ZERO);
     getCourceMaker()->drawByStraight(Vec2(0,-100));
     getCourceMaker()->drawByStraight(Vec2(200,0));
@@ -135,7 +134,7 @@ void TestPhysicsScene::courceB(){
         auto flg = Flg::create();
         flg->setGlobalZOrder(OBJ_LAYER_TOP);
         flg->setPosition(getCourceMaker()->getTergetPt());
-        flg->setRotation(getCalc()->nomlRad(getCourceMaker()->getTargetDir()));
+        flg->setRotation(getCalc()->nomlKaku(Vec2::ZERO, getCourceMaker()->getTargetDir()));
         addChild(flg);
         getCourceMaker()->drawBySmoothCurve(Vec2(100,-80));
         getCourceMaker()->drawBySmoothCurve(Vec2(130,100));

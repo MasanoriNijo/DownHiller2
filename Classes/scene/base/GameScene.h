@@ -41,7 +41,7 @@ public:
     void setBackGroundColor(float h, float s, float v);
     
     // ゲームの状態遷移
-    bool fstStCnge = true; //各条件で初めにやる処理
+    bool fstStCnge = false; //各条件で初めにやる処理
     enum class GameState {
         READY, //ゲーム開始の処理
         PLAY, //プレイ中
@@ -67,6 +67,7 @@ public:
     
     // ゲーム進行上のアナウンスを行う。例：game start,よーいドン,,,
     void showGameAnnounce(std::string st,Vec2 pt);
+    void showGameAnnounce(std::string st,Vec2 pt, const std::function<void()> &endFunc);
     
     // 画面のサイズ関連を取得する.
     // 実際の画面サイズ

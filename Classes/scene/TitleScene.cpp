@@ -1,6 +1,7 @@
 #include "TitleScene.h"
 #include "scene/TestScene.h"
 #include "scene/TestPhysicsScene.h"
+#include "scene/GameStage.h"
 
 TitleScene::TitleScene():
 _gameTitle(NULL), _startBtn(NULL), _howtoBtn(NULL), _resultBtn(NULL), _menu(NULL)
@@ -29,7 +30,7 @@ bool TitleScene::init() {
     this->setGameTitle(Sprite::create("title5.png"));
     this->mountNode(this->getGameTitle(), this->ctPt + Vec2(0,20), OBJ_LAYER_TOP);
     this->setStartBtn(MenuItemImage::create("start_btn.png", "start_btn_p.png",[this](Ref* ref) {
-        this->transitonScene(TestScene::createScene());
+        this->transitonScene(GameStage::createScene());
     }));
     this->setHowToBtn(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
         this->transitonScene(TestPhysicsScene::createScene());
