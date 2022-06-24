@@ -33,7 +33,7 @@ bool Button::init() {
     if(!Label::initWithTTF("", "irohamaru.ttf", 12)){
         return false;
     }
-    enableBold();
+//    enableBold();
     setAnchorPoint(Vec2::ANCHOR_MIDDLE);
     setCalc(Calclater::create());
 
@@ -100,10 +100,11 @@ void Button::setButton(Size size, std::string st){
     getT2()->setRotation(90);
     getT2()->setPosition(Vec2(w/2,h/2-cl)+ctPt);
     getT3()->setScaleX((w-2*cl)/tl);
-    getT3()->setPosition(Vec2(-w/2+cl,-h/2+cl/2)+ctPt);
+    getT3()->setRotation(180);
+    getT3()->setPosition(Vec2(w/2-cl,-h/2)+ctPt);
     getT4()->setScaleX((h-2*cl)/tl);
-    getT4()->setRotation(90);
-    getT4()->setPosition(Vec2(-w/2+cl/2,h/2-cl)+ctPt);
+    getT4()->setRotation(270);
+    getT4()->setPosition(Vec2(-w/2,-h/2+cl)+ctPt);
     
     addChild(getT1());
     addChild(getT2());

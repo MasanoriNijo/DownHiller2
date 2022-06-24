@@ -4,7 +4,7 @@
 #include "scene/GameStage.h"
 
 TitleScene::TitleScene():
-_gameTitle(NULL), _startBtn(NULL), _howtoBtn(NULL), _resultBtn(NULL), _menu(NULL),_btn1(NULL)
+_gameTitle(NULL), _startBtn(NULL), _howtoBtn(NULL), _resultBtn(NULL), _menu(NULL)
 {}
 
 TitleScene::~TitleScene() {
@@ -12,8 +12,7 @@ TitleScene::~TitleScene() {
     CC_SAFE_RELEASE_NULL(_startBtn);
     CC_SAFE_RELEASE_NULL(_howtoBtn);
     CC_SAFE_RELEASE_NULL(_resultBtn);
-    CC_SAFE_RELEASE_NULL(_btn1);
-    
+    CC_SAFE_RELEASE_NULL(_menu);
 }
 
 Scene* TitleScene::createScene() {
@@ -27,48 +26,32 @@ bool TitleScene::init() {
     if (!GameScene::init()) {
         return false;
     }
-    this->setBackGroundColor();
+    setBackGroundColor();
+    setGameTitle(Label::createWithTTF("激走！坂チャリ", "irohamaru.ttf", 24));
+    getGameTitle()->setTextColor(Color4B::BLACK);
+    getGameTitle()->enableOutline(Color4B::WHITE,1);
+    mountNode(getGameTitle(), Vec2(winSize.width/2,winSize.height -80), OBJ_LAYER_TOP);
     
-    setBtn1(Button::create());
-    getBtn1()->setButton(Size(40,20),"スタート");
+    setStartBtn(generateMenuItemSprite([this](Ref* ref){
+        transitonScene(GameStage::createScene());
+    }, Size(1,1), "始める", Color3B::WHITE, Color3B::YELLOW, true));
     
-    this->setGameTitle(Sprite::create("title5.png"));
-    this->mountNode(this->getGameTitle(), this->ctPt + Vec2(0,20), OBJ_LAYER_TOP);
-//    this->setStartBtn(MenuItemImage::create("start_btn.png", "start_btn_p.png",[this](Ref* ref) {
-//        this->transitonScene(GameStage::createScene());
-//    }));
-    
-    Button* stbtn = Button::create();
-    stbtn->setButton(Size(1,1), "はじめる");
-    auto fadeOut = FadeOut::create(0.5);
-    auto act = RepeatForever::create(Sequence::create(fadeOut,fadeOut->reverse(), NULL));
-    stbtn->runAction(act);
-    Button* stbtn2 = Button::create();
-    stbtn2->setButton(Size(1,1), "はじめる");
-    stbtn2->setButtonColor(Color3B::YELLOW);
-    this->setStartBtn(MenuItemSprite::create(stbtn, stbtn2,[this](Ref* ref) {
-        this->transitonScene(GameStage::createScene());
-    }));
-
-    this->setHowToBtn(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
-        this->transitonScene(TestPhysicsScene::createScene());
-    }));
-    this->setResultBtn(MenuItemImage::create("ranking_btn.png", "ranking_btn_p.png",[this](Ref* ref) {
-        this->transitonScene(TestScene::createScene());
-    }));
-    this->setMenu(Menu::create(this->getStartBtn(),this->getHowToBtn(),this->getResultBtn(), NULL));
+    setHowToBtn(generateMenuItemSprite([this](Ref* ref){
+        transitonScene(TestPhysicsScene::createScene());
+    }, Size(1,1), "テスト1", Color3B::WHITE, Color3B::YELLOW, false));
+    setResultBtn(generateMenuItemSprite([this](Ref* ref){
+        transitonScene(TestScene::createScene());
+    }, Size(1,1), "テスト2", Color3B::WHITE, Color3B::YELLOW, false));
+    setMenu(Menu::create(getStartBtn(),getHowToBtn(),getResultBtn(), NULL));
     getMenu()->alignItemsHorizontallyWithPadding(20);
-    this->mountNode(this->getMenu(), this->ctPt + Vec2(0,-20), OBJ_LAYER_TOP);
-    
-//    getBtn1()->setButton(Size(40,20),"？");
-//    mountNode(getBtn1(), ctPt+Vec2(0,100), OBJ_LAYER_TOP);
+    mountNode(getMenu(),Vec2(winSize.width/2,80), OBJ_LAYER_TOP);
     
     return true;
 }
 
 void TitleScene::onEnterTransitionDidFinish() {
     GameScene::onEnterTransitionDidFinish();
-//    getAD()->AdShow(false, true, false, false, false, false);
+    //    getAD()->AdShow(false, true, false, false, false, false);
     // todo
 }
 
@@ -77,14 +60,14 @@ void TitleScene::update(float dt) {
 }
 
 /** パラメータサンプル
-this->setGameTitle(Sprite::create());
-this->getGameTitle();
-this->setStartBtn(MenuItemImage::create());
-this->getStartBtn();
-this->setHowToBtn(MenuItemImage::create());
-this->getHowToBtn();
-this->setResultBtn(MenuItemImage::create());
-this->getResultBtn();
-this->setSMenu(Menu::create());
-this->getSMenu();
-*/
+ setGameTitle(Sprite::create());
+ getGameTitle();
+ setStartBtn(MenuItemImage::create());
+ getStartBtn();
+ setHowToBtn(MenuItemImage::create());
+ getHowToBtn();
+ setResultBtn(MenuItemImage::create());
+ getResultBtn();
+ setSMenu(Menu::create());
+ getSMenu();
+ */

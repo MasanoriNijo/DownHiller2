@@ -220,6 +220,24 @@ void GameScene::showGameAnnounce(std::string st,Vec2 pt, const std::function<voi
     getGameAnounce()->runAction(seq);
     mountNode(getGameAnounce(), pt, OBJ_LAYER_TOP);
 }
+
+
+MenuItemSprite* GameScene::generateMenuItemSprite(const ccMenuCallback& callback,Size size,std::string st,
+                                                  Color3B color_, Color3B color2_, bool isBlink){
+    Button* btn_ = Button::create();
+    btn_->setButton(Size(1,1), st);
+    btn_->setColor(color_);
+    if(isBlink){
+        auto fadeOut = FadeOut::create(0.5);
+        auto act = RepeatForever::create(Sequence::create(fadeOut,fadeOut->reverse(), NULL));
+        btn_->runAction(act);
+    }
+    Button* btn2_ = Button::create();
+    btn2_->setButton(Size(1,1), st);
+    btn2_->setButtonColor(color2_);
+    return  MenuItemSprite::create(btn_, btn2_,callback);
+}
+
 /** パラメータサンプル
  this->setBackColor(LayerColor::create());
  this->getBackColor();
