@@ -5,6 +5,7 @@
 #include "util/Const.h"
 #include "util/ColorChanger.h"
 #include "util/Calclater.h"
+#include "item/Button.h"
 #include "audio/include/AudioEngine.h"
 #include "scene/base/TransitionScene.h"
 #include "cocos2d.h"
@@ -26,6 +27,7 @@ public:
     CC_SYNTHESIZE_RETAIN(Calclater*,_calc,Calc);
     CC_SYNTHESIZE_RETAIN(DrawNode*,_debugLine,DebugLine);
     CC_SYNTHESIZE_RETAIN(Label*,_debugMemo,DebugMemo);
+    CC_SYNTHESIZE_RETAIN(Label*,_gameAnounce,GameAnounce);
     CC_SYNTHESIZE_RETAIN(ParallaxNode*,_noMoveLayer,NoMoveLayer);
     // 画面のセンターの位置
     Vec2 ctPt;
@@ -40,7 +42,7 @@ public:
     void setBackGroundColor(float h, float s, float v);
     
     // ゲームの状態遷移
-    bool fstStCnge = true; //各条件で初めにやる処理
+    bool fstStCnge = false; //各条件で初めにやる処理
     enum class GameState {
         READY, //ゲーム開始の処理
         PLAY, //プレイ中
@@ -58,11 +60,19 @@ public:
     // 指定の位置にスプライトをセットする。固定レイヤーにセット
     void mountNode(Node* sp, Vec2 pt, float lvl);
     
-    // 指定の位置にスプライトをセットする。固定レイヤーにセット
+    // 指定の位置にスプライトをセットする。通常のレイヤーにセット
     void mountScroleNode(Node* sp, Vec2 pt, float lvl);
     
     // Debug用のラインを描写する。
     void drawDebugLine();
+    
+    // ゲーム進行上のアナウンスを行う。例：game start,よーいドン,,,
+    void showGameAnnounce(std::string st,Vec2 pt);
+    void showGameAnnounce(std::string st,Vec2 pt, const std::function<void()> &endFunc);
+    
+    // 各種Item生成
+    MenuItemSprite* generateMenuItemSprite(const ccMenuCallback& callback, Size size,std::string st,
+                                           Color3B color_,Color3B color2_, bool isBlink);
     
     // 画面のサイズ関連を取得する.
     // 実際の画面サイズ

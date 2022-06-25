@@ -54,9 +54,7 @@ public:
     Vec2 _touchPt;
     Vec2 _localTouchPt;
     
-    
     // 新規追加ここまで
-    
     
     Vec2 pt_; //計算用変数
     Vec2 pt2_; //計算用変数

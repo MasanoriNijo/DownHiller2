@@ -44,7 +44,7 @@ float Calclater::nomlKaku(Vec2 pt1, Vec2 pt2){
 }
 
 float Calclater::chgRad(float kaku) {
-    float x_ = -CC_DEGREES_TO_RADIANS(kaku);
+    float x_ = -kaku*2*M_PI/360;
     return nomlRad(x_);
 }
 
@@ -74,13 +74,23 @@ float Calclater::nomlRad(float rad) {
     return x_;
 }
 
-float Calclater::nomlRad(Vec2 pt1, Vec2 pt2){
-    Vec2 dpt = pt2 - pt1;
-    float angle = atan2f(dpt.y, dpt.x);
-    if (std::abs(angle) < FLT_EPSILON) return 0.f;
-    return angle;
+float Calclater::nomlRad(Vec2 pt){
+    return nomlRad(Vec2::ZERO,pt);
 }
 
+float Calclater::nomlRad(Vec2 pt1, Vec2 pt2){
+    Vec2 dpt = pt2 - pt1;
+    float rad;
+    if(dpt.x == 0){
+        if(dpt.y>0){
+            rad = M_PI/2;
+        }else{
+            rad = -M_PI/2;
+        }
+    }
+    rad = atan2f(dpt.y, dpt.x);
+    return nomlRad(rad);
+}
 bool Calclater::betweenKaku(float x, float min_, float max_) {
     min_ = nomlKaku(min_);
     max_ = nomlKaku(max_);
@@ -136,6 +146,12 @@ Vec2 Calclater::getParentNodePosition(Node* nd){
     float parentAngle = nd->getParent()->getRotation();
     localPt = localPt.rotateByAngle(Vec2::ZERO, parentAngle);
     return parentPt + localPt;
+}
+
+// 指定したradPtのラジアン分回転する。反時計回り
+Vec2 Calclater::rotByRad(Vec2 pt,Vec2 radPt){
+    float rad = nomlRad(radPt);
+    return Vec2(cos(rad)*pt.x-sin(rad)*pt.y, sin(rad)*pt.x+cos(rad)*pt.y);
 }
 
 // 指定したラジアン分回転する。反時計回り

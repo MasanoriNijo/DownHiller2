@@ -29,7 +29,6 @@ bool Bike::init() {
     if(!Sprite2::initWithFile("bike2.png")){
         return false;
     }
-    //    bikeAnchorPt.set(0.7690, 0.1708);
     bikeAnchorPt.set(0.10, 0.08);
     this->setAnchorPoint(bikeAnchorPt);
     bikeCenterPt.set(this->getContentSize().width/2,this->getContentSize().height/2);
@@ -54,7 +53,7 @@ bool Bike::init() {
     _addPhysicsToWheel(getRwheel());
     getRwheel()->getPhysicsBody()->setTag(TG_R_WHEEL);
     
-    this->_setTouchEvent();
+//    this->_setTouchEvent(); // game進行上で起動させる。
     
     //debug
     this->setDebugPt(Sprite::create("dot.png"));
@@ -91,7 +90,7 @@ void Bike::_addPhysicsToWheel(Sprite* _wheel){
     _wheel->getPhysicsBody()->setGravityEnable(true);
     _wheel->getPhysicsBody()->setCategoryBitmask(CT_WHEEL);
     _wheel->getPhysicsBody()->setCollisionBitmask(CT_COURCE);
-    _wheel->getPhysicsBody()->setContactTestBitmask(CT_COURCE);
+    _wheel->getPhysicsBody()->setContactTestBitmask(CT_COURCE | CT_GOAL);
     //    _wheel->getPhysicsBody()->setTag(1);
     _wheel->getPhysicsBody()->setDynamic(true);
     //    _wheel->getPhysicsBody()->setAngularDamping(wheelRotDump_);
@@ -106,7 +105,7 @@ void Bike::_positionSyncToWheel(){
     this->setPosition(getRwheel()->getPosition());
 }
 
-void Bike::_setTouchEvent(){
+void Bike::setTouchEvent(){
     this->setTouch(TouchEventHelper::create());
     this->getTouch()->getTouchListenner()->onTouchBegan = [this](Touch* touch,Event* event) {
         this->touchOn(touch->getLocation());
@@ -123,12 +122,15 @@ void Bike::_setTouchEvent(){
     this->getTouch()->applyTouchListenner(this);
 }
 
+void Bike::removeTouchEvent(){
+    getTouch()->removeTouchListenner();
+}
+
 void Bike::onEnterTransitionDidFinish() {
     // todo
 }
 
 void Bike::SetJoint(){
-    
     getFwheel()->setPosition(this->getPosition()+Vec2(wheelBase,0));
     this->getParent()->addChild(getFwheel(),OBJ_LAYER_TOP);
     getRwheel()->setPosition(this->getPosition());
@@ -267,7 +269,7 @@ void Bike::_judeAction(float dt){
             return;
         }
     }
-    
+
     // ジャンプ
     if(weightPt.y == riderActionSpan * 4){
         if(noml_.y > riderActionSpan * 4){
@@ -290,11 +292,13 @@ void Bike::_judeAction(float dt){
         }
     }
     // 後輪ブレーキ
-    if(chasePt.x < -4 * riderActionSpan + 0.5 && chasePt.y < -4 * riderActionSpan + 0.5){
-        stop();
-        chasePt.set(weightPt);
-        getParentSprite()->setPosition(chasePt + bikeCenterPt);
-        return;
+    if(chasePt.x == -4 * riderActionSpan && chasePt.y == -4 * riderActionSpan){
+        if(rWheelTouched && fWheelTouched){
+            stop();
+            chasePt.set(weightPt);
+            getParentSprite()->setPosition(chasePt + bikeCenterPt);
+            return;
+        }
     }
     
     getCalc()->chasePt(weightPt , chasePt, chaseVelo, dt);

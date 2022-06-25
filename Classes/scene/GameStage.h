@@ -1,5 +1,5 @@
-#ifndef __TESTPHYSICSSCENE_H__
-#define __TESTPHYSICSSCENE_H__
+#ifndef __GAMESTAGE_H__
+#define __GAMESTAGE_H__
 
 #include "scene/base/GameScene.h"
 #include "util/TouchEventHelper.h"
@@ -12,14 +12,14 @@
 #include "cocos2d.h"
 USING_NS_CC;
 
-class TestPhysicsScene: public GameScene {
+class GameStage: public GameScene {
 protected:
-    TestPhysicsScene();
-    virtual ~TestPhysicsScene();
+    GameStage();
+    virtual ~GameStage();
     bool init() override;
-    
+
 public:
-    CREATE_FUNC(TestPhysicsScene);
+    CREATE_FUNC(GameStage);
     static Scene* createScene();
     CC_SYNTHESIZE_RETAIN(Label*,_gameTitle,GameTitle);
     CC_SYNTHESIZE_RETAIN(MenuItemImage*,_btn1,Btn1);
@@ -30,16 +30,24 @@ public:
     CC_SYNTHESIZE_RETAIN(TouchEventHelper*,_touch,Touch);
     CC_SYNTHESIZE_RETAIN(Bike*,_bike,Bike);
     CC_SYNTHESIZE_RETAIN(EventListenerPhysicsContact*, _contactlistener,ContactListenner);
-    
-    CC_SYNTHESIZE_RETAIN(Sprite2*,_pt1,Pt1);
-    CC_SYNTHESIZE_RETAIN(Sprite2*,_pt2,Pt2);
     CC_SYNTHESIZE_RETAIN(CourceMaker*,_courceMaker,CourceMaker);
     
     void update(float dt) override;
     void onEnterTransitionDidFinish() override;
     
+    // 接触感知リスナー
     void setContactListener();
+    void _onContactBegin(PhysicsContact& contact, PhysicsShape* ps);
+    void _onContactPostSolve(PhysicsContact& contact, PhysicsShape* ps);
+    void _onContactSeparate(PhysicsContact& contact, PhysicsShape* ps);
     
+    // geme状態遷移
+    void onReady();
+    void onPlay();
+    void onClear();
+    void onMiss();
+    
+    // サンプルコース
     void courceA();
     void courceB();
     void courceC();

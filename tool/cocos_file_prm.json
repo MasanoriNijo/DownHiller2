@@ -1,14 +1,7 @@
 {
-  "className": "CourceMaker",
+  "className": "ScrollNode",
   "superClass": "Node",
   "synthesize_retains": [
-    ["SpriteBatchNode*", "_dot","Dot"],
-    ["SpriteBachNode", "_straight","Straight"],
-    ["SpriteBachNode", "_curveA","CurveA"],
-    ["SpriteBachNode", "_curveB","CurveB"],
-    ["SpriteBachNode", "_curveC","CurveC"],
-    ["SpriteBachNode", "_curveD","CurveD"],
-    ["SpriteBachNode", "_curveE","CurveE"],
-    ["SpriteBachNode", "_curveF","CurveF"]
+    ["Calclater", "_calc", "Calc"]
   ]
 }

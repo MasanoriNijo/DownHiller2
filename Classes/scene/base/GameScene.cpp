@@ -1,7 +1,8 @@
 #include "GameScene.h"
 
 GameScene::GameScene():
-_backColor(NULL), _ad(NULL), _colorChanger(NULL), _calc(NULL), _debugLine(NULL), _debugMemo(NULL), _noMoveLayer(NULL)
+_backColor(NULL), _ad(NULL), _colorChanger(NULL), _calc(NULL),_gameAnounce(NULL),
+_debugLine(NULL), _debugMemo(NULL), _noMoveLayer(NULL)
 {}
 
 GameScene::~GameScene() {
@@ -13,6 +14,7 @@ GameScene::~GameScene() {
     CC_SAFE_RELEASE_NULL(_debugLine);
     CC_SAFE_RELEASE_NULL(_debugMemo);
     CC_SAFE_RELEASE_NULL(_noMoveLayer);
+    CC_SAFE_RELEASE_NULL(_gameAnounce);
 }
 
 Scene* GameScene::createScene() {
@@ -35,8 +37,7 @@ Scene* GameScene::createPhysicsScene() {
     return scene;
 }
 
-bool GameScene::init() {
-    
+bool GameScene::init() {    
     if (!Layer::init()) {
         return false;
     }
@@ -57,7 +58,6 @@ bool GameScene::init() {
     // 固定画面をセット
     this->setNoMoveLayer(ParallaxNode::create());
     this->addChild(_noMoveLayer,OBJ_LAYER_TOP);
-    
     
 #if ENABLE_DEBUG_LINE
     this->drawDebugLine();
@@ -90,7 +90,6 @@ void GameScene::onExit(){
     Layer::onExit();
 }
 
-
 void GameScene::update(float dt) {
     switch (this->getGameState()) {
         case GameState::READY: {
@@ -113,16 +112,11 @@ void GameScene::update(float dt) {
 }
 
 void GameScene::transitonScene(Scene* scene){
-    NJLOG("GameScene:Count3");
-    NJLOG(ST_INT(this->getReferenceCount()).c_str());
-//    this->release();
-    NJLOG(ST_INT(this->getReferenceCount()).c_str());
     auto transition_ = CallFuncN::create([scene](Node* node_) {
         auto transition=TransitionCrossFade::create(0.5,scene);
         Director::getInstance()->replaceScene(transition);
     });
     this->runAction(transition_);
-    //    this->getColorChanger()->transitonScene(this, scene);
 }
 
 void GameScene::mountNode(Node* sp, Vec2 pt, float lvl){
@@ -164,7 +158,6 @@ void GameScene::drawDebugLine(){
     this->mountNode(this->getDebugLine(), Vec2::ZERO, OBJ_LAYER_LV1);
     this->setDebugMemo(Label::createWithTTF("Deugメモ", "irohamaru.ttf", 14));
     this->mountNode(this->getDebugMemo(), Vec2(this->ctPt.x,30), OBJ_LAYER_LV1);
-    
 }
 
 float GameScene::getScreenWidth() {
@@ -181,6 +174,68 @@ float GameScene::getDesignWidth() {
 
 float GameScene::getDesignHeight() {
     return Director::getInstance()->getOpenGLView()->getDesignResolutionSize().height;
+}
+
+void GameScene::showGameAnnounce(std::string st,Vec2 pt){
+    
+    auto fadeIn = FadeIn::create(0.5f);
+    auto scaleIn = EaseElasticOut::create(ScaleTo::create(0.5, 1));
+    auto para = Spawn::create(fadeIn,scaleIn, NULL);
+    auto stayTime = DelayTime::create(1.0f);
+    auto fadeOut = FadeOut::create(0.2f);
+    auto endFnc = CallFunc::create([this](){
+        if(this->getGameAnounce()->getParent()){
+            this->getGameAnounce()->removeFromParentAndCleanup(true);
+        }
+    });
+    auto seq = Sequence::create(para,stayTime,fadeOut,endFnc, NULL);
+    setGameAnounce(Label::createWithTTF(st, "irohamaru.ttf", 24));
+    getGameAnounce()->setTextColor(Color4B::BLACK);
+    getGameAnounce()->enableOutline(Color4B::WHITE,1);
+    getGameAnounce()->setOpacity(0);
+    getGameAnounce()->setScale(0);
+    getGameAnounce()->runAction(seq);
+    mountNode(getGameAnounce(), pt, OBJ_LAYER_TOP);
+}
+
+
+void GameScene::showGameAnnounce(std::string st,Vec2 pt, const std::function<void()> &endFunc){
+    auto fadeIn = FadeIn::create(0.5f);
+    auto scaleIn = EaseElasticOut::create(ScaleTo::create(0.5, 1));
+    auto para = Spawn::create(fadeIn,scaleIn, NULL);
+    auto stayTime = DelayTime::create(1.0f);
+    auto fadeOut = FadeOut::create(0.2f);
+    auto endFnc = CallFunc::create([this](){
+        if(this->getGameAnounce()->getParent()){
+            this->getGameAnounce()->removeFromParentAndCleanup(true);
+        }
+    });
+    auto endFnc2 = CallFunc::create(endFunc);
+    auto seq = Sequence::create(para,stayTime,fadeOut,endFnc,endFnc2, NULL);
+    setGameAnounce(Label::createWithTTF(st, "irohamaru.ttf", 24));
+    getGameAnounce()->setTextColor(Color4B::BLACK);
+    getGameAnounce()->enableOutline(Color4B::WHITE,1);
+    getGameAnounce()->setOpacity(0);
+    getGameAnounce()->setScale(0);
+    getGameAnounce()->runAction(seq);
+    mountNode(getGameAnounce(), pt, OBJ_LAYER_TOP);
+}
+
+
+MenuItemSprite* GameScene::generateMenuItemSprite(const ccMenuCallback& callback,Size size,std::string st,
+                                                  Color3B color_, Color3B color2_, bool isBlink){
+    Button* btn_ = Button::create();
+    btn_->setButton(Size(1,1), st);
+    btn_->setColor(color_);
+    if(isBlink){
+        auto fadeOut = FadeOut::create(0.5);
+        auto act = RepeatForever::create(Sequence::create(fadeOut,fadeOut->reverse(), NULL));
+        btn_->runAction(act);
+    }
+    Button* btn2_ = Button::create();
+    btn2_->setButton(Size(1,1), st);
+    btn2_->setButtonColor(color2_);
+    return  MenuItemSprite::create(btn_, btn2_,callback);
 }
 
 /** パラメータサンプル
