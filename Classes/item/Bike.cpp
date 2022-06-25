@@ -292,11 +292,13 @@ void Bike::_judeAction(float dt){
         }
     }
     // 後輪ブレーキ
-    if(chasePt.x < -4 * riderActionSpan + 0.5 && chasePt.y < -4 * riderActionSpan + 0.5){
-        stop();
-        chasePt.set(weightPt);
-        getParentSprite()->setPosition(chasePt + bikeCenterPt);
-        return;
+    if(chasePt.x == -4 * riderActionSpan && chasePt.y == -4 * riderActionSpan){
+        if(rWheelTouched && fWheelTouched){
+            stop();
+            chasePt.set(weightPt);
+            getParentSprite()->setPosition(chasePt + bikeCenterPt);
+            return;
+        }
     }
     
     getCalc()->chasePt(weightPt , chasePt, chaseVelo, dt);
