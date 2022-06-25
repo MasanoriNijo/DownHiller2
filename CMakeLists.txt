@@ -57,13 +57,14 @@ endif()
 # add cross-platforms source files and header files 
 list(APPEND GAME_SOURCE
      Classes/AppDelegate.cpp
-     Classes/HelloWorldScene.cpp
      )
 list(APPEND GAME_HEADER
      Classes/AppDelegate.h
-     Classes/HelloWorldScene.h
      )
-
+    file(GLOB_RECURSE CLASSES_SOURCE RELATIVE ${CMAKE_SOURCE_DIR} "Classes/*.cpp")
+    file(GLOB_RECURSE CLASSES_HEADER RELATIVE ${CMAKE_SOURCE_DIR} "Classes/*.hpp")
+    set(GAME_SOURCE ${GAME_SOURCE} ${CLASSES_SOURCE})
+    set(GAME_HEADER ${GAME_HEADER} ${CLASSES_HEADER})
 if(ANDROID)
     # change APP_NAME to the share library name for Android, it's value depend on AndroidManifest.xml
     set(APP_NAME MyGame)
@@ -132,6 +133,8 @@ endif()
 target_link_libraries(${APP_NAME} cocos2d)
 target_include_directories(${APP_NAME}
         PRIVATE Classes
+        PRIVATE Classes/xxx/
+        PRIVATE libs/xxx/
         PRIVATE ${COCOS2DX_ROOT_PATH}/cocos/audio/include/
 )
 

@@ -68,3 +68,15 @@ corelocationframeworkを追加する。
 6.ios14.4.1で実機ビルドできる様にする。
 1)build Phases→Link Binary With Libraryiesで
 　CoreLocationUI .frameworkのStatusをOptionalにする。
+
+
+
+
+
+Android用メモ
+1.初回
+　普通に開くとエラー
+　AndroidStudioで、proj.androidを開くと普通にエラーになる。
+以下参考に修正中
+https://qiita.com/tlsd/items/b610d75565e1895bf96a
+
