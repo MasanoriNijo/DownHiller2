@@ -269,7 +269,7 @@ void Bike::_judeAction(float dt){
             return;
         }
     }
-    
+
     // ジャンプ
     if(weightPt.y == riderActionSpan * 4){
         if(noml_.y > riderActionSpan * 4){

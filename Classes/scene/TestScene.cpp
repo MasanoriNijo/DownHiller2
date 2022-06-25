@@ -4,7 +4,7 @@
 #include "scene/TestPhysicsScene.h"
 
 TestScene::TestScene():
-_gameTitle(NULL), _baseLine(NULL), _ball(NULL), _btn1(NULL), _btn2(NULL), _btn3(NULL), _btn4(NULL), _menu(NULL), _touch(NULL), _pt1(NULL), _pt2(NULL), _pt3(NULL), _pt4(NULL), _pt5(NULL), _touchObj(NULL), _lineMaker(NULL),_stLine(NULL),_cvLine(NULL),_courceMaker(NULL)
+_gameTitle(NULL), _baseLine(NULL), _ball(NULL), _btn1(NULL), _btn2(NULL), _btn3(NULL), _btn4(NULL), _menu(NULL), _touch(NULL), _pt1(NULL), _pt2(NULL), _pt3(NULL), _pt4(NULL), _pt5(NULL), _touchObj(NULL), _lineMaker(NULL),_stLine(NULL),_cvLine(NULL),_courceMaker(NULL),_scrollNode(NULL)
 {}
 
 TestScene::~TestScene() {
@@ -27,6 +27,7 @@ TestScene::~TestScene() {
     CC_SAFE_RELEASE_NULL(_stLine);
     CC_SAFE_RELEASE_NULL(_cvLine);
     CC_SAFE_RELEASE_NULL(_courceMaker);
+    CC_SAFE_RELEASE_NULL(_scrollNode);
 }
 
 Scene* TestScene::createScene() {
@@ -41,158 +42,150 @@ bool TestScene::init() {
         return false;
     }
     
-    this->setBackGroundColor();
-    this->setGameTitle(Label::createWithTTF("激走！坂チャリ", "irohamaru.ttf", 24));
-    _gameTitle->setTextColor(Color4B::BLACK);
-//    _gameTitle->enableBold();
-    _gameTitle->enableOutline(Color4B::WHITE,1);
-    this->mountNode(this->getGameTitle(),  this->ctPt + Vec2(0,120), OBJ_LAYER_TOP);
+    setBackGroundColor();
     
-    this->setBtn1(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
-        
-//        while(this->getReferenceCount()>0){
-//            NJLOG("getReferenceCount()");
-//            NJLOG(ST_INT(this->getReferenceCount()).c_str());
-//            this->release();
-//        }
-        this->transitonScene(TitleScene::createScene());
+    setScrollNode(ScrollNode::create());
+    getScrollNode()->setTouchEvent();
+    mountNode(getScrollNode(), Vec2::ZERO, OBJ_LAYER_TOP);
+    
+    setGameTitle(Label::createWithTTF("激走！坂チャリ", "irohamaru.ttf", 24));
+    getGameTitle()->setTextColor(Color4B::BLACK);
+    getGameTitle()->enableOutline(Color4B::WHITE,1);
+    getGameTitle()->setGlobalZOrder(OBJ_LAYER_TOP);
+    getGameTitle()->setPosition(ctPt);
+    getScrollNode()->addChild(getGameTitle());
+//    mountNode(getGameTitle(),  ctPt + Vec2(0,120), OBJ_LAYER_TOP);
+    
+    setBtn1(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
+        transitonScene(TitleScene::createScene());
     }));
-    this->setBtn2(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
-//        Director::getInstance()->end();
-        this->transitonScene(TestPhysicsScene::createScene());
+    setBtn2(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
+        transitonScene(TestPhysicsScene::createScene());
     }));
-    this->setBtn3(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
-//        Vec2 points[10];
-//        points[0].set(ctPt);
-//        points[1].set(ctPt + Vec2(100,100));
-//        points[2].set(points[1] +Vec2(100,-100));
-//
-//        
-//        getCourceMaker()->drawStart(points[0], points[1]-points[0]);
-//        getCourceMaker()->drawTo(points[1], points[2]-points[1]);
-//        getCourceMaker()->drawTo(points[2], points[3]-points[2]);
-//        getCourceMaker()->madePhysiceBody();
+    setBtn3(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
         showGameAnnounce("ゲームスタート！", ctPt);
     }));
-    this->setBtn4(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
+    setBtn4(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
         showGameAnnounce("ベストタイム！", ctPt);
     }));
-    this->setMenu(Menu::create(this->getBtn1(),this->getBtn2(),this->getBtn3(),this->getBtn4(),NULL));
-    this->getMenu()->alignItemsHorizontallyWithPadding(20);
-    this->mountNode(this->getMenu(), this->ctPt + Vec2(0,-100), OBJ_LAYER_TOP);
+    setMenu(Menu::create(getBtn1(),getBtn2(),getBtn3(),getBtn4(),NULL));
+    getMenu()->alignItemsHorizontallyWithPadding(20);
+    getMenu()->setPosition(ctPt + Vec2(0,-100));
+    getScrollNode()->addChild(getMenu());
+//    mountNode(getMenu(), ctPt + Vec2(0,-100), OBJ_LAYER_TOP);
     
     Vec2 achPt_ = Vec2(0.15,0.5);
-    this->setPt1(Sprite2::create("yazi.png"));
+    setPt1(Sprite2::create("yazi.png"));
     _pt1->setName("pt1");
     _pt1->setDefaultTouchEvent();
     _pt1->setAnchorPoint(achPt_);
-    this->mountScroleNode(this->getPt1(), this->ctPt + Vec2(-80,-40) , OBJ_LAYER_TOP);
+    mountScroleNode(getPt1(), ctPt + Vec2(-80,-40) , OBJ_LAYER_TOP);
     
-    this->setPt2(Sprite2::create("yazi2.png"));
+    setPt2(Sprite2::create("yazi2.png"));
     _pt2->setName("pt2");
     _pt2->setDefaultTouchEvent();
     _pt2->setAnchorPoint(achPt_);
-    this->mountScroleNode(this->getPt2(), this->ctPt + Vec2(-30,-40) , OBJ_LAYER_TOP);
+    mountScroleNode(getPt2(), ctPt + Vec2(-30,-40) , OBJ_LAYER_TOP);
     
-    this->setPt3(Sprite2::create("dot.png"));
+    setPt3(Sprite2::create("dot.png"));
     _pt3->setName("pt3");
     _pt3->setDefaultTouchEvent();
     _pt3->setAnchorPoint(achPt_);
-    this->mountScroleNode(this->getPt3(), this->ctPt + Vec2(30,-40) , OBJ_LAYER_TOP);
+    mountScroleNode(getPt3(), ctPt + Vec2(30,-40) , OBJ_LAYER_TOP);
     
-    this->setPt4(Sprite2::create("dot2.png"));
+    setPt4(Sprite2::create("dot2.png"));
     _pt4->setName("pt4");
     _pt4->setDefaultTouchEvent();
     _pt4->setAnchorPoint(achPt_);
-    this->mountScroleNode(this->getPt4(), this->ctPt + Vec2(80,-40) , OBJ_LAYER_TOP);
+    mountScroleNode(getPt4(), ctPt + Vec2(80,-40) , OBJ_LAYER_TOP);
     
-    this->setPt5(Sprite2::create("dot3.png"));
+    setPt5(Sprite2::create("dot3.png"));
     _pt5->setName("pt5");
     _pt5->setDefaultTouchEvent();
-    this->mountScroleNode(this->getPt5(), this->ctPt + Vec2(0,80) , OBJ_LAYER_TOP);
+    mountScroleNode(getPt5(), ctPt + Vec2(0,80) , OBJ_LAYER_TOP);
     
-    this->setStLine(StraightLine::create());
+    setStLine(StraightLine::create());
     _stLine->setGlobalZOrder(OBJ_LAYER_TOP);
     _stLine->setDefaultTouchEvent();
-    this->addChild(_stLine);
+    addChild(_stLine);
     
-    this->setCvLine(CurveLine::create());
+    setCvLine(CurveLine::create());
     _cvLine->setGlobalZOrder(OBJ_LAYER_TOP);
     _cvLine->setDefaultTouchEvent();
-    this->addChild(_cvLine);
+    addChild(_cvLine);
     
     setCourceMaker(CourceMaker::create());
 //    _courceMaker->setGlobalZOrder(OBJ_LAYER_TOP);
     addChild(getCourceMaker());
     
-    this->setTouch(TouchEventHelper::create());
-    this->getTouch()->getTouchListenner()->onTouchBegan = [this](Touch* touch,Event* event) {
+    setTouch(TouchEventHelper::create());
+    getTouch()->getTouchListenner()->onTouchBegan = [this](Touch* touch,Event* event) {
         auto target = (Sprite*)event->getCurrentTarget();
-        this->setTouchObj(event->getCurrentTarget());
-        this->getDebugMemo()->setString(_touchObj->getName()
+        setTouchObj(event->getCurrentTarget());
+        getDebugMemo()->setString(_touchObj->getName()
                                         + ":" + ST_VEC2(_touchObj->getPosition())+ " "
                                         + ST_FLOAT(_touchObj->getRotation()));
         return true;
     };
-    this->getTouch()->getTouchListenner()->onTouchMoved = [this](Touch* touch,Event* event) {
-        this->getDebugMemo()->setString(_touchObj->getName()
+    getTouch()->getTouchListenner()->onTouchMoved = [this](Touch* touch,Event* event) {
+        getDebugMemo()->setString(_touchObj->getName()
                                         + ":" + ST_VEC2(_touchObj->getPosition())+ " "
                                         + ST_FLOAT(_touchObj->getRotation()));
         return true;
     };
-    this->getTouch()->getTouchListenner()->onTouchEnded = [this](Touch* touch,Event* event) {
-        this->getDebugMemo()->setString(_touchObj->getName()
+    getTouch()->getTouchListenner()->onTouchEnded = [this](Touch* touch,Event* event) {
+        getDebugMemo()->setString(_touchObj->getName()
                                         + ":" + ST_VEC2(_touchObj->getPosition())+ " "
                                         + ST_FLOAT(_touchObj->getRotation()));
         return true;
     };
-    //    this->getTouch()->applyTouchListenner(this);
+    //    getTouch()->applyTouchListenner(this);
     
-    this->setLineMaker(LineMaker::create());
-    this->_lineMaker->setPt(Sprite2::create("dot2.png"));
-    this->_lineMaker->setField(this);
+    setLineMaker(LineMaker::create());
+    _lineMaker->setPt(Sprite2::create("dot2.png"));
+    _lineMaker->setField(this);
     
     return true;
 }
 
 void TestScene::onEnterTransitionDidFinish() {
     GameScene::onEnterTransitionDidFinish();
-    this->scheduleUpdate();
-    this->setTouchObj(_pt5);
+    scheduleUpdate();
+    setTouchObj(_pt5);
     // todo
 }
 
 void TestScene::update(float dt) {
     // todo
-    this->getDebugMemo()->setString(_touchObj->getName() + ":" + ST_NODE(_touchObj));
+    getDebugMemo()->setString(_touchObj->getName() + ":" + ST_NODE(_touchObj));
 }
 /** パラメータサンプル
- this->setGameTitle(Label::create());
- this->getGameTitle();
- this->setBaseLine(DrawNode::create());
- this->getBaseLine();
- this->setBall(DrawNode::create());
- this->getBall();
- this->setBtn1(MenuItemImage::create());
- this->getBtn1();
- this->setBtn2(MenuItemImage::create());
- this->getBtn2();
- this->setBtn3(MenuItemImage::create());
- this->getBtn3();
- this->setBtn4(MenuItemImage::create());
- this->getBtn4();
- this->setMenu(Menu::create());
- this->getMenu();
- this->setTouch(TouchEventHelper::create());
- this->getTouch();
- this->setPt1(Sprite2::create());
- this->getPt1();
- this->setPt2(Sprite2::create());
- this->getPt2();
- this->setPt3(Sprite2::create());
- this->getPt3();
- this->setPt4(Sprite2::create());
- this->getPt4();
- this->setPt5(Sprite2::create());
- this->getPt5();
+ setGameTitle(Label::create());
+ getGameTitle();
+ setBaseLine(DrawNode::create());
+ getBaseLine();
+ setBall(DrawNode::create());
+ getBall();
+ setBtn1(MenuItemImage::create());
+ getBtn1();
+ setBtn2(MenuItemImage::create());
+ getBtn2();
+ setBtn3(MenuItemImage::create());
+ getBtn3();
+ setBtn4(MenuItemImage::create());
+ getBtn4();
+ setMenu(Menu::create());
+ getMenu();
+ setTouch(TouchEventHelper::create());
+ getTouch();
+ setPt1(Sprite2::create());
+ getPt1();
+ setPt2(Sprite2::create());
+ getPt2();
+ setPt3(Sprite2::create());
+ getPt3();
+ setPt4(Sprite2::create());
+ getPt4();
+ setPt5(Sprite2::create());
+ getPt5();
  */

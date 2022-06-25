@@ -1,16 +1,7 @@
 {
-  "className": "Button",
+  "className": "ScrollNode",
   "superClass": "Node",
   "synthesize_retains": [
-    ["Calclater", "_calc", "Calc"],
-    ["Label", "_title", "Title"],
-    ["Sprite", "_c1", "C1"],
-    ["Sprite", "_c2", "C2"],
-    ["Sprite", "_c3", "C3"],
-    ["Sprite", "_c4", "C4"],
-    ["Sprite", "_t1", "t1"],
-    ["Sprite", "_t2", "t2"],
-    ["Sprite", "_t3", "t3"],
-    ["Sprite", "_t4", "t4"]
+    ["Calclater", "_calc", "Calc"]
   ]
 }

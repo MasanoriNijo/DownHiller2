@@ -74,7 +74,6 @@ public:
     MenuItemSprite* generateMenuItemSprite(const ccMenuCallback& callback, Size size,std::string st,
                                            Color3B color_,Color3B color2_, bool isBlink);
     
-    
     // 画面のサイズ関連を取得する.
     // 実際の画面サイズ
      // Getting a real display size.
