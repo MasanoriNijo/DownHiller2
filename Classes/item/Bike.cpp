@@ -52,9 +52,9 @@ bool Bike::init() {
     getRwheel()->setPosition(Vec2(1,2));
     _addPhysicsToWheel(getRwheel());
     getRwheel()->getPhysicsBody()->setTag(TG_R_WHEEL);
-    
+        
 //    this->_setTouchEvent(); // game進行上で起動させる。
-    
+
     //debug
     this->setDebugPt(Sprite::create("dot.png"));
     this->getDebugPt()->setGlobalZOrder(OBJ_LAYER_TOP);
@@ -140,6 +140,20 @@ void Bike::SetJoint(){
                                                      getFwheel()->getPhysicsBody(),
                                                      getRwheel()->getPhysicsBody()->getPosition(),
                                                      getFwheel()->getPhysicsBody()->getPosition()));
+    
+    // body追加
+    auto _material = PHYSICSBODY_MATERIAL_DEFAULT;
+    _material.restitution = 0;
+    _material.friction =0;
+    _material.density = 0;
+    setPhysicsBody(PhysicsBody::createCircle(5,_material));
+    getPhysicsBody()->setGravityEnable(false);
+    getPhysicsBody()->setCategoryBitmask(CT_RIDER);
+    getPhysicsBody()->setCollisionBitmask(CT_COURCE);
+    getPhysicsBody()->setContactTestBitmask(CT_COURCE);
+    getPhysicsBody()->setDynamic(false);
+    getPhysicsBody()->setRotationEnable(false);
+    getPhysicsBody()->setTag(TG_RIDER);
 }
 
 void Bike::update(float dt) {

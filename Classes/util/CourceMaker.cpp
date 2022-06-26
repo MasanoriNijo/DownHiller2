@@ -357,8 +357,8 @@ void CourceMaker::madePhysiceBody(){
     this->setCourceBody(PhysicsBody::createEdgeChain(_polygonPts, _polygonPtCnt,_material));
     getCourceBody()->setDynamic(false);
     getCourceBody()->setCategoryBitmask(CT_COURCE);
-    getCourceBody()->setCollisionBitmask(CT_WHEEL);
-    getCourceBody()->setContactTestBitmask(CT_WHEEL);
+    getCourceBody()->setCollisionBitmask(CT_WHEEL | CT_RIDER);
+    getCourceBody()->setContactTestBitmask(CT_WHEEL | CT_RIDER);
     getCourceBody()->setTag(TG_COURCE);
     this->setPhysicsBody(getCourceBody());
 }
@@ -372,8 +372,8 @@ void CourceMaker::madePhysiceBody(Node* field){
     this->setCourceBody(PhysicsBody::createEdgeChain(_polygonPts, _polygonPtCnt,_material));
     getCourceBody()->setDynamic(false);
     getCourceBody()->setCategoryBitmask(CT_COURCE);
-    getCourceBody()->setCollisionBitmask(CT_WHEEL);
-    getCourceBody()->setContactTestBitmask(CT_WHEEL);
+    getCourceBody()->setCollisionBitmask(CT_WHEEL | CT_RIDER);
+    getCourceBody()->setContactTestBitmask(CT_WHEEL | CT_RIDER);
     getCourceBody()->setTag(TG_COURCE);
     field->setPhysicsBody(getCourceBody());
 }

@@ -110,15 +110,10 @@ void GameStage::courceB(){
     getCourceMaker()->drawStart(Vec2(-50,100),Vec2::ZERO);
     getCourceMaker()->drawByStraight(Vec2(0,-100));
     getCourceMaker()->drawByStraight(Vec2(200,0));
-    for(int i = 0;i<5;i++){
+    for(int i = 0;i<2;i++){
         getCourceMaker()->drawBySmoothCurve(Vec2(50,20));
         getCourceMaker()->drawBySmoothCurve(Vec2(80,-50));
         getCourceMaker()->drawBySmoothCurve(Vec2(100,50));
-        auto flg = Flg::create();
-        flg->setGlobalZOrder(OBJ_LAYER_TOP);
-        flg->setPosition(getCourceMaker()->getTergetPt());
-        flg->setRotation(getCalc()->nomlKaku(Vec2::ZERO, getCourceMaker()->getTargetDir()));
-        addChild(flg);
         getCourceMaker()->drawBySmoothCurve(Vec2(100,-80));
         getCourceMaker()->drawBySmoothCurve(Vec2(130,100));
         getCourceMaker()->drawByStraight(Vec2(300,0));
@@ -128,6 +123,13 @@ void GameStage::courceB(){
         getCourceMaker()->drawByStraight(Vec2(0,-50));
         getCourceMaker()->drawByStraight(Vec2(90,0));
     }
+    getCourceMaker()->drawByStraight(Vec2(90,0));
+    auto flg = Flg::create();
+    flg->setGlobalZOrder(OBJ_LAYER_TOP);
+    flg->setPosition(getCourceMaker()->getTergetPt());
+    flg->setRotation(getCalc()->nomlKaku(Vec2::ZERO, getCourceMaker()->getTargetDir()));
+    addChild(flg);
+    getCourceMaker()->drawByStraight(Vec2(90,0));
     getCourceMaker()->drawByStraight(Vec2(0,100));
     getCourceMaker()->madePhysiceBody();
 }
@@ -214,6 +216,10 @@ void GameStage::onClear(){
 
 void GameStage::onMiss(){
     showGameAnnounce("MISS!", ctPt);
+    getBike()->getFRJoint()->removeFormWorld();
+    getBike()->getRwheel()->getPhysicsBody()->setAngularDamping(1);
+//    this->getBike()->getRwheel()->getPhysicsBody()->setLinearDamping(1);
+    getBike()->removeTouchEvent();
 }
 
 void GameStage::setContactListener() {
@@ -257,6 +263,11 @@ void GameStage::_onContactBegin(PhysicsContact& contact, PhysicsShape* ps){
             getBike()->rWheelTouched = true;
             //                NJLOG("rWheel_normal");
             //                NJLOG(ST_VEC2(contact.getContactData()->normal).c_str());
+            break;
+        }
+        case TG_RIDER: {
+            setGameState(GameState::MISS);
+            fstStCnge = true;
             break;
         }
         case TG_START: {
