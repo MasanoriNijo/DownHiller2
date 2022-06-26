@@ -92,8 +92,8 @@ macro(cocos2dx_depend)
                 #"/usr/lib/libiconv.dylib"
                 #edit
                 )
-                    endif()
-                endif()
+            endif()
+    endif()
 endmacro()
 
 macro(use_cocos2dx_libs_depend target)
