@@ -1,14 +1,14 @@
 #include "GameScene.h"
 
 GameScene::GameScene():
-_backColor(NULL), _ad(NULL), _colorChanger(NULL), _calc(NULL),_gameAnounce(NULL),
+_backColor(NULL), _colorChanger(NULL), _calc(NULL),_gameAnounce(NULL),
 _debugLine(NULL), _debugMemo(NULL), _noMoveLayer(NULL)
 {}
 
 GameScene::~GameScene() {
     NJLOG("hoge:GameScene::~GameScene()");
     CC_SAFE_RELEASE_NULL(_backColor);
-    CC_SAFE_RELEASE_NULL(_ad);
+//    CC_SAFE_RELEASE_NULL(_ad);
     CC_SAFE_RELEASE_NULL(_colorChanger);
     CC_SAFE_RELEASE_NULL(_calc);
     CC_SAFE_RELEASE_NULL(_debugLine);
@@ -48,9 +48,9 @@ bool GameScene::init() {
     this->ctPt.set(winSize.width / 2, winSize.height / 2);
     
     //imovileAdをセットする。
-    this->setAD(ImovileAd::create());
-    this->getAD()->txtFlg = true;
-    this->getAD()->instFlg = true;
+//    this->setAD(ImovileAd::create());
+//    this->getAD()->txtFlg = true;
+//    this->getAD()->instFlg = true;
     
     // Calclaterをセット
     this->setCalc(Calclater::create());

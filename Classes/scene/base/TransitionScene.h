@@ -1,7 +1,6 @@
 #ifndef __TRANSITIONSCENE_H__
 #define __TRANSITIONSCENE_H__
 
-#include "ad/ImovileAd.h"
 #include "util/Const.h"
 #include "util/ColorChanger.h"
 #include "util/Calclater.h"

@@ -33,9 +33,9 @@ bool FstScene::init() {
     });
 
     this->_productTitle->runAction(Sequence::create(fadein_,delaytime_,fadeout_,start_,NULL));
-
-    this->setAD(ImovileAd::create());
-    this->getAD()->FstSet();
+// for android
+//    this->setAD(ImovileAd::create());
+//    this->getAD()->FstSet();
     NJLOG("hogehoge");
     
     return true;

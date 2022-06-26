@@ -1,7 +1,6 @@
 #ifndef __GAMESCENE_H__
 #define __GAMESCENE_H__
 
-#include "ad/ImovileAd.h"
 #include "util/Const.h"
 #include "util/ColorChanger.h"
 #include "util/Calclater.h"
@@ -22,7 +21,7 @@ public:
     static Scene* createScene();
     static Scene* createPhysicsScene();
     CC_SYNTHESIZE_RETAIN(LayerColor*,_backColor,BackColor);
-    CC_SYNTHESIZE_RETAIN(ImovileAd*,_ad,AD);
+//    CC_SYNTHESIZE_RETAIN(ImovileAd*,_ad,AD); for android
     CC_SYNTHESIZE_RETAIN(ColorChanger*,_colorChanger,ColorChanger);
     CC_SYNTHESIZE_RETAIN(Calclater*,_calc,Calc);
     CC_SYNTHESIZE_RETAIN(DrawNode*,_debugLine,DebugLine);

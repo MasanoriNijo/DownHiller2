@@ -360,6 +360,8 @@ void CourceMaker::madePhysiceBody(){
     getCourceBody()->setCollisionBitmask(CT_WHEEL);
     getCourceBody()->setContactTestBitmask(CT_WHEEL);
     getCourceBody()->setTag(TG_COURCE);
+    NJLOG("PolyGonの数:");
+    NJLOG(ST_INT(_polygonPtCnt).c_str());
     this->setPhysicsBody(getCourceBody());
 }
 
