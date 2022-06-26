@@ -95,5 +95,6 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':libcocos2dx')
     implementation 'com.google.android.gms:play-services-ads-identifier:+'
+    implementation files('src/lib/imobileSdkAds.jar')
     compile 'com.google.android.gms:play-services-ads-identifier:+'
 }

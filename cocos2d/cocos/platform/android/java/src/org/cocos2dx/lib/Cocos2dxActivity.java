@@ -293,7 +293,7 @@ public abstract class Cocos2dxActivity extends Activity implements Cocos2dxHelpe
         this.mGLSurfaceView.setCocos2dxEditText(edittext);
 
         // Set framelayout as the content view
-        setContentView(mFrameLayout);
+//        setContentView(mFrameLayout);
     }
 
     

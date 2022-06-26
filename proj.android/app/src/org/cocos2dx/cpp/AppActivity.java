@@ -27,10 +27,17 @@ package org.cocos2dx.cpp;
 import android.os.Bundle;
 import org.cocos2dx.lib.Cocos2dxActivity;
 import android.os.Build;
+import android.view.Gravity;
 import android.view.WindowManager;
+import jp.co.imobile.sdkads.android.ImobileSdkAd;
 import android.view.WindowManager.LayoutParams;
+import android.widget.FrameLayout;
 
 public class AppActivity extends Cocos2dxActivity {
+
+    static final String IMOBILE_BANNER_PID = "34243";
+    static final String IMOBILE_BANNER_MID = "461430";
+    static final String IMOBILE_BANNER_SID = "1515544";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +59,24 @@ public class AppActivity extends Cocos2dxActivity {
             getWindow().setAttributes(lp);
         }
         // DO OTHER INITIALIZATION BELOW
-        
+        // imobileの広告を入れる。
+        // スポット情報を設定します
+        ImobileSdkAd.registerSpotInline(this, IMOBILE_BANNER_PID, IMOBILE_BANNER_MID, IMOBILE_BANNER_SID);
+        // 広告の取得を開始します
+        ImobileSdkAd.start(IMOBILE_BANNER_SID);
+
+        // 広告を表示するViewを作成します
+        FrameLayout imobileAdLayout = new FrameLayout(this);
+        FrameLayout.LayoutParams imobileAdLayoutParam = new FrameLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        // 広告の表示位置を指定
+        imobileAdLayoutParam.gravity = (Gravity.BOTTOM | Gravity.CENTER);
+        //広告を表示するLayoutをActivityに追加します
+//        addContentView(imobileAdLayout, imobileAdLayoutParam);
+        // 広告を表示します
+        ImobileSdkAd.showAd(this, IMOBILE_BANNER_SID, imobileAdLayout);
+        imobileAdLayout.bringToFront();
+        mFrameLayout.addView(imobileAdLayout, imobileAdLayoutParam);
+        setContentView(mFrameLayout);
     }
 
 }
