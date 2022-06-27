@@ -164,7 +164,7 @@ void GameStage::courceC(){
 void GameStage::update(float dt) {
     if(fstStCnge){
         fstStCnge = false;
-        switch (this->getGameState()) {
+        switch (getGameState()) {
             case GameState::READY: {
                 onReady();
                 break;
@@ -194,21 +194,21 @@ void GameStage::update(float dt) {
 
 void GameStage::onReady(){
     showGameAnnounce("READY!", ctPt,[this]{
-        this->setGameState(GameState::PLAY);
-        this->fstStCnge = true;
+        setGameState(GameState::PLAY);
+        fstStCnge = true;
     });
 }
 
 void GameStage::onPlay(){
     showGameAnnounce("GO->!", ctPt,[this]{
-        this->getBike()->setTouchEvent();
+        getBike()->setTouchEvent();
     });
 }
 
 void GameStage::onClear(){
-    this->getBike()->getRwheel()->getPhysicsBody()->setAngularDamping(1);
-//    this->getBike()->getRwheel()->getPhysicsBody()->setLinearDamping(1);
-    this->getBike()->removeTouchEvent();
+    getBike()->getRwheel()->getPhysicsBody()->setAngularDamping(1);
+//    getBike()->getRwheel()->getPhysicsBody()->setLinearDamping(1);
+    getBike()->removeTouchEvent();
     showGameAnnounce("CLEAR!", ctPt,[this]{
         //todo
     });
@@ -217,9 +217,15 @@ void GameStage::onClear(){
 void GameStage::onMiss(){
     showGameAnnounce("MISS!", ctPt);
     getBike()->getFRJoint()->removeFormWorld();
-    getBike()->getRwheel()->getPhysicsBody()->setAngularDamping(1);
-//    this->getBike()->getRwheel()->getPhysicsBody()->setLinearDamping(1);
+//    getBike()->getRwheel()->getPhysicsBody()->setAngularDamping(1);
+//    getBike()->getRwheel()->getPhysicsBody()->setLinearDamping(1);
+    getBike()->unscheduleUpdate();
     getBike()->removeTouchEvent();
+    auto gun = Sprite::create("gan.png");
+    gun->setPosition(missPt);
+    gun->setGlobalZOrder(OBJ_LAYER_TOP);
+    addChild(gun);
+//    mountScroleNode(gun, missPt, OBJ_LAYER_TOP);
 }
 
 void GameStage::setContactListener() {
@@ -267,6 +273,7 @@ void GameStage::_onContactBegin(PhysicsContact& contact, PhysicsShape* ps){
         }
         case TG_RIDER: {
             setGameState(GameState::MISS);
+            missPt.set(contact.getContactData()->points[0]);
             fstStCnge = true;
             break;
         }
@@ -341,20 +348,20 @@ void GameStage::_onContactSeparate(PhysicsContact& contact, PhysicsShape* ps){
 }
 
 /** パラメータサンプル
- this->setGameTitle(Label::create());
- this->getGameTitle();
- this->setBaseLine(DrawNode::create());
- this->getBaseLine();
- this->setbike(DrawNode::create());
- this->getbike();
- this->setBtn1(MenuItemImage::create());
- this->getBtn1();
- this->setBtn2(MenuItemImage::create());
- this->getBtn2();
- this->setBtn3(MenuItemImage::create());
- this->getBtn3();
- this->setBtn4(MenuItemImage::create());
- this->getBtn4();
- this->setMenu(Menu::create());
- this->getMenu();
+ setGameTitle(Label::create());
+ getGameTitle();
+ setBaseLine(DrawNode::create());
+ getBaseLine();
+ setbike(DrawNode::create());
+ getbike();
+ setBtn1(MenuItemImage::create());
+ getBtn1();
+ setBtn2(MenuItemImage::create());
+ getBtn2();
+ setBtn3(MenuItemImage::create());
+ getBtn3();
+ setBtn4(MenuItemImage::create());
+ getBtn4();
+ setMenu(Menu::create());
+ getMenu();
  */
