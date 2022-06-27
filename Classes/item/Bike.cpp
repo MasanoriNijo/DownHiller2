@@ -30,47 +30,46 @@ bool Bike::init() {
         return false;
     }
     bikeAnchorPt.set(0.10, 0.08);
-    this->setAnchorPoint(bikeAnchorPt);
-    bikeCenterPt.set(this->getContentSize().width/2,this->getContentSize().height/2);
+    setAnchorPoint(bikeAnchorPt);
+    bikeCenterPt.set(getContentSize().width/2,getContentSize().height/2);
     
     // riderをセットする。
-    this->setRider(Sprite::create("riders.png"));
+    setRider(Sprite::create("riders.png"));
     frameSize = Size(getRider()->getContentSize().width / 7, getRider()->getContentSize().height / 7);
     
     getRider()->setPosition(Vec2(18,22));
     getRider()->setGlobalZOrder(OBJ_LAYER_TOP);// これを入れないとライダーが下に隠れて見えなくなる。
-    this->addChild(getRider());
-    this->riderImageAction();
+    addChild(getRider());
+    riderImageAction();
     
     // wheelをセットする。
-    this->setFwheel(Sprite::create("wheel3.png"));
+    setFwheel(Sprite::create("wheel3.png"));
     getFwheel()->setPosition(Vec2(33,2));
     _addPhysicsToWheel(getFwheel());
     getFwheel()->getPhysicsBody()->setTag(TG_F_WHEEL);
     
-    this->setRwheel(Sprite::createWithTexture(getFwheel()->getTexture()));
+    setRwheel(Sprite::createWithTexture(getFwheel()->getTexture()));
     getRwheel()->setPosition(Vec2(1,2));
     _addPhysicsToWheel(getRwheel());
     getRwheel()->getPhysicsBody()->setTag(TG_R_WHEEL);
-    
-//    this->_setTouchEvent(); // game進行上で起動させる。
-    
+        
+//    _setTouchEvent(); // game進行上で起動させる。
+
     //debug
-    this->setDebugPt(Sprite::create("dot.png"));
-    this->getDebugPt()->setGlobalZOrder(OBJ_LAYER_TOP);
-    this->addChild(this->getDebugPt());
-    this->setParentSprite(Sprite::create("dot2.png"));
-    this->getParentSprite()->setGlobalZOrder(OBJ_LAYER_TOP);
-    this->addChild(this->getParentSprite());
+    setDebugPt(Sprite::create("dot.png"));
+    getDebugPt()->setGlobalZOrder(OBJ_LAYER_TOP);
+    addChild(getDebugPt());
+    setParentSprite(Sprite::create("dot2.png"));
+    getParentSprite()->setGlobalZOrder(OBJ_LAYER_TOP);
+    addChild(getParentSprite());
     
     // sceneスクロール用
-    this->setSceneChasePt(Sprite::create("dot2.png"));
+    setSceneChasePt(Sprite::create("dot2.png"));
     _sceneChasePt->setPosition(sceneOffset);
     _sceneChasePt->setGlobalZOrder(OBJ_LAYER_TOP);
-    //    this->addChild(_sceneChasePt);
-    
+    //    addChild(_sceneChasePt);
     // debug用
-    this->setBikeDebug(Label::createWithTTF("bikeState", "irohamaru.ttf", 10));
+    setBikeDebug(Label::createWithTTF("bikeState", "irohamaru.ttf", 10));
     getBikeDebug()->setTextColor(Color4B::BLACK);
     getBikeDebug()->setGlobalZOrder(OBJ_LAYER_TOP);
     getBikeDebug()->setPosition(Vec2(0,50));
@@ -101,25 +100,25 @@ void Bike::_addPhysicsToWheel(Sprite* _wheel){
 
 void Bike::_positionSyncToWheel(){
     float kaku = getCalc()->nomlKaku(getRwheel()->getPosition(),getFwheel()->getPosition());
-    this->setRotation(kaku);
-    this->setPosition(getRwheel()->getPosition());
+    setRotation(kaku);
+    setPosition(getRwheel()->getPosition());
 }
 
 void Bike::setTouchEvent(){
-    this->setTouch(TouchEventHelper::create());
-    this->getTouch()->getTouchListenner()->onTouchBegan = [this](Touch* touch,Event* event) {
-        this->touchOn(touch->getLocation());
+    setTouch(TouchEventHelper::create());
+    getTouch()->getTouchListenner()->onTouchBegan = [this](Touch* touch,Event* event) {
+        touchOn(touch->getLocation());
         return true;
     };
-    this->getTouch()->getTouchListenner()->onTouchMoved = [this](Touch* touch,Event* event) {
-        this->swaip(touch->getLocation());
+    getTouch()->getTouchListenner()->onTouchMoved = [this](Touch* touch,Event* event) {
+        swaip(touch->getLocation());
         return true;
     };
-    this->getTouch()->getTouchListenner()->onTouchEnded = [this](Touch* touch,Event* event) {
-        this->touchOff(Vec2::ZERO);
+    getTouch()->getTouchListenner()->onTouchEnded = [this](Touch* touch,Event* event) {
+        touchOff(Vec2::ZERO);
         return true;
     };
-    this->getTouch()->applyTouchListenner(this);
+    getTouch()->applyTouchListenner(this);
 }
 
 void Bike::removeTouchEvent(){
@@ -131,26 +130,36 @@ void Bike::onEnterTransitionDidFinish() {
 }
 
 void Bike::SetJoint(){
-    getFwheel()->setPosition(this->getPosition()+Vec2(wheelBase,0));
-    this->getParent()->addChild(getFwheel(),OBJ_LAYER_TOP);
-    getRwheel()->setPosition(this->getPosition());
-    this->getParent()->addChild(getRwheel(),OBJ_LAYER_TOP);
+    getFwheel()->setPosition(getPosition()+Vec2(wheelBase,0));
+    getParent()->addChild(getFwheel(),OBJ_LAYER_TOP);
+    getRwheel()->setPosition(getPosition());
+    getParent()->addChild(getRwheel(),OBJ_LAYER_TOP);
     // 前後輪をジョイントを生成する。
-    this->setFRJoint(PhysicsJointDistance::construct(getRwheel()->getPhysicsBody(),
+    setFRJoint(PhysicsJointDistance::construct(getRwheel()->getPhysicsBody(),
                                                      getFwheel()->getPhysicsBody(),
                                                      getRwheel()->getPhysicsBody()->getPosition(),
                                                      getFwheel()->getPhysicsBody()->getPosition()));
+    
+    // body追加
+    auto _material = PHYSICSBODY_MATERIAL_DEFAULT;
+    _material.restitution = 0;
+    _material.friction = 0;
+    _material.density = 0;
+    getRider()->setPhysicsBody(PhysicsBody::createCircle(15,_material));
+    getRider()->getPhysicsBody()->setGravityEnable(false);
+    getRider()->getPhysicsBody()->setCategoryBitmask(CT_RIDER);
+    getRider()->getPhysicsBody()->setCollisionBitmask(CT_COURCE);
+    getRider()->getPhysicsBody()->setContactTestBitmask(CT_COURCE);
+    getRider()->getPhysicsBody()->setDynamic(true);
+    getRider()->getPhysicsBody()->setRotationEnable(false);
+    getRider()->getPhysicsBody()->setTag(TG_RIDER);
 }
 
 void Bike::update(float dt) {
-    this->riderImageAction();
-    this->_positionSyncToWheel();
-    this->_bikeBehaviorControl();
-    this->_judeAction(dt);
-    
-    // 画面のスクロールポイントを設定する。
-    //    _this->getPosition() + sceneOffset;
-    // todo
+    riderImageAction();
+    _positionSyncToWheel();
+    _bikeBehaviorControl();
+    _judeAction(dt);
 }
 
 void Bike::touchOn(Vec2 pt){
@@ -204,14 +213,14 @@ void Bike::riderImageAction(){
     if (y_ < -3){
         y_=-3;
     }
-    if(this->getDebugPt()){
-        this->getDebugPt()->setPosition(weightPt+bikeCenterPt);
+    if(getDebugPt()){
+        getDebugPt()->setPosition(weightPt+bikeCenterPt);
     }
-    this->getRider()->setTextureRect(Rect(frameSize.width * (x_+3), frameSize.height * (y_+3),
+    getRider()->setTextureRect(Rect(frameSize.width * (x_+3), frameSize.height * (y_+3),
                                           frameSize.width, frameSize.height));
     // 画面スクロールポイントを指定
     if(_sceneChasePt){
-        _sceneChasePt->setPosition(this->getPosition()+sceneOffset);
+        _sceneChasePt->setPosition(getPosition()+sceneOffset);
     }
 }
 
@@ -228,12 +237,12 @@ void Bike::_judeAction(float dt){
     // 前後のウイリー
     if( chasePt.y >= -riderActionSpan){
         if(noml_.x > riderActionSpan/2){
-            this->werry(-noml_.x);
+            werry(-noml_.x);
             chasePt.set(weightPt);
             getParentSprite()->setPosition(chasePt + bikeCenterPt);
             return;
         }else if(noml_.x < -riderActionSpan/2){
-            this->werry(-noml_.x);
+            werry(-noml_.x);
             chasePt.set(weightPt);
             getParentSprite()->setPosition(chasePt + bikeCenterPt);
             return;
@@ -243,12 +252,12 @@ void Bike::_judeAction(float dt){
     // 後のウイリー
     if( chasePt.x < -riderActionSpan*2){
         if(noml_.y > riderActionSpan/2 && !rWheelTouched){
-            this->werry(-noml_.y);
+            werry(-noml_.y);
             chasePt.set(weightPt);
             getParentSprite()->setPosition(chasePt + bikeCenterPt);
             return;
         }else if(noml_.y < -riderActionSpan/2){
-            this->werry(-noml_.y);
+            werry(-noml_.y);
             chasePt.set(weightPt);
             getParentSprite()->setPosition(chasePt + bikeCenterPt);
             return;
@@ -258,12 +267,12 @@ void Bike::_judeAction(float dt){
     // 前のウイリー
     if( chasePt.x > riderActionSpan*2){
         if(noml_.y > riderActionSpan/2 && !fWheelTouched){
-            this->werry(noml_.y);
+            werry(noml_.y);
             chasePt.set(weightPt);
             getParentSprite()->setPosition(chasePt + bikeCenterPt);
             return;
         }else if(noml_.y < -riderActionSpan/2){
-            this->werry(noml_.y);
+            werry(noml_.y);
             chasePt.set(weightPt);
             getParentSprite()->setPosition(chasePt + bikeCenterPt);
             return;
@@ -273,7 +282,7 @@ void Bike::_judeAction(float dt){
     // ジャンプ
     if(weightPt.y == riderActionSpan * 4){
         if(noml_.y > riderActionSpan * 4){
-            this->jump(noml_.y);
+            jump(noml_.y);
             chasePt.set(weightPt);
             getParentSprite()->setPosition(chasePt + bikeCenterPt);
             return;
@@ -284,7 +293,7 @@ void Bike::_judeAction(float dt){
     if( chasePt.y < -riderActionSpan * 2){
         if(rWheelTouched && fWheelTouched){
             if(noml_.x > riderActionSpan * 2){
-                this->dush(noml_.x);
+                dush(noml_.x);
                 chasePt.set(weightPt);
                 getParentSprite()->setPosition(chasePt + bikeCenterPt);
                 return;
@@ -361,18 +370,26 @@ void Bike::werry(float lvl){
 }
 
 void Bike::dush(float lvl){
-    Vec2 powPt;
+    if(centerObjVelo.length() > maxDushSpeed){
+        getBikeDebug()->setString("dush_no");
+        return;
+    }
     if(rWheelTouched && rWheelTouched){
-        powPt = getCalc()->chgLength(getFwheel()->getPosition()-getRwheel()->getPosition(), dushPow * lvl);
-        getBikeDebug()->setString("dush");
+        Vec2 powPt = getCalc()->chgLength(getFwheel()->getPosition()-getRwheel()->getPosition(), dushPow * lvl);
         if(centerObjVelo.length() > maxDushSpeed){
             getBikeDebug()->setString("dush_no");
             return;
         }else{
+            if((centerObjVelo + powPt).length() >  maxDushSpeed){
+                powPt = getCalc()->chgLength(powPt, maxDushSpeed);
+            }else{
+                powPt = getCalc()->chgLength(powPt, (centerObjVelo + powPt).length());
+            }
+            
+            getRwheel()->getPhysicsBody()->setVelocity(powPt);
+            getFwheel()->getPhysicsBody()->setVelocity(powPt);
             getBikeDebug()->setString("dush");
         }
-        getRwheel()->getPhysicsBody()->setVelocity(centerObjVelo + powPt);
-        getFwheel()->getPhysicsBody()->setVelocity(centerObjVelo + powPt);
         return;
     }
 }
@@ -383,12 +400,12 @@ void Bike::stop(){
 }
 
 /** パラメータサンプル
- this->setRider(Sprite::create());
- this->getRider();
- this->setFwheel(Sprite::create());
- this->getFwheel();
- this->setRwheel(Sprite::create());
- this->getRwheel();
+ setRider(Sprite::create());
+ getRider();
+ setFwheel(Sprite::create());
+ getFwheel();
+ setRwheel(Sprite::create());
+ getRwheel();
  */
 
 

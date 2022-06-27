@@ -46,6 +46,7 @@ public:
     void onPlay();
     void onClear();
     void onMiss();
+    Vec2 missPt;
     
     // サンプルコース
     void courceA();

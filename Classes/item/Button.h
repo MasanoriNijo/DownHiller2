@@ -23,6 +23,7 @@ public:
     CC_SYNTHESIZE_RETAIN(Sprite*,_t2,T2);
     CC_SYNTHESIZE_RETAIN(Sprite*,_t3,T3);
     CC_SYNTHESIZE_RETAIN(Sprite*,_t4,T4);
+    CC_SYNTHESIZE_RETAIN(Sprite*,_base,Base);
     void update(float dt) override;
     
     float _offset = 1;

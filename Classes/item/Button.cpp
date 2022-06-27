@@ -1,7 +1,8 @@
 #include "Button.h"
 
 Button::Button():
-_calc(NULL), _title(NULL), _c1(NULL), _c2(NULL), _c3(NULL), _c4(NULL), _t1(NULL), _t2(NULL), _t3(NULL), _t4(NULL)
+_calc(NULL), _title(NULL), _c1(NULL), _c2(NULL), _c3(NULL), _c4(NULL),
+_t1(NULL), _t2(NULL), _t3(NULL), _t4(NULL), _base(NULL)
 {}
 
 Button::~Button() {
@@ -15,6 +16,7 @@ Button::~Button() {
     CC_SAFE_RELEASE_NULL(_t2);
     CC_SAFE_RELEASE_NULL(_t3);
     CC_SAFE_RELEASE_NULL(_t4);
+    CC_SAFE_RELEASE_NULL(_base);
 }
 
 Button* Button::create() {
@@ -37,6 +39,7 @@ bool Button::init() {
 //    enableOutline(Color4B::WHITE,1);
     setAnchorPoint(Vec2::ANCHOR_MIDDLE);
     setCalc(Calclater::create());
+    setGlobalZOrder(OBJ_LAYER_TOP);
 
     setC1(Sprite::create("btn_curve.png"));
     setC2(Sprite::createWithTexture(getC1()->getTexture()));
@@ -57,6 +60,9 @@ bool Button::init() {
     getT3()->setAnchorPoint(Vec2(0,1));
     getT4()->setAnchorPoint(Vec2(0,1));
     
+    setBase(Sprite::create("btn_base.png"));
+    getBase()->setGlobalZOrder(OBJ_LAYER_TOP-1);
+    
     return true;
 }
 
@@ -69,7 +75,7 @@ void Button::setButton(Size size, std::string st){
     Size size_ = getContentSize();
     Vec2 ctPt = Vec2(size_.width/2,size_.height/2);
     size_.width += _offset*2;
-    size_.height += _offset*2;
+//    size_.height += _offset*2;
     
     if(size_.width>size.width){
         size.width = size_.width;
@@ -110,7 +116,12 @@ void Button::setButton(Size size, std::string st){
     addChild(getT1());
     addChild(getT2());
     addChild(getT3());
-    addChild(getT4());    
+    addChild(getT4());
+    
+    getBase()->Node::setScaleX((w-2*cl)/getBase()->getContentSize().width);
+    getBase()->Node::setScaleY((h-2*cl)/getBase()->getContentSize().height);
+    getBase()->setPosition(Vec2(getContentSize().width/2,getContentSize().height/2));
+    addChild(getBase());
 }
 
 void Button::setButtonColor(Color3B color){

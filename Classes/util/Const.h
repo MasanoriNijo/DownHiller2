@@ -47,7 +47,7 @@ const Vec2 NONGRAVITY = Vec2(0, 0);
 #define PHYSICS_WOELD_SPEED 5
 
 // タグ名コンタクト時に判別
-
+static const int TG_RIDER=0;
 static const int TG_F_WHEEL=1;
 static const int TG_R_WHEEL=2;
 static const int TG_COURCE=3;
