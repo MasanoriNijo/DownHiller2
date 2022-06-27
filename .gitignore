@@ -27,7 +27,8 @@ tool/jsons
 !tool/cocos_file_prm.json
 #android 関連
 build/
-proj.android/app
+proj.android/app/.cxx
+proj.android/app/build
 proj.android/.idea
 
 #
