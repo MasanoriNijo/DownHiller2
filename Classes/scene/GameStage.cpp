@@ -6,7 +6,7 @@
 #include "scene/HelloWorldScene.h"
 
 GameStage::GameStage():
-_gameTitle(NULL), _btn1(NULL), _btn2(NULL), _btn3(NULL), _btn4(NULL), _menu(NULL),_touch(NULL),_bike(NULL),_contactlistener(NULL), _courceMaker(NULL)
+_gameTitle(NULL), _btn1(NULL), _btn2(NULL), _btn3(NULL), _btn4(NULL), _menu(NULL),_touch(NULL),_bike(NULL),_contactlistener(NULL), _courceMaker(NULL), _courceManager(NULL)
 {}
 
 GameStage::~GameStage() {
@@ -21,6 +21,7 @@ GameStage::~GameStage() {
     CC_SAFE_RELEASE_NULL(_bike);
     CC_SAFE_RELEASE_NULL(_contactlistener);
     CC_SAFE_RELEASE_NULL(_courceMaker);
+    CC_SAFE_RELEASE_NULL(_courceManager);
 }
 
 Scene* GameStage::createScene() {
@@ -66,12 +67,16 @@ bool GameStage::init() {
     
     setCourceMaker(CourceMaker::create());
     addChild(getCourceMaker());
+    
+    setCourceManager(CourceManager::create());
+    addChild(getCourceManager()->getCourceMakerA());
+    addChild(getCourceManager()->getCourceMakerB());
     return true;
 }
 
 void GameStage::onEnterTransitionDidFinish() {
     GameScene::onEnterTransitionDidFinish();
-    courceB();
+//    courceB();
     
     // Bikeをセット
     setBike(Bike::create());
@@ -82,6 +87,8 @@ void GameStage::onEnterTransitionDidFinish() {
     runAction(Follow::create(getBike()->getSceneChasePt()));
     getBike()->scheduleUpdate();
     // ~Bikeをセット
+    
+    getCourceManager()->checkAndMadeCource(getBike()->getPosition());
     
     setContactListener();
     
@@ -183,7 +190,7 @@ void GameStage::update(float dt) {
             }
         }
     }
-
+    getCourceManager()->checkAndMadeCource(getBike()->getPosition());
     if(getBike()){
         //        getDebugMemo()->setString("重心位置:" + ST_VEC2(getBike()->weightPt));
         //        getDebugMemo()->setString("bike:" + ST_VEC2(getBike()->getPosition()) + " " + ST_INT(getBike()->getRotation()));

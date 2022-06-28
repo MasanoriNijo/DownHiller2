@@ -12,7 +12,6 @@ protected:
     
 public:
     CREATE_FUNC(CourceMaker);
-//    static CourceMaker* create();
     bool init() override;
     CC_SYNTHESIZE_RETAIN(Calclater*,_calc,Calc);
     CC_SYNTHESIZE_RETAIN(SpriteBatchNode*,_dot,Dot);
@@ -27,6 +26,8 @@ public:
     CC_SYNTHESIZE_RETAIN(PhysicsBody*,_courceBody,CourceBody);
     CC_SYNTHESIZE(Vector<Sprite*>,_member,Member);
 //    CC_SYNTHESIZE(Vector<Vec2>,_polygonPts,PolygonPts);
+    CC_SYNTHESIZE(Vec2,_strPt,StartPt);
+    CC_SYNTHESIZE(Vec2,_strDir,StartDir);
     CC_SYNTHESIZE(Vec2,_wrkPt,WorkPt);
     CC_SYNTHESIZE(Vec2,_wrkDir,WorkDir);
     CC_SYNTHESIZE(Vec2,_trgPt,TergetPt);
@@ -51,7 +52,9 @@ public:
     void drawByStraight(Vec2 dpt_);
     // 現ポイントの方向から滑らかに、前方にdx,横にdy進んだポイントにつながる曲線を描く。
     void drawBySmoothCurve(Vec2 dirPt_);
-    // 現ポイントから、指定のポイントが、終点になるように、指定した角度左（−90 - 90度）右円弧を描く。
+    // 現ポイントの方向から滑らかに、指定曲率で指定の角度になるまで、曲線を引く。
+    void drawBySmoothCurve(float r,float kaku);
+    // 現ポイントから、指定の値だけすすんたポイントが、終点になるように、指定した角度左（−90 - 90度）右円弧を描く。
     void drawByCurve(Vec2 dpt_,float kaku);    
     // 現ポイントから、指定した角度3（0 - 360度）で直線を描く。
     void drawByStraight(float length, float kaku);
