@@ -5,6 +5,7 @@
 #include "util/TouchEventHelper.h"
 #include "util/LineMaker.h"
 #include "util/CourceMaker.h"
+#include "util/CourceManager.h"
 #include "item/CurveLine.h"
 #include "item/Bike.h"
 #include "item/Flg.h"
@@ -31,6 +32,7 @@ public:
     CC_SYNTHESIZE_RETAIN(Bike*,_bike,Bike);
     CC_SYNTHESIZE_RETAIN(EventListenerPhysicsContact*, _contactlistener,ContactListenner);
     CC_SYNTHESIZE_RETAIN(CourceMaker*,_courceMaker,CourceMaker);
+    CC_SYNTHESIZE_RETAIN(CourceManager*,_courceManager,CourceManager);
     
     void update(float dt) override;
     void onEnterTransitionDidFinish() override;

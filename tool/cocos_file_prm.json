@@ -1,7 +1,8 @@
 {
-  "className": "ScrollNode",
-  "superClass": "Node",
+  "className": "CourceManager",
+  "superClass": "Ref",
   "synthesize_retains": [
-    ["Calclater", "_calc", "Calc"]
+    ["CourceMaker", "_courceMakerA", "CourceMakerA"],
+    ["CourceMaker", "_courceMakerB", "CourceMakerB"]
   ]
 }

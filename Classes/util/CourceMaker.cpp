@@ -55,6 +55,8 @@ void CourceMaker::update(float dt) {
 }
 
 void CourceMaker::drawStart(Vec2 pt_, Vec2 dir_){
+    setStartPt(pt_);
+    setStartDir(dir_);
     this->setWorkPt(pt_);
     this->setWorkDir(dir_);
     this->setTergetPt(pt_);
@@ -62,6 +64,7 @@ void CourceMaker::drawStart(Vec2 pt_, Vec2 dir_){
     _polygonPtCnt = 0;
     addDot(pt_);
     addPolygonPts(_wrkPt);
+    getMember().clear();
 }
 void CourceMaker::drawTo(Vec2 pt_, Vec2 dir_){
     this->setWorkPt(_trgPt);
@@ -104,6 +107,19 @@ void CourceMaker::drawBySmoothCurve(Vec2 dirPt_){
     setTergetPt(_trgPt + dpt_);
     setTargetDir(newTrgDir);
     calcCurve(-1);
+}
+
+void CourceMaker::drawBySmoothCurve(float r,float kaku){
+    Vec2 trgDir = getCalc()->rotByKaku(Vec2(1,0), -kaku);
+    float drad = getCalc()->diffRadA2B(getTargetDir(),trgDir);
+    Vec2 ctPt = getCalc()->chgLength(getCalc()->rotByRad(getTargetDir(), drad<0 ? M_PI/2 : -M_PI/2) , r);
+    Vec2 trgPt_ctPt = getCalc()->rotByRad(ctPt, drad);
+    Vec2 trgPt = getTergetPt()+trgPt_ctPt-ctPt;
+    setWorkPt(_trgPt);
+    setWorkDir(_trgDir);
+    setTergetPt(trgPt);
+    setTargetDir(trgDir);
+    calcCurve(r);
 }
 
 void CourceMaker::drawByCurve(Vec2 dpt_,float kaku){

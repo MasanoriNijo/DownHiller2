@@ -179,6 +179,7 @@
 		304DD0BE2843D12300AF0334 /* SpritePool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304DD0BD2843D12300AF0334 /* SpritePool.cpp */; };
 		304DD0C22843DE2700AF0334 /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304DD0C12843DE2700AF0334 /* GameScene.cpp */; };
 		305D0D752868BBDC009DDA1E /* btn_base.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 305D0D732868BBB8009DDA1E /* btn_base.png */; };
+		305D0D78286B4E84009DDA1E /* CourceManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 305D0D76286B4E84009DDA1E /* CourceManager.cpp */; };
 		3087C151285EFD5000AD0F14 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3087C150285EFD5000AD0F14 /* SwiftUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3087C1542862078100AD0F14 /* mark.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3087C152286206DE00AD0F14 /* mark.png */; };
 		3087C1572864B25300AD0F14 /* Flg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3087C1552864B25300AD0F14 /* Flg.cpp */; };
@@ -1443,6 +1444,8 @@
 		304DD0DB2845253200AF0334 /* kotokotobokanmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = kotokotobokanmark.png; path = Resources/images/kotokotobokanmark.png; sourceTree = SOURCE_ROOT; };
 		304DD0DD28452B5D00AF0334 /* kotokotobokanmark_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = kotokotobokanmark_2.png; path = Resources/images/kotokotobokanmark_2.png; sourceTree = SOURCE_ROOT; };
 		305D0D732868BBB8009DDA1E /* btn_base.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_base.png; path = Resources/images/btn_base.png; sourceTree = SOURCE_ROOT; };
+		305D0D76286B4E84009DDA1E /* CourceManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CourceManager.cpp; path = Classes/util/CourceManager.cpp; sourceTree = SOURCE_ROOT; };
+		305D0D77286B4E84009DDA1E /* CourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CourceManager.h; path = Classes/util/CourceManager.h; sourceTree = SOURCE_ROOT; };
 		3077803B8D5646769C867A5B /* DetourObstacleAvoidance.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = DetourObstacleAvoidance.cpp; path = cocos2d/external/recast/DetourCrowd/DetourObstacleAvoidance.cpp; sourceTree = SOURCE_ROOT; };
 		3087C150285EFD5000AD0F14 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		3087C152286206DE00AD0F14 /* mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mark.png; path = Resources/images/mark.png; sourceTree = SOURCE_ROOT; };
@@ -3652,6 +3655,8 @@
 		304DD0BB2843D0A400AF0334 /* util */ = {
 			isa = PBXGroup;
 			children = (
+				305D0D76286B4E84009DDA1E /* CourceManager.cpp */,
+				305D0D77286B4E84009DDA1E /* CourceManager.h */,
 				302A0A35285CC4010072A2D3 /* CourceMaker.cpp */,
 				302A0A34285CC4010072A2D3 /* CourceMaker.h */,
 				302A0A182853AECC0072A2D3 /* LineMaker.cpp */,
@@ -5435,6 +5440,7 @@
 				19BCA424ADCD40E8A1AEA8CD /* AppController.mm in Sources */,
 				47389F4909D3462CB4D5567B /* RootViewController.mm in Sources */,
 				309B0D21284D04F00091801C /* Bike.cpp in Sources */,
+				305D0D78286B4E84009DDA1E /* CourceManager.cpp in Sources */,
 				309B0D0F28490A830091801C /* ColorChanger.cpp in Sources */,
 				302A0A33285B70B20072A2D3 /* CurveLine.cpp in Sources */,
 				304DD0BA2843D08F00AF0334 /* TestScene.cpp in Sources */,

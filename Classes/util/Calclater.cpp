@@ -253,6 +253,15 @@ float Calclater::diffRadA2B(Vec2 A, Vec2 B, bool leftFlg){
     }
 }
 
+float Calclater::diffRadA2B(Vec2 A, Vec2 B){    
+    float radA = nomlRad(Vec2::ZERO, A);
+    float radB = nomlRad(Vec2::ZERO, B);
+    float rad1;
+    float rad2;
+    rad1 = radB - radA;
+    rad2 = rad1>0 ? rad1 - 2 * M_PI : rad1 + 2 * M_PI;
+    return abs(rad1)<abs(rad2) ? rad1 : rad2;
+}
 // 指定の線分に対して対照のポイントを変える。
 Vec2 Calclater::getMirrorPointLineA(Vec2 a1, Vec2 a2,Vec2 pt){
     Vec2 basePt = a2 - a1;
