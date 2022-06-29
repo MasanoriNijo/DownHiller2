@@ -41,29 +41,28 @@ bool GameStage::init() {
     if (!GameScene::init()) {
         return false;
     }
-    
+    setSoundEffect("btnon.mp");
     setBackGroundColor();
-    setBtn1(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
-        if(getBike()){
-            getScene()->getPhysicsWorld()->removeJoint(getBike()->getFRJoint());
-        }
+    setBtn1(generateMenuItemSprite([this](Ref* ref){
         transitonScene(TitleScene::createScene());
-    }));
-    setBtn2(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
-        getBike()->weightPt = Vec2(-6,6);
-        getBike()->weightPt = Vec2(6,6);
-    }));
-    setBtn3(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
-        getBike()->weightPt = Vec2(6,6);
-        getBike()->weightPt = Vec2(-6,6);
-    }));
-    setBtn4(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
-        getBike()->weightPt = Vec2(0,6);
-        getBike()->chasePt = Vec2(0,-6);
-    }));
-    setMenu(Menu::create(getBtn1(),getBtn2(),getBtn3(),getBtn4(),NULL));
+    }, Size(1,1), L_BTN_BACK, Color3B::WHITE, Color3B::YELLOW, false));
+
+//    setBtn2(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
+//        getBike()->weightPt = Vec2(-6,6);
+//        getBike()->weightPt = Vec2(6,6);
+//    }));
+//    setBtn3(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
+//        getBike()->weightPt = Vec2(6,6);
+//        getBike()->weightPt = Vec2(-6,6);
+//    }));
+//    setBtn4(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
+//        getBike()->weightPt = Vec2(0,6);
+//        getBike()->chasePt = Vec2(0,-6);
+//    }));
+    setMenu(Menu::create(getBtn1(),NULL));
     getMenu()->alignItemsHorizontallyWithPadding(20);
-    mountNode(getMenu(), ctPt+Vec2(0,-100), OBJ_LAYER_TOP);
+    mountNode(getMenu(), Vec2(winSize.width - getBtn1()->getContentSize().width/2 -10,
+                              winSize.height - getBtn1()->getContentSize().height/2 -10), OBJ_LAYER_TOP);
     
     setCourceMaker(CourceMaker::create());
     addChild(getCourceMaker());
@@ -200,14 +199,14 @@ void GameStage::update(float dt) {
 }
 
 void GameStage::onReady(){
-    showGameAnnounce("READY!", ctPt,[this]{
+    showGameAnnounce(L_GAME_READY, ctPt,[this]{
         setGameState(GameState::PLAY);
         fstStCnge = true;
     });
 }
 
 void GameStage::onPlay(){
-    showGameAnnounce("GO->!", ctPt,[this]{
+    showGameAnnounce(L_GAME_START, ctPt,[this]{
         getBike()->setTouchEvent();
     });
 }
@@ -216,13 +215,13 @@ void GameStage::onClear(){
     getBike()->getRwheel()->getPhysicsBody()->setAngularDamping(1);
 //    getBike()->getRwheel()->getPhysicsBody()->setLinearDamping(1);
     getBike()->removeTouchEvent();
-    showGameAnnounce("CLEAR!", ctPt,[this]{
-        //todo
+    showGameAnnounce(L_GAME_CLEAR, ctPt,[this]{
     });
 }
 
 void GameStage::onMiss(){
-    showGameAnnounce("MISS!", ctPt);
+    callSoundEffect("btnon.mp3");
+    showGameAnnounce(L_GAME_MISS, ctPt);
     getBike()->getFRJoint()->removeFormWorld();
 //    getBike()->getRwheel()->getPhysicsBody()->setAngularDamping(1);
 //    getBike()->getRwheel()->getPhysicsBody()->setLinearDamping(1);

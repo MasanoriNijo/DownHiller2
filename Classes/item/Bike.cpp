@@ -220,7 +220,7 @@ void Bike::riderImageAction(){
                                           frameSize.width, frameSize.height));
     // 画面スクロールポイントを指定
     if(_sceneChasePt){
-        _sceneChasePt->setPosition(getPosition()+sceneOffset);
+        _sceneChasePt->setPosition(getFwheel()->getPosition()+sceneOffset);
     }
 }
 

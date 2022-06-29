@@ -1446,6 +1446,7 @@
 		305D0D732868BBB8009DDA1E /* btn_base.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_base.png; path = Resources/images/btn_base.png; sourceTree = SOURCE_ROOT; };
 		305D0D76286B4E84009DDA1E /* CourceManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CourceManager.cpp; path = Classes/util/CourceManager.cpp; sourceTree = SOURCE_ROOT; };
 		305D0D77286B4E84009DDA1E /* CourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CourceManager.h; path = Classes/util/CourceManager.h; sourceTree = SOURCE_ROOT; };
+		305D0D7A286C9E04009DDA1E /* Lang.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Lang.h; path = Classes/util/Lang.h; sourceTree = SOURCE_ROOT; };
 		3077803B8D5646769C867A5B /* DetourObstacleAvoidance.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = DetourObstacleAvoidance.cpp; path = cocos2d/external/recast/DetourCrowd/DetourObstacleAvoidance.cpp; sourceTree = SOURCE_ROOT; };
 		3087C150285EFD5000AD0F14 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		3087C152286206DE00AD0F14 /* mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mark.png; path = Resources/images/mark.png; sourceTree = SOURCE_ROOT; };
@@ -3670,6 +3671,7 @@
 				309B0D1C284CE5230091801C /* TouchEventHelper.cpp */,
 				309B0D1D284CE5230091801C /* TouchEventHelper.h */,
 				309B0D0B2848FA5B0091801C /* Const.h */,
+				305D0D7A286C9E04009DDA1E /* Lang.h */,
 			);
 			name = util;
 			path = Classes/util;

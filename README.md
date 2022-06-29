@@ -68,3 +68,8 @@ corelocationframeworkを追加する。
 6.ios14.4.1で実機ビルドできる様にする。
 1)build Phases→Link Binary With Libraryiesで
 　CoreLocationUI .frameworkのStatusをOptionalにする。
+
+
+
+7,sound関連
+https://shivat.hatenablog.com/entry/2017/05/22/172439

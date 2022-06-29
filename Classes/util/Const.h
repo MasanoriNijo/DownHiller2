@@ -54,7 +54,6 @@ static const int TG_COURCE=3;
 static const int TG_START=4;
 static const int TG_GOAL=5;
 
-
 // Physics Category
 static const int CT_NONE = 0x00000000;
 static const int CT_RIDER = 1 << 0;
@@ -76,3 +75,4 @@ static const int CT_ALL = 0xFFFFFFFF;
 #define ST_NODE(node) ({std::string stnd = ST_VEC2(node->getPosition());std::string stdeg = ST_FLOAT(node->getRotation()); stnd + " deg:" + stdeg;})
 
 #endif
+

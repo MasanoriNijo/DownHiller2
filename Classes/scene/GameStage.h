@@ -23,10 +23,10 @@ public:
     CREATE_FUNC(GameStage);
     static Scene* createScene();
     CC_SYNTHESIZE_RETAIN(Label*,_gameTitle,GameTitle);
-    CC_SYNTHESIZE_RETAIN(MenuItemImage*,_btn1,Btn1);
-    CC_SYNTHESIZE_RETAIN(MenuItemImage*,_btn2,Btn2);
-    CC_SYNTHESIZE_RETAIN(MenuItemImage*,_btn3,Btn3);
-    CC_SYNTHESIZE_RETAIN(MenuItemImage*,_btn4,Btn4);
+    CC_SYNTHESIZE_RETAIN(MenuItemSprite*,_btn1,Btn1);
+    CC_SYNTHESIZE_RETAIN(MenuItemSprite*,_btn2,Btn2);
+    CC_SYNTHESIZE_RETAIN(MenuItemSprite*,_btn3,Btn3);
+    CC_SYNTHESIZE_RETAIN(MenuItemSprite*,_btn4,Btn4);
     CC_SYNTHESIZE_RETAIN(Menu*,_menu,Menu);
     CC_SYNTHESIZE_RETAIN(TouchEventHelper*,_touch,Touch);
     CC_SYNTHESIZE_RETAIN(Bike*,_bike,Bike);

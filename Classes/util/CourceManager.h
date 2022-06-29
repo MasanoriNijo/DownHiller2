@@ -27,7 +27,7 @@ public:
     void setStartAndTargetDromCource(CourceMaker* _cmaker);
     bool togle = false;
     int courceIndex = 0;
-    Vec2 FIRST_COURCE_BASE_POINT = Vec2(-30,0);
+    Vec2 FIRST_COURCE_BASE_POINT = Vec2(-100,0);
     
     
     void madeCourcePtn1(CourceMaker* _cmaker);
