@@ -114,7 +114,7 @@ public:
     float maxWheelVelo = 200;
     
     // 画面スクロール関連
-    Vec2 sceneOffset = Vec2(60,-20);
+    Vec2 sceneOffset = Vec2(20,-20);
     
 };
 

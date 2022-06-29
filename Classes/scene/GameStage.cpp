@@ -44,10 +44,12 @@ bool GameStage::init() {
     setSoundEffect("btnon.mp");
     setBackGroundColor();
     setPosition(ctPt);
+//    setBtn1(generateMenuItemSprite([this](Ref* ref){
+//        transitonScene(TitleScene::createScene());
+//    }, Size(1,1), L_BTN_BACK, Color3B::WHITE, Color3B::YELLOW, false));
     setBtn1(generateMenuItemSprite([this](Ref* ref){
         transitonScene(TitleScene::createScene());
     }, Size(1,1), L_BTN_BACK, Color3B::WHITE, Color3B::YELLOW, false));
-
 //    setBtn2(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
 //        getBike()->weightPt = Vec2(-6,6);
 //        getBike()->weightPt = Vec2(6,6);
@@ -62,9 +64,9 @@ bool GameStage::init() {
 //    }));
     setMenu(Menu::create(getBtn1(),NULL));
     getMenu()->alignItemsHorizontallyWithPadding(20);
-    mountNode(getMenu(), Vec2(winSize.width - getBtn1()->getContentSize().width/2 -10,
-                              winSize.height - getBtn1()->getContentSize().height/2 -10), OBJ_LAYER_TOP);
-    
+//    mountNode(getMenu(), Vec2(winSize.width - getBtn1()->getContentSize().width/2 -10,
+//                              winSize.height - getBtn1()->getContentSize().height/2 -10), OBJ_LAYER_TOP);
+    mountNode(getMenu(), ctPt, OBJ_LAYER_TOP);
     setCourceMaker(CourceMaker::create());
     addChild(getCourceMaker());
     
