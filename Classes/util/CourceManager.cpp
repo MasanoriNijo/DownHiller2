@@ -63,7 +63,7 @@ void CourceManager::checkAndMadeCource(Vec2 chPt){
 
 void CourceManager::madeCourcePtn1(CourceMaker* _cmaker){
     _cmaker->drawStart(getTergetPt(),getTargetDir());
-    _cmaker->drawByStraight(Vec2(0,-100));
+    _cmaker->drawByStraight(Vec2(0,-1));
     _cmaker->drawByStraight(Vec2(200,0));
     for(int i = 0;i<2;i++){
         _cmaker->drawBySmoothCurve(20,-40);

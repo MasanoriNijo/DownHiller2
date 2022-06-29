@@ -43,6 +43,7 @@ bool GameStage::init() {
     }
     setSoundEffect("btnon.mp");
     setBackGroundColor();
+    setPosition(ctPt);
     setBtn1(generateMenuItemSprite([this](Ref* ref){
         transitonScene(TitleScene::createScene());
     }, Size(1,1), L_BTN_BACK, Color3B::WHITE, Color3B::YELLOW, false));
@@ -77,94 +78,23 @@ void GameStage::onEnterTransitionDidFinish() {
     GameScene::onEnterTransitionDidFinish();
 //    courceB();
     
-    // Bikeをセット
-    setBike(Bike::create());
-    mountScroleNode(getBike(), Vec2::ZERO, OBJ_LAYER_TOP);
-    mountScroleNode(getBike()->getSceneChasePt(), getBike()->getPosition() + getBike()->sceneOffset, OBJ_LAYER_TOP);
-    getBike()->SetJoint();
-    getScene()->getPhysicsWorld()->addJoint(getBike()->getFRJoint());
-    runAction(Follow::create(getBike()->getSceneChasePt()));
-    getBike()->scheduleUpdate();
-    // ~Bikeをセット
-    
-    getCourceManager()->checkAndMadeCource(getBike()->getPosition());
-    
-    setContactListener();
+//    // Bikeをセット
+//    setBike(Bike::create());
+//    mountScroleNode(getBike(), RIDER_START_POINT, OBJ_LAYER_TOP);
+//    mountScroleNode(getBike()->getSceneChasePt(), getBike()->getPosition() + getBike()->sceneOffset, OBJ_LAYER_TOP);
+//    getBike()->SetJoint();
+//    getScene()->getPhysicsWorld()->addJoint(getBike()->getFRJoint());
+//    getBike()->scheduleUpdate();
+//    // ~Bikeをセット
+//    // 画面スクロール開始
+//    runAction(Follow::create(getBike()->getSceneChasePt()));
+//    getCourceManager()->checkAndMadeCource(Vec2::ZERO);
+//
+//    setContactListener();
     
     setGameState(GameState::READY);
     fstStCnge = true;
     scheduleUpdate();
-}
-
-void GameStage::courceA(){
-    auto flg = Flg::create();
-    getCourceMaker()->drawStart(Vec2(-50,100),Vec2::ZERO);
-    getCourceMaker()->drawByStraight(Vec2(0,-100));
-    getCourceMaker()->drawByStraight(Vec2(200,-30));
-    flg->setGlobalZOrder(OBJ_LAYER_TOP);
-    flg->setPosition(getCourceMaker()->getTergetPt());
-    flg->setRotation(getCalc()->nomlRad(getCourceMaker()->getTargetDir()));
-    addChild(flg);
-    getCourceMaker()->drawBySmoothCurve(Vec2(50,-40));
-    getCourceMaker()->drawBySmoothCurve(Vec2(50,40));
-    getCourceMaker()->drawByStraight(200,0);
-    getCourceMaker()->drawByStraight(Vec2(0,100));
-    getCourceMaker()->madePhysiceBody();
-}
-
-void GameStage::courceB(){
-    getCourceMaker()->drawStart(Vec2(-50,100),Vec2::ZERO);
-    getCourceMaker()->drawByStraight(Vec2(0,-100));
-    getCourceMaker()->drawByStraight(Vec2(200,0));
-    for(int i = 0;i<2;i++){
-        getCourceMaker()->drawBySmoothCurve(Vec2(50,20));
-        getCourceMaker()->drawBySmoothCurve(Vec2(80,-50));
-        getCourceMaker()->drawBySmoothCurve(Vec2(100,50));
-        getCourceMaker()->drawBySmoothCurve(Vec2(100,-80));
-        getCourceMaker()->drawBySmoothCurve(Vec2(130,100));
-        getCourceMaker()->drawByStraight(Vec2(300,0));
-        getCourceMaker()->drawByStraight(Vec2(0,-50));
-        getCourceMaker()->drawByStraight(Vec2(90,0));
-        getCourceMaker()->drawByCurve(Vec2(240,-30), -50);
-        getCourceMaker()->drawByStraight(Vec2(0,-50));
-        getCourceMaker()->drawByStraight(Vec2(90,0));
-    }
-    getCourceMaker()->drawByStraight(Vec2(90,0));
-    auto flg = Flg::create();
-    flg->setGlobalZOrder(OBJ_LAYER_TOP);
-    flg->setPosition(getCourceMaker()->getTergetPt());
-    flg->setRotation(getCalc()->nomlKaku(Vec2::ZERO, getCourceMaker()->getTargetDir()));
-    addChild(flg);
-    getCourceMaker()->drawByStraight(Vec2(90,0));
-    getCourceMaker()->drawByStraight(Vec2(0,100));
-    getCourceMaker()->madePhysiceBody();
-}
-
-void GameStage::courceC(){
-    Vec2 points[10];
-    points[0].x = -50;
-    points[0].y = 100;
-    points[1].x = -50;
-    points[1].y = -20;
-    points[2].x = 300;
-    points[2].y = -20;
-    points[3].x = 600;
-    points[3].y = -70;
-    
-    getCourceMaker()->drawStart(points[0], points[1]-points[0]);
-    getCourceMaker()->drawTo(points[1], points[2]-points[1]);
-    getCourceMaker()->drawTo(points[2], points[3]-points[2]);
-    getCourceMaker()->drawTo(points[3], Vec2(10,-5));
-    
-    Vec2 adPt = Vec2(150,-40);
-    Vec2 pt_ = getCourceMaker()->getTergetPt();
-    Vec2 dir_ = Vec2(10,8);
-    for(int i= 0;i<100;i++){
-        getCourceMaker()->drawTo(pt_, dir_);
-        pt_ += adPt;
-        dir_ =Vec2(dir_.x,dir_.y * -1);
-    }
-    getCourceMaker()->madePhysiceBody();
 }
 
 void GameStage::update(float dt) {
@@ -191,21 +121,43 @@ void GameStage::update(float dt) {
     }
     getCourceManager()->checkAndMadeCource(getBike()->getPosition());
     if(getBike()){
-        //        getDebugMemo()->setString("重心位置:" + ST_VEC2(getBike()->weightPt));
-        //        getDebugMemo()->setString("bike:" + ST_VEC2(getBike()->getPosition()) + " " + ST_INT(getBike()->getRotation()));
-        //        getDebugMemo()->setString("swaip:" + ST_VEC2(getBike()->weightPt));
-        getDebugMemo()->setString("bike:" + ST_INT(getBike()->centerObjVelo.length()) + "km/h");
+//        getDebugMemo()->setString("重心位置:" + ST_VEC2(getBike()->weightPt));
+        getDebugMemo()->setString("bike:" + ST_VEC2(getBike()->getPosition()) + " " + ST_INT(getBike()->getRotation()));
+//        getDebugMemo()->setString("swaip:" + ST_VEC2(getBike()->weightPt));
+//   getDebugMemo()->setString("bike:" + ST_INT(getBike()->centerObjVelo.length()) + "km/h");
     }
 }
 
 void GameStage::onReady(){
-    showGameAnnounce(L_GAME_READY, ctPt,[this]{
+    // Bikeをセット
+    setBike(Bike::create());
+    mountScroleNode(getBike(), RIDER_START_POINT, OBJ_LAYER_TOP);
+    mountScroleNode(getBike()->getSceneChasePt(), getBike()->getPosition() + getBike()->sceneOffset, OBJ_LAYER_TOP);
+    getBike()->SetJoint();
+    getScene()->getPhysicsWorld()->addJoint(getBike()->getFRJoint());
+    getBike()->scheduleUpdate();
+    // ~Bikeをセット
+    // 画面スクロール開始
+    runAction(Follow::create(getBike()->getSceneChasePt()));
+    getCourceManager()->checkAndMadeCource(Vec2::ZERO);
+    
+    setContactListener();
+//    getBike()->setPosition(RIDER_START_POINT);
+//    auto wait = DelayTime::create(4);
+//    auto moveto = MoveBy::create(5, Vec2(89,0));
+    //    auto endFnc = CallFunc::create([this](){
+    this->showGameAnnounce(L_GAME_READY, ctPt,[this]{
         setGameState(GameState::PLAY);
         fstStCnge = true;
     });
+//    });
+//    auto seq = Sequence::create(wait,moveto,endFnc, NULL);
+//    getBike()->runAction(seq);
 }
 
 void GameStage::onPlay(){
+    // 画面スクロール開始
+    runAction(Follow::create(getBike()->getSceneChasePt()));
     showGameAnnounce(L_GAME_START, ctPt,[this]{
         getBike()->setTouchEvent();
     });
