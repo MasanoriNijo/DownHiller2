@@ -2,11 +2,13 @@
 #define __GAMESCENE_H__
 
 #include "util/Const.h"
+#include "util/Lang.h"
 #include "util/ColorChanger.h"
 #include "util/Calclater.h"
 #include "item/Button.h"
 #include "audio/include/AudioEngine.h"
 #include "scene/base/TransitionScene.h"
+#include "cocos/editor-support/cocostudio/SimpleAudioEngine.h"
 #include "cocos2d.h"
 USING_NS_CC;
 
@@ -72,6 +74,15 @@ public:
     // 各種Item生成
     MenuItemSprite* generateMenuItemSprite(const ccMenuCallback& callback, Size size,std::string st,
                                            Color3B color_,Color3B color2_, bool isBlink);
+    
+    
+    // 音関連
+    void setBGM(const char* filePath);
+    void startBGM(const char* filePath);
+    void stopBGM(const char* filePath);
+    void setSoundEffect(const char* filePath);
+    void callSoundEffect(const char* filePath);
+    
     
     // 画面のサイズ関連を取得する.
     // 実際の画面サイズ

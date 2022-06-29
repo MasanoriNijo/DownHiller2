@@ -113,7 +113,9 @@ void GameScene::update(float dt) {
 
 void GameScene::transitonScene(Scene* scene){
     auto transition_ = CallFuncN::create([scene](Node* node_) {
-        auto transition=TransitionCrossFade::create(0.5,scene);
+
+        auto transition=TransitionMoveInR::create(0.5,scene);
+//        auto transition=TransitionCrossFade::create(0.5,scene);
         Director::getInstance()->replaceScene(transition);
     });
     this->runAction(transition_);
@@ -236,6 +238,28 @@ MenuItemSprite* GameScene::generateMenuItemSprite(const ccMenuCallback& callback
     btn2_->setButton(Size(1,1), st);
     btn2_->setButtonColor(color2_);
     return  MenuItemSprite::create(btn_, btn2_,callback);
+}
+
+void GameScene::setBGM(const char* filePath){
+    CocosDenshion::SimpleAudioEngine::getInstance()->preloadBackgroundMusic(filePath);
+}
+
+void GameScene::startBGM(const char* filePath){
+    CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic(filePath, true);
+}
+
+void GameScene::stopBGM(const char* filePath){
+    CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic();
+}
+
+void GameScene::setSoundEffect(const char* filePath){
+    CocosDenshion::SimpleAudioEngine::getInstance()->preloadEffect(filePath);
+}
+
+void GameScene::callSoundEffect(const char* filePath){
+    // play a sound effect, just once.
+    auto audio = CocosDenshion::SimpleAudioEngine::getInstance();
+    audio->playEffect(filePath, false, 1.0f, 1.0f, 1.0f);
 }
 
 /** パラメータサンプル

@@ -80,3 +80,5 @@ Android用メモ
 以下参考に修正中
 https://qiita.com/tlsd/items/b610d75565e1895bf96a
 
+7,sound関連
+https://shivat.hatenablog.com/entry/2017/05/22/172439
