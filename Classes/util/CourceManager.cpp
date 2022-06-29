@@ -65,14 +65,14 @@ void CourceManager::madeCourcePtn1(CourceMaker* _cmaker){
     _cmaker->drawStart(getTergetPt(),getTargetDir());
     _cmaker->drawByStraight(Vec2(0,-1));
     _cmaker->drawByStraight(Vec2(200,0));
-    for(int i = 0;i<2;i++){
+    for(int i = 0;i<1;i++){
         _cmaker->drawBySmoothCurve(20,-40);
         _cmaker->drawBySmoothCurve(50,60);
         _cmaker->drawBySmoothCurve(50,-60);
         _cmaker->drawBySmoothCurve(20,0);
         _cmaker->drawByStraight(Vec2(90,0));
     }
-    for(int i = 0;i<8;i++){
+    for(int i = 0;i<2;i++){
         _cmaker->drawByStraight(Vec2(0,-20));
         _cmaker->drawByStraight(Vec2(80,0));
     }
@@ -84,7 +84,7 @@ void CourceManager::madeCourcePtn2(CourceMaker* _cmaker){
    _cmaker->drawStart(getTergetPt(),getTargetDir());
    _cmaker->drawByStraight(Vec2(0,-100));
    _cmaker->drawByStraight(Vec2(200,0));
-    for(int i = 0;i<2;i++){
+    for(int i = 0;i<1;i++){
        _cmaker->drawBySmoothCurve(Vec2(50,20));
        _cmaker->drawBySmoothCurve(Vec2(80,-50));
        _cmaker->drawBySmoothCurve(Vec2(100,50));
@@ -106,7 +106,7 @@ void CourceManager::madeCourcePtn3(CourceMaker* _cmaker){
     _cmaker->drawStart(getTergetPt(),getTargetDir());
     _cmaker->drawByStraight(Vec2(0,-100));
     _cmaker->drawByStraight(Vec2(200,0));
-     for(int i = 0;i<2;i++){
+     for(int i = 0;i<1;i++){
         _cmaker->drawBySmoothCurve(Vec2(50,20));
         _cmaker->drawBySmoothCurve(Vec2(80,-50));
         _cmaker->drawBySmoothCurve(Vec2(100,50));
@@ -127,7 +127,7 @@ void CourceManager::madeCourcePtn4(CourceMaker* _cmaker){
     _cmaker->drawStart(getTergetPt(),getTargetDir());
     _cmaker->drawByStraight(Vec2(0,-100));
     _cmaker->drawByStraight(Vec2(200,0));
-     for(int i = 0;i<2;i++){
+     for(int i = 0;i<1;i++){
         _cmaker->drawBySmoothCurve(Vec2(50,20));
         _cmaker->drawBySmoothCurve(Vec2(80,-50));
         _cmaker->drawBySmoothCurve(Vec2(100,50));
