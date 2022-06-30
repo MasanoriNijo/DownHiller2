@@ -95,7 +95,7 @@ void TestPhysicsScene::onEnterTransitionDidFinish() {
     setBike(Bike::create());
     mountScroleNode(getBike(), Vec2::ZERO, OBJ_LAYER_TOP);
     mountScroleNode(getBike()->getSceneChasePt(), getBike()->getPosition() + getBike()->sceneOffset, OBJ_LAYER_TOP);
-    getBike()->SetJoint();
+    getBike()->SetPhysicsPrm();
     getScene()->getPhysicsWorld()->addJoint(getBike()->getFRJoint());
     
     runAction(Follow::create(getBike()->getSceneChasePt()));
