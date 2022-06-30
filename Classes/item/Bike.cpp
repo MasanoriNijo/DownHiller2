@@ -144,7 +144,7 @@ void Bike::SetPhysicsPrm(){
     _material.restitution = 0;
     _material.friction = 0;
     _material.density = 0;
-    getRider()->setPhysicsBody(PhysicsBody::createCircle(15,_material));
+    getRider()->setPhysicsBody(PhysicsBody::createCircle(5,_material));
     getRider()->getPhysicsBody()->setGravityEnable(false);
     getRider()->getPhysicsBody()->setCategoryBitmask(CT_RIDER);
     getRider()->getPhysicsBody()->setCollisionBitmask(CT_COURCE);
