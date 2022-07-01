@@ -41,7 +41,7 @@ public:
     CC_SYNTHESIZE_RETAIN(Label*,_bikeDebug,BikeDebug);
     
     // 前後車輪を親シーンに設置した後、親シーンから呼ぶ
-    void SetJoint();
+    void SetPhysicsPrm();
     
     // タッチイベントをセットする
     void setTouchEvent();

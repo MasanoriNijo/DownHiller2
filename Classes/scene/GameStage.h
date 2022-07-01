@@ -45,7 +45,7 @@ public:
     
     // geme状態遷移
     void onReady();
-    Vec2 RIDER_START_POINT = Vec2(-80,1);
+    Vec2 RIDER_START_POINT = Vec2(0,0);
     void onPlay();
     void onClear();
     void onMiss();

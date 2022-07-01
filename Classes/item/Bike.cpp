@@ -44,15 +44,7 @@ bool Bike::init() {
     
     // wheelをセットする。
     setFwheel(Sprite::create("wheel3.png"));
-    getFwheel()->setPosition(Vec2(33,2));
-    _addPhysicsToWheel(getFwheel());
-    getFwheel()->getPhysicsBody()->setTag(TG_F_WHEEL);
-    
     setRwheel(Sprite::createWithTexture(getFwheel()->getTexture()));
-    getRwheel()->setPosition(Vec2(1,2));
-    _addPhysicsToWheel(getRwheel());
-    getRwheel()->getPhysicsBody()->setTag(TG_R_WHEEL);
-        
 //    _setTouchEvent(); // game進行上で起動させる。
 
     //debug
@@ -129,11 +121,18 @@ void Bike::onEnterTransitionDidFinish() {
     // todo
 }
 
-void Bike::SetJoint(){
+void Bike::SetPhysicsPrm(){
+    
     getFwheel()->setPosition(getPosition()+Vec2(wheelBase,0));
     getParent()->addChild(getFwheel(),OBJ_LAYER_TOP);
+    _addPhysicsToWheel(getFwheel());
+    getFwheel()->getPhysicsBody()->setTag(TG_F_WHEEL);
+    
     getRwheel()->setPosition(getPosition());
     getParent()->addChild(getRwheel(),OBJ_LAYER_TOP);
+    _addPhysicsToWheel(getRwheel());
+    getRwheel()->getPhysicsBody()->setTag(TG_R_WHEEL);
+    
     // 前後輪をジョイントを生成する。
     setFRJoint(PhysicsJointDistance::construct(getRwheel()->getPhysicsBody(),
                                                      getFwheel()->getPhysicsBody(),
@@ -145,7 +144,7 @@ void Bike::SetJoint(){
     _material.restitution = 0;
     _material.friction = 0;
     _material.density = 0;
-    getRider()->setPhysicsBody(PhysicsBody::createCircle(15,_material));
+    getRider()->setPhysicsBody(PhysicsBody::createCircle(5,_material));
     getRider()->getPhysicsBody()->setGravityEnable(false);
     getRider()->getPhysicsBody()->setCategoryBitmask(CT_RIDER);
     getRider()->getPhysicsBody()->setCollisionBitmask(CT_COURCE);

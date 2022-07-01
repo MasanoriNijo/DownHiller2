@@ -43,10 +43,7 @@ bool GameStage::init() {
     }
     setSoundEffect("btnon.mp");
     setBackGroundColor();
-    setPosition(ctPt);
-//    setBtn1(generateMenuItemSprite([this](Ref* ref){
-//        transitonScene(TitleScene::createScene());
-//    }, Size(1,1), L_BTN_BACK, Color3B::WHITE, Color3B::YELLOW, false));
+    setPosition(ctPt + Vec2(250,0));
     setBtn1(generateMenuItemSprite([this](Ref* ref){
         transitonScene(TitleScene::createScene());
     }, Size(1,1), L_BTN_BACK, Color3B::WHITE, Color3B::YELLOW, false));
@@ -78,22 +75,17 @@ bool GameStage::init() {
 
 void GameStage::onEnterTransitionDidFinish() {
     GameScene::onEnterTransitionDidFinish();
-//    courceB();
+    getCourceManager()->checkAndMadeCource(Vec2::ZERO);
     
-//    // Bikeをセット
-//    setBike(Bike::create());
-//    mountScroleNode(getBike(), RIDER_START_POINT, OBJ_LAYER_TOP);
-//    mountScroleNode(getBike()->getSceneChasePt(), getBike()->getPosition() + getBike()->sceneOffset, OBJ_LAYER_TOP);
-//    getBike()->SetJoint();
-//    getScene()->getPhysicsWorld()->addJoint(getBike()->getFRJoint());
-//    getBike()->scheduleUpdate();
-//    // ~Bikeをセット
-//    // 画面スクロール開始
-//    runAction(Follow::create(getBike()->getSceneChasePt()));
-//    getCourceManager()->checkAndMadeCource(Vec2::ZERO);
-//
-//    setContactListener();
-    
+    // Bikeをセット
+    setBike(Bike::create());
+    mountScroleNode(getBike(), RIDER_START_POINT, OBJ_LAYER_TOP);
+    mountScroleNode(getBike()->getSceneChasePt(), getBike()->getPosition() + getBike()->sceneOffset, OBJ_LAYER_TOP);
+    getBike()->SetPhysicsPrm();
+    getScene()->getPhysicsWorld()->addJoint(getBike()->getFRJoint());
+    getBike()->scheduleUpdate();
+    // ~Bikeをセット
+    setContactListener();
     setGameState(GameState::READY);
     fstStCnge = true;
     scheduleUpdate();
@@ -123,38 +115,29 @@ void GameStage::update(float dt) {
     }
     getCourceManager()->checkAndMadeCource(getBike()->getPosition());
     if(getBike()){
+        NJLOG(ST_VEC2(ctPt).c_str());
+        NJLOG(ST_VEC2(getPosition()).c_str());
 //        getDebugMemo()->setString("重心位置:" + ST_VEC2(getBike()->weightPt));
-        getDebugMemo()->setString("bike:" + ST_VEC2(getBike()->getPosition()) + " " + ST_INT(getBike()->getRotation()));
+        getDebugMemo()->setString("chase:" + ST_VEC2(getBike()->getSceneChasePt()->getPosition()) + " " + ST_INT(getBike()->getRotation()));
+//        getDebugMemo()->setString("bike:" + ST_VEC2(getBike()->getPosition()) + " " + ST_INT(getBike()->getRotation()));
 //        getDebugMemo()->setString("swaip:" + ST_VEC2(getBike()->weightPt));
 //   getDebugMemo()->setString("bike:" + ST_INT(getBike()->centerObjVelo.length()) + "km/h");
     }
 }
 
 void GameStage::onReady(){
-    // Bikeをセット
-    setBike(Bike::create());
-    mountScroleNode(getBike(), RIDER_START_POINT, OBJ_LAYER_TOP);
-    mountScroleNode(getBike()->getSceneChasePt(), getBike()->getPosition() + getBike()->sceneOffset, OBJ_LAYER_TOP);
-    getBike()->SetJoint();
-    getScene()->getPhysicsWorld()->addJoint(getBike()->getFRJoint());
-    getBike()->scheduleUpdate();
-    // ~Bikeをセット
-    // 画面スクロール開始
-    runAction(Follow::create(getBike()->getSceneChasePt()));
-    getCourceManager()->checkAndMadeCource(Vec2::ZERO);
-    
-    setContactListener();
-//    getBike()->setPosition(RIDER_START_POINT);
-//    auto wait = DelayTime::create(4);
-//    auto moveto = MoveBy::create(5, Vec2(89,0));
-    //    auto endFnc = CallFunc::create([this](){
-    this->showGameAnnounce(L_GAME_READY, ctPt,[this]{
+    auto moveto = MoveTo::create(0.5,Vec2(ctPt.x,ctPt.y)
+                                 - getBike()->getSceneChasePt()->getPosition());
+        auto endFnc = CallFunc::create([this](){
+    this->showGameAnnounce(L_GAME_READY, ctPt + Vec2(0,50),[this]{
+        // 画面スクロール開始
+        runAction(Follow::create(getBike()->getSceneChasePt()));
         setGameState(GameState::PLAY);
         fstStCnge = true;
     });
-//    });
-//    auto seq = Sequence::create(wait,moveto,endFnc, NULL);
-//    getBike()->runAction(seq);
+    });
+    auto seq = Sequence::create(moveto,endFnc, NULL);
+    runAction(seq);
 }
 
 void GameStage::onPlay(){
