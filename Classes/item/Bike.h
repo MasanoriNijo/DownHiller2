@@ -22,7 +22,7 @@ private:
     // ホイールに物理情報を付与する。
     void _addPhysicsToWheel(Sprite* _wheel);
     // 前後輪とBikeの位置を同調する。
-    void _positionSyncToWheel();
+    void _positionSyncToWheel(float dt);
     //　操作の状態で、アクションを決める。
     void _judeAction(float dt);
     
