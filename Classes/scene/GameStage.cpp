@@ -6,7 +6,8 @@
 #include "scene/HelloWorldScene.h"
 
 GameStage::GameStage():
-_gameTitle(NULL), _btn1(NULL), _btn2(NULL), _btn3(NULL), _btn4(NULL), _menu(NULL),_touch(NULL),_bike(NULL),_contactlistener(NULL), _courceMaker(NULL), _courceManager(NULL)
+_gameTitle(NULL), _btn1(NULL), _btn2(NULL), _btn3(NULL), _btn4(NULL), _menu(NULL),_touch(NULL),_bike(NULL),
+_contactlistener(NULL), _courceMaker(NULL),_courceManager(NULL),_modal(NULL),_modalMenu(NULL)
 {}
 
 GameStage::~GameStage() {
@@ -22,6 +23,8 @@ GameStage::~GameStage() {
     CC_SAFE_RELEASE_NULL(_contactlistener);
     CC_SAFE_RELEASE_NULL(_courceMaker);
     CC_SAFE_RELEASE_NULL(_courceManager);
+    CC_SAFE_RELEASE_NULL(_modal);
+    CC_SAFE_RELEASE_NULL(_modalMenu);
 }
 
 Scene* GameStage::createScene() {
@@ -46,24 +49,25 @@ bool GameStage::init() {
     setPosition(ctPt + Vec2(250,0));
     setBtn1(generateMenuItemSprite([this](Ref* ref){
         transitonScene(TitleScene::createScene());
-    }, Size(1,1), L_BTN_BACK, Color3B::WHITE, Color3B::YELLOW, false));
-
-//    setBtn2(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
-//        getBike()->weightPt = Vec2(-6,6);
-//        getBike()->weightPt = Vec2(6,6);
-//    }));
-//    setBtn3(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
-//        getBike()->weightPt = Vec2(6,6);
-//        getBike()->weightPt = Vec2(-6,6);
-//    }));
-//    setBtn4(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
-//        getBike()->weightPt = Vec2(0,6);
-//        getBike()->chasePt = Vec2(0,-6);
-//    }));
+    }, Size(1,1), L_BTN_QUIT, Color3B::WHITE, Color3B::YELLOW, false));
     setMenu(Menu::create(getBtn1(),NULL));
     getMenu()->alignItemsHorizontallyWithPadding(20);
     mountNode(getMenu(), Vec2(winSize.width - getBtn1()->getContentSize().width/2 -10,
                               winSize.height - getBtn1()->getContentSize().height/2 -10), OBJ_LAYER_TOP);
+    // modal画面を作成する。
+    setBtn2(generateMenuItemSprite([this](Ref* ref){
+        transitonScene(GameStage::createScene());
+    }, Size(1,1), L_BTN_RETRY, Color3B::WHITE, Color3B::YELLOW, false));
+    setBtn3(generateMenuItemSprite([this](Ref* ref){
+        transitonScene(GameStage::createScene());
+    }, Size(1,1), L_BTN_NEXT, Color3B::WHITE, Color3B::YELLOW, false));
+    setBtn4(generateMenuItemSprite([this](Ref* ref){
+        transitonScene(TitleScene::createScene());
+    }, Size(1,1), L_BTN_BACK, Color3B::WHITE, Color3B::YELLOW, false));
+    setModal(Modal::create());
+    getModal()->setGlobalZOrder(OBJ_LAYER_TOP);
+    getModal()->setModal(Size(60,120), "メニュー");
+    // modal end
     
     setCourceMaker(CourceMaker::create());
     addChild(getCourceMaker());
@@ -154,22 +158,36 @@ void GameStage::onClear(){
 //    getBike()->getRwheel()->getPhysicsBody()->setLinearDamping(1);
     getBike()->removeTouchEvent();
     showGameAnnounce(L_GAME_CLEAR, ctPt,[this]{
+        setModalMenu(Menu::create(getBtn3(),getBtn4(),NULL));
+        getModalMenu()->alignItemsVerticallyWithPadding(5);
+        getModalMenu()->setPosition(Vec2::ZERO);
+        getModal()->addChild(getModalMenu());
+        getModal()->setScale(0);
+        auto big = ScaleTo::create(0.3, 1);
+        getModal()->runAction(big);
+        mountNode(getModal(), ctPt, OBJ_LAYER_TOP);
     });
 }
 
 void GameStage::onMiss(){
     callSoundEffect("btnon.mp3");
-    showGameAnnounce(L_GAME_MISS, ctPt);
     getBike()->getFRJoint()->removeFormWorld();
-//    getBike()->getRwheel()->getPhysicsBody()->setAngularDamping(1);
-//    getBike()->getRwheel()->getPhysicsBody()->setLinearDamping(1);
     getBike()->unscheduleUpdate();
     getBike()->removeTouchEvent();
     auto gun = Sprite::create("gan.png");
     gun->setPosition(missPt);
     gun->setGlobalZOrder(OBJ_LAYER_TOP);
     addChild(gun);
-//    mountScroleNode(gun, missPt, OBJ_LAYER_TOP);
+    showGameAnnounce(L_GAME_MISS, ctPt,[this]{
+        setModalMenu(Menu::create(getBtn2(),getBtn4(),NULL));
+        getModalMenu()->alignItemsVerticallyWithPadding(5);
+        getModalMenu()->setPosition(Vec2::ZERO);
+        getModal()->addChild(getModalMenu());
+        getModal()->setScale(0);
+        auto big = ScaleTo::create(0.3, 1);
+        getModal()->runAction(big);
+        mountNode(getModal(), ctPt, OBJ_LAYER_TOP);
+    });
 }
 
 void GameStage::setContactListener() {
