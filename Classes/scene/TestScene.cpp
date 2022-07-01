@@ -156,8 +156,9 @@ void TestScene::onEnterTransitionDidFinish() {
 }
 
 void TestScene::update(float dt) {
-    // todo
-    getDebugMemo()->setString(_touchObj->getName() + ":" + ST_NODE(_touchObj));
+    if(getDebugMemo()){
+        getDebugMemo()->setString(_touchObj->getName() + ":" + ST_NODE(_touchObj));
+    }
 }
 /** パラメータサンプル
  setGameTitle(Label::create());

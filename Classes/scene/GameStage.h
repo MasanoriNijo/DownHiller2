@@ -10,6 +10,7 @@
 #include "item/Bike.h"
 #include "item/Flg.h"
 #include "item/StraightLine.h"
+#include "item/Modal.h"
 #include "cocos2d.h"
 USING_NS_CC;
 
@@ -28,6 +29,8 @@ public:
     CC_SYNTHESIZE_RETAIN(MenuItemSprite*,_btn3,Btn3);
     CC_SYNTHESIZE_RETAIN(MenuItemSprite*,_btn4,Btn4);
     CC_SYNTHESIZE_RETAIN(Menu*,_menu,Menu);
+    CC_SYNTHESIZE_RETAIN(Menu*,_modalMenu,ModalMenu);
+    CC_SYNTHESIZE_RETAIN(Modal*,_modal,Modal);
     CC_SYNTHESIZE_RETAIN(TouchEventHelper*,_touch,Touch);
     CC_SYNTHESIZE_RETAIN(Bike*,_bike,Bike);
     CC_SYNTHESIZE_RETAIN(EventListenerPhysicsContact*, _contactlistener,ContactListenner);

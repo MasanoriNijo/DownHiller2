@@ -6,7 +6,8 @@
 #include "scene/HelloWorldScene.h"
 
 GameStage::GameStage():
-_gameTitle(NULL), _btn1(NULL), _btn2(NULL), _btn3(NULL), _btn4(NULL), _menu(NULL),_touch(NULL),_bike(NULL),_contactlistener(NULL), _courceMaker(NULL), _courceManager(NULL)
+_gameTitle(NULL), _btn1(NULL), _btn2(NULL), _btn3(NULL), _btn4(NULL), _menu(NULL),_touch(NULL),_bike(NULL),
+_contactlistener(NULL), _courceMaker(NULL),_courceManager(NULL),_modal(NULL),_modalMenu(NULL)
 {}
 
 GameStage::~GameStage() {
@@ -22,6 +23,8 @@ GameStage::~GameStage() {
     CC_SAFE_RELEASE_NULL(_contactlistener);
     CC_SAFE_RELEASE_NULL(_courceMaker);
     CC_SAFE_RELEASE_NULL(_courceManager);
+    CC_SAFE_RELEASE_NULL(_modal);
+    CC_SAFE_RELEASE_NULL(_modalMenu);
 }
 
 Scene* GameStage::createScene() {
@@ -44,21 +47,40 @@ bool GameStage::init() {
     setSoundEffect("btnon.mp");
     setBackGroundColor();
     setPosition(ctPt + Vec2(250,0));
-    setBtn1(generateMenuItemSprite([this](Ref* ref){
+
+    this->setDebugMemo(Label::createWithTTF("Deugメモ", "irohamaru.ttf", 14));
+    this->mountNode(this->getDebugMemo(), Vec2(this->ctPt.x,30), OBJ_LAYER_LV1);
+    
+    // modal画面を作成する。
+    setBtn2(generateMenuItemSprite([this](Ref* ref){
+        transitonScene(GameStage::createScene());
+    }, Size(1,1), L_BTN_RETRY, Color3B::WHITE, Color3B::YELLOW, false));
+    setBtn3(generateMenuItemSprite([this](Ref* ref){
+        transitonScene(GameStage::createScene());
+    }, Size(1,1), L_BTN_NEXT, Color3B::WHITE, Color3B::YELLOW, false));
+    setBtn4(generateMenuItemSprite([this](Ref* ref){
         transitonScene(TitleScene::createScene());
     }, Size(1,1), L_BTN_BACK, Color3B::WHITE, Color3B::YELLOW, false));
-//    setBtn2(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
-//        getBike()->weightPt = Vec2(-6,6);
-//        getBike()->weightPt = Vec2(6,6);
-//    }));
-//    setBtn3(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
-//        getBike()->weightPt = Vec2(6,6);
-//        getBike()->weightPt = Vec2(-6,6);
-//    }));
-//    setBtn4(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
-//        getBike()->weightPt = Vec2(0,6);
-//        getBike()->chasePt = Vec2(0,-6);
-//    }));
+    setModal(Modal::create());
+    getModal()->setGlobalZOrder(OBJ_LAYER_TOP);
+    getModal()->setModal(Size(60,60), "");
+    getModal()->setModalOpacity(0);
+    // modal end
+    
+    setBtn1(generateMenuItemSprite([this](Ref* ref){
+        this->getBike()->removeTouchEvent();
+        Director::getInstance()->getEventDispatcher()->removeEventListener(this->getContactListenner());
+        this->getBike()->getRwheel()->getPhysicsBody()->setAngularDamping(1);
+        this->setModalMenu(Menu::create(getBtn2(),getBtn4(),NULL));
+        this->getModalMenu()->alignItemsVerticallyWithPadding(5);
+        this->getModalMenu()->setPosition(Vec2::ZERO);
+        this->getModal()->addChild(getModalMenu());
+        this->getModal()->setScale(0);
+        auto big = ScaleTo::create(0.3, 1);
+        this->getModal()->runAction(big);
+        this->mountNode(getModal(), ctPt, OBJ_LAYER_TOP);
+        this->getBtn1()->removeFromParent();
+    }, Size(1,1), L_BTN_QUIT, Color3B::WHITE, Color3B::YELLOW, false));
     setMenu(Menu::create(getBtn1(),NULL));
     getMenu()->alignItemsHorizontallyWithPadding(20);
 //    mountNode(getMenu(), Vec2(winSize.width - getBtn1()->getContentSize().width/2 -10,
@@ -117,11 +139,13 @@ void GameStage::update(float dt) {
     if(getBike()){
         NJLOG(ST_VEC2(ctPt).c_str());
         NJLOG(ST_VEC2(getPosition()).c_str());
+        if(getDebugMemo()){
 //        getDebugMemo()->setString("重心位置:" + ST_VEC2(getBike()->weightPt));
         getDebugMemo()->setString("chase:" + ST_VEC2(getBike()->getSceneChasePt()->getPosition()) + " " + ST_INT(getBike()->getRotation()));
 //        getDebugMemo()->setString("bike:" + ST_VEC2(getBike()->getPosition()) + " " + ST_INT(getBike()->getRotation()));
 //        getDebugMemo()->setString("swaip:" + ST_VEC2(getBike()->weightPt));
 //   getDebugMemo()->setString("bike:" + ST_INT(getBike()->centerObjVelo.length()) + "km/h");
+        }
     }
 }
 
@@ -153,22 +177,36 @@ void GameStage::onClear(){
 //    getBike()->getRwheel()->getPhysicsBody()->setLinearDamping(1);
     getBike()->removeTouchEvent();
     showGameAnnounce(L_GAME_CLEAR, ctPt,[this]{
+        setModalMenu(Menu::create(getBtn3(),getBtn4(),NULL));
+        getModalMenu()->alignItemsVerticallyWithPadding(5);
+        getModalMenu()->setPosition(Vec2::ZERO);
+        getModal()->addChild(getModalMenu());
+        getModal()->setScale(0);
+        auto big = ScaleTo::create(0.3, 1);
+        getModal()->runAction(big);
+        mountNode(getModal(), ctPt, OBJ_LAYER_TOP);
     });
 }
 
 void GameStage::onMiss(){
     callSoundEffect("btnon.mp3");
-    showGameAnnounce(L_GAME_MISS, ctPt);
     getBike()->getFRJoint()->removeFormWorld();
-//    getBike()->getRwheel()->getPhysicsBody()->setAngularDamping(1);
-//    getBike()->getRwheel()->getPhysicsBody()->setLinearDamping(1);
     getBike()->unscheduleUpdate();
     getBike()->removeTouchEvent();
     auto gun = Sprite::create("gan.png");
     gun->setPosition(missPt);
     gun->setGlobalZOrder(OBJ_LAYER_TOP);
     addChild(gun);
-//    mountScroleNode(gun, missPt, OBJ_LAYER_TOP);
+    showGameAnnounce(L_GAME_MISS, ctPt,[this]{
+        setModalMenu(Menu::create(getBtn2(),getBtn4(),NULL));
+        getModalMenu()->alignItemsVerticallyWithPadding(5);
+        getModalMenu()->setPosition(Vec2::ZERO);
+        getModal()->addChild(getModalMenu());
+        getModal()->setScale(0);
+        auto big = ScaleTo::create(0.3, 1);
+        getModal()->runAction(big);
+        mountNode(getModal(), ctPt, OBJ_LAYER_TOP);
+    });
 }
 
 void GameStage::setContactListener() {

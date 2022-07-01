@@ -49,23 +49,24 @@ bool Bike::init() {
 
     //debug
     setDebugPt(Sprite::create("dot.png"));
-    getDebugPt()->setGlobalZOrder(OBJ_LAYER_TOP);
+    getDebugPt()->setGlobalZOrder(OBJ_LAYER_BUTTOM);
     addChild(getDebugPt());
     setParentSprite(Sprite::create("dot2.png"));
-    getParentSprite()->setGlobalZOrder(OBJ_LAYER_TOP);
+    getParentSprite()->setGlobalZOrder(OBJ_LAYER_BUTTOM);
     addChild(getParentSprite());
     
     // sceneスクロール用
     setSceneChasePt(Sprite::create("dot2.png"));
-    _sceneChasePt->setPosition(sceneOffset);
-    _sceneChasePt->setGlobalZOrder(OBJ_LAYER_TOP);
-    //    addChild(_sceneChasePt);
+    getSceneChasePt()->setPosition(sceneOffset);
+    getSceneChasePt()->setOpacity(0);
+    getSceneChasePt()->setGlobalZOrder(OBJ_LAYER_BUTTOM);
+
     // debug用
-    setBikeDebug(Label::createWithTTF("bikeState", "irohamaru.ttf", 10));
-    getBikeDebug()->setTextColor(Color4B::BLACK);
-    getBikeDebug()->setGlobalZOrder(OBJ_LAYER_TOP);
-    getBikeDebug()->setPosition(Vec2(0,50));
-    addChild(getBikeDebug());
+//    setBikeDebug(Label::createWithTTF("bikeState", "irohamaru.ttf", 10));
+//    getBikeDebug()->setTextColor(Color4B::BLACK);
+//    getBikeDebug()->setGlobalZOrder(OBJ_LAYER_TOP);
+//    getBikeDebug()->setPosition(Vec2(0,50));
+//    addChild(getBikeDebug());
     
     return true;
 }
@@ -114,7 +115,9 @@ void Bike::setTouchEvent(){
 }
 
 void Bike::removeTouchEvent(){
-    getTouch()->removeTouchListenner();
+    if(getTouch()){
+        getTouch()->removeTouchListenner();
+    }
 }
 
 void Bike::onEnterTransitionDidFinish() {
@@ -166,7 +169,9 @@ void Bike::touchOn(Vec2 pt){
     touchPt2.set(pt);
     weightPt.set(Vec2::ZERO);
     chasePt.set(weightPt);
-    getBikeDebug()->setString("bikeState");
+    if(getBikeDebug()){
+        getBikeDebug()->setString("bikeState");
+    }
 }
 
 void Bike::swaip(Vec2 pt){
@@ -194,7 +199,9 @@ void Bike::touchOff(Vec2 pt){
     touchPt2.set(pt);
     weightPt.set(Vec2::ZERO);
     chasePt.set(weightPt);
-    getBikeDebug()->setString("bikeState");
+    if(getBikeDebug()){
+        getBikeDebug()->setString("bikeState");
+    }
 }
 
 void Bike::riderImageAction(){
@@ -322,12 +329,16 @@ bool Bike::jump(float lvl){
         rWheelTouched = false;
         if(fWheelTouched){
             powPt = getCalc()->chgLength((rWheelTouchPt_ + fWheelTouchPt_), maxRJumpSpeed);
-            getBikeDebug()->setString("jump_FR");
+            if(getBikeDebug()){
+                getBikeDebug()->setString("jump_FR");
+            }
             NJLOG("前後輪ジャンプ");
             NJLOG(ST_VEC2(powPt).c_str());
         }else{
             powPt = getCalc()->chgLength(rWheelTouchPt_, maxRJumpSpeed);
-            getBikeDebug()->setString("jump_R");
+            if(getBikeDebug()){
+                getBikeDebug()->setString("jump_R");
+            }
             NJLOG("後輪ジャンプ");
             NJLOG(ST_VEC2(powPt).c_str());
         }
@@ -337,7 +348,9 @@ bool Bike::jump(float lvl){
             NJLOG("前輪ジャンプ");
             NJLOG(ST_VEC2(powPt).c_str());
             fWheelTouched = false;
-            getBikeDebug()->setString("jump_F");
+            if(getBikeDebug()){
+                getBikeDebug()->setString("jump_F");
+            }
         }else{
             return false;
         }
@@ -356,9 +369,13 @@ void Bike::werry(float lvl){
     Vec2 powPt = getCalc()->chgLength(dirPt_, weeryPow * -lvl) + centerObjRotVelo;
     if(powPt.length()>maxRotSpeed){
         powPt = getCalc()->chgLength(powPt, maxRotSpeed);
-        getBikeDebug()->setString("werry_max");
+        if(getBikeDebug()){
+            getBikeDebug()->setString("werry_max");
+        }
     }else{
-        getBikeDebug()->setString("werry");
+        if(getBikeDebug()){
+            getBikeDebug()->setString("werry");
+        }
     }
     if(!fWheelTouched && !rWheelTouched){
         powPt *= 0.8; // 空中回転の場合は、回転しすぎるので、半減させる。
@@ -370,13 +387,17 @@ void Bike::werry(float lvl){
 
 void Bike::dush(float lvl){
     if(centerObjVelo.length() > maxDushSpeed){
-        getBikeDebug()->setString("dush_no");
+        if(getBikeDebug()){
+            getBikeDebug()->setString("dush_no");
+        }
         return;
     }
     if(rWheelTouched && rWheelTouched){
         Vec2 powPt = getCalc()->chgLength(getFwheel()->getPosition()-getRwheel()->getPosition(), dushPow * lvl);
         if(centerObjVelo.length() > maxDushSpeed){
-            getBikeDebug()->setString("dush_no");
+            if(getBikeDebug()){
+                getBikeDebug()->setString("dush_no");
+            }
             return;
         }else{
             if((centerObjVelo + powPt).length() >  maxDushSpeed){
@@ -387,14 +408,18 @@ void Bike::dush(float lvl){
             
             getRwheel()->getPhysicsBody()->setVelocity(powPt);
             getFwheel()->getPhysicsBody()->setVelocity(powPt);
-            getBikeDebug()->setString("dush");
+            if(getBikeDebug()){
+                getBikeDebug()->setString("dush");
+            }
         }
         return;
     }
 }
 
 void Bike::stop(){
-    getBikeDebug()->setString("stop");
+    if(getBikeDebug()){
+        getBikeDebug()->setString("stop");
+    }
     getRwheel()->getPhysicsBody()->setAngularVelocity(getRwheel()->getPhysicsBody()->getAngularVelocity() * 0.8);
 }
 

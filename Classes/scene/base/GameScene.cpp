@@ -158,8 +158,8 @@ void GameScene::drawDebugLine(){
                                        Color4F::GRAY);
     }
     this->mountNode(this->getDebugLine(), Vec2::ZERO, OBJ_LAYER_LV1);
-    this->setDebugMemo(Label::createWithTTF("Deugメモ", "irohamaru.ttf", 14));
-    this->mountNode(this->getDebugMemo(), Vec2(this->ctPt.x,30), OBJ_LAYER_LV1);
+//    this->setDebugMemo(Label::createWithTTF("Deugメモ", "irohamaru.ttf", 14));
+//    this->mountNode(this->getDebugMemo(), Vec2(this->ctPt.x,30), OBJ_LAYER_LV1);
 }
 
 float GameScene::getScreenWidth() {

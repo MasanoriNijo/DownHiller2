@@ -183,10 +183,12 @@ void TestPhysicsScene::update(float dt) {
         fstStCnge = false;
     }
     if(getBike()){
-        //        getDebugMemo()->setString("重心位置:" + ST_VEC2(getBike()->weightPt));
-        //        getDebugMemo()->setString("bike:" + ST_VEC2(getBike()->getPosition()) + " " + ST_INT(getBike()->getRotation()));
-        //        getDebugMemo()->setString("swaip:" + ST_VEC2(getBike()->weightPt));
-        getDebugMemo()->setString("bike:" + ST_INT(getBike()->centerObjVelo.length()) + "km/h");
+        if(getDebugMemo()){
+            //        getDebugMemo()->setString("重心位置:" + ST_VEC2(getBike()->weightPt));
+            //        getDebugMemo()->setString("bike:" + ST_VEC2(getBike()->getPosition()) + " " + ST_INT(getBike()->getRotation()));
+            //        getDebugMemo()->setString("swaip:" + ST_VEC2(getBike()->weightPt));
+            getDebugMemo()->setString("bike:" + ST_INT(getBike()->centerObjVelo.length()) + "km/h");
+        }
     }
 }
 
