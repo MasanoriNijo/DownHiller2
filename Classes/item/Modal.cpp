@@ -129,6 +129,20 @@ void Modal::setModalColor(Color3B color){
     getT2()->setColor(color);
     getT3()->setColor(color);
     getT4()->setColor(color);
+    getBase()->setColor(color);
+}
+
+void Modal::setModalOpacity(float opa){
+    getTitle()->setOpacity(opa);
+    getC1()->setOpacity(opa);
+    getC2()->setOpacity(opa);
+    getC3()->setOpacity(opa);
+    getC4()->setOpacity(opa);
+    getT1()->setOpacity(opa);
+    getT2()->setOpacity(opa);
+    getT3()->setOpacity(opa);
+    getT4()->setOpacity(opa);
+    getBase()->setOpacity(opa);
 }
 /** パラメータサンプル
  setCalc(Calclater::create());

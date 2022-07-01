@@ -30,6 +30,7 @@ public:
     Vec2 ctPt;
     void setModal(Size size, std::string st);
     void setModalColor(Color3B color);
+    void setModalOpacity(float opa);
 };
 
 #endif

@@ -47,13 +47,10 @@ bool GameStage::init() {
     setSoundEffect("btnon.mp");
     setBackGroundColor();
     setPosition(ctPt + Vec2(250,0));
-    setBtn1(generateMenuItemSprite([this](Ref* ref){
-        transitonScene(TitleScene::createScene());
-    }, Size(1,1), L_BTN_QUIT, Color3B::WHITE, Color3B::YELLOW, false));
-    setMenu(Menu::create(getBtn1(),NULL));
-    getMenu()->alignItemsHorizontallyWithPadding(20);
-    mountNode(getMenu(), Vec2(winSize.width - getBtn1()->getContentSize().width/2 -10,
-                              winSize.height - getBtn1()->getContentSize().height/2 -10), OBJ_LAYER_TOP);
+
+    this->setDebugMemo(Label::createWithTTF("Deugメモ", "irohamaru.ttf", 14));
+    this->mountNode(this->getDebugMemo(), Vec2(this->ctPt.x,30), OBJ_LAYER_LV1);
+    
     // modal画面を作成する。
     setBtn2(generateMenuItemSprite([this](Ref* ref){
         transitonScene(GameStage::createScene());
@@ -66,8 +63,28 @@ bool GameStage::init() {
     }, Size(1,1), L_BTN_BACK, Color3B::WHITE, Color3B::YELLOW, false));
     setModal(Modal::create());
     getModal()->setGlobalZOrder(OBJ_LAYER_TOP);
-    getModal()->setModal(Size(60,120), "メニュー");
+    getModal()->setModal(Size(60,60), "");
+    getModal()->setModalOpacity(0);
     // modal end
+    
+    setBtn1(generateMenuItemSprite([this](Ref* ref){
+        this->getBike()->removeTouchEvent();
+        Director::getInstance()->getEventDispatcher()->removeEventListener(this->getContactListenner());
+        this->getBike()->getRwheel()->getPhysicsBody()->setAngularDamping(1);
+        this->setModalMenu(Menu::create(getBtn2(),getBtn4(),NULL));
+        this->getModalMenu()->alignItemsVerticallyWithPadding(5);
+        this->getModalMenu()->setPosition(Vec2::ZERO);
+        this->getModal()->addChild(getModalMenu());
+        this->getModal()->setScale(0);
+        auto big = ScaleTo::create(0.3, 1);
+        this->getModal()->runAction(big);
+        this->mountNode(getModal(), ctPt, OBJ_LAYER_TOP);
+        this->getBtn1()->removeFromParent();
+    }, Size(1,1), L_BTN_QUIT, Color3B::WHITE, Color3B::YELLOW, false));
+    setMenu(Menu::create(getBtn1(),NULL));
+    getMenu()->alignItemsHorizontallyWithPadding(20);
+    mountNode(getMenu(), Vec2(winSize.width - getBtn1()->getContentSize().width/2 -10,
+                              winSize.height - getBtn1()->getContentSize().height/2 -10), OBJ_LAYER_TOP);
     
     setCourceMaker(CourceMaker::create());
     addChild(getCourceMaker());
@@ -122,11 +139,13 @@ void GameStage::update(float dt) {
     if(getBike()){
         NJLOG(ST_VEC2(ctPt).c_str());
         NJLOG(ST_VEC2(getPosition()).c_str());
+        if(getDebugMemo()){
 //        getDebugMemo()->setString("重心位置:" + ST_VEC2(getBike()->weightPt));
         getDebugMemo()->setString("chase:" + ST_VEC2(getBike()->getSceneChasePt()->getPosition()) + " " + ST_INT(getBike()->getRotation()));
 //        getDebugMemo()->setString("bike:" + ST_VEC2(getBike()->getPosition()) + " " + ST_INT(getBike()->getRotation()));
 //        getDebugMemo()->setString("swaip:" + ST_VEC2(getBike()->weightPt));
 //   getDebugMemo()->setString("bike:" + ST_INT(getBike()->centerObjVelo.length()) + "km/h");
+        }
     }
 }
 
