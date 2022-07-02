@@ -34,15 +34,17 @@ bool TitleScene::init() {
     mountNode(getGameTitle(), Vec2(winSize.width/2,winSize.height -80), OBJ_LAYER_TOP);
     
     setStartBtn(generateMenuItemSprite([this](Ref* ref){
-        transitonScene(GameStage::createScene());
+        transitonScene(SelectScene::createScene());
     }, Size(1,1), L_BTN_START, Color3B::WHITE, Color3B::YELLOW, false));
     
     setHowToBtn(generateMenuItemSprite([this](Ref* ref){
-        transitonScene(SelectScene::createScene());
+        transitonScene(TestPhysicsScene::createScene());
     }, Size(1,1), L_BTN_HOWTO, Color3B::WHITE, Color3B::YELLOW, false));
+    
     setResultBtn(generateMenuItemSprite([this](Ref* ref){
         transitonScene(TestScene::createScene());
     }, Size(1,1), "デバック", Color3B::WHITE, Color3B::YELLOW, false));
+    
     setMenu(Menu::create(getStartBtn(),getHowToBtn(),getResultBtn(), NULL));
     getMenu()->alignItemsVerticallyWithPadding(10);
     mountNode(getMenu(),Vec2(winSize.width/2,80), OBJ_LAYER_TOP);

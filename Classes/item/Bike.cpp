@@ -62,11 +62,11 @@ bool Bike::init() {
     getSceneChasePt()->setGlobalZOrder(OBJ_LAYER_BUTTOM);
 
     // debug用
-//    setBikeDebug(Label::createWithTTF("bikeState", "irohamaru.ttf", 10));
-//    getBikeDebug()->setTextColor(Color4B::BLACK);
-//    getBikeDebug()->setGlobalZOrder(OBJ_LAYER_TOP);
-//    getBikeDebug()->setPosition(Vec2(0,50));
-//    addChild(getBikeDebug());
+    setBikeDebug(Label::createWithTTF("bikeState", "irohamaru.ttf", 10));
+    getBikeDebug()->setTextColor(Color4B::BLACK);
+    getBikeDebug()->setGlobalZOrder(OBJ_LAYER_TOP);
+    getBikeDebug()->setPosition(Vec2(0,50));
+    addChild(getBikeDebug());
     
     return true;
 }
@@ -172,6 +172,9 @@ void Bike::SetPhysicsPrm(){
 }
 
 void Bike::update(float dt) {
+    if (autoFlg){
+        weightPt = getDebugPt()->getPosition();
+    }
     riderImageAction();
     _bikeBehaviorControl();
     _judeAction(dt);
@@ -233,7 +236,7 @@ void Bike::riderImageAction(){
     if (y_ < -3){
         y_=-3;
     }
-    if(getDebugPt()){
+    if(getDebugPt() && !autoFlg){
         getDebugPt()->setPosition(weightPt+bikeCenterPt);
     }
     getRider()->setTextureRect(Rect(frameSize.width * (x_+3), frameSize.height * (y_+3),
@@ -338,13 +341,15 @@ bool Bike::jump(float lvl){
     if(rWheelTouched){
         rWheelTouched = false;
         if(fWheelTouched){
-            powPt = getCalc()->chgLength((rWheelTouchPt_ + fWheelTouchPt_), maxRJumpSpeed);
+            powPt = getCalc()->chgLength((rWheelTouchPt_ + fWheelTouchPt_), maxFRJumpSpeed);
             if(getBikeDebug()){
                 getBikeDebug()->setString("jump_FR");
             }
+            fWheelTouched = false;
             NJLOG("前後輪ジャンプ");
             NJLOG(ST_VEC2(powPt).c_str());
         }else{
+            
             powPt = getCalc()->chgLength(rWheelTouchPt_, maxRJumpSpeed);
             if(getBikeDebug()){
                 getBikeDebug()->setString("jump_R");
@@ -354,7 +359,7 @@ bool Bike::jump(float lvl){
         }
     }else{
         if(fWheelTouched){
-            powPt = getCalc()->chgLength(fWheelTouchPt_, maxRJumpSpeed);
+            powPt = getCalc()->chgLength(fWheelTouchPt_, maxFJumpSpeed);
             NJLOG("前輪ジャンプ");
             NJLOG(ST_VEC2(powPt).c_str());
             fWheelTouched = false;
@@ -365,8 +370,12 @@ bool Bike::jump(float lvl){
             return false;
         }
     }
-    getRwheel()->getPhysicsBody()->setVelocity(getRwheel()->getPhysicsBody()->getVelocity() + powPt);
-    getFwheel()->getPhysicsBody()->setVelocity(getFwheel()->getPhysicsBody()->getVelocity() + powPt);
+    Vec2 dirX = getCalc()->rotByRad(powPt, -M_PI/2);
+    float speedX = getCalc()->cordinaneX(dirX, getRwheel()->getPhysicsBody()->getVelocity()).x;
+    Vec2 veloX = getCalc()->chgLength(dirX, speedX);
+    
+    getRwheel()->getPhysicsBody()->setVelocity(veloX + powPt);
+    getFwheel()->getPhysicsBody()->setVelocity(veloX + powPt);
     return true;
 }
 

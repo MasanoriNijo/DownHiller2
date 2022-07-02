@@ -71,6 +71,9 @@ public:
     // 重心ポイントを追従するポイント
     Vec2 chasePt;
     
+    // AutoFlg Onの場合、debugPointにweightPtが追従する。
+    bool autoFlg = false;
+    
     // riderアクション weightPtの位置により、画像差し替える。
     // riderのフレームサイズ
     Size frameSize;
@@ -106,8 +109,8 @@ public:
     float maxRotSpeed = 15;
     float dushPow = 6;
     float maxDushSpeed = 40;
-    float maxRJumpSpeed = 15;
-    float maxFRJumpSpeed = 10;
+    float maxRJumpSpeed = 20;
+    float maxFRJumpSpeed = 15;
     float maxFJumpSpeed = 5;
 
     // 挙動に影響するパラメータ

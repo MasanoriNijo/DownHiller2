@@ -53,16 +53,35 @@ bool TestPhysicsScene::init() {
         transitonScene(TitleScene::createScene());
     }));
     setBtn2(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
-        getBike()->weightPt = Vec2(-6,6);
-        getBike()->weightPt = Vec2(6,6);
+        getBike()->autoFlg = true;
+        auto delay_ = DelayTime::create(1);
+        auto move1_ = MoveTo::create(0.5, Vec2(-6,-6));
+        auto move2_ = MoveTo::create(0.1, Vec2(6,-6));
+        auto move3_ = MoveTo::create(0.1, Vec2(6,-6));
+        auto move4_ = MoveTo::create(0.5, Vec2(0,0));
+        auto seq_ = Sequence::create(move1_,delay_,move2_,move4_, NULL);
+        getBike()->getDebugPt()->runAction(seq_);
     }));
     setBtn3(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
-        getBike()->weightPt = Vec2(6,6);
-        getBike()->weightPt = Vec2(-6,6);
+        getBike()->autoFlg = true;
+        auto move1_ = MoveTo::create(0.5, Vec2(0,-6));
+        auto move2_ = MoveTo::create(0.1, Vec2(0,6));
+        auto delay_ = DelayTime::create(0.1);
+        auto move3_ = MoveTo::create(0.01, Vec2(-6,6.2));
+        auto move4_ = MoveTo::create(0.5, Vec2(0,0));
+        auto seq_ = Sequence::create(move1_,move2_,delay_,move3_,move4_, NULL);
+        getBike()->getDebugPt()->runAction(seq_);
     }));
     setBtn4(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
-        getBike()->weightPt = Vec2(0,6);
-        getBike()->chasePt = Vec2(0,-6);
+        getBike()->autoFlg = true;
+        auto move1_ = MoveTo::create(0.5, Vec2(6,6));
+        auto move2_ = MoveTo::create(0.1, Vec2(-6,-6));
+        auto delay_ = DelayTime::create(0.4);
+        auto move3_ = MoveTo::create(0.05, Vec2(-6,6.0));
+        auto delay2_ = DelayTime::create(0.2);
+        auto move4_ = MoveTo::create(0.5, Vec2(0,0));
+        auto seq_ = Sequence::create(move1_,move2_,delay_,move3_,delay2_,move4_, NULL);
+        getBike()->getDebugPt()->runAction(seq_);
     }));
     setMenu(Menu::create(getBtn1(),getBtn2(),getBtn3(),getBtn4(),NULL));
     getMenu()->alignItemsHorizontallyWithPadding(20);
