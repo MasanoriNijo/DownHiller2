@@ -95,6 +95,20 @@ void Bike::_positionSyncToWheel(float dt){
     float kaku = getCalc()->nomlKaku(getRwheel()->getPosition(),getFwheel()->getPosition());
     setRotation(kaku);
     setPosition(getRwheel()->getPosition()+getRwheel()->getPhysicsBody()->getVelocity()*dt*PHYSICS_WOELD_SPEED);
+    
+    // 画面スクロールポイントを指定
+    if(_sceneChasePt){
+        if(sceneChaseAjustFlg){
+            _sceneChasePt->setPosition(getFwheel()->getPosition()+sceneOffset);
+        }else{
+            Vec2 pos = _sceneChasePt->getPosition();
+            if(pos.equals(Vec2::ZERO)){
+                sceneChaseAjustFlg = true;
+            }
+            getCalc()->chasePt(getFwheel()->getPosition()+sceneOffset, pos, sceneChaseAjustSpeed, dt);
+            _sceneChasePt->setPosition(pos);
+        }
+    }
 }
 
 void Bike::setTouchEvent(){
@@ -224,10 +238,6 @@ void Bike::riderImageAction(){
     }
     getRider()->setTextureRect(Rect(frameSize.width * (x_+3), frameSize.height * (y_+3),
                                           frameSize.width, frameSize.height));
-    // 画面スクロールポイントを指定
-    if(_sceneChasePt){
-        _sceneChasePt->setPosition(getFwheel()->getPosition()+sceneOffset);
-    }
 }
 
 void Bike::_bikeBehaviorControl(){

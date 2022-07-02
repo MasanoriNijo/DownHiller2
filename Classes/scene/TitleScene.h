@@ -17,6 +17,8 @@ public:
     CREATE_FUNC(TitleScene);
     static Scene* createScene();
     CC_SYNTHESIZE_RETAIN(Label*,_gameTitle,GameTitle);
+    CC_SYNTHESIZE_RETAIN(Label*,_gameTitle2,GameTitle2);
+    CC_SYNTHESIZE_RETAIN(Label*,_gameTitle3,GameTitle3);
     CC_SYNTHESIZE_RETAIN(MenuItemSprite*,_startBtn,StartBtn);
     CC_SYNTHESIZE_RETAIN(MenuItemSprite*,_howtoBtn,HowToBtn);
     CC_SYNTHESIZE_RETAIN(MenuItemSprite*,_resultBtn,ResultBtn);

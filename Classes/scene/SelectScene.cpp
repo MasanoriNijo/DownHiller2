@@ -50,7 +50,8 @@ void SelectScene::onEnterTransitionDidFinish() {
 }
 
 MenuItemSprite* SelectScene::genStageBtn(int i){
-    return generateMenuItemSprite([this](Ref* ref){
+    return generateMenuItemSprite([this,i](Ref* ref){
+        UserDefault::getInstance()->setIntegerForKey(UDF_INT_SELECTED_STAGE, i);
         transitonScene(GameStage::createScene());
 
     }, Size(1,1), L_STAGE + std::to_string(i), Color3B::WHITE, Color3B::YELLOW, false);
@@ -76,9 +77,10 @@ void SelectScene::_arrangeBtns(){
                          NULL));
 
     getMenu()->alignItemsVerticallyWithPadding(4);
-    getMenu()->setPosition(Vec2(ctPt.x,winSize.height-50));
+    getMenu()->setPosition(Vec2(ctPt.x,ctPt.y - 50));
     getMenu()->setAnchorPoint(Vec2(0.5,1));
     setScrollNode(ScrollNode::create());
+    getScrollNode()->setMaxScrollPos(10);
     getScrollNode()->setTouchEvent();
     getScrollNode()->addChild(getMenu());
     mountNode(getScrollNode(), Vec2::ZERO, OBJ_LAYER_TOP);

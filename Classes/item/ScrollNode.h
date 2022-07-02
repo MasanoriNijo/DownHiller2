@@ -33,6 +33,8 @@ public:
     CC_SYNTHESIZE(ScrollType,_scrollType,ScrollType);
     
     CC_SYNTHESIZE(int,_scrollPos,ScrollPos);
+    CC_SYNTHESIZE(int,_minScrollPos,MinScrollPos);
+    CC_SYNTHESIZE(int,_maxScrollPos,MaxScrollPos);
     CC_SYNTHESIZE(int,_scrollWidth,ScrollWidth);
     
 //    bool _touched = false;

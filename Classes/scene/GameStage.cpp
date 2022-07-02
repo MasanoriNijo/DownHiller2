@@ -102,15 +102,25 @@ void GameStage::onEnterTransitionDidFinish() {
     // Bikeをセット
     setBike(Bike::create());
     mountScroleNode(getBike(), RIDER_START_POINT, OBJ_LAYER_TOP);
-    mountScroleNode(getBike()->getSceneChasePt(), getBike()->getPosition() + getBike()->sceneOffset, OBJ_LAYER_TOP);
+    mountScroleNode(getBike()->getSceneChasePt(), getBike()->getFwheel()->getPosition()+getBike()->sceneOffset + Vec2(-200,0), OBJ_LAYER_TOP);
     getBike()->SetPhysicsPrm();
     getScene()->getPhysicsWorld()->addJoint(getBike()->getFRJoint());
     getBike()->scheduleUpdate();
     // ~Bikeをセット
     setContactListener();
-    setGameState(GameState::READY);
-    fstStCnge = true;
+    
+    // 画面スクロール開始
+    runAction(Follow::create(getBike()->getSceneChasePt()));
     scheduleUpdate();
+
+    // 開始を遅らせる。
+    auto wait_ = DelayTime::create(0.5);
+    auto func_ = CallFunc::create([this]{
+        setGameState(GameState::READY);
+        fstStCnge = true;
+    });
+    auto seq_ = Sequence::create(wait_,func_, NULL);
+    runAction(seq_);
 }
 
 void GameStage::update(float dt) {
@@ -150,23 +160,13 @@ void GameStage::update(float dt) {
 }
 
 void GameStage::onReady(){
-    auto moveto = MoveTo::create(0.5,Vec2(ctPt.x,ctPt.y)
-                                 - getBike()->getSceneChasePt()->getPosition());
-        auto endFnc = CallFunc::create([this](){
     this->showGameAnnounce(L_GAME_READY, ctPt + Vec2(0,50),[this]{
-        // 画面スクロール開始
-        runAction(Follow::create(getBike()->getSceneChasePt()));
         setGameState(GameState::PLAY);
         fstStCnge = true;
     });
-    });
-    auto seq = Sequence::create(moveto,endFnc, NULL);
-    runAction(seq);
 }
 
 void GameStage::onPlay(){
-    // 画面スクロール開始
-    runAction(Follow::create(getBike()->getSceneChasePt()));
     showGameAnnounce(L_GAME_START, ctPt,[this]{
         getBike()->setTouchEvent();
     });

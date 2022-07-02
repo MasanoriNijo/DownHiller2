@@ -30,20 +30,36 @@ bool ScrollNode::init() {
 }
 
 void ScrollNode::update(float dt) {
+    
+    if(scrollSpeed.equals(Vec2::ZERO)){
+        return;
+    }
+    
     if(_touched){
         scrollSpeed = scrollSpeed * 0.8 + (_touchPt - _beforeTouchPt)*0.2/dt;
         _beforeTouchPt.set(_touchPt);
     }else{
+        int diff = (int)getPosition().y % getScrollWidth();
+        int pos =  (int)getPosition().y / getScrollWidth();
         switch (getScrollType()) {
             case ScrollType::VERTICAL:
+                if(pos>getMaxScrollPos()){
+                    setPosition(Vec2(0,getScrollWidth() * getMaxScrollPos()));
+                    scrollSpeed = Vec2::ZERO;
+                    setScrollPos(getMaxScrollPos());
+                }
+                if(pos<getMinScrollPos()){
+                    setPosition(Vec2(0,getScrollWidth() * getMinScrollPos()));
+                    scrollSpeed = Vec2::ZERO;
+                    setScrollPos(getMinScrollPos());
+                }
                 if(abs(scrollSpeed.y)<minSpeed){
-                    int diff = (int)getPosition().y % getScrollWidth();
-                    int pos =  (int)getPosition().y / getScrollWidth();
                     if(diff){
                         if(diff > minSpeed * dt ){
                             setPosition(getPosition()-Vec2(0,minSpeed * dt));
                         }else{
                             setPosition(Vec2(getPosition().x, pos * getScrollWidth()));
+                            scrollSpeed = 0;
                             setScrollPos(pos);
                         }
                     }
@@ -66,27 +82,39 @@ void ScrollNode::update(float dt) {
 void ScrollNode::setTouchEvent(){
     setTouch(TouchEventHelper::create());
     getTouch()->getTouchListenner()->onTouchBegan = [this](Touch* touch,Event* event) {
-        _touched = true;
         _touchPt.set(touch->getLocation());
         return true;
     };
     getTouch()->getTouchListenner()->onTouchMoved = [this](Touch* touch,Event* event) {
-        if(_touched){
-            Vec2 dpt = touch->getLocation() - _touchPt;
-            switch (this->getScrollType()) {
-                case ScrollType::VERTICAL:
-                    setPosition(getPosition()+Vec2(0,dpt.y));
+        Vec2 dpt = touch->getLocation() - _touchPt;
+        int pos =  (int)getPosition().y / getScrollWidth();
+        switch (this->getScrollType()) {
+            case ScrollType::VERTICAL:
+                if(pos>getMaxScrollPos()){
+                    setPosition(Vec2(0,getScrollWidth() * getMaxScrollPos()));
+                    scrollSpeed = Vec2::ZERO;
+                    setScrollPos(getMaxScrollPos());
                     break;
-                case ScrollType::HORIZONTAL:
-                    setPosition(getPosition()+Vec2(dpt.x,0));
+                }
+                if(pos<getMinScrollPos()){
+                    setPosition(Vec2(0,getScrollWidth() * getMinScrollPos()));
+                    scrollSpeed = Vec2::ZERO;
+                    setScrollPos(getMinScrollPos());
                     break;
-            }
-            _touchPt.set(touch->getLocation());
+                }
+                setPosition(getPosition()+Vec2(0,dpt.y));
+                break;
+            case ScrollType::HORIZONTAL:
+                setPosition(getPosition()+Vec2(dpt.x,0));
+                break;
         }
+        _touchPt.set(touch->getLocation());
+        _touched = true;
         return true;
     };
     getTouch()->getTouchListenner()->onTouchEnded = [this](Touch* touch,Event* event) {
         _touched = false;
+        _touchPt.set(Vec2::ZERO);
         return true;
     };
     getTouch()->applyTouchListenner(this);
