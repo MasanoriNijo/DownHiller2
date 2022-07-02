@@ -112,13 +112,14 @@ void GameScene::update(float dt) {
 }
 
 void GameScene::transitonScene(Scene* scene){
-    auto transition_ = CallFuncN::create([scene](Node* node_) {
-
-        auto transition=TransitionMoveInR::create(0.5,scene);
-//        auto transition=TransitionCrossFade::create(0.5,scene);
-        Director::getInstance()->replaceScene(transition);
-    });
-    this->runAction(transition_);
+    //    auto moveBy_ = MoveBy::create(0.5, Vec2(-ctPt.x,0));
+    //    auto transition_ = CallFuncN::create([scene](Node* node_) {
+    //        auto transition=TransitionSlideInL::create(2.0,scene);
+    //        auto transition=TransitionCrossFade::create(0.5,scene);
+    //        auto transition=TransitionShrinkGrow::create(0.5,scene);
+    auto transition=TransitionFade::create(0.5,scene);
+    Director::getInstance()->replaceScene(transition);
+    
 }
 
 void GameScene::mountNode(Node* sp, Vec2 pt, float lvl){

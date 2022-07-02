@@ -53,6 +53,10 @@ public:
     void swaip(Vec2 pt);
     void touchOff(Vec2 pt);
     
+    // スタート時に、Bikeの位置まで画面スクロール用
+    float sceneChaseAjustSpeed = 500;
+    float sceneChaseAjustFlg = false;
+    
     // bikeの画像中心
     Vec2 bikeCenterPt;
     
