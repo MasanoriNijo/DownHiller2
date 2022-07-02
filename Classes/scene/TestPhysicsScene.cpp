@@ -55,11 +55,11 @@ bool TestPhysicsScene::init() {
     setBtn2(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
         getBike()->autoFlg = true;
         auto delay_ = DelayTime::create(1);
-        auto move1_ = MoveTo::create(0.5, Vec2(-6,-6));
-        auto move2_ = MoveTo::create(0.1, Vec2(6,-6));
-        auto move3_ = MoveTo::create(0.1, Vec2(6,-6));
-        auto move4_ = MoveTo::create(0.5, Vec2(0,0));
-        auto seq_ = Sequence::create(move1_,delay_,move2_,move4_, NULL);
+        auto move1_ = MoveTo::create(0.1, Vec2(6,0));
+        auto move2_ = MoveTo::create(0.1, Vec2(-6,0));
+        auto move3_ = MoveTo::create(0.5, Vec2(-6,-6));
+        auto move4_ = MoveTo::create(0.1, Vec2(6,-6));
+        auto seq_ = Sequence::create(move1_,delay_,move2_,delay_,move3_,move4_, NULL);
         getBike()->getDebugPt()->runAction(seq_);
     }));
     setBtn3(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
