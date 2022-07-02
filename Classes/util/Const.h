@@ -74,5 +74,11 @@ static const int CT_ALL = 0xFFFFFFFF;
 // Nodeの文字化
 #define ST_NODE(node) ({std::string stnd = ST_VEC2(node->getPosition());std::string stdeg = ST_FLOAT(node->getRotation()); stnd + " deg:" + stdeg;})
 
-#endif
+// UserDefault::getInstance();
+static const std::string UDF_INT_CLEAR_STAGE = "clear_stage";
+static const std::string UDF_INT_SELECTED_STAGE = "selected_stage";
 
+
+
+
+#endif

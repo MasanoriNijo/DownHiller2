@@ -72,6 +72,15 @@ void ScrollNode::setTouchEvent(){
     };
     getTouch()->getTouchListenner()->onTouchMoved = [this](Touch* touch,Event* event) {
         if(_touched){
+            Vec2 dpt = touch->getLocation() - _touchPt;
+            switch (this->getScrollType()) {
+                case ScrollType::VERTICAL:
+                    setPosition(getPosition()+Vec2(0,dpt.y));
+                    break;
+                case ScrollType::HORIZONTAL:
+                    setPosition(getPosition()+Vec2(dpt.x,0));
+                    break;
+            }
             _touchPt.set(touch->getLocation());
         }
         return true;

@@ -2,6 +2,7 @@
 #include "scene/TestScene.h"
 #include "scene/TestPhysicsScene.h"
 #include "scene/GameStage.h"
+#include "scene/SelectScene.h"
 
 TitleScene::TitleScene():
 _gameTitle(NULL), _startBtn(NULL), _howtoBtn(NULL), _resultBtn(NULL), _menu(NULL)
@@ -37,7 +38,7 @@ bool TitleScene::init() {
     }, Size(1,1), L_BTN_START, Color3B::WHITE, Color3B::YELLOW, false));
     
     setHowToBtn(generateMenuItemSprite([this](Ref* ref){
-        transitonScene(TestPhysicsScene::createScene());
+        transitonScene(SelectScene::createScene());
     }, Size(1,1), L_BTN_HOWTO, Color3B::WHITE, Color3B::YELLOW, false));
     setResultBtn(generateMenuItemSprite([this](Ref* ref){
         transitonScene(TestScene::createScene());

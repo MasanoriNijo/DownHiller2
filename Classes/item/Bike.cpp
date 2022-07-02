@@ -29,7 +29,7 @@ bool Bike::init() {
     if(!Sprite2::initWithFile("bike2.png")){
         return false;
     }
-    bikeAnchorPt.set(0.10, 0.08);
+    bikeAnchorPt.set(0.05, 0.08);
     setAnchorPoint(bikeAnchorPt);
     bikeCenterPt.set(getContentSize().width/2,getContentSize().height/2);
     
@@ -91,10 +91,10 @@ void Bike::_addPhysicsToWheel(Sprite* _wheel){
     _wheel->getPhysicsBody()->setRotationEnable(true);
 }
 
-void Bike::_positionSyncToWheel(){
+void Bike::_positionSyncToWheel(float dt){
     float kaku = getCalc()->nomlKaku(getRwheel()->getPosition(),getFwheel()->getPosition());
     setRotation(kaku);
-    setPosition(getRwheel()->getPosition());
+    setPosition(getRwheel()->getPosition()+getRwheel()->getPhysicsBody()->getVelocity()*dt*PHYSICS_WOELD_SPEED);
 }
 
 void Bike::setTouchEvent(){
@@ -159,9 +159,9 @@ void Bike::SetPhysicsPrm(){
 
 void Bike::update(float dt) {
     riderImageAction();
-    _positionSyncToWheel();
     _bikeBehaviorControl();
     _judeAction(dt);
+    _positionSyncToWheel(dt);
 }
 
 void Bike::touchOn(Vec2 pt){

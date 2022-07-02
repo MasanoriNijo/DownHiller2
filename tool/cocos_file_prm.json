@@ -1,8 +1,12 @@
 {
-  "className": "CourceManager",
-  "superClass": "Ref",
+  "className": "SelectScene",
+  "superClass": "GameScene",
   "synthesize_retains": [
-    ["CourceMaker", "_courceMakerA", "CourceMakerA"],
-    ["CourceMaker", "_courceMakerB", "CourceMakerB"]
+    ["Label", "_gameTitle", "GameTitle"],
+    ["MenuItemSprite", "_btn1", "Btn1"],
+    ["MenuItemSprite", "_btn2", "Btn2"],
+    ["Menu", "_menu", "Menu"],
+    ["TouchEventHelper", "_touch", "Touch"],
+    ["ScrollNode", "_scrollNode", "ScrollNode"]
   ]
 }

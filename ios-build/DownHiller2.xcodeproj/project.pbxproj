@@ -181,6 +181,7 @@
 		305D0D752868BBDC009DDA1E /* btn_base.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 305D0D732868BBB8009DDA1E /* btn_base.png */; };
 		305D0D78286B4E84009DDA1E /* CourceManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 305D0D76286B4E84009DDA1E /* CourceManager.cpp */; };
 		306A83EE286EEE820059C257 /* Modal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 306A83EB286EECAE0059C257 /* Modal.cpp */; };
+		306A83F1286F484F0059C257 /* SelectScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 306A83F0286F44EE0059C257 /* SelectScene.cpp */; };
 		3087C151285EFD5000AD0F14 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3087C150285EFD5000AD0F14 /* SwiftUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3087C1542862078100AD0F14 /* mark.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3087C152286206DE00AD0F14 /* mark.png */; };
 		3087C1572864B25300AD0F14 /* Flg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3087C1552864B25300AD0F14 /* Flg.cpp */; };
@@ -1450,6 +1451,8 @@
 		305D0D7A286C9E04009DDA1E /* Lang.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Lang.h; path = Classes/util/Lang.h; sourceTree = SOURCE_ROOT; };
 		306A83EA286EECAD0059C257 /* Modal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Modal.h; path = Classes/item/Modal.h; sourceTree = SOURCE_ROOT; };
 		306A83EB286EECAE0059C257 /* Modal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Modal.cpp; path = Classes/item/Modal.cpp; sourceTree = SOURCE_ROOT; };
+		306A83EF286F44ED0059C257 /* SelectScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelectScene.h; path = Classes/scene/SelectScene.h; sourceTree = SOURCE_ROOT; };
+		306A83F0286F44EE0059C257 /* SelectScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SelectScene.cpp; path = Classes/scene/SelectScene.cpp; sourceTree = SOURCE_ROOT; };
 		3077803B8D5646769C867A5B /* DetourObstacleAvoidance.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = DetourObstacleAvoidance.cpp; path = cocos2d/external/recast/DetourCrowd/DetourObstacleAvoidance.cpp; sourceTree = SOURCE_ROOT; };
 		3087C150285EFD5000AD0F14 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		3087C152286206DE00AD0F14 /* mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mark.png; path = Resources/images/mark.png; sourceTree = SOURCE_ROOT; };
@@ -3650,6 +3653,8 @@
 				304DD0B32843CE0800AF0334 /* FstScene.h */,
 				3087C15928653DB300AD0F14 /* GameStage.cpp */,
 				3087C15828653DB300AD0F14 /* GameStage.h */,
+				306A83F0286F44EE0059C257 /* SelectScene.cpp */,
+				306A83EF286F44ED0059C257 /* SelectScene.h */,
 				E43633F140F94254A1F704E8 /* HelloWorldScene.cpp */,
 				1B5220A88C2348C09A6C2005 /* HelloWorldScene.h */,
 			);
@@ -5447,6 +5452,7 @@
 				309B0D12284A6E170091801C /* Calclater.cpp in Sources */,
 				19BCA424ADCD40E8A1AEA8CD /* AppController.mm in Sources */,
 				47389F4909D3462CB4D5567B /* RootViewController.mm in Sources */,
+				306A83F1286F484F0059C257 /* SelectScene.cpp in Sources */,
 				309B0D21284D04F00091801C /* Bike.cpp in Sources */,
 				305D0D78286B4E84009DDA1E /* CourceManager.cpp in Sources */,
 				309B0D0F28490A830091801C /* ColorChanger.cpp in Sources */,
