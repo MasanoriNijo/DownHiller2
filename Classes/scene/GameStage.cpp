@@ -363,6 +363,7 @@ void GameStage::demo(){
 
     setYubi(Sprite::create("yubi.png"));
     getYubi()->setGlobalZOrder(OBJ_LAYER_TOP);
+    getYubi()->setAnchorPoint(Vec2(0.5,2));
     getBike()->getSceneChasePt()->addChild(getYubi());
     
     getBike()->autoFlg = true;
@@ -372,12 +373,7 @@ void GameStage::demo(){
     
     // demofirst
     auto sosaSetumei_ = CallFunc::create([this]{
-        std::string st = "<<操作方法>>\n"
-        "画面をタップして、\n"
-        "上下左右にスワイプすると\n"
-        "ライダーも上下左右に\n"
-        "重心移動します。\n";
-        this->setSetumei(st);
+        this->setSetumei(DEMO_SOSA);
     });
     
     auto delay_ = DelayTime::create(1);
@@ -394,11 +390,7 @@ void GameStage::demo(){
     
     // werry
     auto werrySetumei_ = CallFunc::create([this]{
-        std::string st = "<<ウイリー>>\n"
-        "左右に素早くスワイプすると\n"
-        "ライダーが左右に\n"
-        "ウイリーします。\n";
-        this->setSetumei(st);
+        this->setSetumei(DEMO_WERRY);
     });
     auto move10_ = MoveTo::create(0.8, Vec2(6,0));
     auto move11_ = MoveTo::create(0.2, Vec2(-6,0));
@@ -410,11 +402,7 @@ void GameStage::demo(){
     
     // FRJump
     auto frJumpSetumei_ = CallFunc::create([this]{
-        std::string st = "<<両輪ジャンプ>>\n"
-        "両輪が地面接地時に\n"
-        "下から上に素早くスワイプすると\n"
-        "両輪ジャンプします。\n";
-        this->setSetumei(st);
+        this->setSetumei(DEMO_FR_JUMP);
     });
     auto delay14_ = DelayTime::create(0.5);
     auto move14_ = MoveTo::create(0.8, Vec2(0,-6));
@@ -423,12 +411,7 @@ void GameStage::demo(){
     
     // RJump
     auto rJumpSetumei_ = CallFunc::create([this]{
-        std::string st = "<<後輪ジャンプ>>\n"
-        "前輪ウイリー時に\n"
-        "下から上に素早くスワイプすると\n"
-        "両輪ジャンプより\n"
-        "より高くジャンプします。\n";
-        this->setSetumei(st);
+        this->setSetumei(DEMO_R_JUMP);
     });
     auto move16_ = MoveTo::create(0.8, Vec2(6,6));
     auto move17_ = MoveTo::create(0.1, Vec2(-6,-6));
@@ -439,11 +422,7 @@ void GameStage::demo(){
     
     // dush
     auto dushSetumei_ = CallFunc::create([this]{
-        std::string st = "<<加速>>\n"
-        "しゃがんだ状態で\n"
-        "右に素早くスワイプすると\n"
-        "加速します。\n";
-        this->setSetumei(st);
+        this->setSetumei(DEMO_DUSH);
     });
     auto move21_ = MoveTo::create(0.8, Vec2(-5,-6));
     auto move22_ = MoveTo::create(0.1, Vec2(6,-6));
@@ -451,11 +430,7 @@ void GameStage::demo(){
     
     // break
     auto breakSetumei_ = CallFunc::create([this]{
-        std::string st = "<<減速>>\n"
-        "左下に重心を\n"
-        "置き続けると\n"
-        "ブレーキが働きます。\n";
-        this->setSetumei(st);
+        this->setSetumei(DEMO_BREAK);
     });
     auto move23_ = MoveTo::create(0.8, Vec2(-6,-6));
     auto delay24_ = DelayTime::create(5);

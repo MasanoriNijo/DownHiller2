@@ -109,6 +109,9 @@ void GameScene::update(float dt) {
             break;
         }
     }
+    if(tmFlg){
+        tm_ += dt;
+    }
 }
 
 void GameScene::transitonScene(Scene* scene){
@@ -263,6 +266,18 @@ void GameScene::callSoundEffect(const char* filePath){
     audio->playEffect(filePath, false, 1.0f, 1.0f, 1.0f);
 }
 
+void GameScene::startTime(){
+    tm_ = 0;
+    tmFlg = true;
+}
+
+void GameScene::stopTime(){
+    tmFlg = false;
+}
+
+std::string GameScene::getTime(){
+    return ST_FLOAT(tm_);
+}
 /** パラメータサンプル
  this->setBackColor(LayerColor::create());
  this->getBackColor();

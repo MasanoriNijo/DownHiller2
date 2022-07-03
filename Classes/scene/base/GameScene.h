@@ -75,7 +75,12 @@ public:
     // 各種Item生成
     MenuItemSprite* generateMenuItemSprite(const ccMenuCallback& callback, Size size,std::string st,
                                            Color3B color_,Color3B color2_, bool isBlink);
-    
+    // timer
+    bool tmFlg = false;
+    float tm_;
+    void startTime();
+    void stopTime();
+    std::string getTime();
     
     // 音関連
     void setBGM(const char* filePath);
@@ -83,7 +88,6 @@ public:
     void stopBGM(const char* filePath);
     void setSoundEffect(const char* filePath);
     void callSoundEffect(const char* filePath);
-    
     
     // 画面のサイズ関連を取得する.
     // 実際の画面サイズ
