@@ -24,15 +24,15 @@ public:
     void update(float dt);
     void onEnterTransitionDidFinish();
     void checkAndMadeCource(Vec2 chPt);
-    void setStartAndTargetDromCource(CourceMaker* _cmaker);
+    void setStartAndTargetFromCource(CourceMaker* _cmaker);
     bool togle = false;
     int courceIndex = 0;
     Vec2 FIRST_COURCE_BASE_POINT = Vec2(-30,-12);
     
-    void madeCourcePtn1(CourceMaker* _cmaker);
-    void madeCourcePtn2(CourceMaker* _cmaker);
-    void madeCourcePtn3(CourceMaker* _cmaker);
-    void madeCourcePtn4(CourceMaker* _cmaker);
+    void madeCourcePtn1(CourceMaker* _cmaker,int ind);
+    void madeCourcePtn2(CourceMaker* _cmaker,int ind);
+    void madeCourcePtn3(CourceMaker* _cmaker,int ind);
+    void madeCourcePtn4(CourceMaker* _cmaker,int ind);
 };
 
 #endif

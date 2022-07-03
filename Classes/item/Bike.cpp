@@ -49,10 +49,10 @@ bool Bike::init() {
 
     //debug
     setDebugPt(Sprite::create("dot.png"));
-    getDebugPt()->setGlobalZOrder(OBJ_LAYER_BUTTOM);
+    getDebugPt()->setGlobalZOrder(OBJ_LAYER_TOP);
     addChild(getDebugPt());
     setParentSprite(Sprite::create("dot2.png"));
-    getParentSprite()->setGlobalZOrder(OBJ_LAYER_BUTTOM);
+    getParentSprite()->setGlobalZOrder(OBJ_LAYER_TOP);
     addChild(getParentSprite());
     
     // sceneスクロール用
@@ -132,6 +132,7 @@ void Bike::removeTouchEvent(){
     if(getTouch()){
         getTouch()->removeTouchListenner();
     }
+    
 }
 
 void Bike::onEnterTransitionDidFinish() {

@@ -54,6 +54,17 @@ public:
     void onMiss();
     Vec2 missPt;
     
+    // demoアクション
+    CC_SYNTHESIZE_RETAIN(Sprite*,_yubi,Yubi);
+    CC_SYNTHESIZE_RETAIN(Label*,_setumei,Setumei);
+    void demoAllwhere();
+    void demoWerry();
+    void demoFRJump();
+    void demoRJump();
+    void demoDush();
+    void demoStop();
+    void demoMiss();
+    
 };
 
 #endif
