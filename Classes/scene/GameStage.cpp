@@ -471,6 +471,8 @@ void GameStage::demo(){
                                  rJumpSetumei_,rJump4_,
                                  // dush
                                  dushSetumei_,dush4_,
+                                 // stop
+                                 breakSetumei_,break_,
                                  delay_, endfunc_, NULL);
     getBike()->getDebugPt()->runAction(seq_);
     getYubi()->runAction(seq_->clone());
