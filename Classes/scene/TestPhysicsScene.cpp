@@ -45,6 +45,8 @@ bool TestPhysicsScene::init() {
     //    this->setPhysicsBody(PhysicsBody::createEdgeBox(this->winSize));
     //    this->getPhysicsBody()->setDynamic(false);
     setBackGroundColor();
+    setDebugMemo(Label::createWithTTF("Deugメモ", "irohamaru.ttf", 8));
+    mountNode(this->getDebugMemo(), Vec2(this->ctPt.x,30), OBJ_LAYER_LV1);
     
     setBtn1(MenuItemImage::create("howto_btn.png", "howto_btn_p.png",[this](Ref* ref) {
         if(getBike()){

@@ -49,11 +49,11 @@ bool Bike::init() {
 
     //debug
     setDebugPt(Sprite::create("dot.png"));
-    getDebugPt()->setGlobalZOrder(OBJ_LAYER_TOP);
+    getDebugPt()->setGlobalZOrder(OBJ_LAYER_BUTTOM);
     addChild(getDebugPt());
-    setParentSprite(Sprite::create("dot2.png"));
-    getParentSprite()->setGlobalZOrder(OBJ_LAYER_TOP);
-    addChild(getParentSprite());
+//    setParentSprite(Sprite::create("dot2.png"));
+//    getParentSprite()->setGlobalZOrder(OBJ_LAYER_BUTTOM);
+//    addChild(getParentSprite());
     
     // sceneスクロール用
     setSceneChasePt(Sprite::create("dot2.png"));
@@ -259,12 +259,16 @@ void Bike::_judeAction(float dt){
         if(noml_.x > riderActionSpan/2){
             werry(-noml_.x);
             chasePt.set(weightPt);
-            getParentSprite()->setPosition(chasePt + bikeCenterPt);
+            if(getParentSprite()){
+                getParentSprite()->setPosition(chasePt + bikeCenterPt);
+            }
             return;
         }else if(noml_.x < -riderActionSpan/2){
             werry(-noml_.x);
             chasePt.set(weightPt);
-            getParentSprite()->setPosition(chasePt + bikeCenterPt);
+            if(getParentSprite()){
+                getParentSprite()->setPosition(chasePt + bikeCenterPt);
+            }
             return;
         }
     }
@@ -274,12 +278,16 @@ void Bike::_judeAction(float dt){
         if(noml_.y > riderActionSpan/2 && !rWheelTouched){
             werry(-noml_.y);
             chasePt.set(weightPt);
-            getParentSprite()->setPosition(chasePt + bikeCenterPt);
+            if(getParentSprite()){
+                getParentSprite()->setPosition(chasePt + bikeCenterPt);
+            }
             return;
         }else if(noml_.y < -riderActionSpan/2){
             werry(-noml_.y);
             chasePt.set(weightPt);
-            getParentSprite()->setPosition(chasePt + bikeCenterPt);
+            if(getParentSprite()){
+                getParentSprite()->setPosition(chasePt + bikeCenterPt);
+            }
             return;
         }
     }
@@ -289,12 +297,16 @@ void Bike::_judeAction(float dt){
         if(noml_.y > riderActionSpan/2 && !fWheelTouched){
             werry(noml_.y);
             chasePt.set(weightPt);
-            getParentSprite()->setPosition(chasePt + bikeCenterPt);
+            if(getParentSprite()){
+                getParentSprite()->setPosition(chasePt + bikeCenterPt);
+            }
             return;
         }else if(noml_.y < -riderActionSpan/2){
             werry(noml_.y);
             chasePt.set(weightPt);
-            getParentSprite()->setPosition(chasePt + bikeCenterPt);
+            if(getParentSprite()){
+                getParentSprite()->setPosition(chasePt + bikeCenterPt);
+            }
             return;
         }
     }
@@ -304,7 +316,9 @@ void Bike::_judeAction(float dt){
         if(noml_.y > riderActionSpan * 4){
             jump(noml_.y);
             chasePt.set(weightPt);
-            getParentSprite()->setPosition(chasePt + bikeCenterPt);
+            if(getParentSprite()){
+                getParentSprite()->setPosition(chasePt + bikeCenterPt);
+            }
             return;
         }
     }
@@ -315,7 +329,9 @@ void Bike::_judeAction(float dt){
             if(noml_.x > riderActionSpan * 2){
                 dush(noml_.x);
                 chasePt.set(weightPt);
-                getParentSprite()->setPosition(chasePt + bikeCenterPt);
+                if(getParentSprite()){
+                    getParentSprite()->setPosition(chasePt + bikeCenterPt);
+                }
                 return;
             }
         }
@@ -325,13 +341,17 @@ void Bike::_judeAction(float dt){
         if(rWheelTouched && fWheelTouched){
             stop();
             chasePt.set(weightPt);
-            getParentSprite()->setPosition(chasePt + bikeCenterPt);
+            if(getParentSprite()){
+                getParentSprite()->setPosition(chasePt + bikeCenterPt);
+            }
             return;
         }
     }
     
     getCalc()->chasePt(weightPt , chasePt, chaseVelo, dt);
-    getParentSprite()->setPosition(chasePt + bikeCenterPt);
+    if(getParentSprite()){
+        getParentSprite()->setPosition(chasePt + bikeCenterPt);
+    }
 }
 
 bool Bike::jump(float lvl){
@@ -441,6 +461,11 @@ void Bike::stop(){
         getBikeDebug()->setString("stop");
     }
     getRwheel()->getPhysicsBody()->setAngularVelocity(getRwheel()->getPhysicsBody()->getAngularVelocity() * 0.8);
+}
+
+void Bike::autoSosa(float dt,Vec2 pt){
+    auto moveTo = MoveTo::create(dt, pt);
+    getDebugPt()->runAction(moveTo);
 }
 
 /** パラメータサンプル

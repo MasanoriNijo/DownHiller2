@@ -73,6 +73,7 @@ public:
     
     // AutoFlg Onの場合、debugPointにweightPtが追従する。
     bool autoFlg = false;
+    void autoSosa(float dt,Vec2 pt);
     
     // riderアクション weightPtの位置により、画像差し替える。
     // riderのフレームサイズ

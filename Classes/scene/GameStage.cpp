@@ -51,7 +51,7 @@ bool GameStage::init() {
     setBackGroundColor();
     setPosition(ctPt + Vec2(250,0));
 
-    this->setDebugMemo(Label::createWithTTF("Deugメモ", "irohamaru.ttf", 14));
+    this->setDebugMemo(Label::createWithTTF("Deugメモ", "irohamaru.ttf", 8));
     this->mountNode(this->getDebugMemo(), Vec2(this->ctPt.x,30), OBJ_LAYER_LV1);
     
     // modal画面を作成する。
@@ -163,14 +163,19 @@ void GameStage::update(float dt) {
 }
 
 void GameStage::onReady(){
-    this->showGameAnnounce(L_GAME_READY, ctPt + Vec2(0,50),[this]{
-        setGameState(GameState::PLAY);
-        fstStCnge = true;
-    });
+    if(UserDefault::getInstance()->getIntegerForKey(UDF_INT_SELECTED_STAGE,1)==1){
+        demo();
+//        demoFRJump();
+    }else{
+        showGameAnnounce(L_GAME_READY, ctPt + Vec2(0,50),[this]{
+            setGameState(GameState::PLAY);
+            fstStCnge = true;
+        });
+    }
 }
 
 void GameStage::onPlay(){
-    showGameAnnounce(L_GAME_START, ctPt,[this]{
+    showGameAnnounce(L_GAME_START, ctPt + Vec2(0,50),[this]{
         getBike()->setTouchEvent();
     });
 }
@@ -179,7 +184,7 @@ void GameStage::onClear(){
     getBike()->getRwheel()->getPhysicsBody()->setAngularDamping(1);
 //    getBike()->getRwheel()->getPhysicsBody()->setLinearDamping(1);
     getBike()->removeTouchEvent();
-    showGameAnnounce(L_GAME_CLEAR, ctPt,[this]{
+    showGameAnnounce(L_GAME_CLEAR, ctPt + Vec2(0,50),[this]{
         setModalMenu(Menu::create(getBtn3(),getBtn4(),NULL));
         getModalMenu()->alignItemsVerticallyWithPadding(5);
         getModalMenu()->setPosition(Vec2::ZERO);
@@ -200,7 +205,7 @@ void GameStage::onMiss(){
     gun->setPosition(missPt);
     gun->setGlobalZOrder(OBJ_LAYER_TOP);
     addChild(gun);
-    showGameAnnounce(L_GAME_MISS, ctPt,[this]{
+    showGameAnnounce(L_GAME_MISS, ctPt + Vec2(0,50),[this]{
         setModalMenu(Menu::create(getBtn2(),getBtn4(),NULL));
         getModalMenu()->alignItemsVerticallyWithPadding(5);
         getModalMenu()->setPosition(Vec2::ZERO);
@@ -331,63 +336,144 @@ void GameStage::_onContactSeparate(PhysicsContact& contact, PhysicsShape* ps){
     }
 }
 
-
-void GameStage::demoAllwhere(){
+void GameStage::setSetumei(std::string st){
+    if(getSetumei()){
+        getSetumei()->removeFromParentAndCleanup(true);
+    }
     setSetumei(Label::createWithTTF("", "irohamaru.ttf", 12));
     getSetumei()->setAnchorPoint(Vec2(0,1));
-    mountNode(getSetumei(), ctPt + Vec2(-50,130), OBJ_LAYER_TOP);
+    getSetumei()->setGlobalZOrder(OBJ_LAYER_TOP);
+    getBike()->getSceneChasePt()->addChild(getSetumei());
+    
+    getSetumei()->setString(st);
+    getSetumei()->setPosition(Vec2(-30,130) + Vec2(500,0));
+    auto moveTo = MoveBy::create(0.5, Vec2(-500,0));
+    getSetumei()->runAction(moveTo);
+}
+
+void GameStage::demo(){
+
     setYubi(Sprite::create("yubi.png"));
     getYubi()->setGlobalZOrder(OBJ_LAYER_TOP);
-    getBike()->addChild(getYubi());
-    std::string st = "操作方法\n"
-    "画面をタップして、\n"
-    "上下左右にスワイプすると\n"
-    "ライダーも上下左右に\n"
-    "重心移動します。\n";
-    getSetumei()->setString(st);
+    getBike()->getSceneChasePt()->addChild(getYubi());
+    
     getBike()->autoFlg = true;
-    getBike()->removeTouchEvent();
     getBike()->weightPt= Vec2::ZERO;
     getBike()->getDebugPt()->setPosition(Vec2::ZERO);
+    getBike()->removeTouchEvent();
+    
+    // demofirst
+    auto sosaSetumei_ = CallFunc::create([this]{
+        std::string st = "<<操作方法>>\n"
+        "画面をタップして、\n"
+        "上下左右にスワイプすると\n"
+        "ライダーも上下左右に\n"
+        "重心移動します。\n";
+        this->setSetumei(st);
+    });
+    
     auto delay_ = DelayTime::create(1);
-    auto move1_ = MoveTo::create(0.5, Vec2(6,-6));
-    auto move2_ = MoveTo::create(0.5, Vec2(6,-6));
-    auto move3_ = MoveTo::create(0.5, Vec2(-6,6));
-    auto move4_ = MoveTo::create(0.5, Vec2(-6,-6));
-    auto move5_ = MoveTo::create(0.5, Vec2(0,0));
-    auto func_ = CallFunc::create([this]{
+    auto move1_ = MoveTo::create(0.5, Vec2(0,6));
+    auto move2_ = MoveTo::create(0.5, Vec2(0,-6));
+    auto move3_ = MoveTo::create(0.5, Vec2(-6,0));
+    auto move4_ = MoveTo::create(0.5, Vec2(6,0));
+    auto move5_ = MoveTo::create(0.5, Vec2(6,6));
+    auto move6_ = MoveTo::create(0.5, Vec2(-6,6));
+    auto move7_ = MoveTo::create(0.5, Vec2(-6,-6));
+    auto move8_ = MoveTo::create(0.5, Vec2(6,-6));
+    auto move9_ = MoveTo::create(0.5, Vec2(0,0));
+    auto allSetumei_ = Sequence::create(sosaSetumei_,delay_,move1_,move2_,move3_,move4_,move5_,move6_,move7_,move8_,move9_, NULL);
+    
+    // werry
+    auto werrySetumei_ = CallFunc::create([this]{
+        std::string st = "<<ウイリー>>\n"
+        "左右に素早くスワイプすると\n"
+        "ライダーが左右に\n"
+        "ウイリーします。\n";
+        this->setSetumei(st);
+    });
+    auto move10_ = MoveTo::create(0.8, Vec2(6,0));
+    auto move11_ = MoveTo::create(0.2, Vec2(-6,0));
+    auto werryF4_ = Repeat::create(Sequence::create(move10_,move11_, NULL), 4);
+        
+    auto move12_ = MoveTo::create(0.8, Vec2(-6,0));
+    auto move13_ = MoveTo::create(0.2, Vec2(6,0));
+    auto werryR4_ = Repeat::create(Sequence::create(move12_,move13_, NULL), 4);
+    
+    // FRJump
+    auto frJumpSetumei_ = CallFunc::create([this]{
+        std::string st = "<<両輪ジャンプ>>\n"
+        "両輪が地面接地時に\n"
+        "下から上に素早くスワイプすると\n"
+        "両輪ジャンプします。\n";
+        this->setSetumei(st);
+    });
+    auto delay14_ = DelayTime::create(0.5);
+    auto move14_ = MoveTo::create(0.8, Vec2(0,-6));
+    auto move15_ = MoveTo::create(0.05, Vec2(0,6));
+    auto frJump4_ = Repeat::create(Sequence::create(delay14_,move14_,move15_, NULL), 4);
+    
+    // RJump
+    auto rJumpSetumei_ = CallFunc::create([this]{
+        std::string st = "<<後輪ジャンプ>>\n"
+        "前輪ウイリー時に\n"
+        "下から上に素早くスワイプすると\n"
+        "両輪ジャンプより\n"
+        "より高くジャンプします。\n";
+        this->setSetumei(st);
+    });
+    auto move16_ = MoveTo::create(0.8, Vec2(6,6));
+    auto move17_ = MoveTo::create(0.1, Vec2(-6,-6));
+    auto move18_ = DelayTime::create(0.4);
+    auto move19_ = MoveTo::create(0.05, Vec2(-6,6.0));
+    auto delay20_ = DelayTime::create(0.5);
+    auto rJump4_ = Repeat::create(Sequence::create(move16_,move17_,move18_,move19_,delay20_, NULL), 4);
+    
+    // dush
+    auto dushSetumei_ = CallFunc::create([this]{
+        std::string st = "<<加速>>\n"
+        "しゃがんだ状態で\n"
+        "右に素早くスワイプすると\n"
+        "加速します。\n";
+        this->setSetumei(st);
+    });
+    auto move21_ = MoveTo::create(0.8, Vec2(-5,-6));
+    auto move22_ = MoveTo::create(0.1, Vec2(6,-6));
+    auto dush4_ = Repeat::create(Sequence::create(move21_,move22_, NULL), 4);
+    
+    // break
+    auto breakSetumei_ = CallFunc::create([this]{
+        std::string st = "<<減速>>\n"
+        "左下に重心を\n"
+        "置き続けると\n"
+        "ブレーキが働きます。\n";
+        this->setSetumei(st);
+    });
+    auto move23_ = MoveTo::create(0.8, Vec2(-6,-6));
+    auto delay24_ = DelayTime::create(5);
+    auto break_ = Sequence::create(move23_,delay24_, NULL);
+    
+    auto endfunc_ = CallFunc::create([this]{
         this->getBike()->autoFlg = false;
         this->getYubi()->setOpacity(0);
-        this->getBike()->setTouchEvent();
         this->getSetumei()->setString("");
-        this->demoAllwhere();
+        this->showGameAnnounce(L_GAME_READY, ctPt + Vec2(0,50),[this]{
+            setGameState(GameState::PLAY);
+            fstStCnge = true;
+        });
     });
-    auto seq_ = Sequence::create(delay_,move1_,delay_,move2_,delay_,move3_,delay_,move4_,delay_,move5_,delay_, NULL);
-    auto seq2_ = Sequence::create(delay_,move1_,move2_,move3_,move4_,move5_,delay_, NULL);
+    auto seq_ = Sequence::create(allSetumei_,
+                                 // werry
+                                 werrySetumei_,werryF4_,werryR4_,
+                                 // frJump
+                                 frJumpSetumei_,frJump4_,
+                                 // rJump
+                                 rJumpSetumei_,rJump4_,
+                                 // dush
+                                 dushSetumei_,dush4_,
+                                 delay_, endfunc_, NULL);
     getBike()->getDebugPt()->runAction(seq_);
-    getYubi()->runAction(seq_);
-}
-
-void GameStage::demoWerry(){
-    
-}
-
-void GameStage::demoFRJump(){
-    
-}
-
-void GameStage::demoRJump(){
-    
-}
-
-void GameStage::demoDush(){
-    
-}
-void GameStage::demoStop(){
-    
-}
-void GameStage::demoMiss(){
-    
+    getYubi()->runAction(seq_->clone());
 }
 
 
