@@ -7,7 +7,8 @@
 
 GameStage::GameStage():
 _gameTitle(NULL), _btn1(NULL), _btn2(NULL), _btn3(NULL), _btn4(NULL), _menu(NULL),_touch(NULL),_bike(NULL),
-_contactlistener(NULL), _courceMaker(NULL),_courceManager(NULL),_modal(NULL),_modalMenu(NULL)
+_contactlistener(NULL), _courceMaker(NULL),_courceManager(NULL),_modal(NULL),_modalMenu(NULL),
+_yubi(NULL),_setumei(NULL)
 {}
 
 GameStage::~GameStage() {
@@ -25,6 +26,8 @@ GameStage::~GameStage() {
     CC_SAFE_RELEASE_NULL(_courceManager);
     CC_SAFE_RELEASE_NULL(_modal);
     CC_SAFE_RELEASE_NULL(_modalMenu);
+    CC_SAFE_RELEASE_NULL(_yubi);
+    CC_SAFE_RELEASE_NULL(_setumei);
 }
 
 Scene* GameStage::createScene() {
@@ -112,7 +115,7 @@ void GameStage::onEnterTransitionDidFinish() {
     // 画面スクロール開始
     runAction(Follow::create(getBike()->getSceneChasePt()));
     scheduleUpdate();
-
+    
     // 開始を遅らせる。
     auto wait_ = DelayTime::create(0.5);
     auto func_ = CallFunc::create([this]{
@@ -150,8 +153,8 @@ void GameStage::update(float dt) {
         NJLOG(ST_VEC2(ctPt).c_str());
         NJLOG(ST_VEC2(getPosition()).c_str());
         if(getDebugMemo()){
-//        getDebugMemo()->setString("重心位置:" + ST_VEC2(getBike()->weightPt));
-        getDebugMemo()->setString("chase:" + ST_VEC2(getBike()->getSceneChasePt()->getPosition()) + " " + ST_INT(getBike()->getRotation()));
+        getDebugMemo()->setString("重心位置:" + ST_VEC2(getBike()->weightPt));
+//        getDebugMemo()->setString("chase:" + ST_VEC2(getBike()->getSceneChasePt()->getPosition()) + " " + ST_INT(getBike()->getRotation()));
 //        getDebugMemo()->setString("bike:" + ST_VEC2(getBike()->getPosition()) + " " + ST_INT(getBike()->getRotation()));
 //        getDebugMemo()->setString("swaip:" + ST_VEC2(getBike()->weightPt));
 //   getDebugMemo()->setString("bike:" + ST_INT(getBike()->centerObjVelo.length()) + "km/h");
@@ -327,6 +330,66 @@ void GameStage::_onContactSeparate(PhysicsContact& contact, PhysicsShape* ps){
         }
     }
 }
+
+
+void GameStage::demoAllwhere(){
+    setSetumei(Label::createWithTTF("", "irohamaru.ttf", 12));
+    getSetumei()->setAnchorPoint(Vec2(0,1));
+    mountNode(getSetumei(), ctPt + Vec2(-50,130), OBJ_LAYER_TOP);
+    setYubi(Sprite::create("yubi.png"));
+    getYubi()->setGlobalZOrder(OBJ_LAYER_TOP);
+    getBike()->addChild(getYubi());
+    std::string st = "操作方法\n"
+    "画面をタップして、\n"
+    "上下左右にスワイプすると\n"
+    "ライダーも上下左右に\n"
+    "重心移動します。\n";
+    getSetumei()->setString(st);
+    getBike()->autoFlg = true;
+    getBike()->removeTouchEvent();
+    getBike()->weightPt= Vec2::ZERO;
+    getBike()->getDebugPt()->setPosition(Vec2::ZERO);
+    auto delay_ = DelayTime::create(1);
+    auto move1_ = MoveTo::create(0.5, Vec2(6,-6));
+    auto move2_ = MoveTo::create(0.5, Vec2(6,-6));
+    auto move3_ = MoveTo::create(0.5, Vec2(-6,6));
+    auto move4_ = MoveTo::create(0.5, Vec2(-6,-6));
+    auto move5_ = MoveTo::create(0.5, Vec2(0,0));
+    auto func_ = CallFunc::create([this]{
+        this->getBike()->autoFlg = false;
+        this->getYubi()->setOpacity(0);
+        this->getBike()->setTouchEvent();
+        this->getSetumei()->setString("");
+        this->demoAllwhere();
+    });
+    auto seq_ = Sequence::create(delay_,move1_,delay_,move2_,delay_,move3_,delay_,move4_,delay_,move5_,delay_, NULL);
+    auto seq2_ = Sequence::create(delay_,move1_,move2_,move3_,move4_,move5_,delay_, NULL);
+    getBike()->getDebugPt()->runAction(seq_);
+    getYubi()->runAction(seq_);
+}
+
+void GameStage::demoWerry(){
+    
+}
+
+void GameStage::demoFRJump(){
+    
+}
+
+void GameStage::demoRJump(){
+    
+}
+
+void GameStage::demoDush(){
+    
+}
+void GameStage::demoStop(){
+    
+}
+void GameStage::demoMiss(){
+    
+}
+
 
 /** パラメータサンプル
  setGameTitle(Label::create());
