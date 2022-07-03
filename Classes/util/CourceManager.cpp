@@ -214,6 +214,46 @@ void CourceManager::madeCourcePtn4(CourceMaker* _cmaker,int ind){
     }
     _cmaker->madePhysiceBody();
 }
+
+std::string CourceManager::getStgComment(int stg){
+    std::string head = "クリア条件\n";
+    switch (stg) {
+        case 1:
+            return head +
+            "ゴールすること。";
+            break;
+        case 2:
+            return head +
+            "ゴールすること。";
+            break;
+        case 3:
+            return head +
+            "制限時間内に、\n"
+            "ゴールすること。";
+            break;
+        case 4:
+            return head +
+            "ゴールすること。";
+            break;
+        case 5:
+            return head +
+            "ゴールすること。";
+            break;
+        case 6:
+            return head +
+            "ゴールすること。";
+            break;
+        case 7:
+            return head +
+            "ゴールすること。";
+            break;
+        default:
+            break;
+    }
+    
+    
+    
+}
 /** パラメータサンプル
 setCourceMakerA(CourceMaker::create());
 getCourceMakerA();

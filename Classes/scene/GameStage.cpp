@@ -163,14 +163,22 @@ void GameStage::update(float dt) {
 }
 
 void GameStage::onReady(){
-    if(UserDefault::getInstance()->getIntegerForKey(UDF_INT_SELECTED_STAGE,1)==1){
+    int stg = UserDefault::getInstance()->getIntegerForKey(UDF_INT_SELECTED_STAGE,1);
+    if(stg==1){
         demo();
-//        demoFRJump();
     }else{
-        showGameAnnounce(L_GAME_READY, ctPt + Vec2(0,50),[this]{
-            setGameState(GameState::PLAY);
-            fstStCnge = true;
+        auto setumei_ = CallFunc::create([this,stg]{
+            this->setSetumei(getCourceManager()->getStgComment(stg));
         });
+        auto wait_ = DelayTime::create(3);
+        auto play_ =  CallFunc::create([this]{
+            this->getSetumei()->removeFromParentAndCleanup(true);
+            this->showGameAnnounce(L_GAME_READY, ctPt + Vec2(0,50),[this]{
+                setGameState(GameState::PLAY);
+                fstStCnge = true;
+            });
+        });
+        runAction(Sequence::create(setumei_,wait_,play_, NULL));
     }
 }
 
@@ -451,30 +459,43 @@ void GameStage::demo(){
     });
     auto move23_ = MoveTo::create(0.8, Vec2(-6,-6));
     auto delay24_ = DelayTime::create(5);
-    auto break_ = Sequence::create(move23_,delay24_, NULL);
+    auto move25_ = MoveTo::create(0.8, Vec2(0,0));
+    auto break_ = Sequence::create(move23_,delay24_,move25_, NULL);
+
+     auto seq_ = Sequence::create(allSetumei_,
+                                  // werry
+                                  werrySetumei_,werryF4_,werryR4_,
+                                  // frJump
+                                  frJumpSetumei_,frJump4_,
+                                  // rJump
+                                  rJumpSetumei_,rJump4_,
+                                  // dush
+                                  dushSetumei_,dush4_,
+                                  // stop
+                                  breakSetumei_,break_,
+                                  delay_,NULL);
     
     auto endfunc_ = CallFunc::create([this]{
         this->getBike()->autoFlg = false;
         this->getYubi()->setOpacity(0);
         this->getSetumei()->setString("");
+    });
+    
+    auto setumei_ = CallFunc::create([this]{
+        this->setSetumei(getCourceManager()->getStgComment(1));
+    });
+    
+    auto wait_ = DelayTime::create(3);
+    auto play_ =  CallFunc::create([this]{
+        this->getSetumei()->removeFromParentAndCleanup(true);
         this->showGameAnnounce(L_GAME_READY, ctPt + Vec2(0,50),[this]{
             setGameState(GameState::PLAY);
             fstStCnge = true;
         });
     });
-    auto seq_ = Sequence::create(allSetumei_,
-                                 // werry
-                                 werrySetumei_,werryF4_,werryR4_,
-                                 // frJump
-                                 frJumpSetumei_,frJump4_,
-                                 // rJump
-                                 rJumpSetumei_,rJump4_,
-                                 // dush
-                                 dushSetumei_,dush4_,
-                                 // stop
-                                 breakSetumei_,break_,
-                                 delay_, endfunc_, NULL);
-    getBike()->getDebugPt()->runAction(seq_);
+
+    auto strt_ = Sequence::create(endfunc_,setumei_,wait_,play_,NULL);
+    getBike()->getDebugPt()->runAction(Sequence::create(seq_,strt_,NULL));
     getYubi()->runAction(seq_->clone());
 }
 
