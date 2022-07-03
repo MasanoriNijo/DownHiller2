@@ -149,15 +149,26 @@ void GameStage::update(float dt) {
         }
     }
     getCourceManager()->checkAndMadeCource(getBike()->getPosition());
+    
+    if(tmFlg && getRestTime()){
+        tm_ += dt;
+        if(timeLimit_>tm_){
+            getRestTime()->setString("残り時間:" + ST_FLOAT(timeLimit_ - tm_));
+        }else{
+            getRestTime()->setString("タイムオーバー！");
+        }
+    }
+    
+    
     if(getBike()){
         NJLOG(ST_VEC2(ctPt).c_str());
         NJLOG(ST_VEC2(getPosition()).c_str());
         if(getDebugMemo()){
-        getDebugMemo()->setString("重心位置:" + ST_VEC2(getBike()->weightPt));
-//        getDebugMemo()->setString("chase:" + ST_VEC2(getBike()->getSceneChasePt()->getPosition()) + " " + ST_INT(getBike()->getRotation()));
-//        getDebugMemo()->setString("bike:" + ST_VEC2(getBike()->getPosition()) + " " + ST_INT(getBike()->getRotation()));
-//        getDebugMemo()->setString("swaip:" + ST_VEC2(getBike()->weightPt));
-//   getDebugMemo()->setString("bike:" + ST_INT(getBike()->centerObjVelo.length()) + "km/h");
+            getDebugMemo()->setString("重心位置:" + ST_VEC2(getBike()->weightPt));
+            //        getDebugMemo()->setString("chase:" + ST_VEC2(getBike()->getSceneChasePt()->getPosition()) + " " + ST_INT(getBike()->getRotation()));
+            //        getDebugMemo()->setString("bike:" + ST_VEC2(getBike()->getPosition()) + " " + ST_INT(getBike()->getRotation()));
+            //        getDebugMemo()->setString("swaip:" + ST_VEC2(getBike()->weightPt));
+            //   getDebugMemo()->setString("bike:" + ST_INT(getBike()->centerObjVelo.length()) + "km/h");
         }
     }
 }
@@ -170,12 +181,19 @@ void GameStage::onReady(){
         auto setumei_ = CallFunc::create([this,stg]{
             this->setSetumei(getCourceManager()->getStgComment(stg));
         });
+        float clearTm_ = getCourceManager()->getStgClearTime(stg);
         auto wait_ = DelayTime::create(3);
-        auto play_ =  CallFunc::create([this]{
+        auto play_ =  CallFunc::create([this,clearTm_]{
             this->getSetumei()->removeFromParentAndCleanup(true);
-            this->showGameAnnounce(L_GAME_READY, ctPt + Vec2(0,50),[this]{
+            this->showGameAnnounce(L_GAME_READY, ctPt + Vec2(0,50),[this,clearTm_]{
                 setGameState(GameState::PLAY);
                 fstStCnge = true;
+                if(clearTm_){
+                    this->timeLimit_ = clearTm_;
+                    this->startTime();
+                    this->setRestTime(Label::createWithTTF("残り時間:" + ST_FLOAT(clearTm_), "irohamaru.ttf", 8));
+                    this->mountNode(this->getRestTime(), Vec2(this->ctPt.x,this->winSize.height-30), OBJ_LAYER_TOP);
+                }
             });
         });
         runAction(Sequence::create(setumei_,wait_,play_, NULL));
@@ -209,10 +227,14 @@ void GameStage::onMiss(){
     getBike()->getFRJoint()->removeFormWorld();
     getBike()->unscheduleUpdate();
     getBike()->removeTouchEvent();
+    Director::getInstance()->getEventDispatcher()->removeEventListener(getContactListenner());
     auto gun = Sprite::create("gan.png");
-    gun->setPosition(missPt);
+    gun->setRotation(getCalc()->chgKaku(missNomalPt));
     gun->setGlobalZOrder(OBJ_LAYER_TOP);
-    addChild(gun);
+    auto moveto = MoveBy::create(0.5, missNomalPt*20);
+    auto fade = FadeOut::create(0.5);
+    gun->runAction(Spawn::create(moveto,fade, NULL));
+    getBike()->addChild(gun);
     showGameAnnounce(L_GAME_MISS, ctPt + Vec2(0,50),[this]{
         setModalMenu(Menu::create(getBtn2(),getBtn4(),NULL));
         getModalMenu()->alignItemsVerticallyWithPadding(5);
@@ -270,7 +292,7 @@ void GameStage::_onContactBegin(PhysicsContact& contact, PhysicsShape* ps){
         }
         case TG_RIDER: {
             setGameState(GameState::MISS);
-            missPt.set(contact.getContactData()->points[0]);
+            missNomalPt.set(contact.getContactData()->normal);
             fstStCnge = true;
             break;
         }

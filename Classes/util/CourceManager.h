@@ -35,6 +35,7 @@ public:
     void madeCourcePtn4(CourceMaker* _cmaker,int ind);
     
     std::string getStgComment(int stg);
+    float getStgClearTime(int stg);
     
 };
 

@@ -53,11 +53,11 @@ public:
     void onPlay();
     void onClear();
     void onMiss();
-    Vec2 missPt;
+    Vec2 missNomalPt;
     
     
-    // クリア条件
-    float lestTime_;
+    // クリア条件の時間
+    float timeLimit_;
     
     // demoアクション
     CC_SYNTHESIZE_RETAIN(Sprite*,_yubi,Yubi);
