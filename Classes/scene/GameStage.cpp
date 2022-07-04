@@ -174,9 +174,9 @@ void GameStage::update(float dt) {
         NJLOG(ST_VEC2(ctPt).c_str());
         NJLOG(ST_VEC2(getPosition()).c_str());
         if(getDebugMemo()){
-            getDebugMemo()->setString("重心位置:" + ST_VEC2(getBike()->weightPt));
+//            getDebugMemo()->setString("重心位置:" + ST_VEC2(getBike()->weightPt));
             //        getDebugMemo()->setString("chase:" + ST_VEC2(getBike()->getSceneChasePt()->getPosition()) + " " + ST_INT(getBike()->getRotation()));
-            //        getDebugMemo()->setString("bike:" + ST_VEC2(getBike()->getPosition()) + " " + ST_INT(getBike()->getRotation()));
+                    getDebugMemo()->setString("bike:" + ST_VEC2(getBike()->getPosition()) + " " + ST_INT(getBike()->getRotation()));
             //        getDebugMemo()->setString("swaip:" + ST_VEC2(getBike()->weightPt));
             //   getDebugMemo()->setString("bike:" + ST_INT(getBike()->centerObjVelo.length()) + "km/h");
         }
@@ -214,16 +214,32 @@ void GameStage::onClear(){
     getBike()->getRwheel()->getPhysicsBody()->setAngularDamping(1);
 //    getBike()->getRwheel()->getPhysicsBody()->setLinearDamping(1);
     getBike()->removeTouchEvent();
-    showGameAnnounce(L_GAME_CLEAR, ctPt + Vec2(0,50),[this]{
-        setModalMenu(Menu::create(getBtn3(),getBtn4(),NULL));
-        getModalMenu()->alignItemsVerticallyWithPadding(5);
-        getModalMenu()->setPosition(Vec2::ZERO);
-        getModal()->addChild(getModalMenu());
-        getModal()->setScale(0);
-        auto big = ScaleTo::create(0.3, 1);
-        getModal()->runAction(big);
-        mountNode(getModal(), ctPt, OBJ_LAYER_TOP);
-    });
+    Director::getInstance()->getEventDispatcher()->removeEventListener(getContactListenner());
+    stopTime();
+    // タイムオーバーチェック
+    if(timeLimit_ && timeLimit_ < tm_){
+        showGameAnnounce(L_GAME_MISS, ctPt + Vec2(0,50),[this]{
+            setModalMenu(Menu::create(getBtn2(),getBtn4(),NULL));
+            getModalMenu()->alignItemsVerticallyWithPadding(5);
+            getModalMenu()->setPosition(Vec2::ZERO);
+            getModal()->addChild(getModalMenu());
+            getModal()->setScale(0);
+            auto big = ScaleTo::create(0.3, 1);
+            getModal()->runAction(big);
+            mountNode(getModal(), ctPt, OBJ_LAYER_TOP);
+        });
+    }else{
+        showGameAnnounce(L_GAME_CLEAR, ctPt + Vec2(0,50),[this]{
+            setModalMenu(Menu::create(getBtn3(),getBtn4(),NULL));
+            getModalMenu()->alignItemsVerticallyWithPadding(5);
+            getModalMenu()->setPosition(Vec2::ZERO);
+            getModal()->addChild(getModalMenu());
+            getModal()->setScale(0);
+            auto big = ScaleTo::create(0.3, 1);
+            getModal()->runAction(big);
+            mountNode(getModal(), ctPt, OBJ_LAYER_TOP);
+        });
+    }
 }
 
 void GameStage::onMiss(){
@@ -418,12 +434,12 @@ void GameStage::demo(){
     auto werrySetumei_ = CallFunc::create([this]{
         this->setSetumei(DEMO_WERRY);
     });
-    auto move10_ = MoveTo::create(0.8, Vec2(6,0));
-    auto move11_ = MoveTo::create(0.2, Vec2(-6,0));
+    auto move10_ = MoveTo::create(1.5, Vec2(6,0));
+    auto move11_ = MoveTo::create(0.15, Vec2(-6,0));
     auto werryF4_ = Repeat::create(Sequence::create(move10_,move11_, NULL), 4);
         
-    auto move12_ = MoveTo::create(0.8, Vec2(-6,0));
-    auto move13_ = MoveTo::create(0.2, Vec2(6,0));
+    auto move12_ = MoveTo::create(1.5, Vec2(-6,0));
+    auto move13_ = MoveTo::create(0.15, Vec2(6,0));
     auto werryR4_ = Repeat::create(Sequence::create(move12_,move13_, NULL), 4);
     
     // FRJump
@@ -459,7 +475,7 @@ void GameStage::demo(){
         this->setSetumei(DEMO_BREAK);
     });
     auto move23_ = MoveTo::create(0.8, Vec2(-6,-6));
-    auto delay24_ = DelayTime::create(5);
+    auto delay24_ = DelayTime::create(3);
     auto move25_ = MoveTo::create(0.8, Vec2(0,0));
     auto break_ = Sequence::create(move23_,delay24_,move25_, NULL);
 
@@ -490,6 +506,7 @@ void GameStage::demo(){
     auto play_ =  CallFunc::create([this]{
         this->getSetumei()->removeFromParentAndCleanup(true);
         this->showGameAnnounce(L_GAME_READY, ctPt + Vec2(0,50),[this]{
+            getBike()->setTouchEvent();
             setGameState(GameState::PLAY);
             fstStCnge = true;
         });

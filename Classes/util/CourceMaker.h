@@ -46,7 +46,7 @@ public:
     float _markPitch = 80;
     float _remindMarkPitch = 0;
     
-    // アクション関連
+    // 描写開始
     void drawStart(Vec2 pt_, Vec2 dir_);
     // 現ポイントから、指定の方向に直線を描く。
     void drawByStraight(Vec2 dpt_);
@@ -68,6 +68,7 @@ public:
     // 描写関連
     void addStraightLine(Vec2 pt1_, Vec2 pt2_);
     void addDot(Vec2 pt_);
+    void addStartDot(Vec2 pt_);
     void addCurveA(Vec2 pt_, Vec2 dir_);
     void addMarkStraight(Vec2 pt_,Vec2 dir_);
     void addMarkCurve(Vec2 curveCenterPt,Vec2 fstPt,float rad);

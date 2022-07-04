@@ -67,19 +67,22 @@ void CourceManager::madeCourcePtn1(CourceMaker* _cmaker,int ind){
         case 0:
             _cmaker->drawByStraight(Vec2(0,100));
             _cmaker->drawByStraight(Vec2(0,-100));
-            _cmaker->drawByStraight(Vec2(2000,1));
+            _cmaker->drawByStraight(Vec2(800,-10));
             break;
         case 1:
-            _cmaker->drawBySmoothCurve(200,-40);
-            _cmaker->drawBySmoothCurve(100,-10);
-            _cmaker->drawBySmoothCurve(140,10);
-            _cmaker->drawBySmoothCurve(20,0);
-            _cmaker->drawByStraight(Vec2(200,-90));
+            for(i=0;i<3;i++){
+                _cmaker->drawBySmoothCurve(100, 10);
+                _cmaker->drawBySmoothCurve(100, -30);
+                _cmaker->drawBySmoothCurve(100, 0);
+                _cmaker->drawByStraight(200, 0);
+            }
             break;
         case 2:
-            for(i=0;i<4;i++){
-                _cmaker->drawByStraight(Vec2(0,-50));
-                _cmaker->drawByStraight(Vec2(60,0));
+            for(i=0;i<3;i++){
+                _cmaker->drawBySmoothCurve(100, -30);
+                _cmaker->drawBySmoothCurve(60, 10);
+                _cmaker->drawBySmoothCurve(100, 0);
+                _cmaker->drawByStraight(200, -10);
             }
             break;
         case 3:
@@ -145,14 +148,13 @@ void CourceManager::madeCourcePtn3(CourceMaker* _cmaker,int ind){
         case 0:
             _cmaker->drawByStraight(Vec2(0,100));
             _cmaker->drawByStraight(Vec2(0,-100));
-            _cmaker->drawByStraight(Vec2(5000,-1));
+            _cmaker->drawByStraight(Vec2(300,-1));
             break;
         case 1:
-            _cmaker->drawBySmoothCurve(200,-40);
-            _cmaker->drawBySmoothCurve(100,-10);
-            _cmaker->drawBySmoothCurve(140,10);
-            _cmaker->drawBySmoothCurve(20,0);
-            _cmaker->drawByStraight(Vec2(200,-90));
+            for(i=0;i<4;i++){
+            _cmaker->drawByCurve(Vec2(30,0), -90);
+            _cmaker->drawByStraight(Vec2(200,0));
+            }
             break;
         case 2:
             for(i=0;i<4;i++){
@@ -222,7 +224,8 @@ StagePrm CourceManager::getStagePrm(int stg){
     switch (stg) {
         case 1:
             _stgPrm._comment = head +
-            "ゴールすること。";
+            "実際に操作してみて、\n"
+            "ゴールを目指そう！";
             break;
         case 2:
             _stgPrm._comment = head +
@@ -232,9 +235,10 @@ StagePrm CourceManager::getStagePrm(int stg){
             break;
         case 3:
             _stgPrm._comment = head +
-            "制限時間内に、\n"
+            "コブを乗り越えて、\n"
+            "10秒以内に、\n"
             "ゴールすること。";
-            _stgPrm.timeLimit_ = 30;
+            _stgPrm.timeLimit_ = 20;
             break;
         case 4:
             _stgPrm._comment = head +

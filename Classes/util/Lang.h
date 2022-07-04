@@ -32,12 +32,14 @@ static const std::string DEMO_WERRY = "<<ウイリー>>\n"
 
 static const std::string DEMO_FR_JUMP = "<<両輪ジャンプ>>\n"
 "両輪が地面接地時に\n"
-"下から上に素早くスワイプすると\n"
+"下から上に素早く\n"
+"スワイプすると\n"
 "両輪ジャンプします。\n";
 
 static const std::string DEMO_R_JUMP = "<<後輪ジャンプ>>\n"
 "前輪ウイリー時に\n"
-"下から上に素早くスワイプすると\n"
+"下から上に素早く\n"
+"スワイプすると\n"
 "両輪ジャンプより\n"
 "より高くジャンプします。\n";
 
