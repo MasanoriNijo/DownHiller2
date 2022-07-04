@@ -8,7 +8,7 @@
 GameStage::GameStage():
 _gameTitle(NULL), _btn1(NULL), _btn2(NULL), _btn3(NULL), _btn4(NULL), _menu(NULL),_touch(NULL),_bike(NULL),
 _contactlistener(NULL), _courceMaker(NULL),_courceManager(NULL),_modal(NULL),_modalMenu(NULL),
-_yubi(NULL),_setumei(NULL)
+_yubi(NULL),_setumei(NULL),_stagePrm(StagePrm())
 {}
 
 GameStage::~GameStage() {
@@ -95,6 +95,16 @@ bool GameStage::init() {
     setCourceManager(CourceManager::create());
     addChild(getCourceManager()->getCourceMakerA());
     addChild(getCourceManager()->getCourceMakerB());
+    
+    // ステージパラメータを取得
+    setStagePrm(getCourceManager()->getStagePrm(UserDefault::getInstance()->getIntegerForKey(UDF_INT_SELECTED_STAGE)));
+    // タイムリミットが設定されている場合
+    if(getStagePrm().timeLimit_>0){
+        timeLimit_ = getStagePrm().timeLimit_;
+        setRestTime(Label::createWithTTF("残り時間:" + ST_FLOAT(timeLimit_), "irohamaru.ttf", 8));
+        mountNode(getRestTime(), Vec2(ctPt.x,winSize.height-30), OBJ_LAYER_TOP);
+    }
+    
     return true;
 }
 
@@ -179,21 +189,16 @@ void GameStage::onReady(){
         demo();
     }else{
         auto setumei_ = CallFunc::create([this,stg]{
-            this->setSetumei(getCourceManager()->getStgComment(stg));
+            this->setSetumei(getStagePrm()._comment);
         });
-        float clearTm_ = getCourceManager()->getStgClearTime(stg);
         auto wait_ = DelayTime::create(3);
-        auto play_ =  CallFunc::create([this,clearTm_]{
+        auto play_ =  CallFunc::create([this]{
             this->getSetumei()->removeFromParentAndCleanup(true);
-            this->showGameAnnounce(L_GAME_READY, ctPt + Vec2(0,50),[this,clearTm_]{
+            this->showGameAnnounce(L_GAME_READY, ctPt + Vec2(0,50),[this]{
                 setGameState(GameState::PLAY);
                 fstStCnge = true;
-                if(clearTm_){
-                    this->timeLimit_ = clearTm_;
-                    this->startTime();
-                    this->setRestTime(Label::createWithTTF("残り時間:" + ST_FLOAT(clearTm_), "irohamaru.ttf", 8));
-                    this->mountNode(this->getRestTime(), Vec2(this->ctPt.x,this->winSize.height-30), OBJ_LAYER_TOP);
-                }
+                getBike()->setTouchEvent();
+                startTime();
             });
         });
         runAction(Sequence::create(setumei_,wait_,play_, NULL));
@@ -202,7 +207,6 @@ void GameStage::onReady(){
 
 void GameStage::onPlay(){
     showGameAnnounce(L_GAME_START, ctPt + Vec2(0,50),[this]{
-        getBike()->setTouchEvent();
     });
 }
 
@@ -479,7 +483,7 @@ void GameStage::demo(){
     });
     
     auto setumei_ = CallFunc::create([this]{
-        this->setSetumei(getCourceManager()->getStgComment(1));
+        this->setSetumei(getStagePrm()._comment);
     });
     
     auto wait_ = DelayTime::create(3);

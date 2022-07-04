@@ -215,71 +215,50 @@ void CourceManager::madeCourcePtn4(CourceMaker* _cmaker,int ind){
     _cmaker->madePhysiceBody();
 }
 
-std::string CourceManager::getStgComment(int stg){
+StagePrm CourceManager::getStagePrm(int stg){
+    StagePrm _stgPrm = StagePrm();
+    _stgPrm._stageNum = stg;
     std::string head = "クリア条件\n";
     switch (stg) {
         case 1:
-            return head +
+            _stgPrm._comment = head +
             "ゴールすること。";
             break;
         case 2:
-            return head +
+            _stgPrm._comment = head +
             "10秒以内に、\n"
             "ゴールすること。";
+            _stgPrm.timeLimit_ = 10;
             break;
         case 3:
-            return head +
+            _stgPrm._comment = head +
             "制限時間内に、\n"
             "ゴールすること。";
+            _stgPrm.timeLimit_ = 30;
             break;
         case 4:
-            return head +
+            _stgPrm._comment = head +
             "ゴールすること。";
             break;
         case 5:
-            return head +
+            _stgPrm._comment = head +
             "ゴールすること。";
             break;
         case 6:
-            return head +
+            _stgPrm._comment = head +
             "ゴールすること。";
             break;
         case 7:
-            return head +
+            _stgPrm._comment = head +
             "ゴールすること。";
             break;
         default:
             break;
     }
+    return _stgPrm;
 }
 
-float CourceManager::getStgClearTime(int stg){
-    switch (stg) {
-        case 1:
-            return 0;
-            break;
-        case 2:
-            return 10;
-            break;
-        case 3:
-            return 30;
-            break;
-        case 4:
-            return 10;
-            break;
-        case 5:
-            return 0;
-            break;
-        case 6:
-            return 0;
-            break;
-        case 7:
-            return 0;
-            break;
-        default:
-            break;
-    }
-}
+
 /** パラメータサンプル
 setCourceMakerA(CourceMaker::create());
 getCourceMakerA();
