@@ -38,7 +38,7 @@ bool Bike::init() {
     frameSize = Size(getRider()->getContentSize().width / 7, getRider()->getContentSize().height / 7);
     
     getRider()->setPosition(Vec2(18,22));
-    getRider()->setGlobalZOrder(OBJ_LAYER_TOP);// これを入れないとライダーが下に隠れて見えなくなる。
+    getRider()->setGlobalZOrder(OBJ_LAYER_LV3);
     addChild(getRider());
     riderImageAction();
     
@@ -62,11 +62,11 @@ bool Bike::init() {
     getSceneChasePt()->setGlobalZOrder(OBJ_LAYER_BUTTOM);
 
     // debug用
-    setBikeDebug(Label::createWithTTF("bikeState", "irohamaru.ttf", 10));
-    getBikeDebug()->setTextColor(Color4B::BLACK);
-    getBikeDebug()->setGlobalZOrder(OBJ_LAYER_TOP);
-    getBikeDebug()->setPosition(Vec2(0,50));
-    addChild(getBikeDebug());
+//    setBikeDebug(Label::createWithTTF("bikeState", "irohamaru.ttf", 10));
+//    getBikeDebug()->setTextColor(Color4B::BLACK);
+//    getBikeDebug()->setGlobalZOrder(OBJ_LAYER_TOP);
+//    getBikeDebug()->setPosition(Vec2(0,50));
+//    addChild(getBikeDebug());
     
     return true;
 }

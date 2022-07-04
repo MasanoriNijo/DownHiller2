@@ -1453,6 +1453,7 @@
 		306A83EB286EECAE0059C257 /* Modal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Modal.cpp; path = Classes/item/Modal.cpp; sourceTree = SOURCE_ROOT; };
 		306A83EF286F44ED0059C257 /* SelectScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelectScene.h; path = Classes/scene/SelectScene.h; sourceTree = SOURCE_ROOT; };
 		306A83F0286F44EE0059C257 /* SelectScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SelectScene.cpp; path = Classes/scene/SelectScene.cpp; sourceTree = SOURCE_ROOT; };
+		306A83F6287326B80059C257 /* StagePrm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = StagePrm.h; path = Classes/util/StagePrm.h; sourceTree = SOURCE_ROOT; };
 		3077803B8D5646769C867A5B /* DetourObstacleAvoidance.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = DetourObstacleAvoidance.cpp; path = cocos2d/external/recast/DetourCrowd/DetourObstacleAvoidance.cpp; sourceTree = SOURCE_ROOT; };
 		3087C150285EFD5000AD0F14 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		3087C152286206DE00AD0F14 /* mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mark.png; path = Resources/images/mark.png; sourceTree = SOURCE_ROOT; };
@@ -3664,6 +3665,7 @@
 		304DD0BB2843D0A400AF0334 /* util */ = {
 			isa = PBXGroup;
 			children = (
+				306A83F6287326B80059C257 /* StagePrm.h */,
 				305D0D76286B4E84009DDA1E /* CourceManager.cpp */,
 				305D0D77286B4E84009DDA1E /* CourceManager.h */,
 				302A0A35285CC4010072A2D3 /* CourceMaker.cpp */,

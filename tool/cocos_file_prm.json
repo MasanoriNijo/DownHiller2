@@ -1,5 +1,5 @@
 {
-  "className": "SelectScene",
+  "className": "StagePrm",
   "superClass": "GameScene",
   "synthesize_retains": [
     ["Label", "_gameTitle", "GameTitle"],

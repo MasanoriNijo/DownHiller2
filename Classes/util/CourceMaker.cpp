@@ -28,11 +28,11 @@ bool CourceMaker::init() {
     }
     setCalc(Calclater::create());
     setDot(SpriteBatchNode::create("c_dot.png"));
-    getDot()->setGlobalZOrder(OBJ_LAYER_TOP);
+    getDot()->setGlobalZOrder(OBJ_LAYER_LV1);
     addChild(getDot());
     
     setStraight(SpriteBatchNode::create("c_straight.png"));
-    getStraight()->setGlobalZOrder(OBJ_LAYER_TOP);
+    getStraight()->setGlobalZOrder(OBJ_LAYER_LV1);
     _length = getStraight()->getTexture()->getContentSize().width;
     addChild(getStraight());
     
@@ -40,7 +40,7 @@ bool CourceMaker::init() {
     addChild(getCurveA());
     
     setMark(SpriteBatchNode::create("mark.png"));
-    getMark()->setGlobalZOrder(OBJ_LAYER_TOP);
+    getMark()->setGlobalZOrder(OBJ_LAYER_LV1);
     addChild(getMark());
     
     return true;
@@ -62,7 +62,8 @@ void CourceMaker::drawStart(Vec2 pt_, Vec2 dir_){
     this->setTergetPt(pt_);
     this->setTargetDir(dir_);
     _polygonPtCnt = 0;
-    addDot(pt_);
+    addStartDot(pt_);//デバック時
+//    addDot(pt_);
     addPolygonPts(_wrkPt);
     getMember().clear();
 }
@@ -87,7 +88,7 @@ void CourceMaker::drawByStraight(Vec2 dpt_){
 }
 
 void CourceMaker::drawByStraight(float length, float kaku){    
-    Vec2 dpt_ = getCalc()->rotByKaku(Vec2(length,0), kaku);
+    Vec2 dpt_ = getCalc()->rotByKaku(Vec2(length,0), -kaku);
     setWorkPt(_trgPt);
     setWorkDir(dpt_);
     setTergetPt(_trgPt + dpt_);
@@ -292,7 +293,7 @@ void CourceMaker::addStraightLine(Vec2 pt1_, Vec2 pt2_){
     stline->setScaleX((pt2_-pt1_).length()/_length);
     stline->setPosition(pt1_);
     stline->setRotation(getCalc()->chgKaku((pt2_-pt1_)));
-    stline->setGlobalZOrder(OBJ_LAYER_TOP);
+    stline->setGlobalZOrder(OBJ_LAYER_LV1);
 //    stline->setOpacity(95);
     getStraight()->addChild(stline);
     getMember().pushBack(stline);
@@ -301,7 +302,17 @@ void CourceMaker::addStraightLine(Vec2 pt1_, Vec2 pt2_){
 
 void CourceMaker::addDot(Vec2 pt_){
     Sprite* dot = Sprite::createWithTexture(getDot()->getTexture());
-    dot->setGlobalZOrder(OBJ_LAYER_TOP);
+    dot->setGlobalZOrder(OBJ_LAYER_LV1);
+    dot->setPosition(pt_);
+    //    dot->setOpacity(0.2f);
+    getDot()->addChild(dot);
+    getMember().pushBack(dot);
+}
+
+void CourceMaker::addStartDot(Vec2 pt_){
+    Sprite* dot = Sprite::createWithTexture(getDot()->getTexture());
+    dot->setGlobalZOrder(OBJ_LAYER_LV1);
+    dot->setScale(2, 2);
     dot->setPosition(pt_);
     //    dot->setOpacity(0.2f);
     getDot()->addChild(dot);
@@ -319,7 +330,7 @@ void CourceMaker::addMarkStraight(Vec2 pt1_, Vec2 pt2_){
         mark->setAnchorPoint(Vec2(0.5,0.5));
         mark->setPosition(drawPt);
         mark->setRotation(getCalc()->chgKaku(dirPt));
-        mark->setGlobalZOrder(OBJ_LAYER_TOP + 1);
+        mark->setGlobalZOrder(OBJ_LAYER_LV1 + 1);
         getMark()->addChild(mark);
         getMember().pushBack(mark);
         drawPt = drawPt + getCalc()->chgLength(dirPt, _markPitch);
@@ -344,7 +355,7 @@ void CourceMaker::addMarkCurve(Vec2 curveCenterPt,Vec2 fstPt,float rad){
             mark->setAnchorPoint(Vec2(0.5,0.5));
             mark->setPosition(getCalc()->rotByRad(fstPt-curveCenterPt, drawRad)+ curveCenterPt);
             mark->setRotation(getCalc()->chgKaku(getCalc()->rotByRad(fstPt-curveCenterPt, drawRad + optRad)));
-            mark->setGlobalZOrder(OBJ_LAYER_TOP);
+            mark->setGlobalZOrder(OBJ_LAYER_LV1);
             getMark()->addChild(mark);
             getMember().pushBack(mark);
             drawRad += pitchRad;
@@ -355,7 +366,7 @@ void CourceMaker::addMarkCurve(Vec2 curveCenterPt,Vec2 fstPt,float rad){
             mark->setAnchorPoint(Vec2(0.5,0.5));
             mark->setPosition(getCalc()->rotByRad(fstPt-curveCenterPt, drawRad)+ curveCenterPt);
             mark->setRotation(getCalc()->chgKaku(getCalc()->rotByRad(fstPt-curveCenterPt, drawRad + optRad)));
-            mark->setGlobalZOrder(OBJ_LAYER_TOP);
+            mark->setGlobalZOrder(OBJ_LAYER_LV1);
             getMark()->addChild(mark);
             getMember().pushBack(mark);
             drawRad += pitchRad;

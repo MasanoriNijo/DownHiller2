@@ -31,10 +31,10 @@ USING_NS_CC;
 
 // spriteの上下
 #define OBJ_LAYER_BUTTOM 0
-#define OBJ_LAYER_LV1 1
-#define OBJ_LAYER_LV2 2
-#define OBJ_LAYER_LV3 3
-#define OBJ_LAYER_TOP 4
+#define OBJ_LAYER_LV1 2
+#define OBJ_LAYER_LV2 4
+#define OBJ_LAYER_LV3 6
+#define OBJ_LAYER_TOP 8
 
 // 物理関連の定数
 const Vec2 GRAVITY_ACCERATION = Vec2(0, -10);

@@ -37,6 +37,7 @@ public:
     CC_SYNTHESIZE_RETAIN(EventListenerPhysicsContact*, _contactlistener,ContactListenner);
     CC_SYNTHESIZE_RETAIN(CourceMaker*,_courceMaker,CourceMaker);
     CC_SYNTHESIZE_RETAIN(CourceManager*,_courceManager,CourceManager);
+    CC_SYNTHESIZE(StagePrm, _stagePrm, StagePrm);
     
     void update(float dt) override;
     void onEnterTransitionDidFinish() override;
@@ -55,7 +56,6 @@ public:
     void onMiss();
     Vec2 missNomalPt;
     
-    
     // クリア条件の時間
     float timeLimit_;
     
@@ -65,7 +65,6 @@ public:
     void setSetumei(std::string st);
     void demo();
 
-    
 };
 
 #endif

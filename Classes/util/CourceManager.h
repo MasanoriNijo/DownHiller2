@@ -2,6 +2,7 @@
 #define __COURCEMANAGER_H__
 
 #include "util/CourceMaker.h"
+#include "util/StagePrm.h"
 #include "item/Flg.h"
 #include "cocos2d.h"
 USING_NS_CC;
@@ -34,8 +35,7 @@ public:
     void madeCourcePtn3(CourceMaker* _cmaker,int ind);
     void madeCourcePtn4(CourceMaker* _cmaker,int ind);
     
-    std::string getStgComment(int stg);
-    float getStgClearTime(int stg);
+    StagePrm getStagePrm(int stg);
     
 };
 
