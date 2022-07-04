@@ -64,7 +64,7 @@ public:
     Vec2 bikeAnchorPt;
     
     // wheelBase
-    float wheelBase = 32;
+    float wheelBase = 36;
     
     // riderの重心ポイント（画面操作により、移動し、移動の仕方によりジャンプ、ウイリーなどのアクションをさせる。）
     Vec2 weightPt;

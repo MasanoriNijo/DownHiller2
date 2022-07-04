@@ -88,7 +88,7 @@ bool GameStage::init() {
     getMenu()->alignItemsHorizontallyWithPadding(20);
 //    mountNode(getMenu(), Vec2(winSize.width - getBtn1()->getContentSize().width/2 -10,
 //                              winSize.height - getBtn1()->getContentSize().height/2 -10), OBJ_LAYER_TOP);
-    mountNode(getMenu(), ctPt, OBJ_LAYER_TOP);
+    mountNode(getMenu(), Vec2(winSize.width - 190,winSize.height - 20), OBJ_LAYER_TOP);
     setCourceMaker(CourceMaker::create());
     addChild(getCourceMaker());
     
@@ -370,13 +370,13 @@ void GameStage::setSetumei(std::string st){
     if(getSetumei()){
         getSetumei()->removeFromParentAndCleanup(true);
     }
-    setSetumei(Label::createWithTTF("", "irohamaru.ttf", 12));
+    setSetumei(Label::createWithTTF("", "irohamaru.ttf", 10));
     getSetumei()->setAnchorPoint(Vec2(0,1));
     getSetumei()->setGlobalZOrder(OBJ_LAYER_TOP);
     getBike()->getSceneChasePt()->addChild(getSetumei());
     
     getSetumei()->setString(st);
-    getSetumei()->setPosition(Vec2(-30,130) + Vec2(500,0));
+    getSetumei()->setPosition(Vec2(-50,130) + Vec2(500,0));
     auto moveTo = MoveBy::create(0.5, Vec2(-500,0));
     getSetumei()->runAction(moveTo);
 }
