@@ -106,12 +106,12 @@ void CourceManager::madeCourcePtn2(CourceMaker* _cmaker,int ind){
         case 0:
             _cmaker->drawByStraight(Vec2(0,100));
             _cmaker->drawByStraight(Vec2(0,-100));
-            _cmaker->drawByStraight(Vec2(5000,-1));
+            _cmaker->drawByStraight(Vec2(400,-1));
             break;
         case 1:
-            _cmaker->drawBySmoothCurve(200,-40);
-            _cmaker->drawBySmoothCurve(100,-10);
-            _cmaker->drawBySmoothCurve(140,10);
+            _cmaker->drawBySmoothCurve(500,-40);
+            _cmaker->drawBySmoothCurve(100,10);
+            _cmaker->drawBySmoothCurve(240,-60);
             _cmaker->drawBySmoothCurve(20,0);
             _cmaker->drawByStraight(Vec2(200,-90));
             break;
@@ -213,6 +213,72 @@ void CourceManager::madeCourcePtn4(CourceMaker* _cmaker,int ind){
             break;
     }
     _cmaker->madePhysiceBody();
+}
+
+std::string CourceManager::getStgComment(int stg){
+    std::string head = "クリア条件\n";
+    switch (stg) {
+        case 1:
+            return head +
+            "ゴールすること。";
+            break;
+        case 2:
+            return head +
+            "10秒以内に、\n"
+            "ゴールすること。";
+            break;
+        case 3:
+            return head +
+            "制限時間内に、\n"
+            "ゴールすること。";
+            break;
+        case 4:
+            return head +
+            "ゴールすること。";
+            break;
+        case 5:
+            return head +
+            "ゴールすること。";
+            break;
+        case 6:
+            return head +
+            "ゴールすること。";
+            break;
+        case 7:
+            return head +
+            "ゴールすること。";
+            break;
+        default:
+            break;
+    }
+}
+
+float CourceManager::getStgClearTime(int stg){
+    switch (stg) {
+        case 1:
+            return 0;
+            break;
+        case 2:
+            return 10;
+            break;
+        case 3:
+            return 30;
+            break;
+        case 4:
+            return 10;
+            break;
+        case 5:
+            return 0;
+            break;
+        case 6:
+            return 0;
+            break;
+        case 7:
+            return 0;
+            break;
+        default:
+            break;
+    }
 }
 /** パラメータサンプル
 setCourceMakerA(CourceMaker::create());

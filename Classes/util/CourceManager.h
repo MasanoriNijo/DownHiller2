@@ -33,6 +33,10 @@ public:
     void madeCourcePtn2(CourceMaker* _cmaker,int ind);
     void madeCourcePtn3(CourceMaker* _cmaker,int ind);
     void madeCourcePtn4(CourceMaker* _cmaker,int ind);
+    
+    std::string getStgComment(int stg);
+    float getStgClearTime(int stg);
+    
 };
 
 #endif

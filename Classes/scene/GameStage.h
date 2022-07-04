@@ -24,6 +24,7 @@ public:
     CREATE_FUNC(GameStage);
     static Scene* createScene();
     CC_SYNTHESIZE_RETAIN(Label*,_gameTitle,GameTitle);
+    CC_SYNTHESIZE_RETAIN(Label*,_restTime,RestTime);
     CC_SYNTHESIZE_RETAIN(MenuItemSprite*,_btn1,Btn1);
     CC_SYNTHESIZE_RETAIN(MenuItemSprite*,_btn2,Btn2);
     CC_SYNTHESIZE_RETAIN(MenuItemSprite*,_btn3,Btn3);
@@ -52,7 +53,11 @@ public:
     void onPlay();
     void onClear();
     void onMiss();
-    Vec2 missPt;
+    Vec2 missNomalPt;
+    
+    
+    // クリア条件の時間
+    float timeLimit_;
     
     // demoアクション
     CC_SYNTHESIZE_RETAIN(Sprite*,_yubi,Yubi);
