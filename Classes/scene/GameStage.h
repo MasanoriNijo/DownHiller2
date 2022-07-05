@@ -60,6 +60,9 @@ public:
     CC_SYNTHESIZE_RETAIN(Label*,_setumei,Setumei);
     void setSetumei(std::string st);
     void demo();
+    
+    // クリア条件パラメータ
+    float _timeLimit = 0;
 
 };
 

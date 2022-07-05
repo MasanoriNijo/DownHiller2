@@ -96,10 +96,11 @@ bool GameStage::init() {
     addChild(getCourceManager()->getCourceMakerA());
     addChild(getCourceManager()->getCourceMakerB());
     addChild(getCourceManager()->getGurd());
+    _timeLimit = _timeLimit;
     
     // タイムリミットが設定されている場合
-    if(getCourceManager()->getStagePrm()->getTymeLimit()>0){
-        setRestTime(Label::createWithTTF("残り時間:" + ST_FLOAT(getCourceManager()->getStagePrm()->getTymeLimit()), "irohamaru.ttf", 8));
+    if(_timeLimit>0){
+        setRestTime(Label::createWithTTF("残り時間:" + ST_FLOAT(_timeLimit), "irohamaru.ttf", 8));
         mountNode(getRestTime(), Vec2(ctPt.x,winSize.height-30), OBJ_LAYER_TOP);
     }
     
@@ -158,10 +159,10 @@ void GameStage::update(float dt) {
     }
     getCourceManager()->checkAndMadeCource(getBike()->getPosition());
     
-    if(tmFlg && getRestTime()){
+    if(tmFlg && _timeLimit>0){
         tm_ += dt;
-        if(getCourceManager()->getStagePrm()->getTymeLimit()>tm_){
-            getRestTime()->setString("残り時間:" + ST_FLOAT(getCourceManager()->getStagePrm()->getTymeLimit() - tm_));
+        if(_timeLimit>tm_){
+            getRestTime()->setString("残り時間:" + ST_FLOAT(_timeLimit - tm_));
         }else{
             getRestTime()->setString("タイムオーバー！");
         }
@@ -169,8 +170,8 @@ void GameStage::update(float dt) {
     
     
     if(getBike()){
-        NJLOG(ST_VEC2(ctPt).c_str());
-        NJLOG(ST_VEC2(getPosition()).c_str());
+//        NJLOG(ST_VEC2(ctPt).c_str());
+//        NJLOG(ST_VEC2(getPosition()).c_str());
         if(getDebugMemo()){
 //            getDebugMemo()->setString("重心位置:" + ST_VEC2(getBike()->weightPt));
             //        getDebugMemo()->setString("chase:" + ST_VEC2(getBike()->getSceneChasePt()->getPosition()) + " " + ST_INT(getBike()->getRotation()));
@@ -215,8 +216,8 @@ void GameStage::onClear(){
     Director::getInstance()->getEventDispatcher()->removeEventListener(getContactListenner());
     stopTime();
     // タイムオーバーチェック
-    if(getCourceManager()->getStagePrm()->getTymeLimit() &&
-       getCourceManager()->getStagePrm()->getTymeLimit() < tm_){
+    if(_timeLimit &&
+       _timeLimit < tm_){
         showGameAnnounce(L_GAME_MISS, ctPt + Vec2(0,50),[this]{
             setModalMenu(Menu::create(getBtn2(),getBtn4(),NULL));
             getModalMenu()->alignItemsVerticallyWithPadding(5);
