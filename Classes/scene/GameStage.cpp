@@ -210,7 +210,7 @@ void GameStage::onPlay(){
 }
 
 void GameStage::onClear(){
-    getModal()->removeFromParentAndCleanup(true);
+    getMenu()->removeFromParentAndCleanup(true);
     getBike()->getRwheel()->getPhysicsBody()->setAngularDamping(1);
 //    getBike()->getRwheel()->getPhysicsBody()->setLinearDamping(1);
     getBike()->removeTouchEvent();
