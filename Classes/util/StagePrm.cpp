@@ -1,7 +1,7 @@
 #include "StagePrm.h"
 
 StagePrm::StagePrm():
-_stageNumber(NULL), _comment(NULL), _timeLimit(NULL)
+_stageNumber(0), _comment(""), _timeLimit(0)
 {}
 
 StagePrm::~StagePrm() {
