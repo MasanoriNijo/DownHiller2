@@ -1,12 +1,9 @@
 {
   "className": "StagePrm",
-  "superClass": "GameScene",
+  "superClass": "Ref",
   "synthesize_retains": [
-    ["Label", "_gameTitle", "GameTitle"],
-    ["MenuItemSprite", "_btn1", "Btn1"],
-    ["MenuItemSprite", "_btn2", "Btn2"],
-    ["Menu", "_menu", "Menu"],
-    ["TouchEventHelper", "_touch", "Touch"],
-    ["ScrollNode", "_scrollNode", "ScrollNode"]
+    ["int", "_stageNumber", "StageNumber"],
+    ["std::string", "_comment", "Commnent"],
+    ["float", "_timeLimit", "TymeLimit"]
   ]
 }

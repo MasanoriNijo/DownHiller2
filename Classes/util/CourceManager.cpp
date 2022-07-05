@@ -1,13 +1,14 @@
 #include "CourceManager.h"
 
 CourceManager::CourceManager():
-_courceMakerA(NULL), _courceMakerB(NULL), _flg(NULL)
+_courceMakerA(NULL), _courceMakerB(NULL), _flg(NULL),_stagePrm(NULL)
 {}
 
 CourceManager::~CourceManager() {
 	CC_SAFE_RELEASE_NULL(_courceMakerA);
 	CC_SAFE_RELEASE_NULL(_courceMakerB);
     CC_SAFE_RELEASE_NULL(_flg);
+    CC_SAFE_RELEASE_NULL(_stagePrm);
 }
 
 bool CourceManager::init() {
@@ -17,6 +18,7 @@ bool CourceManager::init() {
     setTergetPt(FIRST_COURCE_BASE_POINT);
     setStartDir(Vec2::ZERO);
     setTargetDir(Vec2::ZERO);
+    _setStagePrm();
   return true;
 }
 
@@ -26,6 +28,69 @@ void CourceManager::onEnterTransitionDidFinish() {
 
 void CourceManager::update(float dt) {
   // todo
+}
+
+void CourceManager::_setStagePrm(){
+    setStagePrm(StagePrm::create());
+    getStagePrm()->setStageNumber(UserDefault::getInstance()->getIntegerForKey(UDF_INT_SELECTED_STAGE,1));
+    std::string head = "クリア条件\n";
+    switch (getStagePrm()->getStageNumber()) {
+        case 1:
+            getStagePrm()->setCommnent(head+
+                                       "実際に操作してみて、\n"
+                                       "ゴールを目指そう！"
+                                       );
+            break;
+        case 2:
+            getStagePrm()->setCommnent(head+
+                                       "実際に操作してみて、\n"
+                                       "ゴールを目指そう！"
+                                       );
+            getStagePrm()->setTymeLimit(10);
+            break;
+        case 3:
+            getStagePrm()->setCommnent(head+
+                                       "コブを乗り越えて、\n"
+                                       "10秒以内に、\n"
+                                       "ゴールすること。"
+                                       );
+            getStagePrm()->setTymeLimit(10);
+            break;
+        case 4:
+            getStagePrm()->setCommnent(head+
+                                       "コブを乗り越えて、\n"
+                                       "10秒以内に、\n"
+                                       "ゴールすること。"
+                                       );
+            getStagePrm()->setTymeLimit(10);
+            break;
+        case 5:
+            getStagePrm()->setCommnent(head+
+                                       "コブを乗り越えて、\n"
+                                       "10秒以内に、\n"
+                                       "ゴールすること。"
+                                       );
+            getStagePrm()->setTymeLimit(10);
+            break;
+        case 6:
+            getStagePrm()->setCommnent(head+
+                                       "コブを乗り越えて、\n"
+                                       "10秒以内に、\n"
+                                       "ゴールすること。"
+                                       );
+            getStagePrm()->setTymeLimit(10);
+            break;
+        case 7:
+            getStagePrm()->setCommnent(head+
+                                       "コブを乗り越えて、\n"
+                                       "10秒以内に、\n"
+                                       "ゴールすること。"
+                                       );
+            getStagePrm()->setTymeLimit(10);
+            break;
+        default:
+            break;
+    }
 }
 
 void CourceManager::setStartAndTargetFromCource(CourceMaker* _cmaker){
@@ -216,52 +281,6 @@ void CourceManager::madeCourcePtn4(CourceMaker* _cmaker,int ind){
     }
     _cmaker->madePhysiceBody();
 }
-
-StagePrm CourceManager::getStagePrm(int stg){
-    StagePrm _stgPrm = StagePrm();
-    _stgPrm._stageNum = stg;
-    std::string head = "クリア条件\n";
-    switch (stg) {
-        case 1:
-            _stgPrm._comment = head +
-            "実際に操作してみて、\n"
-            "ゴールを目指そう！";
-            break;
-        case 2:
-            _stgPrm._comment = head +
-            "10秒以内に、\n"
-            "ゴールすること。";
-            _stgPrm.timeLimit_ = 10;
-            break;
-        case 3:
-            _stgPrm._comment = head +
-            "コブを乗り越えて、\n"
-            "10秒以内に、\n"
-            "ゴールすること。";
-            _stgPrm.timeLimit_ = 20;
-            break;
-        case 4:
-            _stgPrm._comment = head +
-            "ゴールすること。";
-            break;
-        case 5:
-            _stgPrm._comment = head +
-            "ゴールすること。";
-            break;
-        case 6:
-            _stgPrm._comment = head +
-            "ゴールすること。";
-            break;
-        case 7:
-            _stgPrm._comment = head +
-            "ゴールすること。";
-            break;
-        default:
-            break;
-    }
-    return _stgPrm;
-}
-
 
 /** パラメータサンプル
 setCourceMakerA(CourceMaker::create());

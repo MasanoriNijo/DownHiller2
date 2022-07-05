@@ -11,6 +11,9 @@ class CourceManager: public Ref {
 protected:
     CourceManager();
     virtual ~CourceManager();
+
+private:
+    void _setStagePrm();
     
 public:
     CREATE_FUNC(CourceManager);
@@ -18,10 +21,12 @@ public:
     CC_SYNTHESIZE_RETAIN(CourceMaker*,_courceMakerA,CourceMakerA);
     CC_SYNTHESIZE_RETAIN(CourceMaker*,_courceMakerB,CourceMakerB);
     CC_SYNTHESIZE_RETAIN(Flg*,_flg,Flg);
+    CC_SYNTHESIZE_RETAIN(StagePrm*,_stagePrm,StagePrm);
     CC_SYNTHESIZE(Vec2,_strPt,StartPt);
     CC_SYNTHESIZE(Vec2,_strDir,StartDir);
     CC_SYNTHESIZE(Vec2,_trgPt,TergetPt);
     CC_SYNTHESIZE(Vec2,_trgDir,TargetDir);
+    
     void update(float dt);
     void onEnterTransitionDidFinish();
     void checkAndMadeCource(Vec2 chPt);
@@ -34,9 +39,6 @@ public:
     void madeCourcePtn2(CourceMaker* _cmaker,int ind);
     void madeCourcePtn3(CourceMaker* _cmaker,int ind);
     void madeCourcePtn4(CourceMaker* _cmaker,int ind);
-    
-    StagePrm getStagePrm(int stg);
-    
 };
 
 #endif

@@ -182,6 +182,7 @@
 		305D0D78286B4E84009DDA1E /* CourceManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 305D0D76286B4E84009DDA1E /* CourceManager.cpp */; };
 		306A83EE286EEE820059C257 /* Modal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 306A83EB286EECAE0059C257 /* Modal.cpp */; };
 		306A83F1286F484F0059C257 /* SelectScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 306A83F0286F44EE0059C257 /* SelectScene.cpp */; };
+		306A83F928747E910059C257 /* StagePrm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 306A83F728747E720059C257 /* StagePrm.cpp */; };
 		3087C151285EFD5000AD0F14 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3087C150285EFD5000AD0F14 /* SwiftUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3087C1542862078100AD0F14 /* mark.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3087C152286206DE00AD0F14 /* mark.png */; };
 		3087C1572864B25300AD0F14 /* Flg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3087C1552864B25300AD0F14 /* Flg.cpp */; };
@@ -1454,6 +1455,7 @@
 		306A83EF286F44ED0059C257 /* SelectScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelectScene.h; path = Classes/scene/SelectScene.h; sourceTree = SOURCE_ROOT; };
 		306A83F0286F44EE0059C257 /* SelectScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SelectScene.cpp; path = Classes/scene/SelectScene.cpp; sourceTree = SOURCE_ROOT; };
 		306A83F6287326B80059C257 /* StagePrm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = StagePrm.h; path = Classes/util/StagePrm.h; sourceTree = SOURCE_ROOT; };
+		306A83F728747E720059C257 /* StagePrm.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = StagePrm.cpp; path = Classes/util/StagePrm.cpp; sourceTree = SOURCE_ROOT; };
 		3077803B8D5646769C867A5B /* DetourObstacleAvoidance.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = DetourObstacleAvoidance.cpp; path = cocos2d/external/recast/DetourCrowd/DetourObstacleAvoidance.cpp; sourceTree = SOURCE_ROOT; };
 		3087C150285EFD5000AD0F14 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		3087C152286206DE00AD0F14 /* mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mark.png; path = Resources/images/mark.png; sourceTree = SOURCE_ROOT; };
@@ -3665,6 +3667,7 @@
 		304DD0BB2843D0A400AF0334 /* util */ = {
 			isa = PBXGroup;
 			children = (
+				306A83F728747E720059C257 /* StagePrm.cpp */,
 				306A83F6287326B80059C257 /* StagePrm.h */,
 				305D0D76286B4E84009DDA1E /* CourceManager.cpp */,
 				305D0D77286B4E84009DDA1E /* CourceManager.h */,
@@ -5440,6 +5443,7 @@
 				304DD0C22843DE2700AF0334 /* GameScene.cpp in Sources */,
 				306A83EE286EEE820059C257 /* Modal.cpp in Sources */,
 				3087C1572864B25300AD0F14 /* Flg.cpp in Sources */,
+				306A83F928747E910059C257 /* StagePrm.cpp in Sources */,
 				660874EB5928406482FA1AF6 /* AppDelegate.cpp in Sources */,
 				302A0A212854E2460072A2D3 /* LineMaker.cpp in Sources */,
 				894EBEAFD698461595D0DFD4 /* HelloWorldScene.cpp in Sources */,
