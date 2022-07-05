@@ -78,7 +78,7 @@ void Bike::_addPhysicsToWheel(Sprite* _wheel){
     _material.friction =1.0f;
     _material.density = 0.001f;
     
-    _wheel->setPhysicsBody(PhysicsBody::createCircle(_wheel->getContentSize().width / 2,_material));
+    _wheel->setPhysicsBody(PhysicsBody::createCircle(_wheel->getContentSize().width / 2 + 1,_material));
     _wheel->getPhysicsBody()->setGravityEnable(true);
     _wheel->getPhysicsBody()->setCategoryBitmask(CT_WHEEL);
     _wheel->getPhysicsBody()->setCollisionBitmask(CT_COURCE);

@@ -39,7 +39,7 @@ bool Button::init() {
 //    enableOutline(Color4B::WHITE,1);
     setAnchorPoint(Vec2::ANCHOR_MIDDLE);
     setCalc(Calclater::create());
-    setGlobalZOrder(OBJ_LAYER_TOP);
+    setGlobalZOrder(OBJ_LAYER_TOP+1);
 
     setC1(Sprite::create("btn_curve.png"));
     setC2(Sprite::createWithTexture(getC1()->getTexture()));
@@ -55,13 +55,23 @@ bool Button::init() {
     getC3()->setAnchorPoint(Vec2(0,1));
     getC4()->setAnchorPoint(Vec2(0,1));
     
+    getC1()->setGlobalZOrder(OBJ_LAYER_TOP);
+    getC2()->setGlobalZOrder(OBJ_LAYER_TOP);
+    getC3()->setGlobalZOrder(OBJ_LAYER_TOP);
+    getC4()->setGlobalZOrder(OBJ_LAYER_TOP);
+    
     getT1()->setAnchorPoint(Vec2(0,1));
     getT2()->setAnchorPoint(Vec2(0,1));
     getT3()->setAnchorPoint(Vec2(0,1));
     getT4()->setAnchorPoint(Vec2(0,1));
     
+    getT1()->setGlobalZOrder(OBJ_LAYER_TOP);
+    getT2()->setGlobalZOrder(OBJ_LAYER_TOP);
+    getT3()->setGlobalZOrder(OBJ_LAYER_TOP);
+    getT4()->setGlobalZOrder(OBJ_LAYER_TOP);
+    
     setBase(Sprite::create("btn_base.png"));
-    getBase()->setGlobalZOrder(OBJ_LAYER_TOP-1);
+    getBase()->setGlobalZOrder(OBJ_LAYER_TOP);
     
     return true;
 }
