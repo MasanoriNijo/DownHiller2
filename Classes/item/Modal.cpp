@@ -90,6 +90,12 @@ void Modal::setModal(Size size, std::string st){
     getC3()->setPosition(Vec2(w/2,-h/2));
     getC4()->setRotation(270);
     getC4()->setPosition(Vec2(-w/2,-h/2));
+    
+    getC1()->setGlobalZOrder(OBJ_LAYER_TOP);
+    getC2()->setGlobalZOrder(OBJ_LAYER_TOP);
+    getC3()->setGlobalZOrder(OBJ_LAYER_TOP);
+    getC4()->setGlobalZOrder(OBJ_LAYER_TOP);
+    
     addChild(getC1());
     addChild(getC2());
     addChild(getC3());
@@ -107,6 +113,11 @@ void Modal::setModal(Size size, std::string st){
     getT4()->setRotation(270);
     getT4()->setPosition(Vec2(-w/2,-h/2+cl));
     
+    getT1()->setGlobalZOrder(OBJ_LAYER_TOP);
+    getT2()->setGlobalZOrder(OBJ_LAYER_TOP);
+    getT3()->setGlobalZOrder(OBJ_LAYER_TOP);
+    getT4()->setGlobalZOrder(OBJ_LAYER_TOP);
+    
     addChild(getT1());
     addChild(getT2());
     addChild(getT3());
@@ -115,6 +126,8 @@ void Modal::setModal(Size size, std::string st){
     getBase()->Node::setScaleX((w-2*cl)/getBase()->getContentSize().width);
     getBase()->Node::setScaleY((h-2*cl)/getBase()->getContentSize().height);
     getBase()->setPosition(Vec2(getContentSize().width/2,getContentSize().height/2));
+    getBase()->setGlobalZOrder(OBJ_LAYER_TOP);
+    
     addChild(getBase());
 }
 
