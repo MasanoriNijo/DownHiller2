@@ -95,6 +95,7 @@ bool GameStage::init() {
     setCourceManager(CourceManager::create());
     addChild(getCourceManager()->getCourceMakerA());
     addChild(getCourceManager()->getCourceMakerB());
+    addChild(getCourceManager()->getGurd());
     
     // タイムリミットが設定されている場合
     if(getCourceManager()->getStagePrm()->getTymeLimit()>0){

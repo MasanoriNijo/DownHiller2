@@ -22,6 +22,8 @@ public:
     CC_SYNTHESIZE_RETAIN(CourceMaker*,_courceMakerB,CourceMakerB);
     CC_SYNTHESIZE_RETAIN(Flg*,_flg,Flg);
     CC_SYNTHESIZE_RETAIN(StagePrm*,_stagePrm,StagePrm);
+    CC_SYNTHESIZE_RETAIN(Node*,_gurd,Gurd);
+    CC_SYNTHESIZE_RETAIN(PhysicsBody*,_gurdBody,GurdBody);
     CC_SYNTHESIZE(Vec2,_strPt,StartPt);
     CC_SYNTHESIZE(Vec2,_strDir,StartDir);
     CC_SYNTHESIZE(Vec2,_trgPt,TergetPt);

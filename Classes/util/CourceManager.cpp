@@ -1,7 +1,8 @@
 #include "CourceManager.h"
 
 CourceManager::CourceManager():
-_courceMakerA(NULL), _courceMakerB(NULL), _flg(NULL),_stagePrm(NULL)
+_courceMakerA(NULL), _courceMakerB(NULL), _flg(NULL),_stagePrm(NULL),
+_gurd(NULL),_gurdBody(NULL)
 {}
 
 CourceManager::~CourceManager() {
@@ -9,6 +10,8 @@ CourceManager::~CourceManager() {
 	CC_SAFE_RELEASE_NULL(_courceMakerB);
     CC_SAFE_RELEASE_NULL(_flg);
     CC_SAFE_RELEASE_NULL(_stagePrm);
+    CC_SAFE_RELEASE_NULL(_gurd);
+    CC_SAFE_RELEASE_NULL(_gurdBody);
 }
 
 bool CourceManager::init() {
@@ -19,6 +22,13 @@ bool CourceManager::init() {
     setStartDir(Vec2::ZERO);
     setTargetDir(Vec2::ZERO);
     _setStagePrm();
+    
+    setGurd(Node::create());
+    setGurdBody(PhysicsBody::createEdgeSegment(Vec2(0,0), Vec2(0,100)));
+    getGurdBody()->setDynamic(false);
+    getGurdBody()->setCollisionBitmask(CT_ALL);
+    getGurd()->setPhysicsBody(getGurdBody());
+    
   return true;
 }
 
@@ -119,6 +129,7 @@ void CourceManager::checkAndMadeCource(Vec2 chPt){
             default:
                 break;
         }
+        getGurd()->setPosition(getStartPt());
         setStartAndTargetFromCource(courceIndex%2 ? getCourceMakerB() : getCourceMakerA());
         courceIndex ++;
     }
@@ -177,10 +188,8 @@ void CourceManager::madeCourcePtn2(CourceMaker* _cmaker,int ind){
             _cmaker->drawByStraight(Vec2(400,-1));
             break;
         case 1:
-            _cmaker->drawBySmoothCurve(500,-40);
+            _cmaker->drawBySmoothCurve(120,60);
             _cmaker->drawBySmoothCurve(100,10);
-            _cmaker->drawBySmoothCurve(240,-60);
-            _cmaker->drawBySmoothCurve(20,0);
             _cmaker->drawByStraight(Vec2(200,-90));
             break;
         case 2:
