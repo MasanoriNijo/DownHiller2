@@ -210,6 +210,7 @@ void GameStage::onPlay(){
 }
 
 void GameStage::onClear(){
+    getModal()->removeFromParentAndCleanup(true);
     getBike()->getRwheel()->getPhysicsBody()->setAngularDamping(1);
 //    getBike()->getRwheel()->getPhysicsBody()->setLinearDamping(1);
     getBike()->removeTouchEvent();
@@ -243,6 +244,7 @@ void GameStage::onClear(){
 }
 
 void GameStage::onMiss(){
+    getModal()->removeFromParentAndCleanup(true);
     callSoundEffect("btnon.mp3");
     getBike()->getFRJoint()->removeFormWorld();
     getBike()->unscheduleUpdate();

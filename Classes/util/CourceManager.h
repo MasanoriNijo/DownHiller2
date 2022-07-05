@@ -41,6 +41,23 @@ public:
     void madeCourcePtn2(CourceMaker* _cmaker,int ind);
     void madeCourcePtn3(CourceMaker* _cmaker,int ind);
     void madeCourcePtn4(CourceMaker* _cmaker,int ind);
+    void madeCourcePtn5(CourceMaker* _cmaker,int ind);
+    void madeCourcePtn6(CourceMaker* _cmaker,int ind);
+    void madeCourcePtn7(CourceMaker* _cmaker,int ind);
+    void madeCourcePtn8(CourceMaker* _cmaker,int ind);
+    void madeCourcePtn9(CourceMaker* _cmaker,int ind);
+    void madeCourcePtn10(CourceMaker* _cmaker,int ind);
+    void madeCourcePtn11(CourceMaker* _cmaker,int ind);
+    void madeCourcePtn12(CourceMaker* _cmaker,int ind);
+    void madeCourcePtn13(CourceMaker* _cmaker,int ind);
+    void madeCourcePtn14(CourceMaker* _cmaker,int ind);
+    void madeCourcePtn15(CourceMaker* _cmaker,int ind);
+    void madeCourcePtn16(CourceMaker* _cmaker,int ind);
+    void madeCourcePtn17(CourceMaker* _cmaker,int ind);
+    void madeCourcePtn18(CourceMaker* _cmaker,int ind);
+    void madeCourcePtn19(CourceMaker* _cmaker,int ind);
+    void madeCourcePtn20(CourceMaker* _cmaker,int ind);
+    void madeCourcePtn21(CourceMaker* _cmaker,int ind);
 };
 
 #endif
