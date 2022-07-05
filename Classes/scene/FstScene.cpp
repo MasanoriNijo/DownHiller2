@@ -20,6 +20,7 @@ bool FstScene::init() {
     if (!GameScene::init()) {
         return false;
     }
+    setSoundEffect("btnon.mp3");
     this->setProductTitle(Sprite::create("kotokotobokanmark.png"));
     this->getProductTitle()->setOpacity(0);
     auto fadein_ = FadeIn::create(1.0f);
