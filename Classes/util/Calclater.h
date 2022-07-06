@@ -89,7 +89,7 @@ public:
     
     // 指定の線分に対して対照のポイントを変える。
     Vec2 getMirrorPointLineA(Vec2 a1, Vec2 a2,Vec2 pt);
-    
+        
 };
 
 #endif

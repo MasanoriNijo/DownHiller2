@@ -194,8 +194,9 @@ void Bike::touchOn(Vec2 pt){
 
 void Bike::swaip(Vec2 pt){
     touchPt2.set(pt);
+//    Vec2 dir_ = getFwheel()->getPosition() - getRwheel()->getPosition();
     Vec2 dV = touchPt2 - touchPt1;
-    //    dV = getCalc()->rotByKaku(dV, -getRotation());
+//    dV = getCalc()->cordinaneX(dir_, dV);
     weightPt+=dV;
     if(weightPt.x > 4 * riderActionSpan){
         weightPt.x =  4 * riderActionSpan;
