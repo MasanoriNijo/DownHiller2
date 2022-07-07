@@ -120,6 +120,86 @@ void CourceManager::_setStagePrm(){
                                        );
             getStagePrm()->setTymeLimit(10);
             break;
+        case 11:
+            getStagePrm()->setCommnent(head+
+                                       "壁と落とし穴、\n"
+                                       "10秒以内に、\n"
+                                       "ゴールすること。"
+                                       );
+            getStagePrm()->setTymeLimit(10);
+            break;
+        case 12:
+            getStagePrm()->setCommnent(head+
+                                       "富士山、\n"
+                                       "小さい石ころ、\n"
+                                       "ゴールすること。"
+                                       );
+            getStagePrm()->setTymeLimit(10);
+            break;
+        case 13:
+            getStagePrm()->setCommnent(head+
+                                       "巨大ループ、\n"
+                                       "10秒以内に、\n"
+                                       "ゴールすること。"
+                                       );
+            getStagePrm()->setTymeLimit(10);
+            break;
+        case 14:
+            getStagePrm()->setCommnent(head+
+                                       "巨大ループ、\n"
+                                       "10秒以内に、\n"
+                                       "ゴールすること。"
+                                       );
+            getStagePrm()->setTymeLimit(10);
+            break;
+        case 15:
+            getStagePrm()->setCommnent(head+
+                                       "巨大ループ、\n"
+                                       "10秒以内に、\n"
+                                       "ゴールすること。"
+                                       );
+            getStagePrm()->setTymeLimit(10);
+            break;
+        case 16:
+            getStagePrm()->setCommnent(head+
+                                       "巨大ループ、\n"
+                                       "10秒以内に、\n"
+                                       "ゴールすること。"
+                                       );
+            getStagePrm()->setTymeLimit(10);
+            break;
+        case 17:
+            getStagePrm()->setCommnent(head+
+                                       "巨大ループ、\n"
+                                       "10秒以内に、\n"
+                                       "ゴールすること。"
+                                       );
+            getStagePrm()->setTymeLimit(10);
+            break;
+        case 18:
+            getStagePrm()->setCommnent(head+
+                                       "巨大ループ、\n"
+                                       "10秒以内に、\n"
+                                       "ゴールすること。"
+                                       );
+            getStagePrm()->setTymeLimit(10);
+            break;
+        case 19:
+            getStagePrm()->setCommnent(head+
+                                       "巨大ループ、\n"
+                                       "10秒以内に、\n"
+                                       "ゴールすること。"
+                                       );
+            getStagePrm()->setTymeLimit(10);
+            break;
+        case 20:
+            getStagePrm()->setCommnent(head+
+                                       "巨大ループ、\n"
+                                       "10秒以内に、\n"
+                                       "ゴールすること。"
+                                       );
+            getStagePrm()->setTymeLimit(10);
+            break;
         default:
             break;
     }
@@ -167,37 +247,37 @@ void CourceManager::checkAndMadeCource(Vec2 chPt){
                 madeCourcePtn10(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
                 break;
             case 11:
-                madeCourcePtn4(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
+                madeCourcePtn11(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
                 break;
             case 12:
-                madeCourcePtn4(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
+                madeCourcePtn12(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
                 break;
             case 13:
-                madeCourcePtn4(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
+                madeCourcePtn13(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
                 break;
             case 14:
-                madeCourcePtn4(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
+                madeCourcePtn14(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
                 break;
             case 15:
-                madeCourcePtn4(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
+                madeCourcePtn15(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
                 break;
             case 16:
-                madeCourcePtn4(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
+                madeCourcePtn16(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
                 break;
             case 17:
-                madeCourcePtn4(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
+                madeCourcePtn17(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
                 break;
             case 18:
-                madeCourcePtn4(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
+                madeCourcePtn18(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
                 break;
             case 19:
-                madeCourcePtn4(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
+                madeCourcePtn19(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
                 break;
             case 20:
-                madeCourcePtn4(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
+                madeCourcePtn20(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
                 break;
             case 21:
-                madeCourcePtn4(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
+                madeCourcePtn20(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
                 break;
             default:
                 break;
@@ -586,6 +666,428 @@ void CourceManager::madeCourcePtn9(CourceMaker* _cmaker,int ind){
 }
 
 void CourceManager::madeCourcePtn10(CourceMaker* _cmaker,int ind){
+    auto flg = Flg::create();
+    int i = 0;
+    _cmaker->drawStart(getTergetPt(),getTargetDir());
+    switch (ind) {
+        case 0:
+            _cmaker->drawByStraight(Vec2(0,100));
+            _cmaker->drawByStraight(Vec2(0,-100));
+            _cmaker->drawByStraight(Vec2(300,-3));
+            break;
+        case 1:
+            _cmaker->drawBySmoothCurve(50, -45);
+            _cmaker->drawByStraight(1000, -45);
+            _cmaker->drawBySmoothCurve(240,89);
+            _cmaker->drawByStraight(100, 105);
+
+
+            break;
+        case 2:
+            _cmaker->drawByStraight(100, 105);
+            _cmaker->drawByStraight(100, 130);
+//            _cmaker->drawByStraight(60, 145);
+            _cmaker->drawByStraight(-130, 0);
+            _cmaker->drawByStraight(Vec2(-150,0));
+            _cmaker->drawByStraight(Vec2(0,-180));
+            _cmaker->drawByStraight(Vec2(20,0));
+            flg->setGlobalZOrder(OBJ_LAYER_TOP);
+            flg->setPosition(_cmaker->getTergetPt());
+            flg->setRotation(_cmaker->getCalc()->nomlKaku(Vec2::ZERO,_cmaker->getTargetDir()));
+            _cmaker->addChild(flg);
+            _cmaker->drawByStraight(Vec2(150,0));
+            _cmaker->drawByStraight(Vec2(0,50));
+            break;
+        case 3:
+
+        default:
+            return;
+            break;
+    }
+    _cmaker->madePhysiceBody();
+}
+
+void CourceManager::madeCourcePtn11(CourceMaker* _cmaker,int ind){
+    auto flg = Flg::create();
+    int i = 0;
+    _cmaker->drawStart(getTergetPt(),getTargetDir());
+    switch (ind) {
+        case 0:
+            _cmaker->drawByStraight(Vec2(0,100));
+            _cmaker->drawByStraight(Vec2(0,-100));
+            _cmaker->drawByStraight(Vec2(300,-3));
+            break;
+        case 1:
+            for(i=0;i<3;i++){
+                _cmaker->drawByStraight(200, -20);
+                _cmaker->drawByStraight(20, 70);
+                _cmaker->drawByStraight(100, -20);
+                _cmaker->drawBySmoothCurve(50, 50);
+                _cmaker->drawByStraight(Vec2(0, -100));
+                _cmaker->drawByStraight(Vec2(50, 0));
+                _cmaker->drawByStraight(Vec2(0, 130));
+            }
+            break;
+        case 2:
+            _cmaker->drawBySmoothCurve(200, -20);
+            _cmaker->drawByStraight(200, -20);
+            _cmaker->drawBySmoothCurve(Vec2(1,0));
+            break;
+        case 3:
+            _cmaker->drawByStraight(Vec2(300,0));
+             flg->setGlobalZOrder(OBJ_LAYER_TOP);
+             flg->setPosition(_cmaker->getTergetPt());
+             flg->setRotation(_cmaker->getCalc()->nomlKaku(Vec2::ZERO,_cmaker->getTargetDir()));
+             _cmaker->addChild(flg);
+            _cmaker->drawByStraight(Vec2(200,0));
+            _cmaker->drawByStraight(Vec2(0,100));
+            break;
+        default:
+            return;
+            break;
+    }
+    _cmaker->madePhysiceBody();
+}
+
+void CourceManager::madeCourcePtn12(CourceMaker* _cmaker,int ind){
+    auto flg = Flg::create();
+    int i = 0;
+    _cmaker->drawStart(getTergetPt(),getTargetDir());
+    switch (ind) {
+        case 0:
+            _cmaker->drawByStraight(Vec2(0,100));
+            _cmaker->drawByStraight(Vec2(0,-100));
+            _cmaker->drawByStraight(Vec2(300,-3));
+            break;
+        case 1:
+            for(i=0;i<3;i++){
+                _cmaker->drawByStraight(200, -10);
+                _cmaker->drawBySmoothCurve(80, 50);
+                _cmaker->drawByStraight(150, -10);
+                _cmaker->drawByStraight(1, -70);
+                _cmaker->drawBySmoothCurve(80, -10);
+            }
+            break;
+        case 2:
+            for(i=0;i<8;i++){
+                _cmaker->drawByStraight(1, 85);
+                _cmaker->drawBySmoothCurve(10, -94);
+                _cmaker->drawByStraight(200, -5);
+            }
+            break;
+        case 3:
+            _cmaker->drawByStraight(Vec2(300,0));
+             flg->setGlobalZOrder(OBJ_LAYER_TOP);
+             flg->setPosition(_cmaker->getTergetPt());
+             flg->setRotation(_cmaker->getCalc()->nomlKaku(Vec2::ZERO,_cmaker->getTargetDir()));
+             _cmaker->addChild(flg);
+            _cmaker->drawByStraight(Vec2(200,0));
+            _cmaker->drawByStraight(Vec2(0,100));
+            break;
+        default:
+            return;
+            break;
+    }
+    _cmaker->madePhysiceBody();
+}
+
+void CourceManager::madeCourcePtn13(CourceMaker* _cmaker,int ind){
+    auto flg = Flg::create();
+    int i = 0;
+    _cmaker->drawStart(getTergetPt(),getTargetDir());
+    switch (ind) {
+        case 0:
+            _cmaker->drawByStraight(Vec2(0,100));
+            _cmaker->drawByStraight(Vec2(0,-100));
+            _cmaker->drawByStraight(Vec2(300,-3));
+            break;
+        case 1:
+            _cmaker->drawBySmoothCurve(50, -45);
+            _cmaker->drawByStraight(1000, -45);
+            _cmaker->drawBySmoothCurve(240,89);
+            _cmaker->drawByStraight(100, 105);
+
+
+            break;
+        case 2:
+            _cmaker->drawByStraight(100, 105);
+            _cmaker->drawByStraight(100, 130);
+//            _cmaker->drawByStraight(60, 145);
+            _cmaker->drawByStraight(-130, 0);
+            _cmaker->drawByStraight(Vec2(-150,0));
+            _cmaker->drawByStraight(Vec2(0,-180));
+            _cmaker->drawByStraight(Vec2(20,0));
+            flg->setGlobalZOrder(OBJ_LAYER_TOP);
+            flg->setPosition(_cmaker->getTergetPt());
+            flg->setRotation(_cmaker->getCalc()->nomlKaku(Vec2::ZERO,_cmaker->getTargetDir()));
+            _cmaker->addChild(flg);
+            _cmaker->drawByStraight(Vec2(150,0));
+            _cmaker->drawByStraight(Vec2(0,50));
+            break;
+        case 3:
+
+        default:
+            return;
+            break;
+    }
+    _cmaker->madePhysiceBody();
+}
+
+void CourceManager::madeCourcePtn14(CourceMaker* _cmaker,int ind){
+    auto flg = Flg::create();
+    int i = 0;
+    _cmaker->drawStart(getTergetPt(),getTargetDir());
+    switch (ind) {
+        case 0:
+            _cmaker->drawByStraight(Vec2(0,100));
+            _cmaker->drawByStraight(Vec2(0,-100));
+            _cmaker->drawByStraight(Vec2(300,-3));
+            break;
+        case 1:
+            _cmaker->drawBySmoothCurve(50, -45);
+            _cmaker->drawByStraight(1000, -45);
+            _cmaker->drawBySmoothCurve(240,89);
+            _cmaker->drawByStraight(100, 105);
+
+
+            break;
+        case 2:
+            _cmaker->drawByStraight(100, 105);
+            _cmaker->drawByStraight(100, 130);
+//            _cmaker->drawByStraight(60, 145);
+            _cmaker->drawByStraight(-130, 0);
+            _cmaker->drawByStraight(Vec2(-150,0));
+            _cmaker->drawByStraight(Vec2(0,-180));
+            _cmaker->drawByStraight(Vec2(20,0));
+            flg->setGlobalZOrder(OBJ_LAYER_TOP);
+            flg->setPosition(_cmaker->getTergetPt());
+            flg->setRotation(_cmaker->getCalc()->nomlKaku(Vec2::ZERO,_cmaker->getTargetDir()));
+            _cmaker->addChild(flg);
+            _cmaker->drawByStraight(Vec2(150,0));
+            _cmaker->drawByStraight(Vec2(0,50));
+            break;
+        case 3:
+
+        default:
+            return;
+            break;
+    }
+    _cmaker->madePhysiceBody();
+}
+
+
+void CourceManager::madeCourcePtn15(CourceMaker* _cmaker,int ind){
+    auto flg = Flg::create();
+    int i = 0;
+    _cmaker->drawStart(getTergetPt(),getTargetDir());
+    switch (ind) {
+        case 0:
+            _cmaker->drawByStraight(Vec2(0,100));
+            _cmaker->drawByStraight(Vec2(0,-100));
+            _cmaker->drawByStraight(Vec2(300,-3));
+            break;
+        case 1:
+            _cmaker->drawBySmoothCurve(50, -45);
+            _cmaker->drawByStraight(1000, -45);
+            _cmaker->drawBySmoothCurve(240,89);
+            _cmaker->drawByStraight(100, 105);
+
+
+            break;
+        case 2:
+            _cmaker->drawByStraight(100, 105);
+            _cmaker->drawByStraight(100, 130);
+//            _cmaker->drawByStraight(60, 145);
+            _cmaker->drawByStraight(-130, 0);
+            _cmaker->drawByStraight(Vec2(-150,0));
+            _cmaker->drawByStraight(Vec2(0,-180));
+            _cmaker->drawByStraight(Vec2(20,0));
+            flg->setGlobalZOrder(OBJ_LAYER_TOP);
+            flg->setPosition(_cmaker->getTergetPt());
+            flg->setRotation(_cmaker->getCalc()->nomlKaku(Vec2::ZERO,_cmaker->getTargetDir()));
+            _cmaker->addChild(flg);
+            _cmaker->drawByStraight(Vec2(150,0));
+            _cmaker->drawByStraight(Vec2(0,50));
+            break;
+        case 3:
+
+        default:
+            return;
+            break;
+    }
+    _cmaker->madePhysiceBody();
+}
+
+
+void CourceManager::madeCourcePtn16(CourceMaker* _cmaker,int ind){
+    auto flg = Flg::create();
+    int i = 0;
+    _cmaker->drawStart(getTergetPt(),getTargetDir());
+    switch (ind) {
+        case 0:
+            _cmaker->drawByStraight(Vec2(0,100));
+            _cmaker->drawByStraight(Vec2(0,-100));
+            _cmaker->drawByStraight(Vec2(300,-3));
+            break;
+        case 1:
+            _cmaker->drawBySmoothCurve(50, -45);
+            _cmaker->drawByStraight(1000, -45);
+            _cmaker->drawBySmoothCurve(240,89);
+            _cmaker->drawByStraight(100, 105);
+
+
+            break;
+        case 2:
+            _cmaker->drawByStraight(100, 105);
+            _cmaker->drawByStraight(100, 130);
+//            _cmaker->drawByStraight(60, 145);
+            _cmaker->drawByStraight(-130, 0);
+            _cmaker->drawByStraight(Vec2(-150,0));
+            _cmaker->drawByStraight(Vec2(0,-180));
+            _cmaker->drawByStraight(Vec2(20,0));
+            flg->setGlobalZOrder(OBJ_LAYER_TOP);
+            flg->setPosition(_cmaker->getTergetPt());
+            flg->setRotation(_cmaker->getCalc()->nomlKaku(Vec2::ZERO,_cmaker->getTargetDir()));
+            _cmaker->addChild(flg);
+            _cmaker->drawByStraight(Vec2(150,0));
+            _cmaker->drawByStraight(Vec2(0,50));
+            break;
+        case 3:
+
+        default:
+            return;
+            break;
+    }
+    _cmaker->madePhysiceBody();
+}
+
+void CourceManager::madeCourcePtn17(CourceMaker* _cmaker,int ind){
+    auto flg = Flg::create();
+    int i = 0;
+    _cmaker->drawStart(getTergetPt(),getTargetDir());
+    switch (ind) {
+        case 0:
+            _cmaker->drawByStraight(Vec2(0,100));
+            _cmaker->drawByStraight(Vec2(0,-100));
+            _cmaker->drawByStraight(Vec2(300,-3));
+            break;
+        case 1:
+            _cmaker->drawBySmoothCurve(50, -45);
+            _cmaker->drawByStraight(1000, -45);
+            _cmaker->drawBySmoothCurve(240,89);
+            _cmaker->drawByStraight(100, 105);
+
+
+            break;
+        case 2:
+            _cmaker->drawByStraight(100, 105);
+            _cmaker->drawByStraight(100, 130);
+//            _cmaker->drawByStraight(60, 145);
+            _cmaker->drawByStraight(-130, 0);
+            _cmaker->drawByStraight(Vec2(-150,0));
+            _cmaker->drawByStraight(Vec2(0,-180));
+            _cmaker->drawByStraight(Vec2(20,0));
+            flg->setGlobalZOrder(OBJ_LAYER_TOP);
+            flg->setPosition(_cmaker->getTergetPt());
+            flg->setRotation(_cmaker->getCalc()->nomlKaku(Vec2::ZERO,_cmaker->getTargetDir()));
+            _cmaker->addChild(flg);
+            _cmaker->drawByStraight(Vec2(150,0));
+            _cmaker->drawByStraight(Vec2(0,50));
+            break;
+        case 3:
+
+        default:
+            return;
+            break;
+    }
+    _cmaker->madePhysiceBody();
+}
+
+void CourceManager::madeCourcePtn18(CourceMaker* _cmaker,int ind){
+    auto flg = Flg::create();
+    int i = 0;
+    _cmaker->drawStart(getTergetPt(),getTargetDir());
+    switch (ind) {
+        case 0:
+            _cmaker->drawByStraight(Vec2(0,100));
+            _cmaker->drawByStraight(Vec2(0,-100));
+            _cmaker->drawByStraight(Vec2(300,-3));
+            break;
+        case 1:
+            _cmaker->drawBySmoothCurve(50, -45);
+            _cmaker->drawByStraight(1000, -45);
+            _cmaker->drawBySmoothCurve(240,89);
+            _cmaker->drawByStraight(100, 105);
+
+
+            break;
+        case 2:
+            _cmaker->drawByStraight(100, 105);
+            _cmaker->drawByStraight(100, 130);
+//            _cmaker->drawByStraight(60, 145);
+            _cmaker->drawByStraight(-130, 0);
+            _cmaker->drawByStraight(Vec2(-150,0));
+            _cmaker->drawByStraight(Vec2(0,-180));
+            _cmaker->drawByStraight(Vec2(20,0));
+            flg->setGlobalZOrder(OBJ_LAYER_TOP);
+            flg->setPosition(_cmaker->getTergetPt());
+            flg->setRotation(_cmaker->getCalc()->nomlKaku(Vec2::ZERO,_cmaker->getTargetDir()));
+            _cmaker->addChild(flg);
+            _cmaker->drawByStraight(Vec2(150,0));
+            _cmaker->drawByStraight(Vec2(0,50));
+            break;
+        case 3:
+
+        default:
+            return;
+            break;
+    }
+    _cmaker->madePhysiceBody();
+}
+
+void CourceManager::madeCourcePtn19(CourceMaker* _cmaker,int ind){
+    auto flg = Flg::create();
+    int i = 0;
+    _cmaker->drawStart(getTergetPt(),getTargetDir());
+    switch (ind) {
+        case 0:
+            _cmaker->drawByStraight(Vec2(0,100));
+            _cmaker->drawByStraight(Vec2(0,-100));
+            _cmaker->drawByStraight(Vec2(300,-3));
+            break;
+        case 1:
+            _cmaker->drawBySmoothCurve(50, -45);
+            _cmaker->drawByStraight(1000, -45);
+            _cmaker->drawBySmoothCurve(240,89);
+            _cmaker->drawByStraight(100, 105);
+
+
+            break;
+        case 2:
+            _cmaker->drawByStraight(100, 105);
+            _cmaker->drawByStraight(100, 130);
+//            _cmaker->drawByStraight(60, 145);
+            _cmaker->drawByStraight(-130, 0);
+            _cmaker->drawByStraight(Vec2(-150,0));
+            _cmaker->drawByStraight(Vec2(0,-180));
+            _cmaker->drawByStraight(Vec2(20,0));
+            flg->setGlobalZOrder(OBJ_LAYER_TOP);
+            flg->setPosition(_cmaker->getTergetPt());
+            flg->setRotation(_cmaker->getCalc()->nomlKaku(Vec2::ZERO,_cmaker->getTargetDir()));
+            _cmaker->addChild(flg);
+            _cmaker->drawByStraight(Vec2(150,0));
+            _cmaker->drawByStraight(Vec2(0,50));
+            break;
+        case 3:
+
+        default:
+            return;
+            break;
+    }
+    _cmaker->madePhysiceBody();
+}
+
+void CourceManager::madeCourcePtn20(CourceMaker* _cmaker,int ind){
     auto flg = Flg::create();
     int i = 0;
     _cmaker->drawStart(getTergetPt(),getTargetDir());
