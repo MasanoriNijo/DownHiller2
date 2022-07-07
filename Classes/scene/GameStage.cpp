@@ -244,7 +244,7 @@ void GameStage::onClear(){
 }
 
 void GameStage::onMiss(){
-    getModal()->removeFromParentAndCleanup(true);
+    getMenu()->removeFromParentAndCleanup(true);
     callSoundEffect("btnon.mp3");
     getBike()->getFRJoint()->removeFormWorld();
     getBike()->unscheduleUpdate();
