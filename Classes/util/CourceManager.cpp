@@ -596,7 +596,9 @@ void CourceManager::madeCourcePtn8(CourceMaker* _cmaker,int ind){
             _cmaker->drawByStraight(200,-10);
             break;
         case 1:
+            _cmaker->_dirkaku = -10;
             for(i=0;i<10;i++){
+                
                 _cmaker->drawBySmoothCurve(30, -60);
                 _cmaker->drawBySmoothCurve(30, 50);
             }
@@ -673,30 +675,28 @@ void CourceManager::madeCourcePtn10(CourceMaker* _cmaker,int ind){
         case 0:
             _cmaker->drawByStraight(Vec2(0,100));
             _cmaker->drawByStraight(Vec2(0,-100));
-            _cmaker->drawByStraight(Vec2(300,-3));
+            _cmaker->drawByStraight(300,-3);
             break;
         case 1:
+            _cmaker->_dirkaku = -3;
             _cmaker->drawBySmoothCurve(50, -45);
             _cmaker->drawByStraight(1000, -45);
-            _cmaker->drawBySmoothCurve(240,89);
-            _cmaker->drawByStraight(100, 105);
-
-
-            break;
-        case 2:
-            _cmaker->drawByStraight(100, 105);
-            _cmaker->drawByStraight(100, 130);
-//            _cmaker->drawByStraight(60, 145);
-            _cmaker->drawByStraight(-130, 0);
-            _cmaker->drawByStraight(Vec2(-150,0));
-            _cmaker->drawByStraight(Vec2(0,-180));
-            _cmaker->drawByStraight(Vec2(20,0));
+            _cmaker->_dirkaku = -45;
+            _cmaker->drawBySmoothCurve(240,270);
+            _cmaker->drawByStraight(Vec2(150,0));
             flg->setGlobalZOrder(OBJ_LAYER_TOP);
             flg->setPosition(_cmaker->getTergetPt());
             flg->setRotation(_cmaker->getCalc()->nomlKaku(Vec2::ZERO,_cmaker->getTargetDir()));
             _cmaker->addChild(flg);
-            _cmaker->drawByStraight(Vec2(150,0));
+            _cmaker->drawByStraight(Vec2(20,0));
             _cmaker->drawByStraight(Vec2(0,50));
+            break;
+        case 2:
+//            _cmaker->drawByStraight(100, 105);
+//            _cmaker->drawByStraight(100, 130);
+//            _cmaker->drawByStraight(60, 145);
+//            _cmaker->drawByStraight(-130, 0);
+
             break;
         case 3:
 
@@ -799,7 +799,10 @@ void CourceManager::madeCourcePtn13(CourceMaker* _cmaker,int ind){
         case 0:
             _cmaker->drawByStraight(Vec2(0,100));
             _cmaker->drawByStraight(Vec2(0,-100));
-            _cmaker->drawByStraight(Vec2(300,-3));
+            _cmaker->drawByStraight(Vec2(300,0));
+            _cmaker->drawBySmoothCurve(100, 270);
+            _cmaker->drawBySmoothCurve(30, 90);
+//            _cmaker->drawBySmoothCurve(30, 350);
             break;
         case 1:
             _cmaker->drawBySmoothCurve(50, -45);

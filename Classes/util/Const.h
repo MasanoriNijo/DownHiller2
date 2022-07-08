@@ -41,7 +41,7 @@ const Vec2 GRAVITY_ACCERATION = Vec2(0, -10);
 const Vec2 NONGRAVITY = Vec2(0, 0);
 
 // 物理ラインを表示する
-#define DEBUG_PHYSICS_MASK 0
+#define DEBUG_PHYSICS_MASK 1
 
 // 物理世界の処理スピード
 #define PHYSICS_WOELD_SPEED 5
