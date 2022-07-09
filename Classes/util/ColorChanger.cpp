@@ -43,6 +43,15 @@ Color4B ColorChanger::getColor4B(){
     return Color4B(this->r_,this->g_,this->b_,this->_opacity);
 }
 
+Color3B ColorChanger::getColor3B(){
+    return Color3B(this->r_,this->g_,this->b_);
+}
+
+
+Color4F ColorChanger::getColor4F(){
+    return Color4F(getColor3B());
+}
+
 void ColorChanger::SetColor(float h, float s, float v) {
     
     this->h_ = h;

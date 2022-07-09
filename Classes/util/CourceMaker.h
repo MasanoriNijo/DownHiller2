@@ -37,6 +37,10 @@ public:
     void update(float dt) override;
     void onEnterTransitionDidFinish() override;
     
+    Color3B _lineColor = Color3B::ORANGE;
+    Color4F _nuriColor = Color4F::MAGENTA;
+    
+    
     // 元の直線の長さ
     float _length;
     

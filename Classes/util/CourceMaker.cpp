@@ -329,6 +329,7 @@ void CourceMaker::addStraightLine(Vec2 pt1_, Vec2 pt2_){
     stline->setPosition(pt1_);
     stline->setRotation(getCalc()->chgKaku((pt2_-pt1_)));
     stline->setGlobalZOrder(OBJ_LAYER_LV1);
+    stline->setColor(_lineColor);
 //    stline->setOpacity(95);
     getStraight()->addChild(stline);
     getMember().pushBack(stline);
@@ -339,6 +340,7 @@ void CourceMaker::addDot(Vec2 pt_){
     Sprite* dot = Sprite::createWithTexture(getDot()->getTexture());
     dot->setGlobalZOrder(OBJ_LAYER_LV1);
     dot->setPosition(pt_);
+    dot->setColor(_lineColor);
     //    dot->setOpacity(0.2f);
     getDot()->addChild(dot);
     getMember().pushBack(dot);
@@ -445,7 +447,7 @@ void CourceMaker::madePhysiceBody(){
         _nuriPts[2].y = low_y;
         _nuriPts[3].x = _polygonPts[i].x;
         _nuriPts[3].y = low_y;
-        getNuri()->drawSolidPoly(_nuriPts, 4,  Color4F::RED);
+        getNuri()->drawSolidPoly(_nuriPts, 4, _nuriColor);
         if(min_x < _polygonPts[i+1].x){
             min_x = _polygonPts[i+1].x;
         }

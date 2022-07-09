@@ -26,7 +26,8 @@ bool SelectScene::init() {
     if (!GameScene::init()) {
         return false;
     }
-    setBackGroundColor();
+    //    setBackGroundColor();
+    setBackGradientGroundColor();
     drawDebugLine();
     
     setGameTitle(Label::createWithTTF(L_TITLE_SELECT, "irohamaru.ttf", 16));
