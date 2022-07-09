@@ -793,12 +793,14 @@ void CourceManager::madeCourcePtn13(CourceMaker* _cmaker,int ind){
     _cmaker->drawStart(getTergetPt(),getTargetDir());
     switch (ind) {
         case 0:
-            _cmaker->drawByStraight(Vec2(0,100));
-            _cmaker->drawByStraight(Vec2(0,-100));
-            _cmaker->drawByStraight(Vec2(300,0));
-            _cmaker->drawBySmoothCurve(100, 270);
-            _cmaker->drawBySmoothCurve(30, 90);
-//            _cmaker->drawBySmoothCurve(30, 350);
+//            _cmaker->drawByStraight(Vec2(0,100));
+//            _cmaker->drawByStraight(Vec2(0,-100));
+            _cmaker->drawByStraight(50,0);
+            _cmaker->drawByStraight(50,20);
+            _cmaker->drawByStraight(50,-20);
+            _cmaker->drawByStraight(50,20);
+            _cmaker->drawByStraight(50,-20);
+            _cmaker->drawByStraight(50,0);
             break;
         case 1:
             _cmaker->drawBySmoothCurve(50, -45);

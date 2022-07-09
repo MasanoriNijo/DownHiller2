@@ -66,6 +66,7 @@ void CourceMaker::drawStart(Vec2 pt_, Vec2 dir_){
 //    addDot(pt_);
     addPolygonPts(_wrkPt);
     getMember().clear();
+    low_y = 100000;
 }
 void CourceMaker::drawTo(Vec2 pt_, Vec2 dir_){
     this->setWorkPt(_trgPt);
@@ -315,6 +316,9 @@ void CourceMaker::addPolygonPts(Vec2 pt_) {
     }
     _polygonPts[_polygonPtCnt].set(pt_);
     _polygonPtCnt++;
+    if(_polygonPts[_polygonPtCnt-1].y<low_y){
+        low_y = _polygonPts[_polygonPtCnt-1].y;
+    }
 }
 
 void CourceMaker::addStraightLine(Vec2 pt1_, Vec2 pt2_){
@@ -418,6 +422,28 @@ void CourceMaker::madePhysiceBody(){
     getCourceBody()->setContactTestBitmask(CT_WHEEL | CT_RIDER);
     getCourceBody()->setTag(TG_COURCE);
     this->setPhysicsBody(getCourceBody());
+        
+    // ぬり
+    auto polygon = DrawNode::create();
+    polygon->setGlobalZOrder(OBJ_LAYER_LV1-1);
+    addChild(polygon);
+    low_y -= 400;
+    float min_x =_polygonPts[0].x;
+    for(int i=0; i<_polygonPtCnt-1;i++){
+        if(_polygonPts[i].x< min_x && _polygonPts[i+1].x < min_x){
+            continue;
+        }
+        _nuriPts[0].x = _polygonPts[i].x;
+        _nuriPts[0].y = _polygonPts[i].y;
+        _nuriPts[1].x = _polygonPts[i+1].x;
+        _nuriPts[1].y = _polygonPts[i+1].y;
+        _nuriPts[2].x = _polygonPts[i+1].x;
+        _nuriPts[2].y = low_y;
+        _nuriPts[3].x = _polygonPts[i].x;
+        _nuriPts[3].y = low_y;
+        polygon->drawSolidPoly(_nuriPts, 4,  Color4F::RED);
+        min_x = _polygonPts[i+1].x;
+    }
 }
 
 void CourceMaker::madePhysiceBody(Node* field){

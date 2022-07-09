@@ -83,6 +83,8 @@ public:
     void addPolygonPts(Vec2 pt_);
     // PhysicsBodyのポリゴン生成用
     Vec2 _polygonPts[2000];
+    float low_y = 100000;
+    Vec2 _nuriPts[4];
     int _polygonPtCnt = 0;
     float _polygonPitch = 10;
     
