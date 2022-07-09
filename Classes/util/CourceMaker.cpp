@@ -98,6 +98,7 @@ void CourceMaker::drawByStraight(float length, float kaku){
     if(markSetflg){
         addMarkStraight(_wrkPt, _trgPt);
     }
+    _dirkaku = kaku;
 }
 
 void CourceMaker::drawBySmoothCurve(Vec2 dirPt_){
@@ -112,15 +113,44 @@ void CourceMaker::drawBySmoothCurve(Vec2 dirPt_){
 
 void CourceMaker::drawBySmoothCurve(float r,float kaku){
     Vec2 trgDir = getCalc()->rotByKaku(Vec2(1,0), -kaku);
-    float drad = getCalc()->diffRadA2B(getTargetDir(),trgDir);
-    Vec2 ctPt = getCalc()->chgLength(getCalc()->rotByRad(getTargetDir(), drad<0 ? M_PI/2 : -M_PI/2) , r);
-    Vec2 trgPt_ctPt = getCalc()->rotByRad(ctPt, drad);
-    Vec2 trgPt = getTergetPt()+trgPt_ctPt-ctPt;
-    setWorkPt(_trgPt);
-    setWorkDir(_trgDir);
+    
+    float trg_rad = kaku * M_PI/180;
+    float wrk_rad = _dirkaku * M_PI/180;
+    float dffrad = trg_rad - wrk_rad ;
+    _dirkaku = kaku;
+    Vec2 wrkPt_ctPt = getCalc()->chgLength(getCalc()->rotByRad(getTargetDir(), dffrad>0 ? -M_PI/2 : M_PI/2) , r);
+    Vec2 trgPt_ctPt = getCalc()->rotByRad(wrkPt_ctPt, dffrad);
+    Vec2 trgPt = getTergetPt()+trgPt_ctPt-wrkPt_ctPt;
+    Vec2 ctPt = getTergetPt() - wrkPt_ctPt;
+    setWorkPt(getTergetPt());
+    setWorkDir(getTargetDir());
     setTergetPt(trgPt);
     setTargetDir(trgDir);
-    calcCurve(r);
+
+    // 円弧の部分を描写する。
+    float drad = dffrad>0 ? _drawPitch/r : -_drawPitch/r;
+    int i = 1;
+    while(abs(drad * i) < abs(dffrad)){
+        addDot(getCalc()->rotByRad(wrkPt_ctPt, drad * i) + ctPt);
+        i++;
+    }
+    addDot(getTergetPt());
+    // カーブ部分へのmarkの追加
+    if(markSetflg){
+        addMarkCurve(ctPt,getWorkPt(),dffrad);
+    }
+    
+    // ポリゴンの追加
+    float dradp = dffrad>0 ? _polygonPitch/r : -_polygonPitch/r;
+//    int ip = 1;
+    
+    addPolygonPts(getWorkPt());
+    i = 0;
+    while(abs(dradp * i) < abs(dffrad)){
+        addPolygonPts(getCalc()->rotByRad(wrkPt_ctPt, dradp * i) + ctPt);
+        i++;
+    }
+    addPolygonPts(getTergetPt());
 }
 
 void CourceMaker::drawByCurve(Vec2 dpt_,float kaku){
