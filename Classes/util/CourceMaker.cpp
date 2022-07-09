@@ -430,7 +430,7 @@ void CourceMaker::madePhysiceBody(){
     low_y -= 400;
     float min_x =_polygonPts[0].x;
     for(int i=0; i<_polygonPtCnt-1;i++){
-        if(_polygonPts[i].x< min_x && _polygonPts[i+1].x < min_x){
+        if(_polygonPts[i].x > _polygonPts[i+1].x || _polygonPts[i+1].x < min_x){
             continue;
         }
         _nuriPts[0].x = _polygonPts[i].x;
@@ -442,7 +442,9 @@ void CourceMaker::madePhysiceBody(){
         _nuriPts[3].x = _polygonPts[i].x;
         _nuriPts[3].y = low_y;
         polygon->drawSolidPoly(_nuriPts, 4,  Color4F::RED);
-        min_x = _polygonPts[i+1].x;
+        if(min_x < _polygonPts[i+1].x){
+            min_x = _polygonPts[i+1].x;
+        }
     }
 }
 
