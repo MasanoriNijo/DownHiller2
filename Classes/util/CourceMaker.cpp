@@ -3,7 +3,7 @@
 CourceMaker::CourceMaker():
 _calc(NULL),_dot(NULL), _straight(NULL),
 _curveA(NULL), _curveB(NULL), _curveC(NULL), _curveD(NULL), _curveE(NULL), _curveF(NULL),
-_courceBody(NULL),_mark(NULL)
+_courceBody(NULL),_mark(NULL),_nuri(NULL)
 {}
 
 CourceMaker::~CourceMaker() {
@@ -18,6 +18,7 @@ CourceMaker::~CourceMaker() {
     CC_SAFE_RELEASE_NULL(_curveE);
     CC_SAFE_RELEASE_NULL(_curveF);
     CC_SAFE_RELEASE_NULL(_courceBody);
+    CC_SAFE_RELEASE_NULL(_nuri);
     getMember().clear();
 }
 
@@ -57,21 +58,22 @@ void CourceMaker::update(float dt) {
 void CourceMaker::drawStart(Vec2 pt_, Vec2 dir_){
     setStartPt(pt_);
     setStartDir(dir_);
-    this->setWorkPt(pt_);
-    this->setWorkDir(dir_);
-    this->setTergetPt(pt_);
-    this->setTargetDir(dir_);
+    setWorkPt(pt_);
+    setWorkDir(dir_);
+    setTergetPt(pt_);
+    setTargetDir(dir_);
     _polygonPtCnt = 0;
     addStartDot(pt_);//デバック時
 //    addDot(pt_);
     addPolygonPts(_wrkPt);
     getMember().clear();
+    low_y = 100000;
 }
 void CourceMaker::drawTo(Vec2 pt_, Vec2 dir_){
-    this->setWorkPt(_trgPt);
-    this->setWorkDir(_trgDir);
-    this->setTergetPt(pt_);
-    this->setTargetDir(dir_);
+    setWorkPt(_trgPt);
+    setWorkDir(_trgDir);
+    setTergetPt(pt_);
+    setTargetDir(dir_);
     calcCurve(_wrkPt, _wrkDir, _trgPt, _trgDir, -1);
 }
 
@@ -154,16 +156,16 @@ void CourceMaker::drawBySmoothCurve(float r,float kaku){
 }
 
 void CourceMaker::drawByCurve(Vec2 dpt_,float kaku){
-    this->setWorkPt(_trgPt);
-    this->setTergetPt(_trgPt + dpt_);
+    setWorkPt(_trgPt);
+    setTergetPt(_trgPt + dpt_);
     if(kaku < -89){
         kaku = -89;
     }
     if(kaku > 89){
         kaku = 89;
     }
-    this->setWorkDir(getCalc()->rotByKaku(dpt_, kaku));
-    this->setTargetDir(getCalc()->rotByKaku(dpt_, -kaku));
+    setWorkDir(getCalc()->rotByKaku(dpt_, kaku));
+    setTargetDir(getCalc()->rotByKaku(dpt_, -kaku));
     calcCurve(-1);
 }
 
@@ -315,6 +317,9 @@ void CourceMaker::addPolygonPts(Vec2 pt_) {
     }
     _polygonPts[_polygonPtCnt].set(pt_);
     _polygonPtCnt++;
+    if(_polygonPts[_polygonPtCnt-1].y<low_y){
+        low_y = _polygonPts[_polygonPtCnt-1].y;
+    }
 }
 
 void CourceMaker::addStraightLine(Vec2 pt1_, Vec2 pt2_){
@@ -324,6 +329,7 @@ void CourceMaker::addStraightLine(Vec2 pt1_, Vec2 pt2_){
     stline->setPosition(pt1_);
     stline->setRotation(getCalc()->chgKaku((pt2_-pt1_)));
     stline->setGlobalZOrder(OBJ_LAYER_LV1);
+    stline->setColor(_lineColor);
 //    stline->setOpacity(95);
     getStraight()->addChild(stline);
     getMember().pushBack(stline);
@@ -334,6 +340,7 @@ void CourceMaker::addDot(Vec2 pt_){
     Sprite* dot = Sprite::createWithTexture(getDot()->getTexture());
     dot->setGlobalZOrder(OBJ_LAYER_LV1);
     dot->setPosition(pt_);
+    dot->setColor(_lineColor);
     //    dot->setOpacity(0.2f);
     getDot()->addChild(dot);
     getMember().pushBack(dot);
@@ -411,15 +418,40 @@ void CourceMaker::madePhysiceBody(){
     _material.friction =1.0f;
     _material.density = 0.001f;
     
-    this->setCourceBody(PhysicsBody::createEdgeChain(_polygonPts, _polygonPtCnt,_material));
+    setCourceBody(PhysicsBody::createEdgeChain(_polygonPts, _polygonPtCnt,_material));
     getCourceBody()->setDynamic(false);
     getCourceBody()->setCategoryBitmask(CT_COURCE);
     getCourceBody()->setCollisionBitmask(CT_WHEEL | CT_RIDER);
     getCourceBody()->setContactTestBitmask(CT_WHEEL | CT_RIDER);
     getCourceBody()->setTag(TG_COURCE);
-    NJLOG("PolyGonの数:");
-    NJLOG(ST_INT(_polygonPtCnt).c_str());
-    this->setPhysicsBody(getCourceBody());
+    setPhysicsBody(getCourceBody());
+        
+    // ぬり
+    if(getNuri()){
+        getNuri()->removeFromParentAndCleanup(true);
+    }
+    setNuri(DrawNode::create());
+    getNuri()->setGlobalZOrder(OBJ_LAYER_LV1-1);
+    addChild(getNuri());
+    low_y -= 400;
+    float min_x =_polygonPts[0].x;
+    for(int i=0; i<_polygonPtCnt-1;i++){
+        if(_polygonPts[i].x > _polygonPts[i+1].x || _polygonPts[i+1].x < min_x){
+            continue;
+        }
+        _nuriPts[0].x = _polygonPts[i].x;
+        _nuriPts[0].y = _polygonPts[i].y;
+        _nuriPts[1].x = _polygonPts[i+1].x;
+        _nuriPts[1].y = _polygonPts[i+1].y;
+        _nuriPts[2].x = _polygonPts[i+1].x;
+        _nuriPts[2].y = low_y;
+        _nuriPts[3].x = _polygonPts[i].x;
+        _nuriPts[3].y = low_y;
+        getNuri()->drawSolidPoly(_nuriPts, 4, _nuriColor);
+        if(min_x < _polygonPts[i+1].x){
+            min_x = _polygonPts[i+1].x;
+        }
+    }
 }
 
 void CourceMaker::madePhysiceBody(Node* field){
@@ -428,7 +460,7 @@ void CourceMaker::madePhysiceBody(Node* field){
     _material.friction =1.0f;
     _material.density = 0.001f;
     
-    this->setCourceBody(PhysicsBody::createEdgeChain(_polygonPts, _polygonPtCnt,_material));
+    setCourceBody(PhysicsBody::createEdgeChain(_polygonPts, _polygonPtCnt,_material));
     getCourceBody()->setDynamic(false);
     getCourceBody()->setCategoryBitmask(CT_COURCE);
     getCourceBody()->setCollisionBitmask(CT_WHEEL | CT_RIDER);
@@ -442,20 +474,20 @@ void CourceMaker::addCurveA(Vec2 pt_, Vec2 dir_){
 }
 
 /** パラメータサンプル
- this->setDot(SpriteBatchNode*::create());
- this->getDot();
- this->setStraight(SpriteBachNode::create());
- this->getStraight();
- this->setCurveA(SpriteBachNode::create());
- this->getCurveA();
- this->setCurveB(SpriteBachNode::create());
- this->getCurveB();
- this->setCurveC(SpriteBachNode::create());
- this->getCurveC();
- this->setCurveD(SpriteBachNode::create());
- this->getCurveD();
- this->setCurveE(SpriteBachNode::create());
- this->getCurveE();
- this->setCurveF(SpriteBachNode::create());
- this->getCurveF();
+ setDot(SpriteBatchNode*::create());
+ getDot();
+ setStraight(SpriteBachNode::create());
+ getStraight();
+ setCurveA(SpriteBachNode::create());
+ getCurveA();
+ setCurveB(SpriteBachNode::create());
+ getCurveB();
+ setCurveC(SpriteBachNode::create());
+ getCurveC();
+ setCurveD(SpriteBachNode::create());
+ getCurveD();
+ setCurveE(SpriteBachNode::create());
+ getCurveE();
+ setCurveF(SpriteBachNode::create());
+ getCurveF();
  */

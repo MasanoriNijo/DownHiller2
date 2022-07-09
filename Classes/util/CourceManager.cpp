@@ -2,7 +2,7 @@
 
 CourceManager::CourceManager():
 _courceMakerA(NULL), _courceMakerB(NULL), _flg(NULL),_stagePrm(NULL),
-_gurd(NULL),_gurdBody(NULL)
+_gurd(NULL),_gurdBody(NULL),_colorChanger(NULL)
 {}
 
 CourceManager::~CourceManager() {
@@ -12,6 +12,7 @@ CourceManager::~CourceManager() {
     CC_SAFE_RELEASE_NULL(_stagePrm);
     CC_SAFE_RELEASE_NULL(_gurd);
     CC_SAFE_RELEASE_NULL(_gurdBody);
+    CC_SAFE_RELEASE_NULL(_colorChanger);
 }
 
 bool CourceManager::init() {
@@ -29,6 +30,13 @@ bool CourceManager::init() {
     getGurdBody()->setCollisionBitmask(CT_ALL);
     getGurd()->setPhysicsBody(getGurdBody());
     
+    setColorChanger(ColorChanger::create());
+    getColorChanger()->SetColor(COURCE_LINE_COLOR_H, COURCE_LINE_COLOR_S, COURCE_LINE_COLOR_V);
+    getCourceMakerA()->_lineColor = getColorChanger()->getColor3B();
+    getCourceMakerB()->_lineColor = getColorChanger()->getColor3B();
+    getColorChanger()->SetColor(COURCE_BASE_COLOR_H, COURCE_BASE_COLOR_S, COURCE_BASE_COLOR_V);
+    getCourceMakerA()->_nuriColor = getColorChanger()->getColor4F();
+    getCourceMakerB()->_nuriColor = getColorChanger()->getColor4F();
   return true;
 }
 
@@ -793,12 +801,14 @@ void CourceManager::madeCourcePtn13(CourceMaker* _cmaker,int ind){
     _cmaker->drawStart(getTergetPt(),getTargetDir());
     switch (ind) {
         case 0:
-            _cmaker->drawByStraight(Vec2(0,100));
-            _cmaker->drawByStraight(Vec2(0,-100));
-            _cmaker->drawByStraight(Vec2(300,0));
-            _cmaker->drawBySmoothCurve(100, 270);
-            _cmaker->drawBySmoothCurve(30, 90);
-//            _cmaker->drawBySmoothCurve(30, 350);
+//            _cmaker->drawByStraight(Vec2(0,100));
+//            _cmaker->drawByStraight(Vec2(0,-100));
+            _cmaker->drawByStraight(50,0);
+            _cmaker->drawByStraight(50,20);
+            _cmaker->drawByStraight(50,-20);
+            _cmaker->drawByStraight(50,20);
+            _cmaker->drawByStraight(50,-20);
+            _cmaker->drawByStraight(50,0);
             break;
         case 1:
             _cmaker->drawBySmoothCurve(50, -45);

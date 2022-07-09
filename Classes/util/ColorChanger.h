@@ -36,7 +36,12 @@ public:
     
     // Color4Bを出力する
     Color4B getColor4B();
+
+    // Color4Bを出力する
+    Color3B getColor3B();
     
+    // Color4Bを出力する
+    Color4F getColor4F();
     //色相h,彩度ｓ、明度vを指定して、色を変更する。
     void SetColor(float h,float s,float v);
     //彩度ｓ、明度vを指定して、色相をランダムに変更する。

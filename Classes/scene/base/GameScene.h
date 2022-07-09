@@ -7,7 +7,6 @@
 #include "util/Calclater.h"
 #include "item/Button.h"
 #include "audio/include/AudioEngine.h"
-#include "scene/base/TransitionScene.h"
 #include "cocos/editor-support/cocostudio/SimpleAudioEngine.h"
 #include "cocos2d.h"
 USING_NS_CC;
@@ -23,7 +22,8 @@ public:
     static Scene* createScene();
     static Scene* createPhysicsScene();
     CC_SYNTHESIZE_RETAIN(LayerColor*,_backColor,BackColor);
-//    CC_SYNTHESIZE_RETAIN(ImovileAd*,_ad,AD); for android
+    CC_SYNTHESIZE_RETAIN(LayerGradient*,_backGradientColor,BackGradientColor);
+    // CC_SYNTHESIZE_RETAIN(ImovileAd*,_ad,AD);
     CC_SYNTHESIZE_RETAIN(ColorChanger*,_colorChanger,ColorChanger);
     CC_SYNTHESIZE_RETAIN(Calclater*,_calc,Calc);
     CC_SYNTHESIZE_RETAIN(DrawNode*,_debugLine,DebugLine);
@@ -39,8 +39,14 @@ public:
     // defaultのバックカラーをセット
     void setBackGroundColor();
     
+    // defaultのバックカラーをセット
+    void setBackGradientGroundColor();
+    
     // 指定のバックカラーをセット
     void setBackGroundColor(float h, float s, float v);
+    
+    // 指定のバックカラーをセット
+    void setBackGradientGroundColor(float h, float s, float v, float h2, float s2, float v2);
     
     // ゲームの状態遷移
     bool fstStCnge = false; //各条件で初めにやる処理

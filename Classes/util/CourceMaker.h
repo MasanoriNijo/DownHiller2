@@ -24,6 +24,7 @@ public:
     CC_SYNTHESIZE_RETAIN(SpriteBatchNode*,_curveE,CurveE);
     CC_SYNTHESIZE_RETAIN(SpriteBatchNode*,_curveF,CurveF);
     CC_SYNTHESIZE_RETAIN(PhysicsBody*,_courceBody,CourceBody);
+    CC_SYNTHESIZE_RETAIN(DrawNode*,_nuri,Nuri);
     CC_SYNTHESIZE(Vector<Sprite*>,_member,Member);
 //    CC_SYNTHESIZE(Vector<Vec2>,_polygonPts,PolygonPts);
     CC_SYNTHESIZE(Vec2,_strPt,StartPt);
@@ -35,6 +36,10 @@ public:
 
     void update(float dt) override;
     void onEnterTransitionDidFinish() override;
+    
+    Color3B _lineColor = Color3B::ORANGE;
+    Color4F _nuriColor = Color4F::MAGENTA;
+    
     
     // 元の直線の長さ
     float _length;
@@ -83,6 +88,8 @@ public:
     void addPolygonPts(Vec2 pt_);
     // PhysicsBodyのポリゴン生成用
     Vec2 _polygonPts[2000];
+    float low_y = 100000;
+    Vec2 _nuriPts[4];
     int _polygonPtCnt = 0;
     float _polygonPitch = 10;
     

@@ -2,7 +2,7 @@
 
 GameScene::GameScene():
 _backColor(NULL), _colorChanger(NULL), _calc(NULL),_gameAnounce(NULL),
-_debugLine(NULL), _debugMemo(NULL), _noMoveLayer(NULL)
+_debugLine(NULL), _debugMemo(NULL), _noMoveLayer(NULL),_backGradientColor(NULL)
 {}
 
 GameScene::~GameScene() {
@@ -15,6 +15,7 @@ GameScene::~GameScene() {
     CC_SAFE_RELEASE_NULL(_debugMemo);
     CC_SAFE_RELEASE_NULL(_noMoveLayer);
     CC_SAFE_RELEASE_NULL(_gameAnounce);
+    CC_SAFE_RELEASE_NULL(_backGradientColor);
 }
 
 Scene* GameScene::createScene() {
@@ -44,8 +45,8 @@ bool GameScene::init() {
     
     //画面のサイズをセットする
     auto director = Director::getInstance();
-    this->winSize = director->getWinSize();
-    this->ctPt.set(winSize.width / 2, winSize.height / 2);
+    winSize = director->getWinSize();
+    ctPt.set(winSize.width / 2, winSize.height / 2);
     
     //imovileAdをセットする。
 //    this->setAD(ImovileAd::create());
@@ -53,31 +54,51 @@ bool GameScene::init() {
 //    this->getAD()->instFlg = true;
     
     // Calclaterをセット
-    this->setCalc(Calclater::create());
+    setCalc(Calclater::create());
     
     // 固定画面をセット
-    this->setNoMoveLayer(ParallaxNode::create());
-    this->addChild(_noMoveLayer,OBJ_LAYER_TOP);
+    setNoMoveLayer(ParallaxNode::create());
+    addChild(_noMoveLayer,OBJ_LAYER_TOP);
     
 #if ENABLE_DEBUG_LINE
-    this->drawDebugLine();
+    drawDebugLine();
 #endif
     
     return true;
 }
 
 void GameScene::setBackGroundColor(){
-    this->setBackGroundColor(DEFAULT_COLOR_H,DEFAULT_COLOR_S,DEFAULT_COLOR_V);
+    setBackGroundColor(DEFAULT_COLOR_H,DEFAULT_COLOR_S,DEFAULT_COLOR_V);
+}
+
+void GameScene::setBackGradientGroundColor(){
+    setBackGradientGroundColor(DEFAULT_COLOR_H,DEFAULT_COLOR_S,DEFAULT_COLOR_V,
+                               DEFAULT_GRADIATE_COLOR_H,DEFAULT_GRADIATE_COLOR_S,DEFAULT_GRADIATE_COLOR_V);
 }
 
 void GameScene::setBackGroundColor(float h, float s, float v){
-    this->setColorChanger(ColorChanger::create());
-    this->getColorChanger()->SetColor(h, s, v);
-    this->setBackColor(LayerColor::create(this->getColorChanger()->getColor4B()));
+    setColorChanger(ColorChanger::create());
+    getColorChanger()->SetColor(h, s, v);
+    setBackColor(LayerColor::create(getColorChanger()->getColor4B()));
     if(_noMoveLayer){
-        _noMoveLayer->addChild(this->_backColor,(int)OBJ_LAYER_BUTTOM,Vec2::ZERO,this->_backColor->getPosition());
+        _noMoveLayer->addChild(_backColor,(int)OBJ_LAYER_BUTTOM,Vec2::ZERO,_backColor->getPosition());
     }else{
-        this->addChild(this->_backColor,OBJ_LAYER_BUTTOM);
+        addChild(_backColor,OBJ_LAYER_BUTTOM);
+    }
+}
+
+void GameScene::setBackGradientGroundColor(float h, float s, float v, float h2, float s2, float v2){
+    setColorChanger(ColorChanger::create());
+    getColorChanger()->SetColor(h, s, v);
+    Color4B fstColor = getColorChanger()->getColor4B();
+    getColorChanger()->SetColor(h2, s2, v2);
+    Color4B endColor = getColorChanger()->getColor4B();
+    
+    setBackGradientColor(LayerGradient::create(fstColor,endColor));
+    if(_noMoveLayer){
+        _noMoveLayer->addChild(getBackGradientColor(),(int)OBJ_LAYER_BUTTOM,Vec2::ZERO,getBackGradientColor()->getPosition());
+    }else{
+        addChild(getBackGradientColor(),OBJ_LAYER_BUTTOM);
     }
 }
 
@@ -91,7 +112,7 @@ void GameScene::onExit(){
 }
 
 void GameScene::update(float dt) {
-    switch (this->getGameState()) {
+    switch (getGameState()) {
         case GameState::READY: {
             // todo
             break;
@@ -131,39 +152,39 @@ void GameScene::mountNode(Node* sp, Vec2 pt, float lvl){
     if(_noMoveLayer){
         _noMoveLayer->addChild(sp,(int)lvl, Vec2::ZERO,sp->getPosition());
     }else{
-        this->addChild(sp);
+        addChild(sp);
     }
 }
 
 void GameScene::mountScroleNode(Node* sp, Vec2 pt, float lvl){
     sp->setPosition(pt);
     sp->setGlobalZOrder(lvl);
-    this->addChild(sp);
+    addChild(sp);
 }
 
 void GameScene::drawDebugLine(){
-    this->setDebugLine(DrawNode::create());
-    this->getDebugLine()->setLineWidth(4);
-    this->getDebugLine()->drawDot(this->ctPt, 1, Color4F::GREEN);
+    setDebugLine(DrawNode::create());
+    getDebugLine()->setLineWidth(4);
+    getDebugLine()->drawDot(ctPt, 1, Color4F::GREEN);
     
     int meshSize = 10;
     
-    int horCnt = this->winSize.width / meshSize;
-    int verCnt = this->winSize.height / meshSize;
+    int horCnt = winSize.width / meshSize;
+    int verCnt = winSize.height / meshSize;
     
     for (int i = -verCnt-2; i < verCnt + 2; i++) {
-        this->getDebugLine()->drawLine(Vec2(0,this->ctPt.y + i * meshSize),
-                                       Vec2(this->winSize.width,this->ctPt.y + i * meshSize),
+        getDebugLine()->drawLine(Vec2(0,ctPt.y + i * meshSize),
+                                       Vec2(winSize.width,ctPt.y + i * meshSize),
                                        Color4F::GRAY);
     }
     for (int i = -horCnt-2; i < horCnt + 2; i++) {
-        this->getDebugLine()->drawLine(Vec2(this->ctPt.x + i * meshSize,0),
-                                       Vec2(this->ctPt.x + i * meshSize,this->winSize.height),
+        getDebugLine()->drawLine(Vec2(ctPt.x + i * meshSize,0),
+                                       Vec2(ctPt.x + i * meshSize,winSize.height),
                                        Color4F::GRAY);
     }
-    this->mountNode(this->getDebugLine(), Vec2::ZERO, OBJ_LAYER_LV1);
-//    this->setDebugMemo(Label::createWithTTF("Deugメモ", "irohamaru.ttf", 14));
-//    this->mountNode(this->getDebugMemo(), Vec2(this->ctPt.x,30), OBJ_LAYER_LV1);
+    mountNode(getDebugLine(), Vec2::ZERO, OBJ_LAYER_LV1);
+//    setDebugMemo(Label::createWithTTF("Deugメモ", "irohamaru.ttf", 14));
+//    mountNode(getDebugMemo(), Vec2(ctPt.x,30), OBJ_LAYER_LV1);
 }
 
 float GameScene::getScreenWidth() {
@@ -190,8 +211,8 @@ void GameScene::showGameAnnounce(std::string st,Vec2 pt){
     auto stayTime = DelayTime::create(1.0f);
     auto fadeOut = FadeOut::create(0.2f);
     auto endFnc = CallFunc::create([this](){
-        if(this->getGameAnounce()->getParent()){
-            this->getGameAnounce()->removeFromParentAndCleanup(true);
+        if(getGameAnounce()->getParent()){
+            getGameAnounce()->removeFromParentAndCleanup(true);
         }
     });
     auto seq = Sequence::create(para,stayTime,fadeOut,endFnc, NULL);
@@ -212,8 +233,8 @@ void GameScene::showGameAnnounce(std::string st,Vec2 pt, const std::function<voi
     auto stayTime = DelayTime::create(1.0f);
     auto fadeOut = FadeOut::create(0.2f);
     auto endFnc = CallFunc::create([this](){
-        if(this->getGameAnounce()->getParent()){
-            this->getGameAnounce()->removeFromParentAndCleanup(true);
+        if(getGameAnounce()->getParent()){
+            getGameAnounce()->removeFromParentAndCleanup(true);
         }
     });
     auto endFnc2 = CallFunc::create(endFunc);
@@ -279,16 +300,16 @@ std::string GameScene::getTime(){
     return ST_FLOAT(tm_);
 }
 /** パラメータサンプル
- this->setBackColor(LayerColor::create());
- this->getBackColor();
- this->setAD(ImovileAd::create());
- this->getAD();
- this->setColorChanger(ColorChanger::create());
- this->getColorChanger();
- this->setCalc(Calclater::create());
- this->getCalc();
- this->setDebugLine(DrawNode::create());
- this->getDebugLine();
- this->setDebugMemo(Label::create());
- this->getDebugMemo();
+ setBackColor(LayerColor::create());
+ getBackColor();
+ setAD(ImovileAd::create());
+ getAD();
+ setColorChanger(ColorChanger::create());
+ getColorChanger();
+ setCalc(Calclater::create());
+ getCalc();
+ setDebugLine(DrawNode::create());
+ getDebugLine();
+ setDebugMemo(Label::create());
+ getDebugMemo();
  */

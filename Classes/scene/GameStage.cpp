@@ -48,7 +48,8 @@ bool GameStage::init() {
         return false;
     }
     setSoundEffect("btnon.mp");
-    setBackGroundColor();
+//    setBackGroundColor();
+    setBackGradientGroundColor();
     setPosition(ctPt + Vec2(250,0));
 
     this->setDebugMemo(Label::createWithTTF("Deugメモ", "irohamaru.ttf", 8));

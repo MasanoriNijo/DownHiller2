@@ -191,7 +191,6 @@
 		309B0D12284A6E170091801C /* Calclater.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 309B0D11284A6E160091801C /* Calclater.cpp */; };
 		309B0D15284B16160091801C /* Button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 309B0D14284B16160091801C /* Button.cpp */; };
 		309B0D18284B900E0091801C /* TestPhysicsScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 309B0D16284B900D0091801C /* TestPhysicsScene.cpp */; };
-		309B0D1B284BDBD10091801C /* TransitionScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 309B0D1A284BDBD00091801C /* TransitionScene.cpp */; };
 		309B0D1E284CE5240091801C /* TouchEventHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 309B0D1C284CE5230091801C /* TouchEventHelper.cpp */; };
 		309B0D21284D04F00091801C /* Bike.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 309B0D1F284D04EF0091801C /* Bike.cpp */; };
 		309B0D25284D05D90091801C /* Sprite2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 309B0D24284D05D90091801C /* Sprite2.cpp */; };
@@ -1472,8 +1471,6 @@
 		309B0D14284B16160091801C /* Button.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Button.cpp; path = Classes/item/Button.cpp; sourceTree = SOURCE_ROOT; };
 		309B0D16284B900D0091801C /* TestPhysicsScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestPhysicsScene.cpp; path = Classes/scene/TestPhysicsScene.cpp; sourceTree = "<group>"; };
 		309B0D17284B900E0091801C /* TestPhysicsScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestPhysicsScene.h; path = Classes/scene/TestPhysicsScene.h; sourceTree = "<group>"; };
-		309B0D19284BDBD00091801C /* TransitionScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransitionScene.h; sourceTree = "<group>"; };
-		309B0D1A284BDBD00091801C /* TransitionScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TransitionScene.cpp; sourceTree = "<group>"; };
 		309B0D1C284CE5230091801C /* TouchEventHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TouchEventHelper.cpp; sourceTree = "<group>"; };
 		309B0D1D284CE5230091801C /* TouchEventHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchEventHelper.h; sourceTree = "<group>"; };
 		309B0D1F284D04EF0091801C /* Bike.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bike.cpp; sourceTree = "<group>"; };
@@ -3693,8 +3690,6 @@
 		304DD0BF2843DDE900AF0334 /* base */ = {
 			isa = PBXGroup;
 			children = (
-				309B0D1A284BDBD00091801C /* TransitionScene.cpp */,
-				309B0D19284BDBD00091801C /* TransitionScene.h */,
 				304DD0C12843DE2700AF0334 /* GameScene.cpp */,
 				304DD0C02843DE2700AF0334 /* GameScene.h */,
 			);
@@ -5447,7 +5442,6 @@
 				660874EB5928406482FA1AF6 /* AppDelegate.cpp in Sources */,
 				302A0A212854E2460072A2D3 /* LineMaker.cpp in Sources */,
 				894EBEAFD698461595D0DFD4 /* HelloWorldScene.cpp in Sources */,
-				309B0D1B284BDBD10091801C /* TransitionScene.cpp in Sources */,
 				30CD03F5284672FF0023D844 /* IMobileCocos2dxModule.mm in Sources */,
 				309B0D25284D05D90091801C /* Sprite2.cpp in Sources */,
 				302A0A27285A36E60072A2D3 /* StraightLine.cpp in Sources */,

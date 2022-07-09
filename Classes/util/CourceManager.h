@@ -3,6 +3,7 @@
 
 #include "util/CourceMaker.h"
 #include "util/StagePrm.h"
+#include "util/ColorChanger.h"
 #include "item/Flg.h"
 #include "cocos2d.h"
 USING_NS_CC;
@@ -24,6 +25,7 @@ public:
     CC_SYNTHESIZE_RETAIN(StagePrm*,_stagePrm,StagePrm);
     CC_SYNTHESIZE_RETAIN(Node*,_gurd,Gurd);
     CC_SYNTHESIZE_RETAIN(PhysicsBody*,_gurdBody,GurdBody);
+    CC_SYNTHESIZE_RETAIN(ColorChanger*,_colorChanger,ColorChanger);
     CC_SYNTHESIZE(Vec2,_strPt,StartPt);
     CC_SYNTHESIZE(Vec2,_strDir,StartDir);
     CC_SYNTHESIZE(Vec2,_trgPt,TergetPt);

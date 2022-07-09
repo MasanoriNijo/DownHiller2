@@ -25,9 +25,24 @@ USING_NS_CC;
 #endif
 
 // デフォルトのバックグラウンドカラーをセット 色相H:0-360,彩度S:0-100,明度V:0-100
-#define DEFAULT_COLOR_H 140
-#define DEFAULT_COLOR_S 98
-#define DEFAULT_COLOR_V 46
+#define DEFAULT_COLOR_H 210
+#define DEFAULT_COLOR_S 100
+#define DEFAULT_COLOR_V 100
+
+// デフォルトのグラデーションで変化後のバックグラウンドカラーをセット 色相H:0-360,彩度S:0-100,明度V:0-100
+#define DEFAULT_GRADIATE_COLOR_H 185
+#define DEFAULT_GRADIATE_COLOR_S 20
+#define DEFAULT_GRADIATE_COLOR_V 100
+
+// コース線の色
+#define COURCE_LINE_COLOR_H 105
+#define COURCE_LINE_COLOR_S 100
+#define COURCE_LINE_COLOR_V 40
+
+// コース線の色
+#define COURCE_BASE_COLOR_H 60
+#define COURCE_BASE_COLOR_S 68
+#define COURCE_BASE_COLOR_V 66
 
 // spriteの上下
 #define OBJ_LAYER_BUTTOM 0
