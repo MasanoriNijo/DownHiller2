@@ -24,6 +24,7 @@ public:
     CC_SYNTHESIZE_RETAIN(SpriteBatchNode*,_curveE,CurveE);
     CC_SYNTHESIZE_RETAIN(SpriteBatchNode*,_curveF,CurveF);
     CC_SYNTHESIZE_RETAIN(PhysicsBody*,_courceBody,CourceBody);
+    CC_SYNTHESIZE_RETAIN(DrawNode*,_nuri,Nuri);
     CC_SYNTHESIZE(Vector<Sprite*>,_member,Member);
 //    CC_SYNTHESIZE(Vector<Vec2>,_polygonPts,PolygonPts);
     CC_SYNTHESIZE(Vec2,_strPt,StartPt);
