@@ -27,8 +27,8 @@ bool TitleScene::init() {
     if (!GameScene::init()) {
         return false;
     }
-//    setBackGroundColor();
-    setBackGradientGroundColor();
+    setBackGroundColor();
+//    setBackGradientGroundColor();
     setGameTitle(Label::createWithTTF(L_TITLE, "irohamaru.ttf", 24));
     getColorChanger()->SetColor(TITLE_COLOR_H, TITLE_COLOR_S, TITLE_COLOR_V);
     getGameTitle()->setTextColor(getColorChanger()->getColor4B());

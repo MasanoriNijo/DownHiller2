@@ -26,13 +26,15 @@ bool SelectScene::init() {
     if (!GameScene::init()) {
         return false;
     }
-    //    setBackGroundColor();
-    setBackGradientGroundColor();
+    setBackGroundColor();
+//    setBackGradientGroundColor();
     drawDebugLine();
     
     setGameTitle(Label::createWithTTF(L_TITLE_SELECT, "irohamaru.ttf", 16));
-    getGameTitle()->setTextColor(Color4B::BLACK);
-    getGameTitle()->enableOutline(Color4B::WHITE,1);
+    getColorChanger()->SetColor(TITLE_COLOR_H, TITLE_COLOR_S, TITLE_COLOR_V);
+    getGameTitle()->setTextColor(getColorChanger()->getColor4B());
+    getColorChanger()->SetColor(TITLE_FUTI_COLOR_H, TITLE_FUTI_COLOR_S, TITLE_FUTI_COLOR_V);
+    getGameTitle()->enableOutline(getColorChanger()->getColor4B(),1);
     mountNode(getGameTitle(), Vec2(ctPt.x,winSize.height-getGameTitle()->getContentSize().height -5), OBJ_LAYER_TOP);
     
     setBtn1(generateMenuItemSprite([this](Ref* ref){

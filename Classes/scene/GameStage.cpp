@@ -94,7 +94,7 @@ bool GameStage::init() {
     addChild(getCourceManager()->getCourceMakerA());
     addChild(getCourceManager()->getCourceMakerB());
     addChild(getCourceManager()->getGurd());
-    
+    _timeLimit = getCourceManager()->getStagePrm()->getTymeLimit();
     // タイムリミットが設定されている場合
     if(_timeLimit>0){
         setRestTime(Label::createWithTTF("残り時間:" + ST_FLOAT(_timeLimit), "irohamaru.ttf", 8));
