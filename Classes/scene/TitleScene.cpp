@@ -30,8 +30,10 @@ bool TitleScene::init() {
 //    setBackGroundColor();
     setBackGradientGroundColor();
     setGameTitle(Label::createWithTTF(L_TITLE, "irohamaru.ttf", 24));
-    getGameTitle()->setTextColor(Color4B::BLACK);
-    getGameTitle()->enableOutline(Color4B::WHITE,1);
+    getColorChanger()->SetColor(TITLE_COLOR_H, TITLE_COLOR_S, TITLE_COLOR_V);
+    getGameTitle()->setTextColor(getColorChanger()->getColor4B());
+    getColorChanger()->SetColor(TITLE_FUTI_COLOR_H, TITLE_FUTI_COLOR_S, TITLE_FUTI_COLOR_V);
+    getGameTitle()->enableOutline(getColorChanger()->getColor4B(),1);
     mountNode(getGameTitle(), Vec2(winSize.width/2,winSize.height -80), OBJ_LAYER_TOP);
     
     setStartBtn(generateMenuItemSprite([this](Ref* ref){

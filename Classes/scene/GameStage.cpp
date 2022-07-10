@@ -98,6 +98,8 @@ bool GameStage::init() {
     // タイムリミットが設定されている場合
     if(_timeLimit>0){
         setRestTime(Label::createWithTTF("残り時間:" + ST_FLOAT(_timeLimit), "irohamaru.ttf", 8));
+        getColorChanger()->SetColor(COMMENT_COLOR_H, COMMENT_COLOR_S, COMMENT_COLOR_V);
+        getRestTime()->setColor(getColorChanger()->getColor3B());
         mountNode(getRestTime(), Vec2(ctPt.x,winSize.height-30), OBJ_LAYER_TOP);
     }
     
@@ -392,6 +394,8 @@ void GameStage::setSetumei(std::string st){
     setSetumei(Label::createWithTTF("", "irohamaru.ttf", 12));
     getSetumei()->setAnchorPoint(Vec2(0,1));
     getSetumei()->setGlobalZOrder(OBJ_LAYER_TOP);
+    getColorChanger()->SetColor(COMMENT_COLOR_H, COMMENT_COLOR_S, COMMENT_COLOR_V);
+    getSetumei()->setColor(getColorChanger()->getColor3B());
     getBike()->getSceneChasePt()->addChild(getSetumei());
     
     getSetumei()->setString(st);
