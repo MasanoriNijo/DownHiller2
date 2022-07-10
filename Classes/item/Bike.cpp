@@ -45,6 +45,7 @@ bool Bike::init() {
     // wheelをセットする。
     setFwheel(Sprite::create("wheel3.png"));
     setRwheel(Sprite::createWithTexture(getFwheel()->getTexture()));
+    
 //    _setTouchEvent(); // game進行上で起動させる。
 
     //debug
@@ -142,12 +143,12 @@ void Bike::onEnterTransitionDidFinish() {
 void Bike::SetPhysicsPrm(){
     
     getFwheel()->setPosition(getPosition()+Vec2(wheelBase,0));
-    getParent()->addChild(getFwheel(),OBJ_LAYER_TOP);
+    getParent()->addChild(getFwheel(),OBJ_LAYER_LV2);
     _addPhysicsToWheel(getFwheel());
     getFwheel()->getPhysicsBody()->setTag(TG_F_WHEEL);
     
     getRwheel()->setPosition(getPosition());
-    getParent()->addChild(getRwheel(),OBJ_LAYER_TOP);
+    getParent()->addChild(getRwheel(),OBJ_LAYER_LV2);
     _addPhysicsToWheel(getRwheel());
     getRwheel()->getPhysicsBody()->setTag(TG_R_WHEEL);
     
@@ -156,6 +157,8 @@ void Bike::SetPhysicsPrm(){
                                                      getFwheel()->getPhysicsBody(),
                                                      getRwheel()->getPhysicsBody()->getPosition(),
                                                      getFwheel()->getPhysicsBody()->getPosition()));
+    getFwheel()->setGlobalZOrder(OBJ_LAYER_LV2);
+    getRwheel()->setGlobalZOrder(OBJ_LAYER_LV2);
     
     // body追加
     auto _material = PHYSICSBODY_MATERIAL_DEFAULT;

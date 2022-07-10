@@ -25,24 +25,42 @@ USING_NS_CC;
 #endif
 
 // デフォルトのバックグラウンドカラーをセット 色相H:0-360,彩度S:0-100,明度V:0-100
-#define DEFAULT_COLOR_H 210
-#define DEFAULT_COLOR_S 100
-#define DEFAULT_COLOR_V 100
+#define DEFAULT_COLOR_H 185
+#define DEFAULT_COLOR_S 34
+#define DEFAULT_COLOR_V 95
 
 // デフォルトのグラデーションで変化後のバックグラウンドカラーをセット 色相H:0-360,彩度S:0-100,明度V:0-100
-#define DEFAULT_GRADIATE_COLOR_H 185
-#define DEFAULT_GRADIATE_COLOR_S 20
-#define DEFAULT_GRADIATE_COLOR_V 100
+#define DEFAULT_GRADIATE_COLOR_H 197
+#define DEFAULT_GRADIATE_COLOR_S 2
+#define DEFAULT_GRADIATE_COLOR_V 99
 
 // コース線の色
-#define COURCE_LINE_COLOR_H 105
-#define COURCE_LINE_COLOR_S 100
-#define COURCE_LINE_COLOR_V 40
+#define COURCE_LINE_COLOR_H 42
+#define COURCE_LINE_COLOR_S 82
+#define COURCE_LINE_COLOR_V 75
 
 // コース線の色
-#define COURCE_BASE_COLOR_H 60
-#define COURCE_BASE_COLOR_S 68
-#define COURCE_BASE_COLOR_V 66
+#define COURCE_BASE_COLOR_H 44
+#define COURCE_BASE_COLOR_S 78
+#define COURCE_BASE_COLOR_V 83
+
+// タイトル文字のカラー
+#define TITLE_COLOR_H 342
+#define TITLE_COLOR_S 44
+#define TITLE_COLOR_V 86
+
+// タイトル文字の縁取りカラー
+#define TITLE_FUTI_COLOR_H 342
+#define TITLE_FUTI_COLOR_S 20
+#define TITLE_FUTI_COLOR_V 99
+
+// コメント文字のカラー
+#define COMMENT_COLOR_H 218
+#define COMMENT_COLOR_S 77
+#define COMMENT_COLOR_V 49
+
+
+
 
 // spriteの上下
 #define OBJ_LAYER_BUTTOM 0

@@ -87,21 +87,19 @@ bool GameStage::init() {
     }, Size(1,1), L_BTN_QUIT, Color3B::WHITE, Color3B::YELLOW, false));
     setMenu(Menu::create(getBtn1(),NULL));
     getMenu()->alignItemsHorizontallyWithPadding(20);
-//    mountNode(getMenu(), Vec2(winSize.width - getBtn1()->getContentSize().width/2 -10,
-//                              winSize.height - getBtn1()->getContentSize().height/2 -10), OBJ_LAYER_TOP);
-    mountNode(getMenu(), Vec2(winSize.width - 190,winSize.height - 20), OBJ_LAYER_TOP);
-    setCourceMaker(CourceMaker::create());
-    addChild(getCourceMaker());
-    
+    mountNode(getMenu(), Vec2(winSize.width - getBtn1()->getContentSize().width/2 -10,
+                              winSize.height - getBtn1()->getContentSize().height/2 -10), OBJ_LAYER_TOP);
+
     setCourceManager(CourceManager::create());
     addChild(getCourceManager()->getCourceMakerA());
     addChild(getCourceManager()->getCourceMakerB());
     addChild(getCourceManager()->getGurd());
-    _timeLimit = _timeLimit;
     
     // タイムリミットが設定されている場合
     if(_timeLimit>0){
         setRestTime(Label::createWithTTF("残り時間:" + ST_FLOAT(_timeLimit), "irohamaru.ttf", 8));
+        getColorChanger()->SetColor(COMMENT_COLOR_H, COMMENT_COLOR_S, COMMENT_COLOR_V);
+        getRestTime()->setColor(getColorChanger()->getColor3B());
         mountNode(getRestTime(), Vec2(ctPt.x,winSize.height-30), OBJ_LAYER_TOP);
     }
     
@@ -114,7 +112,7 @@ void GameStage::onEnterTransitionDidFinish() {
     
     // Bikeをセット
     setBike(Bike::create());
-    mountScroleNode(getBike(), RIDER_START_POINT, OBJ_LAYER_TOP);
+    mountScroleNode(getBike(), RIDER_START_POINT, OBJ_LAYER_LV3-1);
     mountScroleNode(getBike()->getSceneChasePt(), getBike()->getFwheel()->getPosition()+getBike()->sceneOffset + Vec2(-200,0), OBJ_LAYER_TOP);
     getBike()->SetPhysicsPrm();
     getScene()->getPhysicsWorld()->addJoint(getBike()->getFRJoint());
@@ -396,6 +394,8 @@ void GameStage::setSetumei(std::string st){
     setSetumei(Label::createWithTTF("", "irohamaru.ttf", 10));
     getSetumei()->setAnchorPoint(Vec2(0,1));
     getSetumei()->setGlobalZOrder(OBJ_LAYER_TOP);
+    getColorChanger()->SetColor(COMMENT_COLOR_H, COMMENT_COLOR_S, COMMENT_COLOR_V);
+    getSetumei()->setColor(getColorChanger()->getColor3B());
     getBike()->getSceneChasePt()->addChild(getSetumei());
     
     getSetumei()->setString(st);
