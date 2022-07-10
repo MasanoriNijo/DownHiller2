@@ -54,7 +54,7 @@ bool GameStage::init() {
     setPosition(ctPt + Vec2(250,0));
 
     this->setDebugMemo(Label::createWithTTF("", "irohamaru.ttf", 8));
-    this->mountNode(this->getDebugMemo(), Vec2(this->ctPt.x,30), OBJ_LAYER_LV1);
+    this->mountNode(this->getDebugMemo(), Vec2(this->ctPt.x,50), OBJ_LAYER_LV1);
     
     // modal画面を作成する。
     setBtn2(generateMenuItemSprite([this](Ref* ref){

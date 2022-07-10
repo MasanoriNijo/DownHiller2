@@ -3,8 +3,10 @@
 
 #include "scene/base/GameScene.h"
 #include "util/TouchEventHelper.h"
+#include "util/CourceManager.h"
 #include "item/base/Sprite2.h"
 #include "item/ScrollNode.h"
+#include "item/Bike.h"
 #include "cocos2d.h"
 USING_NS_CC;
 
@@ -21,8 +23,13 @@ public:
     CC_SYNTHESIZE_RETAIN(MenuItemSprite*,_btn1,Btn1);
     CC_SYNTHESIZE_RETAIN(MenuItemSprite*,_btn2,Btn2);
     CC_SYNTHESIZE_RETAIN(Menu*,_menu,Menu);
+    CC_SYNTHESIZE_RETAIN(Menu*,_menu2,Menu2);
+    CC_SYNTHESIZE_RETAIN(Menu*,_menu3,Menu3);
+    CC_SYNTHESIZE_RETAIN(Menu*,_menu4,Menu4);
     CC_SYNTHESIZE_RETAIN(TouchEventHelper*,_touch,Touch);
     CC_SYNTHESIZE_RETAIN(ScrollNode*,_scrollNode,ScrollNode);
+    CC_SYNTHESIZE_RETAIN(CourceManager*,_courceManager,CourceManager);
+    CC_SYNTHESIZE_RETAIN(Bike*,_bike,Bike);
     void update(float dt) override;
     void onEnterTransitionDidFinish() override;
     void _arrangeBtns();

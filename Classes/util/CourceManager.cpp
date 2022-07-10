@@ -302,8 +302,8 @@ void CourceManager::madeCourcePtn1(CourceMaker* _cmaker,int ind){
     _cmaker->drawStart(getTergetPt(),getTargetDir());
     switch (ind) {
         case 0:
-            _cmaker->drawByStraight(Vec2(0,100));
-            _cmaker->drawByStraight(Vec2(0,-100));
+//            _cmaker->drawByStraight(Vec2(0,100));
+//            _cmaker->drawByStraight(Vec2(0,-100));
             _cmaker->drawByStraight(Vec2(1000,-10));
             break;
         case 1:

@@ -68,7 +68,7 @@ bool TitleScene::init() {
     getBike()->weightPt = Vec2(-4,0);
     getBike()->riderImageAction();
     getBike()->setRotation(-30);
-    
+   
     return true;
 }
 

@@ -254,7 +254,7 @@ void GameScene::showGameAnnounce(std::string st,Vec2 pt, const std::function<voi
 MenuItemSprite* GameScene::generateMenuItemSprite(const ccMenuCallback& callback,Size size,std::string st,
                                                   Color3B color_, Color3B color2_, bool isBlink){
     Button* btn_ = Button::create();
-    btn_->setButton(Size(1,1), st);
+    btn_->setButton(size, st);
     btn_->setColor(color_);
     if(isBlink){
         auto fadeOut = FadeOut::create(1.0);
@@ -262,7 +262,7 @@ MenuItemSprite* GameScene::generateMenuItemSprite(const ccMenuCallback& callback
         btn_->runAction(act);
     }
     Button* btn2_ = Button::create();
-    btn2_->setButton(Size(1,1), st);
+    btn2_->setButton(size, st);
     btn2_->setButtonColor(color2_);
     return  MenuItemSprite::create(btn_, btn2_,callback);
 }
