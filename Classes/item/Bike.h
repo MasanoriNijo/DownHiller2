@@ -124,6 +124,10 @@ public:
     // 画面スクロール関連
     Vec2 sceneOffset = Vec2(30,-20);
     
+    
+    // title表示用
+    void setForDisplay();
+    
 };
 
 #endif

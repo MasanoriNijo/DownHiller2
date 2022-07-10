@@ -240,8 +240,10 @@ void GameScene::showGameAnnounce(std::string st,Vec2 pt, const std::function<voi
     auto endFnc2 = CallFunc::create(endFunc);
     auto seq = Sequence::create(para,stayTime,fadeOut,endFnc,endFnc2, NULL);
     setGameAnounce(Label::createWithTTF(st, "irohamaru.ttf", 24));
-    getGameAnounce()->setTextColor(Color4B::BLACK);
-    getGameAnounce()->enableOutline(Color4B::WHITE,1);
+    getColorChanger()->SetColor(TITLE_COLOR_H, TITLE_COLOR_S, TITLE_COLOR_V);
+    getGameAnounce()->setTextColor(getColorChanger()->getColor4B());
+    getColorChanger()->SetColor(TITLE_FUTI_COLOR_H, TITLE_FUTI_COLOR_S, TITLE_FUTI_COLOR_V);
+    getGameAnounce()->enableOutline(getColorChanger()->getColor4B(),1);
     getGameAnounce()->setOpacity(0);
     getGameAnounce()->setScale(0);
     getGameAnounce()->runAction(seq);
@@ -252,15 +254,15 @@ void GameScene::showGameAnnounce(std::string st,Vec2 pt, const std::function<voi
 MenuItemSprite* GameScene::generateMenuItemSprite(const ccMenuCallback& callback,Size size,std::string st,
                                                   Color3B color_, Color3B color2_, bool isBlink){
     Button* btn_ = Button::create();
-    btn_->setButton(Size(1,1), st);
+    btn_->setButton(size, st);
     btn_->setColor(color_);
     if(isBlink){
-        auto fadeOut = FadeOut::create(0.5);
+        auto fadeOut = FadeOut::create(1.0);
         auto act = RepeatForever::create(Sequence::create(fadeOut,fadeOut->reverse(), NULL));
         btn_->runAction(act);
     }
     Button* btn2_ = Button::create();
-    btn2_->setButton(Size(1,1), st);
+    btn2_->setButton(size, st);
     btn2_->setButtonColor(color2_);
     return  MenuItemSprite::create(btn_, btn2_,callback);
 }

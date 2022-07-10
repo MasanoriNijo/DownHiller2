@@ -5,7 +5,8 @@
 #include "scene/SelectScene.h"
 
 TitleScene::TitleScene():
-_gameTitle(NULL), _startBtn(NULL), _howtoBtn(NULL), _resultBtn(NULL), _menu(NULL)
+_gameTitle(NULL), _startBtn(NULL), _howtoBtn(NULL), _resultBtn(NULL),
+_menu(NULL),_courceManager(NULL),_bike(NULL)
 {}
 
 TitleScene::~TitleScene() {
@@ -14,6 +15,8 @@ TitleScene::~TitleScene() {
     CC_SAFE_RELEASE_NULL(_howtoBtn);
     CC_SAFE_RELEASE_NULL(_resultBtn);
     CC_SAFE_RELEASE_NULL(_menu);
+    CC_SAFE_RELEASE_NULL(_courceManager);
+    CC_SAFE_RELEASE_NULL(_bike);
 }
 
 Scene* TitleScene::createScene() {
@@ -27,9 +30,10 @@ bool TitleScene::init() {
     if (!GameScene::init()) {
         return false;
     }
-//    setBackGroundColor();
-    setBackGradientGroundColor();
-    setGameTitle(Label::createWithTTF(L_TITLE, "irohamaru.ttf", 24));
+//    drawDebugLine();
+    setBackGroundColor();
+//    setBackGradientGroundColor();
+    setGameTitle(Label::createWithTTF(L_TITLE, "irohamaru.ttf", 30));
     getColorChanger()->SetColor(TITLE_COLOR_H, TITLE_COLOR_S, TITLE_COLOR_V);
     getGameTitle()->setTextColor(getColorChanger()->getColor4B());
     getColorChanger()->SetColor(TITLE_FUTI_COLOR_H, TITLE_FUTI_COLOR_S, TITLE_FUTI_COLOR_V);
@@ -38,7 +42,7 @@ bool TitleScene::init() {
     
     setStartBtn(generateMenuItemSprite([this](Ref* ref){
         transitonScene(SelectScene::createScene());
-    }, Size(1,1), L_BTN_START, Color3B::WHITE, Color3B::YELLOW, false));
+    }, Size(1,1), L_BTN_START, Color3B::WHITE, Color3B::YELLOW, true));
     
     setHowToBtn(generateMenuItemSprite([this](Ref* ref){
         transitonScene(TestPhysicsScene::createScene());
@@ -48,10 +52,23 @@ bool TitleScene::init() {
         transitonScene(TestScene::createScene());
     }, Size(1,1), "デバック", Color3B::WHITE, Color3B::YELLOW, false));
     
-    setMenu(Menu::create(getStartBtn(),getHowToBtn(),getResultBtn(), NULL));
+    setMenu(Menu::create(getStartBtn(), NULL));
     getMenu()->alignItemsVerticallyWithPadding(10);
-    mountNode(getMenu(),Vec2(winSize.width/2,80), OBJ_LAYER_TOP);
+    mountNode(getMenu(),Vec2(winSize.width/2,60), OBJ_LAYER_TOP);
     
+    setCourceManager(CourceManager::create());
+    getCourceManager()->getCourceMakerA()->drawStart(Vec2(-10,ctPt.y-20), Vec2(winSize.width + 10,ctPt.y - 50));
+    getCourceManager()->getCourceMakerA()->drawByStraight(Vec2(winSize.width + 20,-60));
+    getCourceManager()->getCourceMakerA()->madeCourceBase();
+    mountNode(getCourceManager()->getCourceMakerA(),Vec2::ZERO,OBJ_LAYER_LV1);
+    
+    setBike(Bike::create());
+    getBike()->setForDisplay();
+    mountNode(getBike(),ctPt+Vec2(-12,-20),OBJ_LAYER_LV2);
+    getBike()->weightPt = Vec2(-4,0);
+    getBike()->riderImageAction();
+    getBike()->setRotation(-30);
+   
     return true;
 }
 

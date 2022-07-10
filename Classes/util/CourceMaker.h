@@ -97,6 +97,9 @@ public:
     
     void madePhysiceBody(Node* field);
     
+    // title表示用 コースの下のデザインを表示させる。
+    void madeCourceBase();
+    
 };
 
 #endif

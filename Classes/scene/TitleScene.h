@@ -3,6 +3,8 @@
 
 #include "scene/base/GameScene.h"
 #include "item/Button.h"
+#include "item/Bike.h"
+#include "util/CourceManager.h"
 
 #include "cocos2d.h"
 USING_NS_CC;
@@ -23,6 +25,9 @@ public:
     CC_SYNTHESIZE_RETAIN(MenuItemSprite*,_howtoBtn,HowToBtn);
     CC_SYNTHESIZE_RETAIN(MenuItemSprite*,_resultBtn,ResultBtn);
     CC_SYNTHESIZE_RETAIN(Menu*,_menu,Menu);
+    CC_SYNTHESIZE_RETAIN(CourceManager*,_courceManager,CourceManager);
+    CC_SYNTHESIZE_RETAIN(Bike*,_bike,Bike);
+    
     void update(float dt) override;
     void onEnterTransitionDidFinish() override;
 };

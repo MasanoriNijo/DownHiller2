@@ -469,6 +469,36 @@ void CourceMaker::madePhysiceBody(Node* field){
     field->setPhysicsBody(getCourceBody());
 }
 
+void CourceMaker::madeCourceBase(){
+    // ぬり
+    if(getNuri()){
+        getNuri()->removeFromParentAndCleanup(true);
+    }
+    setNuri(DrawNode::create());
+    getNuri()->setGlobalZOrder(OBJ_LAYER_LV1-1);
+    addChild(getNuri());
+    low_y -= 400;
+    float min_x =_polygonPts[0].x;
+    for(int i=0; i<_polygonPtCnt-1;i++){
+        if(_polygonPts[i].x > _polygonPts[i+1].x || _polygonPts[i+1].x < min_x){
+            continue;
+        }
+        _nuriPts[0].x = _polygonPts[i].x;
+        _nuriPts[0].y = _polygonPts[i].y;
+        _nuriPts[1].x = _polygonPts[i+1].x;
+        _nuriPts[1].y = _polygonPts[i+1].y;
+        _nuriPts[2].x = _polygonPts[i+1].x;
+        _nuriPts[2].y = low_y;
+        _nuriPts[3].x = _polygonPts[i].x;
+        _nuriPts[3].y = low_y;
+        getNuri()->drawSolidPoly(_nuriPts, 4, _nuriColor);
+        if(min_x < _polygonPts[i+1].x){
+            min_x = _polygonPts[i+1].x;
+        }
+    }
+}
+
+
 void CourceMaker::addCurveA(Vec2 pt_, Vec2 dir_){
     
 }
