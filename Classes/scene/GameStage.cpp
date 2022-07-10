@@ -89,15 +89,11 @@ bool GameStage::init() {
     getMenu()->alignItemsHorizontallyWithPadding(20);
     mountNode(getMenu(), Vec2(winSize.width - getBtn1()->getContentSize().width/2 -10,
                               winSize.height - getBtn1()->getContentSize().height/2 -10), OBJ_LAYER_TOP);
-    
-    setCourceMaker(CourceMaker::create());
-    addChild(getCourceMaker());
-    
+
     setCourceManager(CourceManager::create());
     addChild(getCourceManager()->getCourceMakerA());
     addChild(getCourceManager()->getCourceMakerB());
     addChild(getCourceManager()->getGurd());
-    _timeLimit = _timeLimit;
     
     // タイムリミットが設定されている場合
     if(_timeLimit>0){
@@ -114,7 +110,7 @@ void GameStage::onEnterTransitionDidFinish() {
     
     // Bikeをセット
     setBike(Bike::create());
-    mountScroleNode(getBike(), RIDER_START_POINT, OBJ_LAYER_TOP);
+    mountScroleNode(getBike(), RIDER_START_POINT, OBJ_LAYER_LV3-1);
     mountScroleNode(getBike()->getSceneChasePt(), getBike()->getFwheel()->getPosition()+getBike()->sceneOffset + Vec2(-200,0), OBJ_LAYER_TOP);
     getBike()->SetPhysicsPrm();
     getScene()->getPhysicsWorld()->addJoint(getBike()->getFRJoint());
