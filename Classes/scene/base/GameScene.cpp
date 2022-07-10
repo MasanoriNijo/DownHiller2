@@ -255,7 +255,7 @@ MenuItemSprite* GameScene::generateMenuItemSprite(const ccMenuCallback& callback
     btn_->setButton(Size(1,1), st);
     btn_->setColor(color_);
     if(isBlink){
-        auto fadeOut = FadeOut::create(0.5);
+        auto fadeOut = FadeOut::create(1.0);
         auto act = RepeatForever::create(Sequence::create(fadeOut,fadeOut->reverse(), NULL));
         btn_->runAction(act);
     }

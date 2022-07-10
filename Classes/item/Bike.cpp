@@ -72,6 +72,20 @@ bool Bike::init() {
     return true;
 }
 
+void Bike::setForDisplay(){
+    if(getDebugPt()){
+        getDebugPt()->removeFromParentAndCleanup(true);
+    }
+    Vec2 hosei = Vec2(1,2);
+    getFwheel()->setPosition(getPosition()+Vec2(wheelBase,0)+hosei);
+    addChild(getFwheel());
+    getRwheel()->setPosition(getPosition());
+    getRwheel()->setPosition(getPosition()+hosei);
+    addChild(getRwheel());
+    getFwheel()->setGlobalZOrder(OBJ_LAYER_LV2-1);
+    getRwheel()->setGlobalZOrder(OBJ_LAYER_LV2-1);
+}
+
 void Bike::_addPhysicsToWheel(Sprite* _wheel){
     
     auto _material = PHYSICSBODY_MATERIAL_DEFAULT;
