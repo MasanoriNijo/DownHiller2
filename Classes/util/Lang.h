@@ -13,9 +13,9 @@ static const std::string L_BTN_QUIT = "やめる";
 static const std::string L_BTN_NEXT = "次のステージ";
 static const std::string L_BTN_RETRY = "もう一度";
 static const std::string L_BTN_BACK = "もどる";
-static const std::string L_GAME_READY = "よーい!";
-static const std::string L_GAME_START = "どん!";
-static const std::string L_GAME_GOAL = "ゴール!";
+static const std::string L_GAME_READY = "READY!";
+static const std::string L_GAME_START = "GO!";
+static const std::string L_GAME_GOAL = "GOAL!";
 static const std::string L_GAME_CLEAR = "成功!";
 static const std::string L_GAME_MISS = "失敗!";
 

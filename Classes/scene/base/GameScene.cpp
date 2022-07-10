@@ -240,8 +240,10 @@ void GameScene::showGameAnnounce(std::string st,Vec2 pt, const std::function<voi
     auto endFnc2 = CallFunc::create(endFunc);
     auto seq = Sequence::create(para,stayTime,fadeOut,endFnc,endFnc2, NULL);
     setGameAnounce(Label::createWithTTF(st, "irohamaru.ttf", 24));
-    getGameAnounce()->setTextColor(Color4B::BLACK);
-    getGameAnounce()->enableOutline(Color4B::WHITE,1);
+    getColorChanger()->SetColor(TITLE_COLOR_H, TITLE_COLOR_S, TITLE_COLOR_V);
+    getGameAnounce()->setTextColor(getColorChanger()->getColor4B());
+    getColorChanger()->SetColor(TITLE_FUTI_COLOR_H, TITLE_FUTI_COLOR_S, TITLE_FUTI_COLOR_V);
+    getGameAnounce()->enableOutline(getColorChanger()->getColor4B(),1);
     getGameAnounce()->setOpacity(0);
     getGameAnounce()->setScale(0);
     getGameAnounce()->runAction(seq);

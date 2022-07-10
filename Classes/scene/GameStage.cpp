@@ -6,7 +6,7 @@
 #include "scene/HelloWorldScene.h"
 
 GameStage::GameStage():
-_gameTitle(NULL), _btn1(NULL), _btn2(NULL), _btn3(NULL), _btn4(NULL), _menu(NULL),_touch(NULL),_bike(NULL),
+_gameTitle(NULL),_restTime(NULL), _btn1(NULL), _btn2(NULL), _btn3(NULL), _btn4(NULL), _menu(NULL),_touch(NULL),_bike(NULL),
 _contactlistener(NULL), _courceMaker(NULL),_courceManager(NULL),_modal(NULL),_modalMenu(NULL),
 _yubi(NULL),_setumei(NULL)
 {}
@@ -14,6 +14,7 @@ _yubi(NULL),_setumei(NULL)
 GameStage::~GameStage() {
     NJLOG("hoge:GameStage::~GameStage()");
     CC_SAFE_RELEASE_NULL(_gameTitle);
+    CC_SAFE_RELEASE_NULL(_restTime);
     CC_SAFE_RELEASE_NULL(_btn1);
     CC_SAFE_RELEASE_NULL(_btn2);
     CC_SAFE_RELEASE_NULL(_btn3);
@@ -52,7 +53,7 @@ bool GameStage::init() {
     setBackGradientGroundColor();
     setPosition(ctPt + Vec2(250,0));
 
-    this->setDebugMemo(Label::createWithTTF("Deugメモ", "irohamaru.ttf", 8));
+    this->setDebugMemo(Label::createWithTTF("", "irohamaru.ttf", 8));
     this->mountNode(this->getDebugMemo(), Vec2(this->ctPt.x,30), OBJ_LAYER_LV1);
     
     // modal画面を作成する。
@@ -97,10 +98,11 @@ bool GameStage::init() {
     _timeLimit = getCourceManager()->getStagePrm()->getTymeLimit();
     // タイムリミットが設定されている場合
     if(_timeLimit>0){
-        setRestTime(Label::createWithTTF("残り時間:" + ST_FLOAT(_timeLimit), "irohamaru.ttf", 8));
+        setRestTime(Label::createWithTTF("残り時間:" + ST_FLOAT(_timeLimit), "irohamaru.ttf", 12));
         getColorChanger()->SetColor(COMMENT_COLOR_H, COMMENT_COLOR_S, COMMENT_COLOR_V);
         getRestTime()->setColor(getColorChanger()->getColor3B());
-        mountNode(getRestTime(), Vec2(ctPt.x,winSize.height-30), OBJ_LAYER_TOP);
+        getRestTime()->setOpacity(0);
+        mountNode(getRestTime(), Vec2(ctPt.x,winSize.height-40), OBJ_LAYER_TOP);
     }
     
     return true;
@@ -174,9 +176,9 @@ void GameStage::update(float dt) {
         if(getDebugMemo()){
 //            getDebugMemo()->setString("重心位置:" + ST_VEC2(getBike()->weightPt));
             //        getDebugMemo()->setString("chase:" + ST_VEC2(getBike()->getSceneChasePt()->getPosition()) + " " + ST_INT(getBike()->getRotation()));
-                    getDebugMemo()->setString("bike:" + ST_VEC2(getBike()->getPosition()) + " " + ST_INT(getBike()->getRotation()));
+//                    getDebugMemo()->setString("bike:" + ST_VEC2(getBike()->getPosition()) + " " + ST_INT(getBike()->getRotation()));
             //        getDebugMemo()->setString("swaip:" + ST_VEC2(getBike()->weightPt));
-            //   getDebugMemo()->setString("bike:" + ST_INT(getBike()->centerObjVelo.length()) + "km/h");
+               getDebugMemo()->setString( ST_INT(getBike()->centerObjVelo.length()) + "km/h");
         }
     }
 }
@@ -196,6 +198,7 @@ void GameStage::onReady(){
                 setGameState(GameState::PLAY);
                 fstStCnge = true;
                 getBike()->setTouchEvent();
+                getRestTime()->setOpacity(255);
                 startTime();
             });
         });
