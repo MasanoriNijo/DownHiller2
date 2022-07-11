@@ -318,16 +318,22 @@ void CourceManager::madeCourcePtnForTitle(CourceMaker* _cmaker,int ind){
             _cmaker->drawByStraight(800,-5);
             break;
         case 1:
-                _cmaker->drawBySmoothCurve(200, -10);
-                _cmaker->drawByStraight(200, 3);
-                _cmaker->drawBySmoothCurve(120, -30);
-                _cmaker->drawBySmoothCurve(120, 0);
+            for(i=0;i<8;i++){
+                int kaku_ = i%2 ? random<int>(-70, -30):random<int>(-5, 0);
+                int length_ = random<int>(100,200);
+                float r_ = random<float>(10,100);
+                _cmaker->drawBySmoothCurve(r_, kaku_);
+                _cmaker->drawByStraight(length_,kaku_);
+            }
             break;
         case 2:
-                _cmaker->drawBySmoothCurve(100, -30);
-                _cmaker->drawByStraight(100, -30);
-                _cmaker->drawBySmoothCurve(60, 10);
-                _cmaker->drawByStraight(400, 0);
+            for(i=0;i<8;i++){
+                int kaku_ = i%2 ? random<int>(-70, -30):random<int>(-5, 0);
+                int length_ = random<int>(50,200);
+                float r_ = random<float>(10,100);
+//                _cmaker->drawBySmoothCurve(r_, kaku_);
+                _cmaker->drawByStraight(length_,kaku_);
+            }
             break;
         case 3:
             _cmaker->drawByStraight(Vec2(90,0));
