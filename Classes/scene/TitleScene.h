@@ -27,8 +27,14 @@ public:
     CC_SYNTHESIZE_RETAIN(Menu*,_menu,Menu);
     CC_SYNTHESIZE_RETAIN(CourceManager*,_courceManager,CourceManager);
     CC_SYNTHESIZE_RETAIN(Bike*,_bike,Bike);
+    CC_SYNTHESIZE_RETAIN(EventListenerPhysicsContact*, _contactlistener,ContactListenner);
     
     void demo();
+    
+    void setContactListener();
+    void _onContactBegin(PhysicsContact& contact, PhysicsShape* ps);
+    void _onContactPostSolve(PhysicsContact& contact, PhysicsShape* ps);
+    void _onContactSeparate(PhysicsContact& contact, PhysicsShape* ps);
     
     void update(float dt) override;
     void onEnterTransitionDidFinish() override;

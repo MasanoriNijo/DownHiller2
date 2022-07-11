@@ -6,7 +6,7 @@
 
 TitleScene::TitleScene():
 _gameTitle(NULL), _startBtn(NULL), _howtoBtn(NULL), _resultBtn(NULL),
-_menu(NULL),_courceManager(NULL),_bike(NULL)
+_menu(NULL),_courceManager(NULL),_bike(NULL),_contactlistener(NULL)
 {}
 
 TitleScene::~TitleScene() {
@@ -17,6 +17,7 @@ TitleScene::~TitleScene() {
     CC_SAFE_RELEASE_NULL(_menu);
     CC_SAFE_RELEASE_NULL(_courceManager);
     CC_SAFE_RELEASE_NULL(_bike);
+    CC_SAFE_RELEASE_NULL(_contactlistener);
 }
 
 Scene* TitleScene::createScene() {
@@ -36,9 +37,9 @@ bool TitleScene::init() {
     if (!GameScene::init()) {
         return false;
     }
-    drawDebugLine();
-    setBackGroundColor();
-//    setBackGradientGroundColor();
+//    drawDebugLine();
+//    setBackGroundColor();
+    setBackGradientGroundColor();
     setGameTitle(Label::createWithTTF(L_TITLE, "irohamaru.ttf", 30));
     getColorChanger()->SetColor(TITLE_COLOR_H, TITLE_COLOR_S, TITLE_COLOR_V);
     getGameTitle()->setTextColor(getColorChanger()->getColor4B());
@@ -79,6 +80,8 @@ void TitleScene::onEnterTransitionDidFinish() {
     getScene()->getPhysicsWorld()->addJoint(getBike()->getFRJoint());
     getBike()->scheduleUpdate();
 
+    // 接触感知
+    setContactListener();
     
     // 画面スクロール開始
     runAction(Follow::create(getBike()->getSceneChasePt()));
@@ -87,7 +90,42 @@ void TitleScene::onEnterTransitionDidFinish() {
 }
 
 void TitleScene::update(float dt) {
-    // todo
+    if(fstStCnge){
+        fstStCnge = false;
+        switch (getGameState()) {
+            case GameState::READY: {
+                break;
+            }
+            case GameState::PLAY: {
+                break;
+            }
+            case GameState::CLEAR: {
+                getBike()->getRwheel()->getPhysicsBody()->setAngularDamping(1);
+                getBike()->removeTouchEvent();
+                getBike()->stopAllActions();
+                Director::getInstance()->getEventDispatcher()->removeEventListener(getContactListenner());
+                auto wait_ = DelayTime::create(3.0);
+                auto endfunc_ = CallFunc::create([this]{
+                    transitonScene(TitleScene::createScene());
+                });
+                runAction(Sequence::create(wait_,endfunc_, NULL));
+                break;
+            }
+            case GameState::MISS: {
+                getBike()->getFRJoint()->removeFormWorld();
+                getBike()->unscheduleUpdate();
+                Director::getInstance()->getEventDispatcher()->removeEventListener(getContactListenner());
+                getBike()->removeTouchEvent();
+                Director::getInstance()->getEventDispatcher()->removeEventListener(getContactListenner());
+                auto wait2_ = DelayTime::create(3.0);
+                auto endfunc2_ = CallFunc::create([this]{
+                    transitonScene(TitleScene::createScene());
+                });
+                runAction(Sequence::create(wait2_,endfunc2_, NULL));
+                break;
+            }
+        }
+    }
     getCourceManager()->checkAndMadeCource(getBike()->getPosition());
 }
 
@@ -98,18 +136,16 @@ void TitleScene::demo(){
     getBike()->getDebugPt()->setPosition(Vec2::ZERO);
     getBike()->removeTouchEvent();
     
-
     // werry
     auto move10_ = MoveTo::create(1.5, Vec2(6,0));
     auto move11_ = MoveTo::create(0.15, Vec2(-6,0));
-    auto werryF4_ = Repeat::create(Sequence::create(move10_,move11_, NULL), 4);
+    auto werryF4_ = Repeat::create(Sequence::create(move10_,move11_, NULL), 1);
         
-    
     // FRJump
     auto delay14_ = DelayTime::create(0.5);
     auto move14_ = MoveTo::create(0.8, Vec2(0,-6));
     auto move15_ = MoveTo::create(0.05, Vec2(0,6));
-    auto frJump4_ = Repeat::create(Sequence::create(delay14_,move14_,move15_, NULL), 4);
+    auto frJump4_ = Repeat::create(Sequence::create(delay14_,move14_,move15_, NULL), 1);
     
     // RJump
     auto move16_ = MoveTo::create(0.8, Vec2(6,6));
@@ -117,18 +153,19 @@ void TitleScene::demo(){
     auto move18_ = DelayTime::create(0.4);
     auto move19_ = MoveTo::create(0.05, Vec2(-6,6.0));
     auto delay20_ = DelayTime::create(0.5);
-    auto rJump4_ = Repeat::create(Sequence::create(move16_,move17_,move18_,move19_,delay20_, NULL), 4);
+    auto rJump4_ = Repeat::create(Sequence::create(move16_,move17_,move18_,move19_,delay20_, NULL), 1);
     
     // dush
     auto move21_ = MoveTo::create(0.8, Vec2(-5,-6));
     auto move22_ = MoveTo::create(0.1, Vec2(6,-6));
-    auto dush4_ = Repeat::create(Sequence::create(move21_,move22_, NULL), 4);
+    auto dush4_ = Repeat::create(Sequence::create(move21_,move22_, NULL), 1);
     
     // break
     auto move23_ = MoveTo::create(0.8, Vec2(-6,-6));
     auto delay24_ = DelayTime::create(3);
     auto move25_ = MoveTo::create(0.8, Vec2(0,0));
     auto break_ = Sequence::create(move23_,delay24_,move25_, NULL);
+    
 
      auto seq_ = Sequence::create(
                                   // werry
@@ -143,11 +180,116 @@ void TitleScene::demo(){
                                   break_,
                                   NULL);
     
-    auto endfunc_ = CallFunc::create([this]{
-        transitonScene(TitleScene::createScene());
-    });
-    getBike()->getDebugPt()->runAction(Sequence::create(seq_,endfunc_,NULL));
+    getBike()->getDebugPt()->runAction(RepeatForever::create(seq_));
 
+}
+
+void TitleScene::setContactListener() {
+    //接触感知
+    setContactListenner(EventListenerPhysicsContact::create());
+    
+    getContactListenner()->onContactBegin = [this](PhysicsContact& contact) {
+        _onContactBegin(contact, contact.getShapeA());
+        _onContactBegin(contact, contact.getShapeB());
+        return true;
+    };
+    
+    getContactListenner()->onContactPostSolve = [this](PhysicsContact& contact, const PhysicsContactPostSolve& solve) {
+        _onContactPostSolve(contact, contact.getShapeA());
+        _onContactPostSolve(contact, contact.getShapeB());
+        return true;
+    };
+    
+    getContactListenner()->onContactSeparate = [this](PhysicsContact& contact) {
+        _onContactSeparate(contact, contact.getShapeA());
+        _onContactSeparate(contact, contact.getShapeB());
+        return true;
+    };
+    
+    Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(getContactListenner(),this);
+}
+
+void TitleScene::_onContactBegin(PhysicsContact& contact, PhysicsShape* ps){
+    switch(ps->getBody()->getTag()){
+        case TG_F_WHEEL:{
+            getBike()->fWheelTouchPt.set(contact.getContactData()->normal);
+            getBike()->fWheelTouched = true;
+            break;
+        }
+        case TG_R_WHEEL:{
+            getBike()->rWheelTouchPt.set(contact.getContactData()->normal);
+            getBike()->rWheelTouched = true;
+            break;
+        }
+        case TG_RIDER: {
+            setGameState(GameState::MISS);
+            fstStCnge = true;
+            break;
+        }
+        case TG_START: {
+            break;
+        }
+        case TG_GOAL: {
+            setGameState(GameState::CLEAR);
+            fstStCnge = true;
+            break;
+        }
+        default:{
+            break;
+        }
+    }
+}
+
+void TitleScene::_onContactPostSolve(PhysicsContact& contact, PhysicsShape* ps){
+    switch(ps->getBody()->getTag()){
+        case TG_F_WHEEL:{
+            getBike()->fWheelTouchPt.set(contact.getContactData()->normal);
+            getBike()->fWheelTouched = true;
+            break;
+        }
+        case TG_R_WHEEL:{
+            getBike()->rWheelTouchPt.set(contact.getContactData()->normal);
+            getBike()->rWheelTouched = true;
+            break;
+        }
+        case TG_START: {
+            break;
+        }
+        case TG_GOAL: {
+            break;
+        }
+        default:{
+            break;
+        }
+    }
+}
+
+void TitleScene::_onContactSeparate(PhysicsContact& contact, PhysicsShape* ps){
+    switch(ps->getBody()->getTag()){
+        case TG_F_WHEEL:{
+            getBike()->fWheelTouchPt.set(contact.getContactData()->normal);
+            getBike()->fWheelTouched = false;
+            NJLOG("fWheel_touch_OFF");
+            NJLOG(ST_VEC2(contact.getContactData()->normal).c_str());
+            break;
+        }
+        case TG_R_WHEEL:{
+            getBike()->rWheelTouchPt.set(contact.getContactData()->normal);
+            getBike()->rWheelTouched = false;
+            NJLOG("rWheel_touch_OFF");
+            NJLOG(ST_VEC2(contact.getContactData()->normal).c_str());
+            break;
+        }
+        case TG_START: {
+            break;
+        }
+        case TG_GOAL: {
+            break;
+        }
+        default:{
+            break;
+        }
+    }
 }
 /** パラメータサンプル
  setGameTitle(Sprite::create());
