@@ -20,7 +20,13 @@ TitleScene::~TitleScene() {
 }
 
 Scene* TitleScene::createScene() {
-    auto scene = Scene::create();
+    auto scene = Scene::Scene::createWithPhysics();
+    auto world = scene->getPhysicsWorld();
+    world->setGravity(GRAVITY_ACCERATION);
+    world->setSpeed(PHYSICS_WOELD_SPEED);
+#if DEBUG_PHYSICS_MASK
+    world->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
+#endif
     auto layer = TitleScene::create();
     scene->addChild(layer);
     return scene;
@@ -30,7 +36,7 @@ bool TitleScene::init() {
     if (!GameScene::init()) {
         return false;
     }
-//    drawDebugLine();
+    drawDebugLine();
     setBackGroundColor();
 //    setBackGradientGroundColor();
     setGameTitle(Label::createWithTTF(L_TITLE, "irohamaru.ttf", 30));
@@ -44,44 +50,105 @@ bool TitleScene::init() {
         transitonScene(SelectScene::createScene());
     }, Size(1,1), L_BTN_START, Color3B::WHITE, Color3B::YELLOW, true));
     
-    setHowToBtn(generateMenuItemSprite([this](Ref* ref){
-        transitonScene(TestPhysicsScene::createScene());
-    }, Size(1,1), L_BTN_HOWTO, Color3B::WHITE, Color3B::YELLOW, false));
-    
-    setResultBtn(generateMenuItemSprite([this](Ref* ref){
-        transitonScene(TestScene::createScene());
-    }, Size(1,1), "デバック", Color3B::WHITE, Color3B::YELLOW, false));
-    
     setMenu(Menu::create(getStartBtn(), NULL));
     getMenu()->alignItemsVerticallyWithPadding(10);
-    mountNode(getMenu(),Vec2(winSize.width/2,60), OBJ_LAYER_TOP);
+    mountNode(getMenu(),Vec2(winSize.width/2,60), OBJ_LAYER_LV3);
     
     setCourceManager(CourceManager::create());
-    getCourceManager()->getCourceMakerA()->drawStart(Vec2(-10,ctPt.y-20), Vec2(winSize.width + 10,ctPt.y - 50));
-    getCourceManager()->getCourceMakerA()->drawByStraight(Vec2(winSize.width + 20,-60));
-    getCourceManager()->getCourceMakerA()->madeCourceBase();
-    mountNode(getCourceManager()->getCourceMakerA(),Vec2::ZERO,OBJ_LAYER_LV1);
-    
-    setBike(Bike::create());
-    getBike()->setForDisplay();
-    mountNode(getBike(),ctPt+Vec2(-12,-20),OBJ_LAYER_LV2);
-    getBike()->weightPt = Vec2(-4,0);
-    getBike()->riderImageAction();
-    getBike()->setRotation(-30);
-   
+    getCourceManager()->setForTitle();
+    addChild(getCourceManager()->getCourceMakerA());
+    addChild(getCourceManager()->getCourceMakerB());
+    addChild(getCourceManager()->getGurd());
+       
     return true;
 }
 
 void TitleScene::onEnterTransitionDidFinish() {
     GameScene::onEnterTransitionDidFinish();
     //    getAD()->AdShow(false, true, false, false, false, false);
-    // todo
+    
+    // コースをセット
+    getCourceManager()->checkAndMadeCource(Vec2::ZERO);
+    
+    // bikeをセット
+    setBike(Bike::create());
+    mountScroleNode(getBike(), Vec2::ZERO, OBJ_LAYER_LV3-1);
+    getBike()->sceneOffset = Vec2(-10,35);
+    mountScroleNode(getBike()->getSceneChasePt(), getBike()->getFwheel()->getPosition()+getBike()->sceneOffset, OBJ_LAYER_BUTTOM);
+    getBike()->SetPhysicsPrm();
+    getScene()->getPhysicsWorld()->addJoint(getBike()->getFRJoint());
+    getBike()->scheduleUpdate();
+
+    
+    // 画面スクロール開始
+    runAction(Follow::create(getBike()->getSceneChasePt()));
+    scheduleUpdate();
+    demo();
 }
 
 void TitleScene::update(float dt) {
     // todo
+    getCourceManager()->checkAndMadeCource(getBike()->getPosition());
 }
 
+void TitleScene::demo(){
+    
+    getBike()->autoFlg = true;
+    getBike()->weightPt= Vec2::ZERO;
+    getBike()->getDebugPt()->setPosition(Vec2::ZERO);
+    getBike()->removeTouchEvent();
+    
+
+    // werry
+    auto move10_ = MoveTo::create(1.5, Vec2(6,0));
+    auto move11_ = MoveTo::create(0.15, Vec2(-6,0));
+    auto werryF4_ = Repeat::create(Sequence::create(move10_,move11_, NULL), 4);
+        
+    
+    // FRJump
+    auto delay14_ = DelayTime::create(0.5);
+    auto move14_ = MoveTo::create(0.8, Vec2(0,-6));
+    auto move15_ = MoveTo::create(0.05, Vec2(0,6));
+    auto frJump4_ = Repeat::create(Sequence::create(delay14_,move14_,move15_, NULL), 4);
+    
+    // RJump
+    auto move16_ = MoveTo::create(0.8, Vec2(6,6));
+    auto move17_ = MoveTo::create(0.1, Vec2(-6,-6));
+    auto move18_ = DelayTime::create(0.4);
+    auto move19_ = MoveTo::create(0.05, Vec2(-6,6.0));
+    auto delay20_ = DelayTime::create(0.5);
+    auto rJump4_ = Repeat::create(Sequence::create(move16_,move17_,move18_,move19_,delay20_, NULL), 4);
+    
+    // dush
+    auto move21_ = MoveTo::create(0.8, Vec2(-5,-6));
+    auto move22_ = MoveTo::create(0.1, Vec2(6,-6));
+    auto dush4_ = Repeat::create(Sequence::create(move21_,move22_, NULL), 4);
+    
+    // break
+    auto move23_ = MoveTo::create(0.8, Vec2(-6,-6));
+    auto delay24_ = DelayTime::create(3);
+    auto move25_ = MoveTo::create(0.8, Vec2(0,0));
+    auto break_ = Sequence::create(move23_,delay24_,move25_, NULL);
+
+     auto seq_ = Sequence::create(
+                                  // werry
+                                  werryF4_,
+                                  // frJump
+                                  frJump4_,
+                                  // rJump
+                                  rJump4_,
+                                  // dush
+                                  dush4_,
+                                  // stop
+                                  break_,
+                                  NULL);
+    
+    auto endfunc_ = CallFunc::create([this]{
+        transitonScene(TitleScene::createScene());
+    });
+    getBike()->getDebugPt()->runAction(Sequence::create(seq_,endfunc_,NULL));
+
+}
 /** パラメータサンプル
  setGameTitle(Sprite::create());
  getGameTitle();

@@ -28,6 +28,8 @@ public:
     CC_SYNTHESIZE_RETAIN(CourceManager*,_courceManager,CourceManager);
     CC_SYNTHESIZE_RETAIN(Bike*,_bike,Bike);
     
+    void demo();
+    
     void update(float dt) override;
     void onEnterTransitionDidFinish() override;
 };
