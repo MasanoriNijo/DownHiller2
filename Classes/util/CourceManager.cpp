@@ -37,6 +37,10 @@ bool CourceManager::init() {
     getColorChanger()->SetColor(COURCE_BASE_COLOR_H, COURCE_BASE_COLOR_S, COURCE_BASE_COLOR_V);
     getCourceMakerA()->_nuriColor = getColorChanger()->getColor4F();
     getCourceMakerB()->_nuriColor = getColorChanger()->getColor4F();
+    
+    
+    selStg = UserDefault::getInstance()->getIntegerForKey(UDF_INT_SELECTED_STAGE,1);
+    
   return true;
 }
 
@@ -221,9 +225,11 @@ void CourceManager::setStartAndTargetFromCource(CourceMaker* _cmaker){
 }
 
 void CourceManager::checkAndMadeCource(Vec2 chPt){
-    int stg = UserDefault::getInstance()->getIntegerForKey(UDF_INT_SELECTED_STAGE,1);
     if(chPt.x > (getStartPt().x + 80) || !courceIndex){
-        switch (stg) {
+        switch (selStg) {
+            case 0:
+                madeCourcePtnForTitle(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
+                break;
             case 1:
                 madeCourcePtn1(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
                 break;
@@ -294,6 +300,48 @@ void CourceManager::checkAndMadeCource(Vec2 chPt){
         setStartAndTargetFromCource(courceIndex%2 ? getCourceMakerB() : getCourceMakerA());
         courceIndex ++;
     }
+}
+
+void CourceManager::setForTitle(){
+    selStg = 0;
+    setStartPt(FIRST_COURCE_BASE_POINT + Vec2(-500,40));
+    setTergetPt(FIRST_COURCE_BASE_POINT + Vec2(-500,40));
+}
+
+void CourceManager::madeCourcePtnForTitle(CourceMaker* _cmaker,int ind){
+    auto flg = Flg::create();
+    int i = 0;
+    _cmaker->drawStart(getTergetPt(),getTargetDir());
+    ind = ind % 4;
+    switch (ind) {
+        case 0:
+            _cmaker->drawByStraight(800,-5);
+            break;
+        case 1:
+                _cmaker->drawBySmoothCurve(200, -10);
+                _cmaker->drawByStraight(200, 3);
+                _cmaker->drawBySmoothCurve(120, -30);
+                _cmaker->drawBySmoothCurve(120, 0);
+            break;
+        case 2:
+                _cmaker->drawBySmoothCurve(100, -30);
+                _cmaker->drawByStraight(100, -30);
+                _cmaker->drawBySmoothCurve(60, 10);
+                _cmaker->drawByStraight(400, 0);
+            break;
+        case 3:
+            _cmaker->drawByStraight(Vec2(90,0));
+             flg->setGlobalZOrder(OBJ_LAYER_TOP);
+             flg->setPosition(_cmaker->getTergetPt());
+             flg->setRotation(_cmaker->getCalc()->nomlKaku(Vec2::ZERO,_cmaker->getTargetDir()));
+             _cmaker->addChild(flg);
+            _cmaker->drawByStraight(Vec2(120,0));
+            break;
+        default:
+            return;
+            break;
+    }
+    _cmaker->madePhysiceBody();
 }
 
 void CourceManager::madeCourcePtn1(CourceMaker* _cmaker,int ind){

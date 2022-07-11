@@ -74,7 +74,7 @@ MenuItemSprite* SelectScene::genStageBtn(int i){
     auto udf = UserDefault::getInstance();
     if(i>udf->getIntegerForKey(UDF_INT_CLEAR_STAGE)){
         return generateMenuItemSprite([this,i](Ref* ref){
-　　　　　　　// 本当は何もしない。
+            // 本当は何もしない。
             UserDefault::getInstance()->setIntegerForKey(UDF_INT_SELECTED_STAGE, i);
             transitonScene(GameStage::createScene());
         }, Size(28,28),"??", Color3B::WHITE, Color3B::YELLOW, false);
