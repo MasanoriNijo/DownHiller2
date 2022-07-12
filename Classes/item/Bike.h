@@ -54,7 +54,7 @@ public:
     void touchOff(Vec2 pt);
     
     // スタート時に、Bikeの位置まで画面スクロール用
-    float sceneChaseAjustSpeed = 500;
+    float sceneChaseAjustSpeed = 400;
     float sceneChaseAjustFlg = false;
     
     // bikeの画像中心
@@ -123,7 +123,6 @@ public:
     
     // 画面スクロール関連
     Vec2 sceneOffset = Vec2(30,-20);
-    
     
     // title表示用
     void setForDisplay();

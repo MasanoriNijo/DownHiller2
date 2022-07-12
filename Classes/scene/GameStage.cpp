@@ -160,7 +160,7 @@ void GameStage::update(float dt) {
     }
     getCourceManager()->checkAndMadeCource(getBike()->getPosition());
     
-    if(tmFlg && _timeLimit>0){
+    if(getRestTime() && tmFlg && _timeLimit>0){
         tm_ += dt;
         if(_timeLimit>tm_){
             getRestTime()->setString("残り時間:" + ST_FLOAT(_timeLimit - tm_));
@@ -198,7 +198,9 @@ void GameStage::onReady(){
                 setGameState(GameState::PLAY);
                 fstStCnge = true;
                 getBike()->setTouchEvent();
-                getRestTime()->setOpacity(255);
+                if(getRestTime()){
+                    getRestTime()->setOpacity(255);
+                }
                 startTime();
             });
         });
@@ -253,12 +255,15 @@ void GameStage::onMiss(){
     getBike()->removeTouchEvent();
     Director::getInstance()->getEventDispatcher()->removeEventListener(getContactListenner());
     auto gun = Sprite::create("gan.png");
-    gun->setRotation(getCalc()->chgKaku(missNomalPt));
+    gun->setRotation(getCalc()->chgKaku(missNomalPt)-getBike()->getRotation());
+    gun->setPosition(Vec2(getBike()->getRider()->getContentSize().width/2,
+                          getBike()->getRider()->getContentSize().height/2));
     gun->setGlobalZOrder(OBJ_LAYER_TOP);
     auto moveto = MoveBy::create(0.5, missNomalPt*20);
     auto fade = FadeOut::create(0.5);
-    gun->runAction(Spawn::create(moveto,fade, NULL));
-    getBike()->addChild(gun);
+    gun->runAction(fade);
+    
+    getBike()->getRider()->addChild(gun);
     showGameAnnounce(L_GAME_MISS, ctPt + Vec2(0,50),[this]{
         setModalMenu(Menu::create(getBtn2(),getBtn4(),NULL));
         getModalMenu()->alignItemsVerticallyWithPadding(5);

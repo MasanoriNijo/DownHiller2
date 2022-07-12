@@ -117,6 +117,14 @@ void TitleScene::update(float dt) {
                 Director::getInstance()->getEventDispatcher()->removeEventListener(getContactListenner());
                 getBike()->removeTouchEvent();
                 Director::getInstance()->getEventDispatcher()->removeEventListener(getContactListenner());
+                auto gun = Sprite::create("gan.png");
+                gun->setRotation(getCalc()->chgKaku(missNomalPt)-getBike()->getRotation());
+                gun->setPosition(Vec2(getBike()->getRider()->getContentSize().width/2,
+                                      getBike()->getRider()->getContentSize().height/2));
+                gun->setGlobalZOrder(OBJ_LAYER_TOP);
+                auto fade = FadeOut::create(0.5);
+                gun->runAction(fade);
+                getBike()->getRider()->addChild(gun);
                 auto wait2_ = DelayTime::create(3.0);
                 auto endfunc2_ = CallFunc::create([this]{
                     transitonScene(TitleScene::createScene());
@@ -222,6 +230,7 @@ void TitleScene::_onContactBegin(PhysicsContact& contact, PhysicsShape* ps){
             break;
         }
         case TG_RIDER: {
+            missNomalPt.set(contact.getContactData()->normal);
             setGameState(GameState::MISS);
             fstStCnge = true;
             break;
