@@ -358,7 +358,7 @@ void CourceManager::madeCourcePtn1(CourceMaker* _c,int ind){
     switch (ind) {
         case 0:
             _c->dS(500,0);
-            _c->dS(3000,-1);
+            _c->dS(2800,-1);
             break;
         case 1:
             for(i=0;i<3;i++){

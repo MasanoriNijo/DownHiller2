@@ -30,6 +30,7 @@ public:
     CC_SYNTHESIZE_RETAIN(EventListenerPhysicsContact*, _contactlistener,ContactListenner);
     
     void demo();
+    Vec2 missNomalPt;
     
     void setContactListener();
     void _onContactBegin(PhysicsContact& contact, PhysicsShape* ps);
