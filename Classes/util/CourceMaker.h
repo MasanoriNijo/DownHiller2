@@ -40,7 +40,6 @@ public:
     Color3B _lineColor = Color3B::ORANGE;
     Color4F _nuriColor = Color4F::MAGENTA;
     
-    
     // 元の直線の長さ
     float _length;
     
@@ -57,16 +56,16 @@ public:
     // all in one
     void s(float length_,int kaku);
     // 現ポイントから、指定の方向に直線を描く。
-    void drawByStraight(Vec2 dpt_);
+    void dS(Vec2 dpt_);
     // 現ポイントから、指定した角度（0 - 360度）で直線を描く。
-    void drawByStraight(float length, float kaku);
+    void dS(float length, float kaku);
     // 現ポイントの方向から滑らかに、前方にdx,横にdy進んだポイントにつながる曲線を描く。
-    void drawBySmoothCurve(Vec2 dirPt_);
+    void dC(Vec2 dirPt_);
     // 現ポイントの方向から滑らかに、指定曲率で指定の角度になるまで、曲線を引く。
-    void drawBySmoothCurve(float r,float kaku);
+    void dC(float r,float kaku);
     float _dirkaku = 0;// 現在のdirPtの角度
     // 現ポイントから、指定の値だけすすんたポイントが、終点になるように、指定した角度左（−90 - 90度）右円弧を描く。
-    void drawByCurve(Vec2 dpt_,float kaku);    
+    void dC(Vec2 dpt_,float kaku);    
 
     
     void drawTo(Vec2 pt_, Vec2 dir_);

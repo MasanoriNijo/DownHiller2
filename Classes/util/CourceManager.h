@@ -38,7 +38,7 @@ public:
     bool togle = false;
     int selStg = 0;
     int courceIndex = 0;
-    Vec2 FIRST_COURCE_BASE_POINT = Vec2(-30,-12);
+    Vec2 FIRST_COURCE_BASE_POINT = Vec2(-530,-12);
     
     void setForTitle();
     void madeCourcePtnForTitle(CourceMaker* _cmaker,int ind);

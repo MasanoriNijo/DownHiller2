@@ -52,7 +52,7 @@ bool SelectScene::init() {
     
     setCourceManager(CourceManager::create());
     getCourceManager()->getCourceMakerA()->drawStart(Vec2(-10,50), Vec2(winSize.width + 10,ctPt.y - 50));
-    getCourceManager()->getCourceMakerA()->drawByStraight(Vec2(winSize.width + 20,0));
+    getCourceManager()->getCourceMakerA()->dS(Vec2(winSize.width + 20,0));
     getCourceManager()->getCourceMakerA()->madeCourceBase();
     mountNode(getCourceManager()->getCourceMakerA(),Vec2::ZERO,OBJ_LAYER_LV1);
     
