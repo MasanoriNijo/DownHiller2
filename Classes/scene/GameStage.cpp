@@ -1,10 +1,5 @@
 #include "GameStage.h"
 
-#include "scene/TitleScene.h"
-#include "scene/TestScene.h"
-#include "scene/TestPhysicsScene.h"
-#include "scene/HelloWorldScene.h"
-
 GameStage::GameStage():
 _gameTitle(NULL),_restTime(NULL), _btn1(NULL), _btn2(NULL), _btn3(NULL), _btn4(NULL), _menu(NULL),_touch(NULL),_bike(NULL),
 _contactlistener(NULL), _courceMaker(NULL),_courceManager(NULL),_modal(NULL),_modalMenu(NULL),
@@ -64,7 +59,7 @@ bool GameStage::init() {
         transitonScene(GameStage::createScene());
     }, Size(1,1), L_BTN_NEXT, Color3B::WHITE, Color3B::YELLOW, false));
     setBtn4(generateMenuItemSprite([this](Ref* ref){
-        transitonScene(TitleScene::createScene());
+        transitonScene(SelectScene::createScene());
     }, Size(1,1), L_BTN_BACK, Color3B::WHITE, Color3B::YELLOW, false));
     setModal(Modal::create());
     getModal()->setGlobalZOrder(OBJ_LAYER_TOP);
@@ -235,6 +230,13 @@ void GameStage::onClear(){
         });
     }else{
         showGameAnnounce(L_GAME_CLEAR, ctPt + Vec2(0,50),[this]{
+            // クリアステージをカウントアップ
+            int selStage = getCourceManager()->getStagePrm()->getStageNumber();
+            
+            if(UserDefault::getInstance()->getIntegerForKey(UDF_INT_CLEAR_STAGE,1) < selStage){
+                UserDefault::getInstance()->setIntegerForKey(UDF_INT_CLEAR_STAGE, selStage);
+            }
+            UserDefault::getInstance()->setIntegerForKey(UDF_INT_SELECTED_STAGE, selStage + 1);
             setModalMenu(Menu::create(getBtn3(),getBtn4(),NULL));
             getModalMenu()->alignItemsVerticallyWithPadding(5);
             getModalMenu()->setPosition(Vec2::ZERO);
