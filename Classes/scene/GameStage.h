@@ -11,6 +11,7 @@
 #include "item/Flg.h"
 #include "item/StraightLine.h"
 #include "item/Modal.h"
+#include "scene/SelectScene.h"
 #include "cocos2d.h"
 USING_NS_CC;
 

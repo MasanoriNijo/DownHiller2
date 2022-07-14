@@ -441,18 +441,18 @@ void CourceManager::madeCourcePtn3(CourceMaker* _c,int ind){
     switch (ind) {
         case 0:
             _c->dS(600,0);
-            _c->dS(50,-10);
+            _c->dC(300,-10);
             break;
         case 1:
             for(i=0;i<4;i++){
-            _c->dC(Vec2(30,0), -90);
-            _c->dS(Vec2(200,0));
+                _c->dC(Vec2(30,0), -100);
+                _c->dS(100,-10);
             }
             break;
         case 2:
-            for(i=0;i<4;i++){
-                _c->dS(Vec2(0,-50));
-                _c->dS(Vec2(60,0));
+            for(i=0;i<6;i++){
+                _c->dC(100,-50);
+                _c->dC(60,30);
             }
             break;
         case 3:
