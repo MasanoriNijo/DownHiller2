@@ -46,6 +46,9 @@ bool Bike::init() {
     setFwheel(Sprite::create("wheel3.png"));
     setRwheel(Sprite::createWithTexture(getFwheel()->getTexture()));
     
+    // 効果音
+    setSoundEffect("ashidejump.wav");
+    
 //    _setTouchEvent(); // game進行上で起動させる。
 
     //debug
@@ -409,6 +412,7 @@ bool Bike::jump(float lvl){
             return false;
         }
     }
+    callSoundEffect("ashidejump.wav");
     Vec2 dirX = getCalc()->rotByRad(powPt, -M_PI/2);
     float speedX = getCalc()->cordinaneX(dirX, getRwheel()->getPhysicsBody()->getVelocity()).x;
     Vec2 veloX = getCalc()->chgLength(dirX, speedX);

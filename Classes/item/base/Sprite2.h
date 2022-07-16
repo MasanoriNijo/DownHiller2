@@ -4,6 +4,7 @@
 #include "util/Calclater.h"
 #include "util/TouchEventHelper.h"
 #include "math.h"
+#include "cocos/editor-support/cocostudio/SimpleAudioEngine.h"
 #include "cocos2d.h"
 USING_NS_CC;
 
@@ -53,6 +54,10 @@ public:
     bool _touched;
     Vec2 _touchPt;
     Vec2 _localTouchPt;
+    
+    // 効果音をセットする。
+    void setSoundEffect(const char* filePath);
+    void callSoundEffect(const char* filePath);
     
     // 新規追加ここまで
     

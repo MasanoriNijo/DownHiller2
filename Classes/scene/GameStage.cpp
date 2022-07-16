@@ -233,7 +233,7 @@ void GameStage::onClear(){
             // クリアステージをカウントアップ
             int selStage = getCourceManager()->getStagePrm()->getStageNumber();
             
-            if(UserDefault::getInstance()->getIntegerForKey(UDF_INT_CLEAR_STAGE,1) < selStage){
+            if(UserDefault::getInstance()->getIntegerForKey(UDF_INT_CLEAR_STAGE,0) < selStage){
                 UserDefault::getInstance()->setIntegerForKey(UDF_INT_CLEAR_STAGE, selStage);
             }
             UserDefault::getInstance()->setIntegerForKey(UDF_INT_SELECTED_STAGE, selStage + 1);
@@ -253,6 +253,8 @@ void GameStage::onMiss(){
     getMenu()->removeFromParentAndCleanup(true);
     callSoundEffect("btnon.mp3");
     getBike()->getFRJoint()->removeFormWorld();
+    getBike()->getFwheel()->getPhysicsBody()->setVelocity(Vec2::ZERO);
+    getBike()->getRwheel()->getPhysicsBody()->setVelocity(Vec2::ZERO);
     getBike()->unscheduleUpdate();
     getBike()->removeTouchEvent();
     Director::getInstance()->getEventDispatcher()->removeEventListener(getContactListenner());
