@@ -186,6 +186,7 @@
 		306A83FB288315EC0059C257 /* button05.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 306A83FA288315EB0059C257 /* button05.mp3 */; };
 		306A83FD28831B620059C257 /* ashidejump.wav in Resources */ = {isa = PBXBuildFile; fileRef = 306A83FC28831B620059C257 /* ashidejump.wav */; };
 		306A83FF288322C50059C257 /* ME017-100125-logo02-wav.wav in Resources */ = {isa = PBXBuildFile; fileRef = 306A83FE288322C50059C257 /* ME017-100125-logo02-wav.wav */; };
+		306A84012883259F0059C257 /* BGM124-110921-tamashiinopistol-wav-nointro.wav in Resources */ = {isa = PBXBuildFile; fileRef = 306A84002883259F0059C257 /* BGM124-110921-tamashiinopistol-wav-nointro.wav */; };
 		3087C151285EFD5000AD0F14 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3087C150285EFD5000AD0F14 /* SwiftUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3087C1542862078100AD0F14 /* mark.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3087C152286206DE00AD0F14 /* mark.png */; };
 		3087C1572864B25300AD0F14 /* Flg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3087C1552864B25300AD0F14 /* Flg.cpp */; };
@@ -1375,6 +1376,7 @@
 		306A83FA288315EB0059C257 /* button05.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = button05.mp3; path = ../../../DownHiller/Resources/sounds/button05.mp3; sourceTree = "<group>"; };
 		306A83FC28831B620059C257 /* ashidejump.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = ashidejump.wav; path = ../../../../../Downloads/ashidejump.wav; sourceTree = "<group>"; };
 		306A83FE288322C50059C257 /* ME017-100125-logo02-wav.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "ME017-100125-logo02-wav.wav"; path = "../../../../../Downloads/ME017-100125-logo02-wav.wav"; sourceTree = "<group>"; };
+		306A84002883259F0059C257 /* BGM124-110921-tamashiinopistol-wav-nointro.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "BGM124-110921-tamashiinopistol-wav-nointro.wav"; path = "../../../../../Downloads/BGM124-110921-tamashiinopistol-wav-nointro.wav"; sourceTree = "<group>"; };
 		3077803B8D5646769C867A5B /* DetourObstacleAvoidance.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = DetourObstacleAvoidance.cpp; path = cocos2d/external/recast/DetourCrowd/DetourObstacleAvoidance.cpp; sourceTree = SOURCE_ROOT; };
 		3087C150285EFD5000AD0F14 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		3087C152286206DE00AD0F14 /* mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mark.png; path = Resources/images/mark.png; sourceTree = SOURCE_ROOT; };
@@ -3423,6 +3425,7 @@
 		304DD0AB2843C79E00AF0334 /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				306A84002883259F0059C257 /* BGM124-110921-tamashiinopistol-wav-nointro.wav */,
 				306A83FE288322C50059C257 /* ME017-100125-logo02-wav.wav */,
 				306A83FC28831B620059C257 /* ashidejump.wav */,
 				306A83FA288315EB0059C257 /* button05.mp3 */,
@@ -5132,6 +5135,7 @@
 				9E254895AA3647E1A64700ED /* LaunchScreen.storyboard in Resources */,
 				304DD0922843B6B800AF0334 /* irohamaru.ttf in Resources */,
 				306A83FD28831B620059C257 /* ashidejump.wav in Resources */,
+				306A84012883259F0059C257 /* BGM124-110921-tamashiinopistol-wav-nointro.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -49,6 +49,7 @@ bool TitleScene::init() {
     
     setStartBtn(generateMenuItemSprite([this](Ref* ref){
         callSoundEffect("button05.mp3");
+        stopBGM("");
         transitonScene(SelectScene::createScene());
     }, Size(1,1), L_BTN_START, Color3B::WHITE, Color3B::YELLOW, true));
     
@@ -61,6 +62,7 @@ bool TitleScene::init() {
     addChild(getCourceManager()->getCourceMakerA());
     addChild(getCourceManager()->getCourceMakerB());
     addChild(getCourceManager()->getGurd());
+    setBGM("BGM124-110921-tamashiinopistol-wav-nointro.wav");
        
     return true;
 }
@@ -88,6 +90,8 @@ void TitleScene::onEnterTransitionDidFinish() {
     runAction(Follow::create(getBike()->getSceneChasePt()));
     scheduleUpdate();
     demo();
+    
+    startBGM("BGM124-110921-tamashiinopistol-wav-nointro.wav");
 }
 
 void TitleScene::update(float dt) {
