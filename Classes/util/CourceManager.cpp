@@ -338,7 +338,7 @@ void CourceManager::madeCourcePtnForTitle(CourceMaker* _c,int ind){
             break;
         case 3:
             _c->dS(Vec2(90,0));
-             flg->setGlobalZOrder(OBJ_LAYER_TOP);
+             flg->setGlobalZOrder(OBJ_LAYER_LV1-1);
              flg->setPosition(_c->getTergetPt());
              flg->setRotation(_c->getCalc()->nomlKaku(Vec2::ZERO,_c->getTargetDir()));
              _c->addChild(flg);
@@ -379,7 +379,7 @@ void CourceManager::madeCourcePtn1(CourceMaker* _c,int ind){
             break;
         case 3:
             _c->dS(Vec2(90,0));
-             flg->setGlobalZOrder(OBJ_LAYER_TOP);
+             flg->setGlobalZOrder(OBJ_LAYER_LV1-1);
              flg->setPosition(_c->getTergetPt());
              flg->setRotation(_c->getCalc()->nomlKaku(Vec2::ZERO,_c->getTargetDir()));
              _c->addChild(flg);
@@ -420,7 +420,7 @@ void CourceManager::madeCourcePtn2(CourceMaker* _c,int ind){
             break;
         case 3:
             _c->dS(Vec2(90,0));
-             flg->setGlobalZOrder(OBJ_LAYER_TOP);
+             flg->setGlobalZOrder(OBJ_LAYER_LV1-1);
              flg->setPosition(_c->getTergetPt());
              flg->setRotation(_c->getCalc()->nomlKaku(Vec2::ZERO,_c->getTargetDir()));
              _c->addChild(flg);
@@ -457,7 +457,7 @@ void CourceManager::madeCourcePtn3(CourceMaker* _c,int ind){
             break;
         case 3:
             _c->dS(Vec2(90,0));
-             flg->setGlobalZOrder(OBJ_LAYER_TOP);
+             flg->setGlobalZOrder(OBJ_LAYER_LV1-1);
              flg->setPosition(_c->getTergetPt());
              flg->setRotation(_c->getCalc()->nomlKaku(Vec2::ZERO,_c->getTargetDir()));
              _c->addChild(flg);
@@ -499,7 +499,7 @@ void CourceManager::madeCourcePtn4(CourceMaker* _c,int ind){
             break;
         case 3:
             _c->dS(Vec2(90,0));
-             flg->setGlobalZOrder(OBJ_LAYER_TOP);
+             flg->setGlobalZOrder(OBJ_LAYER_LV1-1);
              flg->setPosition(_c->getTergetPt());
              flg->setRotation(_c->getCalc()->nomlKaku(Vec2::ZERO,_c->getTargetDir()));
              _c->addChild(flg);
@@ -537,7 +537,7 @@ void CourceManager::madeCourcePtn5(CourceMaker* _c,int ind){
             break;
         case 3:
             _c->dS(Vec2(90,0));
-             flg->setGlobalZOrder(OBJ_LAYER_TOP);
+             flg->setGlobalZOrder(OBJ_LAYER_LV1-1);
              flg->setPosition(_c->getTergetPt());
              flg->setRotation(_c->getCalc()->nomlKaku(Vec2::ZERO,_c->getTargetDir()));
              _c->addChild(flg);
@@ -583,7 +583,7 @@ void CourceManager::madeCourcePtn6(CourceMaker* _c,int ind){
             break;
         case 3:
             _c->dS(Vec2(300,0));
-             flg->setGlobalZOrder(OBJ_LAYER_TOP);
+             flg->setGlobalZOrder(OBJ_LAYER_LV1-1);
              flg->setPosition(_c->getTergetPt());
              flg->setRotation(_c->getCalc()->nomlKaku(Vec2::ZERO,_c->getTargetDir()));
              _c->addChild(flg);
@@ -629,7 +629,7 @@ void CourceManager::madeCourcePtn7(CourceMaker* _c,int ind){
             break;
         case 3:
             _c->dS(Vec2(300,0));
-             flg->setGlobalZOrder(OBJ_LAYER_TOP);
+             flg->setGlobalZOrder(OBJ_LAYER_LV1-1);
              flg->setPosition(_c->getTergetPt());
              flg->setRotation(_c->getCalc()->nomlKaku(Vec2::ZERO,_c->getTargetDir()));
              _c->addChild(flg);
@@ -672,7 +672,7 @@ void CourceManager::madeCourcePtn8(CourceMaker* _c,int ind){
             break;
         case 3:
             _c->dS(Vec2(300,0));
-             flg->setGlobalZOrder(OBJ_LAYER_TOP);
+             flg->setGlobalZOrder(OBJ_LAYER_LV1-1);
              flg->setPosition(_c->getTergetPt());
              flg->setRotation(_c->getCalc()->nomlKaku(Vec2::ZERO,_c->getTargetDir()));
              _c->addChild(flg);
@@ -713,7 +713,7 @@ void CourceManager::madeCourcePtn9(CourceMaker* _c,int ind){
             break;
         case 3:
             _c->dS(Vec2(300,0));
-             flg->setGlobalZOrder(OBJ_LAYER_TOP);
+             flg->setGlobalZOrder(OBJ_LAYER_LV1-1);
              flg->setPosition(_c->getTergetPt());
              flg->setRotation(_c->getCalc()->nomlKaku(Vec2::ZERO,_c->getTargetDir()));
              _c->addChild(flg);
@@ -745,7 +745,7 @@ void CourceManager::madeCourcePtn10(CourceMaker* _c,int ind){
             _c->dS(Vec2(60,0));
             _c->dS(Vec2(0,50));
             _c->dS(Vec2(170,0));
-            flg->setGlobalZOrder(OBJ_LAYER_TOP);
+            flg->setGlobalZOrder(OBJ_LAYER_LV1-1);
             flg->setPosition(_c->getTergetPt());
             flg->setRotation(_c->getCalc()->nomlKaku(Vec2::ZERO,_c->getTargetDir()));
             _c->addChild(flg);
@@ -791,7 +791,7 @@ void CourceManager::madeCourcePtn11(CourceMaker* _c,int ind){
             break;
         case 3:
             _c->dS(Vec2(300,0));
-             flg->setGlobalZOrder(OBJ_LAYER_TOP);
+             flg->setGlobalZOrder(OBJ_LAYER_LV1-1);
              flg->setPosition(_c->getTergetPt());
              flg->setRotation(_c->getCalc()->nomlKaku(Vec2::ZERO,_c->getTargetDir()));
              _c->addChild(flg);
@@ -833,7 +833,7 @@ void CourceManager::madeCourcePtn12(CourceMaker* _c,int ind){
             break;
         case 3:
             _c->dS(Vec2(300,0));
-             flg->setGlobalZOrder(OBJ_LAYER_TOP);
+             flg->setGlobalZOrder(OBJ_LAYER_LV1-1);
              flg->setPosition(_c->getTergetPt());
              flg->setRotation(_c->getCalc()->nomlKaku(Vec2::ZERO,_c->getTargetDir()));
              _c->addChild(flg);
@@ -878,7 +878,7 @@ void CourceManager::madeCourcePtn13(CourceMaker* _c,int ind){
             _c->dS(Vec2(-150,0));
             _c->dS(Vec2(0,-180));
             _c->dS(Vec2(20,0));
-            flg->setGlobalZOrder(OBJ_LAYER_TOP);
+            flg->setGlobalZOrder(OBJ_LAYER_LV1-1);
             flg->setPosition(_c->getTergetPt());
             flg->setRotation(_c->getCalc()->nomlKaku(Vec2::ZERO,_c->getTargetDir()));
             _c->addChild(flg);
@@ -920,7 +920,7 @@ void CourceManager::madeCourcePtn14(CourceMaker* _c,int ind){
             _c->dS(Vec2(-150,0));
             _c->dS(Vec2(0,-180));
             _c->dS(Vec2(20,0));
-            flg->setGlobalZOrder(OBJ_LAYER_TOP);
+            flg->setGlobalZOrder(OBJ_LAYER_LV1-1);
             flg->setPosition(_c->getTergetPt());
             flg->setRotation(_c->getCalc()->nomlKaku(Vec2::ZERO,_c->getTargetDir()));
             _c->addChild(flg);
@@ -963,7 +963,7 @@ void CourceManager::madeCourcePtn15(CourceMaker* _c,int ind){
             _c->dS(Vec2(-150,0));
             _c->dS(Vec2(0,-180));
             _c->dS(Vec2(20,0));
-            flg->setGlobalZOrder(OBJ_LAYER_TOP);
+            flg->setGlobalZOrder(OBJ_LAYER_LV1-1);
             flg->setPosition(_c->getTergetPt());
             flg->setRotation(_c->getCalc()->nomlKaku(Vec2::ZERO,_c->getTargetDir()));
             _c->addChild(flg);
@@ -1006,7 +1006,7 @@ void CourceManager::madeCourcePtn16(CourceMaker* _c,int ind){
             _c->dS(Vec2(-150,0));
             _c->dS(Vec2(0,-180));
             _c->dS(Vec2(20,0));
-            flg->setGlobalZOrder(OBJ_LAYER_TOP);
+            flg->setGlobalZOrder(OBJ_LAYER_LV1-1);
             flg->setPosition(_c->getTergetPt());
             flg->setRotation(_c->getCalc()->nomlKaku(Vec2::ZERO,_c->getTargetDir()));
             _c->addChild(flg);
@@ -1048,7 +1048,7 @@ void CourceManager::madeCourcePtn17(CourceMaker* _c,int ind){
             _c->dS(Vec2(-150,0));
             _c->dS(Vec2(0,-180));
             _c->dS(Vec2(20,0));
-            flg->setGlobalZOrder(OBJ_LAYER_TOP);
+            flg->setGlobalZOrder(OBJ_LAYER_LV1-1);
             flg->setPosition(_c->getTergetPt());
             flg->setRotation(_c->getCalc()->nomlKaku(Vec2::ZERO,_c->getTargetDir()));
             _c->addChild(flg);
@@ -1090,7 +1090,7 @@ void CourceManager::madeCourcePtn18(CourceMaker* _c,int ind){
             _c->dS(Vec2(-150,0));
             _c->dS(Vec2(0,-180));
             _c->dS(Vec2(20,0));
-            flg->setGlobalZOrder(OBJ_LAYER_TOP);
+            flg->setGlobalZOrder(OBJ_LAYER_LV1-1);
             flg->setPosition(_c->getTergetPt());
             flg->setRotation(_c->getCalc()->nomlKaku(Vec2::ZERO,_c->getTargetDir()));
             _c->addChild(flg);
@@ -1132,7 +1132,7 @@ void CourceManager::madeCourcePtn19(CourceMaker* _c,int ind){
             _c->dS(Vec2(-150,0));
             _c->dS(Vec2(0,-180));
             _c->dS(Vec2(20,0));
-            flg->setGlobalZOrder(OBJ_LAYER_TOP);
+            flg->setGlobalZOrder(OBJ_LAYER_LV1-1);
             flg->setPosition(_c->getTergetPt());
             flg->setRotation(_c->getCalc()->nomlKaku(Vec2::ZERO,_c->getTargetDir()));
             _c->addChild(flg);
@@ -1174,7 +1174,7 @@ void CourceManager::madeCourcePtn20(CourceMaker* _c,int ind){
             _c->dS(Vec2(-150,0));
             _c->dS(Vec2(0,-180));
             _c->dS(Vec2(20,0));
-            flg->setGlobalZOrder(OBJ_LAYER_TOP);
+            flg->setGlobalZOrder(OBJ_LAYER_LV1-1);
             flg->setPosition(_c->getTergetPt());
             flg->setRotation(_c->getCalc()->nomlKaku(Vec2::ZERO,_c->getTargetDir()));
             _c->addChild(flg);

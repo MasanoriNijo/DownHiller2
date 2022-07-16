@@ -30,6 +30,7 @@ bool Flg::init() {
     getPhysicsBody()->setDynamic(false);
     getPhysicsBody()->setRotationEnable(false);
     getPhysicsBody()->setTag(TG_GOAL);
+    setGlobalZOrder(OBJ_LAYER_LV3);
   return true;
 }
 
