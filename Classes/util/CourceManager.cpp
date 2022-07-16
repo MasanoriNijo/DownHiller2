@@ -315,16 +315,18 @@ void CourceManager::setForTitle(){
 void CourceManager::setStart(CourceMaker* _c){
     getStartFlg()->setPosition(_c->getTergetPt());
     getStartFlg()->setRotation(_c->getCalc()->nomlKaku(Vec2::ZERO,_c->getTargetDir()));
-    if(!getStartFlg()->getParent()){
+    if(!_isSetStart){
         _c->addChild(getStartFlg());
+        _isSetStart = true;
     }
 }
 
 void CourceManager::setGoal(CourceMaker* _c){
     getGoalFlg()->setPosition(_c->getTergetPt());
     getGoalFlg()->setRotation(_c->getCalc()->nomlKaku(Vec2::ZERO,_c->getTargetDir()));
-    if(!getGoalFlg()->getParent()){
-        _c->addChild(getStartFlg());
+    if(!_isSetGoal){
+        _c->addChild(getGoalFlg());
+        _isSetGoal = true;
     }
 }
 

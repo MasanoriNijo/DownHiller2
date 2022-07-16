@@ -45,7 +45,9 @@ public:
     void madeCourcePtnForTitle(CourceMaker* _cmaker,int ind);
     
     void setStart(CourceMaker* _c);
+    bool _isSetStart = false;
     void setGoal(CourceMaker* _c);
+    bool _isSetGoal = false;
     
     void madeCourcePtn1(CourceMaker* _cmaker,int ind);
     void madeCourcePtn2(CourceMaker* _cmaker,int ind);

@@ -48,6 +48,7 @@ bool TitleScene::init() {
     mountNode(getGameTitle(), Vec2(winSize.width/2,winSize.height -80), OBJ_LAYER_TOP);
     
     setStartBtn(generateMenuItemSprite([this](Ref* ref){
+        callSoundEffect("button05.mp3");
         transitonScene(SelectScene::createScene());
     }, Size(1,1), L_BTN_START, Color3B::WHITE, Color3B::YELLOW, true));
     
