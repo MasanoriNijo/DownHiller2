@@ -113,6 +113,8 @@ void TitleScene::update(float dt) {
             }
             case GameState::MISS: {
                 getBike()->getFRJoint()->removeFormWorld();
+                getBike()->getFwheel()->getPhysicsBody()->setVelocity(Vec2::ZERO);
+                getBike()->getRwheel()->getPhysicsBody()->setVelocity(Vec2::ZERO);
                 getBike()->unscheduleUpdate();
                 Director::getInstance()->getEventDispatcher()->removeEventListener(getContactListenner());
                 getBike()->removeTouchEvent();

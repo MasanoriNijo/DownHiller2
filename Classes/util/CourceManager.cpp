@@ -1,14 +1,15 @@
 #include "CourceManager.h"
 
 CourceManager::CourceManager():
-_courceMakerA(NULL), _courceMakerB(NULL), _flg(NULL),_stagePrm(NULL),
+_courceMakerA(NULL), _courceMakerB(NULL), _startFlg(NULL), _goalFlg(NULL),_stagePrm(NULL),
 _gurd(NULL),_gurdBody(NULL),_colorChanger(NULL)
 {}
 
 CourceManager::~CourceManager() {
 	CC_SAFE_RELEASE_NULL(_courceMakerA);
 	CC_SAFE_RELEASE_NULL(_courceMakerB);
-    CC_SAFE_RELEASE_NULL(_flg);
+    CC_SAFE_RELEASE_NULL(_startFlg);
+    CC_SAFE_RELEASE_NULL(_goalFlg);
     CC_SAFE_RELEASE_NULL(_stagePrm);
     CC_SAFE_RELEASE_NULL(_gurd);
     CC_SAFE_RELEASE_NULL(_gurdBody);
@@ -38,8 +39,10 @@ bool CourceManager::init() {
     getCourceMakerA()->_nuriColor = getColorChanger()->getColor4F();
     getCourceMakerB()->_nuriColor = getColorChanger()->getColor4F();
     
-    
     selStg = UserDefault::getInstance()->getIntegerForKey(UDF_INT_SELECTED_STAGE,1);
+    
+    setStartFlg(Flg::create(FlgType::START));
+    setGoalFlg(Flg::create(FlgType::START));
     
   return true;
 }
@@ -309,6 +312,22 @@ void CourceManager::setForTitle(){
     setTergetPt(FIRST_COURCE_BASE_POINT + Vec2(0,40));
 }
 
+void CourceManager::setStart(CourceMaker* _c){
+    getStartFlg()->setPosition(_c->getTergetPt());
+    getStartFlg()->setRotation(_c->getCalc()->nomlKaku(Vec2::ZERO,_c->getTargetDir()));
+    if(!getStartFlg()->getParent()){
+        _c->addChild(getStartFlg());
+    }
+}
+
+void CourceManager::setGoal(CourceMaker* _c){
+    getGoalFlg()->setPosition(_c->getTergetPt());
+    getGoalFlg()->setRotation(_c->getCalc()->nomlKaku(Vec2::ZERO,_c->getTargetDir()));
+    if(!getGoalFlg()->getParent()){
+        _c->addChild(getStartFlg());
+    }
+}
+
 void CourceManager::madeCourcePtnForTitle(CourceMaker* _c,int ind){
     auto flg = Flg::create();
     int i = 0;
@@ -316,7 +335,9 @@ void CourceManager::madeCourcePtnForTitle(CourceMaker* _c,int ind){
     ind = ind % 4;
     switch (ind) {
         case 0:
-            _c->dS(800,-5);
+            _c->dS(600,-5);
+            setStart(_c);
+            _c->dS(200,-5);
             break;
         case 1:
             for(i=0;i<8;i++){
@@ -338,10 +359,7 @@ void CourceManager::madeCourcePtnForTitle(CourceMaker* _c,int ind){
             break;
         case 3:
             _c->dS(Vec2(90,0));
-             flg->setGlobalZOrder(OBJ_LAYER_LV1-1);
-             flg->setPosition(_c->getTergetPt());
-             flg->setRotation(_c->getCalc()->nomlKaku(Vec2::ZERO,_c->getTargetDir()));
-             _c->addChild(flg);
+            setGoal(_c);
             _c->dS(Vec2(120,0));
             break;
         default:
@@ -358,6 +376,8 @@ void CourceManager::madeCourcePtn1(CourceMaker* _c,int ind){
     switch (ind) {
         case 0:
             _c->dS(500,0);
+            _c->dS(100,-1);
+            setStart(_c);
             _c->dS(2800,-1);
             break;
         case 1:
@@ -379,10 +399,7 @@ void CourceManager::madeCourcePtn1(CourceMaker* _c,int ind){
             break;
         case 3:
             _c->dS(Vec2(90,0));
-             flg->setGlobalZOrder(OBJ_LAYER_LV1-1);
-             flg->setPosition(_c->getTergetPt());
-             flg->setRotation(_c->getCalc()->nomlKaku(Vec2::ZERO,_c->getTargetDir()));
-             _c->addChild(flg);
+            setGoal(_c);
             _c->dS(Vec2(1000,0));
             _c->dS(Vec2(0,100));
             break;
@@ -400,6 +417,7 @@ void CourceManager::madeCourcePtn2(CourceMaker* _c,int ind){
     switch (ind) {
         case 0:
             _c->dS(600,0);
+            setStart(_c);
             _c->dS(10,-90);
             _c->dC(200, -30);
             _c->dS(200, -30);
@@ -441,6 +459,7 @@ void CourceManager::madeCourcePtn3(CourceMaker* _c,int ind){
     switch (ind) {
         case 0:
             _c->dS(600,0);
+            setStart(_c);
             _c->dC(300,-10);
             break;
         case 1:
@@ -478,6 +497,7 @@ void CourceManager::madeCourcePtn4(CourceMaker* _c,int ind){
     switch (ind) {
         case 0:
             _c->dS(600,0);
+            setStart(_c);
             _c->dS(300,-5);
             break;
         case 1:
@@ -519,7 +539,8 @@ void CourceManager::madeCourcePtn5(CourceMaker* _c,int ind){
     _c->drawStart(getTergetPt(),getTargetDir());
     switch (ind) {
         case 0:
-            _c->dS(Vec2(0,100));
+            _c->dS(600,0);
+            setStart(_c);
             _c->dS(Vec2(0,-100));
             _c->dS(Vec2(300,-3));
             break;
@@ -557,9 +578,8 @@ void CourceManager::madeCourcePtn6(CourceMaker* _c,int ind){
     _c->drawStart(getTergetPt(),getTargetDir());
     switch (ind) {
         case 0:
-            _c->dS(Vec2(0,100));
-            _c->dS(Vec2(0,-100));
-            _c->dS(100,0);
+            _c->dS(600,0);
+            setStart(_c);
             _c->dC(500, -10);
             _c->dS(200,-10);
             break;
@@ -603,9 +623,8 @@ void CourceManager::madeCourcePtn7(CourceMaker* _c,int ind){
     _c->drawStart(getTergetPt(),getTargetDir());
     switch (ind) {
         case 0:
-            _c->dS(Vec2(0,100));
-            _c->dS(Vec2(0,-100));
-            _c->dS(100,0);
+            _c->dS(600,0);
+            setStart(_c);
             _c->dC(500, -10);
             _c->dS(200,-10);
             break;
@@ -649,9 +668,8 @@ void CourceManager::madeCourcePtn8(CourceMaker* _c,int ind){
     _c->drawStart(getTergetPt(),getTargetDir());
     switch (ind) {
         case 0:
-            _c->dS(Vec2(0,100));
-            _c->dS(Vec2(0,-100));
-            _c->dS(100,0);
+            _c->dS(600,0);
+            setStart(_c);
             _c->dC(500, -10);
             _c->dS(200,-10);
             break;
@@ -692,9 +710,8 @@ void CourceManager::madeCourcePtn9(CourceMaker* _c,int ind){
     _c->drawStart(getTergetPt(),getTargetDir());
     switch (ind) {
         case 0:
-            _c->dS(Vec2(0,100));
-            _c->dS(Vec2(0,-100));
-            _c->dS(100,0);
+            _c->dS(600,0);
+            setStart(_c);
             _c->dC(500, -10);
             _c->dS(200,-10);
             break;
@@ -733,9 +750,8 @@ void CourceManager::madeCourcePtn10(CourceMaker* _c,int ind){
     _c->drawStart(getTergetPt(),getTargetDir());
     switch (ind) {
         case 0:
-            _c->dS(Vec2(0,100));
-            _c->dS(Vec2(0,-100));
-            _c->dS(300,-3);
+            _c->dS(600,0);
+            setStart(_c);
             _c->dC(300, -45);
             _c->dS(1000, -45);
             break;
@@ -769,8 +785,8 @@ void CourceManager::madeCourcePtn11(CourceMaker* _c,int ind){
     _c->drawStart(getTergetPt(),getTargetDir());
     switch (ind) {
         case 0:
-            _c->dS(Vec2(0,100));
-            _c->dS(Vec2(0,-100));
+            _c->dS(600,0);
+            setStart(_c);
             _c->dS(Vec2(300,-3));
             break;
         case 1:
@@ -811,8 +827,8 @@ void CourceManager::madeCourcePtn12(CourceMaker* _c,int ind){
     _c->drawStart(getTergetPt(),getTargetDir());
     switch (ind) {
         case 0:
-            _c->dS(Vec2(0,100));
-            _c->dS(Vec2(0,-100));
+            _c->dS(600,0);
+            setStart(_c);
             _c->dS(Vec2(300,-3));
             break;
         case 1:
@@ -853,8 +869,8 @@ void CourceManager::madeCourcePtn13(CourceMaker* _c,int ind){
     _c->drawStart(getTergetPt(),getTargetDir());
     switch (ind) {
         case 0:
-//            _c->drawByStraight(Vec2(0,100));
-//            _c->drawByStraight(Vec2(0,-100));
+            _c->dS(600,0);
+            setStart(_c);
             _c->dS(50,0);
             _c->dS(50,20);
             _c->dS(50,-20);
@@ -900,8 +916,8 @@ void CourceManager::madeCourcePtn14(CourceMaker* _c,int ind){
     _c->drawStart(getTergetPt(),getTargetDir());
     switch (ind) {
         case 0:
-            _c->dS(Vec2(0,100));
-            _c->dS(Vec2(0,-100));
+            _c->dS(600,0);
+            setStart(_c);
             _c->dS(Vec2(300,-3));
             break;
         case 1:
@@ -943,8 +959,8 @@ void CourceManager::madeCourcePtn15(CourceMaker* _c,int ind){
     _c->drawStart(getTergetPt(),getTargetDir());
     switch (ind) {
         case 0:
-            _c->dS(Vec2(0,100));
-            _c->dS(Vec2(0,-100));
+            _c->dS(600,0);
+            setStart(_c);
             _c->dS(Vec2(300,-3));
             break;
         case 1:
@@ -986,8 +1002,8 @@ void CourceManager::madeCourcePtn16(CourceMaker* _c,int ind){
     _c->drawStart(getTergetPt(),getTargetDir());
     switch (ind) {
         case 0:
-            _c->dS(Vec2(0,100));
-            _c->dS(Vec2(0,-100));
+            _c->dS(600,0);
+            setStart(_c);
             _c->dS(Vec2(300,-3));
             break;
         case 1:
@@ -1028,8 +1044,8 @@ void CourceManager::madeCourcePtn17(CourceMaker* _c,int ind){
     _c->drawStart(getTergetPt(),getTargetDir());
     switch (ind) {
         case 0:
-            _c->dS(Vec2(0,100));
-            _c->dS(Vec2(0,-100));
+            _c->dS(600,0);
+            setStart(_c);
             _c->dS(Vec2(300,-3));
             break;
         case 1:
@@ -1070,8 +1086,8 @@ void CourceManager::madeCourcePtn18(CourceMaker* _c,int ind){
     _c->drawStart(getTergetPt(),getTargetDir());
     switch (ind) {
         case 0:
-            _c->dS(Vec2(0,100));
-            _c->dS(Vec2(0,-100));
+            _c->dS(600,0);
+            setStart(_c);
             _c->dS(Vec2(300,-3));
             break;
         case 1:
@@ -1112,8 +1128,8 @@ void CourceManager::madeCourcePtn19(CourceMaker* _c,int ind){
     _c->drawStart(getTergetPt(),getTargetDir());
     switch (ind) {
         case 0:
-            _c->dS(Vec2(0,100));
-            _c->dS(Vec2(0,-100));
+            _c->dS(600,0);
+            setStart(_c);
             _c->dS(Vec2(300,-3));
             break;
         case 1:
@@ -1154,8 +1170,8 @@ void CourceManager::madeCourcePtn20(CourceMaker* _c,int ind){
     _c->drawStart(getTergetPt(),getTargetDir());
     switch (ind) {
         case 0:
-            _c->dS(Vec2(0,100));
-            _c->dS(Vec2(0,-100));
+            _c->dS(600,0);
+            setStart(_c);
             _c->dS(Vec2(300,-3));
             break;
         case 1:

@@ -21,7 +21,8 @@ public:
     bool init();
     CC_SYNTHESIZE_RETAIN(CourceMaker*,_courceMakerA,CourceMakerA);
     CC_SYNTHESIZE_RETAIN(CourceMaker*,_courceMakerB,CourceMakerB);
-    CC_SYNTHESIZE_RETAIN(Flg*,_flg,Flg);
+    CC_SYNTHESIZE_RETAIN(Flg*,_startFlg,StartFlg);
+    CC_SYNTHESIZE_RETAIN(Flg*,_goalFlg,GoalFlg);
     CC_SYNTHESIZE_RETAIN(StagePrm*,_stagePrm,StagePrm);
     CC_SYNTHESIZE_RETAIN(Node*,_gurd,Gurd);
     CC_SYNTHESIZE_RETAIN(PhysicsBody*,_gurdBody,GurdBody);
@@ -42,6 +43,9 @@ public:
     
     void setForTitle();
     void madeCourcePtnForTitle(CourceMaker* _cmaker,int ind);
+    
+    void setStart(CourceMaker* _c);
+    void setGoal(CourceMaker* _c);
     
     void madeCourcePtn1(CourceMaker* _cmaker,int ind);
     void madeCourcePtn2(CourceMaker* _cmaker,int ind);

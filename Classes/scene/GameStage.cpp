@@ -253,6 +253,8 @@ void GameStage::onMiss(){
     getMenu()->removeFromParentAndCleanup(true);
     callSoundEffect("btnon.mp3");
     getBike()->getFRJoint()->removeFormWorld();
+    getBike()->getFwheel()->getPhysicsBody()->setVelocity(Vec2::ZERO);
+    getBike()->getRwheel()->getPhysicsBody()->setVelocity(Vec2::ZERO);
     getBike()->unscheduleUpdate();
     getBike()->removeTouchEvent();
     Director::getInstance()->getEventDispatcher()->removeEventListener(getContactListenner());
