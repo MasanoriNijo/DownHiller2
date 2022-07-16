@@ -146,6 +146,20 @@ void Button::setButtonColor(Color3B color){
     getT3()->setColor(color);
     getT4()->setColor(color);
 }
+
+void Button::setOpacity(uint8_t opacity){
+    Label::setOpacity(opacity);
+    getC1()->setOpacity(opacity);
+    getC2()->setOpacity(opacity);
+    getC3()->setOpacity(opacity);
+    getC4()->setOpacity(opacity);
+    getT1()->setOpacity(opacity);
+    getT2()->setOpacity(opacity);
+    getT3()->setOpacity(opacity);
+    getT4()->setOpacity(opacity);
+    getBase()->setOpacity(opacity);
+}
+
 /** パラメータサンプル
  setCalc(Calclater::create());
  getCalc();

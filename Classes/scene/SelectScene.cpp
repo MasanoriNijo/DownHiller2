@@ -72,19 +72,24 @@ void SelectScene::onEnterTransitionDidFinish() {
 MenuItemSprite* SelectScene::genStageBtn(int i){
     
     auto udf = UserDefault::getInstance();
-    if(i>udf->getIntegerForKey(UDF_INT_CLEAR_STAGE,1)){
+    if(i>udf->getIntegerForKey(UDF_INT_CLEAR_STAGE,0)+1){
         MenuItemSprite* obj = generateMenuItemSprite([this,i](Ref* ref){
             // 本当は何もしない。
             UserDefault::getInstance()->setIntegerForKey(UDF_INT_SELECTED_STAGE, i);
             transitonScene(GameStage::createScene());
         }, Size(28,28),"??", Color3B::WHITE, Color3B::YELLOW, false);
         obj->setOpacity(30);
-        obj->getNormalImage()->setOpacity(30);
-        obj->getSelectedImage()->setOpacity(30);
+        obj->getNormalImage()->setOpacity(120);
+        obj->getSelectedImage()->setOpacity(120);
         for(int i=1; i<obj->getChildren().size(); ++i) {
             obj->getChildren().at(i)->setOpacity(30);
         }
         return obj;
+    }else if(i==udf->getIntegerForKey(UDF_INT_CLEAR_STAGE,0)+1){
+        return generateMenuItemSprite([this,i](Ref* ref){
+            UserDefault::getInstance()->setIntegerForKey(UDF_INT_SELECTED_STAGE, i);
+            transitonScene(GameStage::createScene());
+        }, Size(28,28), i<10 ? "0" + std::to_string(i) : std::to_string(i), Color3B::WHITE, Color3B::YELLOW, true);
     }else{
         return generateMenuItemSprite([this,i](Ref* ref){
             UserDefault::getInstance()->setIntegerForKey(UDF_INT_SELECTED_STAGE, i);

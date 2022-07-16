@@ -233,7 +233,7 @@ void GameStage::onClear(){
             // クリアステージをカウントアップ
             int selStage = getCourceManager()->getStagePrm()->getStageNumber();
             
-            if(UserDefault::getInstance()->getIntegerForKey(UDF_INT_CLEAR_STAGE,1) < selStage){
+            if(UserDefault::getInstance()->getIntegerForKey(UDF_INT_CLEAR_STAGE,0) < selStage){
                 UserDefault::getInstance()->setIntegerForKey(UDF_INT_CLEAR_STAGE, selStage);
             }
             UserDefault::getInstance()->setIntegerForKey(UDF_INT_SELECTED_STAGE, selStage + 1);
