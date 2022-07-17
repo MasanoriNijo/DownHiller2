@@ -42,7 +42,7 @@ bool CourceManager::init() {
     selStg = UserDefault::getInstance()->getIntegerForKey(UDF_INT_SELECTED_STAGE,1);
     
     setStartFlg(Flg::create(FlgType::START));
-    setGoalFlg(Flg::create(FlgType::START));
+    setGoalFlg(Flg::create(FlgType::GOAL));
     
   return true;
 }
@@ -229,6 +229,7 @@ void CourceManager::setStartAndTargetFromCource(CourceMaker* _c){
 }
 
 void CourceManager::checkAndMadeCource(Vec2 chPt){
+    _dirkaku = courceIndex%2 ? getCourceMakerA()->_dirkaku : getCourceMakerB()->_dirkaku;
     if(chPt.x > (getStartPt().x + 80) || !courceIndex){
         switch (selStg) {
             case 0:
@@ -831,32 +832,27 @@ void CourceManager::madeCourcePtn12(CourceMaker* _c,int ind){
         case 0:
             _c->dS(600,0);
             setStart(_c);
-            _c->dS(Vec2(300,-3));
+            _c->dS(100,-5);
             break;
         case 1:
-            for(i=0;i<3;i++){
-                _c->dS(200, -10);
-                _c->dC(80, 50);
-                _c->dS(150, -10);
-                _c->dS(1, -70);
-                _c->dC(80, -10);
-            }
+            cPtn00(_c);
+            cPtn01(_c);
+            cPtn02(_c);
+            cPtn03(_c);
+            cPtn04(_c);
             break;
         case 2:
-            for(i=0;i<8;i++){
-                _c->dS(1, 85);
-                _c->dC(10, -94);
-                _c->dS(200, -5);
-            }
+            cPtn05(_c);
+            cPtn06(_c);
+            cPtn07(_c);
+            cPtn08(_c);
+            cPtn09(_c);
             break;
         case 3:
-            _c->dS(Vec2(300,0));
-             flg->setGlobalZOrder(OBJ_LAYER_LV1-1);
-             flg->setPosition(_c->getTergetPt());
-             flg->setRotation(_c->getCalc()->nomlKaku(Vec2::ZERO,_c->getTargetDir()));
-             _c->addChild(flg);
-            _c->dS(Vec2(200,0));
-            _c->dS(Vec2(0,100));
+            _c->dS(100,0);
+            setGoal(_c);
+            _c->dS(1000,0);
+            _c->dS(100,90);
             break;
         default:
             return;
@@ -873,38 +869,28 @@ void CourceManager::madeCourcePtn13(CourceMaker* _c,int ind){
         case 0:
             _c->dS(600,0);
             setStart(_c);
-            _c->dS(50,0);
-            _c->dS(50,20);
-            _c->dS(50,-20);
-            _c->dS(50,20);
-            _c->dS(50,-20);
-            _c->dS(50,0);
+            _c->dS(100,-5);
             break;
         case 1:
-            _c->dC(50, -45);
-            _c->dS(1000, -45);
-            _c->dC(240,89);
-            _c->dS(100, 105);
-
-
+            cPtn10(_c);
+            cPtn11(_c);
+            cPtn12(_c);
+            cPtn13(_c);
+            cPtn14(_c);
             break;
         case 2:
-            _c->dS(100, 105);
-            _c->dS(100, 130);
-//            _c->drawByStraight(60, 145);
-            _c->dS(-130, 0);
-            _c->dS(Vec2(-150,0));
-            _c->dS(Vec2(0,-180));
-            _c->dS(Vec2(20,0));
-            flg->setGlobalZOrder(OBJ_LAYER_LV1-1);
-            flg->setPosition(_c->getTergetPt());
-            flg->setRotation(_c->getCalc()->nomlKaku(Vec2::ZERO,_c->getTargetDir()));
-            _c->addChild(flg);
-            _c->dS(Vec2(150,0));
-            _c->dS(Vec2(0,50));
+            cPtn15(_c);
+            cPtn16(_c);
+            cPtn17(_c);
+            cPtn18(_c);
+            cPtn19(_c);
             break;
         case 3:
-
+            _c->dS(100,0);
+            setGoal(_c);
+            _c->dS(1000,0);
+            _c->dS(100,90);
+            break;
         default:
             return;
             break;
@@ -920,33 +906,28 @@ void CourceManager::madeCourcePtn14(CourceMaker* _c,int ind){
         case 0:
             _c->dS(600,0);
             setStart(_c);
-            _c->dS(Vec2(300,-3));
+            _c->dS(100,-5);
             break;
         case 1:
-            _c->dC(50, -45);
-            _c->dS(1000, -45);
-            _c->dC(240,89);
-            _c->dS(100, 105);
-
-
+            cPtn20(_c);
+            cPtn21(_c);
+            cPtn22(_c);
+            cPtn23(_c);
+            cPtn24(_c);
             break;
         case 2:
-            _c->dS(100, 105);
-            _c->dS(100, 130);
-//            _c->drawByStraight(60, 145);
-            _c->dS(-130, 0);
-            _c->dS(Vec2(-150,0));
-            _c->dS(Vec2(0,-180));
-            _c->dS(Vec2(20,0));
-            flg->setGlobalZOrder(OBJ_LAYER_LV1-1);
-            flg->setPosition(_c->getTergetPt());
-            flg->setRotation(_c->getCalc()->nomlKaku(Vec2::ZERO,_c->getTargetDir()));
-            _c->addChild(flg);
-            _c->dS(Vec2(150,0));
-            _c->dS(Vec2(0,50));
+            cPtn25(_c);
+            cPtn26(_c);
+            cPtn27(_c);
+            cPtn28(_c);
+            cPtn29(_c);
             break;
         case 3:
-
+            _c->dS(100,0);
+            setGoal(_c);
+            _c->dS(1000,0);
+            _c->dS(100,90);
+            break;
         default:
             return;
             break;
@@ -1206,6 +1187,957 @@ void CourceManager::madeCourcePtn20(CourceMaker* _c,int ind){
             break;
     }
     _c->madePhysiceBody();
+}
+
+// 滑らかな波波
+void CourceManager::cPtn00(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// 滑らかな波波
+void CourceManager::cPtn01(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(80,-30+kaku);
+    _c->dC(30,kaku);
+    _c->dC(80,-30+kaku);
+    _c->dC(30,kaku);
+    _c->dC(80,-30+kaku);
+    _c->dC(30,kaku);
+}
+
+// 滑らかな波波
+void CourceManager::cPtn02(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(100,-45+kaku);
+    _c->dC(50,kaku);
+    _c->dC(100,-45+kaku);
+    _c->dC(50,kaku);
+    _c->dC(100,-45+kaku);
+    _c->dC(50,kaku);
+}
+
+// 滑らかな波波
+void CourceManager::cPtn03(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(100,-70+kaku);
+    _c->dC(100,kaku);
+    _c->dC(80,5+kaku);
+    _c->dC(70,kaku);
+}
+
+// 滑らかな波波
+void CourceManager::cPtn04(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(80,-25+kaku);
+    _c->dC(80,kaku);
+    _c->dC(80,-50+kaku);
+    _c->dC(80,kaku);
+    _c->dC(80,-25+kaku);
+    _c->dC(80,kaku);
+    _c->dC(80,-70+kaku);
+    _c->dC(80,kaku);
+}
+
+// 滑らかな波波
+void CourceManager::cPtn05(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(120,-25+kaku);
+    _c->dC(80,5+kaku);
+    _c->dC(130,-60+kaku);
+    _c->dC(100,kaku);
+    _c->dC(180,-45+kaku);
+    _c->dC(80,kaku);
+    _c->dC(300,-60+kaku);
+    _c->dC(120,kaku);
+}
+
+// 滑らかな波波
+void CourceManager::cPtn06(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(50,-70+kaku);
+    _c->dC(50,5+kaku);
+    _c->dC(50,-70+kaku);
+    _c->dC(50,5+kaku);
+    _c->dC(50,-70+kaku);
+    _c->dC(50,5+kaku);
+}
+
+// 滑らかな波波
+void CourceManager::cPtn07(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(300,-70+kaku);
+    _c->dC(80,5+kaku);
+    _c->dC(50,-70+kaku);
+    _c->dC(100,5+kaku);
+}
+
+// comment
+void CourceManager::cPtn08(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(90,-45+kaku);
+    _c->dC(150,5+kaku);
+    _c->dC(130,-70+kaku);
+    _c->dC(50,5+kaku);
+    _c->dC(50,-30+kaku);
+    _c->dC(50,5+kaku);
+}
+
+// 滑らかな波波
+void CourceManager::cPtn09(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(90,-45+kaku);
+    _c->dC(150,5+kaku);
+    _c->dC(130,-45+kaku);
+    _c->dC(50,5+kaku);
+    _c->dC(90,-90+kaku);
+    _c->dC(50,kaku);
+}
+
+// カクカク
+void CourceManager::cPtn10(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dS(30,-10+kaku);
+    _c->dS(30,kaku);
+    _c->dS(30,-10+kaku);
+    _c->dS(30,kaku);
+    _c->dS(30,-10+kaku);
+    _c->dS(30,kaku);
+}
+
+// カクカク
+void CourceManager::cPtn11(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dS(80,-30+kaku);
+    _c->dS(30,kaku);
+    _c->dS(80,-30+kaku);
+    _c->dS(30,kaku);
+    _c->dS(80,-30+kaku);
+    _c->dS(30,kaku);
+}
+
+// カクカク
+void CourceManager::cPtn12(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dS(100,-45+kaku);
+    _c->dS(50,kaku);
+    _c->dS(100,-45+kaku);
+    _c->dS(50,kaku);
+    _c->dS(100,-45+kaku);
+    _c->dS(50,kaku);
+}
+
+// カクカク
+void CourceManager::cPtn13(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dS(100,-70+kaku);
+    _c->dS(100,kaku);
+    _c->dS(80,5+kaku);
+    _c->dS(70,kaku);
+}
+
+// カクカク
+void CourceManager::cPtn14(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dS(80,-25+kaku);
+    _c->dS(80,kaku);
+    _c->dS(80,-50+kaku);
+    _c->dS(80,kaku);
+    _c->dS(80,-25+kaku);
+    _c->dS(80,kaku);
+    _c->dS(80,-70+kaku);
+    _c->dS(80,kaku);
+}
+
+// カクカク
+void CourceManager::cPtn15(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dS(120,-25+kaku);
+    _c->dS(80,5+kaku);
+    _c->dS(130,-60+kaku);
+    _c->dS(100,kaku);
+    _c->dS(180,-45+kaku);
+    _c->dS(80,kaku);
+    _c->dS(300,-60+kaku);
+    _c->dS(120,kaku);
+}
+
+// comment
+void CourceManager::cPtn16(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dS(50,-70+kaku);
+    _c->dS(50,5+kaku);
+    _c->dS(50,-70+kaku);
+    _c->dS(50,5+kaku);
+    _c->dS(50,-70+kaku);
+    _c->dS(50,5+kaku);
+}
+
+// カクカク
+void CourceManager::cPtn17(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dS(300,-70+kaku);
+    _c->dS(80,5+kaku);
+    _c->dS(50,-70+kaku);
+    _c->dS(100,5+kaku);
+}
+
+// カクカク
+void CourceManager::cPtn18(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dS(90,-45+kaku);
+    _c->dS(150,5+kaku);
+    _c->dS(130,-70+kaku);
+    _c->dS(50,5+kaku);
+    _c->dS(50,-30+kaku);
+    _c->dS(50,5+kaku);
+}
+
+// カクカク
+void CourceManager::cPtn19(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dS(90,-45+kaku);
+    _c->dS(150,5+kaku);
+    _c->dS(130,-45+kaku);
+    _c->dS(50,5+kaku);
+    _c->dS(90,-90+kaku);
+    _c->dS(50,kaku);
+}
+
+// 凸
+void CourceManager::cPtn20(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    for(int i=0;i<3;i++){
+        _c->dS(50,kaku);
+        _c->dS(0,90+kaku);
+        _c->dC(20,-90 + kaku);
+    }
+}
+
+// comment
+void CourceManager::cPtn21(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(100,90+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn22(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn23(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn24(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn25(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn26(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn27(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn28(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn29(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn30(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn31(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn32(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn33(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn34(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn35(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn36(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn37(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn38(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn39(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn40(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn41(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn42(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn43(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn44(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn45(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn46(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn47(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn48(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn49(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn50(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn51(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn52(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn53(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn54(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn55(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn56(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn57(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn58(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn59(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn60(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn61(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn62(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn63(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn64(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn65(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn66(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn67(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn68(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn69(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn70(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn71(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn72(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn73(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn74(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn75(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn76(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn77(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn78(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn79(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn80(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn81(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn82(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn83(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn84(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn85(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn86(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn87(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn88(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn89(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn90(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn91(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn92(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn93(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn94(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn95(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn96(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn97(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn98(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn99(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn100(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn101(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn102(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn103(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn104(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn105(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn106(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn107(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn108(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn109(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn110(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn111(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn112(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn113(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn114(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn115(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn116(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn117(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn118(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn119(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn120(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn121(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn122(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
+}
+
+// comment
+void CourceManager::cPtn123(CourceMaker* _c){
+    auto kaku = _dirkaku;
+    _c->dC(30,-10+kaku);
+    _c->dC(30,kaku);
 }
 /** パラメータサンプル
 setCourceMakerA(CourceMaker::create());
