@@ -49,7 +49,6 @@ bool TitleScene::init() {
     
     setStartBtn(generateMenuItemSprite([this](Ref* ref){
         callSoundEffect("button05.mp3");
-        stopBGM("");
         transitonScene(SelectScene::createScene());
     }, Size(1,1), L_BTN_START, Color3B::WHITE, Color3B::YELLOW, true));
     
@@ -62,7 +61,7 @@ bool TitleScene::init() {
     addChild(getCourceManager()->getCourceMakerA());
     addChild(getCourceManager()->getCourceMakerB());
     addChild(getCourceManager()->getGurd());
-    setBGM("BGM124-110921-tamashiinopistol-wav-nointro.wav");
+    setBGM("BGM124-110921-tamashiinopistol-wav-nointro.mp3");
        
     return true;
 }
@@ -91,7 +90,7 @@ void TitleScene::onEnterTransitionDidFinish() {
     scheduleUpdate();
     demo();
     
-    startBGM("BGM124-110921-tamashiinopistol-wav-nointro.wav");
+    startBGM("BGM124-110921-tamashiinopistol-wav-nointro.mp3");
 }
 
 void TitleScene::update(float dt) {
@@ -105,6 +104,7 @@ void TitleScene::update(float dt) {
                 break;
             }
             case GameState::CLEAR: {
+                stopBGM("");
                 getBike()->getRwheel()->getPhysicsBody()->setAngularDamping(1);
                 getBike()->removeTouchEvent();
                 getBike()->stopAllActions();
@@ -117,6 +117,7 @@ void TitleScene::update(float dt) {
                 break;
             }
             case GameState::MISS: {
+                stopBGM("");
                 getBike()->getFRJoint()->removeFormWorld();
                 getBike()->getFwheel()->getPhysicsBody()->setVelocity(Vec2::ZERO);
                 getBike()->getRwheel()->getPhysicsBody()->setVelocity(Vec2::ZERO);
