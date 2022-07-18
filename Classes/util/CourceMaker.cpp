@@ -89,7 +89,17 @@ void CourceMaker::dS(Vec2 dpt_){
     }
 }
 
-void CourceMaker::dS(float length, float kaku){    
+void CourceMaker::dS(float length, float kaku){
+    
+    if(length == 0){
+        Vec2 trgDir = getCalc()->rotByKaku(Vec2(1,0), -kaku);
+        setWorkPt(_trgPt);
+        setWorkDir(_wrkPt);
+        setTargetDir(trgDir);
+        _dirkaku = kaku;
+        return;
+    }
+    
     Vec2 dpt_ = getCalc()->rotByKaku(Vec2(length,0), -kaku);
     setWorkPt(_trgPt);
     setWorkDir(dpt_);

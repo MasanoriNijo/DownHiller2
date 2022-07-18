@@ -67,7 +67,6 @@ public:
     // 現ポイントから、指定の値だけすすんたポイントが、終点になるように、指定した角度左（−90 - 90度）右円弧を描く。
     void dC(Vec2 dpt_,float kaku);    
 
-    
     void drawTo(Vec2 pt_, Vec2 dir_);
     // 現状の設定値で描く
     void calcCurve(float r_);
