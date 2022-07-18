@@ -105,8 +105,12 @@ bool GameStage::init() {
 
 void GameStage::onEnterTransitionDidFinish() {
     GameScene::onEnterTransitionDidFinish();
-    // debug
-    _timeLimit = 0;
+    if(UserDefault::getInstance()->getBoolForKey(UDF_BOOL_DEBUG_STAGE, false)){
+        // debug
+        _timeLimit = 0;
+        drawDebugLine();
+    }
+
     getCourceManager()->checkAndMadeCource(Vec2::ZERO);
     
     // Bikeをセット
