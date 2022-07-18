@@ -1202,11 +1202,12 @@ void CourceManager::checkAndMadeCourceForDebug(Vec2 chPt){
         _dirkaku = courceIndex%2 ? getCourceMakerA()->_dirkaku : getCourceMakerB()->_dirkaku;
         auto _c = courceIndex%2 ? getCourceMakerB() : getCourceMakerA();
         _c->drawStart(getTergetPt(),getTargetDir());
+        _c->_dirkaku = _dirkaku;
         switch (courceIndex) {
             case 0:
                 _c->dS(600,0);
                 setStart(_c);
-                _c->dS(Vec2(30,-3));
+                _c->dS(30,-3);
                 break;
             case 1:
                 switch (selStg) {
@@ -1975,7 +1976,7 @@ void CourceManager::cPtn22(CourceMaker* _c){
         _c->dS(0,90+kaku);
         _c->dC(30,-90 + kaku);
     }
-    _c->dS(30,kaku);
+    _c->dS(80,kaku);
 }
 
 // 凸
@@ -2276,60 +2277,114 @@ void CourceManager::cPtn48(CourceMaker* _c){
     _c->dS(50,0);
 }
 
-// comment
+// 凸小凹大
 void CourceManager::cPtn49(CourceMaker* _c){
     auto kaku = _c->_dirkaku;
-    _c->dC(30,-10+kaku);
-    _c->dC(30,kaku);
+    _c->dC(30,0);
+    _c->dS(100,0);
+    _c->dS(0,90);
+    _c->dC(30,-60);
+    _c->dC(60,90);
+    _c->dS(50,0);
 }
 
-// comment
+// 凸小凹大
 void CourceManager::cPtn50(CourceMaker* _c){
     auto kaku = _c->_dirkaku;
-    _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
+    _c->dS(100,kaku);
+    _c->dS(0,90+kaku);
+    _c->dC(30,-60+kaku);
+    _c->dC(60,90+kaku);
+    _c->dS(50,kaku);
 }
 
-// comment
+// 凸小凹大
 void CourceManager::cPtn51(CourceMaker* _c){
     auto kaku = _c->_dirkaku;
-    _c->dC(30,-10+kaku);
-    _c->dC(30,kaku);
+    _c->dC(30,0);
+    _c->dS(100,0);
+    _c->dS(0,90);
+    _c->dC(20,-90);
+    _c->dC(60,80);
+    _c->dS(50,0);
 }
 
-// comment
+// 凸小凹大
 void CourceManager::cPtn52(CourceMaker* _c){
     auto kaku = _c->_dirkaku;
-    _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
+    _c->dS(100,kaku);
+    _c->dS(0,90+kaku);
+    _c->dC(20,-90+kaku);
+    _c->dC(60,80+kaku);
+    _c->dS(50,kaku);
 }
 
-// comment
+// モアイ
 void CourceManager::cPtn53(CourceMaker* _c){
     auto kaku = _c->_dirkaku;
-    _c->dC(30,-10+kaku);
-    _c->dC(30,kaku);
+    _c->dS(100,0);
+    _c->dS(10,80);
+    _c->dC(30,23);
+    _c->dS(60,23);
+    _c->dC(5,-50);
+    _c->dS(40,-50);
+    _c->dS(80,30);
+    _c->dC(200,55);
+    _c->dC(10,-70);
+    _c->dS(80,-70);
+    _c->dS(30,10);
+    _c->dS(0,-80);
+    _c->dC(60,80);
+    _c->dC(5,-10);
+    _c->dS(30,-10);
+    _c->dC(10,-90);
+    _c->dS(70,-90);
+    _c->dS(50,0);
 }
 
-// comment
+// 車
 void CourceManager::cPtn54(CourceMaker* _c){
     auto kaku = _c->_dirkaku;
-    _c->dC(30,-10+kaku);
-    _c->dC(30,kaku);
+    kaku = -15;
+    _c->dS(100,kaku);
+    _c->dS(0,80+kaku);
+    _c->dS(20,80+kaku);
+    _c->dC(40,5+kaku);
+    _c->dS(20,5+kaku);
+    _c->dS(20,70+kaku);
+    _c->dC(100,0+kaku);
+    _c->dS(50,0+kaku);
+    _c->dC(200,-80+kaku);
+    _c->dS(50,0+kaku);
 }
 
-// comment
+// 3段段差穴下り
 void CourceManager::cPtn55(CourceMaker* _c){
     auto kaku = _c->_dirkaku;
-    _c->dC(30,-10+kaku);
-    _c->dC(30,kaku);
+    _c->dS(100,kaku);
+    for(int i=0;i<3;i++){
+        _c->dS(100,-90);
+        _c->dS(80,0);
+        _c->dS(100,90);
+        _c->dS(70,kaku);
+    }
+    _c->dS(30,kaku);
 }
 
-// comment
+// スーパー幅跳び
 void CourceManager::cPtn56(CourceMaker* _c){
     auto kaku = _c->_dirkaku;
-    _c->dC(30,-10+kaku);
-    _c->dC(30,kaku);
+    _c->dS(150,-20);
+    _c->dC(40,0);
+    _c->dS(150,0);
+    _c->dS(0,90);
+    _c->dC(10,-90);
+    _c->dS(100,-90);
+    _c->dS(100,0);
+    _c->dS(100,90);
+    _c->dS(50,0);
 }
 
 // comment
