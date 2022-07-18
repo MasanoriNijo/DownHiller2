@@ -2154,10 +2154,10 @@ void CourceManager::cPtn37(CourceMaker* _c){
 // 段差上り
 void CourceManager::cPtn38(CourceMaker* _c){
     auto kaku = _c->_dirkaku;
-    _c->dS(50,-5);
+    _c->dS(70,-10);
     for(int i=0;i<4;i++){
-        _c->dS(30,90);
-        _c->dS(50,-5);
+        _c->dS(20,80);
+        _c->dS(70,-10);
     }
     _c->dS(80,0);
 }
@@ -2166,10 +2166,10 @@ void CourceManager::cPtn38(CourceMaker* _c){
 void CourceManager::cPtn39(CourceMaker* _c){
     auto kaku = _c->_dirkaku;
     _c->dS(100,0);
-    _c->dC(30,70);
+    _c->dC(30,60);
     _c->dS(30,-90);
     _c->dS(30,0);
-    _c->dS(60,90);
+    _c->dS(50,90);
     _c->dS(150,0);
 }
 
@@ -2212,7 +2212,7 @@ void CourceManager::cPtn42(CourceMaker* _c){
 // 富士山
 void CourceManager::cPtn43(CourceMaker* _c){
     auto kaku = _c->_dirkaku;
-    _c->dS(10,kaku);
+    _c->dS(100,kaku);
     _c->dC(40,85);
     _c->dS(50,0);
     _c->dC(40,0);
@@ -2222,12 +2222,12 @@ void CourceManager::cPtn43(CourceMaker* _c){
 // 角富士山
 void CourceManager::cPtn44(CourceMaker* _c){
     auto kaku = _c->_dirkaku;
-    _c->dS(80,kaku);
+    _c->dS(120,kaku);
     _c->dS(80,kaku + 45);
     _c->dS(80,-90);
     _c->dS(50,0);
     _c->dS(80,90);
-    _c->dC(80,kaku);
+    _c->dS(80,kaku);
 }
 
 // 段差＋ジャンプ穴
@@ -2249,7 +2249,7 @@ void CourceManager::cPtn46(CourceMaker* _c){
     _c->dS(100, -90);
     _c->dS(70, 0);
     _c->dS(100, 90);
-    _c->dS(50, 0);
+    _c->dS(100, 0);
 }
 
 // 穴ジャンプ
@@ -2262,11 +2262,18 @@ void CourceManager::cPtn47(CourceMaker* _c){
     _c->dS(50, 0);
 }
 
-// comment
+// 2段ジャンプ
 void CourceManager::cPtn48(CourceMaker* _c){
     auto kaku = _c->_dirkaku;
-    _c->dC(30,-10+kaku);
-    _c->dC(30,kaku);
+    _c->dC(30,-5);
+    _c->dS(100,-5);
+    for(int i = 0;i<2;i++){
+        _c->dS(50,-90);
+        _c->dS(80,0);
+        _c->dS(50,90);
+        _c->dS(50,0);
+    }
+    _c->dS(50,0);
 }
 
 // comment
