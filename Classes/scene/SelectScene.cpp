@@ -143,6 +143,7 @@ void SelectScene::_arrangeBtns(){
 
 void SelectScene::_arrangeBtnsForDebug(){
     setScrollNode(ScrollNode::create());
+    getScrollNode()->setMinScrollPos(-2000);
     getScrollNode()->setMaxScrollPos(2000);
     Vector<MenuItem*> menuItems;
     for(int i=0;i<100;i++){
@@ -166,7 +167,7 @@ void SelectScene::_arrangeBtnsForDebug(){
     auto menu_ = Menu::createWithArray(menuItems);
     menu_->alignItemsVerticallyWithPadding(0);
     menu_->setAnchorPoint(Vec2(0,1));
-    menu_->setPosition(Vec2(10,0));
+    menu_->setPosition(Vec2(20,-100));
     getScrollNode()->addChild(menu_);
     mountNode(getScrollNode(), Vec2::ZERO, OBJ_LAYER_TOP);
     getScrollNode()->setTouchEvent();

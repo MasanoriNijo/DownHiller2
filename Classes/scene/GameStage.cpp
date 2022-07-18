@@ -105,6 +105,8 @@ bool GameStage::init() {
 
 void GameStage::onEnterTransitionDidFinish() {
     GameScene::onEnterTransitionDidFinish();
+    // debug
+    _timeLimit = 0;
     getCourceManager()->checkAndMadeCource(Vec2::ZERO);
     
     // Bikeをセット
