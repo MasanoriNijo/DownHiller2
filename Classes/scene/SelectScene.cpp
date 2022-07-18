@@ -49,6 +49,7 @@ bool SelectScene::init() {
     mountNode(getMenu(), Vec2(winSize.width - getBtn1()->getContentSize().width/2 -10,
                               winSize.height - getBtn1()->getContentSize().height/2 -10), OBJ_LAYER_TOP);
     _arrangeBtns();
+    _arrangeBtnsForDebug();
     
     setCourceManager(CourceManager::create());
     getCourceManager()->getCourceMakerA()->drawStart(Vec2(-10,50), Vec2(winSize.width + 10,ctPt.y - 50));
@@ -72,6 +73,7 @@ void SelectScene::onEnterTransitionDidFinish() {
 MenuItemSprite* SelectScene::genStageBtn(int i){
     
     auto udf = UserDefault::getInstance();
+    UserDefault::getInstance()->setBoolForKey(UDF_BOOL_DEBUG_STAGE, false);
     if(i>udf->getIntegerForKey(UDF_INT_CLEAR_STAGE,0)+1){
         MenuItemSprite* obj = generateMenuItemSprite([this,i](Ref* ref){
             // 本当は何もしない。
@@ -138,6 +140,38 @@ void SelectScene::_arrangeBtns(){
     getMenu4()->alignItemsHorizontallyWithPadding(18);
     mountNode(getMenu4(), Vec2(ctPt.x,winSize.height+topOffset+verticalPitch * 3), OBJ_LAYER_TOP);
 }
+
+void SelectScene::_arrangeBtnsForDebug(){
+    setScrollNode(ScrollNode::create());
+    getScrollNode()->setMaxScrollPos(2000);
+    Vector<MenuItem*> menuItems;
+    for(int i=0;i<100;i++){
+        std::string stageName;
+        if(i<9){
+            stageName = "stage:0"+ST_INT(i);
+        }else{
+            stageName = "stage:"+ST_INT(i);
+        }
+        Label* label_ = Label::createWithTTF(stageName , "irohamaru.ttf", 8);
+        label_->setColor(Color3B::BLACK);
+        label_->setGlobalZOrder(OBJ_LAYER_TOP);
+        MenuItemLabel* obj_ = MenuItemLabel::create(label_, [this,i](Ref* ref){
+            UserDefault::getInstance()->setBoolForKey(UDF_BOOL_DEBUG_STAGE, true);
+            UserDefault::getInstance()->setIntegerForKey(UDF_INT_SELECTED_STAGE, i);
+            transitonScene(GameStage::createScene());
+        });
+        obj_->setGlobalZOrder(OBJ_LAYER_TOP);
+        menuItems.pushBack(obj_);
+    }
+    auto menu_ = Menu::createWithArray(menuItems);
+    menu_->alignItemsVerticallyWithPadding(0);
+    menu_->setAnchorPoint(Vec2(0,1));
+    menu_->setPosition(Vec2(10,0));
+    getScrollNode()->addChild(menu_);
+    mountNode(getScrollNode(), Vec2::ZERO, OBJ_LAYER_TOP);
+    getScrollNode()->setTouchEvent();
+}
+
 
 void SelectScene::update(float dt) {
     // todo

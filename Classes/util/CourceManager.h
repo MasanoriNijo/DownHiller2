@@ -50,6 +50,10 @@ public:
     void setGoal(CourceMaker* _c);
     bool _isSetGoal = false;
     
+    // debug用
+    bool _isDebugComment = true;
+    void setComment(std::string st, CourceMaker* _c);
+    
     void madeCourcePtn1(CourceMaker* _cmaker,int ind);
     void madeCourcePtn2(CourceMaker* _cmaker,int ind);
     void madeCourcePtn3(CourceMaker* _cmaker,int ind);
@@ -72,6 +76,8 @@ public:
     void madeCourcePtn20(CourceMaker* _cmaker,int ind);
     void madeCourcePtn21(CourceMaker* _cmaker,int ind);
     
+    
+    void checkAndMadeCourceForDebug(Vec2 chPt);
     void cPtn00(CourceMaker* _c);
     void cPtn01(CourceMaker* _c);
     void cPtn02(CourceMaker* _c);
