@@ -2387,46 +2387,95 @@ void CourceManager::cPtn56(CourceMaker* _c){
     _c->dS(50,0);
 }
 
-// comment
+// なだらかな坂と石ころ
 void CourceManager::cPtn57(CourceMaker* _c){
     auto kaku = _c->_dirkaku;
-    _c->dC(30,-10+kaku);
-    _c->dC(30,kaku);
+    _c->dC(30,-5);
+    _c->dS(100,-5);
+    _c->dC(300,-20);
+    _c->dS(0,70);
+    _c->dC(10,-110);
+    _c->dS(0,-20);
+    _c->dC(300,-45);
+    _c->dC(40,20);
+    _c->dS(50,20);
+    _c->dC(80,0);
+    _c->dS(50,0);
 }
 
-// comment
+// なだらかな坂と石柱
 void CourceManager::cPtn58(CourceMaker* _c){
     auto kaku = _c->_dirkaku;
-    _c->dC(30,-10+kaku);
-    _c->dC(30,kaku);
+    _c->dC(30,-5);
+    _c->dS(100,-5);
+    _c->dC(300,-20);
+    _c->dS(40,70);
+    _c->dC(10,-110);
+    _c->dS(40,-90);
+    _c->dS(0,-20);
+    _c->dC(300,-45);
+    _c->dC(40,20);
+    _c->dS(50,20);
+    _c->dC(80,0);
+    _c->dS(50,0);
 }
 
-// comment
+// 連続した石ころ
 void CourceManager::cPtn59(CourceMaker* _c){
     auto kaku = _c->_dirkaku;
-    _c->dC(30,-10+kaku);
-    _c->dC(30,kaku);
+    _c->dC(30,-5);
+    _c->dS(100,-5);
+    _c->dC(300,-20);
+    _c->dS(0,70);
+    _c->dC(10,-110);
+    _c->dS(0,-20);
+    _c->dC(300,-45);
+    _c->dC(40,20);
+    _c->dS(50,20);
+    _c->dS(0,90);
+    _c->dC(10,-90);
+    _c->dS(0,20);
+    _c->dC(80,0);
+    _c->dS(50,0);
 }
 
-// comment
+// 連続した石柱
 void CourceManager::cPtn60(CourceMaker* _c){
     auto kaku = _c->_dirkaku;
-    _c->dC(30,-10+kaku);
-    _c->dC(30,kaku);
+    _c->dC(30,-5);
+    _c->dS(150,-20);
+    for(int i=0;i<3;i++){
+        _c->dS(40,70);
+        _c->dC(10,-110);
+        _c->dS(40,-90);
+        _c->dS(150,-20);
+    }
+    _c->dS(50,0);
 }
 
-// comment
+// 波波プッシュ10連
 void CourceManager::cPtn61(CourceMaker* _c){
     auto kaku = _c->_dirkaku;
-    _c->dC(30,-10+kaku);
-    _c->dC(30,kaku);
+    _c->dC(30,0);
+    for(int i=0;i<10;i++){
+        _c->dC(30,-45);
+        _c->dC(30,45);
+    }
+    _c->dS(50,0);
 }
 
-// comment
+// ジャンプ台
 void CourceManager::cPtn62(CourceMaker* _c){
     auto kaku = _c->_dirkaku;
-    _c->dC(30,-10+kaku);
-    _c->dC(30,kaku);
+    _c->dC(80,-45);
+    _c->dS(500,-45);
+    _c->dC(50,45);
+    _c->dS(150,0);
+    _c->dS(100,90);
+    _c->dC(10,-90);
+    _c->dS(100,-90);
+    _c->dS(200,0);
+    
 }
 
 // comment
