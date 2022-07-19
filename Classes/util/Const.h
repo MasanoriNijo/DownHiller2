@@ -110,8 +110,6 @@ static const int CT_ALL = 0xFFFFFFFF;
 // UserDefault::getInstance();
 static const char * UDF_INT_CLEAR_STAGE = "clear_stage";
 static const char * UDF_INT_SELECTED_STAGE = "selected_stage";
-
-
-
+static const char * UDF_BOOL_DEBUG_STAGE = "debug_stage";
 
 #endif

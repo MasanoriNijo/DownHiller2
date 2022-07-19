@@ -71,6 +71,7 @@ void TitleScene::onEnterTransitionDidFinish() {
     //    getAD()->AdShow(false, true, false, false, false, false);
     
     // コースをセット
+    UserDefault::getInstance()->setBoolForKey(UDF_BOOL_DEBUG_STAGE, false);
     getCourceManager()->checkAndMadeCource(Vec2::ZERO);
     
     // bikeをセット

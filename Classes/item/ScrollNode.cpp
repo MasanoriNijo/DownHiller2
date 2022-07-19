@@ -82,6 +82,7 @@ void ScrollNode::update(float dt) {
 void ScrollNode::setTouchEvent(){
     setTouch(TouchEventHelper::create());
     getTouch()->getTouchListenner()->onTouchBegan = [this](Touch* touch,Event* event) {
+        _touched = true;
         _touchPt.set(touch->getLocation());
         return true;
     };

@@ -33,6 +33,7 @@ public:
     void update(float dt) override;
     void onEnterTransitionDidFinish() override;
     void _arrangeBtns();
+    void _arrangeBtnsForDebug();
     MenuItemSprite* genStageBtn(int i);
 };
 

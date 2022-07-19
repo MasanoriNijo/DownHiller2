@@ -229,8 +229,13 @@ void CourceManager::setStartAndTargetFromCource(CourceMaker* _c){
 }
 
 void CourceManager::checkAndMadeCource(Vec2 chPt){
-    _dirkaku = courceIndex%2 ? getCourceMakerA()->_dirkaku : getCourceMakerB()->_dirkaku;
+    
+    if(UserDefault::getInstance()->getBoolForKey(UDF_BOOL_DEBUG_STAGE, false)){
+        checkAndMadeCourceForDebug(chPt);
+        return;
+    }
     if(chPt.x > (getStartPt().x + 80) || !courceIndex){
+        _dirkaku = courceIndex%2 ? getCourceMakerA()->_dirkaku : getCourceMakerB()->_dirkaku;
         switch (selStg) {
             case 0:
                 madeCourcePtnForTitle(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
@@ -329,6 +334,19 @@ void CourceManager::setGoal(CourceMaker* _c){
         _c->addChild(getGoalFlg());
         _isSetGoal = true;
     }
+}
+
+void CourceManager::setComment(std::string st,CourceMaker* _c){
+    if(!_isDebugComment){
+        return;
+    }
+    Label* _comment = Label::createWithTTF("← " + st, "irohamaru.ttf", 8);
+    _comment->setGlobalZOrder(OBJ_LAYER_TOP);
+    _comment->setAnchorPoint(Vec2(0,0));
+    _comment->setPosition(_c->getTergetPt());
+    Vec2 hosei_ = _c->getCalc()->rotByRad(_c->getTargetDir(), M_PI/2);
+    _comment->setRotation(_c->getCalc()->nomlKaku(Vec2::ZERO,hosei_));
+    _c->addChild(_comment);
 }
 
 void CourceManager::madeCourcePtnForTitle(CourceMaker* _c,int ind){
@@ -832,7 +850,7 @@ void CourceManager::madeCourcePtn12(CourceMaker* _c,int ind){
         case 0:
             _c->dS(600,0);
             setStart(_c);
-            _c->dS(100,-5);
+            _c->dS(100,0);
             break;
         case 1:
             cPtn00(_c);
@@ -1179,51 +1197,581 @@ void CourceManager::madeCourcePtn20(CourceMaker* _c,int ind){
     _c->madePhysiceBody();
 }
 
+void CourceManager::checkAndMadeCourceForDebug(Vec2 chPt){
+    if(chPt.x > (getStartPt().x + 80) || !courceIndex){
+        _dirkaku = courceIndex%2 ? getCourceMakerA()->_dirkaku : getCourceMakerB()->_dirkaku;
+        auto _c = courceIndex%2 ? getCourceMakerB() : getCourceMakerA();
+        _c->drawStart(getTergetPt(),getTargetDir());
+        _c->_dirkaku = _dirkaku;
+        switch (courceIndex) {
+            case 0:
+                _c->dS(600,0);
+                setStart(_c);
+                _c->dS(30,-3);
+                break;
+            case 1:
+                switch (selStg) {
+                    case 0:
+                        setComment("cPtn00",_c);
+                        cPtn00(_c);
+                        break;
+                    case 1:
+                        setComment("cPtn01",_c);
+                        cPtn01(_c);
+                        break;
+                    case 2:
+                        setComment("cPtn02",_c);
+                        cPtn02(_c);
+                        break;
+                    case 3:
+                        setComment("cPtn03",_c);
+                        cPtn03(_c);
+                        break;
+                    case 4:
+                        setComment("cPtn04",_c);
+                        cPtn04(_c);
+                        break;
+                    case 5:
+                        setComment("cPtn05",_c);
+                        cPtn05(_c);
+                        break;
+                    case 6:
+                        setComment("cPtn06",_c);
+                        cPtn06(_c);
+                        break;
+                    case 7:
+                        setComment("cPtn07",_c);
+                        cPtn07(_c);
+                        break;
+                    case 8:
+                        setComment("cPtn08",_c);
+                        cPtn08(_c);
+                        break;
+                    case 9:
+                        setComment("cPtn09",_c);
+                        cPtn09(_c);
+                        break;
+                    case 10:
+                        setComment("cPtn10",_c);
+                        cPtn10(_c);
+                        break;
+                    case 11:
+                        setComment("cPtn11",_c);
+                        cPtn11(_c);
+                        break;
+                    case 12:
+                        setComment("cPtn12",_c);
+                        cPtn12(_c);
+                        break;
+                    case 13:
+                        setComment("cPtn13",_c);
+                        cPtn13(_c);
+                        break;
+                    case 14:
+                        setComment("cPtn14",_c);
+                        cPtn14(_c);
+                        break;
+                    case 15:
+                        setComment("cPtn15",_c);
+                        cPtn15(_c);
+                        break;
+                    case 16:
+                        setComment("cPtn16",_c);
+                        cPtn16(_c);
+                        break;
+                    case 17:
+                        setComment("cPtn17",_c);
+                        cPtn17(_c);
+                        break;
+                    case 18:
+                        setComment("cPtn18",_c);
+                        cPtn18(_c);
+                        break;
+                    case 19:
+                        setComment("cPtn19",_c);
+                        cPtn19(_c);
+                        break;
+                    case 20:
+                        setComment("cPtn20",_c);
+                        cPtn20(_c);
+                        break;
+                    case 21:
+                        setComment("cPtn21",_c);
+                        cPtn21(_c);
+                        break;
+                    case 22:
+                        setComment("cPtn22",_c);
+                        cPtn22(_c);
+                        break;
+                    case 23:
+                        setComment("cPtn23",_c);
+                        cPtn23(_c);
+                        break;
+                    case 24:
+                        setComment("cPtn24",_c);
+                        cPtn24(_c);
+                        break;
+                    case 25:
+                        setComment("cPtn25",_c);
+                        cPtn25(_c);
+                        break;
+                    case 26:
+                        setComment("cPtn26",_c);
+                        cPtn26(_c);
+                        break;
+                    case 27:
+                        setComment("cPtn27",_c);
+                        cPtn27(_c);
+                        break;
+                    case 28:
+                        setComment("cPtn28",_c);
+                        cPtn28(_c);
+                        break;
+                    case 29:
+                        setComment("cPtn29",_c);
+                        cPtn29(_c);
+                        break;
+                    case 30:
+                        setComment("cPtn30",_c);
+                        cPtn30(_c);
+                        break;
+                    case 31:
+                        setComment("cPtn31",_c);
+                        cPtn31(_c);
+                        break;
+                    case 32:
+                        setComment("cPtn32",_c);
+                        cPtn32(_c);
+                        break;
+                    case 33:
+                        setComment("cPtn33",_c);
+                        cPtn33(_c);
+                        break;
+                    case 34:
+                        setComment("cPtn34",_c);
+                        cPtn34(_c);
+                        break;
+                    case 35:
+                        setComment("cPtn35",_c);
+                        cPtn35(_c);
+                        break;
+                    case 36:
+                        setComment("cPtn36",_c);
+                        cPtn36(_c);
+                        break;
+                    case 37:
+                        setComment("cPtn37",_c);
+                        cPtn37(_c);
+                        break;
+                    case 38:
+                        setComment("cPtn38",_c);
+                        cPtn38(_c);
+                        break;
+                    case 39:
+                        setComment("cPtn39",_c);
+                        cPtn39(_c);
+                        break;
+                    case 40:
+                        setComment("cPtn40",_c);
+                        cPtn40(_c);
+                        break;
+                    case 41:
+                        setComment("cPtn41",_c);
+                        cPtn41(_c);
+                        break;
+                    case 42:
+                        setComment("cPtn42",_c);
+                        cPtn42(_c);
+                        break;
+                    case 43:
+                        setComment("cPtn43",_c);
+                        cPtn43(_c);
+                        break;
+                    case 44:
+                        setComment("cPtn44",_c);
+                        cPtn44(_c);
+                        break;
+                    case 45:
+                        setComment("cPtn45",_c);
+                        cPtn45(_c);
+                        break;
+                    case 46:
+                        setComment("cPtn46",_c);
+                        cPtn46(_c);
+                        break;
+                    case 47:
+                        setComment("cPtn47",_c);
+                        cPtn47(_c);
+                        break;
+                    case 48:
+                        setComment("cPtn48",_c);
+                        cPtn48(_c);
+                        break;
+                    case 49:
+                        setComment("cPtn49",_c);
+                        cPtn49(_c);
+                        break;
+                    case 50:
+                        setComment("cPtn50",_c);
+                        cPtn50(_c);
+                        break;
+                    case 51:
+                        setComment("cPtn51",_c);
+                        cPtn51(_c);
+                        break;
+                    case 52:
+                        setComment("cPtn52",_c);
+                        cPtn52(_c);
+                        break;
+                    case 53:
+                        setComment("cPtn53",_c);
+                        cPtn53(_c);
+                        break;
+                    case 54:
+                        setComment("cPtn54",_c);
+                        cPtn54(_c);
+                        break;
+                    case 55:
+                        setComment("cPtn55",_c);
+                        cPtn55(_c);
+                        break;
+                    case 56:
+                        setComment("cPtn56",_c);
+                        cPtn56(_c);
+                        break;
+                    case 57:
+                        setComment("cPtn57",_c);
+                        cPtn57(_c);
+                        break;
+                    case 58:
+                        setComment("cPtn58",_c);
+                        cPtn58(_c);
+                        break;
+                    case 59:
+                        setComment("cPtn59",_c);
+                        cPtn59(_c);
+                        break;
+                    case 60:
+                        setComment("cPtn60",_c);
+                        cPtn60(_c);
+                        break;
+                    case 61:
+                        setComment("cPtn61",_c);
+                        cPtn61(_c);
+                        break;
+                    case 62:
+                        setComment("cPtn62",_c);
+                        cPtn62(_c);
+                        break;
+                    case 63:
+                        setComment("cPtn63",_c);
+                        cPtn63(_c);
+                        break;
+                    case 64:
+                        setComment("cPtn64",_c);
+                        cPtn64(_c);
+                        break;
+                    case 65:
+                        setComment("cPtn65",_c);
+                        cPtn65(_c);
+                        break;
+                    case 66:
+                        setComment("cPtn66",_c);
+                        cPtn66(_c);
+                        break;
+                    case 67:
+                        setComment("cPtn67",_c);
+                        cPtn67(_c);
+                        break;
+                    case 68:
+                        setComment("cPtn68",_c);
+                        cPtn68(_c);
+                        break;
+                    case 69:
+                        setComment("cPtn69",_c);
+                        cPtn69(_c);
+                        break;
+                    case 70:
+                        setComment("cPtn70",_c);
+                        cPtn70(_c);
+                        break;
+                    case 71:
+                        setComment("cPtn71",_c);
+                        cPtn71(_c);
+                        break;
+                    case 72:
+                        setComment("cPtn72",_c);
+                        cPtn72(_c);
+                        break;
+                    case 73:
+                        setComment("cPtn73",_c);
+                        cPtn73(_c);
+                        break;
+                    case 74:
+                        setComment("cPtn74",_c);
+                        cPtn74(_c);
+                        break;
+                    case 75:
+                        setComment("cPtn75",_c);
+                        cPtn75(_c);
+                        break;
+                    case 76:
+                        setComment("cPtn76",_c);
+                        cPtn76(_c);
+                        break;
+                    case 77:
+                        setComment("cPtn77",_c);
+                        cPtn77(_c);
+                        break;
+                    case 78:
+                        setComment("cPtn78",_c);
+                        cPtn78(_c);
+                        break;
+                    case 79:
+                        setComment("cPtn79",_c);
+                        cPtn79(_c);
+                        break;
+                    case 80:
+                        setComment("cPtn80",_c);
+                        cPtn80(_c);
+                        break;
+                    case 81:
+                        setComment("cPtn81",_c);
+                        cPtn81(_c);
+                        break;
+                    case 82:
+                        setComment("cPtn82",_c);
+                        cPtn82(_c);
+                        break;
+                    case 83:
+                        setComment("cPtn83",_c);
+                        cPtn83(_c);
+                        break;
+                    case 84:
+                        setComment("cPtn84",_c);
+                        cPtn84(_c);
+                        break;
+                    case 85:
+                        setComment("cPtn85",_c);
+                        cPtn85(_c);
+                        break;
+                    case 86:
+                        setComment("cPtn86",_c);
+                        cPtn86(_c);
+                        break;
+                    case 87:
+                        setComment("cPtn87",_c);
+                        cPtn87(_c);
+                        break;
+                    case 88:
+                        setComment("cPtn88",_c);
+                        cPtn88(_c);
+                        break;
+                    case 89:
+                        setComment("cPtn89",_c);
+                        cPtn89(_c);
+                        break;
+                    case 90:
+                        setComment("cPtn90",_c);
+                        cPtn90(_c);
+                        break;
+                    case 91:
+                        setComment("cPtn91",_c);
+                        cPtn91(_c);
+                        break;
+                    case 92:
+                        setComment("cPtn92",_c);
+                        cPtn92(_c);
+                        break;
+                    case 93:
+                        setComment("cPtn93",_c);
+                        cPtn93(_c);
+                        break;
+                    case 94:
+                        setComment("cPtn94",_c);
+                        cPtn94(_c);
+                        break;
+                    case 95:
+                        setComment("cPtn95",_c);
+                        cPtn95(_c);
+                        break;
+                    case 96:
+                        setComment("cPtn96",_c);
+                        cPtn96(_c);
+                        break;
+                    case 97:
+                        setComment("cPtn97",_c);
+                        cPtn97(_c);
+                        break;
+                    case 98:
+                        setComment("cPtn98",_c);
+                        cPtn98(_c);
+                        break;
+                    case 99:
+                        setComment("cPtn99",_c);
+                        cPtn99(_c);
+                        break;
+                    case 100:
+                        setComment("cPtn100",_c);
+                        cPtn100(_c);
+                        break;
+                    case 101:
+                        setComment("cPtn101",_c);
+                        cPtn101(_c);
+                        break;
+                    case 102:
+                        setComment("cPtn102",_c);
+                        cPtn102(_c);
+                        break;
+                    case 103:
+                        setComment("cPtn103",_c);
+                        cPtn103(_c);
+                        break;
+                    case 104:
+                        setComment("cPtn104",_c);
+                        cPtn104(_c);
+                        break;
+                    case 105:
+                        setComment("cPtn105",_c);
+                        cPtn105(_c);
+                        break;
+                    case 106:
+                        setComment("cPtn106",_c);
+                        cPtn106(_c);
+                        break;
+                    case 107:
+                        setComment("cPtn107",_c);
+                        cPtn107(_c);
+                        break;
+                    case 108:
+                        setComment("cPtn108",_c);
+                        cPtn108(_c);
+                        break;
+                    case 109:
+                        setComment("cPtn109",_c);
+                        cPtn109(_c);
+                        break;
+                    case 110:
+                        setComment("cPtn110",_c);
+                        cPtn110(_c);
+                        break;
+                    case 111:
+                        setComment("cPtn111",_c);
+                        cPtn111(_c);
+                        break;
+                    case 112:
+                        setComment("cPtn112",_c);
+                        cPtn112(_c);
+                        break;
+                    case 113:
+                        setComment("cPtn113",_c);
+                        cPtn113(_c);
+                        break;
+                    case 114:
+                        setComment("cPtn114",_c);
+                        cPtn114(_c);
+                        break;
+                    case 115:
+                        setComment("cPtn115",_c);
+                        cPtn115(_c);
+                        break;
+                    case 116:
+                        setComment("cPtn116",_c);
+                        cPtn116(_c);
+                        break;
+                    case 117:
+                        setComment("cPtn117",_c);
+                        cPtn117(_c);
+                        break;
+                    case 118:
+                        setComment("cPtn118",_c);
+                        cPtn118(_c);
+                        break;
+                    case 119:
+                        setComment("cPtn119",_c);
+                        cPtn119(_c);
+                        break;
+                    case 120:
+                        setComment("cPtn120",_c);
+                        cPtn120(_c);
+                        break;
+                    case 121:
+                        setComment("cPtn121",_c);
+                        cPtn121(_c);
+                        break;
+                    case 122:
+                        setComment("cPtn122",_c);
+                        cPtn122(_c);
+                        break;
+                    case 123:
+                        setComment("cPtn123",_c);
+                        cPtn123(_c);
+                        break;
+                }
+                break;
+            case 2:
+                _c->dS(100,0);
+                setGoal(_c);
+                _c->dS(1000,0);
+                _c->dS(100,90);
+                break;
+        }
+        _c->madePhysiceBody();
+        getGurd()->setPosition(getStartPt());
+        setStartAndTargetFromCource(courceIndex%2 ? getCourceMakerB() : getCourceMakerA());
+        courceIndex ++;
+    }
+}
+
+
 // 滑らかな波波
 void CourceManager::cPtn00(CourceMaker* _c){
-    auto kaku = _dirkaku;
-    _c->dC(30,-10+kaku);
-    _c->dC(30,kaku);
-    _c->dC(30,-10+kaku);
-    _c->dC(30,kaku);
-    _c->dC(30,-10+kaku);
-    _c->dC(30,kaku);
+    setComment("cPtn00",_c);
+    auto kaku = _c->_dirkaku;
+    for(int i=0;i<4;i++){
+        _c->dC(180,-10+kaku);
+        _c->dC(180,5 + kaku);
+    }
+    _c->dC(180,kaku);
 }
 
 // 滑らかな波波
 void CourceManager::cPtn01(CourceMaker* _c){
-    auto kaku = _dirkaku;
-    _c->dC(80,-30+kaku);
-    _c->dC(30,kaku);
-    _c->dC(80,-30+kaku);
-    _c->dC(30,kaku);
-    _c->dC(80,-30+kaku);
-    _c->dC(30,kaku);
+    setComment("cPtn01",_c);
+    auto kaku = _c->_dirkaku;
+    for(int i=0;i<4;i++){
+        _c->dC(80,-25+kaku);
+        _c->dC(80,20 + kaku);
+    }
+    _c->dC(80,kaku);
 }
 
 // 滑らかな波波
 void CourceManager::cPtn02(CourceMaker* _c){
-    auto kaku = _dirkaku;
-    _c->dC(100,-45+kaku);
-    _c->dC(50,kaku);
-    _c->dC(100,-45+kaku);
-    _c->dC(50,kaku);
-    _c->dC(100,-45+kaku);
-    _c->dC(50,kaku);
+    setComment("cPtn02",_c);
+    auto kaku = _c->_dirkaku;
+    for(int i=0;i<4;i++){
+        _c->dC(80,-40+kaku);
+        _c->dC(80,20+kaku);
+    }
+    _c->dC(80,kaku);
 }
 
 // 滑らかな波波
 void CourceManager::cPtn03(CourceMaker* _c){
-    auto kaku = _dirkaku;
-    _c->dC(100,-70+kaku);
-    _c->dC(100,kaku);
-    _c->dC(80,5+kaku);
-    _c->dC(70,kaku);
+    setComment("cPtn03",_c);
+    auto kaku = _c->_dirkaku;
+    for(int i=0;i<4;i++){
+        _c->dC(80,-50+kaku);
+        _c->dC(80,45+kaku);
+    }
+    _c->dC(80,kaku);
 }
 
 // 滑らかな波波
 void CourceManager::cPtn04(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    setComment("cPtn04",_c);
+    auto kaku = _c->_dirkaku;
     _c->dC(80,-25+kaku);
     _c->dC(80,kaku);
     _c->dC(80,-50+kaku);
@@ -1236,7 +1784,8 @@ void CourceManager::cPtn04(CourceMaker* _c){
 
 // 滑らかな波波
 void CourceManager::cPtn05(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    setComment("cPtn05",_c);
+    auto kaku = _c->_dirkaku;
     _c->dC(120,-25+kaku);
     _c->dC(80,5+kaku);
     _c->dC(130,-60+kaku);
@@ -1249,38 +1798,38 @@ void CourceManager::cPtn05(CourceMaker* _c){
 
 // 滑らかな波波
 void CourceManager::cPtn06(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(50,-70+kaku);
     _c->dC(50,5+kaku);
     _c->dC(50,-70+kaku);
     _c->dC(50,5+kaku);
     _c->dC(50,-70+kaku);
-    _c->dC(50,5+kaku);
+    _c->dC(50,kaku);
 }
 
 // 滑らかな波波
 void CourceManager::cPtn07(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(300,-70+kaku);
     _c->dC(80,5+kaku);
     _c->dC(50,-70+kaku);
-    _c->dC(100,5+kaku);
+    _c->dC(100,kaku);
 }
 
 // comment
 void CourceManager::cPtn08(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(90,-45+kaku);
     _c->dC(150,5+kaku);
     _c->dC(130,-70+kaku);
     _c->dC(50,5+kaku);
     _c->dC(50,-30+kaku);
-    _c->dC(50,5+kaku);
+    _c->dC(50,kaku);
 }
 
 // 滑らかな波波
 void CourceManager::cPtn09(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(90,-45+kaku);
     _c->dC(150,5+kaku);
     _c->dC(130,-45+kaku);
@@ -1291,49 +1840,47 @@ void CourceManager::cPtn09(CourceMaker* _c){
 
 // カクカク
 void CourceManager::cPtn10(CourceMaker* _c){
-    auto kaku = _dirkaku;
-    _c->dS(30,-10+kaku);
-    _c->dS(30,kaku);
-    _c->dS(30,-10+kaku);
-    _c->dS(30,kaku);
-    _c->dS(30,-10+kaku);
-    _c->dS(30,kaku);
+    auto kaku = _c->_dirkaku;
+    for(int i=0;i<4;i++){
+        _c->dS(180,-10+kaku);
+        _c->dS(180,5 + kaku);
+    }
+    _c->dS(180,kaku);
 }
 
 // カクカク
 void CourceManager::cPtn11(CourceMaker* _c){
-    auto kaku = _dirkaku;
-    _c->dS(80,-30+kaku);
-    _c->dS(30,kaku);
-    _c->dS(80,-30+kaku);
-    _c->dS(30,kaku);
-    _c->dS(80,-30+kaku);
-    _c->dS(30,kaku);
+    auto kaku = _c->_dirkaku;
+    for(int i=0;i<4;i++){
+        _c->dS(80,-25+kaku);
+        _c->dS(80,20 + kaku);
+    }
+    _c->dS(80,kaku);
 }
 
 // カクカク
 void CourceManager::cPtn12(CourceMaker* _c){
-    auto kaku = _dirkaku;
-    _c->dS(100,-45+kaku);
-    _c->dS(50,kaku);
-    _c->dS(100,-45+kaku);
-    _c->dS(50,kaku);
-    _c->dS(100,-45+kaku);
-    _c->dS(50,kaku);
+    auto kaku = _c->_dirkaku;
+    for(int i=0;i<4;i++){
+        _c->dS(80,-40+kaku);
+        _c->dS(80,20+kaku);
+    }
+    _c->dS(80,kaku);
 }
 
 // カクカク
 void CourceManager::cPtn13(CourceMaker* _c){
-    auto kaku = _dirkaku;
-    _c->dS(100,-70+kaku);
-    _c->dS(100,kaku);
-    _c->dS(80,5+kaku);
-    _c->dS(70,kaku);
+    auto kaku = _c->_dirkaku;
+    for(int i=0;i<4;i++){
+        _c->dS(80,-50+kaku);
+        _c->dS(80,45+kaku);
+    }
+    _c->dS(80,kaku);
 }
 
 // カクカク
 void CourceManager::cPtn14(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dS(80,-25+kaku);
     _c->dS(80,kaku);
     _c->dS(80,-50+kaku);
@@ -1346,7 +1893,7 @@ void CourceManager::cPtn14(CourceMaker* _c){
 
 // カクカク
 void CourceManager::cPtn15(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dS(120,-25+kaku);
     _c->dS(80,5+kaku);
     _c->dS(130,-60+kaku);
@@ -1359,27 +1906,27 @@ void CourceManager::cPtn15(CourceMaker* _c){
 
 // comment
 void CourceManager::cPtn16(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dS(50,-70+kaku);
     _c->dS(50,5+kaku);
     _c->dS(50,-70+kaku);
     _c->dS(50,5+kaku);
     _c->dS(50,-70+kaku);
-    _c->dS(50,5+kaku);
+    _c->dS(50,kaku);
 }
 
 // カクカク
 void CourceManager::cPtn17(CourceMaker* _c){
-    auto kaku = _dirkaku;
-    _c->dS(300,-70+kaku);
-    _c->dS(80,5+kaku);
+    auto kaku = _c->_dirkaku;
+    _c->dS(150,-70+kaku);
+    _c->dS(120,5+kaku);
     _c->dS(50,-70+kaku);
-    _c->dS(100,5+kaku);
+    _c->dS(100,kaku);
 }
 
 // カクカク
 void CourceManager::cPtn18(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dS(90,-45+kaku);
     _c->dS(150,5+kaku);
     _c->dS(130,-70+kaku);
@@ -1390,7 +1937,7 @@ void CourceManager::cPtn18(CourceMaker* _c){
 
 // カクカク
 void CourceManager::cPtn19(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dS(90,-45+kaku);
     _c->dS(150,5+kaku);
     _c->dS(130,-45+kaku);
@@ -1401,40 +1948,40 @@ void CourceManager::cPtn19(CourceMaker* _c){
 
 // 凸
 void CourceManager::cPtn20(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     for(int i=0;i<3;i++){
-        _c->dS(50,kaku);
+        _c->dS(100,kaku);
         _c->dS(0,90+kaku);
         _c->dC(10,-90 + kaku);
-        _c->dS(20,kaku);
     }
+    _c->dS(30,kaku);
 }
 
 // 凸
 void CourceManager::cPtn21(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     for(int i=0;i<3;i++){
-        _c->dS(50,kaku);
+        _c->dS(100,kaku);
         _c->dS(0,90+kaku);
         _c->dC(20,-90 + kaku);
-        _c->dS(40,kaku);
     }
+    _c->dS(30,kaku);
 }
 
 // 凸
 void CourceManager::cPtn22(CourceMaker* _c){
-    auto kaku = _dirkaku;
-    for(int i=0;i<2;i++){
-        _c->dS(100,kaku);
+    auto kaku = _c->_dirkaku;
+    for(int i=0;i<1;i++){
+        _c->dS(150,kaku);
         _c->dS(0,90+kaku);
         _c->dC(30,-90 + kaku);
-        _c->dS(80,kaku);
     }
+    _c->dS(80,kaku);
 }
 
 // 凸
 void CourceManager::cPtn23(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     for(int i=0;i<1;i++){
         _c->dS(200,kaku);
         _c->dS(0,90+kaku);
@@ -1445,7 +1992,7 @@ void CourceManager::cPtn23(CourceMaker* _c){
 
 // 凸
 void CourceManager::cPtn24(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     for(int i=0;i<1;i++){
         _c->dS(200,kaku);
         _c->dC(30,80 + kaku);
@@ -1457,7 +2004,7 @@ void CourceManager::cPtn24(CourceMaker* _c){
 
 // 凹
 void CourceManager::cPtn25(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     for(int i=0;i<3;i++){
         _c->dS(50,kaku);
         _c->dS(0,-90+kaku);
@@ -1468,7 +2015,7 @@ void CourceManager::cPtn25(CourceMaker* _c){
 
 // 凹
 void CourceManager::cPtn26(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     for(int i=0;i<3;i++){
         _c->dS(50,kaku);
         _c->dS(0,-90+kaku);
@@ -1479,7 +2026,7 @@ void CourceManager::cPtn26(CourceMaker* _c){
 
 // 凹
 void CourceManager::cPtn27(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     for(int i=0;i<2;i++){
         _c->dS(100,kaku);
         _c->dS(0,-90+kaku);
@@ -1490,7 +2037,7 @@ void CourceManager::cPtn27(CourceMaker* _c){
 
 // 凹
 void CourceManager::cPtn28(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     for(int i=0;i<1;i++){
         _c->dS(200,kaku);
         _c->dC(50,-70 + kaku);
@@ -1502,7 +2049,7 @@ void CourceManager::cPtn28(CourceMaker* _c){
 
 // 凹
 void CourceManager::cPtn29(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     for(int i=0;i<1;i++){
         _c->dS(200,kaku);
         _c->dC(30,-80 + kaku);
@@ -1514,10 +2061,10 @@ void CourceManager::cPtn29(CourceMaker* _c){
 
 // 段差下り
 void CourceManager::cPtn30(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,0);
     _c->dS(80,0);
-    for(int i=0;i<5;i++){
+    for(int i=0;i<20;i++){
         _c->dS(20,-90);
         _c->dS(40,0);
     }
@@ -1526,31 +2073,31 @@ void CourceManager::cPtn30(CourceMaker* _c){
 
 // 段差下り
 void CourceManager::cPtn31(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,0);
     _c->dS(80,0);
-    for(int i=0;i<5;i++){
+    for(int i=0;i<20;i++){
         _c->dS(40,-90);
-        _c->dS(40,0);
+        _c->dS(80,0);
     }
     _c->dS(80,0);
 }
 
 // 段差下り
 void CourceManager::cPtn32(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,0);
     _c->dS(80,0);
     for(int i=0;i<3;i++){
         _c->dS(60,-90);
-        _c->dS(50,0);
+        _c->dS(100,0);
     }
     _c->dS(80,0);
 }
 
 // 段差下り
 void CourceManager::cPtn33(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,0);
     _c->dS(80,0);
     for(int i=0;i<2;i++){
@@ -1562,7 +2109,7 @@ void CourceManager::cPtn33(CourceMaker* _c){
 
 // 段差下り
 void CourceManager::cPtn34(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dS(100,0);
     for(int i=0;i<1;i++){
         _c->dS(100,-90);
@@ -1574,7 +2121,7 @@ void CourceManager::cPtn34(CourceMaker* _c){
 
 // 段差上り
 void CourceManager::cPtn35(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dS(50,0);
     for(int i=0;i<4;i++){
         _c->dS(8,90);
@@ -1585,7 +2132,7 @@ void CourceManager::cPtn35(CourceMaker* _c){
 
 // 段差上り
 void CourceManager::cPtn36(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dS(100,0);
     for(int i=0;i<2;i++){
         _c->dS(20,90);
@@ -1596,7 +2143,7 @@ void CourceManager::cPtn36(CourceMaker* _c){
 
 // 段差上り
 void CourceManager::cPtn37(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dS(50,0);
     for(int i=0;i<1;i++){
         _c->dS(30,90);
@@ -1607,29 +2154,29 @@ void CourceManager::cPtn37(CourceMaker* _c){
 
 // 段差上り
 void CourceManager::cPtn38(CourceMaker* _c){
-    auto kaku = _dirkaku;
-    _c->dS(50,-5);
+    auto kaku = _c->_dirkaku;
+    _c->dS(70,-10);
     for(int i=0;i<4;i++){
-        _c->dS(30,90);
-        _c->dS(50,-5);
+        _c->dS(20,80);
+        _c->dS(70,-10);
     }
     _c->dS(80,0);
 }
 
 // 段差上り
 void CourceManager::cPtn39(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dS(100,0);
-    _c->dC(30,70);
+    _c->dC(30,60);
     _c->dS(30,-90);
     _c->dS(30,0);
-    _c->dS(60,90);
+    _c->dS(50,90);
     _c->dS(150,0);
 }
 
 // 富士山
 void CourceManager::cPtn40(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(100,-20);
     _c->dS(100,-20);
     _c->dC(50,70);
@@ -1642,7 +2189,7 @@ void CourceManager::cPtn40(CourceMaker* _c){
 
 // 富士山
 void CourceManager::cPtn41(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(100,-20);
     _c->dS(150,-20);
     _c->dC(100,70);
@@ -1655,7 +2202,7 @@ void CourceManager::cPtn41(CourceMaker* _c){
 
 // 富士山
 void CourceManager::cPtn42(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dS(10,kaku);
     _c->dC(100,75);
     _c->dS(100,0);
@@ -1665,8 +2212,8 @@ void CourceManager::cPtn42(CourceMaker* _c){
 
 // 富士山
 void CourceManager::cPtn43(CourceMaker* _c){
-    auto kaku = _dirkaku;
-    _c->dS(10,kaku);
+    auto kaku = _c->_dirkaku;
+    _c->dS(100,kaku);
     _c->dC(40,85);
     _c->dS(50,0);
     _c->dC(40,0);
@@ -1675,13 +2222,13 @@ void CourceManager::cPtn43(CourceMaker* _c){
 
 // 角富士山
 void CourceManager::cPtn44(CourceMaker* _c){
-    auto kaku = _dirkaku;
-    _c->dS(80,kaku);
+    auto kaku = _c->_dirkaku;
+    _c->dS(120,kaku);
     _c->dS(80,kaku + 45);
     _c->dS(80,-90);
     _c->dS(50,0);
     _c->dS(80,90);
-    _c->dC(80,kaku);
+    _c->dS(80,kaku);
 }
 
 // 段差＋ジャンプ穴
@@ -1698,17 +2245,17 @@ void CourceManager::cPtn45(CourceMaker* _c){
 
 // 穴ジャンプ
 void CourceManager::cPtn46(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dS(100, 0);
     _c->dS(100, -90);
     _c->dS(70, 0);
     _c->dS(100, 90);
-    _c->dS(50, 0);
+    _c->dS(100, 0);
 }
 
 // 穴ジャンプ
 void CourceManager::cPtn47(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(200, -50);
     _c->dS(100, -90);
     _c->dS(60, 0);
@@ -1716,534 +2263,651 @@ void CourceManager::cPtn47(CourceMaker* _c){
     _c->dS(50, 0);
 }
 
-// comment
+// 2段ジャンプ
 void CourceManager::cPtn48(CourceMaker* _c){
-    auto kaku = _dirkaku;
-    _c->dC(30,-10+kaku);
-    _c->dC(30,kaku);
+    auto kaku = _c->_dirkaku;
+    _c->dC(30,-5);
+    _c->dS(100,-5);
+    for(int i = 0;i<2;i++){
+        _c->dS(50,-90);
+        _c->dS(80,0);
+        _c->dS(50,90);
+        _c->dS(50,0);
+    }
+    _c->dS(50,0);
 }
 
-// comment
+// 凸小凹大
 void CourceManager::cPtn49(CourceMaker* _c){
-    auto kaku = _dirkaku;
-    _c->dC(30,-10+kaku);
-    _c->dC(30,kaku);
+    auto kaku = _c->_dirkaku;
+    _c->dC(30,0);
+    _c->dS(100,0);
+    _c->dS(0,90);
+    _c->dC(30,-60);
+    _c->dC(60,90);
+    _c->dS(50,0);
 }
 
-// comment
+// 凸小凹大
 void CourceManager::cPtn50(CourceMaker* _c){
-    auto kaku = _dirkaku;
-    _c->dC(30,-10+kaku);
+    auto kaku = _c->_dirkaku;
     _c->dC(30,kaku);
+    _c->dS(100,kaku);
+    _c->dS(0,90+kaku);
+    _c->dC(30,-60+kaku);
+    _c->dC(60,90+kaku);
+    _c->dS(50,kaku);
 }
 
-// comment
+// 凸小凹大
 void CourceManager::cPtn51(CourceMaker* _c){
-    auto kaku = _dirkaku;
-    _c->dC(30,-10+kaku);
-    _c->dC(30,kaku);
+    auto kaku = _c->_dirkaku;
+    _c->dC(30,0);
+    _c->dS(100,0);
+    _c->dS(0,90);
+    _c->dC(20,-90);
+    _c->dC(60,80);
+    _c->dS(50,0);
 }
 
-// comment
+// 凸小凹大
 void CourceManager::cPtn52(CourceMaker* _c){
-    auto kaku = _dirkaku;
-    _c->dC(30,-10+kaku);
+    auto kaku = _c->_dirkaku;
     _c->dC(30,kaku);
+    _c->dS(100,kaku);
+    _c->dS(0,90+kaku);
+    _c->dC(20,-90+kaku);
+    _c->dC(60,80+kaku);
+    _c->dS(50,kaku);
 }
 
-// comment
+// モアイ
 void CourceManager::cPtn53(CourceMaker* _c){
-    auto kaku = _dirkaku;
-    _c->dC(30,-10+kaku);
-    _c->dC(30,kaku);
+    auto kaku = _c->_dirkaku;
+    _c->dS(100,0);
+    _c->dS(10,80);
+    _c->dC(30,23);
+    _c->dS(60,23);
+    _c->dC(5,-50);
+    _c->dS(40,-50);
+    _c->dS(80,30);
+    _c->dC(200,55);
+    _c->dC(10,-70);
+    _c->dS(80,-70);
+    _c->dS(30,10);
+    _c->dS(0,-80);
+    _c->dC(60,80);
+    _c->dC(5,-10);
+    _c->dS(30,-10);
+    _c->dC(10,-90);
+    _c->dS(70,-90);
+    _c->dS(50,0);
 }
 
-// comment
+// 車
 void CourceManager::cPtn54(CourceMaker* _c){
-    auto kaku = _dirkaku;
-    _c->dC(30,-10+kaku);
-    _c->dC(30,kaku);
+    auto kaku = _c->_dirkaku;
+    kaku = -15;
+    _c->dS(100,kaku);
+    _c->dS(0,80+kaku);
+    _c->dS(20,80+kaku);
+    _c->dC(40,5+kaku);
+    _c->dS(20,5+kaku);
+    _c->dS(20,70+kaku);
+    _c->dC(100,0+kaku);
+    _c->dS(50,0+kaku);
+    _c->dC(200,-80+kaku);
+    _c->dS(50,0+kaku);
 }
 
-// comment
+// 3段段差穴下り
 void CourceManager::cPtn55(CourceMaker* _c){
-    auto kaku = _dirkaku;
-    _c->dC(30,-10+kaku);
-    _c->dC(30,kaku);
+    auto kaku = _c->_dirkaku;
+    _c->dS(100,kaku);
+    for(int i=0;i<3;i++){
+        _c->dS(100,-90);
+        _c->dS(80,0);
+        _c->dS(100,90);
+        _c->dS(70,kaku);
+    }
+    _c->dS(30,kaku);
 }
 
-// comment
+// スーパー幅跳び
 void CourceManager::cPtn56(CourceMaker* _c){
-    auto kaku = _dirkaku;
-    _c->dC(30,-10+kaku);
-    _c->dC(30,kaku);
+    auto kaku = _c->_dirkaku;
+    _c->dS(150,-20);
+    _c->dC(40,0);
+    _c->dS(150,0);
+    _c->dS(0,90);
+    _c->dC(10,-90);
+    _c->dS(100,-90);
+    _c->dS(100,0);
+    _c->dS(100,90);
+    _c->dS(50,0);
 }
 
-// comment
+// なだらかな坂と石ころ
 void CourceManager::cPtn57(CourceMaker* _c){
-    auto kaku = _dirkaku;
-    _c->dC(30,-10+kaku);
-    _c->dC(30,kaku);
+    auto kaku = _c->_dirkaku;
+    _c->dC(30,-5);
+    _c->dS(100,-5);
+    _c->dC(300,-20);
+    _c->dS(0,70);
+    _c->dC(10,-110);
+    _c->dS(0,-20);
+    _c->dC(300,-45);
+    _c->dC(40,20);
+    _c->dS(50,20);
+    _c->dC(80,0);
+    _c->dS(50,0);
 }
 
-// comment
+// なだらかな坂と石柱
 void CourceManager::cPtn58(CourceMaker* _c){
-    auto kaku = _dirkaku;
-    _c->dC(30,-10+kaku);
-    _c->dC(30,kaku);
+    auto kaku = _c->_dirkaku;
+    _c->dC(30,-5);
+    _c->dS(100,-5);
+    _c->dC(300,-20);
+    _c->dS(40,70);
+    _c->dC(10,-110);
+    _c->dS(40,-90);
+    _c->dS(0,-20);
+    _c->dC(300,-45);
+    _c->dC(40,20);
+    _c->dS(50,20);
+    _c->dC(80,0);
+    _c->dS(50,0);
 }
 
-// comment
+// 連続した石ころ
 void CourceManager::cPtn59(CourceMaker* _c){
-    auto kaku = _dirkaku;
-    _c->dC(30,-10+kaku);
-    _c->dC(30,kaku);
+    auto kaku = _c->_dirkaku;
+    _c->dC(30,-5);
+    _c->dS(100,-5);
+    _c->dC(300,-20);
+    _c->dS(0,70);
+    _c->dC(10,-110);
+    _c->dS(0,-20);
+    _c->dC(300,-45);
+    _c->dC(40,20);
+    _c->dS(50,20);
+    _c->dS(0,90);
+    _c->dC(10,-90);
+    _c->dS(0,20);
+    _c->dC(80,0);
+    _c->dS(50,0);
 }
 
-// comment
+// 連続した石柱
 void CourceManager::cPtn60(CourceMaker* _c){
-    auto kaku = _dirkaku;
-    _c->dC(30,-10+kaku);
-    _c->dC(30,kaku);
+    auto kaku = _c->_dirkaku;
+    _c->dC(30,-5);
+    _c->dS(150,-20);
+    for(int i=0;i<3;i++){
+        _c->dS(40,70);
+        _c->dC(10,-110);
+        _c->dS(40,-90);
+        _c->dS(150,-20);
+    }
+    _c->dS(50,0);
 }
 
-// comment
+// 波波プッシュ10連
 void CourceManager::cPtn61(CourceMaker* _c){
-    auto kaku = _dirkaku;
-    _c->dC(30,-10+kaku);
-    _c->dC(30,kaku);
+    auto kaku = _c->_dirkaku;
+    _c->dC(30,0);
+    for(int i=0;i<10;i++){
+        _c->dC(30,-45);
+        _c->dC(30,45);
+    }
+    _c->dS(50,0);
 }
 
-// comment
+// ジャンプ台+石柱ごえ
 void CourceManager::cPtn62(CourceMaker* _c){
-    auto kaku = _dirkaku;
-    _c->dC(30,-10+kaku);
-    _c->dC(30,kaku);
+    auto kaku = _c->_dirkaku;
+    _c->dC(80,-45);
+    _c->dS(500,-45);
+    _c->dC(50,45);
+    _c->dS(150,0);
+    _c->dS(100,90);
+    _c->dC(10,-90);
+    _c->dS(100,-90);
+    _c->dS(200,0);
 }
 
-// comment
+// ジャンプ台＋段差
 void CourceManager::cPtn63(CourceMaker* _c){
-    auto kaku = _dirkaku;
-    _c->dC(30,-10+kaku);
-    _c->dC(30,kaku);
+    auto kaku = _c->_dirkaku;
+    _c->dC(80,-45);
+    _c->dS(300,-45);
+    _c->dC(20,0);
+    _c->dC(20,-45);
+    _c->dS(180,-45);
+    _c->dC(50,45);
+    _c->dS(100,-90);
+    _c->dS(200,0);
+    _c->dS(100,90);
+    _c->dS(100,0);
 }
 
 // comment
 void CourceManager::cPtn64(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn65(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn66(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn67(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn68(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn69(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn70(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn71(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn72(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn73(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn74(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn75(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn76(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn77(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn78(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn79(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn80(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn81(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn82(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn83(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn84(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn85(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn86(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn87(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn88(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn89(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn90(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn91(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn92(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn93(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn94(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn95(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn96(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn97(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn98(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn99(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn100(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn101(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn102(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn103(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn104(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn105(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn106(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn107(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn108(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn109(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn110(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn111(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn112(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn113(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn114(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn115(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn116(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn117(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn118(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn119(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn120(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn121(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn122(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
 
 // comment
 void CourceManager::cPtn123(CourceMaker* _c){
-    auto kaku = _dirkaku;
+    auto kaku = _c->_dirkaku;
     _c->dC(30,-10+kaku);
     _c->dC(30,kaku);
 }
