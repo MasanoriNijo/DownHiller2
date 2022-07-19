@@ -2464,7 +2464,7 @@ void CourceManager::cPtn61(CourceMaker* _c){
     _c->dS(50,0);
 }
 
-// ジャンプ台
+// ジャンプ台+石柱ごえ
 void CourceManager::cPtn62(CourceMaker* _c){
     auto kaku = _c->_dirkaku;
     _c->dC(80,-45);
@@ -2475,14 +2475,21 @@ void CourceManager::cPtn62(CourceMaker* _c){
     _c->dC(10,-90);
     _c->dS(100,-90);
     _c->dS(200,0);
-    
 }
 
-// comment
+// ジャンプ台＋段差
 void CourceManager::cPtn63(CourceMaker* _c){
     auto kaku = _c->_dirkaku;
-    _c->dC(30,-10+kaku);
-    _c->dC(30,kaku);
+    _c->dC(80,-45);
+    _c->dS(300,-45);
+    _c->dC(20,0);
+    _c->dC(20,-45);
+    _c->dS(180,-45);
+    _c->dC(50,45);
+    _c->dS(100,-90);
+    _c->dS(200,0);
+    _c->dS(100,90);
+    _c->dS(100,0);
 }
 
 // comment
