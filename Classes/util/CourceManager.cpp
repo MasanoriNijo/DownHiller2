@@ -447,33 +447,28 @@ void CourceManager::madeCourcePtn1(CourceMaker* _c,int ind){
     _c->drawStart(getTergetPt(),getTargetDir());
     switch (ind) {
         case 0:
-            _c->dS(500,0);
-            _c->dS(100,-1);
+            _c->dS(600,0);
             setStart(_c);
-            _c->dS(2800,-1);
+            _c->dS(30,-3);
             break;
         case 1:
-            for(i=0;i<3;i++){
-                _c->dC(200, -10);
-                _c->dS(100, -10);
-                _c->dC(80,10);
-                _c->dC(30, 0);
-                _c->dS(100, 0);
+            _c->dC(30,-10);
+            for(int i=0;i<2;i++){
+                cPtn00(_c);
+                _c->dC(30,-90);
+                _c->dS(30,-10);
             }
             break;
         case 2:
-            for(i=0;i<3;i++){
-                _c->dC(100, -30);
-                _c->dS(100, -30);
-                _c->dC(60, 10);
-                _c->dS(400, 0);
+            for(int i=0;i<2;i++){
+                cPtn01(_c);
             }
             break;
         case 3:
-            _c->dS(Vec2(90,0));
+            _c->dS(100,0);
             setGoal(_c);
-            _c->dS(Vec2(1000,0));
-            _c->dS(Vec2(0,100));
+            _c->dS(1000,0);
+            _c->dS(100,90);
             break;
         default:
             return;
@@ -490,32 +485,26 @@ void CourceManager::madeCourcePtn2(CourceMaker* _c,int ind){
         case 0:
             _c->dS(600,0);
             setStart(_c);
-            _c->dS(10,-90);
-            _c->dC(200, -30);
-            _c->dS(200, -30);
+            _c->dS(30,-3);
             break;
         case 1:
-            for(i=0;i<4;i++){
-                _c->dC(120,30);
-                _c->dS(50, 30);
-                _c->dC(100,-30);
-                _c->dS(150, -30);
+            _c->dC(30,-10);
+            for(int i=0;i<2;i++){
+                cPtn02(_c);
+                _c->dC(30,-90);
+                _c->dS(30,-10);
             }
             break;
         case 2:
-            for(i=0;i<4;i++){
-                _c->dS(Vec2(100,-5));
-                _c->dC(50,45);
+            for(int i=0;i<2;i++){
+                cPtn03(_c);
             }
             break;
         case 3:
-            _c->dS(Vec2(90,0));
-             flg->setGlobalZOrder(OBJ_LAYER_LV1-1);
-             flg->setPosition(_c->getTergetPt());
-             flg->setRotation(_c->getCalc()->nomlKaku(Vec2::ZERO,_c->getTargetDir()));
-             _c->addChild(flg);
-            _c->dS(Vec2(500,0));
-            _c->dS(Vec2(0,100));
+            _c->dS(100,0);
+            setGoal(_c);
+            _c->dS(1000,0);
+            _c->dS(100,90);
             break;
         default:
             return;

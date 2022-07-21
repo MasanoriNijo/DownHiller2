@@ -216,7 +216,7 @@ void GameStage::onPlay(){
 
 void GameStage::onClear(){
     getMenu()->removeFromParentAndCleanup(true);
-    getBike()->getRwheel()->getPhysicsBody()->setAngularDamping(1);
+//    getBike()->getRwheel()->getPhysicsBody()->setAngularDamping(1);
 //    getBike()->getRwheel()->getPhysicsBody()->setLinearDamping(0.5);
     getBike()->removeTouchEvent();
     Director::getInstance()->getEventDispatcher()->removeEventListener(getContactListenner());
