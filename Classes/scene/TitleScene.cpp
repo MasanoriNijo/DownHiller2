@@ -52,7 +52,13 @@ bool TitleScene::init() {
         transitonScene(SelectScene::createScene());
     }, Size(1,1), L_BTN_START, Color3B::WHITE, Color3B::YELLOW, true));
     
-    setMenu(Menu::create(getStartBtn(), NULL));
+    setHowToBtn(generateMenuItemSprite([this](Ref* ref){
+        callSoundEffect("button05.mp3");
+        UserDefault::getInstance()->setIntegerForKey(UDF_INT_SELECTED_STAGE, 0);
+        transitonScene(GameStage::createScene());
+    }, Size(1,1), L_BTN_HOWTO, Color3B::WHITE, Color3B::YELLOW, false));
+    
+    setMenu(Menu::create(getStartBtn(), getHowToBtn(), NULL));
     getMenu()->alignItemsVerticallyWithPadding(10);
     mountNode(getMenu(),Vec2(winSize.width/2,60), OBJ_LAYER_LV3);
     

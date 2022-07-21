@@ -60,6 +60,13 @@ void CourceManager::_setStagePrm(){
     getStagePrm()->setStageNumber(UserDefault::getInstance()->getIntegerForKey(UDF_INT_SELECTED_STAGE,1));
     std::string head = "クリア条件\n";
     switch (getStagePrm()->getStageNumber()) {
+        case 0:
+            getStagePrm()->setCommnent(
+                                       "ここからは、\n"
+                                       "実際に操作して、\n"
+                                       "ゴールを目指そう!\n"
+                                       );
+            break;
         case 1:
             getStagePrm()->setCommnent(
                                        "ここからは、\n"
@@ -237,8 +244,11 @@ void CourceManager::checkAndMadeCource(Vec2 chPt){
     if(chPt.x > (getStartPt().x + 80) || !courceIndex){
         _dirkaku = courceIndex%2 ? getCourceMakerA()->_dirkaku : getCourceMakerB()->_dirkaku;
         switch (selStg) {
-            case 0:
+            case -1:
                 madeCourcePtnForTitle(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
+                break;
+            case 0:
+                madeCourcePtn0(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
                 break;
             case 1:
                 madeCourcePtn1(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
@@ -313,7 +323,7 @@ void CourceManager::checkAndMadeCource(Vec2 chPt){
 }
 
 void CourceManager::setForTitle(){
-    selStg = 0;
+    selStg = -1;
     setStartPt(FIRST_COURCE_BASE_POINT + Vec2(0,40));
     setTergetPt(FIRST_COURCE_BASE_POINT + Vec2(0,40));
 }
@@ -382,6 +392,47 @@ void CourceManager::madeCourcePtnForTitle(CourceMaker* _c,int ind){
             _c->dS(Vec2(90,0));
             setGoal(_c);
             _c->dS(Vec2(120,0));
+            break;
+        default:
+            return;
+            break;
+    }
+    _c->madePhysiceBody();
+}
+
+void CourceManager::madeCourcePtn0(CourceMaker* _c,int ind){
+    auto flg = Flg::create();
+    int i = 0;
+    _c->drawStart(getTergetPt(),getTargetDir());
+    switch (ind) {
+        case 0:
+            _c->dS(500,0);
+            _c->dS(100,-1);
+            setStart(_c);
+            _c->dS(2800,-1);
+            break;
+        case 1:
+            for(i=0;i<3;i++){
+                _c->dC(200, -10);
+                _c->dS(100, -10);
+                _c->dC(80,10);
+                _c->dC(30, 0);
+                _c->dS(100, 0);
+            }
+            break;
+        case 2:
+            for(i=0;i<3;i++){
+                _c->dC(100, -30);
+                _c->dS(100, -30);
+                _c->dC(60, 10);
+                _c->dS(400, 0);
+            }
+            break;
+        case 3:
+            _c->dS(Vec2(90,0));
+            setGoal(_c);
+            _c->dS(Vec2(1000,0));
+            _c->dS(Vec2(0,100));
             break;
         default:
             return;
