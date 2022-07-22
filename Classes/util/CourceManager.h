@@ -54,6 +54,7 @@ public:
     bool _isDebugComment = true;
     void setComment(std::string st, CourceMaker* _c);
     
+    void madeCourcePtn0(CourceMaker* _cmaker,int ind);
     void madeCourcePtn1(CourceMaker* _cmaker,int ind);
     void madeCourcePtn2(CourceMaker* _cmaker,int ind);
     void madeCourcePtn3(CourceMaker* _cmaker,int ind);

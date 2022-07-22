@@ -60,6 +60,13 @@ void CourceManager::_setStagePrm(){
     getStagePrm()->setStageNumber(UserDefault::getInstance()->getIntegerForKey(UDF_INT_SELECTED_STAGE,1));
     std::string head = "クリア条件\n";
     switch (getStagePrm()->getStageNumber()) {
+        case 0:
+            getStagePrm()->setCommnent(
+                                       "ここからは、\n"
+                                       "実際に操作して、\n"
+                                       "ゴールを目指そう!\n"
+                                       );
+            break;
         case 1:
             getStagePrm()->setCommnent(
                                        "ここからは、\n"
@@ -237,8 +244,11 @@ void CourceManager::checkAndMadeCource(Vec2 chPt){
     if(chPt.x > (getStartPt().x + 80) || !courceIndex){
         _dirkaku = courceIndex%2 ? getCourceMakerA()->_dirkaku : getCourceMakerB()->_dirkaku;
         switch (selStg) {
-            case 0:
+            case -1:
                 madeCourcePtnForTitle(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
+                break;
+            case 0:
+                madeCourcePtn0(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
                 break;
             case 1:
                 madeCourcePtn1(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
@@ -313,7 +323,7 @@ void CourceManager::checkAndMadeCource(Vec2 chPt){
 }
 
 void CourceManager::setForTitle(){
-    selStg = 0;
+    selStg = -1;
     setStartPt(FIRST_COURCE_BASE_POINT + Vec2(0,40));
     setTergetPt(FIRST_COURCE_BASE_POINT + Vec2(0,40));
 }
@@ -390,7 +400,7 @@ void CourceManager::madeCourcePtnForTitle(CourceMaker* _c,int ind){
     _c->madePhysiceBody();
 }
 
-void CourceManager::madeCourcePtn1(CourceMaker* _c,int ind){
+void CourceManager::madeCourcePtn0(CourceMaker* _c,int ind){
     auto flg = Flg::create();
     int i = 0;
     _c->drawStart(getTergetPt(),getTargetDir());
@@ -431,6 +441,42 @@ void CourceManager::madeCourcePtn1(CourceMaker* _c,int ind){
     _c->madePhysiceBody();
 }
 
+void CourceManager::madeCourcePtn1(CourceMaker* _c,int ind){
+    auto flg = Flg::create();
+    int i = 0;
+    _c->drawStart(getTergetPt(),getTargetDir());
+    switch (ind) {
+        case 0:
+            _c->dS(600,0);
+            setStart(_c);
+            _c->dS(30,-3);
+            break;
+        case 1:
+            _c->dC(30,-10);
+            for(int i=0;i<2;i++){
+                cPtn00(_c);
+                _c->dC(30,-90);
+                _c->dS(30,-10);
+            }
+            break;
+        case 2:
+            for(int i=0;i<2;i++){
+                cPtn01(_c);
+            }
+            break;
+        case 3:
+            _c->dS(100,0);
+            setGoal(_c);
+            _c->dS(1000,0);
+            _c->dS(100,90);
+            break;
+        default:
+            return;
+            break;
+    }
+    _c->madePhysiceBody();
+}
+
 void CourceManager::madeCourcePtn2(CourceMaker* _c,int ind){
     auto flg = Flg::create();
     int i = 0;
@@ -439,32 +485,26 @@ void CourceManager::madeCourcePtn2(CourceMaker* _c,int ind){
         case 0:
             _c->dS(600,0);
             setStart(_c);
-            _c->dS(10,-90);
-            _c->dC(200, -30);
-            _c->dS(200, -30);
+            _c->dS(30,-3);
             break;
         case 1:
-            for(i=0;i<4;i++){
-                _c->dC(120,30);
-                _c->dS(50, 30);
-                _c->dC(100,-30);
-                _c->dS(150, -30);
+            _c->dC(30,-10);
+            for(int i=0;i<2;i++){
+                cPtn02(_c);
+                _c->dC(30,-90);
+                _c->dS(30,-10);
             }
             break;
         case 2:
-            for(i=0;i<4;i++){
-                _c->dS(Vec2(100,-5));
-                _c->dC(50,45);
+            for(int i=0;i<2;i++){
+                cPtn03(_c);
             }
             break;
         case 3:
-            _c->dS(Vec2(90,0));
-             flg->setGlobalZOrder(OBJ_LAYER_LV1-1);
-             flg->setPosition(_c->getTergetPt());
-             flg->setRotation(_c->getCalc()->nomlKaku(Vec2::ZERO,_c->getTargetDir()));
-             _c->addChild(flg);
-            _c->dS(Vec2(500,0));
-            _c->dS(Vec2(0,100));
+            _c->dS(100,0);
+            setGoal(_c);
+            _c->dS(1000,0);
+            _c->dS(100,90);
             break;
         default:
             return;

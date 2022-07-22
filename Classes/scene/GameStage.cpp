@@ -186,7 +186,7 @@ void GameStage::update(float dt) {
 
 void GameStage::onReady(){
     int stg = UserDefault::getInstance()->getIntegerForKey(UDF_INT_SELECTED_STAGE,1);
-    if(stg==1){
+    if(stg==0){
         demo();
     }else{
         auto setumei_ = CallFunc::create([this,stg]{
@@ -216,11 +216,12 @@ void GameStage::onPlay(){
 
 void GameStage::onClear(){
     getMenu()->removeFromParentAndCleanup(true);
-    getBike()->getRwheel()->getPhysicsBody()->setAngularDamping(1);
-//    getBike()->getRwheel()->getPhysicsBody()->setLinearDamping(1);
+//    getBike()->getRwheel()->getPhysicsBody()->setAngularDamping(1);
+//    getBike()->getRwheel()->getPhysicsBody()->setLinearDamping(0.5);
     getBike()->removeTouchEvent();
     Director::getInstance()->getEventDispatcher()->removeEventListener(getContactListenner());
     stopTime();
+    stopAllActions();
     // タイムオーバーチェック
     if(_timeLimit &&
        _timeLimit < tm_){
