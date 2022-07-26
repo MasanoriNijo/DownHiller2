@@ -478,7 +478,6 @@ void CourceManager::madeCourcePtn1(CourceMaker* _c,int ind){
 }
 
 void CourceManager::madeCourcePtn2(CourceMaker* _c,int ind){
-    auto flg = Flg::create();
     int i = 0;
     _c->drawStart(getTergetPt(),getTargetDir());
     switch (ind) {
@@ -514,35 +513,34 @@ void CourceManager::madeCourcePtn2(CourceMaker* _c,int ind){
 }
 
 void CourceManager::madeCourcePtn3(CourceMaker* _c,int ind){
-    auto flg = Flg::create();
     int i = 0;
     _c->drawStart(getTergetPt(),getTargetDir());
     switch (ind) {
         case 0:
             _c->dS(600,0);
             setStart(_c);
-            _c->dC(300,-10);
+            _c->dS(30,-3);
             break;
         case 1:
-            for(i=0;i<4;i++){
-                _c->dC(Vec2(30,0), -100);
-                _c->dS(100,-10);
+            _c->dC(30,-10);
+            for(int i=0;i<2;i++){
+                cPtn05(_c);
+                cPtn07(_c);
+                cPtn10(_c);
             }
             break;
         case 2:
-            for(i=0;i<6;i++){
-                _c->dC(100,-50);
-                _c->dC(60,30);
+            for(int i=0;i<2;i++){
+                cPtn12(_c);
+                cPtn07(_c);
+                cPtn11(_c);
             }
             break;
         case 3:
-            _c->dS(Vec2(90,0));
-             flg->setGlobalZOrder(OBJ_LAYER_LV1-1);
-             flg->setPosition(_c->getTergetPt());
-             flg->setRotation(_c->getCalc()->nomlKaku(Vec2::ZERO,_c->getTargetDir()));
-             _c->addChild(flg);
-            _c->dS(Vec2(500,0));
-            _c->dS(Vec2(0,100));
+            _c->dS(100,0);
+            setGoal(_c);
+            _c->dS(1000,0);
+            _c->dS(100,90);
             break;
         default:
             return;
@@ -552,40 +550,34 @@ void CourceManager::madeCourcePtn3(CourceMaker* _c,int ind){
 }
 
 void CourceManager::madeCourcePtn4(CourceMaker* _c,int ind){
-    auto flg = Flg::create();
     int i = 0;
     _c->drawStart(getTergetPt(),getTargetDir());
     switch (ind) {
         case 0:
             _c->dS(600,0);
             setStart(_c);
-            _c->dS(300,-5);
+            _c->dS(30,-3);
             break;
         case 1:
-            for(i=0;i<4;i++){
-                _c->dC(50, -70);
-                _c->dS(100, -70);
-                _c->dC(50, 70);
-                _c->dS(80, 70);
-                _c->dC(50, 0);
-                _c->dS(100, -5);
-                
+            _c->dC(30,-10);
+            for(int i=0;i<2;i++){
+                cPtn09(_c);
+                cPtn13(_c);
+                cPtn14(_c);
             }
             break;
         case 2:
-            for(i=0;i<4;i++){
-                _c->dS(Vec2(0,-50));
-                _c->dS(Vec2(60,0));
+            for(int i=0;i<2;i++){
+                cPtn15(_c);
+                cPtn07(_c);
+                cPtn20(_c);
             }
             break;
         case 3:
-            _c->dS(Vec2(90,0));
-             flg->setGlobalZOrder(OBJ_LAYER_LV1-1);
-             flg->setPosition(_c->getTergetPt());
-             flg->setRotation(_c->getCalc()->nomlKaku(Vec2::ZERO,_c->getTargetDir()));
-             _c->addChild(flg);
-            _c->dS(Vec2(500,0));
-            _c->dS(Vec2(0,100));
+            _c->dS(100,0);
+            setGoal(_c);
+            _c->dS(1000,0);
+            _c->dS(100,90);
             break;
         default:
             return;
@@ -595,36 +587,34 @@ void CourceManager::madeCourcePtn4(CourceMaker* _c,int ind){
 }
 
 void CourceManager::madeCourcePtn5(CourceMaker* _c,int ind){
-    auto flg = Flg::create();
     int i = 0;
     _c->drawStart(getTergetPt(),getTargetDir());
     switch (ind) {
         case 0:
             _c->dS(600,0);
             setStart(_c);
-            _c->dS(Vec2(0,-100));
-            _c->dS(Vec2(300,-3));
+            _c->dS(30,-3);
             break;
         case 1:
-                _c->dC(50, -70);
-                _c->dS(600, -70);
-                _c->dC(80, 70);
-                _c->dS(50, 70);
-                _c->dC(20, 0);
-                _c->dS(100, 0);
+            _c->dC(30,-10);
+            for(int i=0;i<2;i++){
+                cPtn09(_c);
+                cPtn22(_c);
+                cPtn14(_c);
+            }
             break;
         case 2:
-                _c->dS(Vec2(0,150));
-                _c->dS(Vec2(380,0));
+            for(int i=0;i<2;i++){
+                cPtn08(_c);
+                cPtn25(_c);
+                cPtn20(_c);
+            }
             break;
         case 3:
-            _c->dS(Vec2(90,0));
-             flg->setGlobalZOrder(OBJ_LAYER_LV1-1);
-             flg->setPosition(_c->getTergetPt());
-             flg->setRotation(_c->getCalc()->nomlKaku(Vec2::ZERO,_c->getTargetDir()));
-             _c->addChild(flg);
-            _c->dS(Vec2(200,0));
-            _c->dS(Vec2(0,100));
+            _c->dS(100,0);
+            setGoal(_c);
+            _c->dS(1000,0);
+            _c->dS(100,90);
             break;
         default:
             return;
@@ -1767,7 +1757,7 @@ void CourceManager::checkAndMadeCourceForDebug(Vec2 chPt){
 // 滑らかな波波
 void CourceManager::cPtn00(CourceMaker* _c){
     setComment("cPtn00",_c);
-    auto kaku = _c->_dirkaku;
+    auto kaku = -1;
     for(int i=0;i<4;i++){
         _c->dC(180,-10+kaku);
         _c->dC(180,5 + kaku);
@@ -1778,7 +1768,7 @@ void CourceManager::cPtn00(CourceMaker* _c){
 // 滑らかな波波
 void CourceManager::cPtn01(CourceMaker* _c){
     setComment("cPtn01",_c);
-    auto kaku = _c->_dirkaku;
+    auto kaku = -5;
     for(int i=0;i<4;i++){
         _c->dC(80,-25+kaku);
         _c->dC(80,20 + kaku);
@@ -1789,7 +1779,7 @@ void CourceManager::cPtn01(CourceMaker* _c){
 // 滑らかな波波
 void CourceManager::cPtn02(CourceMaker* _c){
     setComment("cPtn02",_c);
-    auto kaku = _c->_dirkaku;
+    auto kaku = -1;
     for(int i=0;i<4;i++){
         _c->dC(80,-40+kaku);
         _c->dC(80,20+kaku);
@@ -1800,7 +1790,7 @@ void CourceManager::cPtn02(CourceMaker* _c){
 // 滑らかな波波
 void CourceManager::cPtn03(CourceMaker* _c){
     setComment("cPtn03",_c);
-    auto kaku = _c->_dirkaku;
+    auto kaku = -7;
     for(int i=0;i<4;i++){
         _c->dC(80,-50+kaku);
         _c->dC(80,45+kaku);
@@ -1811,7 +1801,7 @@ void CourceManager::cPtn03(CourceMaker* _c){
 // 滑らかな波波
 void CourceManager::cPtn04(CourceMaker* _c){
     setComment("cPtn04",_c);
-    auto kaku = _c->_dirkaku;
+    auto kaku = -5;
     _c->dC(80,-25+kaku);
     _c->dC(80,kaku);
     _c->dC(80,-50+kaku);
@@ -1825,7 +1815,7 @@ void CourceManager::cPtn04(CourceMaker* _c){
 // 滑らかな波波
 void CourceManager::cPtn05(CourceMaker* _c){
     setComment("cPtn05",_c);
-    auto kaku = _c->_dirkaku;
+    auto kaku = -4;
     _c->dC(120,-25+kaku);
     _c->dC(80,5+kaku);
     _c->dC(130,-60+kaku);
@@ -1838,7 +1828,7 @@ void CourceManager::cPtn05(CourceMaker* _c){
 
 // 滑らかな波波
 void CourceManager::cPtn06(CourceMaker* _c){
-    auto kaku = _c->_dirkaku;
+    auto kaku = -3;
     _c->dC(50,-70+kaku);
     _c->dC(50,5+kaku);
     _c->dC(50,-70+kaku);
@@ -1849,7 +1839,7 @@ void CourceManager::cPtn06(CourceMaker* _c){
 
 // 滑らかな波波
 void CourceManager::cPtn07(CourceMaker* _c){
-    auto kaku = _c->_dirkaku;
+    auto kaku = -5;
     _c->dC(300,-70+kaku);
     _c->dC(80,5+kaku);
     _c->dC(50,-70+kaku);
@@ -1858,7 +1848,7 @@ void CourceManager::cPtn07(CourceMaker* _c){
 
 // comment
 void CourceManager::cPtn08(CourceMaker* _c){
-    auto kaku = _c->_dirkaku;
+    auto kaku = -5;
     _c->dC(90,-45+kaku);
     _c->dC(150,5+kaku);
     _c->dC(130,-70+kaku);
@@ -1869,7 +1859,7 @@ void CourceManager::cPtn08(CourceMaker* _c){
 
 // 滑らかな波波
 void CourceManager::cPtn09(CourceMaker* _c){
-    auto kaku = _c->_dirkaku;
+    auto kaku = -5;
     _c->dC(90,-45+kaku);
     _c->dC(150,5+kaku);
     _c->dC(130,-45+kaku);
@@ -1880,7 +1870,7 @@ void CourceManager::cPtn09(CourceMaker* _c){
 
 // カクカク
 void CourceManager::cPtn10(CourceMaker* _c){
-    auto kaku = _c->_dirkaku;
+    auto kaku = -7;
     for(int i=0;i<4;i++){
         _c->dS(180,-10+kaku);
         _c->dS(180,5 + kaku);
@@ -1890,7 +1880,7 @@ void CourceManager::cPtn10(CourceMaker* _c){
 
 // カクカク
 void CourceManager::cPtn11(CourceMaker* _c){
-    auto kaku = _c->_dirkaku;
+    auto kaku = -5;
     for(int i=0;i<4;i++){
         _c->dS(80,-25+kaku);
         _c->dS(80,20 + kaku);
@@ -1900,7 +1890,7 @@ void CourceManager::cPtn11(CourceMaker* _c){
 
 // カクカク
 void CourceManager::cPtn12(CourceMaker* _c){
-    auto kaku = _c->_dirkaku;
+    auto kaku = -6;
     for(int i=0;i<4;i++){
         _c->dS(80,-40+kaku);
         _c->dS(80,20+kaku);
@@ -1910,7 +1900,7 @@ void CourceManager::cPtn12(CourceMaker* _c){
 
 // カクカク
 void CourceManager::cPtn13(CourceMaker* _c){
-    auto kaku = _c->_dirkaku;
+    auto kaku = -7;
     for(int i=0;i<4;i++){
         _c->dS(80,-50+kaku);
         _c->dS(80,45+kaku);
@@ -1920,7 +1910,7 @@ void CourceManager::cPtn13(CourceMaker* _c){
 
 // カクカク
 void CourceManager::cPtn14(CourceMaker* _c){
-    auto kaku = _c->_dirkaku;
+    auto kaku = 0;
     _c->dS(80,-25+kaku);
     _c->dS(80,kaku);
     _c->dS(80,-50+kaku);
@@ -1933,7 +1923,7 @@ void CourceManager::cPtn14(CourceMaker* _c){
 
 // カクカク
 void CourceManager::cPtn15(CourceMaker* _c){
-    auto kaku = _c->_dirkaku;
+    auto kaku = -10;
     _c->dS(120,-25+kaku);
     _c->dS(80,5+kaku);
     _c->dS(130,-60+kaku);
@@ -1946,7 +1936,7 @@ void CourceManager::cPtn15(CourceMaker* _c){
 
 // comment
 void CourceManager::cPtn16(CourceMaker* _c){
-    auto kaku = _c->_dirkaku;
+    auto kaku = -6;
     _c->dS(50,-70+kaku);
     _c->dS(50,5+kaku);
     _c->dS(50,-70+kaku);
@@ -1957,7 +1947,7 @@ void CourceManager::cPtn16(CourceMaker* _c){
 
 // カクカク
 void CourceManager::cPtn17(CourceMaker* _c){
-    auto kaku = _c->_dirkaku;
+    auto kaku = -4;
     _c->dS(150,-70+kaku);
     _c->dS(120,5+kaku);
     _c->dS(50,-70+kaku);
@@ -1966,7 +1956,7 @@ void CourceManager::cPtn17(CourceMaker* _c){
 
 // カクカク
 void CourceManager::cPtn18(CourceMaker* _c){
-    auto kaku = _c->_dirkaku;
+    auto kaku = -5;
     _c->dS(90,-45+kaku);
     _c->dS(150,5+kaku);
     _c->dS(130,-70+kaku);
@@ -1977,7 +1967,7 @@ void CourceManager::cPtn18(CourceMaker* _c){
 
 // カクカク
 void CourceManager::cPtn19(CourceMaker* _c){
-    auto kaku = _c->_dirkaku;
+    auto kaku = -6;
     _c->dS(90,-45+kaku);
     _c->dS(150,5+kaku);
     _c->dS(130,-45+kaku);
@@ -1988,7 +1978,7 @@ void CourceManager::cPtn19(CourceMaker* _c){
 
 // 凸
 void CourceManager::cPtn20(CourceMaker* _c){
-    auto kaku = _c->_dirkaku;
+    auto kaku = 0;
     for(int i=0;i<3;i++){
         _c->dS(100,kaku);
         _c->dS(0,90+kaku);
@@ -1999,7 +1989,7 @@ void CourceManager::cPtn20(CourceMaker* _c){
 
 // 凸
 void CourceManager::cPtn21(CourceMaker* _c){
-    auto kaku = _c->_dirkaku;
+    auto kaku = -6;
     for(int i=0;i<3;i++){
         _c->dS(100,kaku);
         _c->dS(0,90+kaku);
@@ -2010,7 +2000,7 @@ void CourceManager::cPtn21(CourceMaker* _c){
 
 // 凸
 void CourceManager::cPtn22(CourceMaker* _c){
-    auto kaku = _c->_dirkaku;
+    auto kaku = -15;
     for(int i=0;i<1;i++){
         _c->dS(150,kaku);
         _c->dS(0,90+kaku);
@@ -2021,7 +2011,7 @@ void CourceManager::cPtn22(CourceMaker* _c){
 
 // 凸
 void CourceManager::cPtn23(CourceMaker* _c){
-    auto kaku = _c->_dirkaku;
+    auto kaku = -15;
     for(int i=0;i<1;i++){
         _c->dS(200,kaku);
         _c->dS(0,90+kaku);
@@ -2032,7 +2022,7 @@ void CourceManager::cPtn23(CourceMaker* _c){
 
 // 凸
 void CourceManager::cPtn24(CourceMaker* _c){
-    auto kaku = _c->_dirkaku;
+    auto kaku = -2;
     for(int i=0;i<1;i++){
         _c->dS(200,kaku);
         _c->dC(30,80 + kaku);
@@ -2044,7 +2034,7 @@ void CourceManager::cPtn24(CourceMaker* _c){
 
 // 凹
 void CourceManager::cPtn25(CourceMaker* _c){
-    auto kaku = _c->_dirkaku;
+    auto kaku = -10;
     for(int i=0;i<3;i++){
         _c->dS(50,kaku);
         _c->dS(0,-90+kaku);
@@ -2055,7 +2045,7 @@ void CourceManager::cPtn25(CourceMaker* _c){
 
 // 凹
 void CourceManager::cPtn26(CourceMaker* _c){
-    auto kaku = _c->_dirkaku;
+    auto kaku = -7;
     for(int i=0;i<3;i++){
         _c->dS(50,kaku);
         _c->dS(0,-90+kaku);
@@ -2066,7 +2056,7 @@ void CourceManager::cPtn26(CourceMaker* _c){
 
 // 凹
 void CourceManager::cPtn27(CourceMaker* _c){
-    auto kaku = _c->_dirkaku;
+    auto kaku = -7;
     for(int i=0;i<2;i++){
         _c->dS(100,kaku);
         _c->dS(0,-90+kaku);
@@ -2077,7 +2067,7 @@ void CourceManager::cPtn27(CourceMaker* _c){
 
 // 凹
 void CourceManager::cPtn28(CourceMaker* _c){
-    auto kaku = _c->_dirkaku;
+    auto kaku = -7;
     for(int i=0;i<1;i++){
         _c->dS(200,kaku);
         _c->dC(50,-70 + kaku);
@@ -2089,7 +2079,7 @@ void CourceManager::cPtn28(CourceMaker* _c){
 
 // 凹
 void CourceManager::cPtn29(CourceMaker* _c){
-    auto kaku = _c->_dirkaku;
+    auto kaku = -15;
     for(int i=0;i<1;i++){
         _c->dS(200,kaku);
         _c->dC(30,-80 + kaku);
