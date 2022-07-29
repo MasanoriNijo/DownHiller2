@@ -578,7 +578,7 @@ void CourceManager::madeCourcePtn7(CourceMaker* _c,int ind){
             for(int i=0;i<2;i++){
                 cPtn09(_c);
                 cPtn25(_c);
-                cPtn324(_c);
+                cPtn34(_c);
             }
             break;
         case 2:
