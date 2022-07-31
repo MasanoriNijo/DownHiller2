@@ -38,6 +38,12 @@ public class AppActivity extends Cocos2dxActivity {
     static final String IMOBILE_BANNER_PID = "34243";
     static final String IMOBILE_BANNER_MID = "461430";
     static final String IMOBILE_BANNER_SID = "1515544";
+    FrameLayout imobileBunnerLayout = null;
+
+    static final String IMOBILE_FULLSCREENAD_PID = "34243";
+    static final String IMOBILE_FULLSCREENAD_MID = "461430";
+    static final String IMOBILE_FULLSCREENAD_SID = "1515545";
+    FrameLayout imobileFullScreenLayout = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +65,11 @@ public class AppActivity extends Cocos2dxActivity {
             getWindow().setAttributes(lp);
         }
         // DO OTHER INITIALIZATION BELOW
+        setImobileBanner();
+        setImobileFullScreen();
+    }
+
+    protected void setImobileBanner(){
         // imobileの広告を入れる。
         // スポット情報を設定します
         ImobileSdkAd.registerSpotInline(this, IMOBILE_BANNER_PID, IMOBILE_BANNER_MID, IMOBILE_BANNER_SID);
@@ -66,17 +77,54 @@ public class AppActivity extends Cocos2dxActivity {
         ImobileSdkAd.start(IMOBILE_BANNER_SID);
 
         // 広告を表示するViewを作成します
-        FrameLayout imobileAdLayout = new FrameLayout(this);
+        imobileBunnerLayout = new FrameLayout(this);
         FrameLayout.LayoutParams imobileAdLayoutParam = new FrameLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         // 広告の表示位置を指定
         imobileAdLayoutParam.gravity = (Gravity.BOTTOM | Gravity.CENTER);
-        //広告を表示するLayoutをActivityに追加します
-//        addContentView(imobileAdLayout, imobileAdLayoutParam);
         // 広告を表示します
-        ImobileSdkAd.showAd(this, IMOBILE_BANNER_SID, imobileAdLayout);
-        imobileAdLayout.bringToFront();
-        mFrameLayout.addView(imobileAdLayout, imobileAdLayoutParam);
-        setContentView(mFrameLayout);
+        ImobileSdkAd.showAd(this, IMOBILE_BANNER_SID, imobileBunnerLayout);
+        imobileBunnerLayout.bringToFront();
+        mFrameLayout.addView(imobileBunnerLayout, imobileAdLayoutParam);
+        mFrameLayout.removeView(imobileBunnerLayout);
     }
 
+    protected void removeImobileBanner(){
+        if(imobileBunnerLayout != null) {
+            mFrameLayout.removeView(imobileBunnerLayout);
+            imobileBunnerLayout = null;
+        }
+    }
+
+    protected void setImobileFullScreen(){
+        // imobileの広告を入れる。
+        // スポット情報を設定します
+        ImobileSdkAd.registerSpotFullScreen(this, IMOBILE_FULLSCREENAD_PID, IMOBILE_FULLSCREENAD_MID, IMOBILE_FULLSCREENAD_SID);
+        // 広告の取得を開始します
+        ImobileSdkAd.start(IMOBILE_FULLSCREENAD_SID);
+
+        // 広告を表示するViewを作成します
+        imobileFullScreenLayout = new FrameLayout(this);
+        FrameLayout.LayoutParams imobileAdLayoutParam = new FrameLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        // 広告の表示位置を指定
+        imobileAdLayoutParam.gravity = (Gravity.NO_GRAVITY | Gravity.CENTER);
+        // 広告を表示します
+        ImobileSdkAd.showAd(this, IMOBILE_FULLSCREENAD_SID);
+        imobileFullScreenLayout.bringToFront();
+        mFrameLayout.addView(imobileFullScreenLayout, imobileAdLayoutParam);
+        mFrameLayout.removeView(imobileFullScreenLayout);
+    }
+
+    protected void removeImobileFullScreen(){
+        if(imobileFullScreenLayout != null) {
+            imobileFullScreenLayout.removeView(imobileBunnerLayout);
+            imobileFullScreenLayout = null;
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        //Activity廃棄時の後処理
+        ImobileSdkAd.activityDestroy();
+        super.onDestroy();
+    }
 }
