@@ -30,5 +30,6 @@ build/
 proj.android/app/.cxx
 proj.android/app/build
 proj.android/.idea
+proj.android/app/release/
 
 #
