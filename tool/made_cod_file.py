@@ -2,9 +2,9 @@ from asyncore import write
 import json
 import os
 
-def madeHeaderFile(json_data):
+def madeHeaderFile(repeattext):
   cdir = os.path.dirname(__file__)
-  file_path = cdir+"/"+json_data["className"]+".h"
+  file_path = cdir+"/code.txt"
   f = open(file_path, 'w')
   f.write('#ifndef __'+json_data['className'].upper()+'_H__\n')
   f.write('#define __'+json_data['className'].upper()+'_H__\n\n')
@@ -92,7 +92,8 @@ def madeCCPFile(json_data):
   f.close
 
 cdir = os.path.dirname(__file__)
-path = cdir+'/cocos_file_prm.json'
+path = cdir+'/code_org.txt
+'
 
 json_file = open(path, 'r')
 json_data = json.load(json_file)
