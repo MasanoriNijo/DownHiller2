@@ -63,8 +63,8 @@ void CourceMaker::drawStart(Vec2 pt_, Vec2 dir_){
     setTergetPt(pt_);
     setTargetDir(dir_);
     _polygonPtCnt = 0;
-    addStartDot(pt_);//デバック時
-//    addDot(pt_);
+//    addStartDot(pt_);//デバック時
+    addDot(pt_);
     addPolygonPts(_wrkPt);
     getMember().clear();
     low_y = 100000;
@@ -424,9 +424,9 @@ void CourceMaker::addMarkCurve(Vec2 curveCenterPt,Vec2 fstPt,float rad){
 
 void CourceMaker::madePhysiceBody(){
     auto _material = PHYSICSBODY_MATERIAL_DEFAULT;
-    _material.restitution = 0.0001f;
+    _material.restitution = 0.0f;
     _material.friction =1.0f;
-    _material.density = 0.001f;
+    _material.density = 0.0f;
     
     setCourceBody(PhysicsBody::createEdgeChain(_polygonPts, _polygonPtCnt,_material));
     getCourceBody()->setDynamic(false);

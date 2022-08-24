@@ -141,7 +141,13 @@ void Sprite2::setSoundEffect(const char* filePath){
 void Sprite2::callSoundEffect(const char* filePath){
     // play a sound effect, just once.
     auto audio = CocosDenshion::SimpleAudioEngine::getInstance();
-    audio->playEffect(filePath, false, 1.0f, 1.0f, 1.0f);
+    audio->playEffect(filePath, false, 1.0f, 0.00f, 1.0f);
+}
+
+void Sprite2::callSoundEffect(const char* filePath, float gain){
+    // play a sound effect, just once.
+    auto audio = CocosDenshion::SimpleAudioEngine::getInstance();
+    audio->playEffect(filePath, false, 1.0f, 0.0f, gain);
 }
 
 //操作方法をセット

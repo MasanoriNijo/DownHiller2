@@ -94,6 +94,7 @@ public:
     void stopBGM(const char* filePath);
     void setSoundEffect(const char* filePath);
     void callSoundEffect(const char* filePath);
+    void callSoundEffect(const char* filePath, float gain);
     
     // 画面のサイズ関連を取得する.
     // 実際の画面サイズ

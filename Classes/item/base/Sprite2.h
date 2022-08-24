@@ -58,6 +58,7 @@ public:
     // 効果音をセットする。
     void setSoundEffect(const char* filePath);
     void callSoundEffect(const char* filePath);
+    void callSoundEffect(const char* filePath, float gain);
     
     // 新規追加ここまで
     
