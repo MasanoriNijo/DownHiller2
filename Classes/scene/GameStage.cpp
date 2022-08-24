@@ -192,7 +192,7 @@ void GameStage::onReady(){
         auto setumei_ = CallFunc::create([this,stg]{
             this->setSetumei(getCourceManager()->getStagePrm()->getCommnent());
         });
-        auto wait_ = DelayTime::create(3);
+        auto wait_ = DelayTime::create(1);
         auto play_ =  CallFunc::create([this]{
             this->getSetumei()->removeFromParentAndCleanup(true);
             this->showGameAnnounce(L_GAME_READY, ctPt + Vec2(0,50),[this]{

@@ -18,6 +18,7 @@ TitleScene::~TitleScene() {
     CC_SAFE_RELEASE_NULL(_courceManager);
     CC_SAFE_RELEASE_NULL(_bike);
     CC_SAFE_RELEASE_NULL(_contactlistener);
+    stopBGM("");
 }
 
 Scene* TitleScene::createScene() {

@@ -92,7 +92,7 @@ void Bike::setForDisplay(){
 void Bike::_addPhysicsToWheel(Sprite* _wheel){
     
     auto _material = PHYSICSBODY_MATERIAL_DEFAULT;
-    _material.restitution = 0.0001f;
+    _material.restitution = 0.0f;
     _material.friction =1.0f;
     _material.density = 0.001f;
     
@@ -105,7 +105,7 @@ void Bike::_addPhysicsToWheel(Sprite* _wheel){
     _wheel->getPhysicsBody()->setDynamic(true);
     //    _wheel->getPhysicsBody()->setAngularDamping(wheelRotDump_);
     //    _wheel->getPhysicsBody()->setLinearDamping(veloDump);
-    //    _wheel->getPhysicsBody()->setVelocityLimit(maxWheelVelo);
+    _wheel->getPhysicsBody()->setVelocityLimit(maxWheelVelo);
     _wheel->getPhysicsBody()->setRotationEnable(true);
 }
 
@@ -412,7 +412,7 @@ bool Bike::jump(float lvl){
             return false;
         }
     }
-    callSoundEffect("ashidejump.mp3");
+    callSoundEffect("ashidejump.mp3",0.02f);
     Vec2 dirX = getCalc()->rotByRad(powPt, -M_PI/2);
     float speedX = getCalc()->cordinaneX(dirX, getRwheel()->getPhysicsBody()->getVelocity()).x;
     Vec2 veloX = getCalc()->chgLength(dirX, speedX);
@@ -448,13 +448,6 @@ void Bike::werry(float lvl){
 }
 
 void Bike::dush(float lvl){
-    if(centerObjVelo.length() > maxDushSpeed){
-        if(getBikeDebug()){
-            getBikeDebug()->setString("dush_no");
-        }
-        return;
-    }
-    if(rWheelTouched && rWheelTouched){
         Vec2 powPt = getCalc()->chgLength(getFwheel()->getPosition()-getRwheel()->getPosition(), dushPow * lvl);
         if(centerObjVelo.length() > maxDushSpeed){
             if(getBikeDebug()){
@@ -474,8 +467,6 @@ void Bike::dush(float lvl){
                 getBikeDebug()->setString("dush");
             }
         }
-        return;
-    }
 }
 
 void Bike::stop(){

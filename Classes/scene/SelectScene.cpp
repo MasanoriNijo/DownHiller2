@@ -32,7 +32,7 @@ bool SelectScene::init() {
     }
     setBackGroundColor();
     setBackGradientGroundColor();
-    drawDebugLine();
+//    drawDebugLine();
     
     setGameTitle(Label::createWithTTF(L_TITLE_SELECT, "irohamaru.ttf", 16));
     getColorChanger()->SetColor(TITLE_COLOR_H, TITLE_COLOR_S, TITLE_COLOR_V);
@@ -49,7 +49,7 @@ bool SelectScene::init() {
     mountNode(getMenu(), Vec2(winSize.width - getBtn1()->getContentSize().width/2 -10,
                               winSize.height - getBtn1()->getContentSize().height/2 -10), OBJ_LAYER_TOP);
     _arrangeBtns();
-    _arrangeBtnsForDebug();
+//    _arrangeBtnsForDebug();
     
     setCourceManager(CourceManager::create());
     getCourceManager()->getCourceMakerA()->drawStart(Vec2(-10,50), Vec2(winSize.width + 10,ctPt.y - 50));
@@ -59,7 +59,7 @@ bool SelectScene::init() {
     
     setBike(Bike::create());
     getBike()->setForDisplay();
-    mountNode(getBike(),Vec2(20,63),OBJ_LAYER_LV2);
+    mountNode(getBike(),Vec2(ctPt.x-20,63),OBJ_LAYER_LV2);
     getBike()->weightPt = Vec2(0,-4);
     getBike()->riderImageAction();
     
