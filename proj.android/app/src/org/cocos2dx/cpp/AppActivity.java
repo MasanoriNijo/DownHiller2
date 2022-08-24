@@ -65,7 +65,7 @@ public class AppActivity extends Cocos2dxActivity {
             getWindow().setAttributes(lp);
         }
         // DO OTHER INITIALIZATION BELOW
-        setImobileBanner();
+//        setImobileBanner();
         setImobileFullScreen();
     }
 
@@ -85,7 +85,6 @@ public class AppActivity extends Cocos2dxActivity {
         ImobileSdkAd.showAd(this, IMOBILE_BANNER_SID, imobileBunnerLayout);
         imobileBunnerLayout.bringToFront();
         mFrameLayout.addView(imobileBunnerLayout, imobileAdLayoutParam);
-        mFrameLayout.removeView(imobileBunnerLayout);
     }
 
     protected void removeImobileBanner(){
@@ -106,12 +105,11 @@ public class AppActivity extends Cocos2dxActivity {
         imobileFullScreenLayout = new FrameLayout(this);
         FrameLayout.LayoutParams imobileAdLayoutParam = new FrameLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         // 広告の表示位置を指定
-        imobileAdLayoutParam.gravity = (Gravity.NO_GRAVITY | Gravity.CENTER);
+        imobileAdLayoutParam.gravity = Gravity.CENTER;
         // 広告を表示します
         ImobileSdkAd.showAd(this, IMOBILE_FULLSCREENAD_SID);
         imobileFullScreenLayout.bringToFront();
         mFrameLayout.addView(imobileFullScreenLayout, imobileAdLayoutParam);
-        mFrameLayout.removeView(imobileFullScreenLayout);
     }
 
     protected void removeImobileFullScreen(){

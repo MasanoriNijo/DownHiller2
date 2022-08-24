@@ -167,7 +167,7 @@ void SelectScene::_arrangeBtnsForDebug(){
     auto menu_ = Menu::createWithArray(menuItems);
     menu_->alignItemsVerticallyWithPadding(0);
     menu_->setAnchorPoint(Vec2(0,1));
-    menu_->setPosition(Vec2(20,300));
+    menu_->setPosition(Vec2(ctPt.x,300));
     getScrollNode()->addChild(menu_);
     mountNode(getScrollNode(), Vec2::ZERO, OBJ_LAYER_TOP);
     getScrollNode()->setTouchEvent();
