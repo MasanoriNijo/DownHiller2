@@ -65,8 +65,8 @@ public class AppActivity extends Cocos2dxActivity {
             getWindow().setAttributes(lp);
         }
         // DO OTHER INITIALIZATION BELOW
-//        setImobileBanner();
-        setImobileFullScreen();
+        setImobileBanner();
+//        setImobileFullScreen();
     }
 
     protected void setImobileBanner(){

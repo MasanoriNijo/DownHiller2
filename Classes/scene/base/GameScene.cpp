@@ -47,7 +47,7 @@ bool GameScene::init() {
     auto director = Director::getInstance();
     winSize = director->getWinSize();
     ctPt.set(winSize.width / 2, winSize.height / 2);
-    
+
     //imovileAdをセットする。
 //    this->setAD(ImovileAd::create());
 //    this->getAD()->txtFlg = true;

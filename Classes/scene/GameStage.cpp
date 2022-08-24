@@ -83,7 +83,7 @@ bool GameStage::init() {
     }, Size(1,1), L_BTN_QUIT, Color3B::WHITE, Color3B::YELLOW, false));
     setMenu(Menu::create(getBtn1(),NULL));
     getMenu()->alignItemsHorizontallyWithPadding(20);
-    mountNode(getMenu(), Vec2(winSize.width - getBtn1()->getContentSize().width/2 -10,
+    mountNode(getMenu(), Vec2(ctPt.x,
                               winSize.height - getBtn1()->getContentSize().height/2 -10), OBJ_LAYER_TOP);
 
     setCourceManager(CourceManager::create());
