@@ -68,7 +68,7 @@ bool TitleScene::init() {
     
     setMenu(Menu::create(getStartBtn(), getTrainingBtn(), getHowToBtn(), NULL));
     getMenu()->alignItemsVerticallyWithPadding(3);
-    mountNode(getMenu(),Vec2(winSize.width/2,60), OBJ_LAYER_LV3);
+    mountNode(getMenu(),Vec2(winSize.width/2,70), OBJ_LAYER_LV3);
     
     setCourceManager(CourceManager::create());
     getCourceManager()->setForTitle();

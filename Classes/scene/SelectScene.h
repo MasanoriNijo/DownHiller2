@@ -29,6 +29,7 @@ public:
     CC_SYNTHESIZE_RETAIN(Menu*,_menu5,Menu5);
     CC_SYNTHESIZE_RETAIN(Menu*,_menu6,Menu6);
     CC_SYNTHESIZE_RETAIN(Menu*,_menu7,Menu7);
+    CC_SYNTHESIZE_RETAIN(Menu*,_menu8,Menu8);
     CC_SYNTHESIZE_RETAIN(TouchEventHelper*,_touch,Touch);
     CC_SYNTHESIZE_RETAIN(ScrollNode*,_scrollNode,ScrollNode);
     CC_SYNTHESIZE_RETAIN(CourceManager*,_courceManager,CourceManager);
