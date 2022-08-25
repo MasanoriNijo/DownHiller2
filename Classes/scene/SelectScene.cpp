@@ -4,7 +4,7 @@
 
 SelectScene::SelectScene():
 _gameTitle(NULL), _btn1(NULL), _btn2(NULL),
-_menu(NULL),_menu2(NULL),_menu3(NULL),_menu4(NULL),
+_menu(NULL),_menu2(NULL),_menu3(NULL),_menu4(NULL),_menu5(NULL),_menu6(NULL),_menu7(NULL),
 _touch(NULL), _scrollNode(NULL),_courceManager(NULL),_bike(NULL)
 {}
 
@@ -13,6 +13,12 @@ SelectScene::~SelectScene() {
     CC_SAFE_RELEASE_NULL(_btn1);
     CC_SAFE_RELEASE_NULL(_btn2);
     CC_SAFE_RELEASE_NULL(_menu);
+    CC_SAFE_RELEASE_NULL(_menu2);
+    CC_SAFE_RELEASE_NULL(_menu3);
+    CC_SAFE_RELEASE_NULL(_menu4);
+    CC_SAFE_RELEASE_NULL(_menu5);
+    CC_SAFE_RELEASE_NULL(_menu6);
+    CC_SAFE_RELEASE_NULL(_menu7);
     CC_SAFE_RELEASE_NULL(_touch);
     CC_SAFE_RELEASE_NULL(_scrollNode);
     CC_SAFE_RELEASE_NULL(_courceManager);
@@ -34,7 +40,10 @@ bool SelectScene::init() {
     setBackGradientGroundColor();
 //    drawDebugLine();
     
-    setGameTitle(Label::createWithTTF(L_TITLE_SELECT, "irohamaru.ttf", 16));
+    setGameTitle(UserDefault::getInstance()->getIntegerForKey(UDF_INT_GAME_MODE,GAME_MODE_STAGE) == GAME_MODE_STAGE ?
+                 Label::createWithTTF(L_TITLE_SELECT_STAGE, "irohamaru.ttf", 16) :
+                 Label::createWithTTF(L_TITLE_SELECT_COURCE, "irohamaru.ttf", 16)
+                 );
     getColorChanger()->SetColor(TITLE_COLOR_H, TITLE_COLOR_S, TITLE_COLOR_V);
     getGameTitle()->setTextColor(getColorChanger()->getColor4B());
     getColorChanger()->SetColor(TITLE_FUTI_COLOR_H, TITLE_FUTI_COLOR_S, TITLE_FUTI_COLOR_V);
@@ -48,8 +57,6 @@ bool SelectScene::init() {
     getMenu()->alignItemsHorizontallyWithPadding(20);
     mountNode(getMenu(), Vec2(winSize.width - getBtn1()->getContentSize().width/2 -10,
                               winSize.height - getBtn1()->getContentSize().height/2 -10), OBJ_LAYER_TOP);
-    _arrangeBtns();
-//    _arrangeBtnsForDebug();
     
     setCourceManager(CourceManager::create());
     getCourceManager()->getCourceMakerA()->drawStart(Vec2(-10,50), Vec2(winSize.width + 10,ctPt.y - 50));
@@ -63,6 +70,12 @@ bool SelectScene::init() {
     getBike()->weightPt = Vec2(0,-4);
     getBike()->riderImageAction();
     
+    if(UserDefault::getInstance()->getIntegerForKey(UDF_INT_GAME_MODE,GAME_MODE_STAGE) == GAME_MODE_STAGE){
+        _arrangeBtns();
+    }else{
+        _arrangeBtnsForDebug();
+    }
+
     return true;
 }
 
@@ -98,6 +111,15 @@ MenuItemSprite* SelectScene::genStageBtn(int i){
             transitonScene(GameStage::createScene());
         }, Size(28,28), i<10 ? "0" + std::to_string(i) : std::to_string(i), Color3B::WHITE, Color3B::YELLOW, false);
     }
+}
+
+MenuItemSprite* SelectScene::genCourceBtn(int i){
+    UserDefault::getInstance()->setBoolForKey(UDF_BOOL_DEBUG_STAGE, true);
+    return generateMenuItemSprite([this,i](Ref* ref){
+        UserDefault::getInstance()->setIntegerForKey(UDF_INT_SELECTED_STAGE, i);
+        transitonScene(GameStage::createScene());
+    }, Size(28,28), i<10 ? "0" + std::to_string(i) : std::to_string(i), Color3B::WHITE, Color3B::YELLOW, false);
+    
 }
 
 void SelectScene::_arrangeBtns(){
@@ -142,35 +164,43 @@ void SelectScene::_arrangeBtns(){
 }
 
 void SelectScene::_arrangeBtnsForDebug(){
-    setScrollNode(ScrollNode::create());
-    getScrollNode()->setMinScrollPos(-2000);
-    getScrollNode()->setMaxScrollPos(2000);
-    Vector<MenuItem*> menuItems;
-    for(int i=0;i<100;i++){
-        std::string stageName;
-        if(i<9){
-            stageName = "stage:0"+ST_INT(i);
-        }else{
-            stageName = "stage:"+ST_INT(i);
-        }
-        Label* label_ = Label::createWithTTF(stageName , "irohamaru.ttf", 8);
-        label_->setColor(Color3B::BLACK);
-        label_->setGlobalZOrder(OBJ_LAYER_TOP);
-        MenuItemLabel* obj_ = MenuItemLabel::create(label_, [this,i](Ref* ref){
-            UserDefault::getInstance()->setBoolForKey(UDF_BOOL_DEBUG_STAGE, true);
-            UserDefault::getInstance()->setIntegerForKey(UDF_INT_SELECTED_STAGE, i);
-            transitonScene(GameStage::createScene());
-        });
-        obj_->setGlobalZOrder(OBJ_LAYER_TOP);
-        menuItems.pushBack(obj_);
-    }
-    auto menu_ = Menu::createWithArray(menuItems);
-    menu_->alignItemsVerticallyWithPadding(0);
-    menu_->setAnchorPoint(Vec2(0,1));
-    menu_->setPosition(Vec2(20,300));
-    getScrollNode()->addChild(menu_);
-    mountNode(getScrollNode(), Vec2::ZERO, OBJ_LAYER_TOP);
-    getScrollNode()->setTouchEvent();
+    int topOffset = -80;
+    int verticalPitch = -32;
+    setMenu(Menu::create(genCourceBtn(1),
+                         genCourceBtn(2),
+                         genCourceBtn(3),
+                         genCourceBtn(4),
+                         genCourceBtn(5),
+                         NULL));
+    getMenu()->alignItemsHorizontallyWithPadding(18);
+    mountNode(getMenu(), Vec2(ctPt.x,winSize.height+topOffset+verticalPitch * 0) , OBJ_LAYER_TOP);
+    
+    setMenu2(Menu::create(genCourceBtn(6),
+                          genCourceBtn(7),
+                          genCourceBtn(8),
+                          genCourceBtn(9),
+                          genCourceBtn(10),
+                          NULL));
+    getMenu2()->alignItemsHorizontallyWithPadding(18);
+    mountNode(getMenu2(), Vec2(ctPt.x,winSize.height+topOffset+verticalPitch * 1), OBJ_LAYER_TOP);
+    
+    setMenu3(Menu::create(genCourceBtn(11),
+                          genCourceBtn(12),
+                          genCourceBtn(13),
+                          genCourceBtn(14),
+                          genCourceBtn(15),
+                          NULL));
+    getMenu3()->alignItemsHorizontallyWithPadding(18);
+    mountNode(getMenu3(), Vec2(ctPt.x,winSize.height+topOffset+verticalPitch * 2), OBJ_LAYER_TOP);
+    
+    setMenu4(Menu::create(genCourceBtn(16),
+                          genCourceBtn(17),
+                          genCourceBtn(18),
+                          genCourceBtn(19),
+                          genCourceBtn(20),
+                          NULL));
+    getMenu4()->alignItemsHorizontallyWithPadding(18);
+    mountNode(getMenu4(), Vec2(ctPt.x,winSize.height+topOffset+verticalPitch * 3), OBJ_LAYER_TOP);
 }
 
 

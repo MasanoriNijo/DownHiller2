@@ -108,7 +108,7 @@ void GameStage::onEnterTransitionDidFinish() {
     if(UserDefault::getInstance()->getBoolForKey(UDF_BOOL_DEBUG_STAGE, false)){
         // debug
         _timeLimit = 0;
-        drawDebugLine();
+//        drawDebugLine();
     }
 
     getCourceManager()->checkAndMadeCource(Vec2::ZERO);
@@ -186,7 +186,7 @@ void GameStage::update(float dt) {
 
 void GameStage::onReady(){
     int stg = UserDefault::getInstance()->getIntegerForKey(UDF_INT_SELECTED_STAGE,1);
-    if(stg==0){
+    if(stg==0 && UserDefault::getInstance()->getIntegerForKey(UDF_INT_GAME_MODE,GAME_MODE_STAGE)==GAME_MODE_STAGE){
         demo();
     }else{
         auto setumei_ = CallFunc::create([this,stg]{

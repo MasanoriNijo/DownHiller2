@@ -51,7 +51,7 @@ public:
     bool _isSetGoal = false;
     
     // debug用
-    bool _isDebugComment = false;
+    bool _isDebugComment = true;
     void setComment(std::string st, CourceMaker* _c);
     
     void madeCourcePtn0(CourceMaker* _cmaker,int ind);
