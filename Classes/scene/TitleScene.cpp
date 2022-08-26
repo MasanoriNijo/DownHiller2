@@ -5,7 +5,7 @@
 #include "scene/SelectScene.h"
 
 TitleScene::TitleScene():
-_gameTitle(NULL), _startBtn(NULL), _howtoBtn(NULL), _resultBtn(NULL),
+_gameTitle(NULL), _startBtn(NULL), _howtoBtn(NULL), _trainingBtn(NULL),
 _menu(NULL),_courceManager(NULL),_bike(NULL),_contactlistener(NULL)
 {}
 
@@ -13,7 +13,7 @@ TitleScene::~TitleScene() {
     CC_SAFE_RELEASE_NULL(_gameTitle);
     CC_SAFE_RELEASE_NULL(_startBtn);
     CC_SAFE_RELEASE_NULL(_howtoBtn);
-    CC_SAFE_RELEASE_NULL(_resultBtn);
+    CC_SAFE_RELEASE_NULL(_trainingBtn);
     CC_SAFE_RELEASE_NULL(_menu);
     CC_SAFE_RELEASE_NULL(_courceManager);
     CC_SAFE_RELEASE_NULL(_bike);
@@ -50,8 +50,15 @@ bool TitleScene::init() {
     
     setStartBtn(generateMenuItemSprite([this](Ref* ref){
         callSoundEffect("button05.mp3");
+        UserDefault::getInstance()->setIntegerForKey(UDF_INT_GAME_MODE, GAME_MODE_STAGE);
         transitonScene(SelectScene::createScene());
     }, Size(1,1), L_BTN_START, Color3B::WHITE, Color3B::YELLOW, true));
+    
+    setTrainingBtn(generateMenuItemSprite([this](Ref* ref){
+        callSoundEffect("button05.mp3");
+        UserDefault::getInstance()->setIntegerForKey(UDF_INT_GAME_MODE, GAME_MODE_TRAINING);
+        transitonScene(SelectScene::createScene());
+    }, Size(1,1), L_BTN_TRAINING, Color3B::WHITE, Color3B::YELLOW, false));
     
     setHowToBtn(generateMenuItemSprite([this](Ref* ref){
         callSoundEffect("button05.mp3");
@@ -59,9 +66,9 @@ bool TitleScene::init() {
         transitonScene(GameStage::createScene());
     }, Size(1,1), L_BTN_HOWTO, Color3B::WHITE, Color3B::YELLOW, false));
     
-    setMenu(Menu::create(getStartBtn(), getHowToBtn(), NULL));
-    getMenu()->alignItemsVerticallyWithPadding(10);
-    mountNode(getMenu(),Vec2(winSize.width/2,60), OBJ_LAYER_LV3);
+    setMenu(Menu::create(getStartBtn(), getTrainingBtn(), getHowToBtn(), NULL));
+    getMenu()->alignItemsVerticallyWithPadding(3);
+    mountNode(getMenu(),Vec2(winSize.width/2,70), OBJ_LAYER_LV3);
     
     setCourceManager(CourceManager::create());
     getCourceManager()->setForTitle();

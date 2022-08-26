@@ -23,7 +23,7 @@ public:
     CC_SYNTHESIZE_RETAIN(Label*,_gameTitle3,GameTitle3);
     CC_SYNTHESIZE_RETAIN(MenuItemSprite*,_startBtn,StartBtn);
     CC_SYNTHESIZE_RETAIN(MenuItemSprite*,_howtoBtn,HowToBtn);
-    CC_SYNTHESIZE_RETAIN(MenuItemSprite*,_resultBtn,ResultBtn);
+    CC_SYNTHESIZE_RETAIN(MenuItemSprite*,_trainingBtn,TrainingBtn);
     CC_SYNTHESIZE_RETAIN(Menu*,_menu,Menu);
     CC_SYNTHESIZE_RETAIN(CourceManager*,_courceManager,CourceManager);
     CC_SYNTHESIZE_RETAIN(Bike*,_bike,Bike);

@@ -59,9 +59,6 @@ USING_NS_CC;
 #define COMMENT_COLOR_S 77
 #define COMMENT_COLOR_V 49
 
-
-
-
 // spriteの上下
 #define OBJ_LAYER_BUTTOM 0
 #define OBJ_LAYER_LV1 2
@@ -96,6 +93,10 @@ static const int CT_GOAL = 1 << 3;
 static const int CT_START = 1 << 4;
 static const int CT_ALL = 0xFFFFFFFF;
 
+// GameMode
+static const int GAME_MODE_STAGE=0;
+static const int GAME_MODE_TRAINING=1;
+
 // macro
 // 数字の文字化
 #define ST_INT(suzi) ({std::string st = StringUtils::toString((int)suzi);st;})
@@ -111,5 +112,6 @@ static const int CT_ALL = 0xFFFFFFFF;
 static const char * UDF_INT_CLEAR_STAGE = "clear_stage";
 static const char * UDF_INT_SELECTED_STAGE = "selected_stage";
 static const char * UDF_BOOL_DEBUG_STAGE = "debug_stage";
+static const char * UDF_INT_GAME_MODE = "game_mode";
 
 #endif
