@@ -47,7 +47,7 @@ bool Bike::init() {
     setRwheel(Sprite::createWithTexture(getFwheel()->getTexture()));
     
     // 効果音
-    setSoundEffect("ashidejump.mp3");
+    setSoundEffect(SOUND_PLAYER_JUMP);
     
 //    _setTouchEvent(); // game進行上で起動させる。
 
@@ -66,6 +66,7 @@ bool Bike::init() {
     getSceneChasePt()->setGlobalZOrder(OBJ_LAYER_BUTTOM);
 
     // debug用
+    setSoundEffect(SOUND_PLAYER_JUMP);
 //    setBikeDebug(Label::createWithTTF("bikeState", "irohamaru.ttf", 10));
 //    getBikeDebug()->setTextColor(Color4B::BLACK);
 //    getBikeDebug()->setGlobalZOrder(OBJ_LAYER_TOP);
@@ -412,7 +413,7 @@ bool Bike::jump(float lvl){
             return false;
         }
     }
-    callSoundEffect("ashidejump.mp3",0.02f);
+    callSoundEffect(SOUND_PLAYER_JUMP);
     Vec2 dirX = getCalc()->rotByRad(powPt, -M_PI/2);
     float speedX = getCalc()->cordinaneX(dirX, getRwheel()->getPhysicsBody()->getVelocity()).x;
     Vec2 veloX = getCalc()->chgLength(dirX, speedX);

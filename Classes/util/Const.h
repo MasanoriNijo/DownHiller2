@@ -97,6 +97,11 @@ static const int CT_ALL = 0xFFFFFFFF;
 static const int GAME_MODE_STAGE=0;
 static const int GAME_MODE_TRAINING=1;
 
+// Stage数
+static const int STAGE_SIZE=20;
+static const int TRAINING_SIZE=63;
+
+
 // GameSound
 // Openingロゴ表示の音
 static const char * SOUND_OPENING = "open.mp3";

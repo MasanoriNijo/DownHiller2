@@ -103,11 +103,13 @@ MenuItemSprite* SelectScene::genStageBtn(int i){
         return obj;
     }else if(i==udf->getIntegerForKey(UDF_INT_CLEAR_STAGE,0)+1){
         return generateMenuItemSprite([this,i](Ref* ref){
+            callSoundEffect(SOUND_BUTTON);
             UserDefault::getInstance()->setIntegerForKey(UDF_INT_SELECTED_STAGE, i);
             transitonScene(GameStage::createScene());
         }, Size(28,28), i<10 ? "0" + std::to_string(i) : std::to_string(i), Color3B::WHITE, Color3B::YELLOW, true);
     }else{
         return generateMenuItemSprite([this,i](Ref* ref){
+            callSoundEffect(SOUND_BUTTON);
             UserDefault::getInstance()->setIntegerForKey(UDF_INT_SELECTED_STAGE, i);
             transitonScene(GameStage::createScene());
         }, Size(28,28), i<10 ? "0" + std::to_string(i) : std::to_string(i), Color3B::WHITE, Color3B::YELLOW, false);
@@ -117,6 +119,7 @@ MenuItemSprite* SelectScene::genStageBtn(int i){
 MenuItemSprite* SelectScene::genCourceBtn(int i){
     UserDefault::getInstance()->setBoolForKey(UDF_BOOL_DEBUG_STAGE, true);
     return generateMenuItemSprite([this,i](Ref* ref){
+        callSoundEffect(SOUND_BUTTON);
         UserDefault::getInstance()->setIntegerForKey(UDF_INT_SELECTED_STAGE, i);
         transitonScene(GameStage::createScene());
     }, Size(18,18), i<10 ? "0" + ST_INT(i) : ST_INT(i), Color3B::WHITE, Color3B::YELLOW, false);
