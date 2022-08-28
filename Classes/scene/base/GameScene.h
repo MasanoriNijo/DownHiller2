@@ -90,6 +90,7 @@ public:
     // 音関連
     void setBGM(const char* filePath);
     void startBGM(const char* filePath);
+    void startBGM(const char* filePath, float gain);
     void stopBGM(const char* filePath);
     void setSoundEffect(const char* filePath);
     void callSoundEffect(const char* filePath);

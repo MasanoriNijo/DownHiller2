@@ -49,19 +49,19 @@ bool TitleScene::init() {
     mountNode(getGameTitle(), Vec2(winSize.width/2,winSize.height -80), OBJ_LAYER_TOP);
     
     setStartBtn(generateMenuItemSprite([this](Ref* ref){
-        callSoundEffect("button05.mp3");
+        callSoundEffect(SOUND_BUTTON);
         UserDefault::getInstance()->setIntegerForKey(UDF_INT_GAME_MODE, GAME_MODE_STAGE);
         transitonScene(SelectScene::createScene());
     }, Size(1,1), L_BTN_START, Color3B::WHITE, Color3B::YELLOW, true));
     
     setTrainingBtn(generateMenuItemSprite([this](Ref* ref){
-        callSoundEffect("button05.mp3");
+        callSoundEffect(SOUND_BUTTON);
         UserDefault::getInstance()->setIntegerForKey(UDF_INT_GAME_MODE, GAME_MODE_TRAINING);
         transitonScene(SelectScene::createScene());
     }, Size(1,1), L_BTN_TRAINING, Color3B::WHITE, Color3B::YELLOW, false));
     
     setHowToBtn(generateMenuItemSprite([this](Ref* ref){
-        callSoundEffect("button05.mp3");
+        callSoundEffect(SOUND_BUTTON);
         UserDefault::getInstance()->setIntegerForKey(UDF_INT_SELECTED_STAGE, 0);
         transitonScene(GameStage::createScene());
     }, Size(1,1), L_BTN_HOWTO, Color3B::WHITE, Color3B::YELLOW, false));
@@ -75,7 +75,7 @@ bool TitleScene::init() {
     addChild(getCourceManager()->getCourceMakerA());
     addChild(getCourceManager()->getCourceMakerB());
     addChild(getCourceManager()->getGurd());
-    setBGM("BGM124-110921-tamashiinopistol-wav-nointro.mp3");
+    setBGM(SOUND_GAME_BGM);
        
     return true;
 }
@@ -105,7 +105,7 @@ void TitleScene::onEnterTransitionDidFinish() {
     scheduleUpdate();
     demo();
     
-    startBGM("BGM124-110921-tamashiinopistol-wav-nointro.mp3");
+    startBGM(SOUND_GAME_BGM,0.5f);
 }
 
 void TitleScene::update(float dt) {

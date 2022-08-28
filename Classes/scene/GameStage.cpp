@@ -43,7 +43,7 @@ bool GameStage::init() {
     if (!GameScene::init()) {
         return false;
     }
-    setSoundEffect("btnon.mp");
+    setSoundEffect(SOUND_BUTTON);
 //    setBackGroundColor();
     setBackGradientGroundColor();
     setPosition(ctPt + Vec2(250,0));
@@ -53,12 +53,15 @@ bool GameStage::init() {
     
     // modal画面を作成する。
     setBtn2(generateMenuItemSprite([this](Ref* ref){
+        callSoundEffect(SOUND_BUTTON);
         transitonScene(GameStage::createScene());
     }, Size(1,1), L_BTN_RETRY, Color3B::WHITE, Color3B::YELLOW, false));
     setBtn3(generateMenuItemSprite([this](Ref* ref){
+        callSoundEffect(SOUND_BUTTON);
         transitonScene(GameStage::createScene());
     }, Size(1,1), L_BTN_NEXT, Color3B::WHITE, Color3B::YELLOW, false));
     setBtn4(generateMenuItemSprite([this](Ref* ref){
+        callSoundEffect(SOUND_BUTTON);
         transitonScene(SelectScene::createScene());
     }, Size(1,1), L_BTN_BACK, Color3B::WHITE, Color3B::YELLOW, false));
     setModal(Modal::create());
@@ -239,11 +242,21 @@ void GameStage::onClear(){
         showGameAnnounce(L_GAME_CLEAR, ctPt + Vec2(0,50),[this]{
             // クリアステージをカウントアップ
             int selStage = getCourceManager()->getStagePrm()->getStageNumber();
-            
-            if(UserDefault::getInstance()->getIntegerForKey(UDF_INT_CLEAR_STAGE,0) < selStage){
-                UserDefault::getInstance()->setIntegerForKey(UDF_INT_CLEAR_STAGE, selStage);
+            int maxStage;
+            if(UserDefault::getInstance()->getIntegerForKey(UDF_INT_GAME_MODE,GAME_MODE_STAGE) == GAME_MODE_STAGE){
+                if(UserDefault::getInstance()->getIntegerForKey(UDF_INT_CLEAR_STAGE,0) < selStage){
+                    UserDefault::getInstance()->setIntegerForKey(UDF_INT_CLEAR_STAGE, selStage);
+                }
+                maxStage = STAGE_SIZE;
+            }else{
+                maxStage = TRAINING_SIZE;
             }
-            UserDefault::getInstance()->setIntegerForKey(UDF_INT_SELECTED_STAGE, selStage + 1);
+                        
+            if(selStage < maxStage){
+                selStage++;
+            }
+            
+            UserDefault::getInstance()->setIntegerForKey(UDF_INT_SELECTED_STAGE, selStage);
             setModalMenu(Menu::create(getBtn3(),getBtn4(),NULL));
             getModalMenu()->alignItemsVerticallyWithPadding(5);
             getModalMenu()->setPosition(Vec2::ZERO);
@@ -258,7 +271,7 @@ void GameStage::onClear(){
 
 void GameStage::onMiss(){
     getMenu()->removeFromParentAndCleanup(true);
-    callSoundEffect("btnon.mp3");
+    callSoundEffect(SOUND_PLAYER_MISS);
     getBike()->getFRJoint()->removeFormWorld();
     getBike()->getFwheel()->getPhysicsBody()->setVelocity(Vec2::ZERO);
     getBike()->getRwheel()->getPhysicsBody()->setVelocity(Vec2::ZERO);
