@@ -105,7 +105,7 @@ void TitleScene::onEnterTransitionDidFinish() {
     scheduleUpdate();
     demo();
     
-    startBGM(SOUND_GAME_BGM);
+    startBGM(SOUND_GAME_BGM,0.5f);
 }
 
 void TitleScene::update(float dt) {

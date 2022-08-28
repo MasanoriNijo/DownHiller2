@@ -104,7 +104,7 @@ static const int TRAINING_SIZE=63;
 
 // GameSound
 // Openingロゴ表示の音
-static const char * SOUND_OPENING = "open.mp3";
+static const char * SOUND_OPENING = "ME017-100125-logo02-wav.mp3";
 
 // ボタンを押す音
 static const char * SOUND_BUTTON = "button05.mp3";
