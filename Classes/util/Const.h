@@ -97,6 +97,32 @@ static const int CT_ALL = 0xFFFFFFFF;
 static const int GAME_MODE_STAGE=0;
 static const int GAME_MODE_TRAINING=1;
 
+// GameSound
+// Openingロゴ表示の音
+static const char * SOUND_OPENING = "open.mp3";
+
+// ボタンを押す音
+static const char * SOUND_BUTTON = "button05.mp3";
+
+// Game中のBGM
+static const char * SOUND_GAME_BGM = "BGM124-110921-tamashiinopistol-wav-nointro.mp3";
+
+// Game開始音READY
+static const char * SOUND_GAME_READY = "select01.mp3";
+
+// Game開始音START
+static const char * SOUND_GAME_START = "select02.mp3";
+
+// Gameクリヤ音
+static const char * SOUND_GAME_CLEAR = "";
+
+// Playerのジャンプ音
+static const char * SOUND_PLAYER_JUMP = "ashidejump.mp3";
+
+// PlayerのMiss音
+static const char * SOUND_PLAYER_MISS = "btnon.mp3";
+
+
 // macro
 // 数字の文字化
 #define ST_INT(suzi) ({std::string st = StringUtils::toString((int)suzi);st;})

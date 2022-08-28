@@ -42,6 +42,7 @@ bool FstScene::init() {
 
 void FstScene::onEnterTransitionDidFinish() {
 //    callSoundEffect("ME017-100125-logo02-wav.mp3",0.01f);
+    callSoundEffect("ME017-100125-logo02-wav.mp3",0.01f);
     GameScene::onEnterTransitionDidFinish();
     this->mountNode(this->getProductTitle(),this->ctPt,OBJ_LAYER_TOP);
 //    NJLOG("FstScene:Count2");
