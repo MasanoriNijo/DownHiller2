@@ -23,6 +23,7 @@ bool FstScene::init() {
     setSoundEffect("btnon.mp3");
     this->setProductTitle(Sprite::create("kotokotobokanmark.png"));
     this->getProductTitle()->setOpacity(0);
+    this->getProductTitle()->setScale(2.0f);
     auto fadein_ = FadeIn::create(1.0f);
     auto delaytime_ = DelayTime::create(1.0f);
     auto fadeout_ = FadeOut::create(1.0f);

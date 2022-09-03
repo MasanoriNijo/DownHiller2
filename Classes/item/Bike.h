@@ -64,7 +64,7 @@ public:
     Vec2 bikeAnchorPt;
     
     // wheelBase
-    float wheelBase = 36;
+    float wheelBase = 45;
     
     // riderの重心ポイント（画面操作により、移動し、移動の仕方によりジャンプ、ウイリーなどのアクションをさせる。）
     Vec2 weightPt;
@@ -122,7 +122,7 @@ public:
     float maxWheelVelo = 100;
     
     // 画面スクロール関連
-    Vec2 sceneOffset = Vec2(30,-20);
+    Vec2 sceneOffset = Vec2(90,-20);
     
     // title表示用
     void setForDisplay();

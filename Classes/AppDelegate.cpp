@@ -87,7 +87,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     FileUtils::getInstance()->addSearchPath("fonts");
 
     // turn on display FPS
-//    director->setDisplayStats(DISPLAY_STATUS);
+    director->setDisplayStats(DISPLAY_STATUS);
 
     // set FPS. the default value is 1.0/60 if you don't call this
     director->setAnimationInterval(1.0f / 60);

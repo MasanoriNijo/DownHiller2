@@ -39,14 +39,14 @@ bool TitleScene::init() {
         return false;
     }
 //    drawDebugLine();
-//    setBackGroundColor();
+    setBackGroundColor();
     setBackGradientGroundColor();
-    setGameTitle(Label::createWithTTF(L_TITLE, "irohamaru.ttf", 30));
+    setGameTitle(Label::createWithTTF(L_TITLE, "irohamaru.ttf", 60));
     getColorChanger()->SetColor(TITLE_COLOR_H, TITLE_COLOR_S, TITLE_COLOR_V);
     getGameTitle()->setTextColor(getColorChanger()->getColor4B());
     getColorChanger()->SetColor(TITLE_FUTI_COLOR_H, TITLE_FUTI_COLOR_S, TITLE_FUTI_COLOR_V);
     getGameTitle()->enableOutline(getColorChanger()->getColor4B(),1);
-    mountNode(getGameTitle(), Vec2(winSize.width/2,winSize.height -80), OBJ_LAYER_TOP);
+    mountNode(getGameTitle(), Vec2(winSize.width/2,winSize.height -160), OBJ_LAYER_TOP);
     
     setStartBtn(generateMenuItemSprite([this](Ref* ref){
         callSoundEffect(SOUND_BUTTON);
@@ -68,7 +68,7 @@ bool TitleScene::init() {
     
     setMenu(Menu::create(getStartBtn(), getTrainingBtn(), getHowToBtn(), NULL));
     getMenu()->alignItemsVerticallyWithPadding(3);
-    mountNode(getMenu(),Vec2(winSize.width/2,70), OBJ_LAYER_LV3);
+    mountNode(getMenu(),Vec2(winSize.width/2,140), OBJ_LAYER_LV3);
     
     setCourceManager(CourceManager::create());
     getCourceManager()->setForTitle();

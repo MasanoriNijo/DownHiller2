@@ -42,32 +42,32 @@ bool SelectScene::init() {
 //    drawDebugLine();
     
     setGameTitle(UserDefault::getInstance()->getIntegerForKey(UDF_INT_GAME_MODE,GAME_MODE_STAGE) == GAME_MODE_STAGE ?
-                 Label::createWithTTF(L_TITLE_SELECT_STAGE, "irohamaru.ttf", 16) :
-                 Label::createWithTTF(L_TITLE_SELECT_COURCE, "irohamaru.ttf", 16)
+                 Label::createWithTTF(L_TITLE_SELECT_STAGE, "irohamaru.ttf", 32) :
+                 Label::createWithTTF(L_TITLE_SELECT_COURCE, "irohamaru.ttf", 32)
                  );
     getColorChanger()->SetColor(TITLE_COLOR_H, TITLE_COLOR_S, TITLE_COLOR_V);
     getGameTitle()->setTextColor(getColorChanger()->getColor4B());
     getColorChanger()->SetColor(TITLE_FUTI_COLOR_H, TITLE_FUTI_COLOR_S, TITLE_FUTI_COLOR_V);
     getGameTitle()->enableOutline(getColorChanger()->getColor4B(),1);
-    mountNode(getGameTitle(), Vec2(ctPt.x,winSize.height-getGameTitle()->getContentSize().height -20), OBJ_LAYER_TOP);
+    mountNode(getGameTitle(), Vec2(ctPt.x,winSize.height-getGameTitle()->getContentSize().height -70), OBJ_LAYER_TOP);
     
     setBtn1(generateMenuItemSprite([this](Ref* ref){
         transitonScene(TitleScene::createScene());
     }, Size(1,1), L_BTN_BACK, Color3B::WHITE, Color3B::YELLOW, false));
     setMenu(Menu::create(getBtn1(),NULL));
     getMenu()->alignItemsHorizontallyWithPadding(20);
-    mountNode(getMenu(), Vec2(ctPt.x,
-                              winSize.height - getBtn1()->getContentSize().height/2 -10), OBJ_LAYER_TOP);
+    mountNode(getMenu(), Vec2(winSize.width - getBtn1()->getContentSize().height/2 -40,
+                              winSize.height - getBtn1()->getContentSize().height/2 -40), OBJ_LAYER_TOP);
     
     setCourceManager(CourceManager::create());
-    getCourceManager()->getCourceMakerA()->drawStart(Vec2(-10,50), Vec2(winSize.width + 10,ctPt.y - 50));
+    getCourceManager()->getCourceMakerA()->drawStart(Vec2(-10,135), Vec2(winSize.width + 10,ctPt.y - 50));
     getCourceManager()->getCourceMakerA()->dS(Vec2(winSize.width + 20,0));
     getCourceManager()->getCourceMakerA()->madeCourceBase();
     mountNode(getCourceManager()->getCourceMakerA(),Vec2::ZERO,OBJ_LAYER_LV1);
     
     setBike(Bike::create());
     getBike()->setForDisplay();
-    mountNode(getBike(),Vec2(ctPt.x-20,63),OBJ_LAYER_LV2);
+    mountNode(getBike(),Vec2(ctPt.x-20,150),OBJ_LAYER_LV2);
     getBike()->weightPt = Vec2(0,-4);
     getBike()->riderImageAction();
     
@@ -93,10 +93,10 @@ MenuItemSprite* SelectScene::genStageBtn(int i){
             // 本当は何もしない。
 //            UserDefault::getInstance()->setIntegerForKey(UDF_INT_SELECTED_STAGE, i);
 //            transitonScene(GameStage::createScene());
-        }, Size(28,28),"??", Color3B::WHITE, Color3B::YELLOW, false);
+        }, Size(56,56),"??", Color3B::WHITE, Color3B::YELLOW, false);
         obj->setOpacity(30);
-        obj->getNormalImage()->setOpacity(120);
-        obj->getSelectedImage()->setOpacity(120);
+        obj->getNormalImage()->setOpacity(200);
+        obj->getSelectedImage()->setOpacity(200);
         for(int i=1; i<obj->getChildren().size(); ++i) {
             obj->getChildren().at(i)->setOpacity(30);
         }
@@ -106,13 +106,13 @@ MenuItemSprite* SelectScene::genStageBtn(int i){
             callSoundEffect(SOUND_BUTTON);
             UserDefault::getInstance()->setIntegerForKey(UDF_INT_SELECTED_STAGE, i);
             transitonScene(GameStage::createScene());
-        }, Size(28,28), i<10 ? "0" + std::to_string(i) : std::to_string(i), Color3B::WHITE, Color3B::YELLOW, true);
+        }, Size(56,56), i<10 ? "0" + std::to_string(i) : std::to_string(i), Color3B::WHITE, Color3B::YELLOW, true);
     }else{
         return generateMenuItemSprite([this,i](Ref* ref){
             callSoundEffect(SOUND_BUTTON);
             UserDefault::getInstance()->setIntegerForKey(UDF_INT_SELECTED_STAGE, i);
             transitonScene(GameStage::createScene());
-        }, Size(28,28), i<10 ? "0" + std::to_string(i) : std::to_string(i), Color3B::WHITE, Color3B::YELLOW, false);
+        }, Size(56,56), i<10 ? "0" + std::to_string(i) : std::to_string(i), Color3B::WHITE, Color3B::YELLOW, false);
     }
 }
 
@@ -122,21 +122,21 @@ MenuItemSprite* SelectScene::genCourceBtn(int i){
         callSoundEffect(SOUND_BUTTON);
         UserDefault::getInstance()->setIntegerForKey(UDF_INT_SELECTED_STAGE, i);
         transitonScene(GameStage::createScene());
-    }, Size(18,18), i<10 ? "0" + ST_INT(i) : ST_INT(i), Color3B::WHITE, Color3B::YELLOW, false);
+    }, Size(36,36), i<10 ? "0" + ST_INT(i) : ST_INT(i), Color3B::WHITE, Color3B::YELLOW, false);
     
 }
 
 void SelectScene::_arrangeBtns(){
     
-    int topOffset = -80;
-    int verticalPitch = -29;
+    int topOffset = -190;
+    int verticalPitch = -60;
     setMenu(Menu::create(genStageBtn(1),
                          genStageBtn(2),
                          genStageBtn(3),
                          genStageBtn(4),
                          genStageBtn(5),
                          NULL));
-    getMenu()->alignItemsHorizontallyWithPadding(18);
+    getMenu()->alignItemsHorizontallyWithPadding(36);
     mountNode(getMenu(), Vec2(ctPt.x,winSize.height+topOffset+verticalPitch * 0) , OBJ_LAYER_TOP);
     
     setMenu2(Menu::create(genStageBtn(6),
@@ -145,7 +145,7 @@ void SelectScene::_arrangeBtns(){
                           genStageBtn(9),
                           genStageBtn(10),
                           NULL));
-    getMenu2()->alignItemsHorizontallyWithPadding(18);
+    getMenu2()->alignItemsHorizontallyWithPadding(36);
     mountNode(getMenu2(), Vec2(ctPt.x,winSize.height+topOffset+verticalPitch * 1), OBJ_LAYER_TOP);
     
     setMenu3(Menu::create(genStageBtn(11),
@@ -154,7 +154,7 @@ void SelectScene::_arrangeBtns(){
                           genStageBtn(14),
                           genStageBtn(15),
                           NULL));
-    getMenu3()->alignItemsHorizontallyWithPadding(18);
+    getMenu3()->alignItemsHorizontallyWithPadding(36);
     mountNode(getMenu3(), Vec2(ctPt.x,winSize.height+topOffset+verticalPitch * 2), OBJ_LAYER_TOP);
     
     setMenu4(Menu::create(genStageBtn(16),
@@ -163,13 +163,13 @@ void SelectScene::_arrangeBtns(){
                           genStageBtn(19),
                           genStageBtn(20),
                           NULL));
-    getMenu4()->alignItemsHorizontallyWithPadding(18);
+    getMenu4()->alignItemsHorizontallyWithPadding(36);
     mountNode(getMenu4(), Vec2(ctPt.x,winSize.height+topOffset+verticalPitch * 3), OBJ_LAYER_TOP);
 }
 
 void SelectScene::_arrangeBtnsForDebug(){
-    int topOffset = -68;
-    int verticalPitch = -20;
+    int topOffset = -170;
+    int verticalPitch = -40;
     setMenu(Menu::create(genCourceBtn(0),
                          genCourceBtn(1),
                          genCourceBtn(2),
@@ -179,7 +179,7 @@ void SelectScene::_arrangeBtnsForDebug(){
                          genCourceBtn(6),
                          genCourceBtn(7),
                          NULL));
-    getMenu()->alignItemsHorizontallyWithPadding(5);
+    getMenu()->alignItemsHorizontallyWithPadding(10);
     mountNode(getMenu(), Vec2(ctPt.x,winSize.height+topOffset+verticalPitch * 0) , OBJ_LAYER_TOP);
     
     setMenu2(Menu::create(genCourceBtn(8),
@@ -191,7 +191,7 @@ void SelectScene::_arrangeBtnsForDebug(){
                           genCourceBtn(14),
                           genCourceBtn(15),
                           NULL));
-    getMenu2()->alignItemsHorizontallyWithPadding(5);
+    getMenu2()->alignItemsHorizontallyWithPadding(10);
     mountNode(getMenu2(), Vec2(ctPt.x,winSize.height+topOffset+verticalPitch * 1), OBJ_LAYER_TOP);
     
     setMenu3(Menu::create(genCourceBtn(16),
@@ -203,7 +203,7 @@ void SelectScene::_arrangeBtnsForDebug(){
                           genCourceBtn(22),
                           genCourceBtn(23),
                           NULL));
-    getMenu3()->alignItemsHorizontallyWithPadding(5);
+    getMenu3()->alignItemsHorizontallyWithPadding(10);
     mountNode(getMenu3(), Vec2(ctPt.x,winSize.height+topOffset+verticalPitch * 2), OBJ_LAYER_TOP);
     
     setMenu4(Menu::create(genCourceBtn(24),
@@ -215,7 +215,7 @@ void SelectScene::_arrangeBtnsForDebug(){
                           genCourceBtn(30),
                           genCourceBtn(31),
                           NULL));
-    getMenu4()->alignItemsHorizontallyWithPadding(5);
+    getMenu4()->alignItemsHorizontallyWithPadding(10);
     mountNode(getMenu4(), Vec2(ctPt.x,winSize.height+topOffset+verticalPitch * 3), OBJ_LAYER_TOP);
     
     setMenu5(Menu::create(genCourceBtn(32),
@@ -227,7 +227,7 @@ void SelectScene::_arrangeBtnsForDebug(){
                           genCourceBtn(38),
                           genCourceBtn(39),
                           NULL));
-    getMenu5()->alignItemsHorizontallyWithPadding(5);
+    getMenu5()->alignItemsHorizontallyWithPadding(10);
     mountNode(getMenu5(), Vec2(ctPt.x,winSize.height+topOffset+verticalPitch * 4), OBJ_LAYER_TOP);
     
     setMenu6(Menu::create(genCourceBtn(40),
@@ -239,7 +239,7 @@ void SelectScene::_arrangeBtnsForDebug(){
                           genCourceBtn(46),
                           genCourceBtn(47),
                           NULL));
-    getMenu6()->alignItemsHorizontallyWithPadding(5);
+    getMenu6()->alignItemsHorizontallyWithPadding(10);
     mountNode(getMenu6(), Vec2(ctPt.x,winSize.height+topOffset+verticalPitch * 5), OBJ_LAYER_TOP);
     
     setMenu7(Menu::create(genCourceBtn(48),
@@ -251,7 +251,7 @@ void SelectScene::_arrangeBtnsForDebug(){
                           genCourceBtn(54),
                           genCourceBtn(55),
                           NULL));
-    getMenu7()->alignItemsHorizontallyWithPadding(5);
+    getMenu7()->alignItemsHorizontallyWithPadding(10);
     mountNode(getMenu7(), Vec2(ctPt.x,winSize.height+topOffset+verticalPitch * 6), OBJ_LAYER_TOP);
     
     setMenu8(Menu::create(genCourceBtn(56),
@@ -263,7 +263,7 @@ void SelectScene::_arrangeBtnsForDebug(){
                           genCourceBtn(62),
                           genCourceBtn(63),
                           NULL));
-    getMenu8()->alignItemsHorizontallyWithPadding(5);
+    getMenu8()->alignItemsHorizontallyWithPadding(10);
     mountNode(getMenu8(), Vec2(ctPt.x,winSize.height+topOffset+verticalPitch * 7), OBJ_LAYER_TOP);
 }
 

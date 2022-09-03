@@ -48,8 +48,8 @@ bool GameStage::init() {
     setBackGradientGroundColor();
     setPosition(ctPt + Vec2(250,0));
 
-    this->setDebugMemo(Label::createWithTTF("", "irohamaru.ttf", 8));
-    this->mountNode(this->getDebugMemo(), Vec2(this->ctPt.x,50), OBJ_LAYER_LV1);
+    this->setDebugMemo(Label::createWithTTF("", "irohamaru.ttf", 16));
+    this->mountNode(this->getDebugMemo(), Vec2(this->ctPt.x,120), OBJ_LAYER_LV1);
     
     // modal画面を作成する。
     setBtn2(generateMenuItemSprite([this](Ref* ref){
@@ -86,8 +86,8 @@ bool GameStage::init() {
     }, Size(1,1), L_BTN_QUIT, Color3B::WHITE, Color3B::YELLOW, false));
     setMenu(Menu::create(getBtn1(),NULL));
     getMenu()->alignItemsHorizontallyWithPadding(20);
-    mountNode(getMenu(), Vec2(ctPt.x,
-                              winSize.height - getBtn1()->getContentSize().height/2 -10), OBJ_LAYER_TOP);
+    mountNode(getMenu(), Vec2(winSize.width - getBtn1()->getContentSize().height/2 -40,
+                              winSize.height - getBtn1()->getContentSize().height/2 -40), OBJ_LAYER_TOP);
 
     setCourceManager(CourceManager::create());
     addChild(getCourceManager()->getCourceMakerA());
@@ -192,13 +192,11 @@ void GameStage::onReady(){
     if(stg==0 && UserDefault::getInstance()->getIntegerForKey(UDF_INT_GAME_MODE,GAME_MODE_STAGE)==GAME_MODE_STAGE){
         demo();
     }else{
-        auto setumei_ = CallFunc::create([this,stg]{
-            this->setSetumei(getCourceManager()->getStagePrm()->getCommnent());
-        });
+        showGameAnnounce(getCourceManager()->getStagePrm()->getCommnent(), ctPt + Vec2(0,200),[this]{
         auto wait_ = DelayTime::create(1);
         auto play_ =  CallFunc::create([this]{
-            this->getSetumei()->removeFromParentAndCleanup(true);
-            this->showGameAnnounce(L_GAME_READY, ctPt + Vec2(0,50),[this]{
+//            this->getSetumei()->removeFromParentAndCleanup(true);
+            this->showGameAnnounce(L_GAME_READY, ctPt + Vec2(0,200),[this]{
                 setGameState(GameState::PLAY);
                 fstStCnge = true;
                 getBike()->setTouchEvent();
@@ -208,12 +206,13 @@ void GameStage::onReady(){
                 startTime();
             });
         });
-        runAction(Sequence::create(setumei_,wait_,play_, NULL));
+        runAction(Sequence::create(play_, NULL));
+        });
     }
 }
 
 void GameStage::onPlay(){
-    showGameAnnounce(L_GAME_START, ctPt + Vec2(0,50),[this]{
+    showGameAnnounce(L_GAME_START, ctPt + Vec2(0,200),[this]{
     });
 }
 
@@ -228,7 +227,7 @@ void GameStage::onClear(){
     // タイムオーバーチェック
     if(_timeLimit &&
        _timeLimit < tm_){
-        showGameAnnounce(L_GAME_MISS, ctPt + Vec2(0,50),[this]{
+        showGameAnnounce(L_GAME_MISS, ctPt + Vec2(0,200),[this]{
             setModalMenu(Menu::create(getBtn2(),getBtn4(),NULL));
             getModalMenu()->alignItemsVerticallyWithPadding(5);
             getModalMenu()->setPosition(Vec2::ZERO);
@@ -239,7 +238,7 @@ void GameStage::onClear(){
             mountNode(getModal(), ctPt, OBJ_LAYER_TOP);
         });
     }else{
-        showGameAnnounce(L_GAME_CLEAR, ctPt + Vec2(0,50),[this]{
+        showGameAnnounce(L_GAME_CLEAR, ctPt + Vec2(0,200),[this]{
             // クリアステージをカウントアップ
             int selStage = getCourceManager()->getStagePrm()->getStageNumber();
             int maxStage;
@@ -288,7 +287,7 @@ void GameStage::onMiss(){
     gun->runAction(fade);
     
     getBike()->getRider()->addChild(gun);
-    showGameAnnounce(L_GAME_MISS, ctPt + Vec2(0,50),[this]{
+    showGameAnnounce(L_GAME_MISS, ctPt + Vec2(0,200),[this]{
         setModalMenu(Menu::create(getBtn2(),getBtn4(),NULL));
         getModalMenu()->alignItemsVerticallyWithPadding(5);
         getModalMenu()->setPosition(Vec2::ZERO);
@@ -423,7 +422,7 @@ void GameStage::setSetumei(std::string st){
     if(getSetumei()){
         getSetumei()->removeFromParentAndCleanup(true);
     }
-    setSetumei(Label::createWithTTF("", "irohamaru.ttf", 10));
+    setSetumei(Label::createWithTTF("", "irohamaru.ttf", 23));
     getSetumei()->setAnchorPoint(Vec2(0,1));
     getSetumei()->setGlobalZOrder(OBJ_LAYER_TOP);
     getColorChanger()->SetColor(COMMENT_COLOR_H, COMMENT_COLOR_S, COMMENT_COLOR_V);
@@ -431,7 +430,7 @@ void GameStage::setSetumei(std::string st){
     getBike()->getSceneChasePt()->addChild(getSetumei());
     
     getSetumei()->setString(st);
-    getSetumei()->setPosition(Vec2(-50,130) + Vec2(500,0));
+    getSetumei()->setPosition(Vec2(-150,260) + Vec2(500,0));
     auto moveTo = MoveBy::create(0.5, Vec2(-500,0));
     getSetumei()->runAction(moveTo);
 }
@@ -540,7 +539,7 @@ void GameStage::demo(){
     auto wait_ = DelayTime::create(3);
     auto play_ =  CallFunc::create([this]{
         this->getSetumei()->removeFromParentAndCleanup(true);
-        this->showGameAnnounce(L_GAME_READY, ctPt + Vec2(0,50),[this]{
+        this->showGameAnnounce(L_GAME_READY, ctPt + Vec2(0,200),[this]{
             getBike()->setTouchEvent();
             setGameState(GameState::PLAY);
             fstStCnge = true;
