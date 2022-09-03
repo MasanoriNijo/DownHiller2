@@ -113,7 +113,8 @@ void Bike::_addPhysicsToWheel(Sprite* _wheel){
 void Bike::_positionSyncToWheel(float dt){
     float kaku = getCalc()->nomlKaku(getRwheel()->getPosition(),getFwheel()->getPosition());
     setRotation(kaku);
-    setPosition(getRwheel()->getPosition()+getRwheel()->getPhysicsBody()->getVelocity()*dt*PHYSICS_WOELD_SPEED);
+    // setPosition(getRwheel()->getPosition()+getRwheel()->getPhysicsBody()->getVelocity()*dt*PHYSICS_WOELD_SPEED);
+    setPosition(getRwheel()->getPosition()+getRwheel()->getPhysicsBody()->getVelocity()*dt);
     
     // 画面スクロールポイントを指定
     if(_sceneChasePt){

@@ -32,7 +32,7 @@ Button* Button::create() {
 
 bool Button::init() {
     
-    if(!Label::initWithTTF("", "irohamaru.ttf", 12)){
+    if(!Label::initWithTTF("", "irohamaru.ttf", BTN_FONT_SIZE)){
         return false;
     }
 //    enableBold();

@@ -84,6 +84,9 @@ static const int TG_COURCE=3;
 static const int TG_START=4;
 static const int TG_GOAL=5;
 
+// Buttonの設定値
+static const int BTN_FONT_SIZE = 24;
+
 // Physics Category
 static const int CT_NONE = 0x00000000;
 static const int CT_RIDER = 1 << 0;
@@ -136,6 +139,8 @@ static const char * SOUND_PLAYER_MISS = "btnon.mp3";
 #define ST_FLOAT(suzi) ({std::string st = StringUtils::format("%.3f", (float)suzi);st;})
 // Vec2の文字化
 #define ST_VEC2(vec2) ({std::string stx = ST_FLOAT(vec2.x);std::string sty = ST_FLOAT(vec2.y); "x:"+stx+" y:"+sty;})
+// Sizeの文字化
+#define ST_SIZE(Size) ({std::string stx = ST_FLOAT(Size.width);std::string sty = ST_FLOAT(Size.height); "x:"+stx+" y:"+sty;})
 // Nodeの文字化
 #define ST_NODE(node) ({std::string stnd = ST_VEC2(node->getPosition());std::string stdeg = ST_FLOAT(node->getRotation()); stnd + " deg:" + stdeg;})
 
