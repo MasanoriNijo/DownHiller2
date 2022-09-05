@@ -24,6 +24,7 @@ GameStage::~GameStage() {
     CC_SAFE_RELEASE_NULL(_modalMenu);
     CC_SAFE_RELEASE_NULL(_yubi);
     CC_SAFE_RELEASE_NULL(_setumei);
+    stopBGM("");
 }
 
 Scene* GameStage::createScene() {
@@ -52,6 +53,7 @@ bool GameStage::init() {
     
     // modal画面を作成する。
     setBtn2(generateMenuItemSprite([this](Ref* ref){
+        stopBGM("");
         callSoundEffect(SOUND_BUTTON);
         transitonScene(GameStage::createScene());
     }, Size(1,1), L_BTN_RETRY, Color3B::WHITE, Color3B::YELLOW, false));
@@ -109,6 +111,7 @@ bool GameStage::init() {
 }
 
 void GameStage::onEnterTransitionDidFinish() {
+    startBGM(SOUND_GAME_BGM,0.5f);
     GameScene::onEnterTransitionDidFinish();
     if(UserDefault::getInstance()->getBoolForKey(UDF_BOOL_DEBUG_STAGE, false)){
         // debug
@@ -219,6 +222,7 @@ void GameStage::onPlay(){
 }
 
 void GameStage::onClear(){
+    stopBGM("");
     getMenu()->removeFromParentAndCleanup(true);
 //    getBike()->getRwheel()->getPhysicsBody()->setAngularDamping(1);
 //    getBike()->getRwheel()->getPhysicsBody()->setLinearDamping(0.5);
@@ -272,6 +276,7 @@ void GameStage::onClear(){
 
 void GameStage::onMiss(){
     getMenu()->removeFromParentAndCleanup(true);
+    stopBGM("");
     callSoundEffect(SOUND_PLAYER_MISS);
     getBike()->getFRJoint()->removeFormWorld();
     getBike()->getFwheel()->getPhysicsBody()->setVelocity(Vec2::ZERO);

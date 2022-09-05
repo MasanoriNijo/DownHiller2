@@ -18,7 +18,6 @@ TitleScene::~TitleScene() {
     CC_SAFE_RELEASE_NULL(_courceManager);
     CC_SAFE_RELEASE_NULL(_bike);
     CC_SAFE_RELEASE_NULL(_contactlistener);
-    stopBGM("");
 }
 
 Scene* TitleScene::createScene() {
@@ -49,18 +48,21 @@ bool TitleScene::init() {
     mountNode(getGameTitle(), Vec2(winSize.width/2,winSize.height -160), OBJ_LAYER_TOP);
     
     setStartBtn(generateMenuItemSprite([this](Ref* ref){
+        stopBGM("");
         callSoundEffect(SOUND_BUTTON);
         UserDefault::getInstance()->setIntegerForKey(UDF_INT_GAME_MODE, GAME_MODE_STAGE);
         transitonScene(SelectScene::createScene());
     }, Size(1,1), L_BTN_START, Color3B::WHITE, Color3B::YELLOW, true));
     
     setTrainingBtn(generateMenuItemSprite([this](Ref* ref){
+        stopBGM("");
         callSoundEffect(SOUND_BUTTON);
         UserDefault::getInstance()->setIntegerForKey(UDF_INT_GAME_MODE, GAME_MODE_TRAINING);
         transitonScene(SelectScene::createScene());
     }, Size(1,1), L_BTN_TRAINING, Color3B::WHITE, Color3B::YELLOW, false));
     
     setHowToBtn(generateMenuItemSprite([this](Ref* ref){
+        stopBGM("");
         callSoundEffect(SOUND_BUTTON);
         UserDefault::getInstance()->setIntegerForKey(UDF_INT_SELECTED_STAGE, 0);
         transitonScene(GameStage::createScene());

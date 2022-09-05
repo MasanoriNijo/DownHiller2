@@ -113,7 +113,7 @@ static const char * SOUND_OPENING = "ME017-100125-logo02-wav.mp3";
 static const char * SOUND_BUTTON = "button05.mp3";
 
 // Game中のBGM
-static const char * SOUND_GAME_BGM = "BGM124-110921-tamashiinopistol-wav-nointro.mp3";
+static const char * SOUND_GAME_BGM = "BGM097-100811-shiaikaishida-mp3.mp3";
 
 // Game開始音READY
 static const char * SOUND_GAME_READY = "select01.mp3";
