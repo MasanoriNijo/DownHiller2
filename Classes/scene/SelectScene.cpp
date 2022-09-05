@@ -168,7 +168,7 @@ void SelectScene::_arrangeBtns(){
 }
 
 void SelectScene::_arrangeBtnsForDebug(){
-    int topOffset = -170;
+    int topOffset = -165;
     int verticalPitch = -40;
     setMenu(Menu::create(genCourceBtn(0),
                          genCourceBtn(1),

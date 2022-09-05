@@ -43,7 +43,6 @@ bool GameStage::init() {
     if (!GameScene::init()) {
         return false;
     }
-    setSoundEffect(SOUND_BUTTON);
 //    setBackGroundColor();
     setBackGradientGroundColor();
     setPosition(ctPt + Vec2(250,0));
@@ -102,7 +101,10 @@ bool GameStage::init() {
         getRestTime()->setOpacity(0);
         mountNode(getRestTime(), Vec2(ctPt.x,winSize.height-40), OBJ_LAYER_TOP);
     }
-    
+    // 効果音
+    setSoundEffect(SOUND_BUTTON);
+    setSoundEffect(SOUND_GAME_READY);
+    setSoundEffect(SOUND_GAME_START);
     return true;
 }
 
@@ -193,9 +195,8 @@ void GameStage::onReady(){
         demo();
     }else{
         showGameAnnounce(getCourceManager()->getStagePrm()->getCommnent(), ctPt + Vec2(0,200),[this]{
-        auto wait_ = DelayTime::create(1);
         auto play_ =  CallFunc::create([this]{
-//            this->getSetumei()->removeFromParentAndCleanup(true);
+            this->callSoundEffect(SOUND_GAME_READY);
             this->showGameAnnounce(L_GAME_READY, ctPt + Vec2(0,200),[this]{
                 setGameState(GameState::PLAY);
                 fstStCnge = true;
@@ -212,6 +213,7 @@ void GameStage::onReady(){
 }
 
 void GameStage::onPlay(){
+    this->callSoundEffect(SOUND_GAME_START);
     showGameAnnounce(L_GAME_START, ctPt + Vec2(0,200),[this]{
     });
 }
