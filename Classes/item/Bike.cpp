@@ -53,11 +53,11 @@ bool Bike::init() {
 
     //debug
     setDebugPt(Sprite::create("dot.png"));
-    getDebugPt()->setGlobalZOrder(OBJ_LAYER_BUTTOM);
+    getDebugPt()->setGlobalZOrder(OBJ_LAYER_TOP+1);
     addChild(getDebugPt());
-//    setParentSprite(Sprite::create("dot2.png"));
-//    getParentSprite()->setGlobalZOrder(OBJ_LAYER_BUTTOM);
-//    addChild(getParentSprite());
+    setParentSprite(Sprite::create("dot2.png"));
+    getParentSprite()->setGlobalZOrder(OBJ_LAYER_TOP);
+    addChild(getParentSprite());
     
     // sceneスクロール用
     setSceneChasePt(Sprite::create("dot2.png"));
@@ -367,6 +367,19 @@ void Bike::_judeAction(float dt){
             if(getParentSprite()){
                 getParentSprite()->setPosition(chasePt + bikeCenterPt);
             }
+            return;
+        }
+    }
+    
+    
+    Vec2 weightDict = weightPt-weightPt_before;
+    weightPt_before.set(weightPt);
+    
+    if(weightDict != Vec2::ZERO){
+        float drad = getCalc()->diffRadA2B(weightDict_before, weightDict);
+        weightDict_before.set(weightDict);
+        if(abs(drad)>M_PI/2){
+            chasePt.set(weightPt);
             return;
         }
     }

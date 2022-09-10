@@ -64,10 +64,12 @@ public:
     Vec2 bikeAnchorPt;
     
     // wheelBase
-    float wheelBase = 45;
+    float wheelBase = 46;
     
     // riderの重心ポイント（画面操作により、移動し、移動の仕方によりジャンプ、ウイリーなどのアクションをさせる。）
     Vec2 weightPt;
+    Vec2 weightPt_before; // 前回のポイント
+    Vec2 weightDict_before; // 直前の方向ベクトル
     // 重心ポイントを追従するポイント
     Vec2 chasePt;
     
@@ -78,14 +80,14 @@ public:
     // riderアクション weightPtの位置により、画像差し替える。
     // riderのフレームサイズ
     Size frameSize;
-    float riderActionSpan = 1.5;
+    float riderActionSpan = 3.0;
     void riderImageAction();
     
     // bikeの制御不能をある程度制限する。
     void _bikeBehaviorControl();
     // 重心速度
     Vec2 centerObjVelo;
-    float maxCenterObjVelo = 200;
+    float maxCenterObjVelo = 100;
     // 重心回転速度Rホイール
     Vec2 centerObjRotVelo;
     float maxCenterObjRotVelo = 40;
