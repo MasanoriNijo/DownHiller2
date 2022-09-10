@@ -45,7 +45,7 @@ bool TitleScene::init() {
     getGameTitle()->setTextColor(getColorChanger()->getColor4B());
     getColorChanger()->SetColor(TITLE_FUTI_COLOR_H, TITLE_FUTI_COLOR_S, TITLE_FUTI_COLOR_V);
     getGameTitle()->enableOutline(getColorChanger()->getColor4B(),1);
-    mountNode(getGameTitle(), Vec2(winSize.width/2,winSize.height -160), OBJ_LAYER_TOP);
+    mountNode(getGameTitle(), Vec2(winSize.width/2,winSize.height - 160), OBJ_LAYER_TOP);
     
     setStartBtn(generateMenuItemSprite([this](Ref* ref){
         stopBGM("");
@@ -70,7 +70,7 @@ bool TitleScene::init() {
     
     setMenu(Menu::create(getStartBtn(), getTrainingBtn(), getHowToBtn(), NULL));
     getMenu()->alignItemsVerticallyWithPadding(3);
-    mountNode(getMenu(),Vec2(winSize.width/2,140), OBJ_LAYER_LV3);
+    mountNode(getMenu(),Vec2(winSize.width/2,120), OBJ_LAYER_LV3);
     
     setCourceManager(CourceManager::create());
     getCourceManager()->setForTitle();

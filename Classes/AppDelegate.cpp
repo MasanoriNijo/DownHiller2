@@ -35,8 +35,8 @@ using namespace cocos2d::experimental;
 
 USING_NS_CC;
 
-static cocos2d::Size designResolutionSize = cocos2d::Size(320, 680);
-static cocos2d::Size smallResolutionSize = cocos2d::Size(480, 320);
+static cocos2d::Size designResolutionSize = cocos2d::Size(480, 640);
+static cocos2d::Size smallResolutionSize = cocos2d::Size(240, 320);
 static cocos2d::Size mediumResolutionSize = cocos2d::Size(1024, 768);
 static cocos2d::Size largeResolutionSize = cocos2d::Size(2048, 1536);
 
@@ -57,7 +57,7 @@ void AppDelegate::initGLContextAttrs()
 {
     // set OpenGL context attributes: red,green,blue,alpha,depth,stencil,multisamplesCount
     GLContextAttrs glContextAttrs = {8, 8, 8, 8, 24, 8, 0};
-
+    
     GLView::setGLContextAttrs(glContextAttrs);
 }
 
@@ -80,20 +80,21 @@ bool AppDelegate::applicationDidFinishLaunching() {
 #endif
         director->setOpenGLView(glview);
     }
-//    glview->setContentScaleFactor(0.5f);
+    
     FileUtils::getInstance()->addSearchPath("images");
     FileUtils::getInstance()->addSearchPath("particles");
     FileUtils::getInstance()->addSearchPath("sounds");
     FileUtils::getInstance()->addSearchPath("fonts");
-
+    
     // turn on display FPS
-    director->setDisplayStats(DISPLAY_STATUS);
-
+    //    director->setDisplayStats(DISPLAY_STATUS);
+    
     // set FPS. the default value is 1.0/60 if you don't call this
     director->setAnimationInterval(1.0f / 60);
-
+    
     // Set the design resolution
-    glview->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, ResolutionPolicy::EXACT_FIT);
+    glview->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, ResolutionPolicy::FIXED_WIDTH);
+    
     auto frameSize = glview->getFrameSize();
     NJLOG("frameSize");
     NJLOG(ST_SIZE(frameSize).c_str());
@@ -114,20 +115,20 @@ bool AppDelegate::applicationDidFinishLaunching() {
 //    }
     director->setContentScaleFactor(frameSize.width/designResolutionSize.width);
     register_all_packages();
-
+    
     // create a scene. it's an autorelease object
     Scene* scene = FstScene::createScene();
-
+    
     // run
     director->runWithScene(scene);
-
+    
     return true;
 }
 
 // This function will be called when the app is inactive. Note, when receiving a phone call it is invoked.
 void AppDelegate::applicationDidEnterBackground() {
     Director::getInstance()->stopAnimation();
-
+    
 #if USE_AUDIO_ENGINE
     AudioEngine::pauseAll();
 #endif
@@ -136,7 +137,7 @@ void AppDelegate::applicationDidEnterBackground() {
 // this function will be called when the app is active again
 void AppDelegate::applicationWillEnterForeground() {
     Director::getInstance()->startAnimation();
-
+    
 #if USE_AUDIO_ENGINE
     AudioEngine::resumeAll();
 #endif

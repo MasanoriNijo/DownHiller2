@@ -13,7 +13,7 @@ USING_NS_CC;
 #define DISPLAY_STATUS 1
 
 // NJLOGを表示する。
-#define ENABLE_NJLOG 0
+#define ENABLE_NJLOG 1
 
 // debugLineを表示する
 #define ENABLE_DEBUG_LINE 0

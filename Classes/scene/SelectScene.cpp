@@ -60,14 +60,14 @@ bool SelectScene::init() {
                               winSize.height - getBtn1()->getContentSize().height/2 -40), OBJ_LAYER_TOP);
     
     setCourceManager(CourceManager::create());
-    getCourceManager()->getCourceMakerA()->drawStart(Vec2(-10,135), Vec2(winSize.width + 10,ctPt.y - 50));
+    getCourceManager()->getCourceMakerA()->drawStart(Vec2(-10,105), Vec2(winSize.width + 10,ctPt.y - 50));
     getCourceManager()->getCourceMakerA()->dS(Vec2(winSize.width + 20,0));
     getCourceManager()->getCourceMakerA()->madeCourceBase();
     mountNode(getCourceManager()->getCourceMakerA(),Vec2::ZERO,OBJ_LAYER_LV1);
     
     setBike(Bike::create());
     getBike()->setForDisplay();
-    mountNode(getBike(),Vec2(ctPt.x-20,150),OBJ_LAYER_LV2);
+    mountNode(getBike(),Vec2(ctPt.x-20,120),OBJ_LAYER_LV2);
     getBike()->weightPt = Vec2(0,-4);
     getBike()->riderImageAction();
     

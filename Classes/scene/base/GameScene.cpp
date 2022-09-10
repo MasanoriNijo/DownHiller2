@@ -239,7 +239,7 @@ void GameScene::showGameAnnounce(std::string st,Vec2 pt, const std::function<voi
     });
     auto endFnc2 = CallFunc::create(endFunc);
     auto seq = Sequence::create(para,stayTime,fadeOut,endFnc,endFnc2, NULL);
-    setGameAnounce(Label::createWithTTF(st, "irohamaru.ttf", 24));
+    setGameAnounce(Label::createWithTTF(st, "irohamaru.ttf", 48));
     getColorChanger()->SetColor(TITLE_COLOR_H, TITLE_COLOR_S, TITLE_COLOR_V);
     getGameAnounce()->setTextColor(getColorChanger()->getColor4B());
     getColorChanger()->SetColor(TITLE_FUTI_COLOR_H, TITLE_FUTI_COLOR_S, TITLE_FUTI_COLOR_V);
