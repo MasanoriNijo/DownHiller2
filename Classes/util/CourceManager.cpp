@@ -70,7 +70,7 @@ void CourceManager::_setStagePrm(){
         }
         return;
     }else{
-        getStagePrm()->setCommnent("コースタイプ:" + ST_INT(getStagePrm()->getStageNumber()));
+        getStagePrm()->setCommnent("練習:" + ST_INT(getStagePrm()->getStageNumber()));
         return;
     }
 }
@@ -197,7 +197,7 @@ void CourceManager::setComment(std::string st,CourceMaker* _c){
     if(!_isDebugComment){
         return;
     }
-    Label* _comment = Label::createWithTTF("← " + st, "irohamaru.ttf", 8);
+    Label* _comment = Label::createWithTTF("← " + st, "irohamaru.ttf", 24);
     _comment->setGlobalZOrder(OBJ_LAYER_TOP);
     _comment->setAnchorPoint(Vec2(0,0));
     _comment->setPosition(_c->getTergetPt());

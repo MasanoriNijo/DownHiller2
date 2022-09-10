@@ -71,5 +71,14 @@ corelocationframeworkを追加する。
 
 
 
+
+
+Android用メモ
+1.初回
+　普通に開くとエラー
+　AndroidStudioで、proj.androidを開くと普通にエラーになる。
+以下参考に修正中
+https://qiita.com/tlsd/items/b610d75565e1895bf96a
+
 7,sound関連
 https://shivat.hatenablog.com/entry/2017/05/22/172439

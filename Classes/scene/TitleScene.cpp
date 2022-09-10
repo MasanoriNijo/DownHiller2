@@ -18,7 +18,6 @@ TitleScene::~TitleScene() {
     CC_SAFE_RELEASE_NULL(_courceManager);
     CC_SAFE_RELEASE_NULL(_bike);
     CC_SAFE_RELEASE_NULL(_contactlistener);
-    stopBGM("");
 }
 
 Scene* TitleScene::createScene() {
@@ -39,28 +38,31 @@ bool TitleScene::init() {
         return false;
     }
 //    drawDebugLine();
-//    setBackGroundColor();
+    setBackGroundColor();
     setBackGradientGroundColor();
-    setGameTitle(Label::createWithTTF(L_TITLE, "irohamaru.ttf", 30));
+    setGameTitle(Label::createWithTTF(L_TITLE, "irohamaru.ttf", 60));
     getColorChanger()->SetColor(TITLE_COLOR_H, TITLE_COLOR_S, TITLE_COLOR_V);
     getGameTitle()->setTextColor(getColorChanger()->getColor4B());
     getColorChanger()->SetColor(TITLE_FUTI_COLOR_H, TITLE_FUTI_COLOR_S, TITLE_FUTI_COLOR_V);
     getGameTitle()->enableOutline(getColorChanger()->getColor4B(),1);
-    mountNode(getGameTitle(), Vec2(winSize.width/2,winSize.height -80), OBJ_LAYER_TOP);
+    mountNode(getGameTitle(), Vec2(winSize.width/2,winSize.height -160), OBJ_LAYER_TOP);
     
     setStartBtn(generateMenuItemSprite([this](Ref* ref){
+        stopBGM("");
         callSoundEffect(SOUND_BUTTON);
         UserDefault::getInstance()->setIntegerForKey(UDF_INT_GAME_MODE, GAME_MODE_STAGE);
         transitonScene(SelectScene::createScene());
     }, Size(1,1), L_BTN_START, Color3B::WHITE, Color3B::YELLOW, true));
     
     setTrainingBtn(generateMenuItemSprite([this](Ref* ref){
+        stopBGM("");
         callSoundEffect(SOUND_BUTTON);
         UserDefault::getInstance()->setIntegerForKey(UDF_INT_GAME_MODE, GAME_MODE_TRAINING);
         transitonScene(SelectScene::createScene());
     }, Size(1,1), L_BTN_TRAINING, Color3B::WHITE, Color3B::YELLOW, false));
     
     setHowToBtn(generateMenuItemSprite([this](Ref* ref){
+        stopBGM("");
         callSoundEffect(SOUND_BUTTON);
         UserDefault::getInstance()->setIntegerForKey(UDF_INT_SELECTED_STAGE, 0);
         transitonScene(GameStage::createScene());
@@ -68,7 +70,7 @@ bool TitleScene::init() {
     
     setMenu(Menu::create(getStartBtn(), getTrainingBtn(), getHowToBtn(), NULL));
     getMenu()->alignItemsVerticallyWithPadding(3);
-    mountNode(getMenu(),Vec2(winSize.width/2,70), OBJ_LAYER_LV3);
+    mountNode(getMenu(),Vec2(winSize.width/2,140), OBJ_LAYER_LV3);
     
     setCourceManager(CourceManager::create());
     getCourceManager()->setForTitle();

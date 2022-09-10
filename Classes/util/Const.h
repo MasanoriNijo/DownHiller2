@@ -7,13 +7,13 @@ USING_NS_CC;
 // 各変数を記入する
 
 // debug用ログを表示する
-#define DEBUG_LOG 1
+#define DEBUG_LOG 0
 
 // display statusを表示する
 #define DISPLAY_STATUS 1
 
 // NJLOGを表示する。
-#define ENABLE_NJLOG 1
+#define ENABLE_NJLOG 0
 
 // debugLineを表示する
 #define ENABLE_DEBUG_LINE 0
@@ -35,9 +35,9 @@ USING_NS_CC;
 #define DEFAULT_GRADIATE_COLOR_V 80
 
 // コース線の色
-#define COURCE_LINE_COLOR_H 42
-#define COURCE_LINE_COLOR_S 82
-#define COURCE_LINE_COLOR_V 75
+#define COURCE_LINE_COLOR_H 127
+#define COURCE_LINE_COLOR_S 100
+#define COURCE_LINE_COLOR_V 53
 
 // コース線の色
 #define COURCE_BASE_COLOR_H 44
@@ -84,6 +84,9 @@ static const int TG_COURCE=3;
 static const int TG_START=4;
 static const int TG_GOAL=5;
 
+// Buttonの設定値
+static const int BTN_FONT_SIZE = 24;
+
 // Physics Category
 static const int CT_NONE = 0x00000000;
 static const int CT_RIDER = 1 << 0;
@@ -110,7 +113,7 @@ static const char * SOUND_OPENING = "ME017-100125-logo02-wav.mp3";
 static const char * SOUND_BUTTON = "button05.mp3";
 
 // Game中のBGM
-static const char * SOUND_GAME_BGM = "BGM124-110921-tamashiinopistol-wav-nointro.mp3";
+static const char * SOUND_GAME_BGM = "BGM097-100811-shiaikaishida-mp3.mp3";
 
 // Game開始音READY
 static const char * SOUND_GAME_READY = "select01.mp3";
@@ -136,6 +139,8 @@ static const char * SOUND_PLAYER_MISS = "btnon.mp3";
 #define ST_FLOAT(suzi) ({std::string st = StringUtils::format("%.3f", (float)suzi);st;})
 // Vec2の文字化
 #define ST_VEC2(vec2) ({std::string stx = ST_FLOAT(vec2.x);std::string sty = ST_FLOAT(vec2.y); "x:"+stx+" y:"+sty;})
+// Sizeの文字化
+#define ST_SIZE(Size) ({std::string stx = ST_FLOAT(Size.width);std::string sty = ST_FLOAT(Size.height); "x:"+stx+" y:"+sty;})
 // Nodeの文字化
 #define ST_NODE(node) ({std::string stnd = ST_VEC2(node->getPosition());std::string stdeg = ST_FLOAT(node->getRotation()); stnd + " deg:" + stdeg;})
 

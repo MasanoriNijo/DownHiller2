@@ -37,7 +37,7 @@ bool Bike::init() {
     setRider(Sprite::create("riders.png"));
     frameSize = Size(getRider()->getContentSize().width / 7, getRider()->getContentSize().height / 7);
     
-    getRider()->setPosition(Vec2(18,22));
+    getRider()->setPosition(Vec2(25,30));
     getRider()->setGlobalZOrder(OBJ_LAYER_LV3);
     addChild(getRider());
     riderImageAction();
@@ -113,7 +113,8 @@ void Bike::_addPhysicsToWheel(Sprite* _wheel){
 void Bike::_positionSyncToWheel(float dt){
     float kaku = getCalc()->nomlKaku(getRwheel()->getPosition(),getFwheel()->getPosition());
     setRotation(kaku);
-    setPosition(getRwheel()->getPosition()+getRwheel()->getPhysicsBody()->getVelocity()*dt*PHYSICS_WOELD_SPEED);
+     setPosition(getRwheel()->getPosition()+getRwheel()->getPhysicsBody()->getVelocity()*dt*PHYSICS_WOELD_SPEED);
+//    setPosition(getRwheel()->getPosition()+getRwheel()->getPhysicsBody()->getVelocity()*dt);
     
     // 画面スクロールポイントを指定
     if(_sceneChasePt){

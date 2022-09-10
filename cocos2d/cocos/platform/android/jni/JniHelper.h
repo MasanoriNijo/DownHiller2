@@ -26,6 +26,7 @@ THE SOFTWARE.
 #ifndef __ANDROID_JNI_HELPER_H__
 #define __ANDROID_JNI_HELPER_H__
 
+#include <jni.h>
 #include <string>
 #include <vector>
 #include <unordered_map>
@@ -37,12 +38,38 @@ NS_CC_BEGIN
 
 typedef struct JniMethodInfo_
 {
-
+    JNIEnv *    env;
+    jclass      classID;
+    jmethodID   methodID;
 } JniMethodInfo;
 
 class CC_DLL JniHelper
 {
 public:
+
+    typedef std::unordered_map<JNIEnv*, std::vector<jobject>> LocalRefMapType;
+
+    static void setJavaVM(JavaVM *javaVM);
+    static JavaVM* getJavaVM();
+    static JNIEnv* getEnv();
+    static jobject getActivity();
+
+    static bool setClassLoaderFrom(jobject activityInstance);
+    static bool getStaticMethodInfo(JniMethodInfo &methodinfo,
+                                    const char *className,
+                                    const char *methodName,
+                                    const char *paramCode);
+    static bool getMethodInfo(JniMethodInfo &methodinfo,
+                              const char *className,
+                              const char *methodName,
+                              const char *paramCode);
+
+    static std::string jstring2string(jstring str);
+
+    static jmethodID loadclassMethod_methodID;
+    static jobject classloader;
+    static std::function<void()> classloaderCallback;
+
 
     /**
     @brief Call of Java static void method
