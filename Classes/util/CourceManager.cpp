@@ -1035,7 +1035,7 @@ void CourceManager::checkAndMadeCourceForDebug(Vec2 chPt){
         _c->_dirkaku = _dirkaku;
         switch (courceIndex) {
             case 0:
-                _c->dS(600,0);
+                _c->dS(615,0);
                 setStart(_c);
                 _c->dS(30,-3);
                 break;
