@@ -102,7 +102,7 @@ public:
     Vec2 rWheelTouchPt;
     
     // bikeへのアクション
-    bool jump(float lvl);
+    bool jump(float lvl, float dRadX);
     bool lift(float lvl);// 使用しない
     void werry(float lvl);
     void dush(float lvl);

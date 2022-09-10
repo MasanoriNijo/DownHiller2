@@ -49,8 +49,8 @@ bool Bike::init() {
     // 効果音
     setSoundEffect(SOUND_PLAYER_JUMP);
     
-//    _setTouchEvent(); // game進行上で起動させる。
-
+    //    _setTouchEvent(); // game進行上で起動させる。
+    
     //debug
     setDebugPt(Sprite::create("dot.png"));
     getDebugPt()->setGlobalZOrder(OBJ_LAYER_TOP+1);
@@ -64,14 +64,14 @@ bool Bike::init() {
     getSceneChasePt()->setPosition(sceneOffset);
     getSceneChasePt()->setOpacity(0);
     getSceneChasePt()->setGlobalZOrder(OBJ_LAYER_BUTTOM);
-
+    
     // debug用
     setSoundEffect(SOUND_PLAYER_JUMP);
-//    setBikeDebug(Label::createWithTTF("bikeState", "irohamaru.ttf", 10));
-//    getBikeDebug()->setTextColor(Color4B::BLACK);
-//    getBikeDebug()->setGlobalZOrder(OBJ_LAYER_TOP);
-//    getBikeDebug()->setPosition(Vec2(0,50));
-//    addChild(getBikeDebug());
+    //    setBikeDebug(Label::createWithTTF("bikeState", "irohamaru.ttf", 10));
+    //    getBikeDebug()->setTextColor(Color4B::BLACK);
+    //    getBikeDebug()->setGlobalZOrder(OBJ_LAYER_TOP);
+    //    getBikeDebug()->setPosition(Vec2(0,50));
+    //    addChild(getBikeDebug());
     
     return true;
 }
@@ -113,8 +113,8 @@ void Bike::_addPhysicsToWheel(Sprite* _wheel){
 void Bike::_positionSyncToWheel(float dt){
     float kaku = getCalc()->nomlKaku(getRwheel()->getPosition(),getFwheel()->getPosition());
     setRotation(kaku);
-     setPosition(getRwheel()->getPosition()+getRwheel()->getPhysicsBody()->getVelocity()*dt*PHYSICS_WOELD_SPEED);
-//    setPosition(getRwheel()->getPosition()+getRwheel()->getPhysicsBody()->getVelocity()*dt);
+    setPosition(getRwheel()->getPosition()+getRwheel()->getPhysicsBody()->getVelocity()*dt*PHYSICS_WOELD_SPEED);
+    //    setPosition(getRwheel()->getPosition()+getRwheel()->getPhysicsBody()->getVelocity()*dt);
     
     // 画面スクロールポイントを指定
     if(_sceneChasePt){
@@ -173,9 +173,9 @@ void Bike::SetPhysicsPrm(){
     
     // 前後輪をジョイントを生成する。
     setFRJoint(PhysicsJointDistance::construct(getRwheel()->getPhysicsBody(),
-                                                     getFwheel()->getPhysicsBody(),
-                                                     getRwheel()->getPhysicsBody()->getPosition(),
-                                                     getFwheel()->getPhysicsBody()->getPosition()));
+                                               getFwheel()->getPhysicsBody(),
+                                               getRwheel()->getPhysicsBody()->getPosition(),
+                                               getFwheel()->getPhysicsBody()->getPosition()));
     getFwheel()->setGlobalZOrder(OBJ_LAYER_LV2);
     getRwheel()->setGlobalZOrder(OBJ_LAYER_LV2);
     
@@ -216,9 +216,9 @@ void Bike::touchOn(Vec2 pt){
 
 void Bike::swaip(Vec2 pt){
     touchPt2.set(pt);
-//    Vec2 dir_ = getFwheel()->getPosition() - getRwheel()->getPosition();
+    //    Vec2 dir_ = getFwheel()->getPosition() - getRwheel()->getPosition();
     Vec2 dV = touchPt2 - touchPt1;
-//    dV = getCalc()->cordinaneX(dir_, dV);
+    //    dV = getCalc()->cordinaneX(dir_, dV);
     weightPt+=dV;
     if(weightPt.x > 4 * riderActionSpan){
         weightPt.x =  4 * riderActionSpan;
@@ -264,7 +264,7 @@ void Bike::riderImageAction(){
         getDebugPt()->setPosition(weightPt+bikeCenterPt);
     }
     getRider()->setTextureRect(Rect(frameSize.width * (x_+3), frameSize.height * (y_+3),
-                                          frameSize.width, frameSize.height));
+                                    frameSize.width, frameSize.height));
 }
 
 void Bike::_bikeBehaviorControl(){
@@ -276,7 +276,25 @@ void Bike::_bikeBehaviorControl(){
 void Bike::_judeAction(float dt){
     
     Vec2 noml_ = getCalc()->cordinaneX(Vec2(1,0), weightPt-chasePt);
-    
+    if(abs(noml_.x) < riderActionSpan && abs(noml_.y) < riderActionSpan){
+        Vec2 weightDict = weightPt-weightPt_before;
+        weightPt_before.set(weightPt);
+        
+        if(weightDict != Vec2::ZERO){
+            float drad = getCalc()->diffRadA2B(weightDict_before, weightDict);
+            weightDict_before.set(weightDict);
+            if(abs(drad)>M_PI/2){
+                chasePt.set(weightPt);
+                return;
+            }
+        }
+        
+        getCalc()->chasePt(weightPt , chasePt, chaseVelo, dt);
+        if(getParentSprite()){
+            getParentSprite()->setPosition(chasePt + bikeCenterPt);
+        }
+        return;
+    }
     // 前後のウイリー
     if( chasePt.y >= -riderActionSpan){
         if(noml_.x > riderActionSpan/2){
@@ -333,11 +351,37 @@ void Bike::_judeAction(float dt){
             return;
         }
     }
-
+    
+    if(!fWheelTouched && !rWheelTouched){
+        Vec2 weightDict = weightPt-weightPt_before;
+        weightPt_before.set(weightPt);
+        
+        if(weightDict != Vec2::ZERO){
+            float drad = getCalc()->diffRadA2B(weightDict_before, weightDict);
+            weightDict_before.set(weightDict);
+            if(abs(drad)>M_PI/2){
+                chasePt.set(weightPt);
+                return;
+            }
+        }
+        
+        getCalc()->chasePt(weightPt , chasePt, chaseVelo, dt);
+        if(getParentSprite()){
+            getParentSprite()->setPosition(chasePt + bikeCenterPt);
+        }
+        return;
+    }
+    
     // ジャンプ
     if(weightPt.y == riderActionSpan * 4){
         if(noml_.y > riderActionSpan * 4){
-            jump(noml_.y);
+            float dRadX = 0;
+            if(noml_.x<-riderActionSpan){
+                dRadX = 10 * M_PI/180;
+            }else if (noml_.x>riderActionSpan){
+                dRadX = -10 * M_PI/180;
+            }
+            jump(noml_.y, dRadX);
             chasePt.set(weightPt);
             if(getParentSprite()){
                 getParentSprite()->setPosition(chasePt + bikeCenterPt);
@@ -390,15 +434,16 @@ void Bike::_judeAction(float dt){
     }
 }
 
-bool Bike::jump(float lvl){
+bool Bike::jump(float lvl, float dRadX){
     Vec2 powPt;
     Vec2 veloPt = Vec2::ZERO;
     Vec2 fWheelTouchPt_ = fWheelTouchPt.y < 0 ? -fWheelTouchPt : fWheelTouchPt;
     Vec2 rWheelTouchPt_ = rWheelTouchPt.y < 0 ? -rWheelTouchPt : rWheelTouchPt;
+    
     if(rWheelTouched){
         rWheelTouched = false;
         if(fWheelTouched){
-            powPt = getCalc()->chgLength((rWheelTouchPt_ + fWheelTouchPt_), maxFRJumpSpeed);
+            powPt = getCalc()->chgLength(getCalc()->rotByRad((rWheelTouchPt_ + fWheelTouchPt_),dRadX), maxFRJumpSpeed);
             if(getBikeDebug()){
                 getBikeDebug()->setString("jump_FR");
             }
@@ -407,7 +452,7 @@ bool Bike::jump(float lvl){
             NJLOG(ST_VEC2(powPt).c_str());
         }else{
             
-            powPt = getCalc()->chgLength(rWheelTouchPt_, maxRJumpSpeed);
+            powPt = getCalc()->chgLength(getCalc()->rotByRad(rWheelTouchPt_,dRadX), maxRJumpSpeed);
             if(getBikeDebug()){
                 getBikeDebug()->setString("jump_R");
             }
@@ -416,7 +461,7 @@ bool Bike::jump(float lvl){
         }
     }else{
         if(fWheelTouched){
-            powPt = getCalc()->chgLength(fWheelTouchPt_, maxFJumpSpeed);
+            powPt = getCalc()->chgLength(getCalc()->rotByRad(fWheelTouchPt_,dRadX), maxFJumpSpeed);
             NJLOG("前輪ジャンプ");
             NJLOG(ST_VEC2(powPt).c_str());
             fWheelTouched = false;
@@ -463,25 +508,25 @@ void Bike::werry(float lvl){
 }
 
 void Bike::dush(float lvl){
-        Vec2 powPt = getCalc()->chgLength(getFwheel()->getPosition()-getRwheel()->getPosition(), dushPow * lvl);
-        if(centerObjVelo.length() > maxDushSpeed){
-            if(getBikeDebug()){
-                getBikeDebug()->setString("dush_no");
-            }
-            return;
-        }else{
-            if((centerObjVelo + powPt).length() >  maxDushSpeed){
-                powPt = getCalc()->chgLength(powPt, maxDushSpeed);
-            }else{
-                powPt = getCalc()->chgLength(powPt, (centerObjVelo + powPt).length());
-            }
-            
-            getRwheel()->getPhysicsBody()->setVelocity(powPt);
-            getFwheel()->getPhysicsBody()->setVelocity(powPt);
-            if(getBikeDebug()){
-                getBikeDebug()->setString("dush");
-            }
+    Vec2 powPt = getCalc()->chgLength(getFwheel()->getPosition()-getRwheel()->getPosition(), dushPow * lvl);
+    if(centerObjVelo.length() > maxDushSpeed){
+        if(getBikeDebug()){
+            getBikeDebug()->setString("dush_no");
         }
+        return;
+    }else{
+        if((centerObjVelo + powPt).length() >  maxDushSpeed){
+            powPt = getCalc()->chgLength(powPt, maxDushSpeed);
+        }else{
+            powPt = getCalc()->chgLength(powPt, (centerObjVelo + powPt).length());
+        }
+        
+        getRwheel()->getPhysicsBody()->setVelocity(powPt);
+        getFwheel()->getPhysicsBody()->setVelocity(powPt);
+        if(getBikeDebug()){
+            getBikeDebug()->setString("dush");
+        }
+    }
 }
 
 void Bike::stop(){

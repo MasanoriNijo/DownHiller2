@@ -111,7 +111,6 @@ bool GameStage::init() {
 }
 
 void GameStage::onEnterTransitionDidFinish() {
-    startBGM(SOUND_GAME_BGM,0.5f);
     GameScene::onEnterTransitionDidFinish();
     if(UserDefault::getInstance()->getBoolForKey(UDF_BOOL_DEBUG_STAGE, false)){
         // debug
@@ -218,6 +217,7 @@ void GameStage::onReady(){
 void GameStage::onPlay(){
     this->callSoundEffect(SOUND_GAME_START);
     showGameAnnounce(L_GAME_START, ctPt + Vec2(0,200),[this]{
+        this->startBGM(SOUND_GAME_BGM,0.5f);
     });
 }
 
