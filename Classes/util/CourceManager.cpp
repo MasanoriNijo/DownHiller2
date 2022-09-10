@@ -88,7 +88,7 @@ void CourceManager::checkAndMadeCource(Vec2 chPt){
         checkAndMadeCourceForDebug(chPt);
         return;
     }
-    if(chPt.x > (getStartPt().x + 80) || !courceIndex){
+    if(chPt.x > (getStartPt().x + 200) || !courceIndex){
         _dirkaku = courceIndex%2 ? getCourceMakerA()->_dirkaku : getCourceMakerB()->_dirkaku;
         switch (selStg) {
             case -1:
@@ -256,7 +256,7 @@ void CourceManager::madeCourcePtn0(CourceMaker* _c,int ind){
             _c->dS(500,0);
             _c->dS(100,-1);
             setStart(_c);
-            _c->dS(2800,-1);
+            _c->dS(5000,-1);
             break;
         case 1:
             for(i=0;i<3;i++){
@@ -1028,7 +1028,7 @@ void CourceManager::madeCourcePtn20(CourceMaker* _c,int ind){
 }
 
 void CourceManager::checkAndMadeCourceForDebug(Vec2 chPt){
-    if(chPt.x > (getStartPt().x + 80) || !courceIndex){
+    if(chPt.x > (getStartPt().x + 200) || !courceIndex){
         _dirkaku = courceIndex%2 ? getCourceMakerA()->_dirkaku : getCourceMakerB()->_dirkaku;
         auto _c = courceIndex%2 ? getCourceMakerB() : getCourceMakerA();
         _c->drawStart(getTergetPt(),getTargetDir());

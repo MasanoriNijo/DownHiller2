@@ -53,11 +53,13 @@ bool Bike::init() {
     
     //debug
     setDebugPt(Sprite::create("dot.png"));
-    getDebugPt()->setGlobalZOrder(OBJ_LAYER_TOP+1);
+    getDebugPt()->setGlobalZOrder(OBJ_LAYER_BUTTOM - 1);
     addChild(getDebugPt());
-    setParentSprite(Sprite::create("dot2.png"));
-    getParentSprite()->setGlobalZOrder(OBJ_LAYER_TOP);
-    addChild(getParentSprite());
+
+    // デバックの時だけ、コメントアウトを外す。
+//    setParentSprite(Sprite::create("dot2.png"));
+//    getParentSprite()->setGlobalZOrder(OBJ_LAYER_TOP);
+//    addChild(getParentSprite());
     
     // sceneスクロール用
     setSceneChasePt(Sprite::create("dot2.png"));

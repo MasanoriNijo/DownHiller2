@@ -193,7 +193,7 @@ void GameStage::update(float dt) {
 
 void GameStage::onReady(){
     int stg = UserDefault::getInstance()->getIntegerForKey(UDF_INT_SELECTED_STAGE,1);
-    if(stg==0 && UserDefault::getInstance()->getIntegerForKey(UDF_INT_GAME_MODE,GAME_MODE_STAGE)==GAME_MODE_STAGE){
+    if(stg==0 && UserDefault::getInstance()->getIntegerForKey(UDF_INT_GAME_MODE,GAME_MODE_STAGE)==GAME_MODE_DEMO){
         demo();
     }else{
         showGameAnnounce(getCourceManager()->getStagePrm()->getCommnent(), ctPt + Vec2(0,200),[this]{
@@ -445,6 +445,7 @@ void GameStage::setSetumei(std::string st){
 void GameStage::demo(){
 
     setYubi(Sprite::create("yubi.png"));
+    getYubi()->setScale(2);
     getYubi()->setGlobalZOrder(OBJ_LAYER_TOP);
     getYubi()->setAnchorPoint(Vec2(0.5,2));
     getBike()->getSceneChasePt()->addChild(getYubi());
@@ -458,64 +459,64 @@ void GameStage::demo(){
     auto sosaSetumei_ = CallFunc::create([this]{
         this->setSetumei(DEMO_SOSA);
     });
-    
+    float moveSpn = 12;
     auto delay_ = DelayTime::create(1);
-    auto move1_ = MoveTo::create(0.5, Vec2(0,6));
-    auto move2_ = MoveTo::create(0.5, Vec2(0,-6));
-    auto move3_ = MoveTo::create(0.5, Vec2(-6,0));
-    auto move4_ = MoveTo::create(0.5, Vec2(6,0));
-    auto move5_ = MoveTo::create(0.5, Vec2(6,6));
-    auto move6_ = MoveTo::create(0.5, Vec2(-6,6));
-    auto move7_ = MoveTo::create(0.5, Vec2(-6,-6));
-    auto move8_ = MoveTo::create(0.5, Vec2(6,-6));
-    auto move9_ = MoveTo::create(0.5, Vec2(0,0));
+    auto move1_ = MoveTo::create(0.8, Vec2(0,moveSpn));
+    auto move2_ = MoveTo::create(0.8, Vec2(0,-moveSpn));
+    auto move3_ = MoveTo::create(0.8, Vec2(-moveSpn,0));
+    auto move4_ = MoveTo::create(0.8, Vec2(moveSpn,0));
+    auto move5_ = MoveTo::create(0.8, Vec2(moveSpn,moveSpn));
+    auto move6_ = MoveTo::create(0.8, Vec2(-moveSpn,moveSpn));
+    auto move7_ = MoveTo::create(0.8, Vec2(-moveSpn,-moveSpn));
+    auto move8_ = MoveTo::create(0.8, Vec2(moveSpn,-moveSpn));
+    auto move9_ = MoveTo::create(0.8, Vec2(0,0));
     auto allSetumei_ = Sequence::create(sosaSetumei_,delay_,move1_,move2_,move3_,move4_,move5_,move6_,move7_,move8_,move9_, NULL);
     
     // werry
     auto werrySetumei_ = CallFunc::create([this]{
         this->setSetumei(DEMO_WERRY);
     });
-    auto move10_ = MoveTo::create(1.5, Vec2(6,0));
-    auto move11_ = MoveTo::create(0.15, Vec2(-6,0));
-    auto werryF4_ = Repeat::create(Sequence::create(move10_,move11_, NULL), 4);
+    auto move10_ = MoveTo::create(2, Vec2(moveSpn,0));
+    auto move11_ = MoveTo::create(0.3, Vec2(-moveSpn,0));
+    auto werryF4_ = Repeat::create(Sequence::create(move10_,move11_, NULL), 2);
         
-    auto move12_ = MoveTo::create(1.5, Vec2(-6,0));
-    auto move13_ = MoveTo::create(0.15, Vec2(6,0));
-    auto werryR4_ = Repeat::create(Sequence::create(move12_,move13_, NULL), 4);
+    auto move12_ = MoveTo::create(2, Vec2(-moveSpn,0));
+    auto move13_ = MoveTo::create(0.3, Vec2(moveSpn,0));
+    auto werryR4_ = Repeat::create(Sequence::create(move12_,move13_, NULL), 2);
     
     // FRJump
     auto frJumpSetumei_ = CallFunc::create([this]{
         this->setSetumei(DEMO_FR_JUMP);
     });
-    auto delay14_ = DelayTime::create(0.5);
-    auto move14_ = MoveTo::create(0.8, Vec2(0,-6));
-    auto move15_ = MoveTo::create(0.05, Vec2(0,6));
-    auto frJump4_ = Repeat::create(Sequence::create(delay14_,move14_,move15_, NULL), 4);
+    auto delay14_ = DelayTime::create(1);
+    auto move14_ = MoveTo::create(0.8, Vec2(0,-moveSpn));
+    auto move15_ = MoveTo::create(0.05, Vec2(0,moveSpn));
+    auto frJump4_ = Repeat::create(Sequence::create(delay14_,move14_,move15_, NULL), 2);
     
     // RJump
     auto rJumpSetumei_ = CallFunc::create([this]{
         this->setSetumei(DEMO_R_JUMP);
     });
-    auto move16_ = MoveTo::create(0.8, Vec2(6,6));
-    auto move17_ = MoveTo::create(0.1, Vec2(-6,-6));
+    auto move16_ = MoveTo::create(1, Vec2(moveSpn,moveSpn));
+    auto move17_ = MoveTo::create(0.3, Vec2(-moveSpn,-moveSpn));
     auto move18_ = DelayTime::create(0.4);
-    auto move19_ = MoveTo::create(0.05, Vec2(-6,6.0));
-    auto delay20_ = DelayTime::create(0.5);
-    auto rJump4_ = Repeat::create(Sequence::create(move16_,move17_,move18_,move19_,delay20_, NULL), 4);
+    auto move19_ = MoveTo::create(0.05, Vec2(-moveSpn,moveSpn));
+    auto delay20_ = DelayTime::create(1);
+    auto rJump4_ = Repeat::create(Sequence::create(move16_,move17_,move18_,move19_,delay20_, NULL), 2);
     
     // dush
     auto dushSetumei_ = CallFunc::create([this]{
         this->setSetumei(DEMO_DUSH);
     });
-    auto move21_ = MoveTo::create(0.8, Vec2(-5,-6));
-    auto move22_ = MoveTo::create(0.1, Vec2(6,-6));
-    auto dush4_ = Repeat::create(Sequence::create(move21_,move22_, NULL), 4);
+    auto move21_ = MoveTo::create(1, Vec2(-moveSpn-1,-moveSpn));
+    auto move22_ = MoveTo::create(0.2, Vec2(moveSpn,-moveSpn));
+    auto dush4_ = Repeat::create(Sequence::create(move21_,move22_, NULL), 2);
     
     // break
     auto breakSetumei_ = CallFunc::create([this]{
         this->setSetumei(DEMO_BREAK);
     });
-    auto move23_ = MoveTo::create(0.8, Vec2(-6,-6));
+    auto move23_ = MoveTo::create(0.8, Vec2(-moveSpn,-moveSpn));
     auto delay24_ = DelayTime::create(3);
     auto move25_ = MoveTo::create(0.8, Vec2(0,0));
     auto break_ = Sequence::create(move23_,delay24_,move25_, NULL);
