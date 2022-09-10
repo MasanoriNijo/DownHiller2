@@ -64,6 +64,7 @@ bool TitleScene::init() {
     setHowToBtn(generateMenuItemSprite([this](Ref* ref){
         stopBGM("");
         callSoundEffect(SOUND_BUTTON);
+        UserDefault::getInstance()->setIntegerForKey(UDF_INT_GAME_MODE, GAME_MODE_DEMO);
         UserDefault::getInstance()->setIntegerForKey(UDF_INT_SELECTED_STAGE, 0);
         transitonScene(GameStage::createScene());
     }, Size(1,1), L_BTN_HOWTO, Color3B::WHITE, Color3B::YELLOW, false));
@@ -107,7 +108,7 @@ void TitleScene::onEnterTransitionDidFinish() {
     scheduleUpdate();
     demo();
     
-    startBGM(SOUND_GAME_BGM,0.5f);
+    startBGM(SOUND_GAME_BGM,0.3f);
 }
 
 void TitleScene::update(float dt) {
@@ -168,33 +169,33 @@ void TitleScene::demo(){
     getBike()->weightPt= Vec2::ZERO;
     getBike()->getDebugPt()->setPosition(Vec2::ZERO);
     getBike()->removeTouchEvent();
-    
+    float moveSpn = 12;
     // werry
-    auto move10_ = MoveTo::create(1.5, Vec2(6,0));
-    auto move11_ = MoveTo::create(0.15, Vec2(-6,0));
+    auto move10_ = MoveTo::create(1.5, Vec2(moveSpn,0));
+    auto move11_ = MoveTo::create(0.3, Vec2(-moveSpn,0));
     auto werryF4_ = Repeat::create(Sequence::create(move10_,move11_, NULL), 1);
         
     // FRJump
     auto delay14_ = DelayTime::create(0.5);
-    auto move14_ = MoveTo::create(0.8, Vec2(0,-6));
-    auto move15_ = MoveTo::create(0.05, Vec2(0,6));
+    auto move14_ = MoveTo::create(0.8, Vec2(0,-moveSpn));
+    auto move15_ = MoveTo::create(0.05, Vec2(0,moveSpn));
     auto frJump4_ = Repeat::create(Sequence::create(delay14_,move14_,move15_, NULL), 1);
     
     // RJump
-    auto move16_ = MoveTo::create(0.8, Vec2(6,6));
-    auto move17_ = MoveTo::create(0.1, Vec2(-6,-6));
+    auto move16_ = MoveTo::create(0.8, Vec2(moveSpn,moveSpn));
+    auto move17_ = MoveTo::create(0.3, Vec2(-moveSpn,-moveSpn));
     auto move18_ = DelayTime::create(0.4);
-    auto move19_ = MoveTo::create(0.05, Vec2(-6,6.0));
+    auto move19_ = MoveTo::create(0.05, Vec2(-moveSpn,moveSpn));
     auto delay20_ = DelayTime::create(0.5);
     auto rJump4_ = Repeat::create(Sequence::create(move16_,move17_,move18_,move19_,delay20_, NULL), 1);
     
     // dush
-    auto move21_ = MoveTo::create(0.8, Vec2(-5,-6));
-    auto move22_ = MoveTo::create(0.1, Vec2(6,-6));
+    auto move21_ = MoveTo::create(0.8, Vec2(-moveSpn-1,-moveSpn));
+    auto move22_ = MoveTo::create(0.1, Vec2(moveSpn,-moveSpn));
     auto dush4_ = Repeat::create(Sequence::create(move21_,move22_, NULL), 1);
     
     // break
-    auto move23_ = MoveTo::create(0.8, Vec2(-6,-6));
+    auto move23_ = MoveTo::create(0.8, Vec2(-moveSpn,-moveSpn));
     auto delay24_ = DelayTime::create(3);
     auto move25_ = MoveTo::create(0.8, Vec2(0,0));
     auto break_ = Sequence::create(move23_,delay24_,move25_, NULL);

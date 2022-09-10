@@ -99,6 +99,7 @@ static const int CT_ALL = 0xFFFFFFFF;
 // GameMode
 static const int GAME_MODE_STAGE=0;
 static const int GAME_MODE_TRAINING=1;
+static const int GAME_MODE_DEMO=2;
 
 // Stage数
 static const int STAGE_SIZE=20;
