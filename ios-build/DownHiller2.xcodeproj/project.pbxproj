@@ -199,6 +199,10 @@
 		309B0D21284D04F00091801C /* Bike.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 309B0D1F284D04EF0091801C /* Bike.cpp */; };
 		309B0D25284D05D90091801C /* Sprite2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 309B0D24284D05D90091801C /* Sprite2.cpp */; };
 		309EC664C42A4D32AB847DD3 /* DetourNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94FB09E9E0E6484C86FC4A80 /* DetourNode.cpp */; };
+		30A1AE8428CC5D080043FDEF /* BGM097-100811-shiaikaishida-mp3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 30A1AE8028CC5D080043FDEF /* BGM097-100811-shiaikaishida-mp3.mp3 */; };
+		30A1AE8528CC5D080043FDEF /* open.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 30A1AE8128CC5D080043FDEF /* open.mp3 */; };
+		30A1AE8628CC5D080043FDEF /* select01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 30A1AE8228CC5D080043FDEF /* select01.mp3 */; };
+		30A1AE8728CC5D080043FDEF /* select02.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 30A1AE8328CC5D080043FDEF /* select02.mp3 */; };
 		30CD0331284547E30023D844 /* kotokotobokanmark.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 304DD0DB2845253200AF0334 /* kotokotobokanmark.png */; };
 		30CD03B028466DCD0023D844 /* back5.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 30CD036228466D190023D844 /* back5.png */; };
 		30CD03B128466DCD0023D844 /* bike2.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 30CD034728466D160023D844 /* bike2.png */; };
@@ -1399,6 +1403,10 @@
 		309B0D20284D04EF0091801C /* Bike.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bike.h; sourceTree = "<group>"; };
 		309B0D23284D05D80091801C /* Sprite2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sprite2.h; sourceTree = "<group>"; };
 		309B0D24284D05D90091801C /* Sprite2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite2.cpp; sourceTree = "<group>"; };
+		30A1AE8028CC5D080043FDEF /* BGM097-100811-shiaikaishida-mp3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "BGM097-100811-shiaikaishida-mp3.mp3"; sourceTree = "<group>"; };
+		30A1AE8128CC5D080043FDEF /* open.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = open.mp3; sourceTree = "<group>"; };
+		30A1AE8228CC5D080043FDEF /* select01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = select01.mp3; sourceTree = "<group>"; };
+		30A1AE8328CC5D080043FDEF /* select02.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = select02.mp3; sourceTree = "<group>"; };
 		30C97C63992A46B2899EB081 /* SocketIO.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = SocketIO.h; path = cocos2d/cocos/network/SocketIO.h; sourceTree = SOURCE_ROOT; };
 		30CD033428466D130023D844 /* howto_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = howto_btn.png; sourceTree = "<group>"; };
 		30CD033528466D140023D844 /* dot3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dot3.png; sourceTree = "<group>"; };
@@ -3425,6 +3433,10 @@
 		304DD0AB2843C79E00AF0334 /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				30A1AE8028CC5D080043FDEF /* BGM097-100811-shiaikaishida-mp3.mp3 */,
+				30A1AE8128CC5D080043FDEF /* open.mp3 */,
+				30A1AE8228CC5D080043FDEF /* select01.mp3 */,
+				30A1AE8328CC5D080043FDEF /* select02.mp3 */,
 				306A84032883A2830059C257 /* ashidejump.mp3 */,
 				306A84042883A2840059C257 /* BGM124-110921-tamashiinopistol-wav-nointro.mp3 */,
 				306A84022883A2830059C257 /* button05.mp3 */,
@@ -5130,10 +5142,14 @@
 				306A84072883A2840059C257 /* ashidejump.mp3 in Resources */,
 				304DD0952843C25B00AF0334 /* kirabon.plist in Resources */,
 				306A84082883A2840059C257 /* BGM124-110921-tamashiinopistol-wav-nointro.mp3 in Resources */,
+				30A1AE8628CC5D080043FDEF /* select01.mp3 in Resources */,
 				13C698B4E7004DE3A17AF15F /* Images.xcassets in Resources */,
+				30A1AE8528CC5D080043FDEF /* open.mp3 in Resources */,
 				306A84092883A2840059C257 /* ME017-100125-logo02-wav.mp3 in Resources */,
 				304DD0AD2843C7CD00AF0334 /* btnon.mp3 in Resources */,
 				306A84062883A2840059C257 /* button05.mp3 in Resources */,
+				30A1AE8428CC5D080043FDEF /* BGM097-100811-shiaikaishida-mp3.mp3 in Resources */,
+				30A1AE8728CC5D080043FDEF /* select02.mp3 in Resources */,
 				9E254895AA3647E1A64700ED /* LaunchScreen.storyboard in Resources */,
 				304DD0922843B6B800AF0334 /* irohamaru.ttf in Resources */,
 			);
