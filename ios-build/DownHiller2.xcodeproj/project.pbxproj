@@ -203,6 +203,10 @@
 		30A1AE8528CC5D080043FDEF /* open.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 30A1AE8128CC5D080043FDEF /* open.mp3 */; };
 		30A1AE8628CC5D080043FDEF /* select01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 30A1AE8228CC5D080043FDEF /* select01.mp3 */; };
 		30A1AE8728CC5D080043FDEF /* select02.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 30A1AE8328CC5D080043FDEF /* select02.mp3 */; };
+		30A1AE8928CDF82B0043FDEF /* hit_noml.wav in Resources */ = {isa = PBXBuildFile; fileRef = 30A1AE8828CDF82A0043FDEF /* hit_noml.wav */; };
+		30A1AE8B28CDFBE70043FDEF /* ME010-090610-fanfare01-wav.wav in Resources */ = {isa = PBXBuildFile; fileRef = 30A1AE8A28CDFBE70043FDEF /* ME010-090610-fanfare01-wav.wav */; };
+		30A1AE8D28CDFDF60043FDEF /* ME016-100125-logo01-wav.wav in Resources */ = {isa = PBXBuildFile; fileRef = 30A1AE8C28CDFDF60043FDEF /* ME016-100125-logo01-wav.wav */; };
+		30A1AE8F28CE019D0043FDEF /* ME023-100611-loss03-wav.wav in Resources */ = {isa = PBXBuildFile; fileRef = 30A1AE8E28CE019D0043FDEF /* ME023-100611-loss03-wav.wav */; };
 		30CD0331284547E30023D844 /* kotokotobokanmark.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 304DD0DB2845253200AF0334 /* kotokotobokanmark.png */; };
 		30CD03B028466DCD0023D844 /* back5.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 30CD036228466D190023D844 /* back5.png */; };
 		30CD03B128466DCD0023D844 /* bike2.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 30CD034728466D160023D844 /* bike2.png */; };
@@ -1407,6 +1411,10 @@
 		30A1AE8128CC5D080043FDEF /* open.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = open.mp3; sourceTree = "<group>"; };
 		30A1AE8228CC5D080043FDEF /* select01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = select01.mp3; sourceTree = "<group>"; };
 		30A1AE8328CC5D080043FDEF /* select02.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = select02.mp3; sourceTree = "<group>"; };
+		30A1AE8828CDF82A0043FDEF /* hit_noml.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hit_noml.wav; sourceTree = "<group>"; };
+		30A1AE8A28CDFBE70043FDEF /* ME010-090610-fanfare01-wav.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "ME010-090610-fanfare01-wav.wav"; path = "Resources/sounds/ME010-090610-fanfare01-wav.wav"; sourceTree = SOURCE_ROOT; };
+		30A1AE8C28CDFDF60043FDEF /* ME016-100125-logo01-wav.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "ME016-100125-logo01-wav.wav"; sourceTree = "<group>"; };
+		30A1AE8E28CE019D0043FDEF /* ME023-100611-loss03-wav.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "ME023-100611-loss03-wav.wav"; sourceTree = "<group>"; };
 		30C97C63992A46B2899EB081 /* SocketIO.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = SocketIO.h; path = cocos2d/cocos/network/SocketIO.h; sourceTree = SOURCE_ROOT; };
 		30CD033428466D130023D844 /* howto_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = howto_btn.png; sourceTree = "<group>"; };
 		30CD033528466D140023D844 /* dot3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dot3.png; sourceTree = "<group>"; };
@@ -3433,6 +3441,10 @@
 		304DD0AB2843C79E00AF0334 /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				30A1AE8E28CE019D0043FDEF /* ME023-100611-loss03-wav.wav */,
+				30A1AE8C28CDFDF60043FDEF /* ME016-100125-logo01-wav.wav */,
+				30A1AE8A28CDFBE70043FDEF /* ME010-090610-fanfare01-wav.wav */,
+				30A1AE8828CDF82A0043FDEF /* hit_noml.wav */,
 				30A1AE8028CC5D080043FDEF /* BGM097-100811-shiaikaishida-mp3.mp3 */,
 				30A1AE8128CC5D080043FDEF /* open.mp3 */,
 				30A1AE8228CC5D080043FDEF /* select01.mp3 */,
@@ -5139,8 +5151,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30A1AE8D28CDFDF60043FDEF /* ME016-100125-logo01-wav.wav in Resources */,
 				306A84072883A2840059C257 /* ashidejump.mp3 in Resources */,
+				30A1AE8F28CE019D0043FDEF /* ME023-100611-loss03-wav.wav in Resources */,
 				304DD0952843C25B00AF0334 /* kirabon.plist in Resources */,
+				30A1AE8928CDF82B0043FDEF /* hit_noml.wav in Resources */,
 				306A84082883A2840059C257 /* BGM124-110921-tamashiinopistol-wav-nointro.mp3 in Resources */,
 				30A1AE8628CC5D080043FDEF /* select01.mp3 in Resources */,
 				13C698B4E7004DE3A17AF15F /* Images.xcassets in Resources */,
@@ -5152,6 +5167,7 @@
 				30A1AE8728CC5D080043FDEF /* select02.mp3 in Resources */,
 				9E254895AA3647E1A64700ED /* LaunchScreen.storyboard in Resources */,
 				304DD0922843B6B800AF0334 /* irohamaru.ttf in Resources */,
+				30A1AE8B28CDFBE70043FDEF /* ME010-090610-fanfare01-wav.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
