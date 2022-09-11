@@ -97,11 +97,11 @@ bool GameStage::init() {
     _timeLimit = getCourceManager()->getStagePrm()->getTymeLimit();
     // タイムリミットが設定されている場合
     if(_timeLimit>0){
-        setRestTime(Label::createWithTTF("残り時間:" + ST_FLOAT(_timeLimit), "irohamaru.ttf", 12));
+        setRestTime(Label::createWithTTF("残り時間:" + ST_FLOAT2(_timeLimit), "irohamaru.ttf", 24));
         getColorChanger()->SetColor(COMMENT_COLOR_H, COMMENT_COLOR_S, COMMENT_COLOR_V);
         getRestTime()->setColor(getColorChanger()->getColor3B());
         getRestTime()->setOpacity(0);
-        mountNode(getRestTime(), Vec2(ctPt.x,winSize.height-40), OBJ_LAYER_TOP);
+        mountNode(getRestTime(), Vec2(ctPt.x,winSize.height-80), OBJ_LAYER_TOP);
     }
     // 効果音
     setSoundEffect(SOUND_BUTTON);
@@ -173,7 +173,7 @@ void GameStage::update(float dt) {
     if(getRestTime() && tmFlg && _timeLimit>0){
         tm_ += dt;
         if(_timeLimit>tm_){
-            getRestTime()->setString("残り時間:" + ST_FLOAT(_timeLimit - tm_));
+            getRestTime()->setString("残り時間:" + ST_FLOAT2(_timeLimit - tm_));
         }else{
             getRestTime()->setString("タイムオーバー！");
         }
@@ -299,6 +299,7 @@ void GameStage::onMiss(){
     
     getBike()->getRider()->addChild(gun);
     showGameAnnounce(L_GAME_MISS, ctPt + Vec2(0,200),[this]{
+        this->callSoundEffect(SOUND_GAME_MISS);
         setModalMenu(Menu::create(getBtn2(),getBtn4(),NULL));
         getModalMenu()->alignItemsVerticallyWithPadding(5);
         getModalMenu()->setPosition(Vec2::ZERO);
