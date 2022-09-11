@@ -107,6 +107,8 @@ bool GameStage::init() {
     setSoundEffect(SOUND_BUTTON);
     setSoundEffect(SOUND_GAME_READY);
     setSoundEffect(SOUND_GAME_START);
+    setSoundEffect(SOUND_GAME_CLEAR);
+    setSoundEffect(SOUND_GAME_MISS);
     return true;
 }
 
@@ -233,6 +235,7 @@ void GameStage::onClear(){
     // タイムオーバーチェック
     if(_timeLimit &&
        _timeLimit < tm_){
+        this->callSoundEffect(SOUND_GAME_MISS);
         showGameAnnounce(L_GAME_MISS, ctPt + Vec2(0,200),[this]{
             setModalMenu(Menu::create(getBtn2(),getBtn4(),NULL));
             getModalMenu()->alignItemsVerticallyWithPadding(5);
@@ -244,6 +247,7 @@ void GameStage::onClear(){
             mountNode(getModal(), ctPt, OBJ_LAYER_TOP);
         });
     }else{
+        this->callSoundEffect(SOUND_GAME_CLEAR);
         showGameAnnounce(L_GAME_CLEAR, ctPt + Vec2(0,200),[this]{
             // クリアステージをカウントアップ
             int selStage = getCourceManager()->getStagePrm()->getStageNumber();

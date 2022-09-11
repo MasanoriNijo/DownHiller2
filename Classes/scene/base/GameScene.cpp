@@ -280,7 +280,7 @@ void GameScene::startBGM(const char* filePath, float gain){
 }
 
 void GameScene::stopBGM(const char* filePath){
-    CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic(true);
+    CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic();
 }
 
 void GameScene::setSoundEffect(const char* filePath){

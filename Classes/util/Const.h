@@ -108,7 +108,7 @@ static const int TRAINING_SIZE=63;
 
 // GameSound
 // Openingロゴ表示の音
-static const char * SOUND_OPENING = "ME017-100125-logo02-wav.mp3";
+static const char * SOUND_OPENING = "ME016-100125-logo01-wav.wav";
 
 // ボタンを押す音
 static const char * SOUND_BUTTON = "button05.mp3";
@@ -123,13 +123,16 @@ static const char * SOUND_GAME_READY = "select01.mp3";
 static const char * SOUND_GAME_START = "select02.mp3";
 
 // Gameクリヤ音
-static const char * SOUND_GAME_CLEAR = "";
+static const char * SOUND_GAME_CLEAR = "ME010-090610-fanfare01-wav.wav";
+
+// GameMiss音
+static const char * SOUND_GAME_MISS = "ME023-100611-loss03-wav.wav";
 
 // Playerのジャンプ音
 static const char * SOUND_PLAYER_JUMP = "ashidejump.mp3";
 
 // PlayerのMiss音
-static const char * SOUND_PLAYER_MISS = "btnon.mp3";
+static const char * SOUND_PLAYER_MISS = "hit_noml.wav";
 
 
 // macro
