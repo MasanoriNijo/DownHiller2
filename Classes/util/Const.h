@@ -138,9 +138,10 @@ static const char * SOUND_PLAYER_MISS = "hit_noml.wav";
 // macro
 // 数字の文字化
 #define ST_INT(suzi) ({std::string st = StringUtils::toString((int)suzi);st;})
-
 // 数字の文字化std::_Floating_to_string("%.3f", doubleNum)
 #define ST_FLOAT(suzi) ({std::string st = StringUtils::format("%.3f", (float)suzi);st;})
+// 数字の文字化std::_Floating_to_string("%.3f", doubleNum)
+#define ST_FLOAT2(suzi) ({std::string st = StringUtils::format("%.1f", (float)suzi);st;})
 // Vec2の文字化
 #define ST_VEC2(vec2) ({std::string stx = ST_FLOAT(vec2.x);std::string sty = ST_FLOAT(vec2.y); "x:"+stx+" y:"+sty;})
 // Sizeの文字化

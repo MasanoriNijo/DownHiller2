@@ -61,6 +61,7 @@ void CourceManager::_setStagePrm(){
     if(UserDefault::getInstance()->getIntegerForKey(UDF_INT_GAME_MODE,GAME_MODE_STAGE)==GAME_MODE_STAGE){
         std::string head = "クリア条件\n";
         getStagePrm()->setCommnent("ステージ:" + ST_INT(getStagePrm()->getStageNumber()));
+        getStagePrm()->setTymeLimit(30);
         if(getStagePrm()->getStageNumber() == 0){
             getStagePrm()->setCommnent(
                                        "ここからは、\n"
