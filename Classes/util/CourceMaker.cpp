@@ -37,8 +37,8 @@ bool CourceMaker::init() {
     _length = getStraight()->getTexture()->getContentSize().width;
     addChild(getStraight());
     
-    setCurveA(SpriteBatchNode::create("c_curve_a.png"));
-    addChild(getCurveA());
+//    setCurveA(SpriteBatchNode::create("c_curve_a.png"));
+//    addChild(getCurveA());
     
     setMark(SpriteBatchNode::create("mark.png"));
     getMark()->setGlobalZOrder(OBJ_LAYER_LV1);
@@ -56,6 +56,22 @@ void CourceMaker::update(float dt) {
 }
 
 void CourceMaker::drawStart(Vec2 pt_, Vec2 dir_){
+    
+    getMember().clear();
+    
+//    setDot(SpriteBatchNode::create("c_dot.png"));
+//    getDot()->setGlobalZOrder(OBJ_LAYER_LV1);
+//    addChild(getDot());
+//    
+//    setStraight(SpriteBatchNode::create("c_straight.png"));
+//    getStraight()->setGlobalZOrder(OBJ_LAYER_LV1);
+//    _length = getStraight()->getTexture()->getContentSize().width;
+//    addChild(getStraight());
+//     
+//    setMark(SpriteBatchNode::create("mark.png"));
+//    getMark()->setGlobalZOrder(OBJ_LAYER_LV1);
+//    addChild(getMark());
+    
     setStartPt(pt_);
     setStartDir(dir_);
     setWorkPt(pt_);
@@ -66,7 +82,7 @@ void CourceMaker::drawStart(Vec2 pt_, Vec2 dir_){
 //    addStartDot(pt_);//デバック時
     addDot(pt_);
     addPolygonPts(_wrkPt);
-    getMember().clear();
+
     low_y = 100000;
 }
 void CourceMaker::drawTo(Vec2 pt_, Vec2 dir_){
