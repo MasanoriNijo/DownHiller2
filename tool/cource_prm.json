@@ -1,0 +1,11 @@
+{
+  "funcSt": "_c->dC(",
+  "funcEd": " + kaku);",
+  "madePrm": {
+    "minLengh":50,
+    "maxLength":100,
+    "minDeg":-60,
+    "maxDeg":15,
+    "diffPrm":30
+  }
+}
