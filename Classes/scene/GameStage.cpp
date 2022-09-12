@@ -283,8 +283,8 @@ void GameStage::onMiss(){
     stopBGM("");
     callSoundEffect(SOUND_PLAYER_MISS);
     getBike()->getFRJoint()->removeFormWorld();
-    getBike()->getFwheel()->getPhysicsBody()->setVelocity(Vec2::ZERO);
-    getBike()->getRwheel()->getPhysicsBody()->setVelocity(Vec2::ZERO);
+//    getBike()->getFwheel()->getPhysicsBody()->setVelocity(Vec2::ZERO);
+//    getBike()->getRwheel()->getPhysicsBody()->setVelocity(Vec2::ZERO);
     getBike()->unscheduleUpdate();
     getBike()->removeTouchEvent();
     Director::getInstance()->getEventDispatcher()->removeEventListener(getContactListenner());
