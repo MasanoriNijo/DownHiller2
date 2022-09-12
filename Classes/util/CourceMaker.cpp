@@ -457,7 +457,7 @@ void CourceMaker::madePhysiceBody(){
         _nuriPts[2].y = low_y;
         _nuriPts[3].x = _polygonPts[i].x;
         _nuriPts[3].y = low_y;
-        getNuri()->drawSolidPoly(_nuriPts, 4, _nuriColor);
+        getNuri()->drawSolidPoly(_nuriPts, 4, (int)i%2 ? _nuriColor : _nuriColor2);
         if(min_x < _polygonPts[i+1].x){
             min_x = _polygonPts[i+1].x;
         }
@@ -501,7 +501,7 @@ void CourceMaker::madeCourceBase(){
         _nuriPts[2].y = low_y;
         _nuriPts[3].x = _polygonPts[i].x;
         _nuriPts[3].y = low_y;
-        getNuri()->drawSolidPoly(_nuriPts, 4, _nuriColor);
+        getNuri()->drawSolidPoly(_nuriPts, 4, (int)i%2 ? _nuriColor : _nuriColor2);
         if(min_x < _polygonPts[i+1].x){
             min_x = _polygonPts[i+1].x;
         }

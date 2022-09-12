@@ -39,10 +39,15 @@ USING_NS_CC;
 #define COURCE_LINE_COLOR_S 100
 #define COURCE_LINE_COLOR_V 53
 
-// コース線の色
+// コースベースの色
 #define COURCE_BASE_COLOR_H 44
 #define COURCE_BASE_COLOR_S 78
 #define COURCE_BASE_COLOR_V 83
+
+// コースベースの色
+#define COURCE_BASE_COLOR2_H 44
+#define COURCE_BASE_COLOR2_S 78
+#define COURCE_BASE_COLOR2_V 83
 
 // タイトル文字のカラー
 #define TITLE_COLOR_H 340

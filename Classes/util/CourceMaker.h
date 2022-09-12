@@ -39,6 +39,7 @@ public:
     
     Color3B _lineColor = Color3B::ORANGE;
     Color4F _nuriColor = Color4F::MAGENTA;
+    Color4F _nuriColor2 = Color4F::MAGENTA;
     
     // 元の直線の長さ
     float _length;
@@ -94,7 +95,6 @@ public:
     void madePhysiceBody();
     
     void madePhysiceBody(Node* field);
-    
     // title表示用 コースの下のデザインを表示させる。
     void madeCourceBase();
     
