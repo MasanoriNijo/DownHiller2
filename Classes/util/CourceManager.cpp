@@ -24,13 +24,13 @@ bool CourceManager::init() {
     setStartDir(Vec2::ZERO);
     setTargetDir(Vec2::ZERO);
     _setStagePrm();
-    
+
     setGurd(Node::create());
     setGurdBody(PhysicsBody::createEdgeSegment(Vec2(0,0), Vec2(0,50)));
     getGurdBody()->setDynamic(false);
     getGurdBody()->setCollisionBitmask(CT_ALL);
     getGurd()->setPhysicsBody(getGurdBody());
-    
+
     setColorChanger(ColorChanger::create());
     getColorChanger()->SetColor(COURCE_LINE_COLOR_H, COURCE_LINE_COLOR_S, COURCE_LINE_COLOR_V);
     getCourceMakerA()->_lineColor = getColorChanger()->getColor3B();
@@ -64,7 +64,7 @@ void CourceManager::_setStagePrm(){
     if(UserDefault::getInstance()->getIntegerForKey(UDF_INT_GAME_MODE,GAME_MODE_STAGE)==GAME_MODE_STAGE){
         std::string head = "クリア条件\n";
         getStagePrm()->setCommnent("ステージ:" + ST_INT(getStagePrm()->getStageNumber()));
-        getStagePrm()->setTymeLimit(30);
+        getStagePrm()->setTymeLimit(60);
         if(getStagePrm()->getStageNumber() == 0){
             getStagePrm()->setCommnent(
                                        "ここからは、\n"
@@ -604,11 +604,11 @@ void CourceManager::madeCourcePtn11(CourceMaker* _c,int ind){
             break;
         case 1:
             cPtn20(_c);
-            cPtn25(_c);
+            cPtn39(_c);
             break;
         case 2:
-            cPtn34(_c);
-            cPtn39(_c);
+            cPtn52(_c);
+            cPtn25(_c);
             break;
         case 3:
             _c->dS(100,0);
@@ -634,7 +634,7 @@ void CourceManager::madeCourcePtn12(CourceMaker* _c,int ind){
             break;
         case 1:
             cPtn00(_c);
-            cPtn40(_c);
+            cPtn53(_c);
             break;
         case 2:
             cPtn50(_c);
@@ -724,8 +724,8 @@ void CourceManager::madeCourcePtn15(CourceMaker* _c,int ind){
             _c->dS(30,-3);
             break;
         case 1:
-            cPtn47(_c);
-            cPtn06(_c);
+            cPtn07(_c);
+            cPtn54(_c);
             break;
         case 2:
             cPtn58(_c);
@@ -846,7 +846,7 @@ void CourceManager::madeCourcePtn19(CourceMaker* _c,int ind){
             break;
         case 1:
             cPtn14(_c);
-            cPtn55(_c);
+            cPtn54(_c);
             break;
         case 2:
             cPtn62(_c);
@@ -1304,7 +1304,7 @@ void CourceManager::checkAndMadeCourceForDebug(Vec2 chPt){
 // 滑らかな波波
 void CourceManager::cPtn00(CourceMaker* _c){
     setComment("c00",_c);
-    auto kaku = -1;
+    auto kaku = 5;
     _c->dC(59, -60 + kaku);
     _c->dC(133, -23 + kaku);
     _c->dC(130, -55 + kaku);
@@ -1331,7 +1331,7 @@ void CourceManager::cPtn00(CourceMaker* _c){
 // 滑らかな波波
 void CourceManager::cPtn01(CourceMaker* _c){
     setComment("c01",_c);
-    auto kaku = 0;
+    auto kaku = 5;
     _c->dC(84, -55 + kaku);
     _c->dC(98, -19 + kaku);
     _c->dC(91, -54 + kaku);
@@ -1385,7 +1385,7 @@ void CourceManager::cPtn02(CourceMaker* _c){
 // 滑らかな波波
 void CourceManager::cPtn03(CourceMaker* _c){
     setComment("c03",_c);
-    auto kaku = -10;
+    auto kaku = -13;
     _c->dC(111, -36 + kaku);
     _c->dC(113, 1 + kaku);
     _c->dC(111, -33 + kaku);
@@ -1411,7 +1411,7 @@ void CourceManager::cPtn03(CourceMaker* _c){
 // 滑らかな波波
 void CourceManager::cPtn04(CourceMaker* _c){
     setComment("c04",_c);
-    auto kaku = -10;
+    auto kaku = -14;
     _c->dC(83, -39 + kaku);
     _c->dC(87, 7 + kaku);
     _c->dC(110, -24 + kaku);
@@ -1438,7 +1438,7 @@ void CourceManager::cPtn04(CourceMaker* _c){
 // 滑らかな波波
 void CourceManager::cPtn05(CourceMaker* _c){
     setComment("c05",_c);
-    auto kaku = 0;
+    auto kaku = 4;
     _c->dC(152, -41 + kaku);
     _c->dC(418, -21 + kaku);
     _c->dC(169, -68 + kaku);
@@ -1545,7 +1545,7 @@ void CourceManager::cPtn08(CourceMaker* _c){
 // 滑らかな波波
 void CourceManager::cPtn09(CourceMaker* _c){
     setComment("c09",_c);
-    auto kaku = 0;
+    auto kaku = -5;
     _c->dC(308, -34 + kaku);
     _c->dC(234, 12 + kaku);
     _c->dC(264, -30 + kaku);
@@ -1626,7 +1626,7 @@ void CourceManager::cPtn11(CourceMaker* _c){
 // カクカク
 void CourceManager::cPtn12(CourceMaker* _c){
     setComment("c12",_c);
-    auto kaku = 0;
+    auto kaku = -7;
     _c->dS(169, -30 + kaku);
     _c->dS(166, 5 + kaku);
     _c->dS(168, -31 + kaku);
@@ -1788,7 +1788,7 @@ void CourceManager::cPtn17(CourceMaker* _c){
 // カクカクと波波
 void CourceManager::cPtn18(CourceMaker* _c){
     setComment("c18",_c);
-    auto kaku = 0;
+    auto kaku = -7;
     _c->dS(100, -35 + kaku);
     _c->dS(54, 3 + kaku);
     _c->dS(100, -29 + kaku);
@@ -1815,7 +1815,7 @@ void CourceManager::cPtn18(CourceMaker* _c){
 // カクカクと波波
 void CourceManager::cPtn19(CourceMaker* _c){
     setComment("c19",_c);
-    auto kaku = 06;
+    auto kaku = -6;
     _c->dC(134, -41 + kaku);
     _c->dS(50, 2 + kaku);
     _c->dS(71, -46 + kaku);
@@ -1887,7 +1887,7 @@ void CourceManager::cPtn20(CourceMaker* _c){
 // 波波と凸
 void CourceManager::cPtn21(CourceMaker* _c){
     setComment("c21",_c);
-    auto kaku = 0;
+    auto kaku = -8;
     int bufKaku = 0;
     _c->dC(227, -40 + kaku);
     _c->dC(268, -2 + kaku);
@@ -1901,6 +1901,13 @@ void CourceManager::cPtn21(CourceMaker* _c){
     _c->dC(372, -32 + kaku);
     _c->dC(249, 14 + kaku);
     _c->dC(264, -27 + kaku);
+    
+    bufKaku = -27 + kaku;
+    _c->dS(100,bufKaku);
+    _c->dS(0,90 + bufKaku);
+    _c->dC(10,-90 + bufKaku);
+    _c->dS(0, bufKaku);
+    
     _c->dC(264, 14 + kaku);
     _c->dC(363, -16 + kaku);
     _c->dC(343, 14 + kaku);
@@ -1970,13 +1977,12 @@ void CourceManager::cPtn22(CourceMaker* _c){
     _c->dC(245, -32 + kaku);
     _c->dC(264, 9 + kaku);
 
-
 }
 
 // 波波と凸
 void CourceManager::cPtn23(CourceMaker* _c){
     setComment("c23",_c);
-    auto kaku = 0;
+    auto kaku = -6;
     int bufKaku = 0;
     _c->dC(289, -35 + kaku);
     
@@ -2019,7 +2025,7 @@ void CourceManager::cPtn23(CourceMaker* _c){
 //  波波と凸特大
 void CourceManager::cPtn24(CourceMaker* _c){
     setComment("c24",_c);
-    auto kaku = -2;
+    auto kaku = -7;
     int bufKaku = 0;
     _c->dC(521, -33 + kaku);
     
@@ -2051,7 +2057,7 @@ void CourceManager::cPtn24(CourceMaker* _c){
 //  波波と凸特大
 void CourceManager::cPtn25(CourceMaker* _c){
     setComment("c25",_c);
-    auto kaku = -2;
+    auto kaku = -6;
     int bufKaku = 0;
     
     _c->dC(540, -30 + kaku);
@@ -2116,7 +2122,7 @@ void CourceManager::cPtn26(CourceMaker* _c){
 // 特大凹+カクカク
 void CourceManager::cPtn27(CourceMaker* _c){
     setComment("c27",_c);
-    auto kaku = -2;
+    auto kaku = -7;
     int bufKaku = 0;
     _c->dS(292, -36 + kaku);
     
@@ -2259,7 +2265,7 @@ void CourceManager::cPtn30(CourceMaker* _c){
 // 細かい段差
 void CourceManager::cPtn31(CourceMaker* _c){
     setComment("c31",_c);
-    auto kaku = -10;
+    auto kaku = -14;
     _c->dC(58, -85 + kaku);
     _c->dS(147, 12 + kaku);
     _c->dS(94, 0 + kaku);
