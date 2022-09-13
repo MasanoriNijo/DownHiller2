@@ -95,20 +95,26 @@ def madeCourceCH(json_data):
     file_path = cdir+"/courceCH_prm.txt"
     f = open(file_path, 'w')
     # _c->dC(100,-35 + kaku);
-    for i in range(20):
+    for i in range(10):
       courceLength = randint(minLengh, maxLength)
       courceLength2 = randint(minLengh, maxLength)
       courceDeg = randint(min(beforeDeg + diffPrm,maxDeg), maxDeg) if i%2 else randint(minDeg, max(beforeDeg-diffPrm,minDeg))
       diffDeg = courceDeg - beforeDeg
       beforeDeg = courceDeg
       courceR = int(abs(courceLength/(3.14 * (diffDeg/180))))
-      if(randint(0,1)==0):
+      if(diffDeg<0):
         f.write("_c->dS("+str(courceLength)+", "+str(courceDeg)+json_data["funcEd"])
+        f.write('\n')
+        f.write(json_data["funcSt"]+str(courceR+80)+", "+str(0)+json_data["funcEd"])
         f.write('\n')
         f.write("_c->dS("+str(courceLength2)+", "+str(0)+json_data["funcEd"])
         f.write('\n')
       else:
         f.write(json_data["funcSt"]+str(courceR)+", "+str(courceDeg)+json_data["funcEd"])
+        f.write('\n')
+        f.write("_c->dS("+str(courceLength)+", "+str(courceDeg)+json_data["funcEd"])
+        f.write('\n')
+        f.write("_c->dS("+str(courceLength2)+", "+str(0)+json_data["funcEd"])
         f.write('\n')
     f.close
 

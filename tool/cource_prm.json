@@ -2,10 +2,10 @@
   "funcSt": "_c->dC(",
   "funcEd": " + kaku);",
   "madePrm": {
-    "minLengh":80,
-    "maxLength":150,
+    "minLengh":60,
+    "maxLength":120,
     "minDeg":-90,
-    "maxDeg":60,
-    "diffPrm":60
+    "maxDeg":40,
+    "diffPrm":40
   }
 }
