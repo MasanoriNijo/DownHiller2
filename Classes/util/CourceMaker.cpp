@@ -451,7 +451,7 @@ void CourceMaker::madePhysiceBody(){
     getCourceBody()->setContactTestBitmask(CT_WHEEL | CT_RIDER);
     getCourceBody()->setTag(TG_COURCE);
     setPhysicsBody(getCourceBody());
-        
+
     // ぬり
     if(getNuri()){
         getNuri()->removeFromParentAndCleanup(true);
