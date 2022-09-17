@@ -52,7 +52,7 @@ bool TitleScene::init() {
         callSoundEffect(SOUND_BUTTON);
         UserDefault::getInstance()->setIntegerForKey(UDF_INT_GAME_MODE, GAME_MODE_STAGE);
         transitonScene(SelectScene::createScene());
-    }, Size(1,1), L_BTN_START, Color3B::WHITE, Color3B::YELLOW, true));
+    }, Size(1,1), L_BTN_START, Color3B::WHITE, Color3B::YELLOW, false));
     
     setTrainingBtn(generateMenuItemSprite([this](Ref* ref){
         stopBGM("");

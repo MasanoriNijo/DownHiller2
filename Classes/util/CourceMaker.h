@@ -94,6 +94,10 @@ public:
     
     void madePhysiceBody();
     
+    // 負荷のかかる処理なので、複数回のフレームで実行する。
+    void madePhysiceBodyGradualy();
+    int _madeInd = 0;
+    
     void madePhysiceBody(Node* field);
     // title表示用 コースの下のデザインを表示させる。
     void madeCourceBase();

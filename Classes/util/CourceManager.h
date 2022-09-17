@@ -54,6 +54,8 @@ public:
     bool _isDebugComment = true;
     void setComment(std::string st, CourceMaker* _c);
     
+    CourceMaker* _c;
+    
     void madeCourcePtn0(CourceMaker* _cmaker,int ind);
     void madeCourcePtn1(CourceMaker* _cmaker,int ind);
     void madeCourcePtn2(CourceMaker* _cmaker,int ind);
@@ -78,7 +80,7 @@ public:
     void madeCourcePtn21(CourceMaker* _cmaker,int ind);
     
     
-    void checkAndMadeCourceForDebug(Vec2 chPt);
+    void checkAndMadeCourceForTraining(Vec2 chPt);
     void cPtn00(CourceMaker* _c);
     void cPtn01(CourceMaker* _c);
     void cPtn02(CourceMaker* _c);

@@ -87,7 +87,7 @@ public:
     void _bikeBehaviorControl();
     // 重心速度
     Vec2 centerObjVelo;
-    float maxCenterObjVelo = 100;
+    float maxCenterObjVelo = 80;
     // 重心回転速度Rホイール
     Vec2 centerObjRotVelo;
     float maxCenterObjRotVelo = 40;
@@ -121,7 +121,7 @@ public:
     float chaseVelo = 30;
     
     // wheel最大速度
-    float maxWheelVelo = 100;
+    float maxWheelVelo = 80;
     
     // 画面スクロール関連
     Vec2 sceneOffset = Vec2(90,-20);

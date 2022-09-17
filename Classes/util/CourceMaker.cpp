@@ -59,19 +59,6 @@ void CourceMaker::drawStart(Vec2 pt_, Vec2 dir_){
     
     getMember().clear();
     
-//    setDot(SpriteBatchNode::create("c_dot.png"));
-//    getDot()->setGlobalZOrder(OBJ_LAYER_LV1);
-//    addChild(getDot());
-//    
-//    setStraight(SpriteBatchNode::create("c_straight.png"));
-//    getStraight()->setGlobalZOrder(OBJ_LAYER_LV1);
-//    _length = getStraight()->getTexture()->getContentSize().width;
-//    addChild(getStraight());
-//     
-//    setMark(SpriteBatchNode::create("mark.png"));
-//    getMark()->setGlobalZOrder(OBJ_LAYER_LV1);
-//    addChild(getMark());
-    
     setStartPt(pt_);
     setStartDir(dir_);
     setWorkPt(pt_);
@@ -80,7 +67,7 @@ void CourceMaker::drawStart(Vec2 pt_, Vec2 dir_){
     setTargetDir(dir_);
     _polygonPtCnt = 0;
 //    addStartDot(pt_);//デバック時
-    addDot(pt_);
+    addDot(pt_);// 本番用
     addPolygonPts(_wrkPt);
 
     low_y = 100000;
@@ -478,6 +465,66 @@ void CourceMaker::madePhysiceBody(){
             min_x = _polygonPts[i+1].x;
         }
     }
+}
+
+void CourceMaker::madePhysiceBodyGradualy(){
+    
+    auto _material = PHYSICSBODY_MATERIAL_DEFAULT;
+    _material.restitution = 0.0f;
+    _material.friction =1.0f;
+    _material.density = 0.0f;
+    
+    float min_x =_polygonPts[0].x;
+    
+    switch(_madeInd){
+        case 0:
+            if(getCourceBody()!=NULL){
+                getCourceBody()->removeFromWorld();
+                getCourceBody()->release();
+            }
+            _madeInd = 1;
+            break;
+        case 1:
+            
+            setCourceBody(PhysicsBody::createEdgeChain(_polygonPts, _polygonPtCnt,_material));
+            getCourceBody()->setDynamic(false);
+            getCourceBody()->setCategoryBitmask(CT_COURCE);
+            getCourceBody()->setCollisionBitmask(CT_WHEEL | CT_RIDER);
+            getCourceBody()->setContactTestBitmask(CT_WHEEL | CT_RIDER);
+            getCourceBody()->setTag(TG_COURCE);
+            setPhysicsBody(getCourceBody());
+            _madeInd = 2;
+            break;
+        case 2:
+            // ぬり
+            if(getNuri()){
+                getNuri()->removeFromParentAndCleanup(true);
+            }
+            setNuri(DrawNode::create());
+            getNuri()->setGlobalZOrder(OBJ_LAYER_LV1-1);
+            addChild(getNuri());
+            low_y -= 400;
+            for(int i=0; i<_polygonPtCnt-1;i++){
+                if(_polygonPts[i].x > _polygonPts[i+1].x || _polygonPts[i+1].x < min_x){
+                    continue;
+                }
+                _nuriPts[0].x = _polygonPts[i].x;
+                _nuriPts[0].y = _polygonPts[i].y;
+                _nuriPts[1].x = _polygonPts[i+1].x;
+                _nuriPts[1].y = _polygonPts[i+1].y;
+                _nuriPts[2].x = _polygonPts[i+1].x;
+                _nuriPts[2].y = low_y;
+                _nuriPts[3].x = _polygonPts[i].x;
+                _nuriPts[3].y = low_y;
+                getNuri()->drawSolidPoly(_nuriPts, 4, (int)i%2 ? _nuriColor : _nuriColor2);
+                if(min_x < _polygonPts[i+1].x){
+                    min_x = _polygonPts[i+1].x;
+                }
+            }
+            _madeInd = 3;
+            break;
+    }
+    
 }
 
 void CourceMaker::madePhysiceBody(Node* field){
