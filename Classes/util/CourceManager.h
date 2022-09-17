@@ -21,6 +21,7 @@ public:
     bool init();
     CC_SYNTHESIZE_RETAIN(CourceMaker*,_courceMakerA,CourceMakerA);
     CC_SYNTHESIZE_RETAIN(CourceMaker*,_courceMakerB,CourceMakerB);
+    CC_SYNTHESIZE_RETAIN(CourceMaker*,_courceMakerSel,CourceMakerSel);
     CC_SYNTHESIZE_RETAIN(Flg*,_startFlg,StartFlg);
     CC_SYNTHESIZE_RETAIN(Flg*,_goalFlg,GoalFlg);
     CC_SYNTHESIZE_RETAIN(StagePrm*,_stagePrm,StagePrm);
@@ -54,7 +55,8 @@ public:
     bool _isDebugComment = true;
     void setComment(std::string st, CourceMaker* _c);
     
-    CourceMaker* _c;
+    void cPtnStart(CourceMaker* _c);
+    void cPtnGoal(CourceMaker* _c);
     
     void madeCourcePtn0(CourceMaker* _cmaker,int ind);
     void madeCourcePtn1(CourceMaker* _cmaker,int ind);

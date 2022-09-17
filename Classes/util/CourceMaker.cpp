@@ -477,14 +477,14 @@ void CourceMaker::madePhysiceBodyGradualy(){
     float min_x =_polygonPts[0].x;
     
     switch(_madeInd){
-        case 0:
+        case -1:
             if(getCourceBody()!=NULL){
                 getCourceBody()->removeFromWorld();
                 getCourceBody()->release();
             }
             _madeInd = 1;
             break;
-        case 1:
+        case 0:
             
             setCourceBody(PhysicsBody::createEdgeChain(_polygonPts, _polygonPtCnt,_material));
             getCourceBody()->setDynamic(false);
@@ -493,9 +493,9 @@ void CourceMaker::madePhysiceBodyGradualy(){
             getCourceBody()->setContactTestBitmask(CT_WHEEL | CT_RIDER);
             getCourceBody()->setTag(TG_COURCE);
             setPhysicsBody(getCourceBody());
-            _madeInd = 2;
+            _madeInd = 1;
             break;
-        case 2:
+        case 1:
             // ぬり
             if(getNuri()){
                 getNuri()->removeFromParentAndCleanup(true);
@@ -521,7 +521,7 @@ void CourceMaker::madePhysiceBodyGradualy(){
                     min_x = _polygonPts[i+1].x;
                 }
             }
-            _madeInd = 3;
+            _madeInd = 2;
             break;
     }
     
