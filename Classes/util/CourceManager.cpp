@@ -88,87 +88,97 @@ void CourceManager::setStartAndTargetFromCource(CourceMaker* _c){
 
 void CourceManager::checkAndMadeCource(Vec2 chPt){
     
+    if(_c != NULL && _c->_madeInd != 3){
+        _c->madePhysiceBodyGradualy();
+        return;
+    }
+    
     if(UserDefault::getInstance()->getBoolForKey(UDF_BOOL_DEBUG_STAGE, false)){
-        checkAndMadeCourceForDebug(chPt);
+        checkAndMadeCourceForTraining(chPt);
         return;
     }
     if(chPt.x > (getStartPt().x + 200) || !courceIndex){
         _dirkaku = courceIndex%2 ? getCourceMakerA()->_dirkaku : getCourceMakerB()->_dirkaku;
+        _c = courceIndex%2 ? getCourceMakerB() : getCourceMakerA();
+        _c->drawStart(getTergetPt(),getTargetDir());
+        _c->_dirkaku = _dirkaku;
+        
         switch (selStg) {
             case -1:
-                madeCourcePtnForTitle(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
+                madeCourcePtnForTitle(_c,courceIndex);
                 break;
             case 0:
-                madeCourcePtn0(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
+                madeCourcePtn0(_c,courceIndex);
                 break;
             case 1:
-                madeCourcePtn1(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
+                madeCourcePtn1(_c,courceIndex);
                 break;
             case 2:
-                madeCourcePtn2(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
+                madeCourcePtn2(_c,courceIndex);
                 break;
             case 3:
-                madeCourcePtn3(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
+                madeCourcePtn3(_c,courceIndex);
                 break;
             case 4:
-                madeCourcePtn4(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
+                madeCourcePtn4(_c,courceIndex);
                 break;
             case 5:
-                madeCourcePtn5(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
+                madeCourcePtn5(_c,courceIndex);
                 break;
             case 6:
-                madeCourcePtn6(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
+                madeCourcePtn6(_c,courceIndex);
                 break;
             case 7:
-                madeCourcePtn7(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
+                madeCourcePtn7(_c,courceIndex);
                 break;
             case 8:
-                madeCourcePtn8(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
+                madeCourcePtn8(_c,courceIndex);
                 break;
             case 9:
-                madeCourcePtn9(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
+                madeCourcePtn9(_c,courceIndex);
                 break;
             case 10:
-                madeCourcePtn10(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
+                madeCourcePtn10(_c,courceIndex);
                 break;
             case 11:
-                madeCourcePtn11(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
+                madeCourcePtn11(_c,courceIndex);
                 break;
             case 12:
-                madeCourcePtn12(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
+                madeCourcePtn12(_c,courceIndex);
                 break;
             case 13:
-                madeCourcePtn13(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
+                madeCourcePtn13(_c,courceIndex);
                 break;
             case 14:
-                madeCourcePtn14(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
+                madeCourcePtn14(_c,courceIndex);
                 break;
             case 15:
-                madeCourcePtn15(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
+                madeCourcePtn15(_c,courceIndex);
                 break;
             case 16:
-                madeCourcePtn16(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
+                madeCourcePtn16(_c,courceIndex);
                 break;
             case 17:
-                madeCourcePtn17(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
+                madeCourcePtn17(_c,courceIndex);
                 break;
             case 18:
-                madeCourcePtn18(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
+                madeCourcePtn18(_c,courceIndex);
                 break;
             case 19:
-                madeCourcePtn19(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
+                madeCourcePtn19(_c,courceIndex);
                 break;
             case 20:
-                madeCourcePtn20(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
+                madeCourcePtn20(_c,courceIndex);
                 break;
             case 21:
-                madeCourcePtn20(courceIndex%2 ? getCourceMakerB() : getCourceMakerA(),courceIndex);
+                madeCourcePtn20(_c,courceIndex);
                 break;
             default:
                 break;
         }
         getGurd()->setPosition(getStartPt());
-        setStartAndTargetFromCource(courceIndex%2 ? getCourceMakerB() : getCourceMakerA());
+        setStartAndTargetFromCource(_c);
+        _c->_madeInd = 1;
         courceIndex ++;
     }
 }
@@ -248,7 +258,7 @@ void CourceManager::madeCourcePtnForTitle(CourceMaker* _c,int ind){
             return;
             break;
     }
-    _c->madePhysiceBody();
+//
 }
 
 void CourceManager::madeCourcePtn0(CourceMaker* _c,int ind){
@@ -289,7 +299,7 @@ void CourceManager::madeCourcePtn0(CourceMaker* _c,int ind){
             return;
             break;
     }
-    _c->madePhysiceBody();
+
 }
 
 void CourceManager::madeCourcePtn1(CourceMaker* _c,int ind){
@@ -320,7 +330,7 @@ void CourceManager::madeCourcePtn1(CourceMaker* _c,int ind){
             return;
             break;
     }
-    _c->madePhysiceBody();
+
 }
 
 void CourceManager::madeCourcePtn2(CourceMaker* _c,int ind){
@@ -350,7 +360,7 @@ void CourceManager::madeCourcePtn2(CourceMaker* _c,int ind){
             return;
             break;
     }
-    _c->madePhysiceBody();
+
 }
 
 void CourceManager::madeCourcePtn3(CourceMaker* _c,int ind){
@@ -380,7 +390,7 @@ void CourceManager::madeCourcePtn3(CourceMaker* _c,int ind){
             return;
             break;
     }
-    _c->madePhysiceBody();
+
 }
 
 void CourceManager::madeCourcePtn4(CourceMaker* _c,int ind){
@@ -410,7 +420,7 @@ void CourceManager::madeCourcePtn4(CourceMaker* _c,int ind){
             return;
             break;
     }
-    _c->madePhysiceBody();
+
 }
 
 void CourceManager::madeCourcePtn5(CourceMaker* _c,int ind){
@@ -440,7 +450,7 @@ void CourceManager::madeCourcePtn5(CourceMaker* _c,int ind){
             return;
             break;
     }
-    _c->madePhysiceBody();
+
 }
 
 void CourceManager::madeCourcePtn6(CourceMaker* _c,int ind){
@@ -470,7 +480,7 @@ void CourceManager::madeCourcePtn6(CourceMaker* _c,int ind){
             return;
             break;
     }
-    _c->madePhysiceBody();
+
 }
 
 void CourceManager::madeCourcePtn7(CourceMaker* _c,int ind){
@@ -500,7 +510,7 @@ void CourceManager::madeCourcePtn7(CourceMaker* _c,int ind){
             return;
             break;
     }
-    _c->madePhysiceBody();
+
 }
 
 void CourceManager::madeCourcePtn8(CourceMaker* _c,int ind){
@@ -530,7 +540,7 @@ void CourceManager::madeCourcePtn8(CourceMaker* _c,int ind){
             return;
             break;
     }
-    _c->madePhysiceBody();
+
 }
 
 void CourceManager::madeCourcePtn9(CourceMaker* _c,int ind){
@@ -560,7 +570,7 @@ void CourceManager::madeCourcePtn9(CourceMaker* _c,int ind){
             return;
             break;
     }
-    _c->madePhysiceBody();
+
 }
 
 void CourceManager::madeCourcePtn10(CourceMaker* _c,int ind){
@@ -590,7 +600,7 @@ void CourceManager::madeCourcePtn10(CourceMaker* _c,int ind){
             return;
             break;
     }
-    _c->madePhysiceBody();
+
 }
 
 void CourceManager::madeCourcePtn11(CourceMaker* _c,int ind){
@@ -620,7 +630,7 @@ void CourceManager::madeCourcePtn11(CourceMaker* _c,int ind){
             return;
             break;
     }
-    _c->madePhysiceBody();
+
 }
 
 void CourceManager::madeCourcePtn12(CourceMaker* _c,int ind){
@@ -650,7 +660,7 @@ void CourceManager::madeCourcePtn12(CourceMaker* _c,int ind){
             return;
             break;
     }
-    _c->madePhysiceBody();
+
 }
 
 void CourceManager::madeCourcePtn13(CourceMaker* _c,int ind){
@@ -680,7 +690,7 @@ void CourceManager::madeCourcePtn13(CourceMaker* _c,int ind){
             return;
             break;
     }
-    _c->madePhysiceBody();
+
 }
 
 void CourceManager::madeCourcePtn14(CourceMaker* _c,int ind){
@@ -710,7 +720,7 @@ void CourceManager::madeCourcePtn14(CourceMaker* _c,int ind){
             return;
             break;
     }
-    _c->madePhysiceBody();
+
 }
 
 
@@ -741,7 +751,7 @@ void CourceManager::madeCourcePtn15(CourceMaker* _c,int ind){
             return;
             break;
     }
-    _c->madePhysiceBody();
+
 }
 
 
@@ -772,7 +782,7 @@ void CourceManager::madeCourcePtn16(CourceMaker* _c,int ind){
             return;
             break;
     }
-    _c->madePhysiceBody();
+
 }
 
 void CourceManager::madeCourcePtn17(CourceMaker* _c,int ind){
@@ -802,7 +812,7 @@ void CourceManager::madeCourcePtn17(CourceMaker* _c,int ind){
             return;
             break;
     }
-    _c->madePhysiceBody();
+
 }
 
 void CourceManager::madeCourcePtn18(CourceMaker* _c,int ind){
@@ -832,7 +842,7 @@ void CourceManager::madeCourcePtn18(CourceMaker* _c,int ind){
             return;
             break;
     }
-    _c->madePhysiceBody();
+
 }
 
 void CourceManager::madeCourcePtn19(CourceMaker* _c,int ind){
@@ -862,7 +872,7 @@ void CourceManager::madeCourcePtn19(CourceMaker* _c,int ind){
             return;
             break;
     }
-    _c->madePhysiceBody();
+
 }
 
 void CourceManager::madeCourcePtn20(CourceMaker* _c,int ind){
@@ -892,20 +902,20 @@ void CourceManager::madeCourcePtn20(CourceMaker* _c,int ind){
             return;
             break;
     }
-    _c->madePhysiceBody();
+
 }
 
-void CourceManager::checkAndMadeCourceForDebug(Vec2 chPt){
+void CourceManager::checkAndMadeCourceForTraining(Vec2 chPt){
     if(chPt.x > (getStartPt().x + 200) || !courceIndex){
         _dirkaku = courceIndex%2 ? getCourceMakerA()->_dirkaku : getCourceMakerB()->_dirkaku;
-        auto _c = courceIndex%2 ? getCourceMakerB() : getCourceMakerA();
+        _c = courceIndex%2 ? getCourceMakerB() : getCourceMakerA();
         _c->drawStart(getTergetPt(),getTargetDir());
         _c->_dirkaku = _dirkaku;
         switch (courceIndex) {
             case 0:
                 _c->dS(615,0);
                 setStart(_c);
-                _c->dC(100,-20);
+                _c->dC(250,-20);
                 break;
             case 1:
                 switch (selStg) {
@@ -1285,7 +1295,7 @@ void CourceManager::checkAndMadeCourceForDebug(Vec2 chPt){
                 }
                 break;
             case 2:
-                _c->dS(100,0);
+                _c->dS(300,0);
                 setGoal(_c);
                 _c->dS(1000,0);
                 _c->dS(100,90);
@@ -1293,9 +1303,9 @@ void CourceManager::checkAndMadeCourceForDebug(Vec2 chPt){
             default:
                 return;
         }
-        _c->madePhysiceBody();
         getGurd()->setPosition(getStartPt());
         setStartAndTargetFromCource(courceIndex%2 ? getCourceMakerB() : getCourceMakerA());
+        _c->_madeInd = 1;
         courceIndex ++;
     }
 }
@@ -2881,13 +2891,13 @@ void CourceManager::cPtn59(CourceMaker* _c){
 void CourceManager::cPtn60(CourceMaker* _c){
     setComment("c60",_c);
     auto kaku = _c->_dirkaku;
-    _c->dC(200, kaku);
-    _c->dS(100,kaku);
+    _c->dC(200,0);
+    _c->dS(100,0);
     for(int i=0;i<3;i++){
         _c->dS(100,-90);
         _c->dS(80,0);
         _c->dS(100,90);
-        _c->dS(70,kaku);
+        _c->dS(70,0);
     }
     _c->dS(30,kaku);
 }
@@ -2927,9 +2937,8 @@ void CourceManager::cPtn62(CourceMaker* _c){
 void CourceManager::cPtn63(CourceMaker* _c){
     setComment("c63",_c);
     auto kaku = _c->_dirkaku;
-    _c->dC(200, kaku);
-    _c->dC(80,-45);
-    _c->dS(300,-45);
+    _c->dC(300,-45);
+    _c->dS(400,-45);
     _c->dC(20,0);
     _c->dC(20,-45);
     _c->dS(180,-45);

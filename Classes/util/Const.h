@@ -36,8 +36,8 @@ USING_NS_CC;
 
 // コース線の色
 #define COURCE_LINE_COLOR_H 127
-#define COURCE_LINE_COLOR_S 100
-#define COURCE_LINE_COLOR_V 53
+#define COURCE_LINE_COLOR_S 95
+#define COURCE_LINE_COLOR_V 45
 
 // コースベースの色
 #define COURCE_BASE_COLOR_H 44
