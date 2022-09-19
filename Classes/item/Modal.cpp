@@ -77,7 +77,7 @@ void Modal::setModal(Size size, std::string st){
     setTitle(Label::createWithTTF(st, "irohamaru.ttf", 24));
     getTitle()->enableBold();
     getTitle()->enableOutline(Color4B::WHITE);
-    getTitle()->setPosition(Vec2(0,ctPt.y-getTitle()->getContentSize().height/2-10));
+    getTitle()->setPosition(Vec2(0,ctPt.y-getTitle()->getContentSize().height/2-5));
     getTitle()->setGlobalZOrder(OBJ_LAYER_TOP+2);
     addChild(getTitle());
         

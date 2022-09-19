@@ -103,6 +103,7 @@ public:
     
     // bikeへのアクション
     bool jump(float lvl, float dRadX);
+    bool isReadyJump = false; //一番しゃがんだ状態で、ジャンプ準備完了
     bool lift(float lvl);// 使用しない
     void werry(float lvl);
     void dush(float lvl);
