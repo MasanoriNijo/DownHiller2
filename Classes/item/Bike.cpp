@@ -231,9 +231,13 @@ void Bike::swaip(Vec2 pt){
     if(weightPt.y > 4 * riderActionSpan){
         weightPt.y =  4 * riderActionSpan;
     }
-    if(weightPt.y < - 4 * riderActionSpan){
+    if(weightPt.y <= - 4 * riderActionSpan){
         weightPt.y = - 4 * riderActionSpan;
+        if(fWheelTouched || rWheelTouched){
+            isReadyJump = true;
+        }
     }
+
     touchPt1.set(pt);
 }
 
@@ -277,6 +281,13 @@ void Bike::_bikeBehaviorControl(){
 
 void Bike::_judeAction(float dt){
     
+
+    if(!fWheelTouched && !rWheelTouched){
+        isReadyJump = false;
+    }else if(weightPt.y == - 4 * riderActionSpan){
+        isReadyJump = true;
+    }
+    
     Vec2 noml_ = getCalc()->cordinaneX(Vec2(1,0), weightPt-chasePt);
     if(abs(noml_.x) < riderActionSpan && abs(noml_.y) < riderActionSpan){
         
@@ -312,7 +323,7 @@ void Bike::_judeAction(float dt){
     }
     
     // ジャンプ
-    if(weightPt.y > riderActionSpan * 3){
+    if(isReadyJump && (fWheelTouched || rWheelTouched)){
         if(noml_.y > riderActionSpan * 4){
             float dRadX = 0;
             if(noml_.x<-riderActionSpan){
@@ -441,7 +452,7 @@ bool Bike::jump(float lvl, float dRadX){
     Vec2 veloPt = Vec2::ZERO;
     Vec2 fWheelTouchPt_ = fWheelTouchPt.y < 0 ? -fWheelTouchPt : fWheelTouchPt;
     Vec2 rWheelTouchPt_ = rWheelTouchPt.y < 0 ? -rWheelTouchPt : rWheelTouchPt;
-    
+    isReadyJump = false;
     if(rWheelTouched){
         rWheelTouched = false;
         if(fWheelTouched){
