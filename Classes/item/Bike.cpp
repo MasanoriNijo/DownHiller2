@@ -50,30 +50,30 @@ bool Bike::init() {
     setSoundEffect(SOUND_PLAYER_JUMP);
     
     //    _setTouchEvent(); // game進行上で起動させる。
-    
-    //debug
-    setDebugPt(Sprite::create("dot.png"));
-    getDebugPt()->setGlobalZOrder(OBJ_LAYER_BUTTOM - 1);
-    addChild(getDebugPt());
-
-    // デバックの時だけ、コメントアウトを外す。
-//    setParentSprite(Sprite::create("dot2.png"));
-//    getParentSprite()->setGlobalZOrder(OBJ_LAYER_TOP);
-//    addChild(getParentSprite());
-    
+        
     // sceneスクロール用
     setSceneChasePt(Sprite::create("dot2.png"));
     getSceneChasePt()->setPosition(sceneOffset);
     getSceneChasePt()->setOpacity(0);
     getSceneChasePt()->setGlobalZOrder(OBJ_LAYER_BUTTOM);
     
+    
+    
     // debug用
-    setSoundEffect(SOUND_PLAYER_JUMP);
-    //    setBikeDebug(Label::createWithTTF("bikeState", "irohamaru.ttf", 10));
-    //    getBikeDebug()->setTextColor(Color4B::BLACK);
-    //    getBikeDebug()->setGlobalZOrder(OBJ_LAYER_TOP);
-    //    getBikeDebug()->setPosition(Vec2(0,50));
-    //    addChild(getBikeDebug());
+    //debug
+    setDebugPt(Sprite::create("dot.png"));
+    getDebugPt()->setGlobalZOrder(OBJ_LAYER_TOP);
+    addChild(getDebugPt());
+
+    // デバックの時だけ、コメントアウトを外す。
+    setParentSprite(Sprite::create("dot2.png"));
+    getParentSprite()->setGlobalZOrder(OBJ_LAYER_TOP);
+    addChild(getParentSprite());
+    setBikeDebug(Label::createWithTTF("bikeState", "irohamaru.ttf", 10));
+    getBikeDebug()->setTextColor(Color4B::BLACK);
+    getBikeDebug()->setGlobalZOrder(OBJ_LAYER_TOP);
+    getBikeDebug()->setPosition(Vec2(0,50));
+    addChild(getBikeDebug());
     
     return true;
 }
@@ -279,82 +279,19 @@ void Bike::_judeAction(float dt){
     
     Vec2 noml_ = getCalc()->cordinaneX(Vec2(1,0), weightPt-chasePt);
     if(abs(noml_.x) < riderActionSpan && abs(noml_.y) < riderActionSpan){
-        Vec2 weightDict = weightPt-weightPt_before;
-        weightPt_before.set(weightPt);
         
-        if(weightDict != Vec2::ZERO){
-            float drad = getCalc()->diffRadA2B(weightDict_before, weightDict);
-            weightDict_before.set(weightDict);
-            if(abs(drad)>M_PI/2){
+        // 後輪ブレーキ
+        if(weightPt.x == -4 * riderActionSpan && weightPt.y == -4 * riderActionSpan){
+            if(rWheelTouched && fWheelTouched){
+                stop();
                 chasePt.set(weightPt);
+                if(getParentSprite()){
+                    getParentSprite()->setPosition(chasePt + bikeCenterPt);
+                }
                 return;
             }
         }
         
-        getCalc()->chasePt(weightPt , chasePt, chaseVelo, dt);
-        if(getParentSprite()){
-            getParentSprite()->setPosition(chasePt + bikeCenterPt);
-        }
-        return;
-    }
-    // 前後のウイリー
-    if( chasePt.y >= -riderActionSpan){
-        if(noml_.x > riderActionSpan/2){
-            werry(-noml_.x);
-            chasePt.set(weightPt);
-            if(getParentSprite()){
-                getParentSprite()->setPosition(chasePt + bikeCenterPt);
-            }
-            return;
-        }else if(noml_.x < -riderActionSpan/2){
-            werry(-noml_.x);
-            chasePt.set(weightPt);
-            if(getParentSprite()){
-                getParentSprite()->setPosition(chasePt + bikeCenterPt);
-            }
-            return;
-        }
-    }
-    
-    // 後のウイリー
-    if( chasePt.x < -riderActionSpan*2){
-        if(noml_.y > riderActionSpan/2 && !rWheelTouched){
-            werry(-noml_.y);
-            chasePt.set(weightPt);
-            if(getParentSprite()){
-                getParentSprite()->setPosition(chasePt + bikeCenterPt);
-            }
-            return;
-        }else if(noml_.y < -riderActionSpan/2){
-            werry(-noml_.y);
-            chasePt.set(weightPt);
-            if(getParentSprite()){
-                getParentSprite()->setPosition(chasePt + bikeCenterPt);
-            }
-            return;
-        }
-    }
-    
-    // 前のウイリー
-    if( chasePt.x > riderActionSpan*2){
-        if(noml_.y > riderActionSpan/2 && !fWheelTouched){
-            werry(noml_.y);
-            chasePt.set(weightPt);
-            if(getParentSprite()){
-                getParentSprite()->setPosition(chasePt + bikeCenterPt);
-            }
-            return;
-        }else if(noml_.y < -riderActionSpan/2){
-            werry(noml_.y);
-            chasePt.set(weightPt);
-            if(getParentSprite()){
-                getParentSprite()->setPosition(chasePt + bikeCenterPt);
-            }
-            return;
-        }
-    }
-    
-    if(!fWheelTouched && !rWheelTouched){
         Vec2 weightDict = weightPt-weightPt_before;
         weightPt_before.set(weightPt);
         
@@ -375,7 +312,7 @@ void Bike::_judeAction(float dt){
     }
     
     // ジャンプ
-    if(weightPt.y == riderActionSpan * 4){
+    if(weightPt.y > riderActionSpan * 3){
         if(noml_.y > riderActionSpan * 4){
             float dRadX = 0;
             if(noml_.x<-riderActionSpan){
@@ -392,8 +329,83 @@ void Bike::_judeAction(float dt){
         }
     }
     
+    // 前後のウイリー
+    if( weightPt.y >= -riderActionSpan){
+        if(noml_.x > riderActionSpan/2){
+            werry(-noml_.x);
+            if(getBikeDebug()){
+                getBikeDebug()->setString("werry_noml_f");
+            }
+            chasePt.set(weightPt);
+            if(getParentSprite()){
+                getParentSprite()->setPosition(chasePt + bikeCenterPt);
+            }
+            return;
+        }else if(noml_.x < -riderActionSpan/2){
+            werry(-noml_.x);
+            if(getBikeDebug()){
+                getBikeDebug()->setString("werry_noml_r");
+            }
+            chasePt.set(weightPt);
+            if(getParentSprite()){
+                getParentSprite()->setPosition(chasePt + bikeCenterPt);
+            }
+            return;
+        }
+    }
+    
+    // 後のウイリー
+    if( weightPt.x < -riderActionSpan*2){
+        if(noml_.y > riderActionSpan/2 && fWheelTouched){
+            werry(-noml_.y);
+            if(getBikeDebug()){
+                getBikeDebug()->setString("werry_r_f");
+            }
+            chasePt.set(weightPt);
+            if(getParentSprite()){
+                getParentSprite()->setPosition(chasePt + bikeCenterPt);
+            }
+            return;
+        }else if(noml_.y < -riderActionSpan/2){
+            werry(-noml_.y);
+            if(getBikeDebug()){
+                getBikeDebug()->setString("werry_r_r");
+            }
+            chasePt.set(weightPt);
+            if(getParentSprite()){
+                getParentSprite()->setPosition(chasePt + bikeCenterPt);
+            }
+            return;
+        }
+    }
+    
+    // 前のウイリー
+    if( weightPt.x > riderActionSpan*2 ){
+        if(noml_.y > riderActionSpan/2 && rWheelTouched){
+            werry(noml_.y);
+            if(getBikeDebug()){
+                getBikeDebug()->setString("werry_f_r");
+            }
+            chasePt.set(weightPt);
+            if(getParentSprite()){
+                getParentSprite()->setPosition(chasePt + bikeCenterPt);
+            }
+            return;
+        }else if(noml_.y < -riderActionSpan/2){
+            werry(noml_.y);
+            if(getBikeDebug()){
+                getBikeDebug()->setString("werry_f_f");
+            }
+            chasePt.set(weightPt);
+            if(getParentSprite()){
+                getParentSprite()->setPosition(chasePt + bikeCenterPt);
+            }
+            return;
+        }
+    }
+        
     // dush
-    if( chasePt.y < -riderActionSpan * 2){
+    if( weightPt.y < -riderActionSpan * 2){
         if(rWheelTouched && fWheelTouched){
             if(noml_.x > riderActionSpan * 2){
                 dush(noml_.x);
@@ -405,18 +417,6 @@ void Bike::_judeAction(float dt){
             }
         }
     }
-    // 後輪ブレーキ
-    if(chasePt.x == -4 * riderActionSpan && chasePt.y == -4 * riderActionSpan){
-        if(rWheelTouched && fWheelTouched){
-            stop();
-            chasePt.set(weightPt);
-            if(getParentSprite()){
-                getParentSprite()->setPosition(chasePt + bikeCenterPt);
-            }
-            return;
-        }
-    }
-    
     
     Vec2 weightDict = weightPt-weightPt_before;
     weightPt_before.set(weightPt);
@@ -493,19 +493,18 @@ void Bike::werry(float lvl){
     Vec2 powPt = getCalc()->chgLength(dirPt_, weeryPow * -lvl) + centerObjRotVelo;
     if(powPt.length()>maxRotSpeed){
         powPt = getCalc()->chgLength(powPt, maxRotSpeed);
-        if(getBikeDebug()){
-            getBikeDebug()->setString("werry_max");
-        }
-    }else{
-        if(getBikeDebug()){
-            getBikeDebug()->setString("werry");
-        }
     }
     if(!fWheelTouched && !rWheelTouched){
         powPt *= 0.8; // 空中回転の場合は、回転しすぎるので、半減させる。
     }
     getFwheel()->getPhysicsBody()->setVelocity(centerObjVelo + powPt);
     getRwheel()->getPhysicsBody()->setVelocity(centerObjVelo - powPt);
+    
+    // 前後輪タッチしている場合は、若干回転を加える。
+    if(fWheelTouched && rWheelTouched){
+        getFwheel()->getPhysicsBody()->applyTorque(lvl*100);
+        getRwheel()->getPhysicsBody()->applyTorque(lvl*100);
+    }
     
 }
 
