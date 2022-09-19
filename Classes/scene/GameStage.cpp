@@ -67,8 +67,8 @@ bool GameStage::init() {
     }, Size(1,1), L_BTN_BACK, Color3B::WHITE, Color3B::YELLOW, false));
     setModal(Modal::create());
     getModal()->setGlobalZOrder(OBJ_LAYER_TOP);
-    getModal()->setModal(Size(60,60), "");
-    getModal()->setModalOpacity(0);
+    getModal()->setModal(Size(160,140), "メニュー");
+//    getModal()->setModalOpacity(200);
     // modal end
     
     setBtn1(generateMenuItemSprite([this](Ref* ref){
@@ -76,11 +76,11 @@ bool GameStage::init() {
         Director::getInstance()->getEventDispatcher()->removeEventListener(this->getContactListenner());
         this->getBike()->getRwheel()->getPhysicsBody()->setAngularDamping(1);
         this->setModalMenu(Menu::create(getBtn2(),getBtn4(),NULL));
-        this->getModalMenu()->alignItemsVerticallyWithPadding(5);
-        this->getModalMenu()->setPosition(Vec2::ZERO);
+        this->getModalMenu()->alignItemsVerticallyWithPadding(10);
+        this->getModalMenu()->setPosition(Vec2(0,-20));
         this->getModal()->addChild(getModalMenu());
         this->getModal()->setScale(0);
-        auto big = ScaleTo::create(0.3, 1);
+        auto big = EaseElasticOut::create(ScaleTo::create(0.8, 1));
         this->getModal()->runAction(big);
         this->mountNode(getModal(), ctPt, OBJ_LAYER_TOP);
         this->getBtn1()->removeFromParent();
@@ -238,11 +238,11 @@ void GameStage::onClear(){
         this->callSoundEffect(SOUND_GAME_MISS);
         showGameAnnounce(L_GAME_MISS, ctPt + Vec2(0,200),[this]{
             setModalMenu(Menu::create(getBtn2(),getBtn4(),NULL));
-            getModalMenu()->alignItemsVerticallyWithPadding(5);
-            getModalMenu()->setPosition(Vec2::ZERO);
+            this->getModalMenu()->alignItemsVerticallyWithPadding(10);
+            this->getModalMenu()->setPosition(Vec2(0,-20));
             getModal()->addChild(getModalMenu());
             getModal()->setScale(0);
-            auto big = ScaleTo::create(0.3, 1);
+            auto big = EaseElasticOut::create(ScaleTo::create(0.8, 1));
             getModal()->runAction(big);
             mountNode(getModal(), ctPt, OBJ_LAYER_TOP);
         });
@@ -267,11 +267,11 @@ void GameStage::onClear(){
             
             UserDefault::getInstance()->setIntegerForKey(UDF_INT_SELECTED_STAGE, selStage);
             setModalMenu(Menu::create(getBtn3(),getBtn4(),NULL));
-            getModalMenu()->alignItemsVerticallyWithPadding(5);
-            getModalMenu()->setPosition(Vec2::ZERO);
+            this->getModalMenu()->alignItemsVerticallyWithPadding(10);
+            this->getModalMenu()->setPosition(Vec2(0,-20));
             getModal()->addChild(getModalMenu());
             getModal()->setScale(0);
-            auto big = ScaleTo::create(0.3, 1);
+            auto big = EaseElasticOut::create(ScaleTo::create(0.8, 1));
             getModal()->runAction(big);
             mountNode(getModal(), ctPt, OBJ_LAYER_TOP);
         });
@@ -301,11 +301,11 @@ void GameStage::onMiss(){
     showGameAnnounce(L_GAME_MISS, ctPt + Vec2(0,200),[this]{
         this->callSoundEffect(SOUND_GAME_MISS);
         setModalMenu(Menu::create(getBtn2(),getBtn4(),NULL));
-        getModalMenu()->alignItemsVerticallyWithPadding(5);
-        getModalMenu()->setPosition(Vec2::ZERO);
+        this->getModalMenu()->alignItemsVerticallyWithPadding(10);
+        this->getModalMenu()->setPosition(Vec2(0,-20));
         getModal()->addChild(getModalMenu());
         getModal()->setScale(0);
-        auto big = ScaleTo::create(0.3, 1);
+        auto big = EaseElasticOut::create(ScaleTo::create(0.8, 1));
         getModal()->runAction(big);
         mountNode(getModal(), ctPt, OBJ_LAYER_TOP);
     });

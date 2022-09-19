@@ -27,12 +27,12 @@ USING_NS_CC;
 // デフォルトのバックグラウンドカラーをセット 色相H:0-360,彩度S:0-100,明度V:0-100
 #define DEFAULT_COLOR_H 186
 #define DEFAULT_COLOR_S 76
-#define DEFAULT_COLOR_V 85
+#define DEFAULT_COLOR_V 75
 
 // デフォルトのグラデーションで変化後のバックグラウンドカラーをセット 色相H:0-360,彩度S:0-100,明度V:0-100
 #define DEFAULT_GRADIATE_COLOR_H 184
-#define DEFAULT_GRADIATE_COLOR_S 35
-#define DEFAULT_GRADIATE_COLOR_V 80
+#define DEFAULT_GRADIATE_COLOR_S 25
+#define DEFAULT_GRADIATE_COLOR_V 95
 
 // コース線の色
 #define COURCE_LINE_COLOR_H 127

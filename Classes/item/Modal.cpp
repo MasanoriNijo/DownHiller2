@@ -74,9 +74,11 @@ void Modal::setModal(Size size, std::string st){
     
     modalSize = size;
     ctPt = Vec2(size.width/2,size.height/2);
-    setTitle(Label::createWithTTF(st, "irohamaru.ttf", 12));
-    getTitle()->setPosition(Vec2(0,ctPt.y-getTitle()->getContentSize().height));
-    getTitle()->setGlobalZOrder(OBJ_LAYER_TOP);
+    setTitle(Label::createWithTTF(st, "irohamaru.ttf", 24));
+    getTitle()->enableBold();
+    getTitle()->enableOutline(Color4B::WHITE);
+    getTitle()->setPosition(Vec2(0,ctPt.y-getTitle()->getContentSize().height/2-10));
+    getTitle()->setGlobalZOrder(OBJ_LAYER_TOP+2);
     addChild(getTitle());
         
     float w = size.width;
@@ -146,7 +148,7 @@ void Modal::setModalColor(Color3B color){
 }
 
 void Modal::setModalOpacity(float opa){
-    getTitle()->setOpacity(opa);
+//    getTitle()->setOpacity(opa);
     getC1()->setOpacity(opa);
     getC2()->setOpacity(opa);
     getC3()->setOpacity(opa);
