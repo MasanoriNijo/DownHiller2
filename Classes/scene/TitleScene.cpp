@@ -47,19 +47,21 @@ bool TitleScene::init() {
     getGameTitle()->enableOutline(getColorChanger()->getColor4B(),1);
     mountNode(getGameTitle(), Vec2(winSize.width/2,winSize.height - 160), OBJ_LAYER_TOP);
     
+//    setStartBtn(generateMenuItemSprite([this](Ref* ref){
+//        stopBGM("");
+//        callSoundEffect(SOUND_BUTTON);
+//        UserDefault::getInstance()->setIntegerForKey(UDF_INT_GAME_MODE, GAME_MODE_STAGE);
+//        transitonScene(SelectScene::createScene());
+//    }, Size(1,1), L_BTN_START, Color3B::WHITE, Color3B::YELLOW, false));
+
     setStartBtn(generateMenuItemSprite([this](Ref* ref){
         stopBGM("");
         callSoundEffect(SOUND_BUTTON);
-        UserDefault::getInstance()->setIntegerForKey(UDF_INT_GAME_MODE, GAME_MODE_STAGE);
-        transitonScene(SelectScene::createScene());
+        int nextStage = UserDefault::getInstance()->getIntegerForKey(UDF_INT_CLEAR_STAGE,0)+1;
+        UserDefault::getInstance()->setIntegerForKey(UDF_INT_SELECTED_STAGE, nextStage);
+        UserDefault::getInstance()->setIntegerForKey(UDF_INT_GAME_MODE, GAME_MODE_COURCE);
+        transitonScene(GameStage::createScene());
     }, Size(1,1), L_BTN_START, Color3B::WHITE, Color3B::YELLOW, false));
-    
-    setTrainingBtn(generateMenuItemSprite([this](Ref* ref){
-        stopBGM("");
-        callSoundEffect(SOUND_BUTTON);
-        UserDefault::getInstance()->setIntegerForKey(UDF_INT_GAME_MODE, GAME_MODE_TRAINING);
-        transitonScene(SelectScene::createScene());
-    }, Size(1,1), L_BTN_TRAINING, Color3B::WHITE, Color3B::YELLOW, false));
     
     setHowToBtn(generateMenuItemSprite([this](Ref* ref){
         stopBGM("");
@@ -69,7 +71,7 @@ bool TitleScene::init() {
         transitonScene(GameStage::createScene());
     }, Size(1,1), L_BTN_HOWTO, Color3B::WHITE, Color3B::YELLOW, false));
     
-    setMenu(Menu::create(getStartBtn(), getTrainingBtn(), getHowToBtn(), NULL));
+    setMenu(Menu::create(getStartBtn(), getHowToBtn(), NULL));
     getMenu()->alignItemsVerticallyWithPadding(3);
     mountNode(getMenu(),Vec2(winSize.width/2,120), OBJ_LAYER_LV3);
     
@@ -167,6 +169,7 @@ void TitleScene::demo(){
     
     getBike()->autoFlg = true;
     getBike()->weightPt= Vec2::ZERO;
+    getBike()->setForDemo();
     getBike()->getDebugPt()->setPosition(Vec2::ZERO);
     getBike()->removeTouchEvent();
     float moveSpn = 12;
