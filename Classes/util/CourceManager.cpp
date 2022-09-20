@@ -75,7 +75,7 @@ void CourceManager::_setStagePrm(){
         }
         return;
     }else{
-        getStagePrm()->setCommnent("練習:" + ST_INT(getStagePrm()->getStageNumber()));
+        getStagePrm()->setCommnent("コースNo." + ST_INT(getStagePrm()->getStageNumber()));
         return;
     }
 }
