@@ -37,7 +37,7 @@ public:
     void update(float dt) override;
     void onEnterTransitionDidFinish() override;
     void _arrangeBtns();
-    void _arrangeBtnsForDebug();
+    void _arrangeBtnsForCource();
     MenuItemSprite* genStageBtn(int i);
     MenuItemSprite* genCourceBtn(int i);
     

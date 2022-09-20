@@ -12,6 +12,7 @@
 #include "item/StraightLine.h"
 #include "item/Modal.h"
 #include "scene/SelectScene.h"
+#include "scene/TitleScene.h"
 #include "cocos2d.h"
 USING_NS_CC;
 

@@ -57,26 +57,25 @@ bool Bike::init() {
     getSceneChasePt()->setOpacity(0);
     getSceneChasePt()->setGlobalZOrder(OBJ_LAYER_BUTTOM);
     
-    
-    
-    // debug用
-    //debug
-    setDebugPt(Sprite::create("dot.png"));
-    getDebugPt()->setGlobalZOrder(OBJ_LAYER_TOP);
-    addChild(getDebugPt());
-
     // デバックの時だけ、コメントアウトを外す。
-    setParentSprite(Sprite::create("dot2.png"));
-    getParentSprite()->setGlobalZOrder(OBJ_LAYER_TOP);
-    addChild(getParentSprite());
-    setBikeDebug(Label::createWithTTF("bikeState", "irohamaru.ttf", 10));
-    getBikeDebug()->setTextColor(Color4B::BLACK);
-    getBikeDebug()->setGlobalZOrder(OBJ_LAYER_TOP);
-    getBikeDebug()->setPosition(Vec2(0,50));
-    addChild(getBikeDebug());
+//    setParentSprite(Sprite::create("dot2.png"));
+//    getParentSprite()->setGlobalZOrder(OBJ_LAYER_TOP);
+//    addChild(getParentSprite());
+//    setBikeDebug(Label::createWithTTF("bikeState", "irohamaru.ttf", 10));
+//    getBikeDebug()->setTextColor(Color4B::BLACK);
+//    getBikeDebug()->setGlobalZOrder(OBJ_LAYER_TOP);
+//    getBikeDebug()->setPosition(Vec2(0,50));
+//    addChild(getBikeDebug());
     
     return true;
 }
+
+void Bike::setForDemo(){
+    setDebugPt(Sprite::create("dot.png"));
+    getDebugPt()->setGlobalZOrder(OBJ_LAYER_BUTTOM - 2);
+    addChild(getDebugPt());
+}
+
 
 void Bike::setForDisplay(){
     if(getDebugPt()){
@@ -197,9 +196,6 @@ void Bike::SetPhysicsPrm(){
 }
 
 void Bike::update(float dt) {
-    if (autoFlg){
-        weightPt = getDebugPt()->getPosition();
-    }
     riderImageAction();
     _bikeBehaviorControl();
     _judeAction(dt);
@@ -266,9 +262,15 @@ void Bike::riderImageAction(){
     if (y_ < -3){
         y_=-3;
     }
-    if(getDebugPt() && !autoFlg){
-        getDebugPt()->setPosition(weightPt+bikeCenterPt);
+
+    if (autoFlg){
+        weightPt = getDebugPt()->getPosition();
+    }else{
+        if(getDebugPt()){
+            getDebugPt()->setPosition(weightPt+bikeCenterPt);
+        }
     }
+    
     getRider()->setTextureRect(Rect(frameSize.width * (x_+3), frameSize.height * (y_+3),
                                     frameSize.width, frameSize.height));
 }

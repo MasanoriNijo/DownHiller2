@@ -5,8 +5,8 @@
 // 各文言を記述
 static const std::string L_TITLE = "自転車\nゲーム";
 static const std::string L_TITLE2 = "ゲーム";
-static const std::string L_TITLE_SELECT_STAGE = "ステージを選択";
-static const std::string L_TITLE_SELECT_COURCE = "練習コースを選択";
+static const std::string L_TITLE_SELECT_STAGE = "コースを選択";
+static const std::string L_TITLE_SELECT_COURCE = "コースを選択";
 static const std::string L_STAGE = "ステージ";
 static const std::string L_BTN_START = "はじめる";
 static const std::string L_BTN_TRAINING = "  練  習  ";

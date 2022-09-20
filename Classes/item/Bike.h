@@ -111,7 +111,7 @@ public:
 
     float weeryPow = 2.0;
     float maxRotSpeed = 15;
-    float dushPow = 6;
+    float dushPow = 3;
     float maxDushSpeed = 60;
     float maxRJumpSpeed = 20;
     float maxFRJumpSpeed = 15;
@@ -129,6 +129,8 @@ public:
     
     // title表示用
     void setForDisplay();
+    
+    void setForDemo();
     
 };
 

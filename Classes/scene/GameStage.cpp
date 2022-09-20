@@ -63,6 +63,7 @@ bool GameStage::init() {
     }, Size(1,1), L_BTN_NEXT, Color3B::WHITE, Color3B::YELLOW, false));
     setBtn4(generateMenuItemSprite([this](Ref* ref){
         callSoundEffect(SOUND_BUTTON);
+        UserDefault::getInstance()->setIntegerForKey(UDF_INT_GAME_MODE, GAME_MODE_COURCE);
         transitonScene(SelectScene::createScene());
     }, Size(1,1), L_BTN_BACK, Color3B::WHITE, Color3B::YELLOW, false));
     setModal(Modal::create());
@@ -79,6 +80,7 @@ bool GameStage::init() {
         this->getModalMenu()->alignItemsVerticallyWithPadding(10);
         this->getModalMenu()->setPosition(Vec2(0,-20));
         this->getModal()->addChild(getModalMenu());
+        getModal()->getTitle()->setString("もう一度");
         this->getModal()->setScale(0);
         auto big = EaseElasticOut::create(ScaleTo::create(0.8, 1));
         this->getModal()->runAction(big);
@@ -240,6 +242,7 @@ void GameStage::onClear(){
             setModalMenu(Menu::create(getBtn2(),getBtn4(),NULL));
             this->getModalMenu()->alignItemsVerticallyWithPadding(10);
             this->getModalMenu()->setPosition(Vec2(0,-20));
+            getModal()->getTitle()->setString("もう一度");
             getModal()->addChild(getModalMenu());
             getModal()->setScale(0);
             auto big = EaseElasticOut::create(ScaleTo::create(0.8, 1));
@@ -252,13 +255,13 @@ void GameStage::onClear(){
             // クリアステージをカウントアップ
             int selStage = getCourceManager()->getStagePrm()->getStageNumber();
             int maxStage;
+            if(UserDefault::getInstance()->getIntegerForKey(UDF_INT_CLEAR_STAGE,0) < selStage){
+                UserDefault::getInstance()->setIntegerForKey(UDF_INT_CLEAR_STAGE, selStage);
+            }
             if(UserDefault::getInstance()->getIntegerForKey(UDF_INT_GAME_MODE,GAME_MODE_STAGE) == GAME_MODE_STAGE){
-                if(UserDefault::getInstance()->getIntegerForKey(UDF_INT_CLEAR_STAGE,0) < selStage){
-                    UserDefault::getInstance()->setIntegerForKey(UDF_INT_CLEAR_STAGE, selStage);
-                }
                 maxStage = STAGE_SIZE;
             }else{
-                maxStage = TRAINING_SIZE;
+                maxStage = COURCE_SIZE;
             }
                         
             if(selStage < maxStage){
@@ -269,6 +272,7 @@ void GameStage::onClear(){
             setModalMenu(Menu::create(getBtn3(),getBtn4(),NULL));
             this->getModalMenu()->alignItemsVerticallyWithPadding(10);
             this->getModalMenu()->setPosition(Vec2(0,-20));
+            getModal()->getTitle()->setString("次のコース");
             getModal()->addChild(getModalMenu());
             getModal()->setScale(0);
             auto big = EaseElasticOut::create(ScaleTo::create(0.8, 1));
@@ -303,6 +307,7 @@ void GameStage::onMiss(){
         setModalMenu(Menu::create(getBtn2(),getBtn4(),NULL));
         this->getModalMenu()->alignItemsVerticallyWithPadding(10);
         this->getModalMenu()->setPosition(Vec2(0,-20));
+        getModal()->getTitle()->setString("もう一度");
         getModal()->addChild(getModalMenu());
         getModal()->setScale(0);
         auto big = EaseElasticOut::create(ScaleTo::create(0.8, 1));
@@ -457,6 +462,7 @@ void GameStage::demo(){
     
     getBike()->autoFlg = true;
     getBike()->weightPt= Vec2::ZERO;
+    getBike()->setForDemo();
     getBike()->getDebugPt()->setPosition(Vec2::ZERO);
     getBike()->removeTouchEvent();
     
@@ -563,7 +569,6 @@ void GameStage::demo(){
     getBike()->getDebugPt()->runAction(Sequence::create(seq_,strt_,NULL));
     getYubi()->runAction(seq_->clone());
 }
-
 
 /** パラメータサンプル
  setGameTitle(Label::create());
