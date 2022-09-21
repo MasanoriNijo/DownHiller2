@@ -68,7 +68,8 @@ bool TitleScene::init() {
         stopBGM("");
         callSoundEffect(SOUND_BUTTON);
         UserDefault::getInstance()->setIntegerForKey(UDF_INT_GAME_MODE, GAME_MODE_DEMO);
-        UserDefault::getInstance()->setIntegerForKey(UDF_INT_SELECTED_STAGE, 0);
+        UserDefault::getInstance()->setIntegerForKey(UDF_INT_SELECTED_STAGE, -1);
+        UserDefault::getInstance()->setBoolForKey(UDF_BOOL_DEBUG_STAGE, true);
         transitonScene(GameStage::createScene());
     }, Size(1,1), L_BTN_HOWTO, Color3B::WHITE, Color3B::YELLOW, false));
     

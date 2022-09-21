@@ -58,12 +58,15 @@ bool Bike::init() {
     getSceneChasePt()->setGlobalZOrder(OBJ_LAYER_BUTTOM);
     
     // デバックの時だけ、コメントアウトを外す。
+//    setDebugPt(Sprite::create("dot.png"));
+//    getDebugPt()->setGlobalZOrder(OBJ_LAYER_TOP+1);
+//    addChild(getDebugPt());
 //    setParentSprite(Sprite::create("dot2.png"));
 //    getParentSprite()->setGlobalZOrder(OBJ_LAYER_TOP);
 //    addChild(getParentSprite());
 //    setBikeDebug(Label::createWithTTF("bikeState", "irohamaru.ttf", 10));
 //    getBikeDebug()->setTextColor(Color4B::BLACK);
-//    getBikeDebug()->setGlobalZOrder(OBJ_LAYER_TOP);
+//    getBikeDebug()->setGlobalZOrder(OBJ_LAYER_TOP+2);
 //    getBikeDebug()->setPosition(Vec2(0,50));
 //    addChild(getBikeDebug());
     
@@ -231,6 +234,7 @@ void Bike::swaip(Vec2 pt){
         weightPt.y = - 4 * riderActionSpan;
         if(fWheelTouched || rWheelTouched){
             isReadyJump = true;
+            // getRider()->setScale(1.3);
         }
     }
 
@@ -283,11 +287,18 @@ void Bike::_bikeBehaviorControl(){
 
 void Bike::_judeAction(float dt){
     
-
-    if(!fWheelTouched && !rWheelTouched){
-        isReadyJump = false;
-    }else if(weightPt.y == - 4 * riderActionSpan){
-        isReadyJump = true;
+    if(fWheelTouched || rWheelTouched){
+        if(weightPt.y == - 4 * riderActionSpan){
+            isReadyJump = true;
+            // getRider()->setScale(1.3);
+            isReadyJumpKeepCnt_=isReadyJumpKeepCnt;
+        }
+    } else {
+        isReadyJumpKeepCnt_ --;
+        if(isReadyJumpKeepCnt_<0){
+            isReadyJump = false;
+            // getRider()->setScale(1.0);
+        }
     }
     
     Vec2 noml_ = getCalc()->cordinaneX(Vec2(1,0), weightPt-chasePt);
@@ -369,7 +380,7 @@ void Bike::_judeAction(float dt){
     
     // 後のウイリー
     if( weightPt.x < -riderActionSpan*2){
-        if(noml_.y > riderActionSpan/2 && fWheelTouched){
+        if(noml_.y > riderActionSpan/2 && !rWheelTouched){
             werry(-noml_.y);
             if(getBikeDebug()){
                 getBikeDebug()->setString("werry_r_f");
@@ -394,7 +405,7 @@ void Bike::_judeAction(float dt){
     
     // 前のウイリー
     if( weightPt.x > riderActionSpan*2 ){
-        if(noml_.y > riderActionSpan/2 && rWheelTouched){
+        if(noml_.y > riderActionSpan/2 && !fWheelTouched){
             werry(noml_.y);
             if(getBikeDebug()){
                 getBikeDebug()->setString("werry_f_r");
@@ -420,7 +431,7 @@ void Bike::_judeAction(float dt){
     // dush
     if( weightPt.y < -riderActionSpan * 2){
         if(rWheelTouched && fWheelTouched){
-            if(noml_.x > riderActionSpan * 2){
+            if(noml_.x > riderActionSpan * 1){
                 dush(noml_.x);
                 chasePt.set(weightPt);
                 if(getParentSprite()){
@@ -455,6 +466,7 @@ bool Bike::jump(float lvl, float dRadX){
     Vec2 fWheelTouchPt_ = fWheelTouchPt.y < 0 ? -fWheelTouchPt : fWheelTouchPt;
     Vec2 rWheelTouchPt_ = rWheelTouchPt.y < 0 ? -rWheelTouchPt : rWheelTouchPt;
     isReadyJump = false;
+    // getRider()->setScale(1.0);
     if(rWheelTouched){
         rWheelTouched = false;
         if(fWheelTouched){
