@@ -109,7 +109,7 @@ void CourceManager::checkAndMadeCource(Vec2 chPt){
             case -1:
                 madeCourcePtnForTitle(getCourceMakerSel(),courceIndex);
                 break;
-            case 0:
+            case 0: // howto画面用
                 madeCourcePtn0(getCourceMakerSel(),courceIndex);
                 break;
             case 1:
@@ -288,7 +288,7 @@ void CourceManager::madeCourcePtn0(CourceMaker* _c,int ind){
             _c->dS(500,0);
             _c->dS(115,-1);
             setStart(_c);
-            _c->dS(5000,-1);
+            _c->dS(3000,-1);
             break;
         case 1:
             for(i=0;i<3;i++){

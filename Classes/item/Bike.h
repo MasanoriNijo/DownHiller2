@@ -104,6 +104,8 @@ public:
     // bikeへのアクション
     bool jump(float lvl, float dRadX);
     bool isReadyJump = false; //一番しゃがんだ状態で、ジャンプ準備完了
+    int isReadyJumpKeepCnt = 8; // ジャンプ準備状態を保持できるステップ数
+    int isReadyJumpKeepCnt_ = 0;
     bool lift(float lvl);// 使用しない
     void werry(float lvl);
     void dush(float lvl);
@@ -111,7 +113,7 @@ public:
 
     float weeryPow = 2.0;
     float maxRotSpeed = 15;
-    float dushPow = 3;
+    float dushPow = 4;
     float maxDushSpeed = 60;
     float maxRJumpSpeed = 20;
     float maxFRJumpSpeed = 15;

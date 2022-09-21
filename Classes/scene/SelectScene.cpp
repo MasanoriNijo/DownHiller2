@@ -37,9 +37,9 @@ bool SelectScene::init() {
     if (!GameScene::init()) {
         return false;
     }
-    setBackGroundColor();
+//    setBackGroundColor();
     setBackGradientGroundColor();
-    drawDebugLine();
+//    drawDebugLine();
     
     setGameTitle(UserDefault::getInstance()->getIntegerForKey(UDF_INT_GAME_MODE,GAME_MODE_STAGE) == GAME_MODE_STAGE ?
                  Label::createWithTTF(L_TITLE_SELECT_STAGE, "irohamaru.ttf", 32) :
