@@ -122,14 +122,16 @@ void Bike::_positionSyncToWheel(float dt){
     
     // 画面スクロールポイントを指定
     if(_sceneChasePt){
+        
+        Vec2 dirPt = getFwheel()->getPosition()+sceneOffset;
+        
         if(sceneChaseAjustFlg){
-            _sceneChasePt->setPosition(getFwheel()->getPosition()+sceneOffset);
+            _sceneChasePt->setPosition(dirPt);
         }else{
             Vec2 pos = _sceneChasePt->getPosition();
-            if(pos.equals(Vec2::ZERO)){
+            if(getCalc()->chasePt(dirPt, pos, sceneChaseAjustSpeed, dt).equals(Vec2::ZERO)){
                 sceneChaseAjustFlg = true;
             }
-            getCalc()->chasePt(getFwheel()->getPosition()+sceneOffset, pos, sceneChaseAjustSpeed, dt);
             _sceneChasePt->setPosition(pos);
         }
     }
@@ -288,11 +290,11 @@ void Bike::_bikeBehaviorControl(){
 void Bike::_judeAction(float dt){
     
     if(fWheelTouched || rWheelTouched){
-        if(weightPt.y == - 4 * riderActionSpan){
-            isReadyJump = true;
-            // getRider()->setScale(1.3);
-            isReadyJumpKeepCnt_=isReadyJumpKeepCnt;
-        }
+//        if(weightPt.y == - 4 * riderActionSpan){
+//            isReadyJump = true;
+//            // getRider()->setScale(1.3);
+//            isReadyJumpKeepCnt_=isReadyJumpKeepCnt;
+//        }
     } else {
         isReadyJumpKeepCnt_ --;
         if(isReadyJumpKeepCnt_<0){

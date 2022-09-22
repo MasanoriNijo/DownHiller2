@@ -187,7 +187,7 @@ Vec2 Calclater::chasePt(Vec2 destPt,Vec2& chasePt,float velo,float dt){
     Vec2 dst_ = destPt - chasePt;
     Vec2 ch_ = chgLength(dst_, velo*dt);
     if(dst_.length()>ch_.length()){
-        chasePt += ch_;
+        chasePt.set(chasePt + ch_);
         return destPt - chasePt;
     }else{
         chasePt.set(destPt);
@@ -200,7 +200,7 @@ Vec2 Calclater::chasePt(Vec2 destPt,Vec2& chasePt,float length){
     Vec2 dst_ = destPt - chasePt;
     Vec2 ch_ = chgLength(dst_, length);
     if(dst_.length()>ch_.length()){
-        chasePt += ch_;
+        chasePt.set(chasePt + ch_);
         return destPt - chasePt;
     }else{
         chasePt.set(destPt);
