@@ -50,22 +50,62 @@ bool GameStage::init() {
 
     this->setDebugMemo(Label::createWithTTF("", "irohamaru.ttf", 16));
     this->mountNode(this->getDebugMemo(), Vec2(this->ctPt.x,120), OBJ_LAYER_LV1);
+
+    setCourceManager(CourceManager::create());
+    addChild(getCourceManager()->getCourceMakerA());
+    addChild(getCourceManager()->getCourceMakerB());
+    addChild(getCourceManager()->getGurd());
+    _timeLimit = getCourceManager()->getStagePrm()->getTymeLimit();
+    // タイムリミットが設定されている場合
+    if(_timeLimit>0){
+        setRestTime(Label::createWithTTF("残り時間:" + ST_FLOAT2(_timeLimit), "irohamaru.ttf", 24));
+        getColorChanger()->SetColor(COMMENT_COLOR_H, COMMENT_COLOR_S, COMMENT_COLOR_V);
+        getRestTime()->setColor(getColorChanger()->getColor3B());
+        getRestTime()->setOpacity(0);
+        mountNode(getRestTime(), Vec2(ctPt.x,winSize.height-80), OBJ_LAYER_TOP);
+    }
+        
+    // 現在のステージNo
+    int selStageNo = getCourceManager()->getStagePrm()->getStageNumber();
+    // 最大ステージ数を考慮した次のステージNo
+    int maxStage;
+    int nextStageNo = selStageNo;
+
+    if(UserDefault::getInstance()->getIntegerForKey(UDF_INT_GAME_MODE,GAME_MODE_STAGE) == GAME_MODE_STAGE){
+        maxStage = STAGE_SIZE;
+    }else{
+        maxStage = COURCE_SIZE;
+    }
+                
+    if(selStageNo < maxStage){
+        nextStageNo++;
+    }
     
     // modal画面を作成する。
-    setBtn2(generateMenuItemSprite([this](Ref* ref){
+    // もう一度ボタン
+    setBtn2(generateMenuItemSprite([this, selStageNo](Ref* ref){
+        // 現在のステージNo
+        int selStageNo = getCourceManager()->getStagePrm()->getStageNumber();
         stopBGM("");
         callSoundEffect(SOUND_BUTTON);
         transitonScene(GameStage::createScene());
-    }, Size(1,1), L_BTN_RETRY, Color3B::WHITE, Color3B::YELLOW, false));
-    setBtn3(generateMenuItemSprite([this](Ref* ref){
+    }, Size(1,1), selStageNo<10 ? "0" + std::to_string(selStageNo) : std::to_string(selStageNo), Color3B::WHITE, Color3B::YELLOW, false));
+    
+    setBtn3(generateMenuItemSprite([this, selStageNo, nextStageNo](Ref* ref){
+        if(UserDefault::getInstance()->getIntegerForKey(UDF_INT_CLEAR_STAGE,0) < selStageNo){
+            UserDefault::getInstance()->setIntegerForKey(UDF_INT_CLEAR_STAGE, selStageNo);
+        }
+        UserDefault::getInstance()->setIntegerForKey(UDF_INT_SELECTED_STAGE,nextStageNo);
         callSoundEffect(SOUND_BUTTON);
         transitonScene(GameStage::createScene());
-    }, Size(1,1), L_BTN_NEXT, Color3B::WHITE, Color3B::YELLOW, false));
+    }, Size(1,1),nextStageNo<10 ? "0" + std::to_string(nextStageNo) : std::to_string(nextStageNo), Color3B::WHITE, Color3B::YELLOW, false));
+    
     setBtn4(generateMenuItemSprite([this](Ref* ref){
         callSoundEffect(SOUND_BUTTON);
         UserDefault::getInstance()->setIntegerForKey(UDF_INT_GAME_MODE, GAME_MODE_COURCE);
         transitonScene(SelectScene::createScene());
     }, Size(1,1), L_BTN_BACK, Color3B::WHITE, Color3B::YELLOW, false));
+    
     setModal(Modal::create());
     getModal()->setGlobalZOrder(OBJ_LAYER_TOP);
     getModal()->setModal(Size(160,140), "メニュー");
@@ -91,39 +131,20 @@ bool GameStage::init() {
     getMenu()->alignItemsHorizontallyWithPadding(20);
     mountNode(getMenu(), Vec2(winSize.width - getBtn1()->getContentSize().height/2 -40,
                               winSize.height - getBtn1()->getContentSize().height/2 -40), OBJ_LAYER_TOP);
-
-    setCourceManager(CourceManager::create());
-    addChild(getCourceManager()->getCourceMakerA());
-    addChild(getCourceManager()->getCourceMakerB());
-    addChild(getCourceManager()->getGurd());
-    _timeLimit = getCourceManager()->getStagePrm()->getTymeLimit();
-    // タイムリミットが設定されている場合
-    if(_timeLimit>0){
-        setRestTime(Label::createWithTTF("残り時間:" + ST_FLOAT2(_timeLimit), "irohamaru.ttf", 24));
-        getColorChanger()->SetColor(COMMENT_COLOR_H, COMMENT_COLOR_S, COMMENT_COLOR_V);
-        getRestTime()->setColor(getColorChanger()->getColor3B());
-        getRestTime()->setOpacity(0);
-        mountNode(getRestTime(), Vec2(ctPt.x,winSize.height-80), OBJ_LAYER_TOP);
-    }
+    
     // 効果音
     setSoundEffect(SOUND_BUTTON);
     setSoundEffect(SOUND_GAME_READY);
     setSoundEffect(SOUND_GAME_START);
     setSoundEffect(SOUND_GAME_CLEAR);
     setSoundEffect(SOUND_GAME_MISS);
+    
     return true;
 }
 
 void GameStage::onEnterTransitionDidFinish() {
     GameScene::onEnterTransitionDidFinish();
-    if(UserDefault::getInstance()->getBoolForKey(UDF_BOOL_DEBUG_STAGE, false)){
-        // debug
-        _timeLimit = 0;
-//        drawDebugLine();
-    }
-
     getCourceManager()->checkAndMadeCource(Vec2::ZERO);
-    
     // Bikeをセット
     setBike(Bike::create());
     mountScroleNode(getBike(), RIDER_START_POINT, OBJ_LAYER_LV3-1);
@@ -181,7 +202,6 @@ void GameStage::update(float dt) {
         }
     }
     
-    
     if(getBike()){
 //        NJLOG(ST_VEC2(ctPt).c_str());
 //        NJLOG(ST_VEC2(getPosition()).c_str());
@@ -196,10 +216,10 @@ void GameStage::update(float dt) {
 }
 
 void GameStage::onReady(){
-    int stg = UserDefault::getInstance()->getIntegerForKey(UDF_INT_SELECTED_STAGE,1);
-    if(stg==0 && UserDefault::getInstance()->getIntegerForKey(UDF_INT_GAME_MODE,GAME_MODE_STAGE)==GAME_MODE_DEMO){
+    if(UserDefault::getInstance()->getIntegerForKey(UDF_INT_GAME_MODE,GAME_MODE_STAGE)==GAME_MODE_DEMO){
         demo();
     }else{
+        this->setSetumei(getCourceManager()->getStagePrm()->getCommnent());
         showGameAnnounce(getCourceManager()->getStagePrm()->getCommnent(), ctPt + Vec2(0,200),[this]{
         auto play_ =  CallFunc::create([this]{
             this->callSoundEffect(SOUND_GAME_READY);
@@ -252,23 +272,6 @@ void GameStage::onClear(){
     }else{
         this->callSoundEffect(SOUND_GAME_CLEAR);
         showGameAnnounce(L_GAME_CLEAR, ctPt + Vec2(0,200),[this]{
-            // クリアステージをカウントアップ
-            int selStage = getCourceManager()->getStagePrm()->getStageNumber();
-            int maxStage;
-            if(UserDefault::getInstance()->getIntegerForKey(UDF_INT_CLEAR_STAGE,0) < selStage){
-                UserDefault::getInstance()->setIntegerForKey(UDF_INT_CLEAR_STAGE, selStage);
-            }
-            if(UserDefault::getInstance()->getIntegerForKey(UDF_INT_GAME_MODE,GAME_MODE_STAGE) == GAME_MODE_STAGE){
-                maxStage = STAGE_SIZE;
-            }else{
-                maxStage = COURCE_SIZE;
-            }
-                        
-            if(selStage < maxStage){
-                selStage++;
-            }
-            
-            UserDefault::getInstance()->setIntegerForKey(UDF_INT_SELECTED_STAGE, selStage);
             setModalMenu(Menu::create(getBtn3(),getBtn4(),NULL));
             this->getModalMenu()->alignItemsVerticallyWithPadding(10);
             this->getModalMenu()->setPosition(Vec2(0,-20));
@@ -455,7 +458,7 @@ void GameStage::setSetumei(std::string st){
 void GameStage::demo(){
 
     setYubi(Sprite::create("yubi.png"));
-    getYubi()->setScale(2);
+    getYubi()->setScale(1.5);
     getYubi()->setGlobalZOrder(OBJ_LAYER_TOP);
     getYubi()->setAnchorPoint(Vec2(0.5,2));
     getBike()->getSceneChasePt()->addChild(getYubi());
@@ -499,10 +502,13 @@ void GameStage::demo(){
     auto frJumpSetumei_ = CallFunc::create([this]{
         this->setSetumei(DEMO_FR_JUMP);
     });
+    auto jumpSet_ = CallFunc::create([this]{
+        this->getBike()->isReadyJump = true;
+    });
     auto delay14_ = DelayTime::create(1);
     auto move14_ = MoveTo::create(0.8, Vec2(0,-moveSpn));
     auto move15_ = MoveTo::create(0.05, Vec2(0,moveSpn));
-    auto frJump4_ = Repeat::create(Sequence::create(delay14_,move14_,move15_, NULL), 2);
+    auto frJump4_ = Repeat::create(Sequence::create(jumpSet_,delay14_,move14_,move15_, NULL), 2);
     
     // RJump
     auto rJumpSetumei_ = CallFunc::create([this]{
@@ -513,7 +519,7 @@ void GameStage::demo(){
     auto move18_ = DelayTime::create(0.4);
     auto move19_ = MoveTo::create(0.05, Vec2(-moveSpn,moveSpn));
     auto delay20_ = DelayTime::create(1);
-    auto rJump4_ = Repeat::create(Sequence::create(move16_,move17_,move18_,move19_,delay20_, NULL), 2);
+    auto rJump4_ = Repeat::create(Sequence::create(move16_,move17_,move18_,jumpSet_,move19_,delay20_, NULL), 2);
     
     // dush
     auto dushSetumei_ = CallFunc::create([this]{
@@ -549,6 +555,7 @@ void GameStage::demo(){
         this->getBike()->autoFlg = false;
         this->getYubi()->setOpacity(0);
         this->getSetumei()->setString("");
+        UserDefault::getInstance()->setIntegerForKey(UDF_INT_GAME_MODE, GAME_MODE_COURCE);
     });
     
     auto setumei_ = CallFunc::create([this]{

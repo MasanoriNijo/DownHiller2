@@ -55,6 +55,9 @@ public:
     bool _isDebugComment = true;
     void setComment(std::string st, CourceMaker* _c);
     
+    std::string genComment(int courceNo);
+    int genTimeLimit(int courceNo);
+    
     void cPtnStart(CourceMaker* _c);
     void cPtnGoal(CourceMaker* _c);
     

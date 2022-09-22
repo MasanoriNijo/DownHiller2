@@ -75,10 +75,47 @@ void CourceManager::_setStagePrm(){
         }
         return;
     }else{
-        getStagePrm()->setCommnent("コースNo." + ST_INT(getStagePrm()->getStageNumber()));
+        getStagePrm()->setTymeLimit(genTimeLimit(getStagePrm()->getStageNumber()));
+        getStagePrm()->setCommnent(genComment(getStagePrm()->getStageNumber()));
         return;
     }
 }
+
+std::string CourceManager::genComment(int courceNo){
+    switch (courceNo) {
+        case -1:
+            return
+            "ここからは、\n"
+            "実際に操作して、\n"
+            "ゴールを目指そう!\n";
+            break;
+        case 0:
+            return
+            "ホゲー\n"
+            "フガー\n"
+            "ゴールを目指そう!\n";
+            break;
+        default:
+            return "ステージ:" + ST_INT(courceNo);
+            break;
+    }
+}
+
+int CourceManager::genTimeLimit(int courceNo){
+    switch (courceNo) {
+        case 0:
+            return 30;
+            break;
+        case 3:
+            return 23;
+            break;
+        default:
+            return 0;
+            break;
+    }
+}
+
+
 
 void CourceManager::setStartAndTargetFromCource(CourceMaker* _c){
     setStartPt(_c->getStartPt());
@@ -832,9 +869,7 @@ void CourceManager::checkAndMadeCourceForTraining(Vec2 chPt){
         getCourceMakerSel()->_dirkaku = _dirkaku;
         
         switch (courceIndex) {
-            case -1: // howto画面用
-                madeCourcePtn0(getCourceMakerSel(),courceIndex);
-                break;
+
             case 0:
                 getCourceMakerSel()->dS(615,0);
                 setStart(getCourceMakerSel());
@@ -842,6 +877,9 @@ void CourceManager::checkAndMadeCourceForTraining(Vec2 chPt){
                 break;
             case 1:
                 switch (selStg) {
+                    case -1: // howto画面用
+                        cPtn123(getCourceMakerSel());
+                        break;
                     case 0:
                         cPtn00(getCourceMakerSel());
                         break;
@@ -3286,11 +3324,16 @@ void CourceManager::cPtn122(CourceMaker* _c){
     _c->dC(30,kaku);
 }
 
-// comment
+// howTo画面
 void CourceManager::cPtn123(CourceMaker* _c){
-    auto kaku = _c->_dirkaku;
-    _c->dC(30,-10+kaku);
-    _c->dC(30,kaku);
+    auto kaku = -1;
+    _c->dC(300,-1);
+    _c->dC(100,30);
+    _c->dC(100,0);
+    _c->dS(500,0);
+    _c->dC(100,-30);
+    _c->dS(100,-30);
+    _c->dC(200,0);
 }
 /** パラメータサンプル
  setCourceMakerA(CourceMaker::create());
