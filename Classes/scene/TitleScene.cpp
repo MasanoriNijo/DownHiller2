@@ -181,10 +181,13 @@ void TitleScene::demo(){
     auto werryF4_ = Repeat::create(Sequence::create(move10_,move11_, NULL), 1);
         
     // FRJump
+    auto jumpSet_ = CallFunc::create([this]{
+        this->getBike()->isReadyJump = true;
+    });
     auto delay14_ = DelayTime::create(0.5);
     auto move14_ = MoveTo::create(0.8, Vec2(0,-moveSpn));
     auto move15_ = MoveTo::create(0.05, Vec2(0,moveSpn));
-    auto frJump4_ = Repeat::create(Sequence::create(delay14_,move14_,move15_, NULL), 1);
+    auto frJump4_ = Repeat::create(Sequence::create(delay14_,jumpSet_,move14_,move15_, NULL), 1);
     
     // RJump
     auto move16_ = MoveTo::create(0.8, Vec2(moveSpn,moveSpn));
@@ -192,12 +195,12 @@ void TitleScene::demo(){
     auto move18_ = DelayTime::create(0.4);
     auto move19_ = MoveTo::create(0.05, Vec2(-moveSpn,moveSpn));
     auto delay20_ = DelayTime::create(0.5);
-    auto rJump4_ = Repeat::create(Sequence::create(move16_,move17_,move18_,move19_,delay20_, NULL), 1);
+    auto rJump4_ = Repeat::create(Sequence::create(move16_,move17_,jumpSet_,move18_,move19_,delay20_, NULL), 1);
     
     // dush
     auto move21_ = MoveTo::create(0.8, Vec2(-moveSpn-1,-moveSpn));
     auto move22_ = MoveTo::create(0.1, Vec2(moveSpn,-moveSpn));
-    auto dush4_ = Repeat::create(Sequence::create(move21_,move22_, NULL), 1);
+    auto dush4_ = Repeat::create(Sequence::create(delay20_,move21_,move22_,delay20_, NULL), 1);
     
     // break
     auto move23_ = MoveTo::create(0.8, Vec2(-moveSpn,-moveSpn));
