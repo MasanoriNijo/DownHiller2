@@ -832,6 +832,9 @@ void CourceManager::checkAndMadeCourceForTraining(Vec2 chPt){
         getCourceMakerSel()->_dirkaku = _dirkaku;
         
         switch (courceIndex) {
+            case -1: // howto画面用
+                madeCourcePtn0(getCourceMakerSel(),courceIndex);
+                break;
             case 0:
                 getCourceMakerSel()->dS(615,0);
                 setStart(getCourceMakerSel());
