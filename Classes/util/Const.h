@@ -44,7 +44,7 @@ USING_NS_CC;
 #define COURCE_BASE_COLOR_S 78
 #define COURCE_BASE_COLOR_V 83
 
-// コースベースの色
+// コースベースの色2
 #define COURCE_BASE_COLOR2_H 44
 #define COURCE_BASE_COLOR2_S 78
 #define COURCE_BASE_COLOR2_V 83
@@ -60,9 +60,9 @@ USING_NS_CC;
 #define TITLE_FUTI_COLOR_V 100
 
 // コメント文字のカラー
-#define COMMENT_COLOR_H 218
-#define COMMENT_COLOR_S 77
-#define COMMENT_COLOR_V 49
+#define COMMENT_COLOR_H 17
+#define COMMENT_COLOR_S 100
+#define COMMENT_COLOR_V 5
 
 // spriteの上下
 #define OBJ_LAYER_BUTTOM 0

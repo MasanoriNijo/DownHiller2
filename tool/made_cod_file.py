@@ -92,8 +92,7 @@ def madeCCPFile(json_data):
   f.close
 
 cdir = os.path.dirname(__file__)
-path = cdir+'/code_org.txt
-'
+path = cdir+'/code_org.txt'
 
 json_file = open(path, 'r')
 json_data = json.load(json_file)

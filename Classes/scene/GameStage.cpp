@@ -89,7 +89,7 @@ bool GameStage::init() {
         stopBGM("");
         callSoundEffect(SOUND_BUTTON);
         transitonScene(GameStage::createScene());
-    }, Size(1,1), selStageNo<10 ? "0" + std::to_string(selStageNo) : std::to_string(selStageNo), Color3B::WHITE, Color3B::YELLOW, false));
+    }, Size(1,1), selStageNo<10 ? " 0" + std::to_string(selStageNo) + " " : " " + std::to_string(selStageNo) + " ", Color3B::WHITE, Color3B::YELLOW, false));
     
     setBtn3(generateMenuItemSprite([this, selStageNo, nextStageNo](Ref* ref){
         if(UserDefault::getInstance()->getIntegerForKey(UDF_INT_CLEAR_STAGE,0) < selStageNo){
@@ -98,7 +98,7 @@ bool GameStage::init() {
         UserDefault::getInstance()->setIntegerForKey(UDF_INT_SELECTED_STAGE,nextStageNo);
         callSoundEffect(SOUND_BUTTON);
         transitonScene(GameStage::createScene());
-    }, Size(1,1),nextStageNo<10 ? "0" + std::to_string(nextStageNo) : std::to_string(nextStageNo), Color3B::WHITE, Color3B::YELLOW, false));
+    }, Size(1,1),nextStageNo<10 ? " 0" + std::to_string(nextStageNo) + " " : " " + std::to_string(nextStageNo) + " ", Color3B::WHITE, Color3B::YELLOW, false));
     
     setBtn4(generateMenuItemSprite([this](Ref* ref){
         callSoundEffect(SOUND_BUTTON);
@@ -219,21 +219,26 @@ void GameStage::onReady(){
     if(UserDefault::getInstance()->getIntegerForKey(UDF_INT_GAME_MODE,GAME_MODE_STAGE)==GAME_MODE_DEMO){
         demo();
     }else{
-        this->setSetumei(getCourceManager()->getStagePrm()->getCommnent());
-        showGameAnnounce(getCourceManager()->getStagePrm()->getCommnent(), ctPt + Vec2(0,200),[this]{
+        showGameAnnounce("コース：" + ST_INT(getCourceManager()->getStagePrm()->getStageNumber()), ctPt + Vec2(0,200),[this]{
         auto play_ =  CallFunc::create([this]{
-            this->callSoundEffect(SOUND_GAME_READY);
-            this->showGameAnnounce(L_GAME_READY, ctPt + Vec2(0,200),[this]{
-                setGameState(GameState::PLAY);
-                fstStCnge = true;
-                getBike()->setTouchEvent();
-                if(getRestTime()){
-                    getRestTime()->setOpacity(255);
-                }
-                startTime();
+            this->setSetumei(getCourceManager()->getStagePrm()->getCommnent());
+            auto delay_ = DelayTime::create(3);
+            auto delSetumei_ = CallFunc::create([this]{
+                this->getSetumei()->removeFromParentAndCleanup(true);
+                this->callSoundEffect(SOUND_GAME_READY);
+                this->showGameAnnounce(L_GAME_READY, ctPt + Vec2(0,200),[this]{
+                    setGameState(GameState::PLAY);
+                    fstStCnge = true;
+                    getBike()->setTouchEvent();
+                    if(getRestTime()){
+                        getRestTime()->setOpacity(255);
+                    }
+                    startTime();
+                });
             });
+            runAction(Sequence::create(delay_,delSetumei_, NULL));
         });
-        runAction(Sequence::create(play_, NULL));
+        runAction(play_);
         });
     }
 }

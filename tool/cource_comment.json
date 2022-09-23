@@ -1,0 +1,12 @@
+{
+  [
+    {"No":"1",
+    "TimeLimit":"0",
+    "Comment":"グネグネ\n改行"
+
+    }
+    ["1", "_stageNumber", "StageNumber"],
+    ["std::string", "_comment", "Commnent"],
+    ["float", "_timeLimit", "TymeLimit"]
+  ]
+}
