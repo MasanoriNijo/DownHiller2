@@ -91,9 +91,422 @@ std::string CourceManager::genComment(int courceNo){
             break;
         case 0:
             return
-            "ホゲー\n"
-            "フガー\n"
-            "ゴールを目指そう!\n";
+            "ゆるやかな凹凸のある坂道1\n"
+            "しゃがんで前にスワイプすると\n"
+            "ダッシュできるよ！";
+            break;
+        case 1:
+            return
+            "ゆるやかな凹凸のある坂道2\n"
+            "左右にスワイプして\n"
+            "姿勢を制御しよう！";;
+            break;
+        case 2:
+            return
+            "ゆるやかな凹凸のある坂道3\n"
+            "制限時間内のゴールしよう！\n"
+            "スピードが落ちたらダッシュしよう！\n";
+            break;
+        case 3:
+            return
+            "ゆるやかな凹凸のある坂道3\n"
+            "制限時間内のゴールしよう！\n"
+            "スピードをキープするのがコツだよ！\n";
+            break;
+        case 4:
+            return
+            "小さなコブのある道1\n"
+            "コブはしゃがんだ状態で\n"
+            "上に素早くスワイプして\n"
+            "ジャンプで飛び越えよう！";
+            break;
+        case 5:
+            return
+            "小さなコブのある道\n"
+            "制限時間内のゴールしよう！\n";
+            break;
+        case 6:
+            return
+            "凹凸のある急な坂道1\n"
+            "スピードが出過ぎたら\n"
+            "左下に重心を移動して\n"
+            "ブレーキをかけよう！";
+            break;
+        case 7:
+            return
+            "凹凸のある急な坂道2\n"
+            "スピードが出過ぎたら\n"
+            "左下に重心を移動して\n"
+            "ブレーキをかけよう！";
+            break;
+        case 8:
+            return
+            "凹凸のある急な坂道3\n"
+            "制限時間内のゴールしよう！\n";
+            break;
+        case 9:
+            return
+            "コメントを記入";
+            break;
+        case 10:
+            return
+            "コメントを記入";
+            break;
+        case 11:
+            return
+            "コメントを記入";
+            break;
+        case 12:
+            return
+            "コメントを記入";
+            break;
+        case 13:
+            return
+            "コメントを記入";
+            break;
+        case 14:
+            return
+            "コメントを記入";
+            break;
+        case 15:
+            return
+            "コメントを記入";
+            break;
+        case 16:
+            return
+            "コメントを記入";
+            break;
+        case 17:
+            return
+            "コメントを記入";
+            break;
+        case 18:
+            return
+            "コメントを記入";
+            break;
+        case 19:
+            return
+            "コメントを記入";
+            break;
+        case 20:
+            return
+            "コメントを記入";
+            break;
+        case 21:
+            return
+            "コメントを記入";
+            break;
+        case 22:
+            return
+            "コメントを記入";
+            break;
+        case 23:
+            return
+            "コメントを記入";
+            break;
+        case 24:
+            return
+            "コメントを記入";
+            break;
+        case 25:
+            return
+            "コメントを記入";
+            break;
+        case 26:
+            return
+            "コメントを記入";
+            break;
+        case 27:
+            return
+            "コメントを記入";
+            break;
+        case 28:
+            return
+            "コメントを記入";
+            break;
+        case 29:
+            return
+            "コメントを記入";
+            break;
+        case 30:
+            return
+            "コメントを記入";
+            break;
+        case 31:
+            return
+            "コメントを記入";
+            break;
+        case 32:
+            return
+            "コメントを記入";
+            break;
+        case 33:
+            return
+            "コメントを記入";
+            break;
+        case 34:
+            return
+            "コメントを記入";
+            break;
+        case 35:
+            return
+            "コメントを記入";
+            break;
+        case 36:
+            return
+            "コメントを記入";
+            break;
+        case 37:
+            return
+            "コメントを記入";
+            break;
+        case 38:
+            return
+            "コメントを記入";
+            break;
+        case 39:
+            return
+            "コメントを記入";
+            break;
+        case 40:
+            return
+            "コメントを記入";
+            break;
+        case 41:
+            return
+            "コメントを記入";
+            break;
+        case 42:
+            return
+            "コメントを記入";
+            break;
+        case 43:
+            return
+            "コメントを記入";
+            break;
+        case 44:
+            return
+            "コメントを記入";
+            break;
+        case 45:
+            return
+            "コメントを記入";
+            break;
+        case 46:
+            return
+            "コメントを記入";
+            break;
+        case 47:
+            return
+            "コメントを記入";
+            break;
+        case 48:
+            return
+            "コメントを記入";
+            break;
+        case 49:
+            return
+            "コメントを記入";
+            break;
+        case 50:
+            return
+            "コメントを記入";
+            break;
+        case 51:
+            return
+            "コメントを記入";
+            break;
+        case 52:
+            return
+            "コメントを記入";
+            break;
+        case 53:
+            return
+            "コメントを記入";
+            break;
+        case 54:
+            return
+            "コメントを記入";
+            break;
+        case 55:
+            return
+            "コメントを記入";
+            break;
+        case 56:
+            return
+            "コメントを記入";
+            break;
+        case 57:
+            return
+            "コメントを記入";
+            break;
+        case 58:
+            return
+            "コメントを記入";
+            break;
+        case 59:
+            return
+            "コメントを記入";
+            break;
+        case 60:
+            return
+            "コメントを記入";
+            break;
+        case 61:
+            return
+            "コメントを記入";
+            break;
+        case 62:
+            return
+            "コメントを記入";
+            break;
+        case 63:
+            return
+            "コメントを記入";
+            break;
+        case 64:
+            return
+            "コメントを記入";
+            break;
+        case 65:
+            return
+            "コメントを記入";
+            break;
+        case 66:
+            return
+            "コメントを記入";
+            break;
+        case 67:
+            return
+            "コメントを記入";
+            break;
+        case 68:
+            return
+            "コメントを記入";
+            break;
+        case 69:
+            return
+            "コメントを記入";
+            break;
+        case 70:
+            return
+            "コメントを記入";
+            break;
+        case 71:
+            return
+            "コメントを記入";
+            break;
+        case 72:
+            return
+            "コメントを記入";
+            break;
+        case 73:
+            return
+            "コメントを記入";
+            break;
+        case 74:
+            return
+            "コメントを記入";
+            break;
+        case 75:
+            return
+            "コメントを記入";
+            break;
+        case 76:
+            return
+            "コメントを記入";
+            break;
+        case 77:
+            return
+            "コメントを記入";
+            break;
+        case 78:
+            return
+            "コメントを記入";
+            break;
+        case 79:
+            return
+            "コメントを記入";
+            break;
+        case 80:
+            return
+            "コメントを記入";
+            break;
+        case 81:
+            return
+            "コメントを記入";
+            break;
+        case 82:
+            return
+            "コメントを記入";
+            break;
+        case 83:
+            return
+            "コメントを記入";
+            break;
+        case 84:
+            return
+            "コメントを記入";
+            break;
+        case 85:
+            return
+            "コメントを記入";
+            break;
+        case 86:
+            return
+            "コメントを記入";
+            break;
+        case 87:
+            return
+            "コメントを記入";
+            break;
+        case 88:
+            return
+            "コメントを記入";
+            break;
+        case 89:
+            return
+            "コメントを記入";
+            break;
+        case 90:
+            return
+            "コメントを記入";
+            break;
+        case 91:
+            return
+            "コメントを記入";
+            break;
+        case 92:
+            return
+            "コメントを記入";
+            break;
+        case 93:
+            return
+            "コメントを記入";
+            break;
+        case 94:
+            return
+            "コメントを記入";
+            break;
+        case 95:
+            return
+            "コメントを記入";
+            break;
+        case 96:
+            return
+            "コメントを記入";
+            break;
+        case 97:
+            return
+            "コメントを記入";
+            break;
+        case 98:
+            return
+            "コメントを記入";
+            break;
+        case 99:
+            return
+            "コメントを記入";
             break;
         default:
             return "ステージ:" + ST_INT(courceNo);
@@ -104,10 +517,304 @@ std::string CourceManager::genComment(int courceNo){
 int CourceManager::genTimeLimit(int courceNo){
     switch (courceNo) {
         case 0:
-            return 30;
+            return 0;
+            break;
+        case 1:
+            return 0;
+            break;
+        case 2:
+            return 25;
             break;
         case 3:
-            return 23;
+            return 25;
+            break;
+        case 4:
+            return 0;
+            break;
+        case 5:
+            return 15;
+            break;
+        case 6:
+            return 0;
+            break;
+        case 7:
+            return 0;
+            break;
+        case 8:
+            return 18;
+            break;
+        case 9:
+            return 0;
+            break;
+        case 10:
+            return 0;
+            break;
+        case 11:
+            return 0;
+            break;
+        case 12:
+            return 0;
+            break;
+        case 13:
+            return 0;
+            break;
+        case 14:
+            return 0;
+            break;
+        case 15:
+            return 0;
+            break;
+        case 16:
+            return 0;
+            break;
+        case 17:
+            return 0;
+            break;
+        case 18:
+            return 0;
+            break;
+        case 19:
+            return 0;
+            break;
+        case 20:
+            return 0;
+            break;
+        case 21:
+            return 0;
+            break;
+        case 22:
+            return 0;
+            break;
+        case 23:
+            return 0;
+            break;
+        case 24:
+            return 0;
+            break;
+        case 25:
+            return 0;
+            break;
+        case 26:
+            return 0;
+            break;
+        case 27:
+            return 0;
+            break;
+        case 28:
+            return 0;
+            break;
+        case 29:
+            return 0;
+            break;
+        case 30:
+            return 0;
+            break;
+        case 31:
+            return 0;
+            break;
+        case 32:
+            return 0;
+            break;
+        case 33:
+            return 0;
+            break;
+        case 34:
+            return 0;
+            break;
+        case 35:
+            return 0;
+            break;
+        case 36:
+            return 0;
+            break;
+        case 37:
+            return 0;
+            break;
+        case 38:
+            return 0;
+            break;
+        case 39:
+            return 0;
+            break;
+        case 40:
+            return 0;
+            break;
+        case 41:
+            return 0;
+            break;
+        case 42:
+            return 0;
+            break;
+        case 43:
+            return 0;
+            break;
+        case 44:
+            return 0;
+            break;
+        case 45:
+            return 0;
+            break;
+        case 46:
+            return 0;
+            break;
+        case 47:
+            return 0;
+            break;
+        case 48:
+            return 0;
+            break;
+        case 49:
+            return 0;
+            break;
+        case 50:
+            return 0;
+            break;
+        case 51:
+            return 0;
+            break;
+        case 52:
+            return 0;
+            break;
+        case 53:
+            return 0;
+            break;
+        case 54:
+            return 0;
+            break;
+        case 55:
+            return 0;
+            break;
+        case 56:
+            return 0;
+            break;
+        case 57:
+            return 0;
+            break;
+        case 58:
+            return 0;
+            break;
+        case 59:
+            return 0;
+            break;
+        case 60:
+            return 0;
+            break;
+        case 61:
+            return 0;
+            break;
+        case 62:
+            return 0;
+            break;
+        case 63:
+            return 0;
+            break;
+        case 64:
+            return 0;
+            break;
+        case 65:
+            return 0;
+            break;
+        case 66:
+            return 0;
+            break;
+        case 67:
+            return 0;
+            break;
+        case 68:
+            return 0;
+            break;
+        case 69:
+            return 0;
+            break;
+        case 70:
+            return 0;
+            break;
+        case 71:
+            return 0;
+            break;
+        case 72:
+            return 0;
+            break;
+        case 73:
+            return 0;
+            break;
+        case 74:
+            return 0;
+            break;
+        case 75:
+            return 0;
+            break;
+        case 76:
+            return 0;
+            break;
+        case 77:
+            return 0;
+            break;
+        case 78:
+            return 0;
+            break;
+        case 79:
+            return 0;
+            break;
+        case 80:
+            return 0;
+            break;
+        case 81:
+            return 0;
+            break;
+        case 82:
+            return 0;
+            break;
+        case 83:
+            return 0;
+            break;
+        case 84:
+            return 0;
+            break;
+        case 85:
+            return 0;
+            break;
+        case 86:
+            return 0;
+            break;
+        case 87:
+            return 0;
+            break;
+        case 88:
+            return 0;
+            break;
+        case 89:
+            return 0;
+            break;
+        case 90:
+            return 0;
+            break;
+        case 91:
+            return 0;
+            break;
+        case 92:
+            return 0;
+            break;
+        case 93:
+            return 0;
+            break;
+        case 94:
+            return 0;
+            break;
+        case 95:
+            return 0;
+            break;
+        case 96:
+            return 0;
+            break;
+        case 97:
+            return 0;
+            break;
+        case 98:
+            return 0;
+            break;
+        case 99:
+            return 0;
             break;
         default:
             return 0;
@@ -869,13 +1576,14 @@ void CourceManager::checkAndMadeCourceForTraining(Vec2 chPt){
         getCourceMakerSel()->_dirkaku = _dirkaku;
         
         switch (courceIndex) {
-
+                
             case 0:
                 getCourceMakerSel()->dS(615,0);
                 setStart(getCourceMakerSel());
                 getCourceMakerSel()->dC(250,-20);
                 break;
             case 1:
+            case 2:
                 switch (selStg) {
                     case -1: // howto画面用
                         cPtn123(getCourceMakerSel());
@@ -1255,7 +1963,7 @@ void CourceManager::checkAndMadeCourceForTraining(Vec2 chPt){
                         break;
                 }
                 break;
-            case 2:
+            case 3:
                 getCourceMakerSel()->dS(300,0);
                 setGoal(getCourceMakerSel());
                 getCourceMakerSel()->dS(1000,0);
@@ -1274,7 +1982,7 @@ void CourceManager::checkAndMadeCourceForTraining(Vec2 chPt){
 
 // 滑らかな波波
 void CourceManager::cPtn00(CourceMaker* _c){
-    setComment("c00",_c);
+//    setComment("c00",_c);
     auto kaku = 8;
     _c->dC(200, kaku);
     _c->dC(59, -60 + kaku);
@@ -1302,7 +2010,7 @@ void CourceManager::cPtn00(CourceMaker* _c){
 
 // 滑らかな波波
 void CourceManager::cPtn01(CourceMaker* _c){
-    setComment("c01",_c);
+//    setComment("c01",_c);
     auto kaku = 5;
     _c->dC(200, kaku);
     _c->dC(84, -55 + kaku);
@@ -1330,7 +2038,7 @@ void CourceManager::cPtn01(CourceMaker* _c){
 
 // 滑らかな波波
 void CourceManager::cPtn02(CourceMaker* _c){
-    setComment("c02",_c);
+//    setComment("c02",_c);
     auto kaku = 2;
     _c->dC(200, kaku);
     _c->dC(114, -40 + kaku);
@@ -1358,7 +2066,7 @@ void CourceManager::cPtn02(CourceMaker* _c){
 
 // 滑らかな波波
 void CourceManager::cPtn03(CourceMaker* _c){
-    setComment("c03",_c);
+//    setComment("c03",_c);
     auto kaku = -13;
     _c->dC(200, kaku);
     _c->dC(111, -36 + kaku);
@@ -1383,65 +2091,50 @@ void CourceManager::cPtn03(CourceMaker* _c){
     _c->dC(117, 23 + kaku);
 }
 
-// 滑らかな波波
+// 小さなコブのある坂道1
 void CourceManager::cPtn04(CourceMaker* _c){
-    setComment("c04",_c);
-    auto kaku = -14;
+//    setComment("c04",_c);
+    auto kaku = -15;
     _c->dC(200, kaku);
-    _c->dC(83, -39 + kaku);
-    _c->dC(87, 7 + kaku);
-    _c->dC(110, -24 + kaku);
-    _c->dC(86, 29 + kaku);
-    _c->dC(123, -10 + kaku);
-    _c->dC(111, 27 + kaku);
-    _c->dC(117, -10 + kaku);
-    _c->dC(159, 22 + kaku);
-    _c->dC(74, -28 + kaku);
-    _c->dC(83, 28 + kaku);
-    _c->dC(92, -34 + kaku);
-    _c->dC(85, 29 + kaku);
-    _c->dC(103, -11 + kaku);
-    _c->dC(126, 19 + kaku);
-    _c->dC(107, -34 + kaku);
-    _c->dC(94, 16 + kaku);
-    _c->dC(117, -22 + kaku);
-    _c->dC(112, 11 + kaku);
-    _c->dC(70, -38 + kaku);
-    _c->dC(87, 10 + kaku);
-    
+    _c->dS(200, kaku);
+    for(int i = 0; i<3; i++){
+        _c->dS(150, kaku);
+        _c->dS(8,90+kaku);
+        _c->dS(8,kaku);
+        _c->dS(8,-90+kaku);
+        _c->dS(150, kaku);
+    }
 }
 
-// 滑らかな波波
+// 小さなコブのある道
 void CourceManager::cPtn05(CourceMaker* _c){
-    setComment("c05",_c);
-    auto kaku = 8;
+    auto kaku = -15;
     _c->dC(200, kaku);
-    _c->dC(152, -41 + kaku);
-    _c->dC(418, -21 + kaku);
-    _c->dC(169, -68 + kaku);
-    _c->dC(214, -36 + kaku);
-    _c->dC(260, -64 + kaku);
-    _c->dC(271, -41 + kaku);
-    _c->dC(289, -65 + kaku);
-    _c->dC(86, 4 + kaku);
-    _c->dC(111, -54 + kaku);
-    _c->dC(104, 8 + kaku);
-    _c->dC(190, -26 + kaku);
-    _c->dC(241, 7 + kaku);
-    _c->dC(139, -39 + kaku);
-    _c->dC(174, 9 + kaku);
-    _c->dC(72, -73 + kaku);
-    _c->dC(124, -26 + kaku);
-    _c->dC(183, -70 + kaku);
-    _c->dC(135, -21 + kaku);
-    _c->dC(212, -52 + kaku);
-    _c->dC(138, 6 + kaku);
+    _c->dS(200, kaku);
+    if(courceIndex == 1){
+    for(int i = 0; i<3; i++){
+        _c->dS(150, kaku);
+        _c->dS(8,90+kaku);
+        _c->dS(8,kaku);
+        _c->dS(8,-90+kaku);
+        _c->dS(150, kaku);
+    }
+    }else{
+        kaku = 0;
+        for(int i = 0; i<3; i++){
+            _c->dS(150, kaku);
+            _c->dS(8,90+kaku);
+            _c->dS(8,kaku);
+            _c->dS(8,-90+kaku);
+            _c->dS(150, kaku);
+        }
+    }
     
 }
 
-// 滑らかな波波
+// 凹凸のある急な坂道
 void CourceManager::cPtn06(CourceMaker* _c){
-    setComment("c06",_c);
+//    setComment("c06",_c);
     auto kaku = 0;
     _c->dC(200, kaku);
     _c->dC(87, -70 + kaku);
@@ -1466,9 +2159,9 @@ void CourceManager::cPtn06(CourceMaker* _c){
     _c->dC(124, -8 + kaku);
 }
 
-// 滑らかな波波
+// 凹凸のある急な坂道2
 void CourceManager::cPtn07(CourceMaker* _c){
-    setComment("c07",_c);
+//    setComment("c07",_c);
     auto kaku = 0;
     _c->dC(200, kaku);
     _c->dC(171, -33 + kaku);
@@ -1496,8 +2189,8 @@ void CourceManager::cPtn07(CourceMaker* _c){
 
 // comment
 void CourceManager::cPtn08(CourceMaker* _c){
-    setComment("c08",_c);
-    auto kaku = 0;
+//    setComment("c08",_c);
+    auto kaku = -5;
     _c->dC(200, kaku);
     _c->dC(91, -32 + kaku);
     _c->dC(100, 9 + kaku);
