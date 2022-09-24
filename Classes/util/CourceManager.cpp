@@ -2444,7 +2444,7 @@ void CourceManager::cPtn20(CourceMaker* _c){
     auto kaku1 = -50;
     auto kaku2 = 45;
     _c->dC(100, kaku);
-    for(int i=0; i<8; i++){
+    for(int i=0; i<4; i++){
         _c->dS(100, kaku);
         _c->dS(30, kaku1 + kaku);
         _c->dS(0, -90 + kaku);
