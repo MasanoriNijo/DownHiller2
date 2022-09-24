@@ -146,51 +146,78 @@ std::string CourceManager::genComment(int courceNo){
             break;
         case 9:
             return
-            "コメントを記入";
+            "平地ジャンプ台1\n"
+            "ダッシュで加速して\n"
+            "ジャンプ台\n"
+            "で飛び越えよう！";
             break;
         case 10:
             return
-            "コメントを記入";
+            "平地ジャンプ台2\n"
+            "ダッシュで加速して\n"
+            "ジャンプ台\n"
+            "で飛び越えよう！";
             break;
         case 11:
             return
-            "コメントを記入";
+            "平地ジャンプ台3\n"
+            "スピードを保って\n"
+            "連続して\n"
+            "飛び越えよう！";
             break;
         case 12:
             return
-            "コメントを記入";
+            "平地ジャンプ台4\n"
+            "制限時間内で\n"
+            "ゴールしよう！";
             break;
         case 13:
             return
-            "コメントを記入";
+            "平地ジャンプ台5\n"
+            "制限時間内で\n"
+            "ゴールしよう！";
             break;
         case 14:
             return
-            "コメントを記入";
+            "自然な激しい坂道1\n"
+            "前転しないように\n"
+            "姿勢を制御しよう！";
             break;
         case 15:
             return
-            "コメントを記入";
+            "自然な激しい坂道2\n"
+            "制限時間内で\n"
+            "ゴールしよう！";
             break;
         case 16:
             return
-            "コメントを記入";
+            "バンプトラック1\n"
+            "下りRで後輪を\n"
+            "プッシュしよう！\n"
+            "スピードにのるぞ！";
             break;
         case 17:
             return
-            "コメントを記入";
+            "バンプトラック2\n"
+            "下りRで後輪を\n"
+            "プッシュしよう！\n"
+            "スピードにのるぞ！";
             break;
         case 18:
             return
-            "コメントを記入";
+            "階段下り1\n"
+            "前転に注意！";
             break;
         case 19:
             return
-            "コメントを記入";
+            "階段下り2\n"
+            "前転に注意！";
             break;
         case 20:
             return
-            "コメントを記入";
+            "階段下り3\n"
+            "制限時間内で\n"
+            "ゴールしよう！";
             break;
         case 21:
             return
@@ -230,7 +257,9 @@ std::string CourceManager::genComment(int courceNo){
             break;
         case 30:
             return
-            "コメントを記入";
+            "バンプトラック3\n"
+            "制限時間に\n"
+            "ゴールしよう！\n";
             break;
         case 31:
             return
@@ -532,7 +561,7 @@ int CourceManager::genTimeLimit(int courceNo){
             return 0;
             break;
         case 5:
-            return 15;
+            return 18;
             break;
         case 6:
             return 0;
@@ -553,16 +582,16 @@ int CourceManager::genTimeLimit(int courceNo){
             return 0;
             break;
         case 12:
-            return 0;
+            return 28;
             break;
         case 13:
-            return 0;
+            return 26;
             break;
         case 14:
             return 0;
             break;
         case 15:
-            return 0;
+            return 15;
             break;
         case 16:
             return 0;
@@ -577,7 +606,7 @@ int CourceManager::genTimeLimit(int courceNo){
             return 0;
             break;
         case 20:
-            return 0;
+            return 35;
             break;
         case 21:
             return 0;
@@ -607,7 +636,7 @@ int CourceManager::genTimeLimit(int courceNo){
             return 0;
             break;
         case 30:
-            return 0;
+            return 25;
             break;
         case 31:
             return 0;
@@ -2187,7 +2216,7 @@ void CourceManager::cPtn07(CourceMaker* _c){
     
 }
 
-// comment
+// 凹凸のある急な坂道3
 void CourceManager::cPtn08(CourceMaker* _c){
 //    setComment("c08",_c);
     auto kaku = -5;
@@ -2215,149 +2244,90 @@ void CourceManager::cPtn08(CourceMaker* _c){
     
 }
 
-// 滑らかな波波
+// 平地ジャンプ台1
 void CourceManager::cPtn09(CourceMaker* _c){
-    setComment("c09",_c);
-    auto kaku = -3;
-    _c->dC(200, kaku);
-    _c->dC(308, -34 + kaku);
-    _c->dC(234, 12 + kaku);
-    _c->dC(264, -30 + kaku);
-    _c->dC(340, 2 + kaku);
-    _c->dC(195, -47 + kaku);
-    _c->dC(199, -3 + kaku);
-    _c->dC(159, -59 + kaku);
-    _c->dC(164, 6 + kaku);
-    _c->dC(156, -54 + kaku);
-    _c->dC(210, 0 + kaku);
-    _c->dC(181, -48 + kaku);
-    _c->dC(245, -13 + kaku);
-    _c->dC(246, -54 + kaku);
-    _c->dC(331, -23 + kaku);
-    _c->dC(281, -57 + kaku);
-    _c->dC(355, -26 + kaku);
-    _c->dC(311, -60 + kaku);
-    _c->dC(244, -19 + kaku);
-    _c->dC(376, -49 + kaku);
-    _c->dC(171, 7 + kaku);
-    
+//    setComment("c09",_c);
+    auto kaku = 0;
+    for(int i = 0; i<3; i++){
+        _c->dC(200, kaku);
+        _c->dS(300,  kaku);
+        _c->dC(30,45 +kaku );
+        _c->dS(50, 45 +kaku);
+        _c->dS(50, kaku);
+        _c->dS(30, 90 +kaku);
+        _c->dS(200, kaku);
+    }
 }
 
-// カクカク
+// 平地ジャンプ台2
 void CourceManager::cPtn10(CourceMaker* _c){
-    setComment("c10",_c);
+//    setComment("c10",_c);
     auto kaku = 0;
-    _c->dC(200, kaku);
-    _c->dS(67, -59 + kaku);
-    _c->dS(74, -4 + kaku);
-    _c->dS(93, -39 + kaku);
-    _c->dS(73, 5 + kaku);
-    _c->dS(74, -60 + kaku);
-    _c->dS(71, -15 + kaku);
-    _c->dS(62, -56 + kaku);
-    _c->dS(72, -15 + kaku);
-    _c->dS(87, -60 + kaku);
-    _c->dS(55, -29 + kaku);
-    _c->dS(79, -60 + kaku);
-    _c->dS(98, -19 + kaku);
-    _c->dS(62, -58 + kaku);
-    _c->dS(52, -7 + kaku);
-    _c->dS(91, -51 + kaku);
-    _c->dS(85, -15 + kaku);
-    _c->dS(73, -46 + kaku);
-    _c->dS(62, 1 + kaku);
-    _c->dS(89, -45 + kaku);
-    _c->dS(77, -5 + kaku);
-    
+    for(int i = 0; i<3; i++){
+        _c->dC(200, kaku);
+        _c->dS(300,  kaku);
+        _c->dC(80,45 +kaku );
+        _c->dS(50, 45 +kaku);
+        _c->dS(80, -90 + kaku);
+        _c->dS(90, kaku);
+        _c->dS(90, 90 + kaku);
+        _c->dS(200, kaku);
+    }
 }
 
-// カクカク
+// 平地ジャンプ台3
 void CourceManager::cPtn11(CourceMaker* _c){
-    setComment("c11",_c);
+//    setComment("c11",_c);
     auto kaku = 0;
     _c->dC(200, kaku);
-    _c->dS(67, -46 + kaku);
-    _c->dS(54, -7 + kaku);
-    _c->dS(90, -40 + kaku);
-    _c->dS(100, -1 + kaku);
-    _c->dS(100, -36 + kaku);
-    _c->dS(72, 3 + kaku);
-    _c->dS(61, -53 + kaku);
-    _c->dS(78, -21 + kaku);
-    _c->dS(82, -59 + kaku);
-    _c->dS(62, -6 + kaku);
-    _c->dS(80, -54 + kaku);
-    _c->dS(86, -7 + kaku);
-    _c->dS(99, -38 + kaku);
-    _c->dS(64, -8 + kaku);
-    _c->dS(88, -54 + kaku);
-    _c->dS(98, -17 + kaku);
-    _c->dS(94, -51 + kaku);
-    _c->dS(75, 2 + kaku);
-    _c->dS(78, -36 + kaku);
-    _c->dS(53, -3 + kaku);
-    
+    for(int i = 0; i<3; i++){
+        _c->dC(100, -65 + kaku);
+        _c->dC(200, kaku);
+        _c->dS(50,  kaku);
+        _c->dC(30,45 +kaku );
+        _c->dS(50, 45 +kaku);
+        _c->dS(50, kaku);
+        _c->dS(30, 90 +kaku);
+        _c->dS(30, kaku);
+    }
 }
 
-// カクカク
+// 平地ジャンプ台4
 void CourceManager::cPtn12(CourceMaker* _c){
-    setComment("c12",_c);
-    auto kaku = -7;
-    _c->dC(200, kaku);
-    _c->dS(169, -30 + kaku);
-    _c->dS(166, 5 + kaku);
-    _c->dS(168, -31 + kaku);
-    _c->dS(189, 10 + kaku);
-    _c->dS(156, -22 + kaku);
-    _c->dS(165, 15 + kaku);
-    _c->dS(184, -46 + kaku);
-    _c->dS(150, 8 + kaku);
-    _c->dS(194, -56 + kaku);
-    _c->dS(182, 1 + kaku);
-    _c->dS(198, -48 + kaku);
-    _c->dS(151, 2 + kaku);
-    _c->dS(166, -56 + kaku);
-    _c->dS(197, -5 + kaku);
-    _c->dS(158, -42 + kaku);
-    _c->dS(200, 2 + kaku);
-    _c->dS(154, -42 + kaku);
-    _c->dS(199, -9 + kaku);
-    _c->dS(176, -59 + kaku);
-    _c->dS(190, -12 + kaku);
-    
+    //    setComment("c12",_c);
+    auto kaku = -15;
+    for(int i = 0; i<3; i++){
+        _c->dC(200, kaku);
+        _c->dS(300, kaku);
+        _c->dC(30,45 + kaku);
+        _c->dS(50, 45 + kaku);
+        _c->dS(60, -90);
+        _c->dS(90, 0);
+        _c->dS(90, 90);
+        _c->dS(200, kaku);
+    }
 }
 
-// カクカク
+// 平地ジャンプ台5
 void CourceManager::cPtn13(CourceMaker* _c){
-    setComment("c13",_c);
+    //    setComment("c13",_c);
     auto kaku = 0;
-    _c->dC(200, kaku);
-    _c->dS(184, -49 + kaku);
-    _c->dS(188, -9 + kaku);
-    _c->dS(196, -45 + kaku);
-    _c->dS(179, 5 + kaku);
-    _c->dS(163, -56 + kaku);
-    _c->dS(197, 14 + kaku);
-    _c->dS(150, -59 + kaku);
-    _c->dS(180, 4 + kaku);
-    _c->dS(163, -28 + kaku);
-    _c->dS(194, 7 + kaku);
-    _c->dS(155, -59 + kaku);
-    _c->dS(152, -20 + kaku);
-    _c->dS(190, -51 + kaku);
-    _c->dS(196, 4 + kaku);
-    _c->dS(159, -35 + kaku);
-    _c->dS(200, -1 + kaku);
-    _c->dS(180, -39 + kaku);
-    _c->dS(198, -3 + kaku);
-    _c->dS(175, -49 + kaku);
-    _c->dS(167, -17 + kaku);
-    
+//    _c->dC(200, kaku);
+    for(int i = 0; i<3; i++){
+        _c->dC(100, -65 + kaku);
+        _c->dC(200, kaku);
+        _c->dS(50,  kaku);
+        _c->dC(30,45 +kaku );
+        _c->dS(50, 45 +kaku);
+        _c->dS(50, kaku);
+        _c->dS(30, 90 +kaku);
+        _c->dS(30, kaku);
+    }
 }
 
-// カクカクと波波
+// 自然な激しい坂道1
 void CourceManager::cPtn14(CourceMaker* _c){
-    setComment("c14",_c);
+//    setComment("c14",_c);
     auto kaku = 0;
     _c->dC(200, kaku);
     _c->dS(82, -33 + kaku);
@@ -2383,65 +2353,9 @@ void CourceManager::cPtn14(CourceMaker* _c){
     
 }
 
-// カクカクと波波
+// 自然な激しい坂道2
 void CourceManager::cPtn15(CourceMaker* _c){
-    setComment("c15",_c);
-    auto kaku = 0;
-    _c->dC(200, kaku);
-    _c->dC(97, -47 + kaku);
-    _c->dC(88, 6 + kaku);
-    _c->dC(61, -47 + kaku);
-    _c->dS(77, 7 + kaku);
-    _c->dS(95, -30 + kaku);
-    _c->dS(92, 2 + kaku);
-    _c->dS(71, -59 + kaku);
-    _c->dC(89, -13 + kaku);
-    _c->dS(58, -50 + kaku);
-    _c->dS(63, -19 + kaku);
-    _c->dS(94, -59 + kaku);
-    _c->dS(55, -20 + kaku);
-    _c->dS(100, -54 + kaku);
-    _c->dC(156, -20 + kaku);
-    _c->dC(141, -56 + kaku);
-    _c->dC(103, -9 + kaku);
-    _c->dC(76, -59 + kaku);
-    _c->dS(71, -17 + kaku);
-    _c->dC(132, -55 + kaku);
-    _c->dC(47, 12 + kaku);
-    
-}
-
-// カクカクと波波
-void CourceManager::cPtn16(CourceMaker* _c){
-    setComment("c16",_c);
-    auto kaku = 0;
-    _c->dC(200, kaku);
-    _c->dS(69, -58 + kaku);
-    _c->dS(66, -25 + kaku);
-    _c->dC(120, -57 + kaku);
-    _c->dS(97, 5 + kaku);
-    _c->dS(72, -58 + kaku);
-    _c->dS(81, 4 + kaku);
-    _c->dS(92, -56 + kaku);
-    _c->dC(90, -14 + kaku);
-    _c->dS(62, -50 + kaku);
-    _c->dC(75, -3 + kaku);
-    _c->dS(77, -54 + kaku);
-    _c->dS(89, 5 + kaku);
-    _c->dS(76, -59 + kaku);
-    _c->dC(49, 4 + kaku);
-    _c->dS(66, -27 + kaku);
-    _c->dC(112, 6 + kaku);
-    _c->dC(109, -29 + kaku);
-    _c->dC(134, 9 + kaku);
-    _c->dS(51, -38 + kaku);
-    _c->dC(121, -5 + kaku);
-    
-}
-
-// カクカクと波波
-void CourceManager::cPtn17(CourceMaker* _c){
-    setComment("c17",_c);
+//    setComment("c15",_c);
     auto kaku = 0;
     _c->dC(200, kaku);
     _c->dC(77, -53 + kaku);
@@ -2464,109 +2378,78 @@ void CourceManager::cPtn17(CourceMaker* _c){
     _c->dS(64, 1 + kaku);
     _c->dC(133, -35 + kaku);
     _c->dC(109, 12 + kaku);
-    
 }
 
-// カクカクと波波
-void CourceManager::cPtn18(CourceMaker* _c){
-    setComment("c18",_c);
-    auto kaku = -7;
-    _c->dC(200, kaku);
-    _c->dS(100, -35 + kaku);
-    _c->dS(54, 3 + kaku);
-    _c->dS(100, -29 + kaku);
-    _c->dC(140, 8 + kaku);
-    _c->dC(114, -27 + kaku);
-    _c->dC(89, 7 + kaku);
-    _c->dC(69, -45 + kaku);
-    _c->dC(108, 7 + kaku);
-    _c->dS(75, -28 + kaku);
-    _c->dS(91, 11 + kaku);
-    _c->dS(65, -23 + kaku);
-    _c->dC(138, 8 + kaku);
-    _c->dC(114, -41 + kaku);
-    _c->dC(83, 14 + kaku);
-    _c->dS(77, -37 + kaku);
-    _c->dC(148, -1 + kaku);
-    _c->dC(95, -43 + kaku);
-    _c->dS(54, -4 + kaku);
-    _c->dC(71, -56 + kaku);
-    _c->dC(63, 8 + kaku);
-    
-}
-
-// カクカクと波波
-void CourceManager::cPtn19(CourceMaker* _c){
-    setComment("c19",_c);
-    auto kaku = -6;
-    _c->dC(200, kaku);
-    _c->dC(134, -41 + kaku);
-    _c->dS(50, 2 + kaku);
-    _c->dS(71, -46 + kaku);
-    _c->dS(76, -12 + kaku);
-    _c->dC(185, -42 + kaku);
-    _c->dC(177, -11 + kaku);
-    _c->dC(156, -47 + kaku);
-    _c->dC(81, 3 + kaku);
-    _c->dC(140, -30 + kaku);
-    _c->dC(157, 6 + kaku);
-    _c->dS(82, -45 + kaku);
-    _c->dS(54, 9 + kaku);
-    _c->dS(90, -21 + kaku);
-    _c->dS(52, 13 + kaku);
-    _c->dC(171, -17 + kaku);
-    _c->dC(139, 13 + kaku);
-    _c->dS(85, -19 + kaku);
-    _c->dS(74, 14 + kaku);
-    _c->dC(104, -25 + kaku);
-    _c->dC(108, 11 + kaku);
-    
-}
-
-// 波波と凸
-void CourceManager::cPtn20(CourceMaker* _c){
-    setComment("c20",_c);
+// バンプトラック1
+void CourceManager::cPtn16(CourceMaker* _c){
+//    setComment("c16",_c);
     auto kaku = 0;
-    _c->dC(200, kaku);
-    int bufKaku = 0;
-    _c->dC(151, -31 + kaku);
-    _c->dC(90, 14 + kaku);
-    _c->dC(100, -41 + kaku);
+    auto kaku1 = -45;
+    auto kaku2 = 45;
     
-    bufKaku = -41 + kaku;
-    _c->dS(100,bufKaku);
-    _c->dS(0,90 + bufKaku);
-    _c->dC(10,-90 + bufKaku);
-    _c->dS(0, bufKaku);
+    for(int i=0; i<10; i++){
+        _c->dC(120, kaku1 + kaku);
+        _c->dS(20, kaku1 + kaku);
+        _c->dC(80, kaku);
+        _c->dC(120, kaku2 + kaku);
+    }
+}
+
+// バンプトラック2
+void CourceManager::cPtn17(CourceMaker* _c){
+//    setComment("c17",_c);
+    auto kaku = 0;
+    auto kaku1 = -45;
+    auto kaku2 = 45;
     
-    _c->dC(170, -10 + kaku);
-    _c->dC(60, -60 + kaku);
-    _c->dC(72, 2 + kaku);
-    _c->dC(104, -49 + kaku);
-    
-    bufKaku = -49 + kaku;
-    _c->dS(100,bufKaku);
-    _c->dS(0,90 + bufKaku);
-    _c->dC(10,-90 + bufKaku);
-    _c->dS(0, bufKaku);
-    
-    _c->dC(71, 1 + kaku);
-    _c->dC(133, -35 + kaku);
-    _c->dC(84, 14 + kaku);
-    _c->dC(70, -53 + kaku);
-    
-    bufKaku = -53 + kaku;
-    _c->dS(100,bufKaku);
-    _c->dS(0,90 + bufKaku);
-    _c->dC(10,-90 + bufKaku);
-    _c->dS(0, bufKaku);
-    
-    _c->dC(94, -8 + kaku);
-    _c->dC(126, -41 + kaku);
-    _c->dC(115, 7 + kaku);
-    _c->dC(144, -32 + kaku);
-    _c->dC(127, 13 + kaku);
-    
+    for(int i=0; i<10; i++){
+        _c->dC(100, kaku1 + kaku);
+        _c->dS(20, kaku1 + kaku);
+        _c->dC(60, kaku);
+        _c->dC(100, kaku2 + kaku);
+    }
+}
+
+// 階段下り1
+void CourceManager::cPtn18(CourceMaker* _c){
+//    setComment("c18",_c);
+    auto kaku = 0;
+    auto kaku1 = -90;
+    auto kaku2 = 45;
+    _c->dC(100, kaku);
+    for(int i=0; i<10; i++){
+        _c->dS(100, kaku);
+        _c->dS(40, kaku1 + kaku);
+    }
+}
+
+// 階段下り2
+void CourceManager::cPtn19(CourceMaker* _c){
+//    setComment("c19",_c);
+    auto kaku = 0;
+    auto kaku1 = -90;
+    auto kaku2 = 45;
+    _c->dC(100, kaku);
+    for(int i=0; i<10; i++){
+        _c->dS(100, kaku);
+        _c->dS(10, kaku2 + kaku);
+        _c->dS(80, kaku1 + kaku);
+    }
+}
+
+// 階段下り3
+void CourceManager::cPtn20(CourceMaker* _c){
+//    setComment("c20",_c);
+    auto kaku = 0;
+    auto kaku1 = -50;
+    auto kaku2 = 45;
+    _c->dC(100, kaku);
+    for(int i=0; i<8; i++){
+        _c->dS(100, kaku);
+        _c->dS(30, kaku1 + kaku);
+        _c->dS(0, -90 + kaku);
+        _c->dC(100, kaku2 + kaku);
+    }
 }
 
 // 波波と凸
@@ -2909,51 +2792,19 @@ void CourceManager::cPtn29(CourceMaker* _c){
     
 }
 
-// 細かい段差
+// バンプトラック3
 void CourceManager::cPtn30(CourceMaker* _c){
     setComment("c30",_c);
-    auto kaku = -5;
-    _c->dC(200, kaku);
-    _c->dS(44, -67 + kaku);
-    _c->dS(39, 0 + kaku);
-    _c->dS(32, 45 + kaku);
-    _c->dS(30, 0 + kaku);
-    _c->dS(50, -51 + kaku);
-    _c->dS(47, 0 + kaku);
-    _c->dS(31, 69 + kaku);
-    _c->dS(30, 0 + kaku);
-    _c->dS(41, -72 + kaku);
-    _c->dS(48, 0 + kaku);
-    _c->dS(32, 8 + kaku);
-    _c->dS(35, 0 + kaku);
-    _c->dS(41, -90 + kaku);
-    _c->dS(34, 0 + kaku);
-    _c->dS(46, 48 + kaku);
-    _c->dS(32, 0 + kaku);
-    _c->dS(34, -28 + kaku);
-    _c->dS(39, 0 + kaku);
-    _c->dS(50, 61 + kaku);
-    _c->dS(37, 0 + kaku);
-    _c->dS(43, -60 + kaku);
-    _c->dS(37, 0 + kaku);
-    _c->dS(32, 1 + kaku);
-    _c->dS(47, 0 + kaku);
-    _c->dS(30, -64 + kaku);
-    _c->dS(39, 0 + kaku);
-    _c->dS(32, 8 + kaku);
-    _c->dS(31, 0 + kaku);
-    _c->dS(44, -83 + kaku);
-    _c->dS(43, 0 + kaku);
-    _c->dS(42, 68 + kaku);
-    _c->dS(43, 0 + kaku);
-    _c->dS(45, -81 + kaku);
-    _c->dS(35, 0 + kaku);
-    _c->dS(46, 34 + kaku);
-    _c->dS(34, 0 + kaku);
-    _c->dS(41, -37 + kaku);
-    _c->dS(36, 0 + kaku);
-    _c->dS(34, 45 + kaku);
-    _c->dS(37, 0 + kaku);
+    auto kaku = 0;
+    auto kaku1 = -45;
+    auto kaku2 = 45;
+    
+    for(int i=0; i<10; i++){
+        _c->dC(100, kaku1 + kaku);
+        _c->dS(20, kaku1 + kaku);
+        _c->dC(60, kaku);
+        _c->dC(100, kaku2 + kaku);
+    }
     
 }
 
