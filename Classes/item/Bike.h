@@ -108,7 +108,7 @@ public:
     int isReadyJumpKeepCnt_ = 0;
     bool lift(float lvl);// 使用しない
     void werry(float lvl);
-    void push(float lvl);
+    bool push(float lvl);
     void dush(float lvl);
     void stop();
 

@@ -58,17 +58,17 @@ bool Bike::init() {
     getSceneChasePt()->setGlobalZOrder(OBJ_LAYER_BUTTOM);
     
     // デバックの時だけ、コメントアウトを外す。
-//    setDebugPt(Sprite::create("dot.png"));
-//    getDebugPt()->setGlobalZOrder(OBJ_LAYER_TOP+1);
-//    addChild(getDebugPt());
-//    setParentSprite(Sprite::create("dot2.png"));
-//    getParentSprite()->setGlobalZOrder(OBJ_LAYER_TOP);
-//    addChild(getParentSprite());
-//    setBikeDebug(Label::createWithTTF("bikeState", "irohamaru.ttf", 10));
-//    getBikeDebug()->setTextColor(Color4B::BLACK);
-//    getBikeDebug()->setGlobalZOrder(OBJ_LAYER_TOP+2);
-//    getBikeDebug()->setPosition(Vec2(0,50));
-//    addChild(getBikeDebug());
+    setDebugPt(Sprite::create("dot.png"));
+    getDebugPt()->setGlobalZOrder(OBJ_LAYER_TOP+1);
+    addChild(getDebugPt());
+    setParentSprite(Sprite::create("dot2.png"));
+    getParentSprite()->setGlobalZOrder(OBJ_LAYER_TOP);
+    addChild(getParentSprite());
+    setBikeDebug(Label::createWithTTF("bikeState", "irohamaru.ttf", 10));
+    getBikeDebug()->setTextColor(Color4B::BLACK);
+    getBikeDebug()->setGlobalZOrder(OBJ_LAYER_TOP+2);
+    getBikeDebug()->setPosition(Vec2(0,50));
+    addChild(getBikeDebug());
     
     return true;
 }
@@ -224,9 +224,15 @@ void Bike::swaip(Vec2 pt){
     //    dV = getCalc()->cordinaneX(dir_, dV);
     weightPt+=dV;
     if(weightPt.x > 4 * riderActionSpan){
+        if (weightPt.y>=-riderActionSpan){
+            chasePt.x += (4 * riderActionSpan - weightPt.x);
+        }
         weightPt.x =  4 * riderActionSpan;
     }
     if(weightPt.x < - 4 * riderActionSpan){
+        if (weightPt.y>=-riderActionSpan){
+            chasePt.x -= (4 * riderActionSpan + weightPt.x);
+        }
         weightPt.x = - 4 * riderActionSpan;
     }
     if(weightPt.y > 4 * riderActionSpan){
@@ -356,7 +362,7 @@ void Bike::_judeAction(float dt){
     }
     
     // 前後のウイリー
-    if( weightPt.y >= -riderActionSpan){
+    if(weightPt.y >= -riderActionSpan){
         if(noml_.x > riderActionSpan/2){
             werry(-noml_.x);
             if(getBikeDebug()){
@@ -380,56 +386,22 @@ void Bike::_judeAction(float dt){
         }
     }
     
-    // 後のウイリー
-    if( weightPt.x < -riderActionSpan*2){
-        if(noml_.y > riderActionSpan/2 && !rWheelTouched){
-            werry(-noml_.y);
-            if(getBikeDebug()){
-                getBikeDebug()->setString("werry_r_f");
+    // push
+    if(rWheelTouched && weightPt.x < -riderActionSpan*2){
+        if(noml_.y < -riderActionSpan/2){
+            if(push(-noml_.y)){
+                if(getBikeDebug()){
+                    getBikeDebug()->setString("push");
+                }
+                chasePt.set(weightPt);
+                if(getParentSprite()){
+                    getParentSprite()->setPosition(chasePt + bikeCenterPt);
+                }
+                return;
             }
-            chasePt.set(weightPt);
-            if(getParentSprite()){
-                getParentSprite()->setPosition(chasePt + bikeCenterPt);
-            }
-            return;
-        }else if(noml_.y < -riderActionSpan/2){
-            push(-noml_.y);
-            if(getBikeDebug()){
-                getBikeDebug()->setString("werry_r_r");
-            }
-            chasePt.set(weightPt);
-            if(getParentSprite()){
-                getParentSprite()->setPosition(chasePt + bikeCenterPt);
-            }
-            return;
         }
     }
-    
-    // 前のウイリー
-    if( weightPt.x > riderActionSpan*2 ){
-        if(noml_.y > riderActionSpan/2 && !fWheelTouched){
-            werry(noml_.y);
-            if(getBikeDebug()){
-                getBikeDebug()->setString("werry_f_r");
-            }
-            chasePt.set(weightPt);
-            if(getParentSprite()){
-                getParentSprite()->setPosition(chasePt + bikeCenterPt);
-            }
-            return;
-        }else if(noml_.y < -riderActionSpan/2){
-            werry(noml_.y);
-            if(getBikeDebug()){
-                getBikeDebug()->setString("werry_f_f");
-            }
-            chasePt.set(weightPt);
-            if(getParentSprite()){
-                getParentSprite()->setPosition(chasePt + bikeCenterPt);
-            }
-            return;
-        }
-    }
-        
+            
     // dush
     if( weightPt.y < -riderActionSpan * 2){
         if(rWheelTouched && fWheelTouched){
@@ -535,34 +507,22 @@ void Bike::werry(float lvl){
     
 }
 
-void Bike::push(float lvl){
+bool Bike::push(float lvl){
     Vec2 rfpt_ = getFwheel()->getPosition()-_rWheel->getPosition();
     Vec2 dirPt_ = getCalc()->rotByRad(rfpt_, -M_PI/2);
     Vec2 powPt = getCalc()->chgLength(dirPt_, weeryPow * -lvl) + centerObjRotVelo;
     if(powPt.length()>maxRotSpeed){
         powPt = getCalc()->chgLength(powPt, maxRotSpeed);
     }
-    if(!fWheelTouched && !rWheelTouched){
-        powPt *= 0.8; // 空中回転の場合は、回転しすぎるので、半減させる。
-    }
-    
-    if(!rWheelTouched){
-        getFwheel()->getPhysicsBody()->setVelocity(centerObjVelo + powPt);
-        getRwheel()->getPhysicsBody()->setVelocity(centerObjVelo - powPt);
-    }else{
-        Vec2 rWheelTouchPt_ = rWheelTouchPt.y < 0 ? -rWheelTouchPt : rWheelTouchPt;
-        Vec2 pushPt = getCalc()->rotByRad(rWheelTouchPt_, -M_PI/2);
-        pushPt = getCalc()->chgLength(pushPt, powPt.length());
-        auto rad_ = getCalc()->nomlRad(pushPt);
-        if(rad_>1.5 * M_PI && rad_<1.8 * M_PI){
-            // 後輪タッチしている場合は、下方向にスピードを加える。(push動作対応）
-            getFwheel()->getPhysicsBody()->setVelocity(centerObjVelo + powPt + pushPt);
-            getRwheel()->getPhysicsBody()->setVelocity(centerObjVelo - powPt + pushPt);
-        }else{
-            // 後輪タッチしている場合は、した方向にスピードを加える。(push動作対応）
-            getFwheel()->getPhysicsBody()->setVelocity(centerObjVelo + powPt);
-            getRwheel()->getPhysicsBody()->setVelocity(centerObjVelo - powPt);
-        }
+    Vec2 rWheelTouchPt_ = rWheelTouchPt.y < 0 ? -rWheelTouchPt : rWheelTouchPt;
+    Vec2 pushPt = getCalc()->rotByRad(rWheelTouchPt_, -M_PI/2);
+    pushPt = getCalc()->chgLength(pushPt, powPt.length());
+    auto rad_ = getCalc()->nomlRad(pushPt);
+    if(rad_>1.5 * M_PI && rad_<1.8 * M_PI){
+        // 後輪タッチしている場合は、下方向にスピードを加える。(push動作対応）
+        getFwheel()->getPhysicsBody()->setVelocity(centerObjVelo + powPt + pushPt);
+        getRwheel()->getPhysicsBody()->setVelocity(centerObjVelo - powPt + pushPt);
+        return true;
     }
 }
 
