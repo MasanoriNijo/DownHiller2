@@ -240,10 +240,11 @@ void Bike::swaip(Vec2 pt){
     }
     if(weightPt.y <= - 4 * riderActionSpan){
         weightPt.y = - 4 * riderActionSpan;
-        if(fWheelTouched || rWheelTouched){
-            isReadyJump = true;
+//        if(fWheelTouched || rWheelTouched){
+//            isReadyJump = true;
+//            isReadyJumpKeepCnt_=isReadyJumpKeepCnt;
 //             getRider()->setScale(1.3);
-        }
+//        }
     }
 
     touchPt1.set(pt);
@@ -296,11 +297,11 @@ void Bike::_bikeBehaviorControl(){
 void Bike::_judeAction(float dt){
     
     if(fWheelTouched || rWheelTouched){
-        if(weightPt.y == - 4 * riderActionSpan){
+//        if(weightPt.y == - 4 * riderActionSpan){
             isReadyJump = true;
 //            getRider()->setScale(1.3);
             isReadyJumpKeepCnt_=isReadyJumpKeepCnt;
-        }
+//        }
     } else {
         isReadyJumpKeepCnt_ --;
         if(isReadyJumpKeepCnt_<0){
@@ -325,17 +326,16 @@ void Bike::_judeAction(float dt){
         }
         
         Vec2 weightDict = weightPt-weightPt_before;
-        weightPt_before.set(weightPt);
-        
         if(weightDict != Vec2::ZERO){
             float drad = getCalc()->diffRadA2B(weightDict_before, weightDict);
             weightDict_before.set(weightDict);
-            if(abs(drad)>M_PI/2){
+            if(abs(drad)>M_PI/2 || weightPt_before.x == -4 * riderActionSpan || weightPt_before.x == 4 * riderActionSpan){
                 chasePt.set(weightPt);
+                weightPt_before.set(weightPt);
                 return;
             }
         }
-        
+        weightPt_before.set(weightPt);
         getCalc()->chasePt(weightPt , chasePt, chaseVelo, dt);
         if(getParentSprite()){
             getParentSprite()->setPosition(chasePt + bikeCenterPt);
@@ -344,8 +344,8 @@ void Bike::_judeAction(float dt){
     }
     
     // ジャンプ
-    if(isReadyJump && (fWheelTouched || rWheelTouched)){
-        if(noml_.y > riderActionSpan * 4){
+    if(fWheelTouched || rWheelTouched || isReadyJump){
+        if(noml_.y > riderActionSpan * 1){
             float dRadX = 0;
             if(noml_.x<-riderActionSpan){
                 dRadX = 10 * M_PI/180;
@@ -417,17 +417,18 @@ void Bike::_judeAction(float dt){
     }
     
     Vec2 weightDict = weightPt-weightPt_before;
-    weightPt_before.set(weightPt);
     
     if(weightDict != Vec2::ZERO){
         float drad = getCalc()->diffRadA2B(weightDict_before, weightDict);
         weightDict_before.set(weightDict);
-        if(abs(drad)>M_PI/2){
+        if(abs(drad)>M_PI/2 || weightPt_before.x == -4 * riderActionSpan || weightPt_before.x == 4 * riderActionSpan){
             chasePt.set(weightPt);
+            weightPt_before.set(weightPt);
             return;
         }
     }
-    
+    weightPt_before.set(weightPt);
+
     getCalc()->chasePt(weightPt , chasePt, chaseVelo, dt);
     if(getParentSprite()){
         getParentSprite()->setPosition(chasePt + bikeCenterPt);
@@ -524,6 +525,7 @@ bool Bike::push(float lvl){
         getRwheel()->getPhysicsBody()->setVelocity(centerObjVelo - powPt + pushPt);
         return true;
     }
+    return false;
 }
 
 void Bike::dush(float lvl){
