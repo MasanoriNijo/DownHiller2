@@ -172,7 +172,6 @@
 		304DD07D28428F7E00AF0334 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 304DD07C28428F7D00AF0334 /* libiconv.tbd */; };
 		304DD0922843B6B800AF0334 /* irohamaru.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 304DD0912843B6B800AF0334 /* irohamaru.ttf */; };
 		304DD0952843C25B00AF0334 /* kirabon.plist in Resources */ = {isa = PBXBuildFile; fileRef = 304DD0942843C25B00AF0334 /* kirabon.plist */; };
-		304DD0AD2843C7CD00AF0334 /* btnon.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 304DD0AC2843C7CD00AF0334 /* btnon.mp3 */; };
 		304DD0B42843CE0800AF0334 /* FstScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304DD0B22843CE0800AF0334 /* FstScene.cpp */; };
 		304DD0B92843D08F00AF0334 /* TitleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304DD0B72843D08F00AF0334 /* TitleScene.cpp */; };
 		304DD0BA2843D08F00AF0334 /* TestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304DD0B82843D08F00AF0334 /* TestScene.cpp */; };
@@ -185,8 +184,6 @@
 		306A83F928747E910059C257 /* StagePrm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 306A83F728747E720059C257 /* StagePrm.cpp */; };
 		306A84062883A2840059C257 /* button05.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 306A84022883A2830059C257 /* button05.mp3 */; };
 		306A84072883A2840059C257 /* ashidejump.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 306A84032883A2830059C257 /* ashidejump.mp3 */; };
-		306A84082883A2840059C257 /* BGM124-110921-tamashiinopistol-wav-nointro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 306A84042883A2840059C257 /* BGM124-110921-tamashiinopistol-wav-nointro.mp3 */; };
-		306A84092883A2840059C257 /* ME017-100125-logo02-wav.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 306A84052883A2840059C257 /* ME017-100125-logo02-wav.mp3 */; };
 		3087C151285EFD5000AD0F14 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3087C150285EFD5000AD0F14 /* SwiftUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3087C1542862078100AD0F14 /* mark.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3087C152286206DE00AD0F14 /* mark.png */; };
 		3087C1572864B25300AD0F14 /* Flg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3087C1552864B25300AD0F14 /* Flg.cpp */; };
@@ -200,7 +197,6 @@
 		309B0D25284D05D90091801C /* Sprite2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 309B0D24284D05D90091801C /* Sprite2.cpp */; };
 		309EC664C42A4D32AB847DD3 /* DetourNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94FB09E9E0E6484C86FC4A80 /* DetourNode.cpp */; };
 		30A1AE8428CC5D080043FDEF /* BGM097-100811-shiaikaishida-mp3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 30A1AE8028CC5D080043FDEF /* BGM097-100811-shiaikaishida-mp3.mp3 */; };
-		30A1AE8528CC5D080043FDEF /* open.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 30A1AE8128CC5D080043FDEF /* open.mp3 */; };
 		30A1AE8628CC5D080043FDEF /* select01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 30A1AE8228CC5D080043FDEF /* select01.mp3 */; };
 		30A1AE8728CC5D080043FDEF /* select02.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 30A1AE8328CC5D080043FDEF /* select02.mp3 */; };
 		30A1AE8928CDF82B0043FDEF /* hit_noml.wav in Resources */ = {isa = PBXBuildFile; fileRef = 30A1AE8828CDF82A0043FDEF /* hit_noml.wav */; };
@@ -1358,7 +1354,6 @@
 		304DD07C28428F7D00AF0334 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		304DD0912843B6B800AF0334 /* irohamaru.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = irohamaru.ttf; path = Resources/fonts/irohamaru.ttf; sourceTree = SOURCE_ROOT; };
 		304DD0942843C25B00AF0334 /* kirabon.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = kirabon.plist; path = Resources/particles/kirabon.plist; sourceTree = SOURCE_ROOT; };
-		304DD0AC2843C7CD00AF0334 /* btnon.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = btnon.mp3; path = Resources/sounds/btnon.mp3; sourceTree = SOURCE_ROOT; };
 		304DD0B22843CE0800AF0334 /* FstScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FstScene.cpp; path = Classes/scene/FstScene.cpp; sourceTree = SOURCE_ROOT; };
 		304DD0B32843CE0800AF0334 /* FstScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FstScene.h; path = Classes/scene/FstScene.h; sourceTree = SOURCE_ROOT; };
 		304DD0B52843D08E00AF0334 /* TestScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestScene.h; path = Classes/scene/TestScene.h; sourceTree = SOURCE_ROOT; };
@@ -1383,8 +1378,6 @@
 		306A83F728747E720059C257 /* StagePrm.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = StagePrm.cpp; path = Classes/util/StagePrm.cpp; sourceTree = SOURCE_ROOT; };
 		306A84022883A2830059C257 /* button05.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = button05.mp3; sourceTree = "<group>"; };
 		306A84032883A2830059C257 /* ashidejump.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ashidejump.mp3; sourceTree = "<group>"; };
-		306A84042883A2840059C257 /* BGM124-110921-tamashiinopistol-wav-nointro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "BGM124-110921-tamashiinopistol-wav-nointro.mp3"; sourceTree = "<group>"; };
-		306A84052883A2840059C257 /* ME017-100125-logo02-wav.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "ME017-100125-logo02-wav.mp3"; sourceTree = "<group>"; };
 		3077803B8D5646769C867A5B /* DetourObstacleAvoidance.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = DetourObstacleAvoidance.cpp; path = cocos2d/external/recast/DetourCrowd/DetourObstacleAvoidance.cpp; sourceTree = SOURCE_ROOT; };
 		3087C150285EFD5000AD0F14 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		3087C152286206DE00AD0F14 /* mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mark.png; path = Resources/images/mark.png; sourceTree = SOURCE_ROOT; };
@@ -1408,7 +1401,6 @@
 		309B0D23284D05D80091801C /* Sprite2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sprite2.h; sourceTree = "<group>"; };
 		309B0D24284D05D90091801C /* Sprite2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite2.cpp; sourceTree = "<group>"; };
 		30A1AE8028CC5D080043FDEF /* BGM097-100811-shiaikaishida-mp3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "BGM097-100811-shiaikaishida-mp3.mp3"; sourceTree = "<group>"; };
-		30A1AE8128CC5D080043FDEF /* open.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = open.mp3; sourceTree = "<group>"; };
 		30A1AE8228CC5D080043FDEF /* select01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = select01.mp3; sourceTree = "<group>"; };
 		30A1AE8328CC5D080043FDEF /* select02.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = select02.mp3; sourceTree = "<group>"; };
 		30A1AE8828CDF82A0043FDEF /* hit_noml.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hit_noml.wav; sourceTree = "<group>"; };
@@ -3446,14 +3438,10 @@
 				30A1AE8A28CDFBE70043FDEF /* ME010-090610-fanfare01-wav.wav */,
 				30A1AE8828CDF82A0043FDEF /* hit_noml.wav */,
 				30A1AE8028CC5D080043FDEF /* BGM097-100811-shiaikaishida-mp3.mp3 */,
-				30A1AE8128CC5D080043FDEF /* open.mp3 */,
 				30A1AE8228CC5D080043FDEF /* select01.mp3 */,
 				30A1AE8328CC5D080043FDEF /* select02.mp3 */,
 				306A84032883A2830059C257 /* ashidejump.mp3 */,
-				306A84042883A2840059C257 /* BGM124-110921-tamashiinopistol-wav-nointro.mp3 */,
 				306A84022883A2830059C257 /* button05.mp3 */,
-				306A84052883A2840059C257 /* ME017-100125-logo02-wav.mp3 */,
-				304DD0AC2843C7CD00AF0334 /* btnon.mp3 */,
 			);
 			name = sounds;
 			path = Resources/sounds;
@@ -5156,12 +5144,8 @@
 				30A1AE8F28CE019D0043FDEF /* ME023-100611-loss03-wav.wav in Resources */,
 				304DD0952843C25B00AF0334 /* kirabon.plist in Resources */,
 				30A1AE8928CDF82B0043FDEF /* hit_noml.wav in Resources */,
-				306A84082883A2840059C257 /* BGM124-110921-tamashiinopistol-wav-nointro.mp3 in Resources */,
 				30A1AE8628CC5D080043FDEF /* select01.mp3 in Resources */,
 				13C698B4E7004DE3A17AF15F /* Images.xcassets in Resources */,
-				30A1AE8528CC5D080043FDEF /* open.mp3 in Resources */,
-				306A84092883A2840059C257 /* ME017-100125-logo02-wav.mp3 in Resources */,
-				304DD0AD2843C7CD00AF0334 /* btnon.mp3 in Resources */,
 				306A84062883A2840059C257 /* button05.mp3 in Resources */,
 				30A1AE8428CC5D080043FDEF /* BGM097-100811-shiaikaishida-mp3.mp3 in Resources */,
 				30A1AE8728CC5D080043FDEF /* select02.mp3 in Resources */,
