@@ -58,17 +58,17 @@ bool Bike::init() {
     getSceneChasePt()->setGlobalZOrder(OBJ_LAYER_BUTTOM);
     
     // デバックの時だけ、コメントアウトを外す。
-    setDebugPt(Sprite::create("dot.png"));
-    getDebugPt()->setGlobalZOrder(OBJ_LAYER_TOP+1);
-    addChild(getDebugPt());
-    setParentSprite(Sprite::create("dot2.png"));
-    getParentSprite()->setGlobalZOrder(OBJ_LAYER_TOP);
-    addChild(getParentSprite());
-    setBikeDebug(Label::createWithTTF("bikeState", "irohamaru.ttf", 10));
-    getBikeDebug()->setTextColor(Color4B::BLACK);
-    getBikeDebug()->setGlobalZOrder(OBJ_LAYER_TOP+2);
-    getBikeDebug()->setPosition(Vec2(0,50));
-    addChild(getBikeDebug());
+//    setDebugPt(Sprite::create("dot.png"));
+//    getDebugPt()->setGlobalZOrder(OBJ_LAYER_TOP+1);
+//    addChild(getDebugPt());
+//    setParentSprite(Sprite::create("dot2.png"));
+//    getParentSprite()->setGlobalZOrder(OBJ_LAYER_TOP);
+//    addChild(getParentSprite());
+//    setBikeDebug(Label::createWithTTF("bikeState", "irohamaru.ttf", 10));
+//    getBikeDebug()->setTextColor(Color4B::BLACK);
+//    getBikeDebug()->setGlobalZOrder(OBJ_LAYER_TOP+2);
+//    getBikeDebug()->setPosition(Vec2(0,50));
+//    addChild(getBikeDebug());
     
     return true;
 }
