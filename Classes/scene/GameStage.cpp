@@ -76,11 +76,11 @@ bool GameStage::init() {
     }else{
         maxStage = COURCE_SIZE;
     }
-                
+
     if(selStageNo < maxStage){
         nextStageNo++;
     }
-    
+
     // modal画面を作成する。
     // もう一度ボタン
     setBtn2(generateMenuItemSprite([this, selStageNo](Ref* ref){
@@ -88,9 +88,10 @@ bool GameStage::init() {
         int selStageNo = getCourceManager()->getStagePrm()->getStageNumber();
         stopBGM("");
         callSoundEffect(SOUND_BUTTON);
-        full_ad_cnt_ ++;
+        full_ad_cnt_ = UserDefault::getInstance()->getIntegerForKey(UDF_INT_AD_FULL_CNT, 0) + 1;
+        UserDefault::getInstance()->setIntegerForKey(UDF_INT_AD_FULL_CNT, full_ad_cnt_);
         if(full_ad_cnt_ >full_ad_cnt){
-            full_ad_cnt_ = 0;
+            UserDefault::getInstance()->setIntegerForKey(UDF_INT_AD_FULL_CNT, 0);
             showFullScreenAD();
         }
         transitonScene(GameStage::createScene());
@@ -102,19 +103,22 @@ bool GameStage::init() {
         }
         UserDefault::getInstance()->setIntegerForKey(UDF_INT_SELECTED_STAGE,nextStageNo);
         callSoundEffect(SOUND_BUTTON);
-        full_ad_cnt_ ++;
+        full_ad_cnt_ = UserDefault::getInstance()->getIntegerForKey(UDF_INT_AD_FULL_CNT, 0) + 1;
+        UserDefault::getInstance()->setIntegerForKey(UDF_INT_AD_FULL_CNT, full_ad_cnt_);
         if(full_ad_cnt_ >full_ad_cnt){
-            full_ad_cnt_ = 0;
+            UserDefault::getInstance()->setIntegerForKey(UDF_INT_AD_FULL_CNT, 0);
             showFullScreenAD();
         }
         transitonScene(GameStage::createScene());
     }, Size(1,1),nextStageNo<10 ? " 0" + std::to_string(nextStageNo) + " " : " " + std::to_string(nextStageNo) + " ", Color3B::WHITE, Color3B::YELLOW, false));
-    
+
     setBtn4(generateMenuItemSprite([this](Ref* ref){
         callSoundEffect(SOUND_BUTTON);
         UserDefault::getInstance()->setIntegerForKey(UDF_INT_GAME_MODE, GAME_MODE_COURCE);
+        full_ad_cnt_ = UserDefault::getInstance()->getIntegerForKey(UDF_INT_AD_FULL_CNT, 0) + 1;
+        UserDefault::getInstance()->setIntegerForKey(UDF_INT_AD_FULL_CNT, full_ad_cnt_);
         if(full_ad_cnt_ >full_ad_cnt){
-            full_ad_cnt_ = 0;
+            UserDefault::getInstance()->setIntegerForKey(UDF_INT_AD_FULL_CNT, 0);
             showFullScreenAD();
         }
         transitonScene(SelectScene::createScene());

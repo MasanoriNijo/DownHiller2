@@ -161,6 +161,7 @@ static const char * UDF_BOOL_DEBUG_STAGE = "debug_stage";
 static const char * UDF_INT_GAME_MODE = "game_mode";
 
 // for Android org/cocos2dx/cpp
+static const char * UDF_INT_AD_FULL_CNT = "ad_full_cnt";
 #define APP_ACTIVITY "org.cocos2dx.cpp.AppActivity"
 #define SET_BANNER "setImobileBanner"
 #define REMOVE_BANNER "removeImobileBanner"
