@@ -39,6 +39,10 @@ public:
     
     void update(float dt) override;
     void onEnterTransitionDidFinish() override;
+
+    // adテスト
+    int ad_cnt = 0;
+
 };
 
 #endif

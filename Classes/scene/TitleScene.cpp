@@ -46,13 +46,28 @@ bool TitleScene::init() {
     getColorChanger()->SetColor(TITLE_FUTI_COLOR_H, TITLE_FUTI_COLOR_S, TITLE_FUTI_COLOR_V);
     getGameTitle()->enableOutline(getColorChanger()->getColor4B(),1);
     mountNode(getGameTitle(), Vec2(winSize.width/2,winSize.height -160), OBJ_LAYER_TOP);
-    
-//    setStartBtn(generateMenuItemSprite([this](Ref* ref){
-//        stopBGM("");
-//        callSoundEffect(SOUND_BUTTON);
-//        UserDefault::getInstance()->setIntegerForKey(UDF_INT_GAME_MODE, GAME_MODE_STAGE);
-//        transitonScene(SelectScene::createScene());
-//    }, Size(1,1), L_BTN_START, Color3B::WHITE, Color3B::YELLOW, false));
+
+    // ADテスト
+    setTrainingBtn(generateMenuItemSprite([this](Ref* ref){
+        switch (ad_cnt) {
+            case 0:
+                showButtomAD();
+                ad_cnt ++;
+                break;
+            case 1:
+                stopButtomAD();
+                ad_cnt ++;
+                break;
+            case 2:
+                showFullScreenAD();
+                ad_cnt ++;
+                break;
+            case 3:
+                stopFullScreenAD();
+                ad_cnt = 0;
+                break;
+        }
+    }, Size(1,1), L_BTN_NEXT, Color3B::WHITE, Color3B::YELLOW, false));
 
     setStartBtn(generateMenuItemSprite([this](Ref* ref){
         stopBGM("");

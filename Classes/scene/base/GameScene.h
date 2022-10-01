@@ -106,6 +106,12 @@ public:
     // Getting a design size.
     float getDesignWidth();
     float getDesignHeight();
+
+    // 広告関連
+    void showButtomAD();
+    void stopButtomAD();
+    void showFullScreenAD();
+    void stopFullScreenAD();
     
 };
 #endif

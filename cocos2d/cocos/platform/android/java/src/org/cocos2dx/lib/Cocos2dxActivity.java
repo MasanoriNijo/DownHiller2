@@ -30,7 +30,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
-import android.graphics.PixelFormat;
 import android.media.AudioManager;
 import android.opengl.GLSurfaceView;
 import android.os.Build;
@@ -49,7 +48,6 @@ import org.cocos2dx.lib.Cocos2dxHelper.Cocos2dxHelperListener;
 import javax.microedition.khronos.egl.EGL10;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.egl.EGLDisplay;
-import javax.microedition.khronos.egl.EGLContext;
 
 public abstract class Cocos2dxActivity extends Activity implements Cocos2dxHelperListener {
     // ===========================================================
@@ -78,7 +76,7 @@ public abstract class Cocos2dxActivity extends Activity implements Cocos2dxHelpe
         return  mGLSurfaceView;
     }
 
-    public static Context getContext() {
+    public static Activity getContext() {
         return sContext;
     }
     
@@ -253,7 +251,7 @@ public abstract class Cocos2dxActivity extends Activity implements Cocos2dxHelpe
     }
 
 
-    protected ResizeLayout mFrameLayout = null;
+    protected static ResizeLayout mFrameLayout = null;
     // ===========================================================
     // Methods
     // ===========================================================

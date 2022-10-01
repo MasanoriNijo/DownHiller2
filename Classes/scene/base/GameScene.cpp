@@ -311,6 +311,24 @@ void GameScene::stopTime(){
 std::string GameScene::getTime(){
     return ST_FLOAT(tm_);
 }
+
+
+void GameScene::showButtomAD(){
+    cocos2d::JniHelper::callStaticVoidMethod(APP_ACTIVITY,SET_BANNER);
+}
+
+void GameScene::stopButtomAD(){
+    cocos2d::JniHelper::callStaticVoidMethod(APP_ACTIVITY,REMOVE_BANNER);
+}
+
+void GameScene::showFullScreenAD(){
+    cocos2d::JniHelper::callStaticVoidMethod(APP_ACTIVITY,SET_FULL);
+}
+
+void GameScene::stopFullScreenAD(){
+    cocos2d::JniHelper::callStaticVoidMethod(APP_ACTIVITY,REMOVE_FULL);
+}
+
 /** パラメータサンプル
  setBackColor(LayerColor::create());
  getBackColor();

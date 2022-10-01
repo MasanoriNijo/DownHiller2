@@ -160,4 +160,13 @@ static const char * UDF_INT_SELECTED_STAGE = "selected_stage";
 static const char * UDF_BOOL_DEBUG_STAGE = "debug_stage";
 static const char * UDF_INT_GAME_MODE = "game_mode";
 
+// for Android org/cocos2dx/cpp
+#define APP_ACTIVITY "org.cocos2dx.cpp.AppActivity"
+#define SET_BANNER "setImobileBanner"
+#define REMOVE_BANNER "removeImobileBanner"
+#define SET_FULL "setImobileFullScreen"
+#define REMOVE_FULL "removeImobileFullScreen"
+
+
+
 #endif

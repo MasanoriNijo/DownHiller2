@@ -24,29 +24,34 @@ THE SOFTWARE.
 ****************************************************************************/
 package org.cocos2dx.cpp;
 
-import android.os.Bundle;
-import org.cocos2dx.lib.Cocos2dxActivity;
 import android.os.Build;
+import android.os.Bundle;
 import android.view.Gravity;
 import android.view.WindowManager;
-import jp.co.imobile.sdkads.android.ImobileSdkAd;
 import android.view.WindowManager.LayoutParams;
 import android.widget.FrameLayout;
+
+import org.cocos2dx.lib.Cocos2dxActivity;
+
+import jp.co.imobile.sdkads.android.ImobileSdkAd;
 
 public class AppActivity extends Cocos2dxActivity {
 
     static final String IMOBILE_BANNER_PID = "34243";
     static final String IMOBILE_BANNER_MID = "461430";
     static final String IMOBILE_BANNER_SID = "1515544";
-    FrameLayout imobileBunnerLayout = null;
+    static FrameLayout imobileBunnerLayout = null;
 
     static final String IMOBILE_FULLSCREENAD_PID = "34243";
     static final String IMOBILE_FULLSCREENAD_MID = "461430";
     static final String IMOBILE_FULLSCREENAD_SID = "1515545";
-    FrameLayout imobileFullScreenLayout = null;
+    static FrameLayout imobileFullScreenLayout = null;
+
+    private static AppActivity me = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        me = this;
         super.setEnableVirtualButton(false);
         super.onCreate(savedInstanceState);
         // Workaround in https://stackoverflow.com/questions/16283079/re-launch-of-activity-on-home-button-but-only-the-first-time/16447508
@@ -69,54 +74,75 @@ public class AppActivity extends Cocos2dxActivity {
 //        setImobileFullScreen();
     }
 
-    protected void setImobileBanner(){
-        // imobileの広告を入れる。
-        // スポット情報を設定します
-        ImobileSdkAd.registerSpotInline(this, IMOBILE_BANNER_PID, IMOBILE_BANNER_MID, IMOBILE_BANNER_SID);
-        // 広告の取得を開始します
-        ImobileSdkAd.start(IMOBILE_BANNER_SID);
+    public static void setImobileBanner(){
 
-        // 広告を表示するViewを作成します
-        imobileBunnerLayout = new FrameLayout(this);
-        FrameLayout.LayoutParams imobileAdLayoutParam = new FrameLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-        // 広告の表示位置を指定
-        imobileAdLayoutParam.gravity = (Gravity.BOTTOM | Gravity.CENTER);
-        // 広告を表示します
-        ImobileSdkAd.showAd(this, IMOBILE_BANNER_SID, imobileBunnerLayout);
-        imobileBunnerLayout.bringToFront();
-        mFrameLayout.addView(imobileBunnerLayout, imobileAdLayoutParam);
+        me.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                // imobileの広告を入れる。
+                // スポット情報を設定します
+                ImobileSdkAd.registerSpotInline(me, IMOBILE_BANNER_PID, IMOBILE_BANNER_MID, IMOBILE_BANNER_SID);
+                // 広告の取得を開始します
+                ImobileSdkAd.start(IMOBILE_BANNER_SID);
+
+                // 広告を表示するViewを作成します
+                imobileBunnerLayout = new FrameLayout(me);
+                FrameLayout.LayoutParams imobileAdLayoutParam = new FrameLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+                // 広告の表示位置を指定
+                imobileAdLayoutParam.gravity = (Gravity.BOTTOM | Gravity.CENTER);
+                // 広告を表示します
+                ImobileSdkAd.showAd(me, IMOBILE_BANNER_SID, imobileBunnerLayout);
+                imobileBunnerLayout.bringToFront();
+                mFrameLayout.addView(imobileBunnerLayout, imobileAdLayoutParam);
+            }
+        });
     }
 
-    protected void removeImobileBanner(){
-        if(imobileBunnerLayout != null) {
-            mFrameLayout.removeView(imobileBunnerLayout);
-            imobileBunnerLayout = null;
-        }
+    public static void removeImobileBanner(){
+        me.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (imobileBunnerLayout != null) {
+                    mFrameLayout.removeView(imobileBunnerLayout);
+                    imobileBunnerLayout = null;
+                }
+            }
+            });
     }
 
-    protected void setImobileFullScreen(){
-        // imobileの広告を入れる。
-        // スポット情報を設定します
-        ImobileSdkAd.registerSpotFullScreen(this, IMOBILE_FULLSCREENAD_PID, IMOBILE_FULLSCREENAD_MID, IMOBILE_FULLSCREENAD_SID);
-        // 広告の取得を開始します
-        ImobileSdkAd.start(IMOBILE_FULLSCREENAD_SID);
+    public static void setImobileFullScreen(){
+        me.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                // imobileの広告を入れる。
+                // スポット情報を設定します
+                ImobileSdkAd.registerSpotFullScreen(getContext(), IMOBILE_FULLSCREENAD_PID, IMOBILE_FULLSCREENAD_MID, IMOBILE_FULLSCREENAD_SID);
+                // 広告の取得を開始します
+                ImobileSdkAd.start(IMOBILE_FULLSCREENAD_SID);
 
-        // 広告を表示するViewを作成します
-        imobileFullScreenLayout = new FrameLayout(this);
-        FrameLayout.LayoutParams imobileAdLayoutParam = new FrameLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-        // 広告の表示位置を指定
-        imobileAdLayoutParam.gravity = Gravity.CENTER;
-        // 広告を表示します
-        ImobileSdkAd.showAd(this, IMOBILE_FULLSCREENAD_SID);
-        imobileFullScreenLayout.bringToFront();
-        mFrameLayout.addView(imobileFullScreenLayout, imobileAdLayoutParam);
+                // 広告を表示するViewを作成します
+                imobileFullScreenLayout = new FrameLayout(getContext());
+                FrameLayout.LayoutParams imobileAdLayoutParam = new FrameLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+                // 広告の表示位置を指定
+                imobileAdLayoutParam.gravity = Gravity.CENTER;
+                // 広告を表示します
+                ImobileSdkAd.showAd(getContext(), IMOBILE_FULLSCREENAD_SID);
+                imobileFullScreenLayout.bringToFront();
+                mFrameLayout.addView(imobileFullScreenLayout, imobileAdLayoutParam);
+            }
+        });
     }
 
-    protected void removeImobileFullScreen(){
-        if(imobileFullScreenLayout != null) {
-            imobileFullScreenLayout.removeView(imobileBunnerLayout);
-            imobileFullScreenLayout = null;
-        }
+    public static void removeImobileFullScreen(){
+        me.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (imobileFullScreenLayout != null) {
+                    imobileFullScreenLayout.removeView(imobileBunnerLayout);
+                    imobileFullScreenLayout = null;
+                }
+            }
+        });
     }
 
     @Override

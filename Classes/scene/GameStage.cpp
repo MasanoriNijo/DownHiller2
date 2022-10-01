@@ -88,6 +88,11 @@ bool GameStage::init() {
         int selStageNo = getCourceManager()->getStagePrm()->getStageNumber();
         stopBGM("");
         callSoundEffect(SOUND_BUTTON);
+        full_ad_cnt_ ++;
+        if(full_ad_cnt_ >full_ad_cnt){
+            full_ad_cnt_ = 0;
+            showFullScreenAD();
+        }
         transitonScene(GameStage::createScene());
     }, Size(1,1), selStageNo<10 ? " 0" + std::to_string(selStageNo) + " " : " " + std::to_string(selStageNo) + " ", Color3B::WHITE, Color3B::YELLOW, false));
     
@@ -97,15 +102,24 @@ bool GameStage::init() {
         }
         UserDefault::getInstance()->setIntegerForKey(UDF_INT_SELECTED_STAGE,nextStageNo);
         callSoundEffect(SOUND_BUTTON);
+        full_ad_cnt_ ++;
+        if(full_ad_cnt_ >full_ad_cnt){
+            full_ad_cnt_ = 0;
+            showFullScreenAD();
+        }
         transitonScene(GameStage::createScene());
     }, Size(1,1),nextStageNo<10 ? " 0" + std::to_string(nextStageNo) + " " : " " + std::to_string(nextStageNo) + " ", Color3B::WHITE, Color3B::YELLOW, false));
     
     setBtn4(generateMenuItemSprite([this](Ref* ref){
         callSoundEffect(SOUND_BUTTON);
         UserDefault::getInstance()->setIntegerForKey(UDF_INT_GAME_MODE, GAME_MODE_COURCE);
+        if(full_ad_cnt_ >full_ad_cnt){
+            full_ad_cnt_ = 0;
+            showFullScreenAD();
+        }
         transitonScene(SelectScene::createScene());
     }, Size(1,1), L_BTN_BACK, Color3B::WHITE, Color3B::YELLOW, false));
-    
+
     setModal(Modal::create());
     getModal()->setGlobalZOrder(OBJ_LAYER_TOP);
     getModal()->setModal(Size(160,140), "メニュー");

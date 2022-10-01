@@ -66,6 +66,10 @@ public:
     // クリア条件パラメータ
     float _timeLimit = 0;
 
+    // FullScreen広告頻度
+    int full_ad_cnt = 3;
+    int full_ad_cnt_ = 0;
+
 };
 
 #endif
