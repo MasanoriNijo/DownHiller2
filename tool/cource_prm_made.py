@@ -17,7 +17,7 @@ def madeCourceC(json_data):
     file_path = cdir+"/courceC_prm.txt"
     f = open(file_path, 'w')
     # _c->dC(100,-35 + kaku);
-    for i in range(20):
+    for i in range(40):
       courceLength = randint(minLengh, maxLength)
       courceDeg = randint(min(beforeDeg + diffPrm,maxDeg), maxDeg) if i%2 else randint(minDeg, max(beforeDeg-diffPrm,minDeg))
       diffDeg = courceDeg - beforeDeg
@@ -42,7 +42,7 @@ def madeCourceK(json_data):
     file_path = cdir+"/courceK_prm.txt"
     f = open(file_path, 'w')
     # _c->dC(100,-35 + kaku);
-    for i in range(20):
+    for i in range(40):
       courceLength = randint(minLengh, maxLength)
       courceDeg = randint(min(beforeDeg + diffPrm,maxDeg), maxDeg) if i%2 else randint(minDeg, max(beforeDeg-diffPrm,minDeg))
       diffDeg = courceDeg - beforeDeg
@@ -95,7 +95,7 @@ def madeCourceCH(json_data):
     file_path = cdir+"/courceCH_prm.txt"
     f = open(file_path, 'w')
     # _c->dC(100,-35 + kaku);
-    for i in range(10):
+    for i in range(40):
       courceLength = randint(minLengh, maxLength)
       courceLength2 = randint(minLengh, maxLength)
       courceDeg = randint(min(beforeDeg + diffPrm,maxDeg), maxDeg) if i%2 else randint(minDeg, max(beforeDeg-diffPrm,minDeg))
@@ -132,7 +132,7 @@ def madeCourceCK(json_data):
     file_path = cdir+"/courceCK_prm.txt"
     f = open(file_path, 'w')
     # _c->dC(100,-35 + kaku);
-    for i in range(20):
+    for i in range(40):
       courceLength = randint(minLengh, maxLength)
       courceDeg = randint(min(beforeDeg + diffPrm,maxDeg), maxDeg) if i%2 else randint(minDeg, max(beforeDeg-diffPrm,minDeg))
       diffDeg = courceDeg - beforeDeg
