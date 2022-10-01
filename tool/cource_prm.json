@@ -6,6 +6,6 @@
     "maxLength":120,
     "minDeg":-90,
     "maxDeg":40,
-    "diffPrm":40
+    "diffPrm":60
   }
 }
