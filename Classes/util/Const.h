@@ -108,7 +108,7 @@ static const int GAME_MODE_DEMO=2;
 
 // Stage数
 static const int STAGE_SIZE=20;
-static const int COURCE_SIZE=63;
+static const int COURCE_SIZE=48;
 
 
 // GameSound

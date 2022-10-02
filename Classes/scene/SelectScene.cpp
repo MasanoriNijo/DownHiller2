@@ -188,14 +188,12 @@ void SelectScene::_arrangeBtns(){
 void SelectScene::_arrangeBtnsForCource(){
     int topOffset = -155;
     int verticalPitch = -40;
-    setMenu(Menu::create(genCourceBtn(0),
-                         genCourceBtn(1),
+    setMenu(Menu::create(genCourceBtn(1),
                          genCourceBtn(2),
                          genCourceBtn(3),
                          genCourceBtn(4),
                          genCourceBtn(5),
                          genCourceBtn(6),
-                         genCourceBtn(7),
                          NULL));
     getMenu()->alignItemsHorizontallyWithPadding(10);
     getMenu()->setPosition(Vec2(ctPt.x,winSize.height+topOffset+verticalPitch * 0));
@@ -204,14 +202,12 @@ void SelectScene::_arrangeBtnsForCource(){
 //    mountNode(getMenu(), Vec2(ctPt.x,winSize.height+topOffset+verticalPitch * 0) , OBJ_LAYER_TOP);
     
     
-    setMenu2(Menu::create(genCourceBtn(8),
+    setMenu2(Menu::create(genCourceBtn(7),
+                          genCourceBtn(8),
                           genCourceBtn(9),
                           genCourceBtn(10),
                           genCourceBtn(11),
                           genCourceBtn(12),
-                          genCourceBtn(13),
-                          genCourceBtn(14),
-                          genCourceBtn(15),
                           NULL));
     getMenu2()->alignItemsHorizontallyWithPadding(10);
     getMenu2()->setPosition(Vec2(ctPt.x,winSize.height+topOffset+verticalPitch * 1));
@@ -219,14 +215,12 @@ void SelectScene::_arrangeBtnsForCource(){
     getScrollNode()->addChild(getMenu2());
 //    mountNode(getMenu2(), Vec2(ctPt.x,winSize.height+topOffset+verticalPitch * 1), OBJ_LAYER_TOP);
     
-    setMenu3(Menu::create(genCourceBtn(16),
+    setMenu3(Menu::create(genCourceBtn(13),
+                          genCourceBtn(14),
+                          genCourceBtn(15),
+                          genCourceBtn(16),
                           genCourceBtn(17),
                           genCourceBtn(18),
-                          genCourceBtn(19),
-                          genCourceBtn(20),
-                          genCourceBtn(21),
-                          genCourceBtn(22),
-                          genCourceBtn(23),
                           NULL));
     getMenu3()->alignItemsHorizontallyWithPadding(10);
     getMenu3()->setPosition(Vec2(ctPt.x,winSize.height+topOffset+verticalPitch * 2));
@@ -234,14 +228,12 @@ void SelectScene::_arrangeBtnsForCource(){
     getScrollNode()->addChild(getMenu3());
 //    mountNode(getMenu3(), Vec2(ctPt.x,winSize.height+topOffset+verticalPitch * 2), OBJ_LAYER_TOP);
     
-    setMenu4(Menu::create(genCourceBtn(24),
-                          genCourceBtn(25),
-                          genCourceBtn(26),
-                          genCourceBtn(27),
-                          genCourceBtn(28),
-                          genCourceBtn(29),
-                          genCourceBtn(30),
-                          genCourceBtn(31),
+    setMenu4(Menu::create(genCourceBtn(19),
+                          genCourceBtn(20),
+                          genCourceBtn(21),
+                          genCourceBtn(22),
+                          genCourceBtn(23),
+                          genCourceBtn(24),
                           NULL));
     getMenu4()->alignItemsHorizontallyWithPadding(10);
     getMenu4()->setPosition(Vec2(ctPt.x,winSize.height+topOffset+verticalPitch * 3));
@@ -249,14 +241,12 @@ void SelectScene::_arrangeBtnsForCource(){
     getScrollNode()->addChild(getMenu4());
 //    mountNode(getMenu4(), Vec2(ctPt.x,winSize.height+topOffset+verticalPitch * 3), OBJ_LAYER_TOP);
     
-    setMenu5(Menu::create(genCourceBtn(32),
-                          genCourceBtn(33),
-                          genCourceBtn(34),
-                          genCourceBtn(35),
-                          genCourceBtn(36),
-                          genCourceBtn(37),
-                          genCourceBtn(38),
-                          genCourceBtn(39),
+    setMenu5(Menu::create(genCourceBtn(25),
+                          genCourceBtn(26),
+                          genCourceBtn(27),
+                          genCourceBtn(28),
+                          genCourceBtn(29),
+                          genCourceBtn(30),
                           NULL));
     getMenu5()->alignItemsHorizontallyWithPadding(10);
     getMenu5()->setPosition(Vec2(ctPt.x,winSize.height+topOffset+verticalPitch * 4));
@@ -264,14 +254,12 @@ void SelectScene::_arrangeBtnsForCource(){
     getScrollNode()->addChild(getMenu5());
 //    mountNode(getMenu5(), Vec2(ctPt.x,winSize.height+topOffset+verticalPitch * 4), OBJ_LAYER_TOP);
     
-    setMenu6(Menu::create(genCourceBtn(40),
-                          genCourceBtn(41),
-                          genCourceBtn(42),
-                          genCourceBtn(43),
-                          genCourceBtn(44),
-                          genCourceBtn(45),
-                          genCourceBtn(46),
-                          genCourceBtn(47),
+    setMenu6(Menu::create(genCourceBtn(31),
+                          genCourceBtn(32),
+                          genCourceBtn(33),
+                          genCourceBtn(34),
+                          genCourceBtn(35),
+                          genCourceBtn(36),
                           NULL));
     getMenu6()->alignItemsHorizontallyWithPadding(10);
     getMenu6()->setPosition(Vec2(ctPt.x,winSize.height+topOffset+verticalPitch * 5));
@@ -279,14 +267,12 @@ void SelectScene::_arrangeBtnsForCource(){
     getScrollNode()->addChild(getMenu6());
 //    mountNode(getMenu6(), Vec2(ctPt.x,winSize.height+topOffset+verticalPitch * 5), OBJ_LAYER_TOP);
     
-    setMenu7(Menu::create(genCourceBtn(48),
-                          genCourceBtn(49),
-                          genCourceBtn(50),
-                          genCourceBtn(51),
-                          genCourceBtn(52),
-                          genCourceBtn(53),
-                          genCourceBtn(54),
-                          genCourceBtn(55),
+    setMenu7(Menu::create(genCourceBtn(37),
+                          genCourceBtn(38),
+                          genCourceBtn(39),
+                          genCourceBtn(40),
+                          genCourceBtn(41),
+                          genCourceBtn(42),
                           NULL));
     getMenu7()->alignItemsHorizontallyWithPadding(10);
     getMenu7()->setPosition(Vec2(ctPt.x,winSize.height+topOffset+verticalPitch * 6));
@@ -294,14 +280,12 @@ void SelectScene::_arrangeBtnsForCource(){
     getScrollNode()->addChild(getMenu7());
 //    mountNode(getMenu7(), Vec2(ctPt.x,winSize.height+topOffset+verticalPitch * 6), OBJ_LAYER_TOP);
     
-    setMenu8(Menu::create(genCourceBtn(56),
-                          genCourceBtn(57),
-                          genCourceBtn(58),
-                          genCourceBtn(59),
-                          genCourceBtn(60),
-                          genCourceBtn(61),
-                          genCourceBtn(62),
-                          genCourceBtn(63),
+    setMenu8(Menu::create(genCourceBtn(43),
+                          genCourceBtn(44),
+                          genCourceBtn(45),
+                          genCourceBtn(46),
+                          genCourceBtn(47),
+                          genCourceBtn(48),
                           NULL));
     getMenu8()->alignItemsHorizontallyWithPadding(10);
     getMenu8()->setPosition(Vec2(ctPt.x,winSize.height+topOffset+verticalPitch * 7));
