@@ -74,7 +74,7 @@ bool TitleScene::init() {
     }, Size(1,1), L_BTN_HOWTO, Color3B::WHITE, Color3B::YELLOW, false));
     
     setMenu(Menu::create(getStartBtn(), getHowToBtn(), NULL));
-    getMenu()->alignItemsVerticallyWithPadding(3);
+    getMenu()->alignItemsVerticallyWithPadding(10);
     mountNode(getMenu(),Vec2(winSize.width/2,120), OBJ_LAYER_LV3);
     
     setCourceManager(CourceManager::create());

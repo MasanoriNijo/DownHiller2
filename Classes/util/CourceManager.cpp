@@ -92,8 +92,8 @@ std::string CourceManager::genComment(int courceNo){
         case 0:
             return
             "ゆるやかな凹凸のある坂道1\n"
-            "しゃがんで前にスワイプすると\n"
-            "ダッシュできるよ！";
+            "しゃがんで前にスワイプ\n"
+            "するとダッシュできるよ！";
             break;
         case 1:
             return
@@ -105,13 +105,15 @@ std::string CourceManager::genComment(int courceNo){
             return
             "ゆるやかな凹凸のある坂道3\n"
             "制限時間内のゴールしよう！\n"
-            "スピードが落ちたらダッシュしよう！\n";
+            "スピードが落ちたらダッシュ\n"
+            "しよう！\n";
             break;
         case 3:
             return
             "ゆるやかな凹凸のある坂道3\n"
             "制限時間内のゴールしよう！\n"
-            "スピードをキープするのがコツだよ！\n";
+            "スピードをキープするのが\n"
+            "コツだよ！\n";
             break;
         case 4:
             return
@@ -123,7 +125,7 @@ std::string CourceManager::genComment(int courceNo){
         case 5:
             return
             "小さなコブのある道\n"
-            "制限時間内のゴールしよう！\n";
+            "制限時間内のゴールしよう！";
             break;
         case 6:
             return
@@ -142,7 +144,7 @@ std::string CourceManager::genComment(int courceNo){
         case 8:
             return
             "凹凸のある急な坂道3\n"
-            "制限時間内のゴールしよう！\n";
+            "制限時間内のゴールしよう！";
             break;
         case 9:
             return
@@ -264,12 +266,12 @@ std::string CourceManager::genComment(int courceNo){
         case 31:
             return
             "障害物飛び越え1\n"
-            "前輪ジャンプで飛び越えよう！";
+            "後輪ジャンプで飛び越えよう！";
             break;
         case 32:
             return
             "障害物飛び越え2\n"
-            "前輪ジャンプで飛び越えよう！";
+            "後輪ジャンプで飛び越えよう！";
             break;
         case 33:
             return
@@ -301,250 +303,257 @@ std::string CourceManager::genComment(int courceNo){
             break;
         case 39:
             return
-            "コメントを記入";
+            "連続した石柱";
             break;
         case 40:
             return
-            "コメントを記入";
+            "富士山\n"
+            "ダッシュで登って\n"
+            "噴火口は飛び越えよう！";
             break;
         case 41:
             return
-            "コメントを記入";
+            "崖を飛び越えよう1";
             break;
         case 42:
             return
-            "コメントを記入";
+            "崖を飛び越えよう2";
             break;
         case 43:
             return
-            "コメントを記入";
+            "スーパージャンプAx2";
             break;
         case 44:
             return
-            "コメントを記入";
+            "スーパージャンプBx2";
             break;
         case 45:
             return
-            "コメントを記入";
+            "ランダム\n"
+            "毎回コーヅが変わるよ！"
+            "制限時間内にゴールしよう！";
             break;
-        case 46:
-            return
-            "コメントを記入";
-            break;
-        case 47:
-            return
-            "コメントを記入";
-            break;
-        case 48:
-            return
-            "コメントを記入";
-            break;
-        case 49:
-            return
-            "コメントを記入";
-            break;
-        case 50:
-            return
-            "コメントを記入";
-            break;
-        case 51:
-            return
-            "コメントを記入";
-            break;
-        case 52:
-            return
-            "コメントを記入";
-            break;
-        case 53:
-            return
-            "コメントを記入";
-            break;
-        case 54:
-            return
-            "コメントを記入";
-            break;
-        case 55:
-            return
-            "コメントを記入";
-            break;
-        case 56:
-            return
-            "コメントを記入";
-            break;
-        case 57:
-            return
-            "コメントを記入";
-            break;
-        case 58:
-            return
-            "コメントを記入";
-            break;
-        case 59:
-            return
-            "コメントを記入";
-            break;
-        case 60:
-            return
-            "コメントを記入";
-            break;
-        case 61:
-            return
-            "コメントを記入";
-            break;
-        case 62:
-            return
-            "コメントを記入";
-            break;
-        case 63:
-            return
-            "コメントを記入";
-            break;
-        case 64:
-            return
-            "コメントを記入";
-            break;
-        case 65:
-            return
-            "コメントを記入";
-            break;
-        case 66:
-            return
-            "コメントを記入";
-            break;
-        case 67:
-            return
-            "コメントを記入";
-            break;
-        case 68:
-            return
-            "コメントを記入";
-            break;
-        case 69:
-            return
-            "コメントを記入";
-            break;
-        case 70:
-            return
-            "コメントを記入";
-            break;
-        case 71:
-            return
-            "コメントを記入";
-            break;
-        case 72:
-            return
-            "コメントを記入";
-            break;
-        case 73:
-            return
-            "コメントを記入";
-            break;
-        case 74:
-            return
-            "コメントを記入";
-            break;
-        case 75:
-            return
-            "コメントを記入";
-            break;
-        case 76:
-            return
-            "コメントを記入";
-            break;
-        case 77:
-            return
-            "コメントを記入";
-            break;
-        case 78:
-            return
-            "コメントを記入";
-            break;
-        case 79:
-            return
-            "コメントを記入";
-            break;
-        case 80:
-            return
-            "コメントを記入";
-            break;
-        case 81:
-            return
-            "コメントを記入";
-            break;
-        case 82:
-            return
-            "コメントを記入";
-            break;
-        case 83:
-            return
-            "コメントを記入";
-            break;
-        case 84:
-            return
-            "コメントを記入";
-            break;
-        case 85:
-            return
-            "コメントを記入";
-            break;
-        case 86:
-            return
-            "コメントを記入";
-            break;
-        case 87:
-            return
-            "コメントを記入";
-            break;
-        case 88:
-            return
-            "コメントを記入";
-            break;
-        case 89:
-            return
-            "コメントを記入";
-            break;
-        case 90:
-            return
-            "コメントを記入";
-            break;
-        case 91:
-            return
-            "コメントを記入";
-            break;
-        case 92:
-            return
-            "コメントを記入";
-            break;
-        case 93:
-            return
-            "コメントを記入";
-            break;
-        case 94:
-            return
-            "コメントを記入";
-            break;
-        case 95:
-            return
-            "コメントを記入";
-            break;
-        case 96:
-            return
-            "コメントを記入";
-            break;
-        case 97:
-            return
-            "コメントを記入";
-            break;
-        case 98:
-            return
-            "コメントを記入";
-            break;
-        case 99:
-            return
-            "コメントを記入";
-            break;
+//        case 46:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 47:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 48:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 49:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 50:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 51:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 52:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 53:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 54:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 55:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 56:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 57:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 58:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 59:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 60:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 61:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 62:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 63:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 64:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 65:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 66:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 67:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 68:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 69:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 70:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 71:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 72:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 73:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 74:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 75:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 76:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 77:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 78:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 79:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 80:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 81:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 82:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 83:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 84:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 85:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 86:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 87:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 88:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 89:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 90:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 91:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 92:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 93:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 94:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 95:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 96:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 97:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 98:
+//            return
+//            "コメントを記入";
+//            break;
+//        case 99:
+//            return
+//            "コメントを記入";
+//            break;
         default:
-            return "ステージ:" + ST_INT(courceNo);
+            return
+            "ランダム\n"
+            "毎回コースが変わるよ！\n"
+            "制限時間内にゴールしよう！";
             break;
     }
 }
@@ -687,172 +696,172 @@ int CourceManager::genTimeLimit(int courceNo){
             return 0;
             break;
         case 45:
-            return 0;
+            return 30;
             break;
-        case 46:
-            return 0;
-            break;
-        case 47:
-            return 0;
-            break;
-        case 48:
-            return 0;
-            break;
-        case 49:
-            return 0;
-            break;
-        case 50:
-            return 0;
-            break;
-        case 51:
-            return 0;
-            break;
-        case 52:
-            return 0;
-            break;
-        case 53:
-            return 0;
-            break;
-        case 54:
-            return 0;
-            break;
-        case 55:
-            return 0;
-            break;
-        case 56:
-            return 0;
-            break;
-        case 57:
-            return 0;
-            break;
-        case 58:
-            return 0;
-            break;
-        case 59:
-            return 0;
-            break;
-        case 60:
-            return 0;
-            break;
-        case 61:
-            return 0;
-            break;
-        case 62:
-            return 0;
-            break;
-        case 63:
-            return 0;
-            break;
-        case 64:
-            return 0;
-            break;
-        case 65:
-            return 0;
-            break;
-        case 66:
-            return 0;
-            break;
-        case 67:
-            return 0;
-            break;
-        case 68:
-            return 0;
-            break;
-        case 69:
-            return 0;
-            break;
-        case 70:
-            return 0;
-            break;
-        case 71:
-            return 0;
-            break;
-        case 72:
-            return 0;
-            break;
-        case 73:
-            return 0;
-            break;
-        case 74:
-            return 0;
-            break;
-        case 75:
-            return 0;
-            break;
-        case 76:
-            return 0;
-            break;
-        case 77:
-            return 0;
-            break;
-        case 78:
-            return 0;
-            break;
-        case 79:
-            return 0;
-            break;
-        case 80:
-            return 0;
-            break;
-        case 81:
-            return 0;
-            break;
-        case 82:
-            return 0;
-            break;
-        case 83:
-            return 0;
-            break;
-        case 84:
-            return 0;
-            break;
-        case 85:
-            return 0;
-            break;
-        case 86:
-            return 0;
-            break;
-        case 87:
-            return 0;
-            break;
-        case 88:
-            return 0;
-            break;
-        case 89:
-            return 0;
-            break;
-        case 90:
-            return 0;
-            break;
-        case 91:
-            return 0;
-            break;
-        case 92:
-            return 0;
-            break;
-        case 93:
-            return 0;
-            break;
-        case 94:
-            return 0;
-            break;
-        case 95:
-            return 0;
-            break;
-        case 96:
-            return 0;
-            break;
-        case 97:
-            return 0;
-            break;
-        case 98:
-            return 0;
-            break;
-        case 99:
-            return 0;
-            break;
+//        case 46:
+//            return 0;
+//            break;
+//        case 47:
+//            return 0;
+//            break;
+//        case 48:
+//            return 0;
+//            break;
+//        case 49:
+//            return 0;
+//            break;
+//        case 50:
+//            return 0;
+//            break;
+//        case 51:
+//            return 0;
+//            break;
+//        case 52:
+//            return 0;
+//            break;
+//        case 53:
+//            return 0;
+//            break;
+//        case 54:
+//            return 0;
+//            break;
+//        case 55:
+//            return 0;
+//            break;
+//        case 56:
+//            return 0;
+//            break;
+//        case 57:
+//            return 0;
+//            break;
+//        case 58:
+//            return 0;
+//            break;
+//        case 59:
+//            return 0;
+//            break;
+//        case 60:
+//            return 0;
+//            break;
+//        case 61:
+//            return 0;
+//            break;
+//        case 62:
+//            return 0;
+//            break;
+//        case 63:
+//            return 0;
+//            break;
+//        case 64:
+//            return 0;
+//            break;
+//        case 65:
+//            return 0;
+//            break;
+//        case 66:
+//            return 0;
+//            break;
+//        case 67:
+//            return 0;
+//            break;
+//        case 68:
+//            return 0;
+//            break;
+//        case 69:
+//            return 0;
+//            break;
+//        case 70:
+//            return 0;
+//            break;
+//        case 71:
+//            return 0;
+//            break;
+//        case 72:
+//            return 0;
+//            break;
+//        case 73:
+//            return 0;
+//            break;
+//        case 74:
+//            return 0;
+//            break;
+//        case 75:
+//            return 0;
+//            break;
+//        case 76:
+//            return 0;
+//            break;
+//        case 77:
+//            return 0;
+//            break;
+//        case 78:
+//            return 0;
+//            break;
+//        case 79:
+//            return 0;
+//            break;
+//        case 80:
+//            return 0;
+//            break;
+//        case 81:
+//            return 0;
+//            break;
+//        case 82:
+//            return 0;
+//            break;
+//        case 83:
+//            return 0;
+//            break;
+//        case 84:
+//            return 0;
+//            break;
+//        case 85:
+//            return 0;
+//            break;
+//        case 86:
+//            return 0;
+//            break;
+//        case 87:
+//            return 0;
+//            break;
+//        case 88:
+//            return 0;
+//            break;
+//        case 89:
+//            return 0;
+//            break;
+//        case 90:
+//            return 0;
+//            break;
+//        case 91:
+//            return 0;
+//            break;
+//        case 92:
+//            return 0;
+//            break;
+//        case 93:
+//            return 0;
+//            break;
+//        case 94:
+//            return 0;
+//            break;
+//        case 95:
+//            return 0;
+//            break;
+//        case 96:
+//            return 0;
+//            break;
+//        case 97:
+//            return 0;
+//            break;
+//        case 98:
+//            return 0;
+//            break;
+//        case 99:
+//            return 0;
+//            break;
         default:
-            return 0;
+            return 30;
             break;
     }
 }
@@ -2716,7 +2725,9 @@ void CourceManager::cPtn28(CourceMaker* _c){
 void CourceManager::cPtn29(CourceMaker* _c){
 //    setComment("c29",_c);
     auto kaku = 0;
-    _c->dC(200, 0);
+    if(courceIndex==1){
+        _c->dC(200, 0);
+    }
     for(int i = 0; i<5; i++){
         _c->dS(10, 80);
         _c->dC(20, -90);
@@ -2760,8 +2771,8 @@ void CourceManager::cPtn32(CourceMaker* _c){
 //    setComment("c32",_c);
     auto kaku = 0;
     _c->dC(200, 0);
-    for(int i = 0; i<5; i++){
-        _c->dS(230, 0);
+    for(int i = 0; i<2; i++){
+        _c->dS(260, 0);
         _c->dS(40, 88);
         _c->dS(40, -88);
         _c->dS(0, 0);
@@ -2772,7 +2783,9 @@ void CourceManager::cPtn32(CourceMaker* _c){
 void CourceManager::cPtn33(CourceMaker* _c){
 //    setComment("c33",_c);
     auto kaku = 0;
-    _c->dC(200, 0);
+    if(courceIndex == 1){
+        _c->dC(200, 0);
+    }
     for(int i = 0; i<2; i++){
         _c->dS(300, 0);
         _c->dS(40, 88);
@@ -2781,8 +2794,6 @@ void CourceManager::cPtn33(CourceMaker* _c){
         _c->dS(40, 88);
         _c->dS(40, -88);
     }
- 
-    
 }
 
 // スーパー宙返り1
@@ -2890,204 +2901,388 @@ void CourceManager::cPtn37(CourceMaker* _c){
 // モアイx4
 void CourceManager::cPtn38(CourceMaker* _c){
 //    setComment("c38",_c);
-    auto kaku = -15;
-    _c->dC(200, kaku);
-    _c->dS(100,0+kaku);
-    _c->dS(10,80+kaku);
-    _c->dC(30,23+kaku);
-    _c->dS(60,23+kaku);
-    _c->dC(5,-50+kaku);
-    _c->dS(40,-50+kaku);
-    _c->dS(80,30+kaku);
-    _c->dC(200,55+kaku);
-    _c->dC(10,-70+kaku);
-    _c->dS(80,-70+kaku);
-    _c->dS(30,10+kaku);
-    _c->dS(0,-80+kaku);
-    _c->dC(60,80+kaku);
-    _c->dC(5,-10+kaku);
-    _c->dS(30,-10+kaku);
-    _c->dC(10,-90+kaku);
-    _c->dS(70,-90+kaku);
-    _c->dS(50,0+kaku);
-    
-    kaku = -30;
-    _c->dC(200, kaku);
-    _c->dS(100,0+kaku);
-    _c->dS(10,80+kaku);
-    _c->dC(30,23+kaku);
-    _c->dS(60,23+kaku);
-    _c->dC(5,-50+kaku);
-    _c->dS(40,-50+kaku);
-    _c->dS(80,30+kaku);
-    _c->dC(200,55+kaku);
-    _c->dC(10,-70+kaku);
-    _c->dS(80,-70+kaku);
-    _c->dS(30,10+kaku);
-    _c->dS(0,-80+kaku);
-    _c->dC(60,80+kaku);
-    _c->dC(5,-10+kaku);
-    _c->dS(30,-10+kaku);
-    _c->dC(10,-90+kaku);
-    _c->dS(70,-90+kaku);
-    _c->dS(50,0+kaku);
-    
+    auto kaku = 0;
+    if(courceIndex == 1){
+        _c->dC(200, kaku);
+        _c->dS(100,0+kaku);
+        _c->dS(10,80+kaku);
+        _c->dC(30,23+kaku);
+        _c->dS(60,23+kaku);
+        _c->dC(5,-50+kaku);
+        _c->dS(40,-50+kaku);
+        _c->dS(80,30+kaku);
+        _c->dC(200,55+kaku);
+        _c->dC(10,-70+kaku);
+        _c->dS(80,-70+kaku);
+        _c->dS(30,10+kaku);
+        _c->dS(0,-80+kaku);
+        _c->dC(60,80+kaku);
+        _c->dC(5,-10+kaku);
+        _c->dS(30,-10+kaku);
+        _c->dC(10,-90+kaku);
+        _c->dS(70,-90+kaku);
+        _c->dS(50,0+kaku);
+        
+        kaku = -10;
+        _c->dC(200, kaku);
+        _c->dS(100,0+kaku);
+        _c->dS(10,80+kaku);
+        _c->dC(30,23+kaku);
+        _c->dS(60,23+kaku);
+        _c->dC(5,-50+kaku);
+        _c->dS(40,-50+kaku);
+        _c->dS(80,30+kaku);
+        _c->dC(200,55+kaku);
+        _c->dC(10,-70+kaku);
+        _c->dS(80,-70+kaku);
+        _c->dS(30,10+kaku);
+        _c->dS(0,-80+kaku);
+        _c->dC(60,80+kaku);
+        _c->dC(5,-10+kaku);
+        _c->dS(30,-10+kaku);
+        _c->dC(10,-90+kaku);
+        _c->dS(70,-90+kaku);
+        _c->dS(50,0+kaku);
+        
+    }else{
+        kaku = -20;
+        _c->dC(200, kaku);
+        _c->dS(100,0+kaku);
+        _c->dS(10,80+kaku);
+        _c->dC(30,23+kaku);
+        _c->dS(60,23+kaku);
+        _c->dC(5,-50+kaku);
+        _c->dS(40,-50+kaku);
+        _c->dS(80,30+kaku);
+        _c->dC(200,55+kaku);
+        _c->dC(10,-70+kaku);
+        _c->dS(80,-70+kaku);
+        _c->dS(30,10+kaku);
+        _c->dS(0,-80+kaku);
+        _c->dC(60,80+kaku);
+        _c->dC(5,-10+kaku);
+        _c->dS(30,-10+kaku);
+        _c->dC(10,-90+kaku);
+        _c->dS(70,-90+kaku);
+        _c->dS(50,0+kaku);
+        
+        kaku = -30;
+        _c->dC(200, kaku);
+        _c->dS(100,0+kaku);
+        _c->dS(10,80+kaku);
+        _c->dC(30,23+kaku);
+        _c->dS(60,23+kaku);
+        _c->dC(5,-50+kaku);
+        _c->dS(40,-50+kaku);
+        _c->dS(80,30+kaku);
+        _c->dC(200,55+kaku);
+        _c->dC(10,-70+kaku);
+        _c->dS(80,-70+kaku);
+        _c->dS(30,10+kaku);
+        _c->dS(0,-80+kaku);
+        _c->dC(60,80+kaku);
+        _c->dC(5,-10+kaku);
+        _c->dS(30,-10+kaku);
+        _c->dC(10,-90+kaku);
+        _c->dS(70,-90+kaku);
+        _c->dS(50,0+kaku);
+    }
 }
 
 // 連続した石柱
 void CourceManager::cPtn39(CourceMaker* _c){
-    setComment("c39",_c);
-    auto kaku = _c->_dirkaku;
-    _c->dC(200, kaku);
-    _c->dC(30,-5);
-    _c->dS(150,-20);
-    for(int i=0;i<3;i++){
-        _c->dS(40,70);
-        _c->dC(10,-110);
-        _c->dS(40,-90);
-        _c->dS(150,-20);
+//    setComment("c39",_c);
+    auto kaku = 0;
+    if(courceIndex == 1){
+        kaku = -5;
+    }else{
+        kaku = 5;
     }
-    _c->dS(50,0);
+    _c->dC(200, kaku);
+    for(int i=0;i<3;i++){
+        _c->dS(50,kaku);
+        _c->dS(40,70+kaku);
+        _c->dC(10,-70+kaku);
+        _c->dS(40,-70+kaku);
+        _c->dS(150,kaku);
+    }
 }
 // 富士山
 void CourceManager::cPtn40(CourceMaker* _c){
-    setComment("c40",_c);
-    auto kaku = _c->_dirkaku;
-    _c->dC(200, kaku);
-    _c->dC(100,-20);
-    _c->dS(100,-20);
-    _c->dC(50,70);
-    _c->dS(0,-60);
-    _c->dC(30,60);
-    _c->dS(0,-70);
-    _c->dC(50,0);
-    _c->dS(30,0);
+//    setComment("c40",_c);
+    auto kaku = 5;
+    if(courceIndex == 1){
+        _c->dC(200, 5);
+        _c->dC(500,70);
+        _c->dS(30,0);
+        _c->dS(0,-80);
+        _c->dC(80,0);
+        _c->dS(80,0);
+        _c->dS(150,-90);
+        _c->dS(100,0);
+    }else{
+        _c->dS(150,90);
+        _c->dS(80,0);
+        _c->dC(80,80);
+        _c->dS(30,0);
+        _c->dS(0, -70);
+        _c->dC(500,0);
+        _c->dS(100,0);
+    }
+
 }
 
-// 富士山
+// 崖を飛び越えよう
 void CourceManager::cPtn41(CourceMaker* _c){
-    setComment("c41",_c);
-    auto kaku = _c->_dirkaku;
-    _c->dC(200, kaku);
-    _c->dC(100,-20);
-    _c->dS(150,-20);
-    _c->dC(100,70);
-    _c->dS(0,-60);
-    _c->dC(50,60);
-    _c->dS(0,-70);
-    _c->dC(100,0);
-    _c->dS(30,0);
+//    setComment("c41",_c);
+    auto kaku = 0;
+    if(courceIndex == 1){
+        kaku = -5;
+    }else{
+        kaku = 0;
+    }
+    for(int i=0;i<3;i++){
+        _c->dC(200, kaku);
+        _c->dS(150,kaku);
+        _c->dS(150,-90);
+        _c->dS(150,0);
+        _c->dS(100,90);
+        _c->dS(0,-60);
+        _c->dS(150,kaku);
+    }
 }
 
-// 富士山
+// 崖を飛び越えよう2
 void CourceManager::cPtn42(CourceMaker* _c){
-    setComment("c42",_c);
-    auto kaku = _c->_dirkaku;
-    _c->dC(200, kaku);
-    _c->dS(10,kaku);
-    _c->dC(100,75);
-    _c->dS(100,0);
-    _c->dC(100,0);
-    _c->dS(100,0);
+//    setComment("c42",_c);
+    auto kaku = 0;
+    if(courceIndex == 1){
+        kaku = -5;
+    }else{
+        kaku = 0;
+    }
+    for(int i=0;i<3;i++){
+        _c->dC(200, kaku);
+        _c->dS(150,kaku);
+        _c->dS(20,90 + kaku);
+        _c->dS(150,-90);
+        _c->dS(150,0);
+        _c->dS(100,90);
+        _c->dS(0,-60);
+        _c->dS(150,kaku);
+    }
 }
 
-// 富士山
+// スーパージャンプAx2
 void CourceManager::cPtn43(CourceMaker* _c){
-    setComment("c43",_c);
+//    setComment("c43",_c);
     auto kaku = _c->_dirkaku;
-    _c->dS(100,kaku);
-    _c->dC(40,85);
-    _c->dS(50,0);
-    _c->dC(40,0);
-    _c->dS(100,0);
+    _c->dC(200, kaku);
+    _c->dC(80,-45);
+    _c->dS(500,-45);
+    _c->dC(50,45);
+    _c->dS(150,0);
+    _c->dS(100,90);
+    _c->dC(10,-90);
+    _c->dS(100,-90);
+    _c->dS(200,0);
 }
-
-// 角富士山
+    
+// スーパージャンプBx2
 void CourceManager::cPtn44(CourceMaker* _c){
-    setComment("c44",_c);
-    auto kaku = _c->_dirkaku;
-    _c->dC(200, kaku);
-    _c->dS(120,kaku);
-    _c->dS(80,kaku + 45);
-    _c->dS(80,-90);
-    _c->dS(50,0);
-    _c->dS(80,90);
-    _c->dS(80,kaku);
-}
-
-// なだらかな坂と石ころ
-void CourceManager::cPtn45(CourceMaker* _c){
-    setComment("c45",_c);
-    auto kaku = _c->_dirkaku;
-    _c->dC(200, kaku);
-    _c->dC(30,-5);
-    _c->dS(100,-5);
-    _c->dC(300,-20);
-    _c->dS(0,70);
-    _c->dC(10,-110);
-    _c->dS(0,-20);
+//    setComment("c44",_c);
+    auto kaku = 0;
     _c->dC(300,-45);
-    _c->dC(40,20);
-    _c->dS(50,20);
-    _c->dC(80,0);
-    _c->dS(50,0);
-}
-
-// 凸小凹大
-void CourceManager::cPtn46(CourceMaker* _c){
-    setComment("c46",_c);
-    auto kaku = _c->_dirkaku;
-    _c->dC(200, kaku);
-    _c->dC(30,0);
+    _c->dS(400,-45);
+    _c->dC(20,0);
+    _c->dC(20,-45);
+    _c->dS(180,-45);
+    _c->dC(50,45);
+    _c->dS(100,-90);
+    _c->dS(200,0);
+    _c->dS(100,90);
     _c->dS(100,0);
-    _c->dS(0,90);
-    _c->dC(20,-90);
-    _c->dC(60,80);
-    _c->dS(50,0);
 }
 
-// 凸小凹大
+// ランダム
+void CourceManager::cPtn45(CourceMaker* _c){
+//    setComment("c45",_c);
+    float maxL = 100;
+    float minL = 50;
+    float maxDeg = 10;
+    float minDeg = -50;
+    float diffPrm = 50;
+    
+    float courceLength_ = 0;
+    float courceDeg_ = 0;
+    float beforeDeg_ = _c->_dirkaku;
+    
+    for(int i = 0; i<40;i++){
+        courceLength_ = random(minL,maxL);
+        if(i%2){
+            courceDeg_ = random(MIN(beforeDeg_ + diffPrm,maxDeg),maxDeg);
+        }else{
+            courceDeg_ = random(minDeg, MAX(beforeDeg_ - diffPrm,maxDeg));
+        }
+        float diffDeg_ = courceDeg_ - beforeDeg_;
+        beforeDeg_ = courceDeg_;
+        float courceR = abs(courceLength_/(3.14 * (diffDeg_/180)));
+        _c->dC(courceR,courceDeg_);
+    }
+
+}
+
+// ランダム 石柱をかます
+void CourceManager::cPtn46(CourceMaker* _c){
+//    setComment("c46",_c);
+    
+    auto kaku = 0;
+    
+    float maxL = 100;
+    float minL = 50;
+    float maxDeg = 10;
+    float minDeg = -50;
+    float diffPrm = 50;
+    
+    float courceLength_ = 0;
+    float courceDeg_ = 0;
+    float beforeDeg_ = _c->_dirkaku;
+    
+    for(int i = 0; i<35;i++){
+        courceLength_ = random(minL,maxL);
+        if(i%2){
+            courceDeg_ = random(MIN(beforeDeg_ + diffPrm,maxDeg),maxDeg);
+        }else{
+            courceDeg_ = random(minDeg, MAX(beforeDeg_ - diffPrm,maxDeg));
+        }
+        float diffDeg_ = courceDeg_ - beforeDeg_;
+        beforeDeg_ = courceDeg_;
+        float courceR = abs(courceLength_/(3.14 * (diffDeg_/180)));
+        _c->dC(courceR,courceDeg_);
+        
+        // 石柱
+        if( i % 5 == 0){
+            kaku = _c->_dirkaku;
+            _c->dS(20,70+kaku);
+            _c->dC(10,-70+kaku);
+            _c->dS(20,-70+kaku);
+            _c->dS(0,courceDeg_);
+        }
+        
+    }
+}
+
+//　急な坂と大穴
 void CourceManager::cPtn47(CourceMaker* _c){
-    setComment("c47",_c);
-    auto kaku = _c->_dirkaku;
-    _c->dC(30,kaku);
-    _c->dS(100,kaku);
-    _c->dS(0,90+kaku);
-    _c->dC(20,-90+kaku);
-    _c->dC(60,80+kaku);
-    _c->dS(50,kaku);
+    setComment("c49",_c);
+    auto kaku = 0;
+    
+    float maxL = 300;
+    float minL = 150;
+    float maxDeg = 5;
+    float minDeg = -90;
+    float diffPrm = 50;
+    
+    float courceLength_ = 0;
+    float courceDeg_ = 0;
+    float beforeDeg_ = _c->_dirkaku;
+    
+    for(int i = 0; i<24;i++){
+        courceLength_ = random(minL,maxL);
+        if(i%2){
+            courceDeg_ = random(MIN(beforeDeg_ + diffPrm,maxDeg),maxDeg);
+        }else{
+            courceDeg_ = random(minDeg, MAX(beforeDeg_ - diffPrm,maxDeg));
+        }
+        float diffDeg_ = courceDeg_ - beforeDeg_;
+        beforeDeg_ = courceDeg_;
+        float courceR = abs(courceLength_/(3.14 * (diffDeg_/180)));
+        _c->dC(courceR,courceDeg_);
+        
+        // 大穴
+        if( i % 6 == 1){
+            kaku = _c->_dirkaku;
+            _c->dS(0,-70+kaku);
+            _c->dC(100,70+kaku);
+            _c->dS(0,kaku);
+        }
+    }
 }
 
-// なだらかな坂と石柱
+// 急な坂と石柱
 void CourceManager::cPtn48(CourceMaker* _c){
-    setComment("c48",_c);
-    auto kaku = _c->_dirkaku;
-    _c->dC(200, kaku);
-    _c->dC(30,-5);
-    _c->dS(100,-5);
-    _c->dC(300,-20);
-    _c->dS(40,70);
-    _c->dC(10,-110);
-    _c->dS(40,-90);
-    _c->dS(0,-20);
-    _c->dC(300,-45);
-    _c->dC(40,20);
-    _c->dS(50,20);
-    _c->dC(80,0);
-    _c->dS(50,0);
+//    setComment("c48",_c);
+    auto kaku = 0;
+    
+    float maxL = 300;
+    float minL = 150;
+    float maxDeg = 5;
+    float minDeg = -90;
+    float diffPrm = 50;
+    
+    float courceLength_ = 0;
+    float courceDeg_ = 0;
+    float beforeDeg_ = _c->_dirkaku;
+    
+    for(int i = 0; i<24;i++){
+        courceLength_ = random(minL,maxL);
+        if(i%2){
+            courceDeg_ = random(MIN(beforeDeg_ + diffPrm,maxDeg),maxDeg);
+        }else{
+            courceDeg_ = random(minDeg, MAX(beforeDeg_ - diffPrm,maxDeg));
+        }
+        float diffDeg_ = courceDeg_ - beforeDeg_;
+        beforeDeg_ = courceDeg_;
+        float courceR = abs(courceLength_/(3.14 * (diffDeg_/180)));
+        _c->dC(courceR,courceDeg_);
+        
+        // 石柱
+        if( i % 6 == 1){
+            kaku = _c->_dirkaku;
+            _c->dS(30,70+kaku);
+            _c->dC(10,-70+kaku);
+            _c->dS(30,-70+kaku);
+            _c->dS(0,courceDeg_);
+        }
+    
+    }
 }
 
-// 凸小凹大
+// 急な坂と大穴
 void CourceManager::cPtn49(CourceMaker* _c){
     setComment("c49",_c);
-    auto kaku = _c->_dirkaku;
-    _c->dC(200, kaku);
-    _c->dC(30,0);
-    _c->dS(100,0);
-    _c->dS(0,90);
-    _c->dC(30,-60);
-    _c->dC(60,90);
-    _c->dS(50,0);
+    auto kaku = 0;
+    
+    float maxL = 300;
+    float minL = 150;
+    float maxDeg = 5;
+    float minDeg = -90;
+    float diffPrm = 50;
+    
+    float courceLength_ = 0;
+    float courceDeg_ = 0;
+    float beforeDeg_ = _c->_dirkaku;
+    
+    for(int i = 0; i<24;i++){
+        courceLength_ = random(minL,maxL);
+        if(i%2){
+            courceDeg_ = random(MIN(beforeDeg_ + diffPrm,maxDeg),maxDeg);
+        }else{
+            courceDeg_ = random(minDeg, MAX(beforeDeg_ - diffPrm,maxDeg));
+        }
+        float diffDeg_ = courceDeg_ - beforeDeg_;
+        beforeDeg_ = courceDeg_;
+        float courceR = abs(courceLength_/(3.14 * (diffDeg_/180)));
+        _c->dC(courceR,courceDeg_);
+        
+        // 大穴
+        if( i % 6 == 1){
+            kaku = _c->_dirkaku;
+            _c->dS(0,-70+kaku);
+            _c->dC(100,70+kaku);
+            _c->dS(0,kaku);
+        }
+    }
 }
 
 // 凸小凹大
