@@ -82,3 +82,7 @@ https://qiita.com/tlsd/items/b610d75565e1895bf96a
 
 7,sound関連
 https://shivat.hatenablog.com/entry/2017/05/22/172439
+
+
+releaseアプリの出力先
+\DownHiller2\proj.android\app\release\DownHiller2-release.aab

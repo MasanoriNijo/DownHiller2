@@ -9,8 +9,8 @@ android {
         applicationId "jp.gr.java_conf.kotokotobokan.downhiller2"
         minSdkVersion PROP_MIN_SDK_VERSION
         targetSdkVersion PROP_TARGET_SDK_VERSION
-        versionCode 2
-        versionName "1.1"
+        versionCode 4
+        versionName "1.4"
 
         externalNativeBuild {
             cmake {
