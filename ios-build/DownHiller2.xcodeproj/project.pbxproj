@@ -184,7 +184,7 @@
 		306A83F928747E910059C257 /* StagePrm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 306A83F728747E720059C257 /* StagePrm.cpp */; };
 		306A84062883A2840059C257 /* button05.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 306A84022883A2830059C257 /* button05.mp3 */; };
 		306A84072883A2840059C257 /* ashidejump.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 306A84032883A2830059C257 /* ashidejump.mp3 */; };
-		3087C151285EFD5000AD0F14 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3087C150285EFD5000AD0F14 /* SwiftUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		3087C151285EFD5000AD0F14 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3087C150285EFD5000AD0F14 /* SwiftUI.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		3087C1542862078100AD0F14 /* mark.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3087C152286206DE00AD0F14 /* mark.png */; };
 		3087C1572864B25300AD0F14 /* Flg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3087C1552864B25300AD0F14 /* Flg.cpp */; };
 		3087C15A28653DB300AD0F14 /* GameStage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3087C15928653DB300AD0F14 /* GameStage.cpp */; };
@@ -196,6 +196,8 @@
 		309B0D21284D04F00091801C /* Bike.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 309B0D1F284D04EF0091801C /* Bike.cpp */; };
 		309B0D25284D05D90091801C /* Sprite2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 309B0D24284D05D90091801C /* Sprite2.cpp */; };
 		309EC664C42A4D32AB847DD3 /* DetourNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94FB09E9E0E6484C86FC4A80 /* DetourNode.cpp */; };
+		309F8C362959B090008728D4 /* libiconv.2.4.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 309F8C352959B090008728D4 /* libiconv.2.4.0.tbd */; };
+		309F8C382959B0B1008728D4 /* libiconv.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 309F8C372959B0B1008728D4 /* libiconv.2.tbd */; };
 		30A1AE8428CC5D080043FDEF /* BGM097-100811-shiaikaishida-mp3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 30A1AE8028CC5D080043FDEF /* BGM097-100811-shiaikaishida-mp3.mp3 */; };
 		30A1AE8628CC5D080043FDEF /* select01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 30A1AE8228CC5D080043FDEF /* select01.mp3 */; };
 		30A1AE8728CC5D080043FDEF /* select02.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 30A1AE8328CC5D080043FDEF /* select02.mp3 */; };
@@ -229,7 +231,7 @@
 		30CD03F728467E980023D844 /* ImobileSdkAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30CD03F628467E970023D844 /* ImobileSdkAds.framework */; };
 		30CD03F928467F000023D844 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30CD03F828467F000023D844 /* AdSupport.framework */; };
 		30CD03FB28467F160023D844 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30CD03FA28467F160023D844 /* SystemConfiguration.framework */; };
-		30CD03FD28467F2D0023D844 /* CoreLocationUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30CD03FC28467F2D0023D844 /* CoreLocationUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		30CD03FD28467F2D0023D844 /* CoreLocationUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30CD03FC28467F2D0023D844 /* CoreLocationUI.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		30CD03FF28467F3F0023D844 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30CD03FE28467F3F0023D844 /* WebKit.framework */; };
 		30CD040128467F530023D844 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30CD040028467F530023D844 /* StoreKit.framework */; };
 		30CD04032846886C0023D844 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30CD04022846886C0023D844 /* CoreLocation.framework */; };
@@ -1400,6 +1402,8 @@
 		309B0D20284D04EF0091801C /* Bike.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bike.h; sourceTree = "<group>"; };
 		309B0D23284D05D80091801C /* Sprite2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sprite2.h; sourceTree = "<group>"; };
 		309B0D24284D05D90091801C /* Sprite2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite2.cpp; sourceTree = "<group>"; };
+		309F8C352959B090008728D4 /* libiconv.2.4.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.2.4.0.tbd; path = usr/lib/libiconv.2.4.0.tbd; sourceTree = SDKROOT; };
+		309F8C372959B0B1008728D4 /* libiconv.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.2.tbd; path = usr/lib/libiconv.2.tbd; sourceTree = SDKROOT; };
 		30A1AE8028CC5D080043FDEF /* BGM097-100811-shiaikaishida-mp3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "BGM097-100811-shiaikaishida-mp3.mp3"; sourceTree = "<group>"; };
 		30A1AE8228CC5D080043FDEF /* select01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = select01.mp3; sourceTree = "<group>"; };
 		30A1AE8328CC5D080043FDEF /* select02.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = select02.mp3; sourceTree = "<group>"; };
@@ -2502,6 +2506,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				309F8C382959B0B1008728D4 /* libiconv.2.tbd in Frameworks */,
+				309F8C362959B090008728D4 /* libiconv.2.4.0.tbd in Frameworks */,
 				3087C151285EFD5000AD0F14 /* SwiftUI.framework in Frameworks */,
 				30CD04032846886C0023D844 /* CoreLocation.framework in Frameworks */,
 				30CD03F728467E980023D844 /* ImobileSdkAds.framework in Frameworks */,
@@ -4342,6 +4348,8 @@
 		9A09A3E2EF984B68BC34E3BA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				309F8C372959B0B1008728D4 /* libiconv.2.tbd */,
+				309F8C352959B090008728D4 /* libiconv.2.4.0.tbd */,
 				3087C150285EFD5000AD0F14 /* SwiftUI.framework */,
 				30CD04022846886C0023D844 /* CoreLocation.framework */,
 				30CD040028467F530023D844 /* StoreKit.framework */,
@@ -6499,9 +6507,9 @@
 					"-framework",
 					GameController,
 					"-framework",
+					"-lz",
+					"-liconv",
 					Metal,
-					/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.2.sdk/usr/lib/libiconv.tbd,
-					/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.2.sdk/usr/lib/libz.tbd,
 				);
 				OTHER_REZFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = org.cocos2dx.DownHiller2;
@@ -7044,8 +7052,7 @@
 					GameController,
 					"-framework",
 					Metal,
-					/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.2.sdk/usr/lib/libiconv.tbd,
-					/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.2.sdk/usr/lib/libz.tbd,
+					"-liconv",
 					"-lz",
 				);
 				OTHER_REZFLAGS = "";
@@ -7366,8 +7373,7 @@
 					GameController,
 					"-framework",
 					Metal,
-					/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.2.sdk/usr/lib/libiconv.tbd,
-					/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.2.sdk/usr/lib/libz.tbd,
+					"-liconv",
 					"-lz",
 				);
 				OTHER_REZFLAGS = "";
@@ -7543,9 +7549,9 @@
 					"-framework",
 					GameController,
 					"-framework",
+					"-lz",
 					Metal,
-					/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.2.sdk/usr/lib/libiconv.tbd,
-					/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.2.sdk/usr/lib/libz.tbd,
+					"-liconv",
 				);
 				OTHER_REZFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = org.cocos2dx.DownHiller2;

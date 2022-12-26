@@ -69,8 +69,15 @@ corelocationframeworkを追加する。
 1)build Phases→Link Binary With Libraryiesで
 　CoreLocationUI .frameworkのStatusをOptionalにする。
 
+2)20221226
+Target→Build Setting→Other Linker Flagsで、
+以下２つ削除
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.2.sdk/usr/lib/libiconv.tbd,
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.2.sdk/usr/lib/libz.tbd,
 
-
+以下1つ追加
+-liconv
+を追加する。
 
 
 Android用メモ
@@ -82,3 +89,16 @@ https://qiita.com/tlsd/items/b610d75565e1895bf96a
 
 7,sound関連
 https://shivat.hatenablog.com/entry/2017/05/22/172439
+
+
+
+プロモーション関連
+シミュレータの動画を撮る。
+xcrun simctl io booted recordVideo <name>.mov
+止める時　ctl + C
+
+
+
+
+
+
